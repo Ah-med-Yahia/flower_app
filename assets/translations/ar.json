@@ -1,0 +1,17 @@
+{
+    "badRequestError": "طلب غير صالح.",
+    "noContent": "لا يوجد محتوى متاح.",
+    "forbiddenError": "غير مسموح بالوصول.",
+    "unauthorizedError": "غير مصرح بالوصول.",
+    "notFoundError": "المورد غير موجود.",
+    "conflictError": "تعارض في الطلب.",
+    "internalServerError": "خطأ في الخادم الداخلي.",
+    "unknownError": "حدث خطأ غير معروف.",
+    "timeoutError": "انتهت مهلة الاتصال. يرجى المحاولة مرة أخرى.",
+    "defaultError": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+    "cacheError": "حدث خطأ في التخزين المؤقت.",
+    "noInternetError": "لا يوجد اتصال بالإنترنت. يرجى التحقق من الشبكة.",
+    "loadingMessage": "جارٍ التحميل...",
+    "retryAgainMessage": "يرجى المحاولة مرة أخرى.",
+    "ok": "موافق"
+}

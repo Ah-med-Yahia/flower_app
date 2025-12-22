@@ -1,0 +1,17 @@
+{
+    "badRequestError": "Invalid request.",
+    "noContent": "No content available.",
+    "forbiddenError": "Access forbidden.",
+    "unauthorizedError": "Unauthorized access.",
+    "notFoundError": "Resource not found.",
+    "conflictError": "Request conflict.",
+    "internalServerError": "Internal server error.",
+    "unknownError": "An unknown error occurred.",
+    "timeoutError": "Connection timeout. Please try again.",
+    "defaultError": "Something went wrong. Please try again.",
+    "cacheError": "Cache error occurred.",
+    "noInternetError": "No internet connection. Please check your network.",
+    "loadingMessage": "Loading...",
+    "retryAgainMessage": "Please try again.",
+    "ok": "OK"
+}
