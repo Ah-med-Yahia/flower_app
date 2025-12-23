@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:online_exam_app/core/theme/app_colors.dart';
-import 'package:online_exam_app/features/cart/cart_screen.dart';
-import 'package:online_exam_app/features/categorey/categorey_screen.dart';
+import 'package:online_exam_app/features/cart/cart_tap.dart';
+import 'package:online_exam_app/features/categorey/categorey_tap.dart';
 import 'package:online_exam_app/features/home/presentation/views/home_tap.dart';
-import 'package:online_exam_app/features/profile/profile_screen.dart';
+import 'package:online_exam_app/features/profile/profile_tap.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
