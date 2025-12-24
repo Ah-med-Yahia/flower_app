@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:online_exam_app/config/error_handler/api_error_model.dart';
-import 'package:online_exam_app/core/constants/api_errors_constants.dart';
+import 'package:flower_app/config/error_handler/api_error_model.dart';
+import 'package:flower_app/core/constants/api_errors_constants.dart';
 
 enum DataSource {
   noContent,
