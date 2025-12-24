@@ -1,6 +1,5 @@
+import 'package:flower_app/features/auth/login/data/mapper/login_request_mapper.dart';
 import 'package:injectable/injectable.dart';
-import 'package:online_exam_app/features/auth/login/data/mapper/login_request_mapper.dart';
-
 import '../../../../../config/base_response/base_response.dart';
 import '../../domain/entities/login_request_entity.dart';
 import '../../domain/repositories/login_repository.dart';
@@ -14,19 +13,33 @@ class LoginRepositoryImpl implements LoginRepository {
 
   LoginRepositoryImpl(this.remoteDataSource, this.localDataSource);
   @override
-  Future<BaseResponse<void>> login(LoginRequestEntity request) async {
+  Future<BaseResponse<void>> login(
+    LoginRequestEntity request,
+    bool remembered,
+  ) async {
     final response = await remoteDataSource.login(request.toModel());
     return response.map(
-      success: (response) {
+      success: (response) async {
         final loginResponse = response.data;
-        localDataSource.saveLoggedUserData(
-          token: loginResponse.token,
-          user: loginResponse.user,
-        );
-        return BaseResponse.success(null);
+        if (remembered) {
+          final localResponse = await localDataSource.saveLoggedUserData(
+            token: loginResponse.token,
+            user: loginResponse.user,
+          );
+          return localResponse.map(
+            success: (s) {
+              return BaseResponse<void>.success(null);
+            },
+            failure: (f) {
+              return BaseResponse<void>.failure(f.errorhandeler);
+            },
+          );
+        }
+
+        return BaseResponse<void>.success(null);
       },
       failure: (failure) {
-        return BaseResponse.failure(failure.errorhandeler);
+        return BaseResponse<void>.failure(failure.errorhandeler);
       },
     );
   }
