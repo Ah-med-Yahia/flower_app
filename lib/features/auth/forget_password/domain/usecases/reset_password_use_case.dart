@@ -8,8 +8,8 @@ class ResetPasswordUseCase {
   final ForgetPasswordRepo _forgetPasswordRepo;
 
   Future<BaseResponse<ResetPasswordEntity>> execute({
-    required String email,
-    required String newPassword,
+    required String? email,
+    required String? newPassword,
   }) =>
-      _forgetPasswordRepo.restPassword(email: email, newPassword: newPassword);
+      _forgetPasswordRepo.resetPassword(email: email, newPassword: newPassword);
 }

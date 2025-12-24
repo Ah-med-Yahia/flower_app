@@ -9,6 +9,6 @@ class ForgetPasswordUseCase {
 
   final ForgetPasswordRepo _forgetPasswordRepo;
 
-  Future<BaseResponse<ForgetPasswordEntity>> execute({required String email}) =>
+  Future<BaseResponse<ForgetPasswordEntity>> execute({required String? email}) =>
       _forgetPasswordRepo.forgetPassword(email: email);
 }
