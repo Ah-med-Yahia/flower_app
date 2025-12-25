@@ -243,7 +243,7 @@ class __$$FailureImplCopyWithImpl<T, $Res>
     return _then(
       _$FailureImpl<T>(
         null == errorhandeler
-            ? _value.errorhandeler
+            ? _value.errorHandeler
             : errorhandeler // ignore: cast_nullable_to_non_nullable
                   as ErrorHandler,
       ),
@@ -254,14 +254,14 @@ class __$$FailureImplCopyWithImpl<T, $Res>
 /// @nodoc
 
 class _$FailureImpl<T> implements Failure<T> {
-  const _$FailureImpl(this.errorhandeler);
+  const _$FailureImpl(this.errorHandeler);
 
   @override
-  final ErrorHandler errorhandeler;
+  final ErrorHandler errorHandeler;
 
   @override
   String toString() {
-    return 'BaseResponse<$T>.failure(errorhandeler: $errorhandeler)';
+    return 'BaseResponse<$T>.failure(errorhandeler: $errorHandeler)';
   }
 
   @override
@@ -269,12 +269,12 @@ class _$FailureImpl<T> implements Failure<T> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FailureImpl<T> &&
-            (identical(other.errorhandeler, errorhandeler) ||
-                other.errorhandeler == errorhandeler));
+            (identical(other.errorHandeler, errorHandeler) ||
+                other.errorHandeler == errorHandeler));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, errorhandeler);
+  int get hashCode => Object.hash(runtimeType, errorHandeler);
 
   /// Create a copy of BaseResponse
   /// with the given fields replaced by the non-null parameter values.
@@ -290,7 +290,7 @@ class _$FailureImpl<T> implements Failure<T> {
     required TResult Function(T data) success,
     required TResult Function(ErrorHandler errorhandeler) failure,
   }) {
-    return failure(errorhandeler);
+    return failure(errorHandeler);
   }
 
   @override
@@ -299,7 +299,7 @@ class _$FailureImpl<T> implements Failure<T> {
     TResult? Function(T data)? success,
     TResult? Function(ErrorHandler errorhandeler)? failure,
   }) {
-    return failure?.call(errorhandeler);
+    return failure?.call(errorHandeler);
   }
 
   @override
@@ -310,7 +310,7 @@ class _$FailureImpl<T> implements Failure<T> {
     required TResult orElse(),
   }) {
     if (failure != null) {
-      return failure(errorhandeler);
+      return failure(errorHandeler);
     }
     return orElse();
   }
@@ -350,7 +350,7 @@ class _$FailureImpl<T> implements Failure<T> {
 abstract class Failure<T> implements BaseResponse<T> {
   const factory Failure(final ErrorHandler errorhandeler) = _$FailureImpl<T>;
 
-  ErrorHandler get errorhandeler;
+  ErrorHandler get errorHandeler;
 
   /// Create a copy of BaseResponse
   /// with the given fields replaced by the non-null parameter values.

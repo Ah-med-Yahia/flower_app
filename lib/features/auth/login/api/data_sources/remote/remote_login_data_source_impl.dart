@@ -6,8 +6,8 @@ import '../../../data/models/login_request_model/login_request_model.dart';
 import '../../../data/models/login_response_model/login_response_model.dart';
 import '../../api_client/login_api_client.dart';
 
-@Injectable(as: RemoteLoginDataSource)
-class RemoteLoginDataSourceImpl implements  RemoteLoginDataSource{
+@Injectable(as:RemoteLoginDataSource)
+class RemoteLoginDataSourceImpl implements RemoteLoginDataSource{
   final LoginApiClient _loginApiClient;
 
   RemoteLoginDataSourceImpl(this._loginApiClient);

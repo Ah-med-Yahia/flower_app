@@ -40,7 +40,9 @@ class SecureStorageService {
       final result = await _storage.read(key: key);
       return BaseResponse<String?>.success(result);
     } catch (e) {
-      return BaseResponse<String?>.failure(_handleError(StorageMethods.read, e));
+      return BaseResponse<String?>.failure(
+        _handleError(StorageMethods.read, e),
+      );
     }
   }
 
@@ -58,7 +60,9 @@ class SecureStorageService {
       await _storage.deleteAll();
       return BaseResponse<bool>.success(true);
     } catch (e) {
-      return BaseResponse<bool>.failure(_handleError(StorageMethods.deleteAll, e));
+      return BaseResponse<bool>.failure(
+        _handleError(StorageMethods.deleteAll, e),
+      );
     }
   }
 
@@ -67,7 +71,9 @@ class SecureStorageService {
       final result = await _storage.containsKey(key: key);
       return BaseResponse<bool>.success(result);
     } catch (e) {
-      return BaseResponse<bool>.failure(_handleError(StorageMethods.containsKey, e));
+      return BaseResponse<bool>.failure(
+        _handleError(StorageMethods.containsKey, e),
+      );
     }
   }
 
@@ -76,7 +82,9 @@ class SecureStorageService {
       final allData = await _storage.readAll();
       return BaseResponse<List<String>>.success(allData.keys.toList());
     } catch (e) {
-      return BaseResponse<List<String>>.failure(_handleError(StorageMethods.getAllKeys, e));
+      return BaseResponse<List<String>>.failure(
+        _handleError(StorageMethods.getAllKeys, e),
+      );
     }
   }
 
@@ -89,7 +97,9 @@ class SecureStorageService {
       final result = await write(key, jsonString);
       return result;
     } catch (e) {
-      return BaseResponse<bool>.failure(_handleError(StorageMethods.writeJson, e));
+      return BaseResponse<bool>.failure(
+        _handleError(StorageMethods.writeJson, e),
+      );
     }
   }
 
@@ -124,7 +134,9 @@ class SecureStorageService {
       final result = await write(key, jsonString);
       return result;
     } catch (e) {
-      return BaseResponse<bool>.failure(_handleError(StorageMethods.writeList, e));
+      return BaseResponse<bool>.failure(
+        _handleError(StorageMethods.writeList, e),
+      );
     }
   }
 
@@ -148,7 +160,9 @@ class SecureStorageService {
         },
       );
     } catch (e) {
-      return BaseResponse<List<String>?>.failure(_handleError(StorageMethods.readList, e));
+      return BaseResponse<List<String>?>.failure(
+        _handleError(StorageMethods.readList, e),
+      );
     }
   }
 
@@ -157,7 +171,9 @@ class SecureStorageService {
       final result = await write(key, value.toString());
       return result;
     } catch (e) {
-      return BaseResponse<bool>.failure(_handleError(StorageMethods.writeBool, e));
+      return BaseResponse<bool>.failure(
+        _handleError(StorageMethods.writeBool, e),
+      );
     }
   }
 
@@ -178,7 +194,9 @@ class SecureStorageService {
         },
       );
     } catch (e) {
-      return BaseResponse<bool?>.failure(_handleError(StorageMethods.readBool, e));
+      return BaseResponse<bool?>.failure(
+        _handleError(StorageMethods.readBool, e),
+      );
     }
   }
 
@@ -187,7 +205,9 @@ class SecureStorageService {
       final result = await write(key, value.toString());
       return result;
     } catch (e) {
-      return BaseResponse<bool>.failure(_handleError(StorageMethods.writeInt, e));
+      return BaseResponse<bool>.failure(
+        _handleError(StorageMethods.writeInt, e),
+      );
     }
   }
 
@@ -208,7 +228,9 @@ class SecureStorageService {
         },
       );
     } catch (e) {
-      return BaseResponse<int?>.failure(_handleError(StorageMethods.readInt, e));
+      return BaseResponse<int?>.failure(
+        _handleError(StorageMethods.readInt, e),
+      );
     }
   }
 
@@ -217,7 +239,9 @@ class SecureStorageService {
       final result = await write(key, value.toString());
       return result;
     } catch (e) {
-      return BaseResponse<bool>.failure(_handleError(StorageMethods.writeDouble, e));
+      return BaseResponse<bool>.failure(
+        _handleError(StorageMethods.writeDouble, e),
+      );
     }
   }
 
@@ -236,7 +260,9 @@ class SecureStorageService {
         },
       );
     } catch (e) {
-      return BaseResponse<double?>.failure(_handleError(StorageMethods.readDouble, e));
+      return BaseResponse<double?>.failure(
+        _handleError(StorageMethods.readDouble, e),
+      );
     }
   }
 
@@ -247,32 +273,30 @@ class SecureStorageService {
   }
 }
 
-
-
 extension SecureStorageExtension on SecureStorageService {
   Future<BaseResponse<bool>> saveAuthTokens({
     required String accessToken,
   }) async {
-      final result = await write(StorageKeys.accessToken, accessToken);
-      return result.map(
-        success: (s) => BaseResponse<bool>.success(true),
-        failure: (f) => BaseResponse<bool>.failure(f.errorhandeler),
-      );
+    final result = await write(StorageKeys.accessToken, accessToken);
+    return result.map(
+      success: (s) => BaseResponse<bool>.success(s.data),
+      failure: (f) => BaseResponse<bool>.failure(f.errorHandeler),
+    );
   }
 
   Future<BaseResponse<String?>> getAuthTokens() async {
-      final result = await read(StorageKeys.accessToken);
-      return result.map(
-        success: (s) => BaseResponse.success(s.data),
-        failure: (f) => BaseResponse.failure(f.errorhandeler),
-      );
+    final result = await read(StorageKeys.accessToken);
+    return result.map(
+      success: (s) => BaseResponse.success(s.data),
+      failure: (f) => BaseResponse.failure(f.errorHandeler),
+    );
   }
 
   Future<BaseResponse<bool>> clearAuthTokens() async {
     final results = await delete(StorageKeys.accessToken);
     return results.map(
       success: (s) => BaseResponse.success(s.data),
-      failure: (f) => BaseResponse.failure(f.errorhandeler),
+      failure: (f) => BaseResponse.failure(f.errorHandeler),
     );
   }
 }
