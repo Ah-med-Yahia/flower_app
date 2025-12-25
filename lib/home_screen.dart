@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:online_exam_app/core/constants/app_text_constants.dart';
 import 'package:online_exam_app/core/theme/app_colors.dart';
 import 'package:online_exam_app/features/cart/cart_tap.dart';
 import 'package:online_exam_app/features/categorey/categorey_tap.dart';
@@ -38,19 +39,19 @@ class _HomeScreenState extends State<HomeScreen> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),
-            label: 'Home',
+            label: AppTextConstants.home,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.category_outlined),
-            label: 'Categories',
+            label: AppTextConstants.categories,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart_outlined),
-            label: 'Cart',
+            label: AppTextConstants.cart,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),
-            label: 'Profile',
+            label: AppTextConstants.profile,
           ),
         ],
       ),
