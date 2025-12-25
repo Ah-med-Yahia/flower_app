@@ -81,7 +81,7 @@ class _ForgetPasswordBodyState extends State<ForgetPasswordBody> {
                   children: [
                     40.verticalSpacing,
                     const CustomHeaderTitleWidget(
-                      title: 'Forget Password',
+                      title: 'Forgot Password',
                       subtitle:
                           'Please enter your email address to receive a verification code',
                       titleAlign: TextAlign.left,
