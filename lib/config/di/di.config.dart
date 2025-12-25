@@ -15,10 +15,20 @@ import 'package:injectable/injectable.dart' as _i526;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
 import '../../features/auth/login/api/api_client/login_api_client.dart' as _i32;
+import '../../features/auth/login/api/data_sources/local/local_login_data_source_impl.dart'
+    as _i654;
 import '../../features/auth/login/api/data_sources/remote/remote_login_data_source_impl.dart'
     as _i793;
+import '../../features/auth/login/data/datasources/local/local_login_data_source.dart'
+    as _i326;
 import '../../features/auth/login/data/datasources/remote/remote_login_data_source.dart'
     as _i842;
+import '../../features/auth/login/data/repositories/login_repository_impl.dart'
+    as _i470;
+import '../../features/auth/login/domain/repositories/login_repository.dart'
+    as _i176;
+import '../../features/auth/login/domain/usecases/login_use_case.dart' as _i316;
+import '../../features/auth/login/presentation/cubit/login_cubit.dart' as _i126;
 import '../cache_modules/secure_storage_module.dart' as _i11;
 import '../cache_modules/shared_preferences_module.dart' as _i1059;
 import '../dio_module/dio_module.dart' as _i773;
@@ -44,8 +54,25 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i1059.CacheHelper(gh<_i460.SharedPreferences>()),
     );
     gh.factory<_i32.LoginApiClient>(() => _i32.LoginApiClient(gh<_i361.Dio>()));
+    gh.singleton<_i326.LocalLoginDataSource>(
+      () => _i654.LoginLocalDataSourceImpl(
+        secureStorageService: gh<_i11.SecureStorageService>(),
+      ),
+    );
     gh.factory<_i842.RemoteLoginDataSource>(
       () => _i793.RemoteLoginDataSourceImpl(gh<_i32.LoginApiClient>()),
+    );
+    gh.factory<_i176.LoginRepository>(
+      () => _i470.LoginRepositoryImpl(
+        gh<_i842.RemoteLoginDataSource>(),
+        gh<_i326.LocalLoginDataSource>(),
+      ),
+    );
+    gh.factory<_i316.LoginUseCase>(
+      () => _i316.LoginUseCase(gh<_i176.LoginRepository>()),
+    );
+    gh.factory<_i126.LoginCubit>(
+      () => _i126.LoginCubit(gh<_i316.LoginUseCase>()),
     );
     return this;
   }

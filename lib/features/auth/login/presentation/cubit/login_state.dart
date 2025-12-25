@@ -1,8 +1,10 @@
-class LoginStates {
+import 'package:equatable/equatable.dart';
+
+class LoginStates extends Equatable {
   final bool rememberMe;
   final bool isFieldsValid;
 
-  LoginStates({this.rememberMe = false, this.isFieldsValid = false});
+  const LoginStates({this.rememberMe = false, this.isFieldsValid = false});
 
   LoginStates copyWith({bool? isFieldsValid, bool? rememberMe}) {
     return LoginStates(
@@ -10,4 +12,7 @@ class LoginStates {
       rememberMe: rememberMe ?? this.rememberMe,
     );
   }
+
+  @override
+  List<Object?> get props => [rememberMe, isFieldsValid];
 }
