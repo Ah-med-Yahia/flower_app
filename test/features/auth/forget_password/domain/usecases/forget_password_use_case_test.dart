@@ -4,9 +4,10 @@ import 'package:mockito/mockito.dart';
 import 'package:online_exam_app/config/base_response/base_response.dart';
 import 'package:online_exam_app/config/error_handler/api_error_model.dart';
 import 'package:online_exam_app/config/error_handler/error_handler.dart';
-import 'package:online_exam_app/features/authentication/forget_password/domain/entities/forget_password_entity.dart';
-import 'package:online_exam_app/features/authentication/forget_password/domain/repositories/forget_password_repo.dart';
-import 'package:online_exam_app/features/authentication/forget_password/domain/usecases/forget_password_use_case.dart';
+import 'package:online_exam_app/features/auth/forget_password/domain/entities/forget_password_entity.dart';
+import 'package:online_exam_app/features/auth/forget_password/domain/repositories/forget_password_repo.dart';
+import 'package:online_exam_app/features/auth/forget_password/domain/usecases/forget_password_use_case.dart';
+
 import 'forget_password_use_case_test.mocks.dart';
 
 @GenerateMocks([ForgetPasswordRepo])
@@ -29,7 +30,7 @@ void main() {
         String testInfo = 'OTP sent to your email',
       }) => ForgetPasswordEntity(message: testMessage, info: testInfo);
       test(
-        'When email is valid, should return ForgetPasswordEntity with massage and info',
+        'When email is valid, should return ForgetPasswordEntity with message and info',
         () async {
           // arrange
           final forgetPasswordEntity = mockForgetPasswordEntity();
