@@ -26,6 +26,8 @@ import '../../features/auth/register/domain/repositories/register_repository.dar
     as _i57;
 import '../../features/auth/register/domain/usecases/register_use_case.dart'
     as _i545;
+import '../../features/auth/register/presentation/cubit/register_cubit.dart'
+    as _i805;
 import '../cache_modules/secure_storage_module.dart' as _i11;
 import '../cache_modules/shared_preferences_module.dart' as _i1059;
 import '../dio_module/dio_module.dart' as _i773;
@@ -63,6 +65,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i545.RegisterUseCase>(
       () => _i545.RegisterUseCase(gh<_i57.RegisterRepository>()),
+    );
+    gh.factory<_i805.RegisterCubit>(
+      () => _i805.RegisterCubit(gh<_i545.RegisterUseCase>()),
     );
     return this;
   }
