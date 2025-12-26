@@ -90,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   onTapOutside: (_) {
                     FocusManager.instance.primaryFocus?.unfocus();
                   },
-                  autovalidateMode:AutovalidateMode.onUserInteraction,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     labelText: AppTextConstants.email,
@@ -104,7 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 24.verticalSpacing,
                 TextFormField(
                   controller: _passwordController,
-                  validator: AppValidators.validatePassword,
+                  validator: AppValidators.validateLoginPassword,
                   keyboardType: TextInputType.text,
                   onChanged: (value) => loginCubit.doIntent(
                     ValidateFields(_emailController.text, value),
@@ -112,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   onTapOutside: (_) {
                     FocusManager.instance.primaryFocus?.unfocus();
                   },
-                  autovalidateMode:AutovalidateMode.onUserInteraction,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: InputDecoration(
                     labelText: AppTextConstants.password,
                     hintText: AppTextConstants.enterPassword,
@@ -185,12 +185,29 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                 ),
                 16.verticalSpacing,
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    side: BorderSide(color: AppColors.textSecondary),
+                    fixedSize: Size(screenSize.width, 48),
+                    backgroundColor: Colors.white,
+                    foregroundColor: AppColors.textSecondary,
+                  ),
+
+                  child: Text(AppTextConstants.guestUser),
+                  onPressed: () {
+                    context.go(AppRoutesConstants.homeRoute);
+                  },
+                ),
+                16.verticalSpacing,
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(AppTextConstants.dontHaveAccount),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        // Navigate to Sign Up screen
+                        context.pushNamed(AppRoutesConstants.signUpRoute);
+                      },
                       child: Text(
                         AppTextConstants.signUp,
                         style: textTheme.bodySmall!.copyWith(

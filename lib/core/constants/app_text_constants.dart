@@ -8,4 +8,5 @@ class AppTextConstants {
   static const String forgetPasswordHeadLine = "Forget password";
   static const String dontHaveAccount = "Don't have an account?";
   static const String signUp = 'Sign Up';
+  static const String guestUser = 'Continue as Guest';
 }

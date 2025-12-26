@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 import 'app_colors.dart';
 
 abstract class AppTheme {
@@ -20,7 +21,6 @@ abstract class AppTheme {
     ),
     //------------ Text Form Field Theme -----------------//
     inputDecorationTheme: InputDecorationTheme(
-      
       labelStyle: TextStyle(color: AppColors.textSecondary),
       hintStyle: TextStyle(color: AppColors.grey, letterSpacing: 0.5),
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(4)),
@@ -30,7 +30,7 @@ abstract class AppTheme {
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(4),
-        borderSide: BorderSide(color: AppColors.textSecondary,width: 2),
+        borderSide: BorderSide(color: AppColors.textSecondary, width: 2),
       ),
       focusedErrorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(4),
@@ -62,19 +62,15 @@ abstract class AppTheme {
         fontFamily: 'Inter',
       ),
       bodyMedium: TextStyle(color: AppColors.textSecondary),
-      bodySmall: TextStyle(fontSize: 16,fontWeight: FontWeight.w400)
+      bodySmall: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
     ),
     //------------ Button Theme -----------------//
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primary,
-        foregroundColor:AppColors.background ,
+        foregroundColor: AppColors.background,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        textStyle: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w500,
-          color: AppColors.background,
-        ),
+        textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
       ),
     ),
   );
