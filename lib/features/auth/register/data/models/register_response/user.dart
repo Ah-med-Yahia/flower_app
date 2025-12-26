@@ -11,8 +11,13 @@ class User {
   final String? photo;
   final String? role;
   final List<dynamic>? wishlist;
+
+  @JsonKey(name: '_id')
   final String? id;
+
   final List<dynamic>? addresses;
+
+  @JsonKey(fromJson: _fromJsonDate, toJson: _toJsonDate)
   final DateTime? createdAt;
 
   const User({
@@ -29,7 +34,14 @@ class User {
     this.createdAt,
   });
 
-  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  factory User.fromJson(Map<String, dynamic> json) =>
+      _$UserFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserToJson(this);
+
+  static DateTime? _fromJsonDate(String? value) =>
+      value == null ? null : DateTime.parse(value);
+
+  static String? _toJsonDate(DateTime? date) =>
+      date?.toIso8601String();
 }

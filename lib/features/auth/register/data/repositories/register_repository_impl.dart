@@ -1,4 +1,3 @@
-
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/features/auth/register/domain/entities/register_entity.dart';
 import 'package:online_exam_app/features/auth/register/domain/mapper/to_entity_mapper.dart';
@@ -23,8 +22,8 @@ class RegisterRepositoryImpl implements RegisterRepository {
         final data = response.data;
         return BaseResponse<RegisterEntity>.success(data.toEntity());
       },
-      failure: (faluire) {
-        return BaseResponse<RegisterEntity>.failure(faluire.errorhandeler);
+      failure: (failure) {
+        return BaseResponse<RegisterEntity>.failure(failure.errorhandeler);
       },
     );
   }

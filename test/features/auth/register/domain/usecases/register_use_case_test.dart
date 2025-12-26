@@ -46,9 +46,9 @@ void main() {
   group('Register UseCase Senarios', () {
     test('should return success when repository returns success', () async {
       // Arrange
-      when(mockRepository.register(request)).thenAnswer(
-        (_) async => BaseResponse.success(entity),
-      );
+      when(
+        mockRepository.register(request),
+      ).thenAnswer((_) async => BaseResponse.success(entity));
 
       // Act
       final result = await useCase(request);
