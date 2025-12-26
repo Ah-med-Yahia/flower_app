@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 abstract class AppColors {
   static const Color primary = Color(0xFFD21E6A);
@@ -13,4 +13,5 @@ abstract class AppColors {
   static const Color darkGreen = Color(0xff2F9033);
   static const Color red = Color(0xFFCC1010);
   static const Color darkRed = Color(0xffB3261E);
+  static const Color black = Colors.black;
 }
