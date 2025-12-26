@@ -138,19 +138,30 @@ ApiErrorModel _handleDioError(DioException error) {
     DioExceptionType.unknown => _handleUnknownError(error),
   };
 }
-
 ApiErrorModel _handleBadResponse(DioException error) {
   final response = error.response;
   if (response == null) {
     return DataSource.unknown.toFailure();
   }
 
-  try {
-    return ApiErrorModel.fromJson(response.data);
-  } catch (_) {
-    return _mapStatusCodeToDataSource(response.statusCode).toFailure();
+  final data = response.data;
+
+  if (data is Map<String, dynamic>) {
+    final message =
+        data['message'] ??
+        data['error'];
+
+    if (message is String) {
+      return ApiErrorModel(
+        code: response.statusCode,
+        message: message,
+      );
+    }
   }
+
+  return _mapStatusCodeToDataSource(response.statusCode).toFailure();
 }
+
 
 DataSource _mapStatusCodeToDataSource(int? statusCode) {
   if (statusCode == null) return DataSource.unknown;

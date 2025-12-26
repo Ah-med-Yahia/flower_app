@@ -65,7 +65,6 @@ extension StringValidation on String? {
     return null;
   }
 }
-
 class AppValidators {
   static String? validateEmail(String? value) => value.validateEmail;
 
@@ -74,5 +73,21 @@ class AppValidators {
   static String? validateConfirmPassword(
     String? value,
     String? originalPassword,
-  ) => value.validateMatch(originalPassword);
+  ) =>
+      value.validateMatch(originalPassword);
+
+  static String? validateRequired(String? value) => value.validateRequired;
+
+  /// ================= PHONE (UPDATED) =================
+  static String? validatePhoneNumber(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return ValidationConstants.phoneNumberRequired;
+    }
+
+    if (!AppRegex.isPhoneValid(value)) {
+      return ValidationConstants.invalidPhoneNumber;
+    }
+
+    return null;
+  }
 }
