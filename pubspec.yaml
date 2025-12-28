@@ -42,6 +42,9 @@ dependencies:
   # Lottie
   lottie: ^3.3.2
 
+  equatable:
+  pinput:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
