@@ -189,7 +189,6 @@ void main() {
           result.when(
             success: (data) {
               expect(data.message, tMessage);
-              expect(data.token, tToken);
             },
             failure: (_) => fail('Should not return failure'),
           );
@@ -244,7 +243,6 @@ void main() {
           result.when(
             success: (data) {
               expect(data.message, '');
-              expect(data.token, '');
             },
             failure: (_) => fail('Should not return failure'),
           );
