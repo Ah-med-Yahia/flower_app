@@ -26,9 +26,9 @@ void main() {
       ResetPasswordEntity mockResetPasswordEntity({
         String testMessage = 'success',
         String testToken = 'testToken',
-      }) => ResetPasswordEntity(message: testMessage);
+      }) => ResetPasswordEntity(message: testMessage, token: testToken);
       test(
-        'When email and new password are valid, should return ResetPasswordEntity with massage and token',
+        'When email and new password are valid, should return ResetPasswordEntity with message and token',
             () async {
           // arrange
           final resetPasswordEntity = mockResetPasswordEntity();
@@ -41,13 +41,15 @@ void main() {
           ).thenAnswer((_) async => successResponse);
 
           // act
-          final result = await resetPasswordUseCase.execute(email: testEmail,newPassword: testNewPass);
+          final result = await resetPasswordUseCase.execute(
+              email: testEmail, newPassword: testNewPass);
 
           // assert
           expect(result, isA<BaseResponse<ResetPasswordEntity>>());
           result.when(
             success: (data) {
               expect(data.message, equals(resetPasswordEntity.message));
+              expect(data.token, equals(resetPasswordEntity.token));
             },
             failure: (error) => fail('Expected success but got failure'),
           );

@@ -30,7 +30,7 @@ void main() {
         String testInfo = 'OTP sent to your email',
       }) => ForgetPasswordEntity(message: testMessage, info: testInfo);
       test(
-        'When email is valid, should return ForgetPasswordEntity with massage and info',
+        'When email is valid, should return ForgetPasswordEntity with message and info',
         () async {
           // arrange
           final forgetPasswordEntity = mockForgetPasswordEntity();
