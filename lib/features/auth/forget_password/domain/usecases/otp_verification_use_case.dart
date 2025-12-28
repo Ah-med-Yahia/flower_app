@@ -1,5 +1,5 @@
-import 'package:online_exam_app/features/authentication/forget_password/domain/entities/verify_otp_code_entity.dart';
 import '../../../../../config/base_response/base_response.dart';
+import '../entities/verify_otp_code_entity.dart';
 import '../repositories/forget_password_repo.dart';
 
 class OtpVerificationUseCase {
