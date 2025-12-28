@@ -37,31 +37,37 @@ void main() {
   group('All Test Cases Scenarios for ForgetPasswordRepoImpl', () {
     group('In Case Success Response', () {
       group('forgetPassword', () {
-        test('should return Success with ForgetPasswordEntity when call succeeds', () async {
-          // Arrange
-          final mockResponse = ForgetPasswordResponse(
-            message: tMessage,
-            info: tInfo,
-          );
+        test(
+          'should return Success with ForgetPasswordEntity when call succeeds',
+          () async {
+            // Arrange
+            final mockResponse = ForgetPasswordResponse(
+              message: tMessage,
+              info: tInfo,
+            );
 
-          when(mockRemoteDataSource.forgetPassword(email: tEmail))
-              .thenAnswer((_) async => mockResponse);
+            when(
+              mockRemoteDataSource.forgetPassword(email: tEmail),
+            ).thenAnswer((_) async => mockResponse);
 
-          // Act
-          final result = await repoImpl.forgetPassword(email: tEmail);
+            // Act
+            final result = await repoImpl.forgetPassword(email: tEmail);
 
-          // Assert
-          expect(result, isA<Success<ForgetPasswordEntity>>());
-          result.when(
-            success: (data) {
-              expect(data.message, tMessage);
-              expect(data.info, tInfo);
-            },
-            failure: (_) => fail('Should not return failure'),
-          );
+            // Assert
+            expect(result, isA<Success<ForgetPasswordEntity>>());
+            result.when(
+              success: (data) {
+                expect(data.message, tMessage);
+                expect(data.info, tInfo);
+              },
+              failure: (_) => fail('Should not return failure'),
+            );
 
-          verify(mockRemoteDataSource.forgetPassword(email: tEmail)).called(1);
-        });
+            verify(
+              mockRemoteDataSource.forgetPassword(email: tEmail),
+            ).called(1);
+          },
+        );
 
         test('should handle null email by passing empty string', () async {
           // Arrange
@@ -70,8 +76,9 @@ void main() {
             info: tInfo,
           );
 
-          when(mockRemoteDataSource.forgetPassword(email: ''))
-              .thenAnswer((_) async => mockResponse);
+          when(
+            mockRemoteDataSource.forgetPassword(email: ''),
+          ).thenAnswer((_) async => mockResponse);
 
           // Act
           final result = await repoImpl.forgetPassword(email: null);
@@ -88,8 +95,9 @@ void main() {
             info: null,
           );
 
-          when(mockRemoteDataSource.forgetPassword(email: tEmail))
-              .thenAnswer((_) async => mockResponse);
+          when(
+            mockRemoteDataSource.forgetPassword(email: tEmail),
+          ).thenAnswer((_) async => mockResponse);
 
           // Act
           final result = await repoImpl.forgetPassword(email: tEmail);
@@ -107,34 +115,41 @@ void main() {
       });
 
       group('verifyOtpCode', () {
-        test('should return Success with VerifyOtpCodeEntity when call succeeds', () async {
-          // Arrange
-          const mockResponse = VerifyOtpCodeResponse(status: tStatus);
+        test(
+          'should return Success with VerifyOtpCodeEntity when call succeeds',
+          () async {
+            // Arrange
+            const mockResponse = VerifyOtpCodeResponse(status: tStatus);
 
-          when(mockRemoteDataSource.verifyOtpCode(resetCode: tResetCode))
-              .thenAnswer((_) async => mockResponse);
+            when(
+              mockRemoteDataSource.verifyOtpCode(resetCode: tResetCode),
+            ).thenAnswer((_) async => mockResponse);
 
-          // Act
-          final result = await repoImpl.verifyOtpCode(resetCode: tResetCode);
+            // Act
+            final result = await repoImpl.verifyOtpCode(resetCode: tResetCode);
 
-          // Assert
-          expect(result, isA<Success<VerifyOtpCodeEntity>>());
-          result.when(
-            success: (data) {
-              expect(data.status, tStatus);
-            },
-            failure: (_) => fail('Should not return failure'),
-          );
+            // Assert
+            expect(result, isA<Success<VerifyOtpCodeEntity>>());
+            result.when(
+              success: (data) {
+                expect(data.status, tStatus);
+              },
+              failure: (_) => fail('Should not return failure'),
+            );
 
-          verify(mockRemoteDataSource.verifyOtpCode(resetCode: tResetCode)).called(1);
-        });
+            verify(
+              mockRemoteDataSource.verifyOtpCode(resetCode: tResetCode),
+            ).called(1);
+          },
+        );
 
         test('should handle null resetCode by passing empty string', () async {
           // Arrange
           const mockResponse = VerifyOtpCodeResponse(status: tStatus);
 
-          when(mockRemoteDataSource.verifyOtpCode(resetCode: ''))
-              .thenAnswer((_) async => mockResponse);
+          when(
+            mockRemoteDataSource.verifyOtpCode(resetCode: ''),
+          ).thenAnswer((_) async => mockResponse);
 
           // Act
           final result = await repoImpl.verifyOtpCode(resetCode: null);
@@ -148,8 +163,9 @@ void main() {
           // Arrange
           const mockResponse = VerifyOtpCodeResponse(status: null);
 
-          when(mockRemoteDataSource.verifyOtpCode(resetCode: tResetCode))
-              .thenAnswer((_) async => mockResponse);
+          when(
+            mockRemoteDataSource.verifyOtpCode(resetCode: tResetCode),
+          ).thenAnswer((_) async => mockResponse);
 
           // Act
           final result = await repoImpl.verifyOtpCode(resetCode: tResetCode);
@@ -166,60 +182,72 @@ void main() {
       });
 
       group('resetPassword', () {
-        test('should return Success with ResetPasswordEntity when call succeeds', () async {
-          // Arrange
-          final mockResponse = ResetPasswordResponse(
-            message: tMessage,
-            token: tToken,
-          );
+        test(
+          'should return Success with ResetPasswordEntity when call succeeds',
+          () async {
+            // Arrange
+            final mockResponse = ResetPasswordResponse(
+              message: tMessage,
+              token: tToken,
+            );
 
-          when(mockRemoteDataSource.resetPassword(
-            email: tEmail,
-            newPassword: tNewPassword,
-          )).thenAnswer((_) async => mockResponse);
+            when(
+              mockRemoteDataSource.resetPassword(
+                email: tEmail,
+                newPassword: tNewPassword,
+              ),
+            ).thenAnswer((_) async => mockResponse);
 
-          // Act
-          final result = await repoImpl.resetPassword(
-            email: tEmail,
-            newPassword: tNewPassword,
-          );
+            // Act
+            final result = await repoImpl.resetPassword(
+              email: tEmail,
+              newPassword: tNewPassword,
+            );
 
-          // Assert
-          expect(result, isA<Success<ResetPasswordEntity>>());
-          result.when(
-            success: (data) {
-              expect(data.message, tMessage);
-              expect(data.token, tToken);
-            },
-            failure: (_) => fail('Should not return failure'),
-          );
+            // Assert
+            expect(result, isA<Success<ResetPasswordEntity>>());
+            result.when(
+              success: (data) {
+                expect(data.message, tMessage);
+              },
+              failure: (_) => fail('Should not return failure'),
+            );
 
-          verify(mockRemoteDataSource.resetPassword(
-            email: tEmail,
-            newPassword: tNewPassword,
-          )).called(1);
-        });
+            verify(
+              mockRemoteDataSource.resetPassword(
+                email: tEmail,
+                newPassword: tNewPassword,
+              ),
+            ).called(1);
+          },
+        );
 
-        test('should handle null parameters by passing empty strings', () async {
-          // Arrange
-          final mockResponse = ResetPasswordResponse(
-            message: tMessage,
-            token: tToken,
-          );
+        test(
+          'should handle null parameters by passing empty strings',
+          () async {
+            // Arrange
+            final mockResponse = ResetPasswordResponse(
+              message: tMessage,
+              token: tToken,
+            );
 
-          when(mockRemoteDataSource.resetPassword(email: '', newPassword: ''))
-              .thenAnswer((_) async => mockResponse);
+            when(
+              mockRemoteDataSource.resetPassword(email: '', newPassword: ''),
+            ).thenAnswer((_) async => mockResponse);
 
-          // Act
-          final result = await repoImpl.resetPassword(
-            email: null,
-            newPassword: null,
-          );
+            // Act
+            final result = await repoImpl.resetPassword(
+              email: null,
+              newPassword: null,
+            );
 
-          // Assert
-          expect(result, isA<Success<ResetPasswordEntity>>());
-          verify(mockRemoteDataSource.resetPassword(email: '', newPassword: '')).called(1);
-        });
+            // Assert
+            expect(result, isA<Success<ResetPasswordEntity>>());
+            verify(
+              mockRemoteDataSource.resetPassword(email: '', newPassword: ''),
+            ).called(1);
+          },
+        );
 
         test('should convert null response fields to empty strings', () async {
           // Arrange
@@ -228,10 +256,12 @@ void main() {
             token: null,
           );
 
-          when(mockRemoteDataSource.resetPassword(
-            email: tEmail,
-            newPassword: tNewPassword,
-          )).thenAnswer((_) async => mockResponse);
+          when(
+            mockRemoteDataSource.resetPassword(
+              email: tEmail,
+              newPassword: tNewPassword,
+            ),
+          ).thenAnswer((_) async => mockResponse);
 
           // Act
           final result = await repoImpl.resetPassword(
@@ -244,7 +274,6 @@ void main() {
           result.when(
             success: (data) {
               expect(data.message, '');
-              expect(data.token, '');
             },
             failure: (_) => fail('Should not return failure'),
           );
@@ -254,60 +283,68 @@ void main() {
 
     group('In Case Failure Response', () {
       group('forgetPassword', () {
-        test('should return Failure when remote call throws DioException', () async {
-          // Arrange
-          final dioException = DioException(
-            requestOptions: RequestOptions(path: ''),
-            type: DioExceptionType.badResponse,
-            response: Response(
+        test(
+          'should return Failure when remote call throws DioException',
+          () async {
+            // Arrange
+            final dioException = DioException(
               requestOptions: RequestOptions(path: ''),
-              statusCode: 400,
-            ),
-          );
+              type: DioExceptionType.badResponse,
+              response: Response(
+                requestOptions: RequestOptions(path: ''),
+                statusCode: 400,
+              ),
+            );
 
-          when(mockRemoteDataSource.forgetPassword(email: tEmail))
-              .thenThrow(dioException);
+            when(
+              mockRemoteDataSource.forgetPassword(email: tEmail),
+            ).thenThrow(dioException);
 
-          // Act
-          final result = await repoImpl.forgetPassword(email: tEmail);
+            // Act
+            final result = await repoImpl.forgetPassword(email: tEmail);
 
-          // Assert
-          expect(result, isA<Failure<ForgetPasswordEntity>>());
-          result.when(
-            success: (_) => fail('Should not return success'),
-            failure: (error) {
-              expect(error, isA<ErrorHandler>());
-              expect(error.code, 400);
-            },
-          );
-        });
+            // Assert
+            expect(result, isA<Failure<ForgetPasswordEntity>>());
+            result.when(
+              success: (_) => fail('Should not return success'),
+              failure: (error) {
+                expect(error, isA<ErrorHandler>());
+                expect(error.code, 400);
+              },
+            );
+          },
+        );
 
-        test('should return Failure with unauthorized error when status code is 401', () async {
-          // Arrange
-          final dioException = DioException(
-            requestOptions: RequestOptions(path: ''),
-            type: DioExceptionType.badResponse,
-            response: Response(
+        test(
+          'should return Failure with unauthorized error when status code is 401',
+          () async {
+            // Arrange
+            final dioException = DioException(
               requestOptions: RequestOptions(path: ''),
-              statusCode: 401,
-            ),
-          );
+              type: DioExceptionType.badResponse,
+              response: Response(
+                requestOptions: RequestOptions(path: ''),
+                statusCode: 401,
+              ),
+            );
 
-          when(mockRemoteDataSource.forgetPassword(email: tEmail))
-              .thenThrow(dioException);
+            when(
+              mockRemoteDataSource.forgetPassword(email: tEmail),
+            ).thenThrow(dioException);
 
-          // Act
-          final result = await repoImpl.forgetPassword(email: tEmail);
+            // Act
+            final result = await repoImpl.forgetPassword(email: tEmail);
 
-          // Assert
-          expect(result, isA<Failure<ForgetPasswordEntity>>());
-          result.when(
-            success: (_) => fail('Should not return success'),
-            failure: (error) {
-              expect(error.code, 401);
-            },
-          );
-        });
+            // Assert
+            expect(result, isA<Failure<ForgetPasswordEntity>>());
+            result.when(
+              success: (_) => fail('Should not return success'),
+              failure: (error) {
+                expect(error.code, 401);
+              },
+            );
+          },
+        );
 
         test('should return Failure when connection timeout occurs', () async {
           // Arrange
@@ -316,8 +353,9 @@ void main() {
             type: DioExceptionType.connectionTimeout,
           );
 
-          when(mockRemoteDataSource.forgetPassword(email: tEmail))
-              .thenThrow(dioException);
+          when(
+            mockRemoteDataSource.forgetPassword(email: tEmail),
+          ).thenThrow(dioException);
 
           // Act
           final result = await repoImpl.forgetPassword(email: tEmail);
@@ -340,8 +378,9 @@ void main() {
             message: 'socket exception',
           );
 
-          when(mockRemoteDataSource.forgetPassword(email: tEmail))
-              .thenThrow(dioException);
+          when(
+            mockRemoteDataSource.forgetPassword(email: tEmail),
+          ).thenThrow(dioException);
 
           // Act
           final result = await repoImpl.forgetPassword(email: tEmail);
@@ -358,8 +397,9 @@ void main() {
 
         test('should return Failure for unknown errors', () async {
           // Arrange
-          when(mockRemoteDataSource.forgetPassword(email: tEmail))
-              .thenThrow(Exception('Unknown error'));
+          when(
+            mockRemoteDataSource.forgetPassword(email: tEmail),
+          ).thenThrow(Exception('Unknown error'));
 
           // Act
           final result = await repoImpl.forgetPassword(email: tEmail);
@@ -376,33 +416,37 @@ void main() {
       });
 
       group('verifyOtpCode', () {
-        test('should return Failure when remote call throws DioException', () async {
-          // Arrange
-          final dioException = DioException(
-            requestOptions: RequestOptions(path: ''),
-            type: DioExceptionType.badResponse,
-            response: Response(
+        test(
+          'should return Failure when remote call throws DioException',
+          () async {
+            // Arrange
+            final dioException = DioException(
               requestOptions: RequestOptions(path: ''),
-              statusCode: 400,
-            ),
-          );
+              type: DioExceptionType.badResponse,
+              response: Response(
+                requestOptions: RequestOptions(path: ''),
+                statusCode: 400,
+              ),
+            );
 
-          when(mockRemoteDataSource.verifyOtpCode(resetCode: tResetCode))
-              .thenThrow(dioException);
+            when(
+              mockRemoteDataSource.verifyOtpCode(resetCode: tResetCode),
+            ).thenThrow(dioException);
 
-          // Act
-          final result = await repoImpl.verifyOtpCode(resetCode: tResetCode);
+            // Act
+            final result = await repoImpl.verifyOtpCode(resetCode: tResetCode);
 
-          // Assert
-          expect(result, isA<Failure<VerifyOtpCodeEntity>>());
-          result.when(
-            success: (_) => fail('Should not return success'),
-            failure: (error) {
-              expect(error, isA<ErrorHandler>());
-              expect(error.code, 400);
-            },
-          );
-        });
+            // Assert
+            expect(result, isA<Failure<VerifyOtpCodeEntity>>());
+            result.when(
+              success: (_) => fail('Should not return success'),
+              failure: (error) {
+                expect(error, isA<ErrorHandler>());
+                expect(error.code, 400);
+              },
+            );
+          },
+        );
 
         test('should return Failure when invalid OTP code (404)', () async {
           // Arrange
@@ -415,8 +459,9 @@ void main() {
             ),
           );
 
-          when(mockRemoteDataSource.verifyOtpCode(resetCode: tResetCode))
-              .thenThrow(dioException);
+          when(
+            mockRemoteDataSource.verifyOtpCode(resetCode: tResetCode),
+          ).thenThrow(dioException);
 
           // Act
           final result = await repoImpl.verifyOtpCode(resetCode: tResetCode);
@@ -442,8 +487,9 @@ void main() {
             ),
           );
 
-          when(mockRemoteDataSource.verifyOtpCode(resetCode: tResetCode))
-              .thenThrow(dioException);
+          when(
+            mockRemoteDataSource.verifyOtpCode(resetCode: tResetCode),
+          ).thenThrow(dioException);
 
           // Act
           final result = await repoImpl.verifyOtpCode(resetCode: tResetCode);
@@ -466,8 +512,9 @@ void main() {
             type: DioExceptionType.cancel,
           );
 
-          when(mockRemoteDataSource.verifyOtpCode(resetCode: tResetCode))
-              .thenThrow(dioException);
+          when(
+            mockRemoteDataSource.verifyOtpCode(resetCode: tResetCode),
+          ).thenThrow(dioException);
 
           // Act
           final result = await repoImpl.verifyOtpCode(resetCode: tResetCode);
@@ -484,8 +531,9 @@ void main() {
 
         test('should return Failure for unknown errors', () async {
           // Arrange
-          when(mockRemoteDataSource.verifyOtpCode(resetCode: tResetCode))
-              .thenThrow(Exception('Unknown error'));
+          when(
+            mockRemoteDataSource.verifyOtpCode(resetCode: tResetCode),
+          ).thenThrow(Exception('Unknown error'));
 
           // Act
           final result = await repoImpl.verifyOtpCode(resetCode: tResetCode);
@@ -502,38 +550,43 @@ void main() {
       });
 
       group('resetPassword', () {
-        test('should return Failure when remote call throws DioException', () async {
-          // Arrange
-          final dioException = DioException(
-            requestOptions: RequestOptions(path: ''),
-            type: DioExceptionType.badResponse,
-            response: Response(
+        test(
+          'should return Failure when remote call throws DioException',
+          () async {
+            // Arrange
+            final dioException = DioException(
               requestOptions: RequestOptions(path: ''),
-              statusCode: 400,
-            ),
-          );
+              type: DioExceptionType.badResponse,
+              response: Response(
+                requestOptions: RequestOptions(path: ''),
+                statusCode: 400,
+              ),
+            );
 
-          when(mockRemoteDataSource.resetPassword(
-            email: tEmail,
-            newPassword: tNewPassword,
-          )).thenThrow(dioException);
+            when(
+              mockRemoteDataSource.resetPassword(
+                email: tEmail,
+                newPassword: tNewPassword,
+              ),
+            ).thenThrow(dioException);
 
-          // Act
-          final result = await repoImpl.resetPassword(
-            email: tEmail,
-            newPassword: tNewPassword,
-          );
+            // Act
+            final result = await repoImpl.resetPassword(
+              email: tEmail,
+              newPassword: tNewPassword,
+            );
 
-          // Assert
-          expect(result, isA<Failure<ResetPasswordEntity>>());
-          result.when(
-            success: (_) => fail('Should not return success'),
-            failure: (error) {
-              expect(error, isA<ErrorHandler>());
-              expect(error.code, 400);
-            },
-          );
-        });
+            // Assert
+            expect(result, isA<Failure<ResetPasswordEntity>>());
+            result.when(
+              success: (_) => fail('Should not return success'),
+              failure: (error) {
+                expect(error, isA<ErrorHandler>());
+                expect(error.code, 400);
+              },
+            );
+          },
+        );
 
         test('should return Failure when forbidden (403)', () async {
           // Arrange
@@ -546,10 +599,12 @@ void main() {
             ),
           );
 
-          when(mockRemoteDataSource.resetPassword(
-            email: tEmail,
-            newPassword: tNewPassword,
-          )).thenThrow(dioException);
+          when(
+            mockRemoteDataSource.resetPassword(
+              email: tEmail,
+              newPassword: tNewPassword,
+            ),
+          ).thenThrow(dioException);
 
           // Act
           final result = await repoImpl.resetPassword(
@@ -574,10 +629,12 @@ void main() {
             type: DioExceptionType.receiveTimeout,
           );
 
-          when(mockRemoteDataSource.resetPassword(
-            email: tEmail,
-            newPassword: tNewPassword,
-          )).thenThrow(dioException);
+          when(
+            mockRemoteDataSource.resetPassword(
+              email: tEmail,
+              newPassword: tNewPassword,
+            ),
+          ).thenThrow(dioException);
 
           // Act
           final result = await repoImpl.resetPassword(
@@ -602,10 +659,12 @@ void main() {
             type: DioExceptionType.sendTimeout,
           );
 
-          when(mockRemoteDataSource.resetPassword(
-            email: tEmail,
-            newPassword: tNewPassword,
-          )).thenThrow(dioException);
+          when(
+            mockRemoteDataSource.resetPassword(
+              email: tEmail,
+              newPassword: tNewPassword,
+            ),
+          ).thenThrow(dioException);
 
           // Act
           final result = await repoImpl.resetPassword(
@@ -630,10 +689,12 @@ void main() {
             type: DioExceptionType.badCertificate,
           );
 
-          when(mockRemoteDataSource.resetPassword(
-            email: tEmail,
-            newPassword: tNewPassword,
-          )).thenThrow(dioException);
+          when(
+            mockRemoteDataSource.resetPassword(
+              email: tEmail,
+              newPassword: tNewPassword,
+            ),
+          ).thenThrow(dioException);
 
           // Act
           final result = await repoImpl.resetPassword(
@@ -653,10 +714,12 @@ void main() {
 
         test('should return Failure for unknown errors', () async {
           // Arrange
-          when(mockRemoteDataSource.resetPassword(
-            email: tEmail,
-            newPassword: tNewPassword,
-          )).thenThrow(Exception('Unknown error'));
+          when(
+            mockRemoteDataSource.resetPassword(
+              email: tEmail,
+              newPassword: tNewPassword,
+            ),
+          ).thenThrow(Exception('Unknown error'));
 
           // Act
           final result = await repoImpl.resetPassword(

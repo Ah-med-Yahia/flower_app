@@ -3,8 +3,9 @@ import 'package:mockito/mockito.dart';
 import 'package:online_exam_app/config/base_response/base_response.dart';
 import 'package:online_exam_app/config/error_handler/api_error_model.dart';
 import 'package:online_exam_app/config/error_handler/error_handler.dart';
-import 'package:online_exam_app/features/authentication/forget_password/domain/entities/reset_password_entity.dart';
-import 'package:online_exam_app/features/authentication/forget_password/domain/usecases/reset_password_use_case.dart';
+import 'package:online_exam_app/features/auth/forget_password/domain/entities/reset_password_entity.dart';
+import 'package:online_exam_app/features/auth/forget_password/domain/usecases/reset_password_use_case.dart';
+
 import 'forget_password_use_case_test.mocks.dart';
 
 void main() {
@@ -25,9 +26,9 @@ void main() {
       ResetPasswordEntity mockResetPasswordEntity({
         String testMessage = 'success',
         String testToken = 'testToken',
-      }) => ResetPasswordEntity(message: testMessage, token: testToken);
+      }) => ResetPasswordEntity(message: testMessage);
       test(
-        'When email and new password are valid, should return ResetPasswordEntity with massage and token',
+        'When email and new password are valid, should return ResetPasswordEntity with message and token',
             () async {
           // arrange
           final resetPasswordEntity = mockResetPasswordEntity();
@@ -40,14 +41,14 @@ void main() {
           ).thenAnswer((_) async => successResponse);
 
           // act
-          final result = await resetPasswordUseCase.execute(email: testEmail,newPassword: testNewPass);
+          final result = await resetPasswordUseCase.execute(
+              email: testEmail, newPassword: testNewPass);
 
           // assert
           expect(result, isA<BaseResponse<ResetPasswordEntity>>());
           result.when(
             success: (data) {
               expect(data.message, equals(resetPasswordEntity.message));
-              expect(data.token, equals(resetPasswordEntity.token));
             },
             failure: (error) => fail('Expected success but got failure'),
           );

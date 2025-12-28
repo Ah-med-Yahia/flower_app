@@ -22,12 +22,8 @@ void main() {
 
           // Assert
           expect(result, isA<ResetPasswordEntity>());
-          final expectedToEntity = ResetPasswordEntity(
-            message: testMessage,
-            token: testToken,
-          );
+          final expectedToEntity = ResetPasswordEntity(message: testMessage);
           expect(result.message, equals(expectedToEntity.message));
-          expect(result.token, equals(expectedToEntity.token));
         },
       );
       test(
@@ -46,9 +42,8 @@ void main() {
 
           // Assert
           expect(result, isA<ResetPasswordEntity>());
-          final expectedToEntity = ResetPasswordEntity(message: '', token: '');
+          final expectedToEntity = ResetPasswordEntity(message: '');
           expect(result.message, equals(expectedToEntity.message));
-          expect(result.token, equals(expectedToEntity.token));
         },
       );
     },

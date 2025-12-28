@@ -1,19 +1,19 @@
 import 'dart:async';
 
-import 'package:flower_app/core/widgets/spacing.dart';
-import 'package:flower_app/core/widgets/toast_utils.dart';
-import 'package:flower_app/features/auth/forget_password/presentation/views/widgets/custom_elevated_Button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:online_exam_app/core/widgets/spacing.dart';
 
 import '../../../../../../../core/constants/app_text_constants.dart';
 import '../../../../../../../core/constants/validation_constants.dart';
 import '../../../../../../../core/validators/app_validators.dart';
+import '../../../../../../../core/widgets/toast_utils.dart';
 import '../../../view_models/events/reset_password_events.dart';
 import '../../../view_models/reset_password_cubit.dart';
 import '../../../view_models/states/reset_password_state.dart';
-import '../shared/custom_edit_text_widget.dart';
+import '../custom_edit_text_widget.dart';
+import '../shared/custom_elevated_button_widget.dart';
 
 class ResetPasswordBody extends StatefulWidget {
   const ResetPasswordBody({

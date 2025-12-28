@@ -46,6 +46,8 @@ dependencies:
   # Equatable
   equatable: ^2.0.7
 
+  pinput:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

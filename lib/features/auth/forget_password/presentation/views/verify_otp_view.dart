@@ -1,8 +1,8 @@
-import 'package:flower_app/core/widgets/spacing.dart';
-import 'package:flower_app/features/auth/forget_password/presentation/views/widgets/shared/custom_header_title_widget.dart';
-import 'package:flower_app/features/auth/forget_password/presentation/views/widgets/verify_otp/verify_otp_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:online_exam_app/core/widgets/spacing.dart';
+import 'package:online_exam_app/features/auth/forget_password/presentation/views/widgets/shared/custom_header_title_widget.dart';
+import 'package:online_exam_app/features/auth/forget_password/presentation/views/widgets/verify_otp/verify_otp_body.dart';
 
 import '../../../../../config/di/di.dart';
 import '../../../../../core/constants/app_text_constants.dart';
