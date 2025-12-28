@@ -3,8 +3,9 @@ import 'package:mockito/mockito.dart';
 import 'package:online_exam_app/config/base_response/base_response.dart';
 import 'package:online_exam_app/config/error_handler/api_error_model.dart';
 import 'package:online_exam_app/config/error_handler/error_handler.dart';
-import 'package:online_exam_app/features/authentication/forget_password/domain/entities/verify_otp_code_entity.dart';
-import 'package:online_exam_app/features/authentication/forget_password/domain/usecases/otp_verification_use_case.dart';
+import 'package:online_exam_app/features/auth/forget_password/domain/entities/verify_otp_code_entity.dart';
+import 'package:online_exam_app/features/auth/forget_password/domain/usecases/otp_verification_use_case.dart';
+
 import 'forget_password_use_case_test.mocks.dart';
 
 void main() {
