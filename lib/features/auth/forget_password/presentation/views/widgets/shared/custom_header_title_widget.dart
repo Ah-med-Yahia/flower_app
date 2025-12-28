@@ -1,6 +1,5 @@
+import 'package:flower_app/core/widgets/spacing.dart';
 import 'package:flutter/material.dart';
-import 'package:online_exam_app/core/widgets/spacing.dart';
-
 class CustomHeaderTitleWidget extends StatelessWidget {
   const CustomHeaderTitleWidget({
     super.key,
@@ -15,11 +14,13 @@ class CustomHeaderTitleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final myTextTheme = Theme.of(context).textTheme;
     return Column(
-      // crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(headerTitle, style: myTextTheme.titleLarge),
+        Text(headerTitle, style: myTextTheme.titleLarge,
+            textAlign: TextAlign.center),
         8.verticalSpacing,
-        Text(subTitle, style: myTextTheme.bodyMedium),
+        Text(subTitle, style: myTextTheme.bodyMedium,
+            textAlign: TextAlign.center),
       ],
     );
   }

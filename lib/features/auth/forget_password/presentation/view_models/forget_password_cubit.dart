@@ -1,10 +1,12 @@
 import 'dart:async';
-import 'package:flutter/cupertino.dart';
+
+import 'package:flower_app/features/auth/forget_password/presentation/view_models/states/forget_password_state.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:online_exam_app/features/auth/forget_password/presentation/view_models/states/forget_password_state.dart';
-import 'events/forget_password_events.dart';
+
 import '../../domain/usecases/forget_password_use_case.dart';
+import 'events/forget_password_events.dart';
 
 @injectable
 class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
@@ -20,6 +22,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
     switch (event) {
       case ForgetPasswordEvent():
         _handleForgetPasswordEvent(email: event.email);
+        debugPrint('Email: ${event.email}');
       case NavigateToVerifyOtpCode():
         _navigation(event);
     }

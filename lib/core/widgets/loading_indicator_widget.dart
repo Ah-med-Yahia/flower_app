@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:online_exam_app/core/gen/assets.gen.dart';
+
+import '../gen/assets.gen.dart';
 
 class LoadingIndicator extends StatelessWidget {
   final double size;
