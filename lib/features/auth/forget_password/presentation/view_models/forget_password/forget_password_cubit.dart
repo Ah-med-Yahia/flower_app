@@ -43,7 +43,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
           ),
         );
         // Trigger navigation after successful API response
-        _eventsStream.add(NavigateToVerifyOtpCode(email: email));
+        _navigation(NavigateToVerifyOtpCode(email: email));
       },
       failure: (error) => {
         emit(
