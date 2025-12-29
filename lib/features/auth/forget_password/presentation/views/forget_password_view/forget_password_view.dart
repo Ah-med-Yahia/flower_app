@@ -4,6 +4,7 @@ import 'package:online_exam_app/config/di/di.dart';
 
 import '../../../../../../core/constants/app_text_constants.dart';
 import '../../view_models/forget_password/forget_password_cubit.dart';
+import 'forget_password_body.dart';
 
 class ForgetPasswordView extends StatelessWidget {
   ForgetPasswordView({super.key});
@@ -19,7 +20,7 @@ class ForgetPasswordView extends StatelessWidget {
       ),
       body: BlocProvider<ForgetPasswordCubit>(
         create: (context) => cubit,
-        // child: ForgetPasswordBody(cubit: cubit),
+        child: ForgetPasswordBody(cubit: cubit),
       ),
     );
   }

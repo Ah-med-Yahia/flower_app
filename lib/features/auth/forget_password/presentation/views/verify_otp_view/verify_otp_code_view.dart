@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_exam_app/core/widgets/spacing.dart';
+import 'package:online_exam_app/features/auth/forget_password/presentation/views/verify_otp_view/verify_otp_body.dart';
 
 import '../../../../../../config/di/di.dart';
 import '../../../../../../core/constants/app_text_constants.dart';
@@ -35,7 +36,7 @@ class VerifyOtpView extends StatelessWidget {
             32.verticalSpacing,
             BlocProvider<VerifyOtpCodeCubit>(
               create: (context) => cubit,
-              // child: VerifyOtpBody(cubit: cubit, email: email),
+              child: VerifyOtpBody(cubit: cubit, email: email),
             ),
           ],
         ),

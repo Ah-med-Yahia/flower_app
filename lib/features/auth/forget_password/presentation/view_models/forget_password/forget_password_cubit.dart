@@ -22,7 +22,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   Future<void> doIntent(ForgetPasswordEvents event) async {
     switch (event) {
       case ForgetPasswordEvent():
-        _handleForgetPasswordEvent(email: event.email);
+        await _handleForgetPasswordEvent(email: event.email);
         // TODO: Remove this debug print statement Before deploying
         if (kDebugMode) print('Email: ${event.email}');
       case NavigateToVerifyOtpCode():
@@ -58,11 +58,12 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
     );
   }
 
-  void _handleForgetPasswordEvent({required String email}) async {
+  Future<void> _handleForgetPasswordEvent({required String email}) async {
     emit(
       state.copyWith(
         forgetPasswordState: state.forgetPasswordState.copyWith(
           isLoading: true,
+          errorMessage: null,
         ),
       ),
     );

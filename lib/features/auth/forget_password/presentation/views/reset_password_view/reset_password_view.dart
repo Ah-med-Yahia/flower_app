@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_exam_app/core/widgets/spacing.dart';
+import 'package:online_exam_app/features/auth/forget_password/presentation/views/reset_password_view/reset_password_body.dart';
 
 import '../../../../../../config/di/di.dart';
 import '../../../../../../core/constants/app_text_constants.dart';
@@ -36,7 +37,7 @@ class ResetPasswordView extends StatelessWidget {
             32.verticalSpacing,
             BlocProvider<ResetPasswordCubit>(
               create: (context) => cubit,
-              // child: ResetPasswordBody(cubit: cubit, email: email),
+              child: ResetPasswordBody(cubit: cubit, email: email),
             ),
           ],
         ),
