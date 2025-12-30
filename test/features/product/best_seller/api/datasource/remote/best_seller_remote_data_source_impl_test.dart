@@ -17,10 +17,22 @@ void main() {
     dataSource = BestSellerRemoteDataSourceImpl(mockApiClient);
   });
 
+  group('getBestSeller', () {
+    _testSuccessfulGetBestSeller(() => mockApiClient, () => dataSource);
+    _testGetBestSellerThrowsException(() => mockApiClient, () => dataSource);
+  });
+}
+
+void _testSuccessfulGetBestSeller(
+  MockBestSellerApiClient Function() getMockApiClient,
+  BestSellerRemoteDataSourceImpl Function() getDataSource,
+) {
   test(
-    'When call getBestSeller, '
-    'it should return BestSellerResponseDto when API call is successful',
+    'When call getBestSeller, it should return BestSellerResponseDto when API call is successful',
     () async {
+      final mockApiClient = getMockApiClient();
+      final dataSource = getDataSource();
+
       // Arrange
       final mockResponse = BestSellerResponseDto(
         message: 'success',
@@ -37,18 +49,28 @@ void main() {
       verifyNoMoreInteractions(mockApiClient);
     },
   );
+}
 
-  test('When call getBestSeller, '
-      'it should throw an exception when API call fails', () async {
-    // Arrange
-    final exception = Exception('API call failed');
-    when(mockApiClient.getBestSeller()).thenThrow(exception);
+void _testGetBestSellerThrowsException(
+  MockBestSellerApiClient Function() getMockApiClient,
+  BestSellerRemoteDataSourceImpl Function() getDataSource,
+) {
+  test(
+    'When call getBestSeller, it should throw an exception when API call fails',
+    () async {
+      final mockApiClient = getMockApiClient();
+      final dataSource = getDataSource();
 
-    // Act
-    final result = dataSource.getBestSeller();
+      // Arrange
+      final exception = Exception('API call failed');
+      when(mockApiClient.getBestSeller()).thenThrow(exception);
 
-    // Assert
-    await expectLater(result, throwsException);
-    verify(mockApiClient.getBestSeller()).called(1);
-  });
+      // Act
+      final result = dataSource.getBestSeller();
+
+      // Assert
+      await expectLater(result, throwsException);
+      verify(mockApiClient.getBestSeller()).called(1);
+    },
+  );
 }
