@@ -1,9 +1,9 @@
+import 'package:flower_app/features/product/best_seller/api/api_client/best_seller_api_client.dart';
+import 'package:flower_app/features/product/best_seller/api/datasource/remote/best_seller_remote_data_source_impl.dart';
+import 'package:flower_app/features/product/best_seller/data/models/best_seller_response_dto.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:online_exam_app/features/product/best_seller/api/api_client/best_seller_api_client.dart';
-import 'package:online_exam_app/features/product/best_seller/api/datasource/remote/best_seller_remote_data_source_impl.dart';
-import 'package:online_exam_app/features/product/best_seller/data/models/best_seller_response_dto.dart';
 
 import 'best_seller_remote_data_source_impl_test.mocks.dart';
 

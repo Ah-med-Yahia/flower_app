@@ -1,4 +1,4 @@
-import 'package:online_exam_app/features/product/best_seller/domain/entities/pagination_meta_data.dart';
+import 'package:flower_app/features/product/best_seller/domain/entities/pagination_meta_data.dart';
 
 import 'best_seller.dart';
 
