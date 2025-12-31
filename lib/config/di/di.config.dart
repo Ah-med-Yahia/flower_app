@@ -14,6 +14,16 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
+import '../../features/product_details/api/api_clinet/product_details_api_client.dart'
+    as _i373;
+import '../../features/product_details/api/data_sources/remote/product_details_data_source_impl.dart'
+    as _i749;
+import '../../features/product_details/data/data_sources/remote/product_details_data_source_contract.dart'
+    as _i856;
+import '../../features/product_details/data/repo/product_details_repo_impl.dart'
+    as _i402;
+import '../../features/product_details/domain/repo/product_details_repo_contract.dart'
+    as _i338;
 import '../cache_modules/secure_storage_module.dart' as _i11;
 import '../cache_modules/shared_preferences_module.dart' as _i1059;
 import '../dio_module/dio_module.dart' as _i773;
@@ -37,6 +47,19 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i1059.CacheHelper>(
       () => _i1059.CacheHelper(gh<_i460.SharedPreferences>()),
+    );
+    gh.factory<_i373.ProductDetailsApiClient>(
+      () => _i373.ProductDetailsApiClient(gh<_i361.Dio>()),
+    );
+    gh.factory<_i856.ProductDetailsDataSourceContract>(
+      () => _i749.ProductDetailsDataSourceImpl(
+        gh<_i373.ProductDetailsApiClient>(),
+      ),
+    );
+    gh.factory<_i338.ProductDetailsRepoContract>(
+      () => _i402.ProductDetailsRepoImpl(
+        gh<_i856.ProductDetailsDataSourceContract>(),
+      ),
     );
     return this;
   }
