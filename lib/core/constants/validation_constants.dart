@@ -1,4 +1,4 @@
-class ValidationConstants {
+abstract class ValidationConstants {
   static const String emailRequired = 'Email is required';
   static const String invalidEmail = 'Enter a valid email address';
   static const String passwordRequired = 'Password is required';
