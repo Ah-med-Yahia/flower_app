@@ -1,7 +1,7 @@
+import 'package:flower_app/features/product/best_seller/data/models/best_seller_dto.dart';
+import 'package:flower_app/features/product/best_seller/data/models/best_seller_response_dto.dart';
+import 'package:flower_app/features/product/best_seller/domain/entities/best_seller_response.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:online_exam_app/features/product/best_seller/data/models/best_seller_dto.dart';
-import 'package:online_exam_app/features/product/best_seller/data/models/best_seller_response_dto.dart';
-import 'package:online_exam_app/features/product/best_seller/domain/entities/best_seller_response.dart';
 
 void main() {
   group('BestSellerResponseDto toEntity mapping', () {
@@ -143,10 +143,7 @@ void _setupNullValueHandling() {
 
 void _testHandlesNullBestSellerList() {
   test('handles null best seller list', () {
-    final dto = BestSellerResponseDto(
-      message: 'Success',
-      bestSellerDto: null,
-    );
+    final dto = BestSellerResponseDto(message: 'Success', bestSellerDto: null);
 
     final result = dto.toEntity();
 
@@ -201,10 +198,7 @@ void _setupEdgeCaseValues() {
 
 void _testHandlesEmptyBestSellerList() {
   test('handles empty best seller list', () {
-    final dto = BestSellerResponseDto(
-      message: 'No items',
-      bestSellerDto: [],
-    );
+    final dto = BestSellerResponseDto(message: 'No items', bestSellerDto: []);
 
     final result = dto.toEntity();
 
@@ -365,18 +359,17 @@ void _testHandlesLargeListOfItems() {
   test('handles large list of items', () {
     final largeList = List.generate(
       100,
-          (i) =>
-          BestSellerDto(
-            id: '$i',
-            title: 'Product $i',
-            imgCover: 'img$i.jpg',
-            price: 100 * i,
-            priceAfterDiscount: 90 * i,
-            quantity: 10,
-            sold: 5,
-            bestSellerId: 'bs$i',
-            discount: 10,
-          ),
+      (i) => BestSellerDto(
+        id: '$i',
+        title: 'Product $i',
+        imgCover: 'img$i.jpg',
+        price: 100 * i,
+        priceAfterDiscount: 90 * i,
+        quantity: 10,
+        sold: 5,
+        bestSellerId: 'bs$i',
+        discount: 10,
+      ),
     );
     final dto = BestSellerResponseDto(
       message: 'Success',
@@ -399,10 +392,7 @@ void _setupBehaviorValidation() {
 
 void _testCreatesNewInstanceOnEachToEntityCall() {
   test('creates new instance on each toEntity call', () {
-    final dto = BestSellerResponseDto(
-      message: 'Success',
-      bestSellerDto: [],
-    );
+    final dto = BestSellerResponseDto(message: 'Success', bestSellerDto: []);
 
     final result1 = dto.toEntity();
     final result2 = dto.toEntity();
@@ -421,18 +411,17 @@ void _testCreatesPaginationMetadataCorrectly() {
   test('creates pagination metadata correctly', () {
     final largeList = List.generate(
       75,
-          (i) =>
-          BestSellerDto(
-            id: '$i',
-            title: 'Product $i',
-            imgCover: 'img$i.jpg',
-            price: 100 * i,
-            priceAfterDiscount: 90 * i,
-            quantity: 10,
-            sold: 5,
-            bestSellerId: 'bs$i',
-            discount: 10,
-          ),
+      (i) => BestSellerDto(
+        id: '$i',
+        title: 'Product $i',
+        imgCover: 'img$i.jpg',
+        price: 100 * i,
+        priceAfterDiscount: 90 * i,
+        quantity: 10,
+        sold: 5,
+        bestSellerId: 'bs$i',
+        discount: 10,
+      ),
     );
     final dto = BestSellerResponseDto(
       message: 'Success',

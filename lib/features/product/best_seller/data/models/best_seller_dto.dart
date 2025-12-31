@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:online_exam_app/features/product/best_seller/domain/entities/best_seller.dart';
+
+import '../../domain/entities/best_seller.dart';
 
 part 'best_seller_dto.g.dart';
 
