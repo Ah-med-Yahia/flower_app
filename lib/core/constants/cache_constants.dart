@@ -1,3 +1,3 @@
-class CacheConstants {
+abstract class CacheConstants {
   static const String token = 'TOKEN';
 }

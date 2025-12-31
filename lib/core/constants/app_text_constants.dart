@@ -1,1 +1,1 @@
-class AppTextConstants {}
+abstract class AppTextConstants {}
