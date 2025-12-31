@@ -71,7 +71,7 @@ abstract class AppTheme {
         textStyle: TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w500,
-          color: Colors.white,
+          color: AppColors.background,
         ),
       ),
     ),
