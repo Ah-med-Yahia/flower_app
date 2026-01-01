@@ -4,4 +4,5 @@ abstract class AppRoutesConstants {
 
   //--------------- HOME ROUTES -----------------//
   static const String homeRoute = '/home';
+  static const String bestSellerRoute = '/bestSeller';
 }
