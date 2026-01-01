@@ -1,4 +1,6 @@
-class PaginationMetadata {
+import 'package:equatable/equatable.dart';
+
+class PaginationMetadata extends Equatable {
   final int? currentPage;
   final int? numberOfPages;
   final int? limit;
@@ -10,4 +12,7 @@ class PaginationMetadata {
     this.limit,
     this.total,
   });
+
+  @override
+  List<Object?> get props => [currentPage, numberOfPages, limit, total];
 }
