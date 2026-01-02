@@ -15,7 +15,14 @@ import 'package:injectable/injectable.dart' as _i526;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
 import '../../features/occasion/api/api_client/occasion_api_client.dart'
-    as _i791;
+    as _i425;
+import '../../features/occasion/api/datasources_impl/occasion_data_source_impl.dart'
+    as _i255;
+import '../../features/occasion/data/datasources/occasion_data_source_contract.dart'
+    as _i27;
+import '../../features/occasion/data/repos/occasion_repo_impl.dart' as _i315;
+import '../../features/occasion/domain/repos/occasion_repo_contract.dart'
+    as _i31;
 import '../cache_modules/secure_storage_module.dart' as _i11;
 import '../cache_modules/shared_preferences_module.dart' as _i1059;
 import '../dio_module/dio_module.dart' as _i773;
@@ -40,8 +47,16 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i1059.CacheHelper>(
       () => _i1059.CacheHelper(gh<_i460.SharedPreferences>()),
     );
-    gh.lazySingleton<_i791.OccasionApiClient>(
-      () => _i791.OccasionApiClient(gh<_i361.Dio>()),
+    gh.lazySingleton<_i425.OccasionApiClient>(
+      () => _i425.OccasionApiClient(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i27.OccasionDataSourceContract>(
+      () => _i255.OccasionDataSourceImpl(gh<_i425.OccasionApiClient>()),
+    );
+    gh.factory<_i31.OccasionRepoContract>(
+      () => _i315.OccasionRepoImpl(
+        occasionDataSourceContract: gh<_i27.OccasionDataSourceContract>(),
+      ),
     );
     return this;
   }

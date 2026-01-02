@@ -3,23 +3,23 @@ import 'package:online_exam_app/features/occasion/data/models/get_all_occassion_
 import 'package:online_exam_app/features/occasion/data/models/get_all_occassion_models/occasion_model.dart';
 import 'package:online_exam_app/features/occasion/domain/entities/get_all_occasion_entity.dart';
 
-part 'get_all_occasions_response.g.dart';
+part 'get_all_occasions_response_model.g.dart';
 
 @JsonSerializable()
-class GetAllOccasionsResponse {
+class GetAllOccasionsResponseModel {
   final String message;
   final MetadataModel metadata;
   final List<OccasionModel> occasions;
 
-  GetAllOccasionsResponse({
+  GetAllOccasionsResponseModel({
     required this.message,
     required this.metadata,
     required this.occasions,
   });
 
-  factory GetAllOccasionsResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetAllOccasionsResponseFromJson(json);
-  Map<String, dynamic> toJson() => _$GetAllOccasionsResponseToJson(this);
+  factory GetAllOccasionsResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$GetAllOccasionsResponseModelFromJson(json);
+  Map<String, dynamic> toJson() => _$GetAllOccasionsResponseModelToJson(this);
 
   GetAllOccasionEntity toEntity() {
     return GetAllOccasionEntity(
