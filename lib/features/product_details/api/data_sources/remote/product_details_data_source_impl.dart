@@ -15,17 +15,8 @@ class ProductDetailsDataSourceImpl implements ProductDetailsDataSourceContract {
   Future<BaseResponse<ProductResponseDto>> getProductDetails(
     String productId,
   ) async {
-
     return safeApiCall<ProductResponseDto>(() {
       return _apiClient.getProductDetails(productId);
-    },);
-    // try {
-    //   final ProductResponseDto productResponseDto = await _apiClient
-    //       .getProductDetails(productId);
-
-    //   return BaseResponse.success(productResponseDto);
-    // } catch (e) {
-    //   return BaseResponse.failure(ErrorHandler.handle(e));
-    // }
+    });
   }
 }
