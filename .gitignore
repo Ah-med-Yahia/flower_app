@@ -11,18 +11,15 @@
 .svn/
 .swiftpm/
 migrate_working_dir/
-
 # IntelliJ related
 *.iml
 *.ipr
 *.iws
 .idea/
-
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
 # is commented out by default.
 #.vscode/
-
 # Flutter/Dart/Pub related
 **/doc/api/
 **/ios/Flutter/.last_build_id
@@ -32,14 +29,33 @@ migrate_working_dir/
 .pub/
 /build/
 /coverage/
-
+# DevTools options
+devtools_options.yaml
 # Symbolication related
 app.*.symbols
-
 # Obfuscation related
 app.*.map.json
-
 # Android Studio will place build artifacts here
 /android/app/debug
 /android/app/profile
 /android/app/release
+# Generated-Files related
+# JSON serialization
+*.g.dart
+# Freezed code generation
+*.freezed.dart
+# Retrofit API generation
+*.retrofit.dart
+# Injectable dependency injection
+*.config.dart
+# Mockito test mocks
+*.mocks.dart
+# Flutter gen assets
+lib/core/gen/
+**/gen/assets.gen.dart
+# Plugin registrants (auto-generated)
+#**/GeneratedPluginRegistrant.swift
+#**/GeneratedPluginRegistrant.m
+#**/generated_plugin_registrant.cc
+#**/generated_plugin_registrant.h
+#**/generated_plugins.cmake
