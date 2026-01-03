@@ -1,4 +1,6 @@
-abstract class ApiErrors {
+class ApiErrors {
+  ApiErrors._();
+
   static const String badRequestError = "Invalid request.";
   static const String noContent = "No content available.";
   static const String forbiddenError = "Access forbidden.";

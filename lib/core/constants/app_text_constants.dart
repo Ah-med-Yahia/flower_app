@@ -1,4 +1,9 @@
-abstract class AppTextConstants {
+class AppTextConstants {
+  AppTextConstants._();
+  static const String home = "Home";
+  static const String categories = "Categories";
+  static const String cart = "Cart";
+  static const String profile = "Profile";
   //------------------- HOME PAGE -------------------//
   static const String bestSeller = 'Best seller';
   static const String bestSellerSubTitle =
