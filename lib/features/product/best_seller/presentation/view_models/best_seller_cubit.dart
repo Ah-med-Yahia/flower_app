@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../../config/base_state/base_state.dart';
 import '../../domain/use_cases/get_best_seller_use_case.dart';
 import 'best_seller_events.dart';
 import 'best_seller_state.dart';
@@ -30,7 +29,11 @@ class BestSellerCubit extends Cubit<BestSellerState> {
   }
 
   void _getBestSeller() async {
-    emit(state.copyWith(bestSellerState: const BaseState(isLoading: true)));
+    emit(
+      state.copyWith(
+        bestSellerState: state.bestSellerState.copyWith(isLoading: true),
+      ),
+    );
     final apiCallResult = await _getBestSellerUseCase.call();
     apiCallResult.when(
       success: (data) {
@@ -43,7 +46,7 @@ class BestSellerCubit extends Cubit<BestSellerState> {
           ),
         );
       },
-      failure: (error) => {
+      failure: (error) {
         emit(
           state.copyWith(
             bestSellerState: state.bestSellerState.copyWith(
@@ -51,7 +54,7 @@ class BestSellerCubit extends Cubit<BestSellerState> {
               isLoading: false,
             ),
           ),
-        ),
+        );
       },
     );
   }
