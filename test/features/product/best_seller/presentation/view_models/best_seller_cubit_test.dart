@@ -88,9 +88,9 @@ void _testSuccessfulGetBestSellerEvent(
   MockGetBestSellerUseCase Function() mockUGetBestSellerUseCase,
   BestSellerCubit Function() bestSellerCubit,
 ) {
-  final mockestSellerResponse = _createMockBestSellerResponse();
+  final mockBestSellerResponse = _createMockBestSellerResponse();
   final successResponse = BaseResponse<BestSellerResponse>.success(
-    mockestSellerResponse,
+    mockBestSellerResponse,
   );
 
   const state = BestSellerState();
@@ -118,7 +118,7 @@ void _testSuccessfulGetBestSellerEvent(
       state.copyWith(
         bestSellerState: state.bestSellerState.copyWith(
           isLoading: false,
-          data: mockestSellerResponse,
+          data: mockBestSellerResponse,
         ),
       ),
     ],
@@ -126,7 +126,7 @@ void _testSuccessfulGetBestSellerEvent(
       verify(mockUGetBestSellerUseCase().call()).called(1);
       // Verify data is stored correctly
       final finalState = cubit.state.bestSellerState;
-      expect(finalState.data, equals(mockestSellerResponse));
+      expect(finalState.data, equals(mockBestSellerResponse));
       expect(finalState.isLoading, false);
       expect(finalState.errorMessage, null);
     },

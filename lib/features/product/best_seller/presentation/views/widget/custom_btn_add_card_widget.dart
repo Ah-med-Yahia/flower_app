@@ -22,7 +22,7 @@ class CustomBtnAddCardWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             spacing: 8,
             children: [
-              Icon(Icons.shopping_cart_outlined),
+              const Icon(Icons.shopping_cart_outlined),
               Text(
                 AppTextConstants.addToCart,
                 style: TextTheme.of(context).titleSmall?.copyWith(

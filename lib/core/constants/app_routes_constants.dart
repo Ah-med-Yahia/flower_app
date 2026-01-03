@@ -1,4 +1,6 @@
-abstract class AppRoutesConstants {
+class AppRoutesConstants {
+  AppRoutesConstants._();
+
   //--------------- AUTHENTICATION ROUTES -----------------//
   static const String loginRoute = '/login';
 

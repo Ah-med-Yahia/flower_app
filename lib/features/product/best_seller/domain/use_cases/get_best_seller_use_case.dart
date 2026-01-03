@@ -10,6 +10,6 @@ class GetBestSellerUseCase {
 
   GetBestSellerUseCase(this._bestSellerRepo);
 
-  Future<BaseResponse<BestSellerResponse>> call() async =>
-      await _bestSellerRepo.getBestSeller();
+  Future<BaseResponse<BestSellerResponse>> call() =>
+      _bestSellerRepo.getBestSeller();
 }

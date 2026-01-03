@@ -28,7 +28,7 @@ class GridViewWidget extends StatelessWidget {
         final product = productItem[index];
         final price = product.priceAfterDiscount?.toDouble();
         final originalPrice = product.price?.toDouble();
-        final value =
+        final discountRate =
             (originalPrice != null && price != null && originalPrice > 0)
             ? ((originalPrice - price) / originalPrice) * 100
             : 0.0;
@@ -37,7 +37,7 @@ class GridViewWidget extends StatelessWidget {
           imageUrl: product.imgCover,
           price: price,
           originalPrice: originalPrice,
-          discountPercentage: value.toInt(),
+          discountPercentage: discountRate.toInt(),
           onAddToCart: () {},
         );
       },

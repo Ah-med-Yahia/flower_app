@@ -75,7 +75,7 @@ class ProductCardWidget extends StatelessWidget {
           _productImageSection(
             height: MediaQuery.of(context).size.height * 0.16, //131,
           ),
-          Spacer(),
+          const Spacer(),
           // Product Info Section
           CustomProductInfoWidget(
             productName: productName,

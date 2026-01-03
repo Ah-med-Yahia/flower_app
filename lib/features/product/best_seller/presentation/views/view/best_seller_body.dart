@@ -10,7 +10,7 @@ import '../../../../../../core/constants/app_text_constants.dart';
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/widgets/loading_indicator_widget.dart';
 import '../../view_models/best_seller_cubit.dart';
-import '../widget/grid_View_widget.dart';
+import '../widget/grid_view_widget.dart';
 
 class BestSellerBody extends StatefulWidget {
   final BestSellerCubit cubit;
