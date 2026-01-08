@@ -9,7 +9,7 @@ class FlowerApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: AppRouter.router,
-      theme: AppTheme.appTheme,
+      theme: AppTheme.appTheme(context),
       debugShowCheckedModeBanner: false,
     );
   }

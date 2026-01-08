@@ -1,1 +1,3 @@
-class AppReoutesConstants {}
+class AppReoutesConstants {
+  static const String occasionScreen = '/';
+}
