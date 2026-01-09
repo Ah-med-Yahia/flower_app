@@ -3,13 +3,15 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i5;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:online_exam_app/features/occasion/api/api_client/occasion_api_client.dart'
-    as _i3;
+    as _i4;
 import 'package:online_exam_app/features/occasion/data/models/get_all_occassion_models/get_all_occasions_response_model.dart'
     as _i2;
+import 'package:online_exam_app/features/occasion/data/models/get_occasion_products_models/get_occasion_products_response_model.dart'
+    as _i3;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -34,24 +36,47 @@ class _FakeGetAllOccasionsResponseModel_0 extends _i1.SmartFake
   ) : super(parent, parentInvocation);
 }
 
+class _FakeGetOccasionProductsResponseModel_1 extends _i1.SmartFake
+    implements _i3.GetOccasionProductsResponseModel {
+  _FakeGetOccasionProductsResponseModel_1(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(parent, parentInvocation);
+}
+
 /// A class which mocks [OccasionApiClient].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockOccasionApiClient extends _i1.Mock implements _i3.OccasionApiClient {
+class MockOccasionApiClient extends _i1.Mock implements _i4.OccasionApiClient {
   MockOccasionApiClient() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<_i2.GetAllOccasionsResponseModel> getallOcassions() =>
+  _i5.Future<_i2.GetAllOccasionsResponseModel> getallOcassions() =>
       (super.noSuchMethod(
             Invocation.method(#getallOcassions, []),
-            returnValue: _i4.Future<_i2.GetAllOccasionsResponseModel>.value(
+            returnValue: _i5.Future<_i2.GetAllOccasionsResponseModel>.value(
               _FakeGetAllOccasionsResponseModel_0(
                 this,
                 Invocation.method(#getallOcassions, []),
               ),
             ),
           )
-          as _i4.Future<_i2.GetAllOccasionsResponseModel>);
+          as _i5.Future<_i2.GetAllOccasionsResponseModel>);
+
+  @override
+  _i5.Future<_i3.GetOccasionProductsResponseModel> getOccasionProducts({
+    required String? id,
+  }) =>
+      (super.noSuchMethod(
+            Invocation.method(#getOccasionProducts, [], {#id: id}),
+            returnValue: _i5.Future<_i3.GetOccasionProductsResponseModel>.value(
+              _FakeGetOccasionProductsResponseModel_1(
+                this,
+                Invocation.method(#getOccasionProducts, [], {#id: id}),
+              ),
+            ),
+          )
+          as _i5.Future<_i3.GetOccasionProductsResponseModel>);
 }
