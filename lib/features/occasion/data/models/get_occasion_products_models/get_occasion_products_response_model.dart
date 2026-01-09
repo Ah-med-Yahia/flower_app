@@ -1,14 +1,14 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:online_exam_app/features/occasion/domain/entities/get_occasion_products_entity.dart';
 import 'product_model.dart';
-import 'metadata_model.dart';
+import 'product_metadata_model.dart';
 
 part 'get_occasion_products_response_model.g.dart';
 
 @JsonSerializable()
 class GetOccasionProductsResponseModel {
   final String message;
-  final MetadataModel metadata;
+  final ProductMetadataModel metadata;
   final List<ProductModel> products;
 
   GetOccasionProductsResponseModel({

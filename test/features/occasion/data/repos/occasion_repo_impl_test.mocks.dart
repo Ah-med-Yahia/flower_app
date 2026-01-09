@@ -11,6 +11,8 @@ import 'package:online_exam_app/features/occasion/api/datasources_impl/occasion_
     as _i3;
 import 'package:online_exam_app/features/occasion/data/models/get_all_occassion_models/get_all_occasions_response_model.dart'
     as _i5;
+import 'package:online_exam_app/features/occasion/data/models/get_occasion_products_models/get_occasion_products_response_model.dart'
+    as _i6;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -58,4 +60,23 @@ class MockOccasionDataSourceImpl extends _i1.Mock
                 ),
           )
           as _i4.Future<_i2.BaseResponse<_i5.GetAllOccasionsResponseModel>>);
+
+  @override
+  _i4.Future<_i2.BaseResponse<_i6.GetOccasionProductsResponseModel>>
+  getOccasionProducts(String? id) =>
+      (super.noSuchMethod(
+            Invocation.method(#getOccasionProducts, [id]),
+            returnValue:
+                _i4.Future<
+                  _i2.BaseResponse<_i6.GetOccasionProductsResponseModel>
+                >.value(
+                  _FakeBaseResponse_0<_i6.GetOccasionProductsResponseModel>(
+                    this,
+                    Invocation.method(#getOccasionProducts, [id]),
+                  ),
+                ),
+          )
+          as _i4.Future<
+            _i2.BaseResponse<_i6.GetOccasionProductsResponseModel>
+          >);
 }

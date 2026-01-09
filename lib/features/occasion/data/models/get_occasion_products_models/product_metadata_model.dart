@@ -1,23 +1,23 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'metadata_model.g.dart';
+part 'product_metadata_model.g.dart';
 
 @JsonSerializable()
-class MetadataModel {
+class ProductMetadataModel {
   final int currentPage;
   final int totalPages;
   final int limit;
   final int totalItems;
 
-  MetadataModel({
+  ProductMetadataModel({
     required this.currentPage,
     required this.totalPages,
     required this.limit,
     required this.totalItems,
   });
 
-  factory MetadataModel.fromJson(Map<String, dynamic> json) =>
-      _$MetadataModelFromJson(json);
+  factory ProductMetadataModel.fromJson(Map<String, dynamic> json) =>
+      _$ProductMetadataModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$MetadataModelToJson(this);
+  Map<String, dynamic> toJson() => _$ProductMetadataModelToJson(this);
 }
