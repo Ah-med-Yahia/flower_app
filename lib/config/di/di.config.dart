@@ -1,5 +1,5 @@
-// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// dart format width=80
 
 // **************************************************************************
 // InjectableConfigGenerator
@@ -24,6 +24,10 @@ import '../../features/product_details/data/repo/product_details_repo_impl.dart'
     as _i402;
 import '../../features/product_details/domain/repo/product_details_repo_contract.dart'
     as _i338;
+import '../../features/product_details/domain/use_cases/get_product_details_usecase.dart'
+    as _i888;
+import '../../features/product_details/presentaion/view_model/product_details_cubit.dart'
+    as _i986;
 import '../cache_modules/secure_storage_module.dart' as _i11;
 import '../cache_modules/shared_preferences_module.dart' as _i1059;
 import '../dio_module/dio_module.dart' as _i773;
@@ -60,6 +64,14 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i402.ProductDetailsRepoImpl(
         gh<_i856.ProductDetailsDataSourceContract>(),
       ),
+    );
+    gh.factory<_i888.GetProductDetailsUsecase>(
+      () => _i888.GetProductDetailsUsecase(
+        gh<_i338.ProductDetailsRepoContract>(),
+      ),
+    );
+    gh.factory<_i986.ProductDetailsCubit>(
+      () => _i986.ProductDetailsCubit(gh<_i888.GetProductDetailsUsecase>()),
     );
     return this;
   }
