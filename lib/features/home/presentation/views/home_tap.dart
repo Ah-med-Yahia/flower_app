@@ -13,7 +13,7 @@ class HomeTap extends StatelessWidget {
         child: CustomElevatedButtonWidget(
           onPressed: () {
             context.push(
-              AppReoutesConstants.productDetailsRoute,
+              AppRoutesConstants.productDetailsRoute,
               extra: '673e1cd711599201718280fb',
             );
           },
