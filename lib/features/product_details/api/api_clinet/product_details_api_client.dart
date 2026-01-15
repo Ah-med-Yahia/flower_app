@@ -12,6 +12,8 @@ abstract class ProductDetailsApiClient {
   @factoryMethod
   factory ProductDetailsApiClient(Dio dio) = _ProductDetailsApiClient;
 
-  @GET(ApiConstants.productsEndpoint)
-  Future<ProductResponseDto> getProductDetails(@Path("id") String id);
+  @GET(ApiConstants.productByIdEndpoint)
+  Future<ProductResponseDto> getProductDetails(
+    @Path(ApiConstants.idPathQuery) String id,
+  );
 }
