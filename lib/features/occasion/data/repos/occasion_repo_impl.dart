@@ -6,12 +6,12 @@ import 'package:online_exam_app/features/occasion/domain/repos/occasion_repo_con
 
 @Injectable(as: OccasionRepoContract)
 class OccasionRepoImpl implements OccasionRepoContract {
-  final OccasionDataSourceContract occasionDataSourceContract;
+  final OccasionDataSourceContract _occasionDataSourceContract;
 
-  OccasionRepoImpl({required this.occasionDataSourceContract});
+  OccasionRepoImpl(this._occasionDataSourceContract);
   @override
   Future<BaseResponse<GetAllOccasionEntity>> getAllOccasions() async {
-    final response = await occasionDataSourceContract.getAllOccasions();
+    final response = await _occasionDataSourceContract.getAllOccasions();
     return response.map(
       success: (success) => BaseResponse.success(success.data.toEntity()),
       failure: (failure) => BaseResponse.failure(failure.errorhandeler),

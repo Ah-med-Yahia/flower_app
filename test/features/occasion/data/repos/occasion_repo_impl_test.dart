@@ -21,9 +21,7 @@ void main() {
 
   setUpAll(() {
     mockDataSource = MockOccasionDataSourceImpl();
-    occasionRepoImpl = OccasionRepoImpl(
-      occasionDataSourceContract: mockDataSource,
-    );
+    occasionRepoImpl = OccasionRepoImpl(mockDataSource);
   });
   group('Occasion Repo Implementation Test(get all occasions function)', () {
     _testGetAllOccasionsSuccessCase(occasionRepoImpl, mockDataSource);
