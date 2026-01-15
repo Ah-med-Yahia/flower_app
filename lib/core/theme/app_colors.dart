@@ -14,4 +14,5 @@ abstract class AppColors {
   static const Color red = Color(0xFFCC1010);
   static const Color darkRed = Color(0xffB3261E);
   static const Color transparent = Color(0x00000000);
+  static const Color iconGrey = Color(0xff7D7D7D);
 }
