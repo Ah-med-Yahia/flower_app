@@ -1,5 +1,4 @@
-class AppRegex {
-  /// ================= EMAIL =================
+abstract class AppRegex {
   static bool isEmailValid(String email) {
     return RegExp(
       r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
@@ -37,4 +36,4 @@ class AppRegex {
     return localRegex.hasMatch(trimmed) ||
         internationalRegex.hasMatch(trimmed);
   }
-}
+
