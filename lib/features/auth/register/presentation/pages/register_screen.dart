@@ -54,7 +54,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             textColor: AppColors.background,
           );
 
-        case NavigateTologin():
+        case NavigateToLogin():
           UIUtils.hideLoading(context);
           UIUtils.showMessage(
             AppTextConstants.accountCreatedSuccessfully,
@@ -64,6 +64,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       }
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
@@ -125,6 +126,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
     );
   }
+
   @override
   void dispose() {
     _firstName.dispose();

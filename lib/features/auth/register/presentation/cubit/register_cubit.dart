@@ -151,11 +151,13 @@ class RegisterCubit extends Cubit<RegisterStates> {
 
     result.map(
       success: (_) {
-        _uiEventsController.add(NavigateTologin());
+        _uiEventsController.add(NavigateToLogin());
       },
       failure: (e) {
         _uiEventsController.add(
-          ShowRegisterError(e.errorhandeler.message ?? AppTextConstants.failedToRegister),
+          ShowRegisterError(
+            e.errorhandeler.message ?? AppTextConstants.failedToRegister,
+          ),
         );
       },
     );

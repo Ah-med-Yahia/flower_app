@@ -48,7 +48,7 @@ void main() {
     repository = RegisterRepositoryImpl(mockDataSource);
   });
 
-  group('RegisterRepositoryImplementation Senarios', () {
+  group('RegisterRepositoryImplementation Scenarios', () {
     test('should return RegisterEntity when success', () async {
       // Arrange
       when(mockDataSource.register(request)).thenAnswer(
