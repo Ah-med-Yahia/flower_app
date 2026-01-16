@@ -68,7 +68,7 @@ void main() {
 
       expect(result, isA<Failure<LoginResponseModel>>());
       final error = result as Failure;
-      expect(error.errorhandeler.apiErrorModel.code, ResponseCode.badCertificate);
+      expect(error.errorhandeler.errorModel.code, ResponseCode.badCertificate);
     });
   });
 }

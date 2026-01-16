@@ -1,5 +1,5 @@
-// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// dart format width=80
 
 // **************************************************************************
 // InjectableConfigGenerator
@@ -29,6 +29,20 @@ import '../../features/auth/login/domain/repositories/login_repository.dart'
     as _i176;
 import '../../features/auth/login/domain/usecases/login_use_case.dart' as _i316;
 import '../../features/auth/login/presentation/cubit/login_cubit.dart' as _i126;
+import '../../features/product/best_seller/api/api_client/best_seller_api_client.dart'
+    as _i113;
+import '../../features/product/best_seller/api/datasource/remote/best_seller_remote_data_source_impl.dart'
+    as _i920;
+import '../../features/product/best_seller/data/datasource/remote/best_seller_remote_data_source.dart'
+    as _i1058;
+import '../../features/product/best_seller/data/repos/best_seller_repo_impl.dart'
+    as _i20;
+import '../../features/product/best_seller/domain/repos/best_seller_repo.dart'
+    as _i892;
+import '../../features/product/best_seller/domain/use_cases/get_best_seller_use_case.dart'
+    as _i198;
+import '../../features/product/best_seller/presentation/view_models/best_seller_cubit.dart'
+    as _i988;
 import '../cache_modules/secure_storage_module.dart' as _i11;
 import '../cache_modules/shared_preferences_module.dart' as _i1059;
 import '../dio_module/dio_module.dart' as _i773;
@@ -73,6 +87,22 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i126.LoginCubit>(
       () => _i126.LoginCubit(gh<_i316.LoginUseCase>()),
+    );
+    gh.factory<_i113.BestSellerApiClient>(
+      () => _i113.BestSellerApiClient(gh<_i361.Dio>()),
+    );
+    gh.factory<_i1058.BestSellerRemoteDataSource>(
+      () =>
+          _i920.BestSellerRemoteDataSourceImpl(gh<_i113.BestSellerApiClient>()),
+    );
+    gh.factory<_i892.BestSellerRepo>(
+      () => _i20.BestSellerRepoImpl(gh<_i1058.BestSellerRemoteDataSource>()),
+    );
+    gh.factory<_i198.GetBestSellerUseCase>(
+      () => _i198.GetBestSellerUseCase(gh<_i892.BestSellerRepo>()),
+    );
+    gh.factory<_i988.BestSellerCubit>(
+      () => _i988.BestSellerCubit(gh<_i198.GetBestSellerUseCase>()),
     );
     return this;
   }

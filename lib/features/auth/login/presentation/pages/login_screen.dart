@@ -1,5 +1,5 @@
 import 'package:flower_app/core/constants/app_text_constants.dart';
-import 'package:flower_app/core/routing/app_routes_constant.dart';
+import 'package:flower_app/core/constants/app_routes_constant.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flower_app/core/ui_utils/ui_utils.dart';
 import 'package:flower_app/core/validators/app_validators.dart';
@@ -47,11 +47,11 @@ class _LoginScreenState extends State<LoginScreen> {
         case NavigateToHome():
           UIUtils.hideLoading(context);
           UIUtils.showMessage(
-            'كانك روحت لل هوم على منعمل ميرج',
-            backGroundColor: AppColors.darkRed,
+            'Login Successful',
+            backGroundColor: AppColors.green,
             textColor: AppColors.background,
           );
-          context.go(AppRoutesConstants.loginRoute);
+          context.go(AppRoutesConstants.homeRoute);
       }
     });
   }

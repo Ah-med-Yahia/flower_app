@@ -1,7 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:flower_app/core/constants/api_constants.dart';
 import 'package:flower_app/core/constants/cache_constants.dart';
 import 'package:injectable/injectable.dart';
-import 'package:dio/dio.dart';
 
 @module
 abstract class DioModule {
