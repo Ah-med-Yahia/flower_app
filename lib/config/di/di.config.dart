@@ -43,6 +43,20 @@ import '../../features/product/best_seller/domain/use_cases/get_best_seller_use_
     as _i198;
 import '../../features/product/best_seller/presentation/view_models/best_seller_cubit.dart'
     as _i988;
+import '../../features/product_details/api/api_clinet/product_details_api_client.dart'
+    as _i373;
+import '../../features/product_details/api/data_sources/remote/product_details_data_source_impl.dart'
+    as _i749;
+import '../../features/product_details/data/data_sources/remote/product_details_data_source_contract.dart'
+    as _i856;
+import '../../features/product_details/data/repo/product_details_repo_impl.dart'
+    as _i402;
+import '../../features/product_details/domain/repo/product_details_repo_contract.dart'
+    as _i338;
+import '../../features/product_details/domain/use_cases/get_product_details_usecase.dart'
+    as _i888;
+import '../../features/product_details/presentaion/view_model/product_details_cubit.dart'
+    as _i986;
 import '../cache_modules/secure_storage_module.dart' as _i11;
 import '../cache_modules/shared_preferences_module.dart' as _i1059;
 import '../dio_module/dio_module.dart' as _i773;
@@ -68,6 +82,12 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i1059.CacheHelper(gh<_i460.SharedPreferences>()),
     );
     gh.factory<_i32.LoginApiClient>(() => _i32.LoginApiClient(gh<_i361.Dio>()));
+    gh.factory<_i113.BestSellerApiClient>(
+      () => _i113.BestSellerApiClient(gh<_i361.Dio>()),
+    );
+    gh.factory<_i373.ProductDetailsApiClient>(
+      () => _i373.ProductDetailsApiClient(gh<_i361.Dio>()),
+    );
     gh.singleton<_i326.LocalLoginDataSource>(
       () => _i654.LoginLocalDataSourceImpl(
         secureStorageService: gh<_i11.SecureStorageService>(),
@@ -76,24 +96,20 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i842.RemoteLoginDataSource>(
       () => _i793.RemoteLoginDataSourceImpl(gh<_i32.LoginApiClient>()),
     );
+    gh.factory<_i1058.BestSellerRemoteDataSource>(
+      () =>
+          _i920.BestSellerRemoteDataSourceImpl(gh<_i113.BestSellerApiClient>()),
+    );
     gh.factory<_i176.LoginRepository>(
       () => _i470.LoginRepositoryImpl(
         gh<_i842.RemoteLoginDataSource>(),
         gh<_i326.LocalLoginDataSource>(),
       ),
     );
-    gh.factory<_i316.LoginUseCase>(
-      () => _i316.LoginUseCase(gh<_i176.LoginRepository>()),
-    );
-    gh.factory<_i126.LoginCubit>(
-      () => _i126.LoginCubit(gh<_i316.LoginUseCase>()),
-    );
-    gh.factory<_i113.BestSellerApiClient>(
-      () => _i113.BestSellerApiClient(gh<_i361.Dio>()),
-    );
-    gh.factory<_i1058.BestSellerRemoteDataSource>(
-      () =>
-          _i920.BestSellerRemoteDataSourceImpl(gh<_i113.BestSellerApiClient>()),
+    gh.factory<_i856.ProductDetailsDataSourceContract>(
+      () => _i749.ProductDetailsDataSourceImpl(
+        gh<_i373.ProductDetailsApiClient>(),
+      ),
     );
     gh.factory<_i892.BestSellerRepo>(
       () => _i20.BestSellerRepoImpl(gh<_i1058.BestSellerRemoteDataSource>()),
@@ -101,8 +117,27 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i198.GetBestSellerUseCase>(
       () => _i198.GetBestSellerUseCase(gh<_i892.BestSellerRepo>()),
     );
+    gh.factory<_i338.ProductDetailsRepoContract>(
+      () => _i402.ProductDetailsRepoImpl(
+        gh<_i856.ProductDetailsDataSourceContract>(),
+      ),
+    );
+    gh.factory<_i316.LoginUseCase>(
+      () => _i316.LoginUseCase(gh<_i176.LoginRepository>()),
+    );
+    gh.factory<_i888.GetProductDetailsUsecase>(
+      () => _i888.GetProductDetailsUsecase(
+        gh<_i338.ProductDetailsRepoContract>(),
+      ),
+    );
+    gh.factory<_i126.LoginCubit>(
+      () => _i126.LoginCubit(gh<_i316.LoginUseCase>()),
+    );
     gh.factory<_i988.BestSellerCubit>(
       () => _i988.BestSellerCubit(gh<_i198.GetBestSellerUseCase>()),
+    );
+    gh.factory<_i986.ProductDetailsCubit>(
+      () => _i986.ProductDetailsCubit(gh<_i888.GetProductDetailsUsecase>()),
     );
     return this;
   }

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/core/validators/app_validators.dart';
 import 'package:flower_app/features/auth/login/domain/entities/login_request_entity.dart';
 import 'package:flower_app/features/auth/login/presentation/cubit/login_ui_events.dart';
@@ -37,7 +38,9 @@ class LoginCubit extends Cubit<LoginStates> {
         _uiEventController.add(NavigateToHome());
       },
       failure: (f) {
-        _uiEventController.add(ShowErrorMessage(f.errorhandeler.message ?? 'Something went wrong'));
+        _uiEventController.add(
+          ShowErrorMessage(f.errorHandler.message ?? 'Something went wrong'),
+        );
       },
     );
   }

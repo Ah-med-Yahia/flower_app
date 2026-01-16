@@ -24,7 +24,7 @@ class LoginLocalDataSourceImpl implements LocalLoginDataSource {
       final failure = r.map(success: (_) => null, failure: (f) => f);
 
       if (failure != null) {
-        return BaseResponse<void>.failure(failure.errorhandeler);
+        return BaseResponse<void>.failure(failure.errorHandler);
       }
     }
     return BaseResponse<void>.success(null);

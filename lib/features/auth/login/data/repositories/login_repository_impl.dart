@@ -31,7 +31,7 @@ class LoginRepositoryImpl implements LoginRepository {
               return BaseResponse<void>.success(null);
             },
             failure: (f) {
-              return BaseResponse<void>.failure(f.errorhandeler);
+              return BaseResponse<void>.failure(f.errorHandler);
             },
           );
         }
@@ -39,7 +39,7 @@ class LoginRepositoryImpl implements LoginRepository {
         return BaseResponse<void>.success(null);
       },
       failure: (failure) {
-        return BaseResponse<void>.failure(failure.errorhandeler);
+        return BaseResponse<void>.failure(failure.errorHandler);
       },
     );
   }
