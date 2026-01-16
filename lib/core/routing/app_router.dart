@@ -10,7 +10,7 @@ class AppRouter {
       GoRoute(
         path: AppRoutesConstants.registerScreen,
         name: AppRoutesConstants.registerScreen,
-        builder: (context, state) => RegisterScreen(),
+        builder: (context, state) => const RegisterScreen(),
       ),
       GoRoute(
         path: AppRoutesConstants.home,

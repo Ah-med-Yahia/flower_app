@@ -7,4 +7,4 @@ class ShowRegisterError extends RegisterUiEvent {
   ShowRegisterError(this.message);
 }
 
-class NavigateTologin extends RegisterUiEvent {}
+class NavigateToLogin extends RegisterUiEvent {}

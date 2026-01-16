@@ -12,7 +12,7 @@ class UIUtils {
         backgroundColor: Colors.transparent,
         content: SizedBox(
           height: MediaQuery.sizeOf(context).height * 0.2,
-          child: LoadingIndicator(),
+          child: const LoadingIndicator(),
         ),
       ),
     ),

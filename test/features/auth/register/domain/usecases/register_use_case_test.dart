@@ -43,7 +43,7 @@ void main() {
     useCase = RegisterUseCase(mockRepository);
   });
 
-  group('Register UseCase Senarios', () {
+  group('Register UseCase Scenarios', () {
     test('should return success when repository returns success', () async {
       // Arrange
       when(

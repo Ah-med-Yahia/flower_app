@@ -42,16 +42,13 @@ void main() {
 
   setUp(() {
     mockApi = MockRegisterApiClient();
-    dataSource = RegisterDataSourceImpl(
-      registerApiClient: mockApi,
-    );
+    dataSource = RegisterDataSourceImpl(registerApiClient: mockApi);
   });
 
-  group('Register DataSource Implementation Senarios', () {
+  group('Register DataSource Implementation Scenarios', () {
     test('should return success response', () async {
       // Arrange
-      when(mockApi.register(request))
-          .thenAnswer((_) async => responseModel);
+      when(mockApi.register(request)).thenAnswer((_) async => responseModel);
 
       // Act
       final result = await dataSource.register(request);
@@ -71,8 +68,9 @@ void main() {
 
     test('should return failure when api throws exception', () async {
       // Arrange
-      when(mockApi.register(request))
-          .thenThrow(Exception('Failed to register'));
+      when(
+        mockApi.register(request),
+      ).thenThrow(Exception('Failed to register'));
 
       // Act
       final result = await dataSource.register(request);
