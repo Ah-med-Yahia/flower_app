@@ -3,9 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'app_colors.dart';
 
-class AppTheme {
-  AppTheme._();
-
+abstract class AppTheme {
   static ThemeData appTheme = ThemeData(
     useMaterial3: true,
     brightness: Brightness.light,
@@ -14,7 +12,8 @@ class AppTheme {
     //------------ App Bar Theme -----------------//
     appBarTheme: AppBarThemeData(
       backgroundColor: AppColors.background,
-      iconTheme: IconThemeData(color: AppColors.textPrimary),
+      scrolledUnderElevation: 0,
+      iconTheme: IconThemeData(color: AppColors.textPrimary, size: 30),
       titleTextStyle: TextStyle(
         fontSize: 20,
         color: AppColors.textPrimary,
@@ -26,9 +25,13 @@ class AppTheme {
       labelStyle: TextStyle(color: AppColors.textSecondary),
       hintStyle: TextStyle(color: AppColors.grey, letterSpacing: 0.5),
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(4)),
-      focusedBorder: OutlineInputBorder(
+      enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(4),
         borderSide: BorderSide(color: AppColors.textSecondary),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(4),
+        borderSide: BorderSide(color: AppColors.textSecondary, width: 2),
       ),
       focusedErrorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(4),
@@ -37,25 +40,47 @@ class AppTheme {
     ),
     //------------ Text Theme -----------------//
     textTheme: TextTheme(
+      headlineSmall: TextStyle(
+        fontSize: 24,
+        fontWeight: FontWeight.w400,
+        color: AppColors.textPrimary,
+      ),
       titleLarge: TextStyle(
         fontSize: 18,
         color: AppColors.textPrimary,
         fontWeight: FontWeight.w500,
       ),
+      titleMedium: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+        color: AppColors.textPrimary,
+      ),
+      titleSmall: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
+        color: AppColors.textPrimary,
+      ),
       bodyMedium: TextStyle(color: AppColors.textSecondary),
+      bodySmall: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
     ),
     //------------ Button Theme -----------------//
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primary,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        foregroundColor: AppColors.background,
+        elevation: 0,
+        shadowColor: Colors.transparent,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
         textStyle: TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w500,
-          color: Colors.white,
+          color: AppColors.background,
         ),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       ),
     ),
+    //------------ Icon Theme -----------------//
+    iconTheme: IconThemeData(color: AppColors.background, size: 24),
     //------------ PIN CODE INPUT Theme -----------------//
   );
 }

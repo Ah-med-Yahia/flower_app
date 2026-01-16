@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:online_exam_app/config/error_handler/api_error_model.dart';
-import 'package:online_exam_app/core/constants/api_errors_constants.dart';
+import 'package:flower_app/config/error_handler/api_error_model.dart';
+import 'package:flower_app/core/constants/api_errors_constants.dart';
 
 enum DataSource {
   noContent,
@@ -42,63 +42,41 @@ abstract class ResponseCode {
 extension DataSourceExtension on DataSource {
   ApiErrorModel toFailure() {
     return switch (this) {
-      DataSource.noContent => ApiErrorModel(
-        code: ResponseCode.noContent,
-        message: ApiErrors.noContent,
-      ),
-      DataSource.badRequest => ApiErrorModel(
-        code: ResponseCode.badRequest,
-        message: ApiErrors.badRequestError,
-      ),
-      DataSource.forbidden => ApiErrorModel(
-        code: ResponseCode.forbidden,
-        message: ApiErrors.forbiddenError,
-      ),
-      DataSource.unauthorized => ApiErrorModel(
-        code: ResponseCode.unauthorized,
-        message: ApiErrors.unauthorizedError,
-      ),
-      DataSource.notFound => ApiErrorModel(
-        code: ResponseCode.notFound,
-        message: ApiErrors.notFoundError,
-      ),
-      DataSource.internalServerError => ApiErrorModel(
-        code: ResponseCode.internalServerError,
-        message: ApiErrors.internalServerError,
-      ),
-      DataSource.connectTimeout => ApiErrorModel(
-        code: ResponseCode.connectTimeout,
-        message: ApiErrors.timeoutError,
-      ),
-      DataSource.cancel => ApiErrorModel(
-        code: ResponseCode.cancel,
-        message: ApiErrors.defaultError,
-      ),
-      DataSource.receiveTimeout => ApiErrorModel(
-        code: ResponseCode.receiveTimeout,
-        message: ApiErrors.timeoutError,
-      ),
-      DataSource.sendTimeout => ApiErrorModel(
-        code: ResponseCode.sendTimeout,
-        message: ApiErrors.timeoutError,
-      ),
-      DataSource.cacheError => ApiErrorModel(
-        code: ResponseCode.cacheError,
-        message: ApiErrors.cacheError,
-      ),
-      DataSource.noInternetConnection => ApiErrorModel(
-        code: ResponseCode.noInternetConnection,
-        message: ApiErrors.noInternetError,
-      ),
-      DataSource.badCertificate => ApiErrorModel(
-        code: ResponseCode.badCertificate,
-        message: ApiErrors.defaultError,
-      ),
-      DataSource.unknown => ApiErrorModel(
-        code: ResponseCode.unknown,
-        message: ApiErrors.defaultError,
-      ),
+      DataSource.noContent =>
+          _createError(ResponseCode.noContent, ApiErrors.noContent),
+      DataSource.badRequest =>
+          _createError(ResponseCode.badRequest, ApiErrors.badRequestError),
+      DataSource.forbidden =>
+          _createError(ResponseCode.forbidden, ApiErrors.forbiddenError),
+      DataSource.unauthorized =>
+          _createError(ResponseCode.unauthorized, ApiErrors.unauthorizedError),
+      DataSource.notFound =>
+          _createError(ResponseCode.notFound, ApiErrors.notFoundError),
+      DataSource.internalServerError =>
+          _createError(
+              ResponseCode.internalServerError, ApiErrors.internalServerError),
+      DataSource.connectTimeout =>
+          _createError(ResponseCode.connectTimeout, ApiErrors.timeoutError),
+      DataSource.cancel =>
+          _createError(ResponseCode.cancel, ApiErrors.defaultError),
+      DataSource.receiveTimeout =>
+          _createError(ResponseCode.receiveTimeout, ApiErrors.timeoutError),
+      DataSource.sendTimeout =>
+          _createError(ResponseCode.sendTimeout, ApiErrors.timeoutError),
+      DataSource.cacheError =>
+          _createError(ResponseCode.cacheError, ApiErrors.cacheError),
+      DataSource.noInternetConnection =>
+          _createError(
+              ResponseCode.noInternetConnection, ApiErrors.noInternetError),
+      DataSource.badCertificate =>
+          _createError(ResponseCode.badCertificate, ApiErrors.defaultError),
+      DataSource.unknown =>
+          _createError(ResponseCode.unknown, ApiErrors.defaultError),
     };
+  }
+
+  ApiErrorModel _createError(int code, String message) {
+    return ApiErrorModel(code: code, message: message);
   }
 }
 
