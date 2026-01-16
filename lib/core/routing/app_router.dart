@@ -1,14 +1,22 @@
 import 'package:go_router/go_router.dart';
-import 'package:online_exam_app/core/constants/app_reoutes_constants.dart';
-import 'package:online_exam_app/home_screen.dart';
 
-class AppRouter {
+import '../../features/product/best_seller/presentation/views/view/best_seller_view.dart';
+import '../../home_screen.dart';
+import '../constants/app_routes_constants.dart';
+
+abstract class AppRouter {
   static GoRouter router = GoRouter(
-    initialLocation: AppRoutesConstants.initialLocation,
+    initialLocation: AppRoutesConstants.homeRoute,
     routes: [
+      // Define your routes here
       GoRoute(
-        path: AppRoutesConstants.initialLocation,
+        path: AppRoutesConstants.homeRoute,
         builder: (context, state) => const HomeScreen(),
+      ),
+      GoRoute(
+        path: AppRoutesConstants.bestSellerRoute,
+        name: AppRoutesConstants.bestSellerRoute,
+        builder: (context, state) => BestSellerView(),
       ),
     ],
   );
