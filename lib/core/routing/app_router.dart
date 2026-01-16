@@ -14,7 +14,7 @@ class AppRouter {
         name: AppRoutesConstants.loginRoute,
         builder: (context, state) => BlocProvider(
           create: (context) => getIt<LoginCubit>(),
-          child: LoginScreen(),
+          child:const LoginScreen(),
         ),
       ),
     ],

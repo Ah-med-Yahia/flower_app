@@ -30,7 +30,7 @@ void main() {
     createdAt: DateTime.now(),
   );
   final loginRequestTest = LoginRequestModel(
-    email: 'ahmed&gmail.com',
+    email: 'ahmed@gmail.com',
     password: 'Ahmed22',
   );
   final loginResponseTest = LoginResponseModel(

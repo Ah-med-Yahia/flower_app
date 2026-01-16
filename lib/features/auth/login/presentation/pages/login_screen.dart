@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(AppTextConstants.login)),
+      appBar: AppBar(title: Text(AppTextConstants.home)),
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(

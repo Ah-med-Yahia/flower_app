@@ -105,7 +105,7 @@ void main() {
     });
 
     group('LoginSubmitted intent Failure Cases', () {
-      final errorHandler = ErrorHandler.handle('eror');
+      final errorHandler = ErrorHandler.handle('error');
 
       test(
         'should emit ShowLoading then ShowErrorMessage UI events on failure',

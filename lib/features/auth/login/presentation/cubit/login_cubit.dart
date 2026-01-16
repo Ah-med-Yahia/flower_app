@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:flower_app/core/validators/app_validators.dart';
 import 'package:flower_app/features/auth/login/domain/entities/login_request_entity.dart';
@@ -51,7 +50,6 @@ class LoginCubit extends Cubit<LoginStates> {
   }
 
   void _rememberMe() {
-    log('message');
     emit(state.copyWith(rememberMe: !state.rememberMe));
   }
 
