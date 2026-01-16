@@ -178,7 +178,7 @@ ErrorModel _handleUnknownError(DioException error) {
 }
 
 ErrorModel _handleLocalException(LocalException error) {
-  return switch (error.type) {
+  return switch (error) {
     CacheError() => DataSource.cacheError.toFailure(),
   };
 }
