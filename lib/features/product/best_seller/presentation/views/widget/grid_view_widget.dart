@@ -1,16 +1,17 @@
+import 'package:flower_app/features/product/best_seller/presentation/view_models/best_seller_events.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../core/constants/app_text_constants.dart';
 import '../../view_models/best_seller_cubit.dart';
 import 'product_card_widget.dart';
 
 class GridViewWidget extends StatelessWidget {
-  final BestSellerCubit cubit;
-
-  const GridViewWidget({super.key, required this.cubit});
+  const GridViewWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var cubit = context.read<BestSellerCubit>();
     final productItem = cubit.state.bestSellerList ?? [];
     if (productItem.isEmpty) {
       return const Center(child: Text(AppTextConstants.noProductsAvailable));
@@ -32,13 +33,20 @@ class GridViewWidget extends StatelessWidget {
             (originalPrice != null && price != null && originalPrice > 0)
             ? ((originalPrice - price) / originalPrice) * 100
             : 0.0;
-        return ProductCardWidget(
-          productName: product.title,
-          imageUrl: product.imgCover,
-          price: price,
-          originalPrice: originalPrice,
-          discountPercentage: discountRate.toInt(),
-          onAddToCart: () {},
+        return InkWell(
+          onTap: () {
+            cubit.doIntent(
+              NavigateToProductDetailsEvent(productId: product.id),
+            );
+          },
+          child: ProductCardWidget(
+            productName: product.title,
+            imageUrl: product.imgCover,
+            price: price,
+            originalPrice: originalPrice,
+            discountPercentage: discountRate.toInt(),
+            onAddToCart: () {},
+          ),
         );
       },
     );

@@ -236,12 +236,15 @@ void _testNavigateToProductDetailsEvent(
     () async {
       final cubit = bestSellerCubit();
       final initialState = cubit.state;
+      const productId = '123';
 
       // Listen to the stream before emitting
       expectLater(cubit.uiEvents, emits(isA<NavigateToProductDetailsEvent>()));
 
       // Act
-      await cubit.doIntent(const NavigateToProductDetailsEvent());
+      await cubit.doIntent(
+        const NavigateToProductDetailsEvent(productId: productId),
+      );
 
       // Assert state doesn't change
       expect(cubit.state, equals(initialState));

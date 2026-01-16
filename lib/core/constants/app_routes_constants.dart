@@ -7,4 +7,7 @@ class AppRoutesConstants {
   //--------------- HOME ROUTES -----------------//
   static const String homeRoute = '/home';
   static const String bestSellerRoute = '/bestSeller';
+
+  //--------------- PRODUCT-DETAILS ROUTES -----------------//
+  static const String productDetailsRoute = '/productDetails';
 }

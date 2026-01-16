@@ -22,7 +22,7 @@ class BestSellerCubit extends Cubit<BestSellerState> {
       case GetBestSellerProductEvent():
         _getBestSeller();
       case NavigateToProductDetailsEvent():
-        _navigateToProductDetailsEvent(event);
+        _navigateToProductDetailsEvent(event, event.productId);
       case NavigateToCartEvent():
         _navigateToCartEvent(event);
     }
@@ -63,8 +63,9 @@ class BestSellerCubit extends Cubit<BestSellerState> {
     _streamController.add(NavigateToCartEvent());
   }
 
-  void _navigateToProductDetailsEvent(NavigateToProductDetailsEvent event) {
-    _streamController.add(NavigateToProductDetailsEvent());
+  void _navigateToProductDetailsEvent(NavigateToProductDetailsEvent event,
+      String productId) {
+    _streamController.add(NavigateToProductDetailsEvent(productId: productId));
   }
 
   @override

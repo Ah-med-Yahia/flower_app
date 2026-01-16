@@ -1,7 +1,8 @@
-import 'package:flower_app/core/widgets/spacing.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../../core/constants/app_text_constants.dart';
 import '../../../../../../core/theme/app_colors.dart';
+import '../../../../../../core/widgets/spacing.dart';
 
 class CustomProductInfoWidget extends StatelessWidget {
   final String? productName;
@@ -41,9 +42,10 @@ class CustomProductInfoWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                'EGP ${price?.toStringAsFixed(0)}',
+                '${AppTextConstants.egy} ${price?.toStringAsFixed(0)}',
                 style: TextTheme.of(context).titleSmall,
               ),
+              4.horizontalSpacing,
               if (originalPrice != null) ...[
                 4.verticalSpacing,
                 Text(
@@ -56,6 +58,7 @@ class CustomProductInfoWidget extends StatelessWidget {
                   ),
                 ),
               ],
+              4.horizontalSpacing,
               if (discountPercentage != null) ...[
                 4.verticalSpacing,
                 Text(

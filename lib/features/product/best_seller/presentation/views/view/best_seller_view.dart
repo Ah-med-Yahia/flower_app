@@ -7,9 +7,7 @@ import '../../../../../../core/constants/app_text_constants.dart';
 import 'best_seller_body.dart';
 
 class BestSellerView extends StatelessWidget {
-  BestSellerView({super.key});
-
-  final cubit = getIt<BestSellerCubit>();
+  const BestSellerView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +20,8 @@ class BestSellerView extends StatelessWidget {
         ),
       ),
       body: BlocProvider<BestSellerCubit>(
-        create: (context) => cubit,
-        child: BestSellerBody(cubit: cubit),
+        create: (context) => getIt<BestSellerCubit>(),
+        child: BestSellerBody(),
       ),
     );
   }

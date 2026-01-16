@@ -30,13 +30,6 @@ class ProductCardWidget extends StatelessWidget {
         color: AppColors.background,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(width: 0.5, color: AppColors.grey),
-        // boxShadow: [
-        //   BoxShadow(
-        //     color: Colors.black.withValues(alpha: 0.05),
-        //     blurRadius: 4,
-        //     offset: const Offset(0, 2),
-        //   ),
-        // ],
       ),
       child: Padding(padding: const EdgeInsets.all(8.0), child: child),
     );
@@ -53,7 +46,11 @@ class ProductCardWidget extends StatelessWidget {
         fit: BoxFit.cover,
         errorBuilder: (context, error, stackTrace) {
           return Center(
-            child: Icon(Icons.local_florist, size: 48, color: Colors.pink[300]),
+            child: Icon(
+              Icons.local_florist,
+              size: 48,
+              color: AppColors.secondary,
+            ),
           );
         },
         loadingBuilder: (context, child, loadingProgress) {

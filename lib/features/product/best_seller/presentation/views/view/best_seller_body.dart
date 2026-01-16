@@ -1,21 +1,21 @@
 import 'dart:async';
 
-import 'package:flower_app/core/widgets/spacing.dart';
-import 'package:flower_app/features/product/best_seller/presentation/view_models/best_seller_events.dart';
-import 'package:flower_app/features/product/best_seller/presentation/view_models/best_seller_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../../../core/constants/app_routes_constants.dart';
 import '../../../../../../core/constants/app_text_constants.dart';
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/widgets/loading_indicator_widget.dart';
+import '../../../../../../core/widgets/spacing.dart';
 import '../../view_models/best_seller_cubit.dart';
+import '../../view_models/best_seller_events.dart';
+import '../../view_models/best_seller_state.dart';
 import '../widget/grid_view_widget.dart';
 
 class BestSellerBody extends StatefulWidget {
-  final BestSellerCubit cubit;
-
-  const BestSellerBody({super.key, required this.cubit});
+  const BestSellerBody({super.key});
 
   @override
   State<BestSellerBody> createState() => _BestSellerBodyState();
@@ -23,20 +23,26 @@ class BestSellerBody extends StatefulWidget {
 
 class _BestSellerBodyState extends State<BestSellerBody> {
   StreamSubscription<BestSellerEvents>? _subscription;
+  late final BestSellerCubit cubit;
 
   @override
   void initState() {
     super.initState();
+    cubit = context.read<BestSellerCubit>();
     _getData();
     _subscribeToEvents();
   }
 
-  void _getData() => widget.cubit.doIntent(const GetBestSellerProductEvent());
+  void _getData() => cubit.doIntent(const GetBestSellerProductEvent());
 
   void _subscribeToEvents() {
-    _subscription = widget.cubit.uiEvents.listen((event) {
+    _subscription = cubit.uiEvents.listen((event) {
       if (!mounted) return;
       if (event case NavigateToProductDetailsEvent()) {
+        context.pushNamed(
+          AppRoutesConstants.productDetailsRoute,
+          extra: event.productId,
+        );
         return;
       }
       if (event case NavigateToCartEvent()) {
@@ -95,7 +101,7 @@ class _BestSellerBodyState extends State<BestSellerBody> {
         }
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
-          child: GridViewWidget(cubit: widget.cubit),
+          child: GridViewWidget(),
         );
       },
     );

@@ -7,7 +7,9 @@ class GetBestSellerProductEvent extends BestSellerEvents {
 }
 
 class NavigateToProductDetailsEvent extends BestSellerEvents {
-  const NavigateToProductDetailsEvent();
+  final String productId;
+
+  const NavigateToProductDetailsEvent({required this.productId});
 }
 
 class NavigateToCartEvent extends BestSellerEvents {
