@@ -28,4 +28,5 @@ class AppTextConstants {
   static const String alreadyHaveAccount = "Already have an account?";
   static const String login = "Login";
   static const String invalidPhoneNumber = "Invalid phone number";
+  static const String accountCreatedSuccessfully = "Account created successfully";
 }

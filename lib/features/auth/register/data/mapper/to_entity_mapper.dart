@@ -1,5 +1,5 @@
-import '../../data/models/register_response/register_response.dart';
-import '../entities/register_entity.dart';
+import '../models/register_response/register_response.dart';
+import '../../domain/entities/register_entity.dart';
 
 extension ToEntity on RegisterResponseModel {
   RegisterEntity toEntity() {

@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/features/auth/register/domain/entities/register_entity.dart';
-import 'package:online_exam_app/features/auth/register/domain/mapper/to_entity_mapper.dart';
+import 'package:online_exam_app/features/auth/register/data/mapper/to_entity_mapper.dart';
 
 import '../../../../../config/base_response/base_response.dart';
 import '../../domain/repositories/register_repository.dart';
