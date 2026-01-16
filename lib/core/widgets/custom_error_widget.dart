@@ -1,7 +1,7 @@
+import 'package:flower_app/core/constants/errors_constants.dart';
 import 'package:flutter/material.dart';
-import 'package:online_exam_app/core/constants/api_errors_constants.dart';
-import 'package:online_exam_app/core/theme/app_colors.dart';
-import 'package:online_exam_app/core/widgets/custom_eleveted_button.dart';
+import 'package:flower_app/core/theme/app_colors.dart';
+import 'package:flower_app/core/widgets/custom_eleveted_button.dart';
 
 class CustomErrorWidget extends StatelessWidget {
   const CustomErrorWidget({super.key, required this.error, this.onTryAgain});
@@ -31,7 +31,7 @@ class CustomErrorWidget extends StatelessWidget {
                 width: 200, // Limit button width
                 child: CustomElevatedButtonWidget(
                   onPressed: onTryAgain!,
-                  text: ApiErrors.retryAgainMessage,
+                  text: ErrorsConstant.retryAgainMessage,
                 ),
               ),
           ],

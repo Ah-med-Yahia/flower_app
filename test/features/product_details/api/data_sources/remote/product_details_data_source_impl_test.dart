@@ -1,12 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:online_exam_app/config/base_response/base_response.dart';
-import 'package:online_exam_app/config/error_handler/error_handler.dart';
-import 'package:online_exam_app/features/product_details/api/api_clinet/product_details_api_client.dart';
-import 'package:online_exam_app/features/product_details/api/data_sources/remote/product_details_data_source_impl.dart';
-import 'package:online_exam_app/features/product_details/data/models/product_dto.dart';
-import 'package:online_exam_app/features/product_details/data/models/product_response_dto.dart';
+import 'package:flower_app/config/base_response/base_response.dart';
+import 'package:flower_app/config/error_handler/error_handler.dart';
+import 'package:flower_app/features/product_details/api/api_clinet/product_details_api_client.dart';
+import 'package:flower_app/features/product_details/api/data_sources/remote/product_details_data_source_impl.dart';
+import 'package:flower_app/features/product_details/data/models/product_dto.dart';
+import 'package:flower_app/features/product_details/data/models/product_response_dto.dart';
 
 import 'product_details_data_source_impl_test.mocks.dart';
 

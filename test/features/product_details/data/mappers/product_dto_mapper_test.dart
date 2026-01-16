@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:online_exam_app/features/product_details/data/mappers/product_dto_mapper.dart';
-import 'package:online_exam_app/features/product_details/data/models/product_dto.dart';
+import 'package:flower_app/features/product_details/data/mappers/product_dto_mapper.dart';
+import 'package:flower_app/features/product_details/data/models/product_dto.dart';
 
 import 'product_dto_mapper_test.mocks.dart';
 

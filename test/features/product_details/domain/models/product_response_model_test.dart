@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:online_exam_app/features/product_details/domain/models/product_model.dart';
-import 'package:online_exam_app/features/product_details/domain/models/product_response_model.dart';
+import 'package:flower_app/features/product_details/domain/models/product_model.dart';
+import 'package:flower_app/features/product_details/domain/models/product_response_model.dart';
 
 import 'product_response_model_test.mocks.dart';
 

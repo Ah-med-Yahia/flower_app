@@ -1,9 +1,9 @@
 import 'package:injectable/injectable.dart';
-import 'package:online_exam_app/config/base_response/base_response.dart';
-import 'package:online_exam_app/features/product_details/data/data_sources/remote/product_details_data_source_contract.dart';
-import 'package:online_exam_app/features/product_details/data/mappers/product_response_dto_mapper.dart';
-import 'package:online_exam_app/features/product_details/domain/models/product_response_model.dart';
-import 'package:online_exam_app/features/product_details/domain/repo/product_details_repo_contract.dart';
+import 'package:flower_app/config/base_response/base_response.dart';
+import 'package:flower_app/features/product_details/data/data_sources/remote/product_details_data_source_contract.dart';
+import 'package:flower_app/features/product_details/data/mappers/product_response_dto_mapper.dart';
+import 'package:flower_app/features/product_details/domain/models/product_response_model.dart';
+import 'package:flower_app/features/product_details/domain/repo/product_details_repo_contract.dart';
 
 @Injectable(as: ProductDetailsRepoContract)
 class ProductDetailsRepoImpl implements ProductDetailsRepoContract {

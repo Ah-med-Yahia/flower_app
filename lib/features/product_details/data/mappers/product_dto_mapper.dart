@@ -1,5 +1,5 @@
-import 'package:online_exam_app/features/product_details/data/models/product_dto.dart';
-import 'package:online_exam_app/features/product_details/domain/models/product_model.dart';
+import 'package:flower_app/features/product_details/data/models/product_dto.dart';
+import 'package:flower_app/features/product_details/domain/models/product_model.dart';
 
 extension ProductDtoMapper on ProductDto {
   ProductModel toDomain() {

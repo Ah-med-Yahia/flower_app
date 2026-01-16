@@ -2,14 +2,14 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:online_exam_app/config/base_response/base_response.dart';
-import 'package:online_exam_app/config/error_handler/error_handler.dart';
-import 'package:online_exam_app/features/product_details/domain/models/product_model.dart';
-import 'package:online_exam_app/features/product_details/domain/models/product_response_model.dart';
-import 'package:online_exam_app/features/product_details/domain/use_cases/get_product_details_usecase.dart';
-import 'package:online_exam_app/features/product_details/presentaion/view_model/product_details_cubit.dart';
-import 'package:online_exam_app/features/product_details/presentaion/view_model/product_details_events.dart';
-import 'package:online_exam_app/features/product_details/presentaion/view_model/product_details_states.dart';
+import 'package:flower_app/config/base_response/base_response.dart';
+import 'package:flower_app/config/error_handler/error_handler.dart';
+import 'package:flower_app/features/product_details/domain/models/product_model.dart';
+import 'package:flower_app/features/product_details/domain/models/product_response_model.dart';
+import 'package:flower_app/features/product_details/domain/use_cases/get_product_details_usecase.dart';
+import 'package:flower_app/features/product_details/presentaion/view_model/product_details_cubit.dart';
+import 'package:flower_app/features/product_details/presentaion/view_model/product_details_events.dart';
+import 'package:flower_app/features/product_details/presentaion/view_model/product_details_states.dart';
 
 import 'product_details_cubit_test.mocks.dart';
 

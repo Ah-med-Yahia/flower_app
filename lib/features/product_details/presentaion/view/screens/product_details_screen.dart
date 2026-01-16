@@ -1,23 +1,25 @@
+import 'package:flower_app/core/constants/errors_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_exam_app/config/di/di.dart';
-import 'package:online_exam_app/core/constants/app_text_constants.dart';
-import 'package:online_exam_app/core/widgets/custom_eleveted_button.dart';
-import 'package:online_exam_app/core/widgets/loading_indicator_widget.dart';
-import 'package:online_exam_app/core/widgets/custom_error_widget.dart';
-import 'package:online_exam_app/core/constants/api_errors_constants.dart';
-import 'package:online_exam_app/features/product_details/presentaion/view/widgets/product_details_info.dart';
-import 'package:online_exam_app/features/product_details/presentaion/view/widgets/product_images_slider.dart';
-import 'package:online_exam_app/features/product_details/presentaion/view_model/product_details_cubit.dart';
-import 'package:online_exam_app/features/product_details/presentaion/view_model/product_details_events.dart';
-import 'package:online_exam_app/features/product_details/presentaion/view_model/product_details_states.dart';
+import 'package:flower_app/config/di/di.dart';
+import 'package:flower_app/core/constants/app_text_constants.dart';
+import 'package:flower_app/core/widgets/custom_eleveted_button.dart';
+import 'package:flower_app/core/widgets/loading_indicator_widget.dart';
+import 'package:flower_app/core/widgets/custom_error_widget.dart';
+import 'package:flower_app/features/product_details/presentaion/view/widgets/product_details_info.dart';
+import 'package:flower_app/features/product_details/presentaion/view/widgets/product_images_slider.dart';
+import 'package:flower_app/features/product_details/presentaion/view_model/product_details_cubit.dart';
+import 'package:flower_app/features/product_details/presentaion/view_model/product_details_events.dart';
+import 'package:flower_app/features/product_details/presentaion/view_model/product_details_states.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
-  ProductDetailsScreen({super.key, required this.productId});
-  final ProductDetailsCubit cubit = getIt<ProductDetailsCubit>();
+  const ProductDetailsScreen({super.key, required this.productId});
+
   final String productId;
+
   @override
   Widget build(BuildContext context) {
+    final ProductDetailsCubit cubit = getIt<ProductDetailsCubit>();
     return BlocProvider<ProductDetailsCubit>(
       create: (context) => cubit..onEvent(GetProductDetailsEvent(productId)),
       child: BlocBuilder<ProductDetailsCubit, ProductDetailsStates>(
@@ -29,7 +31,7 @@ class ProductDetailsScreen extends StatelessWidget {
               body: CustomErrorWidget(
                 error:
                     state.productDetailsState?.errorMessage ??
-                    ApiErrors.defaultError,
+                    ErrorsConstant.defaultError,
                 onTryAgain: () {
                   cubit.onEvent(GetProductDetailsEvent(productId));
                 },
@@ -84,7 +86,7 @@ class ProductDetailsScreen extends StatelessWidget {
           } else {
             return Scaffold(
               body: CustomErrorWidget(
-                error: ApiErrors.notFoundError,
+                error: ErrorsConstant.notFoundError,
                 onTryAgain: () {
                   cubit.onEvent(GetProductDetailsEvent(productId));
                 },

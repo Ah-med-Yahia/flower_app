@@ -1,6 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:online_exam_app/core/widgets/slider_indicator.dart';
+import 'package:flower_app/core/widgets/slider_indicator.dart';
 
 class ProductImagesSlider extends StatefulWidget {
   final List<String> images;

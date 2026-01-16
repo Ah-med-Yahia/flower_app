@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:online_exam_app/features/product_details/domain/models/product_model.dart';
+import 'package:flower_app/features/product_details/domain/models/product_model.dart';
 
 void main() {
   group('ProductModel', () {

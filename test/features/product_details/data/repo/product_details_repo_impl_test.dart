@@ -1,13 +1,13 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:online_exam_app/config/base_response/base_response.dart';
-import 'package:online_exam_app/config/error_handler/error_handler.dart';
-import 'package:online_exam_app/features/product_details/api/data_sources/remote/product_details_data_source_impl.dart';
-import 'package:online_exam_app/features/product_details/data/models/product_dto.dart';
-import 'package:online_exam_app/features/product_details/data/models/product_response_dto.dart';
-import 'package:online_exam_app/features/product_details/data/repo/product_details_repo_impl.dart';
-import 'package:online_exam_app/features/product_details/domain/models/product_response_model.dart';
+import 'package:flower_app/config/base_response/base_response.dart';
+import 'package:flower_app/config/error_handler/error_handler.dart';
+import 'package:flower_app/features/product_details/api/data_sources/remote/product_details_data_source_impl.dart';
+import 'package:flower_app/features/product_details/data/models/product_dto.dart';
+import 'package:flower_app/features/product_details/data/models/product_response_dto.dart';
+import 'package:flower_app/features/product_details/data/repo/product_details_repo_impl.dart';
+import 'package:flower_app/features/product_details/domain/models/product_response_model.dart';
 
 import 'product_details_repo_impl_test.mocks.dart';
 
@@ -124,8 +124,8 @@ void main() {
           );
           expect(error.code, ErrorHandler.handle('Network error').code);
           expect(
-            error.apiErrorModel.toString(),
-            ErrorHandler.handle('Network error').apiErrorModel.toString(),
+            error.errorModel.toString(),
+            ErrorHandler.handle('Network error').errorModel.toString(),
           );
         },
       );

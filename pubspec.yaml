@@ -1,4 +1,4 @@
-name: online_exam_app
+name: flower_app
 description: "A new Flutter project."
 publish_to: 'none'
 version: 1.0.0+1
@@ -46,6 +46,9 @@ dependencies:
   pinput: ^6.0.1
   google_fonts: ^6.3.3
   carousel_slider: ^5.1.1
+  fluttertoast: ^9.0.0
+
+  rename_app: ^1.6.5
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +71,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/images/
     - assets/lottie/
 
 
