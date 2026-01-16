@@ -36,7 +36,7 @@ class GridViewWidget extends StatelessWidget {
         return InkWell(
           onTap: () {
             cubit.doIntent(
-              NavigateToProductDetailsEvent(productId: product.id),
+              NavigateToProductDetailsEvent(productId: product.id??''),
             );
           },
           child: ProductCardWidget(
