@@ -1,6 +1,10 @@
+import 'package:flower_app/config/base_response/base_response.dart';
+import 'package:flower_app/config/error_handler/error_handler.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
 import 'dart:convert';
+
+import '../../core/constants/cache_constants.dart';
 
 @lazySingleton
 class SecureStorageService {
@@ -21,183 +25,253 @@ class SecureStorageService {
   IOSOptions _defaultIOSOptions() =>
       const IOSOptions(accessibility: KeychainAccessibility.first_unlock);
 
-  Future<bool> write(String key, String value) async {
+  Future<BaseResponse<bool>> write(String key, String value) async {
     try {
       await _storage.write(key: key, value: value);
-      return true;
+      return BaseResponse<bool>.success(true);
     } catch (e) {
-      _handleError('write', e);
-      return false;
+      return BaseResponse<bool>.failure(_handleError(StorageMethods.write, e));
     }
   }
 
-  Future<String?> read(String key) async {
+  Future<BaseResponse<String?>> read(String key) async {
     try {
-      return await _storage.read(key: key);
+      final result = await _storage.read(key: key);
+      return BaseResponse<String?>.success(result);
     } catch (e) {
-      _handleError('read', e);
-      return null;
+      return BaseResponse<String?>.failure(_handleError(StorageMethods.read, e));
     }
   }
 
-  Future<bool> delete(String key) async {
+  Future<BaseResponse<bool>> delete(String key) async {
     try {
       await _storage.delete(key: key);
-      return true;
+      return BaseResponse<bool>.success(true);
     } catch (e) {
-      _handleError('delete', e);
-      return false;
+      return BaseResponse<bool>.failure(_handleError(StorageMethods.delete, e));
     }
   }
 
-  Future<bool> deleteAll() async {
+  Future<BaseResponse<bool>> deleteAll() async {
     try {
       await _storage.deleteAll();
-      return true;
+      return BaseResponse<bool>.success(true);
     } catch (e) {
-      _handleError('deleteAll', e);
-      return false;
+      return BaseResponse<bool>.failure(_handleError(StorageMethods.deleteAll, e));
     }
   }
 
-  Future<bool> containsKey(String key) async {
+  Future<BaseResponse<bool>> containsKey(String key) async {
     try {
-      return await _storage.containsKey(key: key);
+      final result = await _storage.containsKey(key: key);
+      return BaseResponse<bool>.success(result);
     } catch (e) {
-      _handleError('containsKey', e);
-      return false;
+      return BaseResponse<bool>.failure(_handleError(StorageMethods.containsKey, e));
     }
   }
 
-  Future<List<String>> getAllKeys() async {
+  Future<BaseResponse<List<String>>> getAllKeys() async {
     try {
       final allData = await _storage.readAll();
-      return allData.keys.toList();
+      return BaseResponse<List<String>>.success(allData.keys.toList());
     } catch (e) {
-      _handleError('getAllKeys', e);
-      return [];
+      return BaseResponse<List<String>>.failure(_handleError(StorageMethods.getAllKeys, e));
     }
   }
 
-  Future<bool> writeJson(String key, Map<String, dynamic> value) async {
+  Future<BaseResponse<bool>> writeJson(
+    String key,
+    Map<String, dynamic> value,
+  ) async {
     try {
       final jsonString = jsonEncode(value);
-      return await write(key, jsonString);
+      final result = await write(key, jsonString);
+      return result;
     } catch (e) {
-      _handleError('writeJson', e);
-      return false;
+      return BaseResponse<bool>.failure(_handleError(StorageMethods.writeJson, e));
     }
   }
 
-  Future<Map<String, dynamic>?> readJson(String key) async {
+  Future<BaseResponse<Map<String, dynamic>?>> readJson(String key) async {
     try {
-      final jsonString = await read(key);
-      if (jsonString == null) return null;
-      return jsonDecode(jsonString) as Map<String, dynamic>;
+      final response = await read(key);
+
+      return response.when(
+        success: (s) {
+          if (s == null) {
+            return BaseResponse<Map<String, dynamic>?>.success(null);
+          }
+
+          return BaseResponse<Map<String, dynamic>?>.success(
+            jsonDecode(s) as Map<String, dynamic>,
+          );
+        },
+        failure: (f) {
+          return BaseResponse<Map<String, dynamic>?>.failure(f);
+        },
+      );
     } catch (e) {
-      _handleError('readJson', e);
-      return null;
+      return BaseResponse<Map<String, dynamic>?>.failure(
+        _handleError(StorageMethods.readJson, e),
+      );
     }
   }
 
-  Future<bool> writeList(String key, List<String> value) async {
+  Future<BaseResponse<bool>> writeList(String key, List<String> value) async {
     try {
       final jsonString = jsonEncode(value);
-      return await write(key, jsonString);
+      final result = await write(key, jsonString);
+      return result;
     } catch (e) {
-      _handleError('writeList', e);
-      return false;
+      return BaseResponse<bool>.failure(_handleError(StorageMethods.writeList, e));
     }
   }
 
-  Future<List<String>?> readList(String key) async {
+  Future<BaseResponse<List<String>?>> readList(String key) async {
     try {
-      final jsonString = await read(key);
-      if (jsonString == null) return null;
-      final decoded = jsonDecode(jsonString);
-      return List<String>.from(decoded);
+      final response = await read(key);
+
+      return response.when(
+        success: (s) {
+          if (s == null) {
+            return BaseResponse<List<String>?>.success(null);
+          }
+
+          final decoded = jsonDecode(s);
+          final list = List<String>.from(decoded);
+
+          return BaseResponse<List<String>?>.success(list);
+        },
+        failure: (f) {
+          return BaseResponse<List<String>?>.failure(f);
+        },
+      );
     } catch (e) {
-      _handleError('readList', e);
-      return null;
+      return BaseResponse<List<String>?>.failure(_handleError(StorageMethods.readList, e));
     }
   }
 
-  Future<bool> writeBool(String key, bool value) async {
-    return await write(key, value.toString());
+  Future<BaseResponse<bool>> writeBool(String key, bool value) async {
+    try {
+      final result = await write(key, value.toString());
+      return result;
+    } catch (e) {
+      return BaseResponse<bool>.failure(_handleError(StorageMethods.writeBool, e));
+    }
   }
 
-  Future<bool?> readBool(String key) async {
-    final value = await read(key);
-    if (value == null) return null;
-    return value.toLowerCase() == 'true';
+  Future<BaseResponse<bool?>> readBool(String key) async {
+    try {
+      final response = await read(key);
+
+      return response.when(
+        success: (s) {
+          if (s == null) {
+            return BaseResponse<bool?>.success(null);
+          }
+
+          return BaseResponse<bool?>.success(s.toLowerCase() == 'true');
+        },
+        failure: (f) {
+          return BaseResponse<bool?>.failure(f);
+        },
+      );
+    } catch (e) {
+      return BaseResponse<bool?>.failure(_handleError(StorageMethods.readBool, e));
+    }
   }
 
-  Future<bool> writeInt(String key, int value) async {
-    return await write(key, value.toString());
+  Future<BaseResponse<bool>> writeInt(String key, int value) async {
+    try {
+      final result = await write(key, value.toString());
+      return result;
+    } catch (e) {
+      return BaseResponse<bool>.failure(_handleError(StorageMethods.writeInt, e));
+    }
   }
 
-  Future<int?> readInt(String key) async {
-    final value = await read(key);
-    if (value == null) return null;
-    return int.tryParse(value);
+  Future<BaseResponse<int?>> readInt(String key) async {
+    try {
+      final response = await read(key);
+
+      return response.when(
+        success: (s) {
+          if (s == null) {
+            return BaseResponse<int?>.success(null);
+          }
+
+          return BaseResponse<int?>.success(int.tryParse(s));
+        },
+        failure: (f) {
+          return BaseResponse<int?>.failure(f);
+        },
+      );
+    } catch (e) {
+      return BaseResponse<int?>.failure(_handleError(StorageMethods.readInt, e));
+    }
   }
 
-  Future<bool> writeDouble(String key, double value) async {
-    return await write(key, value.toString());
+  Future<BaseResponse<bool>> writeDouble(String key, double value) async {
+    try {
+      final result = await write(key, value.toString());
+      return result;
+    } catch (e) {
+      return BaseResponse<bool>.failure(_handleError(StorageMethods.writeDouble, e));
+    }
   }
 
-  Future<double?> readDouble(String key) async {
-    final value = await read(key);
-    if (value == null) return null;
-    return double.tryParse(value);
+  Future<BaseResponse<double?>> readDouble(String key) async {
+    try {
+      final resultResponse = await read(key);
+      return resultResponse.when(
+        success: (s) {
+          if (s == null) {
+            return BaseResponse<double?>.success(null);
+          }
+          return BaseResponse<double?>.success(double.tryParse(s));
+        },
+        failure: (f) {
+          return BaseResponse<double?>.failure(f);
+        },
+      );
+    } catch (e) {
+      return BaseResponse<double?>.failure(_handleError(StorageMethods.readDouble, e));
+    }
   }
 
-  void _handleError(String method, dynamic error) {
-    print('SecureStorageService.$method error: $error');
+  ErrorHandler _handleError(String method, dynamic error) {
+    return ErrorHandler.handle(
+      Exception('SecureStorageService.$method error: $error'),
+    );
   }
 }
 
-class StorageKeys {
-  static const String accessToken = 'access_token';
-  static const String refreshToken = 'refresh_token';
-  static const String userId = 'user_id';
-  static const String userEmail = 'user_email';
-  static const String isLoggedIn = 'is_logged_in';
-  static const String userName = 'user_name';
-  static const String deviceId = 'device_id';
-  static const String fcmToken = 'fcm_token';
-  static const String theme = 'theme';
-  static const String language = 'language';
 
-  StorageKeys._();
-}
 
 extension SecureStorageExtension on SecureStorageService {
-  Future<bool> saveAuthTokens({
+  Future<BaseResponse<bool>> saveAuthTokens({
     required String accessToken,
-    String? refreshToken,
   }) async {
-    final results = await Future.wait([
-      write(StorageKeys.accessToken, accessToken),
-      if (refreshToken != null) write(StorageKeys.refreshToken, refreshToken),
-    ]);
-    return results.every((r) => r);
+      final result = await write(StorageKeys.accessToken, accessToken);
+      return result.map(
+        success: (s) => BaseResponse<bool>.success(true),
+        failure: (f) => BaseResponse<bool>.failure(f.errorhandeler),
+      );
   }
 
-  Future<Map<String, String?>> getAuthTokens() async {
-    final results = await Future.wait([
-      read(StorageKeys.accessToken),
-      read(StorageKeys.refreshToken),
-    ]);
-    return {'accessToken': results[0], 'refreshToken': results[1]};
+  Future<BaseResponse<String?>> getAuthTokens() async {
+      final result = await read(StorageKeys.accessToken);
+      return result.map(
+        success: (s) => BaseResponse.success(s.data),
+        failure: (f) => BaseResponse.failure(f.errorhandeler),
+      );
   }
 
-  Future<bool> clearAuthTokens() async {
-    final results = await Future.wait([
-      delete(StorageKeys.accessToken),
-      delete(StorageKeys.refreshToken),
-      delete(StorageKeys.isLoggedIn),
-    ]);
-    return results.every((r) => r);
+  Future<BaseResponse<bool>> clearAuthTokens() async {
+    final results = await delete(StorageKeys.accessToken);
+    return results.map(
+      success: (s) => BaseResponse.success(s.data),
+      failure: (f) => BaseResponse.failure(f.errorhandeler),
+    );
   }
 }

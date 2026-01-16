@@ -1,22 +1,33 @@
+import 'package:flower_app/config/di/di.dart';
+import 'package:flower_app/core/constants/app_routes_constant.dart';
+import 'package:flower_app/features/auth/login/presentation/cubit/login_cubit.dart';
+import 'package:flower_app/features/auth/login/presentation/pages/login_screen.dart';
+import 'package:flower_app/home_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../features/product/best_seller/presentation/views/view/best_seller_view.dart';
-import '../../home_screen.dart';
-import '../constants/app_routes_constants.dart';
 
 abstract class AppRouter {
   static GoRouter router = GoRouter(
-    initialLocation: AppRoutesConstants.homeRoute,
+    initialLocation: AppRoutesConstants.loginRoute,
     routes: [
-      // Define your routes here
       GoRoute(
-        path: AppRoutesConstants.homeRoute,
-        builder: (context, state) => const HomeScreen(),
+        path: AppRoutesConstants.loginRoute,
+        name: AppRoutesConstants.loginRoute,
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt<LoginCubit>(),
+          child:const LoginScreen(),
+        ),
       ),
       GoRoute(
         path: AppRoutesConstants.bestSellerRoute,
         name: AppRoutesConstants.bestSellerRoute,
         builder: (context, state) => BestSellerView(),
+      ),
+      GoRoute(
+        path: AppRoutesConstants.homeRoute,
+        name: AppRoutesConstants.homeRoute,
+        builder: (context, state) => const HomeScreen(),
       ),
     ],
   );

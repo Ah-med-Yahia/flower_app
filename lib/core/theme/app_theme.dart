@@ -12,8 +12,7 @@ abstract class AppTheme {
     //------------ App Bar Theme -----------------//
     appBarTheme: AppBarThemeData(
       backgroundColor: AppColors.background,
-      scrolledUnderElevation: 0,
-      iconTheme: IconThemeData(color: AppColors.textPrimary, size: 30),
+      iconTheme: IconThemeData(color: AppColors.textPrimary),
       titleTextStyle: TextStyle(
         fontSize: 20,
         color: AppColors.textPrimary,
@@ -54,11 +53,13 @@ abstract class AppTheme {
         fontSize: 16,
         fontWeight: FontWeight.w500,
         color: AppColors.textPrimary,
+        fontFamily: 'Inter',
       ),
       titleSmall: TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w500,
         color: AppColors.textPrimary,
+        fontFamily: 'Inter',
       ),
       bodyMedium: TextStyle(color: AppColors.textSecondary),
       bodySmall: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
@@ -68,19 +69,9 @@ abstract class AppTheme {
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primary,
         foregroundColor: AppColors.background,
-        elevation: 0,
-        shadowColor: Colors.transparent,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
-        textStyle: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w500,
-          color: AppColors.background,
-        ),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
       ),
     ),
-    //------------ Icon Theme -----------------//
-    iconTheme: IconThemeData(color: AppColors.background, size: 24),
-    //------------ PIN CODE INPUT Theme -----------------//
   );
 }
