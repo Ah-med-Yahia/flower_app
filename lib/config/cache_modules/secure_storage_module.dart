@@ -1,5 +1,6 @@
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/error_handler/error_handler.dart';
+import 'package:flower_app/config/error_handler/local_exception.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
 import 'dart:convert';
@@ -267,7 +268,7 @@ class SecureStorageService {
 
   ErrorHandler _handleError(String method, dynamic error) {
     return ErrorHandler.handle(
-      Exception('SecureStorageService.$method error: $error'),
+      CacheError('SecureStorageService.$method error: $error'),
     );
   }
 }

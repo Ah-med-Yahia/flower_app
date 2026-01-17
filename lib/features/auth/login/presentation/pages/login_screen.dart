@@ -157,7 +157,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           decoration: TextDecoration.underline,
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        context.pushNamed(
+                          AppRoutesConstants.forgetPasswordRoute,
+                        );
+                      },
                     ),
                   ],
                 ),
