@@ -1,6 +1,6 @@
+import 'package:flower_app/features/auth/forget_password/data/models/reset_password_response/reset_password_response.dart';
+import 'package:flower_app/features/auth/forget_password/domain/entities/reset_password_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:online_exam_app/features/auth/forget_password/data/models/reset_password_response/reset_password_response.dart';
-import 'package:online_exam_app/features/auth/forget_password/domain/entities/reset_password_entity.dart';
 
 void main() {
   group(

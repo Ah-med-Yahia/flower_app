@@ -3,11 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:online_exam_app/core/widgets/spacing.dart';
 
 import '../../../../../../../core/constants/app_text_constants.dart';
 import '../../../../../../../core/validators/app_validators.dart';
-import '../../../../../../core/constants/app_routes_constants.dart';
+import '../../../../../../core/constants/app_routes_constant.dart';
+import '../../../../../../core/constants/validation_constants.dart';
+import '../../../../../../core/widgets/spacing.dart';
 import '../../view_models/forget_password/forget_password_cubit.dart';
 import '../../view_models/forget_password/forget_password_events.dart';
 import '../../view_models/forget_password/forget_password_state.dart';
@@ -15,15 +16,14 @@ import '../shared_widgets/custom_edit_text_widget.dart';
 import '../shared_widgets/custom_elevated_button_widget.dart';
 
 class ForgetPasswordBody extends StatefulWidget {
-  const ForgetPasswordBody({super.key, required this.cubit});
-
-  final ForgetPasswordCubit cubit;
+  const ForgetPasswordBody({super.key});
 
   @override
   State<ForgetPasswordBody> createState() => _ForgetPasswordBodyState();
 }
 
 class _ForgetPasswordBodyState extends State<ForgetPasswordBody> {
+  late final ForgetPasswordCubit cubit;
   late final TextEditingController _emailController;
   late final GlobalKey<FormState> _formKey;
   StreamSubscription<ForgetPasswordEvents>? _eventsSubscription;
@@ -31,13 +31,14 @@ class _ForgetPasswordBodyState extends State<ForgetPasswordBody> {
   @override
   void initState() {
     super.initState();
+    cubit = context.read<ForgetPasswordCubit>();
     _emailController = TextEditingController();
     _formKey = GlobalKey<FormState>();
     _listenToNavigationEvents();
   }
 
   void _listenToNavigationEvents() {
-    _eventsSubscription = widget.cubit.eventsStream.listen((event) {
+    _eventsSubscription = cubit.eventsStream.listen((event) {
       if (!mounted) return;
       if (event is NavigateToVerifyOtpCode) {
         _navigateToVerifyOtp(event.email);
@@ -53,7 +54,7 @@ class _ForgetPasswordBodyState extends State<ForgetPasswordBody> {
   void _handleSubmit() {
     if (_formKey.currentState?.validate() ?? false) {
       final email = _emailController.text.trim();
-      widget.cubit.doIntent(ForgetPasswordEvent(email: email));
+      cubit.doIntent(ForgetPasswordEvent(email: email));
     }
   }
 
@@ -67,7 +68,7 @@ class _ForgetPasswordBodyState extends State<ForgetPasswordBody> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ForgetPasswordCubit, ForgetPasswordState>(
-      bloc: widget.cubit,
+      bloc: cubit,
       builder: (context, state) {
         return Form(
           key: _formKey,
@@ -80,7 +81,7 @@ class _ForgetPasswordBodyState extends State<ForgetPasswordBody> {
                 isEnabled: !state.forgetPasswordState.isLoading,
                 labelText: AppTextConstants.emailLabel,
                 hintText: AppTextConstants.emailHint,
-                focusErrorText: AppTextConstants.emailFocusError,
+                focusErrorText: ValidationConstants.invalidEmail,
                 validator: _validateEmail,
               ),
               48.verticalSpacing,

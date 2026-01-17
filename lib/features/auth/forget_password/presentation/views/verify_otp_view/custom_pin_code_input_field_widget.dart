@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:flower_app/core/constants/validation_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 
@@ -28,12 +28,12 @@ class CustomPinCodeInputFieldWidget extends StatelessWidget {
       height: 56,
       textStyle: myTextTheme.titleLarge,
       decoration: BoxDecoration(
-        color: AppColors.textSecondary,
+        color: AppColors.lightGrey,
         borderRadius: BorderRadius.circular(10),
       ),
     );
     final PinTheme focusedPinTheme = defaultPinTheme.copyWith(
-      decoration: BoxDecoration(color: AppColors.primary),
+      decoration: BoxDecoration(border: Border.all(color: AppColors.primary)),
     );
     final PinTheme errorPinTheme = PinTheme(
       width: 56,
@@ -55,11 +55,11 @@ class CustomPinCodeInputFieldWidget extends StatelessWidget {
       focusedPinTheme: focusedPinTheme,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          final message = 'Please enter OTP code';
+          final message = ValidationConstants.pleaseEnterOTPCode;
           return message;
         }
         if (value.length < 6) {
-          final message = 'OTP must be 6 digits';
+          final message = ValidationConstants.otpMustBe6Digits;
           return message;
         }
         return null;
@@ -67,10 +67,6 @@ class CustomPinCodeInputFieldWidget extends StatelessWidget {
       onCompleted: (pin) {
         // Call the onCompleted callback
         onCompleted?.call(pin);
-      },
-      onChanged: (value) {
-        // TODO: Remove this debug print statement Before deploying
-        if (kDebugMode) print('Changed: $value');
       },
       forceErrorState: state.verifyOtpCodeState.errorMessage != null,
       errorText: state.verifyOtpCodeState.errorMessage,

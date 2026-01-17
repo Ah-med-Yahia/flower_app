@@ -1,4 +1,4 @@
-import 'package:online_exam_app/config/base_response/base_response.dart';
+import '../../../../../config/base_response/base_response.dart';
 import '../entities/forget_password_entity.dart';
 import '../entities/reset_password_entity.dart';
 import '../entities/verify_otp_code_entity.dart';

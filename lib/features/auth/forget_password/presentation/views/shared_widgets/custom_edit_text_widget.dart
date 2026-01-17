@@ -10,6 +10,8 @@ class CustomEditTextWidget extends StatelessWidget {
     required this.hintText,
     required this.focusErrorText,
     required this.validator,
+    this.isPassword,
+    this.suffixIcon,
   });
 
   final TextEditingController edtTxtController;
@@ -19,6 +21,8 @@ class CustomEditTextWidget extends StatelessWidget {
   final String hintText;
   final String focusErrorText;
   final String? Function(String?)? validator;
+  final bool? isPassword;
+  final Widget? suffixIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +30,16 @@ class CustomEditTextWidget extends StatelessWidget {
       controller: edtTxtController,
       keyboardType: keyboardType,
       enabled: isEnabled,
+      obscureText: isPassword ?? false,
       autocorrect: false,
       autofocus: true,
       enableSuggestions: false,
       maxLines: 1,
-      decoration: InputDecoration(labelText: labelText, hintText: hintText),
+      decoration: InputDecoration(
+        labelText: labelText,
+        hintText: hintText,
+        suffixIcon: suffixIcon,
+      ),
       validator: validator,
     );
   }

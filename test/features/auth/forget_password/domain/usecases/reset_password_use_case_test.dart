@@ -1,10 +1,10 @@
+import 'package:flower_app/config/base_response/base_response.dart';
+import 'package:flower_app/config/error_handler/error_handler.dart';
+import 'package:flower_app/config/error_handler/error_model.dart';
+import 'package:flower_app/features/auth/forget_password/domain/entities/reset_password_entity.dart';
+import 'package:flower_app/features/auth/forget_password/domain/usecases/reset_password_use_case.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:online_exam_app/config/base_response/base_response.dart';
-import 'package:online_exam_app/config/error_handler/api_error_model.dart';
-import 'package:online_exam_app/config/error_handler/error_handler.dart';
-import 'package:online_exam_app/features/auth/forget_password/domain/entities/reset_password_entity.dart';
-import 'package:online_exam_app/features/auth/forget_password/domain/usecases/reset_password_use_case.dart';
 
 import 'forget_password_use_case_test.mocks.dart';
 
@@ -61,7 +61,7 @@ void main() {
       BaseResponse<ResetPasswordEntity> mockFailureResponse({
         required String testMessage,
       }) {
-        final apiErrorModel = ApiErrorModel(message: testMessage);
+        final apiErrorModel = ErrorModel(message: testMessage);
         final errorHandler = ErrorHandler.handle(apiErrorModel);
         return BaseResponse<ResetPasswordEntity>.failure(errorHandler);
       }

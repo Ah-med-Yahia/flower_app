@@ -1,10 +1,11 @@
 import 'dart:async';
 
+import 'package:flower_app/features/auth/forget_password/presentation/view_models/reset_password/reset_password_events.dart';
+import 'package:flower_app/features/auth/forget_password/presentation/view_models/reset_password/reset_password_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:online_exam_app/features/auth/forget_password/presentation/view_models/reset_password/reset_password_events.dart';
-import 'package:online_exam_app/features/auth/forget_password/presentation/view_models/reset_password/reset_password_state.dart';
 
+import '../../../../../../config/base_response/base_response.dart';
 import '../../../domain/usecases/reset_password_use_case.dart';
 
 @injectable
@@ -16,15 +17,15 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
 
   Stream<ResetPasswordEvents> get eventsStream => _eventsStream.stream;
 
-  doIntent(ResetPasswordEvents event) async {
+  Future<void> doIntent(ResetPasswordEvents event) async {
     switch (event) {
       case ResetPasswordEvent():
-        _apiCall(email: event.email, newPassword: event.newPassword);
+        await _apiCall(email: event.email, newPassword: event.newPassword);
       case NavigateToLogin():
     }
   }
 
-  _handleNavigation() {
+  void _handleNavigation() {
     _eventsStream.add(NavigateToLogin());
   }
 
@@ -32,15 +33,17 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
     required String email,
     required String newPassword,
   }) async {
-    state.copyWith(
-      resetPasswordState: state.resetPasswordState.copyWith(isLoading: false),
+    emit(
+      state.copyWith(
+        resetPasswordState: state.resetPasswordState.copyWith(isLoading: true),
+      ),
     );
     final result = await _resetPasswordUseCase.execute(
       email: email,
       newPassword: newPassword,
     );
     result.when(
-      success: (data) => {
+      success: (data) {
         emit(
           state.copyWith(
             resetPasswordState: state.resetPasswordState.copyWith(
@@ -48,10 +51,10 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
               isLoading: false,
             ),
           ),
-        ),
-        _handleNavigation,
+        );
+        _handleNavigation();
       },
-      failure: (error) => {
+      failure: (error) {
         emit(
           state.copyWith(
             resetPasswordState: state.resetPasswordState.copyWith(
@@ -59,8 +62,14 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
               isLoading: false,
             ),
           ),
-        ),
+        );
       },
     );
+  }
+
+  @override
+  Future<void> close() {
+    _eventsStream.close();
+    return super.close();
   }
 }

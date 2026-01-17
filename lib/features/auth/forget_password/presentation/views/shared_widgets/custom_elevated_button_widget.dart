@@ -14,7 +14,7 @@ class CustomElevatedButtonWidget extends StatelessWidget {
       width: double.infinity,
       height: 48,
       child: ElevatedButton(
-        onPressed: () => onPressed,
+        onPressed: onPressed,
         child: Text(
           AppTextConstants.confirmBtn,
           style: myTextTheme.titleSmall?.copyWith(

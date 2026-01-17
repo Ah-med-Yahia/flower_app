@@ -51,8 +51,7 @@ class AppTextConstants {
   static const String dontHaveAccount = "Don't have an account?";
   static const String guestUser = 'Continue as Guest';
 
-  //-------------------------- Forget Password UI Text --------------------------//
-  static const String password = 'Password';
+  //-------------------------- FORGET-PASSWORD PAGE --------------------------//
   static const String forgetPasswordHeader = 'Forget Password';
   static const String forgetPasswordTitle =
       'Please enter your email associated to your account';
@@ -64,10 +63,11 @@ class AppTextConstants {
       'Password must not be empty and must'
       ' contain 6 characters with upper case letter and one number at least ';
   static const String emailLabel = 'Email';
-  static const String emailHint = 'Enter you email';
+  static const String emailHint = 'Enter your email';
   static const String newPasswordLabel = 'New Password';
-  static const String newPasswordHint = 'Enter you password';
+  static const String newPasswordHint = 'Enter your password';
   static const String confirmPasswordLabel = 'Confirm Password';
   static const String emailFocusError = 'This Email is not valid';
   static const String confirmBtn = 'Confirm';
+  static const String otpResentSuccess = 'OTP resent successfully';
 }

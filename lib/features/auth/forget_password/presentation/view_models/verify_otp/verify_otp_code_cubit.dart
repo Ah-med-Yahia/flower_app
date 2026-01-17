@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
+import 'package:flower_app/features/auth/forget_password/presentation/view_models/verify_otp/verify_otp_code_events.dart';
+import 'package:flower_app/features/auth/forget_password/presentation/view_models/verify_otp/verify_otp_code_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:online_exam_app/features/auth/forget_password/presentation/view_models/verify_otp/verify_otp_code_events.dart';
-import 'package:online_exam_app/features/auth/forget_password/presentation/view_models/verify_otp/verify_otp_code_state.dart';
 
+import '../../../../../../config/base_response/base_response.dart';
 import '../../../../../../config/base_state/base_state.dart';
 import '../../../domain/usecases/otp_verification_use_case.dart';
 import '../forget_password/forget_password_cubit.dart';
@@ -23,32 +23,28 @@ class VerifyOtpCodeCubit extends Cubit<VerifyOtpCodeState> {
 
   Stream<VerifyOtpCodeEvents> get eventsStream => _eventsStream.stream;
 
-  doIntent(VerifyOtpCodeEvents event) async {
-    //TODO: Remove this debug print statement Before deploying
-    if (kDebugMode) {
-      debugPrint('🎯 [Cubit] Received intent: $event');
-    }
+  Future<void> doIntent(VerifyOtpCodeEvents event) async {
+    // if (kDebugMode) {
+    //   debugPrint('🎯 [Cubit] Received intent: $event');
+    // }
     switch (event) {
       case VerifyOtpCodeEvent():
-        //TODO: Remove this debug print statement Before deploying
-        if (kDebugMode) {
-          debugPrint(
-            '🔐 [Cubit] Handling VerifyOtpCodeEvent with code: ${event.otpCode}',
-          );
-        }
+        // if (kDebugMode) {
+        //   debugPrint(
+        //     '🔐 [Cubit] Handling VerifyOtpCodeEvent with code: ${event.otpCode}',
+        //   );
+        // }
         _handleVerifyOtpCodeEvent(code: event.otpCode);
       case ResendOtpCodeEvent():
-        //TODO: Remove this debug print statement Before deploying
-        if (kDebugMode) {
-          debugPrint('🔄 [Cubit] Handling ResendOtpCodeEvent');
-        }
+        // if (kDebugMode) {
+        //   debugPrint('🔄 [Cubit] Handling ResendOtpCodeEvent');
+        // }
         _handleResendOtpCodeEvent(email: event.email);
         _eventsStream.add(ResendOtpCodeEvent(email: event.email));
       case NavigateToResetPassword():
-        //TODO: Remove this debug print statement Before deploying
-        if (kDebugMode) {
-          debugPrint('➡️ [Cubit] Handling NavigateToResetPassword');
-        }
+        // if (kDebugMode) {
+        //   debugPrint('➡️ [Cubit] Handling NavigateToResetPassword');
+        // }
         _eventsStream.add(NavigateToResetPassword());
     }
   }
@@ -72,17 +68,15 @@ class VerifyOtpCodeCubit extends Cubit<VerifyOtpCodeState> {
   }
 
   Future<void> _apiCall(String resetCode) async {
-    //TODO: Remove this debug print statement Before deploying
-    if (kDebugMode) {
-      debugPrint('📡 [Cubit] Making API call with code: $resetCode');
-    }
+    // if (kDebugMode) {
+    //   debugPrint('📡 [Cubit] Making API call with code: $resetCode');
+    // }
     final result = await _otpVerificationUseCase.execute(otpCode: resetCode);
     result.when(
       success: (data) {
-        //TODO: Remove this debug print statement Before deploying
-        if (kDebugMode) {
-          debugPrint('✅ [Cubit] API Success - Status: ${data.status}');
-        }
+        // if (kDebugMode) {
+        //   debugPrint('✅ [Cubit] API Success - Status: ${data.status}');
+        // }
         emit(
           state.copyWith(
             verifyOtpCodeState: BaseState(
@@ -93,19 +87,17 @@ class VerifyOtpCodeCubit extends Cubit<VerifyOtpCodeState> {
           ),
         );
         // Trigger navigation after successful API response
-        //TODO: Remove this debug print statement Before deploying
-        if (kDebugMode) {
-          debugPrint(
-            '🚀 [Cubit] Adding NavigateToResetPassword event to stream',
-          );
-        }
+        // if (kDebugMode) {
+        //   debugPrint(
+        //     '🚀 [Cubit] Adding NavigateToResetPassword event to stream',
+        //   );
+        // }
         _eventsStream.add(NavigateToResetPassword());
       },
       failure: (error) {
-        //TODO: Remove this debug print statement Before deploying
-        if (kDebugMode) {
-          debugPrint('❌ [Cubit] API Failure - Error: ${error.message}');
-        }
+        // if (kDebugMode) {
+        //   debugPrint('❌ [Cubit] API Failure - Error: ${error.message}');
+        // }
         emit(
           state.copyWith(
             verifyOtpCodeState: state.verifyOtpCodeState.copyWith(

@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../../../config/base_response/base_response.dart';
 import '../../../domain/usecases/forget_password_use_case.dart';
 import 'forget_password_events.dart';
 import 'forget_password_state.dart';
@@ -23,8 +23,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
     switch (event) {
       case ForgetPasswordEvent():
         await _handleForgetPasswordEvent(email: event.email);
-        // TODO: Remove this debug print statement Before deploying
-        if (kDebugMode) print('Email: ${event.email}');
+      // if (kDebugMode) print('Email: ${event.email}');
       case NavigateToVerifyOtpCode():
         _navigation(event);
     }

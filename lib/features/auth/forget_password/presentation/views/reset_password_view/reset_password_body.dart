@@ -3,10 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:online_exam_app/core/widgets/spacing.dart';
 
 import '../../../../../../../core/constants/app_text_constants.dart';
 import '../../../../../../../core/validators/app_validators.dart';
+import '../../../../../../core/constants/app_routes_constant.dart';
+import '../../../../../../core/constants/validation_constants.dart';
+import '../../../../../../core/widgets/spacing.dart';
 import '../../view_models/reset_password/reset_password_cubit.dart';
 import '../../view_models/reset_password/reset_password_events.dart';
 import '../../view_models/reset_password/reset_password_state.dart';
@@ -14,13 +16,8 @@ import '../shared_widgets/custom_edit_text_widget.dart';
 import '../shared_widgets/custom_elevated_button_widget.dart';
 
 class ResetPasswordBody extends StatefulWidget {
-  const ResetPasswordBody({
-    super.key,
-    required this.cubit,
-    required this.email,
-  });
+  const ResetPasswordBody({super.key, required this.email});
 
-  final ResetPasswordCubit cubit;
   final String email;
 
   @override
@@ -28,14 +25,18 @@ class ResetPasswordBody extends StatefulWidget {
 }
 
 class _ResetPasswordBodyState extends State<ResetPasswordBody> {
+  late final ResetPasswordCubit cubit;
   late final TextEditingController _newPasswordController;
   late final TextEditingController _confirmPasswordController;
   late final GlobalKey<FormState> _formKey;
   StreamSubscription<ResetPasswordEvents>? _eventsSubscription;
+  bool _isNewPasswordVisible = false;
+  bool _isConfirmPasswordVisible = false;
 
   @override
   void initState() {
     super.initState();
+    cubit = context.read<ResetPasswordCubit>();
     _newPasswordController = TextEditingController();
     _confirmPasswordController = TextEditingController();
     _formKey = GlobalKey<FormState>();
@@ -43,7 +44,7 @@ class _ResetPasswordBodyState extends State<ResetPasswordBody> {
   }
 
   void _listenToNavigationEvents() {
-    _eventsSubscription = widget.cubit.eventsStream.listen((event) {
+    _eventsSubscription = cubit.eventsStream.listen((event) {
       if (!mounted) return;
       if (event is NavigateToLogin) {
         _navigateToLoginScreen();
@@ -52,9 +53,7 @@ class _ResetPasswordBodyState extends State<ResetPasswordBody> {
   }
 
   void _navigateToLoginScreen() {
-    const String loginRoute = '/login';
-    GoRouter.of(context).go(loginRoute);
-    debugPrint('Navigate to Login Screen');
+    GoRouter.of(context).goNamed(AppRoutesConstants.loginRoute);
   }
 
   void _handleSubmit() {
@@ -62,13 +61,14 @@ class _ResetPasswordBodyState extends State<ResetPasswordBody> {
       final newPassword = _newPasswordController.text;
       final confirmPassword = _confirmPasswordController.text;
       if (newPassword != confirmPassword) {
-        // ToastUtils.showErrorToast(
-        //   context,
-        //   ValidationConstants.passwordsDoNotMatch,
-        // );
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(ValidationConstants.passwordsDoNotMatch),
+          ),
+        );
         return;
       }
-      widget.cubit.doIntent(
+      cubit.doIntent(
         ResetPasswordEvent(email: widget.email, newPassword: newPassword),
       );
     }
@@ -85,7 +85,7 @@ class _ResetPasswordBodyState extends State<ResetPasswordBody> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ResetPasswordCubit, ResetPasswordState>(
-      bloc: widget.cubit,
+      bloc: cubit,
       builder: (context, state) {
         return Form(
           key: _formKey,
@@ -94,7 +94,6 @@ class _ResetPasswordBodyState extends State<ResetPasswordBody> {
             children: [
               32.verticalSpacing,
               // New Password INPUT FIELD
-              // TODO: Handle new password input field and Confirm Password input field
               CustomEditTextWidget(
                 edtTxtController: _newPasswordController,
                 keyboardType: TextInputType.text,
@@ -103,6 +102,17 @@ class _ResetPasswordBodyState extends State<ResetPasswordBody> {
                 hintText: AppTextConstants.newPasswordHint,
                 focusErrorText: '',
                 validator: _validateNewPassword,
+                isPassword: !_isNewPasswordVisible,
+                suffixIcon: IconButton(
+                  onPressed: () => setState(() {
+                    _isNewPasswordVisible = !_isNewPasswordVisible;
+                  }),
+                  icon: Icon(
+                    _isNewPasswordVisible
+                        ? Icons.visibility
+                        : Icons.visibility_off,
+                  ),
+                ),
               ),
               24.verticalSpacing,
               // Confirm Password INPUT FIELD
@@ -114,6 +124,17 @@ class _ResetPasswordBodyState extends State<ResetPasswordBody> {
                 hintText: AppTextConstants.confirmPasswordLabel,
                 focusErrorText: '',
                 validator: _validateConfirmPassword,
+                isPassword: !_isConfirmPasswordVisible,
+                suffixIcon: IconButton(
+                  onPressed: () => setState(() {
+                    _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
+                  }),
+                  icon: Icon(
+                    _isConfirmPasswordVisible
+                        ? Icons.visibility
+                        : Icons.visibility_off,
+                  ),
+                ),
               ),
               48.verticalSpacing,
               CustomElevatedButtonWidget(onPressed: _handleSubmit),

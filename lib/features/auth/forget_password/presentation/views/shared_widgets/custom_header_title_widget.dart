@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:online_exam_app/core/widgets/spacing.dart';
+
+import '../../../../../../core/widgets/spacing.dart';
 
 class CustomHeaderTitleWidget extends StatelessWidget {
   const CustomHeaderTitleWidget({
@@ -22,7 +23,7 @@ class CustomHeaderTitleWidget extends StatelessWidget {
           style: myTextTheme.titleLarge,
           textAlign: TextAlign.center,
         ),
-        8.verticalSpacing,
+        16.verticalSpacing,
         Text(
           subTitle,
           style: myTextTheme.bodyMedium,
