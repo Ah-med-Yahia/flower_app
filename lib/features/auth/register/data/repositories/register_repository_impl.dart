@@ -1,6 +1,6 @@
+import 'package:flower_app/features/auth/register/data/mapper/to_entity_mapper.dart';
+import 'package:flower_app/features/auth/register/domain/entities/register_entity.dart';
 import 'package:injectable/injectable.dart';
-import 'package:online_exam_app/features/auth/register/domain/entities/register_entity.dart';
-import 'package:online_exam_app/features/auth/register/data/mapper/to_entity_mapper.dart';
 
 import '../../../../../config/base_response/base_response.dart';
 import '../../domain/repositories/register_repository.dart';
@@ -23,7 +23,8 @@ class RegisterRepositoryImpl implements RegisterRepository {
         return BaseResponse<RegisterEntity>.success(data.toEntity());
       },
       failure: (failure) {
-        return BaseResponse<RegisterEntity>.failure(failure.errorhandeler);
+        return BaseResponse<RegisterEntity>.failure(failure.errorHandler);
+
       },
     );
   }

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:online_exam_app/core/theme/app_colors.dart';
-
 
 import 'app_colors.dart';
 
@@ -27,10 +25,6 @@ abstract class AppTheme {
       labelStyle: TextStyle(color: AppColors.textSecondary),
       hintStyle: TextStyle(color: AppColors.grey, letterSpacing: 0.5),
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(4)),
-      focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(4),
-        borderSide: BorderSide(color: AppColors.textSecondary),
-      ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(4),
         borderSide: BorderSide(color: AppColors.textSecondary),
@@ -56,7 +50,6 @@ abstract class AppTheme {
         color: AppColors.textPrimary,
         fontWeight: FontWeight.w500,
       ),
-      bodyMedium: TextStyle(color: AppColors.textSecondary),
       titleMedium: TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.w500,
@@ -67,6 +60,8 @@ abstract class AppTheme {
         fontWeight: FontWeight.w500,
         color: AppColors.textPrimary,
       ),
+
+      bodyMedium: TextStyle(color: AppColors.textSecondary),
       bodySmall: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
     ),
     //------------ Button Theme -----------------//
@@ -82,16 +77,6 @@ abstract class AppTheme {
           fontWeight: FontWeight.w500,
           color: AppColors.background,
         ),
-      ),
-    ),
-    radioTheme: RadioThemeData(
-      fillColor: WidgetStateProperty.resolveWith((states) {
-        if (states.contains(WidgetState.selected)) {
-          return AppColors.primary;
-        }
-        return AppColors.grey;
-      }),
-    ),
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       ),
     ),

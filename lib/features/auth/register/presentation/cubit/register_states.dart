@@ -1,5 +1,6 @@
-import 'package:online_exam_app/config/base_state/base_state.dart';
-import 'package:online_exam_app/features/auth/register/domain/entities/register_entity.dart';
+
+import 'package:flower_app/config/base_state/base_state.dart';
+import 'package:flower_app/features/auth/register/domain/entities/register_entity.dart';
 
 class RegisterStates extends BaseState<RegisterEntity> {
   final String firstName;
@@ -11,7 +12,7 @@ class RegisterStates extends BaseState<RegisterEntity> {
   final String gender;
   final bool isFormValid;
 
-  RegisterStates({
+   RegisterStates({
     super.isLoading = false,
     super.data,
     super.errorMessage,

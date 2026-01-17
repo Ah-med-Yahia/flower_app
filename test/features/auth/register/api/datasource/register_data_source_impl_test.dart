@@ -1,12 +1,13 @@
+import 'package:flower_app/config/base_response/base_response.dart';
+import 'package:flower_app/features/auth/register/api/api_client/register_api_client.dart';
+import 'package:flower_app/features/auth/register/api/datasource/register_data_source_impl.dart';
+import 'package:flower_app/features/auth/register/data/models/register_request/register_request.dart';
+import 'package:flower_app/features/auth/register/data/models/register_response/register_response.dart';
+import 'package:flower_app/features/auth/register/data/models/register_response/user.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'package:online_exam_app/features/auth/register/api/api_client/register_api_client.dart';
-import 'package:online_exam_app/features/auth/register/api/datasource/register_data_source_impl.dart';
-import 'package:online_exam_app/features/auth/register/data/models/register_request/register_request.dart';
-import 'package:online_exam_app/features/auth/register/data/models/register_response/register_response.dart';
-import 'package:online_exam_app/features/auth/register/data/models/register_response/user.dart';
 
 import 'register_data_source_impl_test.mocks.dart';
 
@@ -79,7 +80,7 @@ void main() {
       result.map(
         success: (_) => fail('Expected failure'),
         failure: (failure) {
-          expect(failure.errorhandeler.message, isNotEmpty);
+          expect(failure.errorHandler.message, isNotEmpty);
         },
       );
 

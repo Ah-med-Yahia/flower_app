@@ -1,9 +1,8 @@
+import 'package:flower_app/features/auth/register/data/mapper/to_entity_mapper.dart';
+import 'package:flower_app/features/auth/register/data/models/register_response/register_response.dart';
+import 'package:flower_app/features/auth/register/data/models/register_response/user.dart';
+import 'package:flower_app/features/auth/register/domain/entities/register_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:online_exam_app/features/auth/register/data/models/register_response/register_response.dart';
-import 'package:online_exam_app/features/auth/register/data/models/register_response/user.dart';
-import 'package:online_exam_app/features/auth/register/domain/entities/register_entity.dart';
-import 'package:online_exam_app/features/auth/register/data/mapper/to_entity_mapper.dart';
-
 void main() {
   group('RegisterEntity Mapper', () {
     test('should map RegisterResponse Model to Register Entity correctly', () {

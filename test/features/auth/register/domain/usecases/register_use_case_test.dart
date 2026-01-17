@@ -1,13 +1,13 @@
+import 'package:flower_app/config/base_response/base_response.dart';
+import 'package:flower_app/config/error_handler/error_handler.dart';
+import 'package:flower_app/features/auth/register/data/models/register_request/register_request.dart';
+import 'package:flower_app/features/auth/register/data/models/register_response/user.dart';
+import 'package:flower_app/features/auth/register/domain/entities/register_entity.dart';
+import 'package:flower_app/features/auth/register/domain/repositories/register_repository.dart';
+import 'package:flower_app/features/auth/register/domain/usecases/register_use_case.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:online_exam_app/config/error_handler/error_handler.dart';
-import 'package:online_exam_app/features/auth/register/data/models/register_response/user.dart';
-import 'package:online_exam_app/features/auth/register/domain/usecases/register_use_case.dart';
-import 'package:online_exam_app/features/auth/register/domain/repositories/register_repository.dart';
-import 'package:online_exam_app/features/auth/register/domain/entities/register_entity.dart';
-import 'package:online_exam_app/features/auth/register/data/models/register_request/register_request.dart';
-import 'package:online_exam_app/config/base_response/base_response.dart';
 
 import 'register_use_case_test.mocks.dart';
 

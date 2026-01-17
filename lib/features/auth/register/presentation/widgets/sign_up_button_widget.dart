@@ -1,10 +1,9 @@
+import 'package:flower_app/core/constants/app_text_constants.dart';
+import 'package:flower_app/core/theme/app_colors.dart';
+import 'package:flower_app/features/auth/register/presentation/cubit/register_cubit.dart';
+import 'package:flower_app/features/auth/register/presentation/cubit/register_events.dart';
+import 'package:flower_app/features/auth/register/presentation/cubit/register_states.dart';
 import 'package:flutter/material.dart';
-import 'package:online_exam_app/core/constants/app_text_constants.dart';
-import 'package:online_exam_app/core/theme/app_colors.dart';
-import 'package:online_exam_app/features/auth/register/presentation/cubit/register_cubit.dart';
-import 'package:online_exam_app/features/auth/register/presentation/cubit/register_events.dart';
-import 'package:online_exam_app/features/auth/register/presentation/cubit/register_states.dart';
-
 class SignUpButtonWidget extends StatelessWidget {
   final RegisterCubit cubit;
   final GlobalKey<FormState> formKey;

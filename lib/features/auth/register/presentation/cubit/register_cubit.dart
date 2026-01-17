@@ -1,8 +1,9 @@
 import 'dart:async';
 import 'dart:developer';
+import 'package:flower_app/config/base_response/base_response.dart';
+import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:online_exam_app/core/constants/app_text_constants.dart';
 import 'register_events.dart';
 import 'register_states.dart';
 import 'register_ui_events.dart';
@@ -156,7 +157,7 @@ class RegisterCubit extends Cubit<RegisterStates> {
       failure: (e) {
         _uiEventsController.add(
           ShowRegisterError(
-            e.errorhandeler.message ?? AppTextConstants.failedToRegister,
+            e.errorHandler.message ?? AppTextConstants.failedToRegister,
           ),
         );
       },

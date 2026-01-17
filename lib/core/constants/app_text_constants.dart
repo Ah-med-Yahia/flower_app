@@ -29,15 +29,25 @@ class AppTextConstants {
   static const String login = "Login";
   static const String invalidPhoneNumber = "Invalid phone number";
   static const String accountCreatedSuccessfully = "Account created successfully";
+  static const String addToCart = "Add to Cart";
+  static const String status = "Status: ";
+  static const String inStock = "in stock";
+  static const String outOfStock = "out of stock";
+  static const String taxNote = "All prices include tax";
+  static const String description = "Description:";
+  static const String egp = "EGP";
 
   //------------------- HOME PAGE -------------------//
   static const String bestSeller = 'Best seller';
   static const String bestSellerSubTitle =
       'Bloom with our exquisite best sellers';
-  static const String addToCart = 'Add to cart';
   static const String noProductsAvailable = 'No products available';
   static const String retry = 'Retry';
 
   //------------------- BEST SELLER PAGE -------------------//
   static const String egy = 'EGP';
+  static const String rememberMe = 'Remember Me';
+  static const String forgetPasswordHeadLine = "Forget password";
+  static const String dontHaveAccount = "Don't have an account?";
+  static const String guestUser = 'Continue as Guest';
 }

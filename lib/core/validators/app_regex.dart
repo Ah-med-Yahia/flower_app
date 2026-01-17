@@ -1,8 +1,6 @@
 abstract class AppRegex {
   static bool isEmailValid(String email) {
-    return RegExp(
-      r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
-    ).hasMatch(email);
+    return RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email);
   }
 
   /// ================= PASSWORD =================
@@ -33,7 +31,6 @@ abstract class AppRegex {
 
     final internationalRegex = RegExp(r'^\+201[0-9]{9}$');
 
-    return localRegex.hasMatch(trimmed) ||
-        internationalRegex.hasMatch(trimmed);
+    return localRegex.hasMatch(trimmed) || internationalRegex.hasMatch(trimmed);
   }
-
+}

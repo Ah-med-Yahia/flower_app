@@ -1,4 +1,4 @@
-# General
+# General / Misc
 *.class
 *.log
 *.pyc
@@ -10,7 +10,7 @@
 .swiftpm/
 migrate_working_dir/
 
-# IDEs
+# IntelliJ / Android Studio
 *.iml
 *.ipr
 *.iws
@@ -18,7 +18,7 @@ migrate_working_dir/
 .gradle/
 .cxx/
 
-# Flutter / Dart
+# Dart / Flutter (Generated)
 .dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies

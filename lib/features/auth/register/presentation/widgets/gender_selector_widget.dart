@@ -1,9 +1,9 @@
+import 'package:flower_app/features/auth/register/presentation/cubit/register_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_exam_app/core/constants/app_text_constants.dart';
-import 'package:online_exam_app/features/auth/register/presentation/cubit/register_cubit.dart';
-import 'package:online_exam_app/features/auth/register/presentation/cubit/register_events.dart';
-import 'package:online_exam_app/features/auth/register/presentation/cubit/register_states.dart';
+import 'package:flower_app/core/constants/app_text_constants.dart';
+import 'package:flower_app/features/auth/register/presentation/cubit/register_cubit.dart';
+import 'package:flower_app/features/auth/register/presentation/cubit/register_events.dart';
 
 class GenderSelectorWidget extends StatelessWidget {
   final RegisterCubit cubit;

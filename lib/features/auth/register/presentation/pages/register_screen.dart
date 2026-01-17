@@ -1,19 +1,19 @@
+import 'package:flower_app/config/di/di.dart';
+import 'package:flower_app/core/constants/app_text_constants.dart';
+import 'package:flower_app/core/theme/app_colors.dart';
+import 'package:flower_app/core/ui_utils/ui_utils.dart';
+import 'package:flower_app/features/auth/register/presentation/cubit/register_cubit.dart';
+import 'package:flower_app/features/auth/register/presentation/cubit/register_states.dart';
+import 'package:flower_app/features/auth/register/presentation/cubit/register_ui_events.dart';
+import 'package:flower_app/features/auth/register/presentation/widgets/email_field_widget.dart';
+import 'package:flower_app/features/auth/register/presentation/widgets/gender_selector_widget.dart';
+import 'package:flower_app/features/auth/register/presentation/widgets/name_field_widget.dart';
+import 'package:flower_app/features/auth/register/presentation/widgets/password_field_widget.dart';
+import 'package:flower_app/features/auth/register/presentation/widgets/phone_field_widget.dart';
+import 'package:flower_app/features/auth/register/presentation/widgets/sign_up_button_widget.dart';
+import 'package:flower_app/features/auth/register/presentation/widgets/terms_and_conditions_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_exam_app/config/di/di.dart';
-import 'package:online_exam_app/core/constants/app_text_constants.dart';
-import 'package:online_exam_app/core/theme/app_colors.dart';
-import 'package:online_exam_app/core/widgets/ui_utils.dart';
-import 'package:online_exam_app/features/auth/register/presentation/cubit/register_cubit.dart';
-import 'package:online_exam_app/features/auth/register/presentation/cubit/register_states.dart';
-import 'package:online_exam_app/features/auth/register/presentation/cubit/register_ui_events.dart';
-import 'package:online_exam_app/features/auth/register/presentation/widgets/email_field_widget.dart';
-import 'package:online_exam_app/features/auth/register/presentation/widgets/gender_selector_widget.dart';
-import 'package:online_exam_app/features/auth/register/presentation/widgets/name_field_widget.dart';
-import 'package:online_exam_app/features/auth/register/presentation/widgets/password_field_widget.dart';
-import 'package:online_exam_app/features/auth/register/presentation/widgets/phone_field_widget.dart';
-import 'package:online_exam_app/features/auth/register/presentation/widgets/sign_up_button_widget.dart';
-import 'package:online_exam_app/features/auth/register/presentation/widgets/terms_and_conditions_widget.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
