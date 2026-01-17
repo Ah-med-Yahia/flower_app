@@ -206,7 +206,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     TextButton(
                       onPressed: () {
                         // Navigate to Sign Up screen
-                        context.pushNamed(AppRoutesConstants.signUpRoute);
+                        context.pushNamed(AppRoutesConstants.registerRoute);
                       },
                       child: Text(
                         AppTextConstants.signUp,

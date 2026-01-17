@@ -41,12 +41,12 @@ dependencies:
 
   # Lottie
   lottie: ^3.3.2
+  google_fonts: ^6.3.3
+  fluttertoast: ^9.0.0
 
   equatable: ^2.0.7
   pinput: ^6.0.1
-  google_fonts: ^6.3.3
   carousel_slider: ^5.1.1
-  fluttertoast: ^9.0.0
 
   rename_app: ^1.6.5
 
@@ -71,7 +71,6 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/images/
     - assets/lottie/
 
 

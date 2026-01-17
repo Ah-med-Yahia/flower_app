@@ -2,6 +2,7 @@ import 'package:flower_app/config/di/di.dart';
 import 'package:flower_app/core/constants/app_routes_constant.dart';
 import 'package:flower_app/features/auth/login/presentation/cubit/login_cubit.dart';
 import 'package:flower_app/features/auth/login/presentation/pages/login_screen.dart';
+import 'package:flower_app/features/auth/register/presentation/pages/register_screen.dart';
 import 'package:flower_app/features/product_details/presentaion/view/screens/product_details_screen.dart';
 import 'package:flower_app/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,7 +11,7 @@ import '../../features/product/best_seller/presentation/views/view/best_seller_v
 
 abstract class AppRouter {
   static GoRouter router = GoRouter(
-    initialLocation: AppRoutesConstants.bestSellerRoute,
+    initialLocation: AppRoutesConstants.registerRoute,
     routes: [
       GoRoute(
         path: AppRoutesConstants.loginRoute,
@@ -35,6 +36,11 @@ abstract class AppRouter {
         name: AppRoutesConstants.productDetailsRoute,
         builder: (context, state) =>
             ProductDetailsScreen(productId: state.extra as String),
+      ),
+      GoRoute(
+        path: AppRoutesConstants.registerRoute,
+        name: AppRoutesConstants.registerRoute,
+        builder: (context, state) => const RegisterScreen(),
       ),
     ],
   );

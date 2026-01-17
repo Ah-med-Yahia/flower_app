@@ -29,6 +29,20 @@ import '../../features/auth/login/domain/repositories/login_repository.dart'
     as _i176;
 import '../../features/auth/login/domain/usecases/login_use_case.dart' as _i316;
 import '../../features/auth/login/presentation/cubit/login_cubit.dart' as _i126;
+import '../../features/auth/register/api/api_client/register_api_client.dart'
+    as _i517;
+import '../../features/auth/register/api/datasource/register_data_source_impl.dart'
+    as _i325;
+import '../../features/auth/register/data/datasources/register_data_source.dart'
+    as _i613;
+import '../../features/auth/register/data/repositories/register_repository_impl.dart'
+    as _i200;
+import '../../features/auth/register/domain/repositories/register_repository.dart'
+    as _i57;
+import '../../features/auth/register/domain/usecases/register_use_case.dart'
+    as _i545;
+import '../../features/auth/register/presentation/cubit/register_cubit.dart'
+    as _i805;
 import '../../features/product/best_seller/api/api_client/best_seller_api_client.dart'
     as _i113;
 import '../../features/product/best_seller/api/datasource/remote/best_seller_remote_data_source_impl.dart'
@@ -82,6 +96,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i1059.CacheHelper(gh<_i460.SharedPreferences>()),
     );
     gh.factory<_i32.LoginApiClient>(() => _i32.LoginApiClient(gh<_i361.Dio>()));
+    gh.factory<_i517.RegisterApiClient>(
+      () => _i517.RegisterApiClient(gh<_i361.Dio>()),
+    );
     gh.factory<_i113.BestSellerApiClient>(
       () => _i113.BestSellerApiClient(gh<_i361.Dio>()),
     );
@@ -106,6 +123,11 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i326.LocalLoginDataSource>(),
       ),
     );
+    gh.factory<_i613.RegisterDataSource>(
+      () => _i325.RegisterDataSourceImpl(
+        registerApiClient: gh<_i517.RegisterApiClient>(),
+      ),
+    );
     gh.factory<_i856.ProductDetailsDataSourceContract>(
       () => _i749.ProductDetailsDataSourceImpl(
         gh<_i373.ProductDetailsApiClient>(),
@@ -113,6 +135,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i892.BestSellerRepo>(
       () => _i20.BestSellerRepoImpl(gh<_i1058.BestSellerRemoteDataSource>()),
+    );
+    gh.factory<_i57.RegisterRepository>(
+      () => _i200.RegisterRepositoryImpl(gh<_i613.RegisterDataSource>()),
+    );
+    gh.factory<_i545.RegisterUseCase>(
+      () => _i545.RegisterUseCase(gh<_i57.RegisterRepository>()),
     );
     gh.factory<_i198.GetBestSellerUseCase>(
       () => _i198.GetBestSellerUseCase(gh<_i892.BestSellerRepo>()),
@@ -124,6 +152,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i316.LoginUseCase>(
       () => _i316.LoginUseCase(gh<_i176.LoginRepository>()),
+    );
+    gh.factory<_i805.RegisterCubit>(
+      () => _i805.RegisterCubit(gh<_i545.RegisterUseCase>()),
     );
     gh.factory<_i888.GetProductDetailsUsecase>(
       () => _i888.GetProductDetailsUsecase(
