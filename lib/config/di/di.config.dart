@@ -23,6 +23,10 @@ import '../../features/occasion/data/datasources/occasion_data_source_contract.d
 import '../../features/occasion/data/repos/occasion_repo_impl.dart' as _i315;
 import '../../features/occasion/domain/repos/occasion_repo_contract.dart'
     as _i31;
+import '../../features/occasion/domain/usecases/get_all_occasion_usecase.dart'
+    as _i401;
+import '../../features/occasion/presentation/view_model/occasion_cubit.dart'
+    as _i141;
 import '../cache_modules/secure_storage_module.dart' as _i11;
 import '../cache_modules/shared_preferences_module.dart' as _i1059;
 import '../dio_module/dio_module.dart' as _i773;
@@ -56,6 +60,16 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i31.OccasionRepoContract>(
       () => _i315.OccasionRepoImpl(
         occasionDataSourceContract: gh<_i27.OccasionDataSourceContract>(),
+      ),
+    );
+    gh.factory<_i401.GetAllOccasionUsecase>(
+      () => _i401.GetAllOccasionUsecase(
+        occasionRepoContract: gh<_i31.OccasionRepoContract>(),
+      ),
+    );
+    gh.factory<_i141.OccasionCubit>(
+      () => _i141.OccasionCubit(
+        getAllOccasionUsecase: gh<_i401.GetAllOccasionUsecase>(),
       ),
     );
     return this;
