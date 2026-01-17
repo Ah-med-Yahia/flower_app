@@ -6,6 +6,11 @@ class ApiConstants {
   static const String productByIdEndpoint = "/products/{id}";
   static const String idPathQuery = "id";
 
+  //-------------------------- Forget Password Endpoints --------------------------//
+  static const String forgetPasswordEndpoint = "auth/forgotPassword";
+  static const String verifyResetCodeEndpoint = "auth/verifyResetCode";
+  static const String resetPasswordEndpoint = "auth/resetPassword";
+
   //------------------------ BEST SELLER ------------------------//
   static const String bestSellerEndPoint = 'best-seller';
 

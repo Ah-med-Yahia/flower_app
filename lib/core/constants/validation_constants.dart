@@ -18,4 +18,8 @@ class ValidationConstants {
   static const String passwordsDoNotMatch = 'Passwords do not match';
   static const String phoneNumberRequired = 'Phone number is required';
   static const String invalidPhoneNumber = 'Enter a valid phone number';
+
+  //----------------------VERIFY-OTP----------------------//
+  static const String pleaseEnterOTPCode = 'Please enter OTP code';
+  static const String otpMustBe6Digits = 'OTP must be 6 digits';
 }
