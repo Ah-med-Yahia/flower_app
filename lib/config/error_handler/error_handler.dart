@@ -41,7 +41,7 @@ abstract class ResponseCode {
 }
 
 extension DataSourceExtension on DataSource {
-  ErrorModel toFailure() {
+  ErrorModel toFailure({String? message}) {
     return switch (this) {
       DataSource.noContent => ErrorModel(
         code: ResponseCode.noContent,
@@ -85,7 +85,7 @@ extension DataSourceExtension on DataSource {
       ),
       DataSource.cacheError => ErrorModel(
         code: ResponseCode.cacheError,
-        message: ErrorsConstant.cacheError,
+        message: message ?? ErrorsConstant.cacheError,
       ),
       DataSource.noInternetConnection => ErrorModel(
         code: ResponseCode.noInternetConnection,
@@ -179,6 +179,8 @@ ErrorModel _handleUnknownError(DioException error) {
 
 ErrorModel _handleLocalException(LocalException error) {
   return switch (error) {
-    CacheError() => DataSource.cacheError.toFailure(),
+    CacheError(:final message) => DataSource.cacheError.toFailure(
+      message: message,
+    ),
   };
 }
