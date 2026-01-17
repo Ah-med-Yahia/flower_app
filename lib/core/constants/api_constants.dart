@@ -2,6 +2,8 @@ class ApiConstants {
   ApiConstants._();
 
   static const String baseUrl = "https://flower.elevateegy.com/api/v1/";
+  static const String productByIdEndpoint = "/products/{id}";
+  static const String idPathQuery = "id";
 
   //-------------------------- Forget Password Endpoints --------------------------//
   static const String forgetPasswordEndpoint = "auth/forgotPassword";
@@ -16,4 +18,5 @@ class ApiConstants {
 
   //------------------------ CATEGORIES ------------------------//
   static const String getAllOccasions = "occasions";
+  static const String loginEndPoint = 'auth/signin';
 }

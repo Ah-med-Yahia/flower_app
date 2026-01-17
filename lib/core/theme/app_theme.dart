@@ -60,6 +60,7 @@ abstract class AppTheme {
         fontWeight: FontWeight.w500,
         color: AppColors.textPrimary,
       ),
+
       bodyMedium: TextStyle(color: AppColors.textSecondary),
       bodySmall: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
     ),

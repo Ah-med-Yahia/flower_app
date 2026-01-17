@@ -1,5 +1,5 @@
-class ApiErrors {
-  ApiErrors._();
+class ErrorsConstant {
+  ErrorsConstant._();
 
   static const String badRequestError = "Invalid request.";
   static const String noContent = "No content available.";

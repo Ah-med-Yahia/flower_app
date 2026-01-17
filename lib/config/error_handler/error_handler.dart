@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:flower_app/config/error_handler/api_error_model.dart';
-import 'package:flower_app/core/constants/api_errors_constants.dart';
+import 'package:flower_app/config/error_handler/error_model.dart';
+import 'package:flower_app/config/error_handler/local_exception.dart';
+import 'package:flower_app/core/constants/errors_constants.dart';
 
 enum DataSource {
   noContent,
@@ -40,91 +41,117 @@ abstract class ResponseCode {
 }
 
 extension DataSourceExtension on DataSource {
-  ApiErrorModel toFailure() {
+  ErrorModel toFailure() {
     return switch (this) {
-      DataSource.noContent =>
-          _createError(ResponseCode.noContent, ApiErrors.noContent),
-      DataSource.badRequest =>
-          _createError(ResponseCode.badRequest, ApiErrors.badRequestError),
-      DataSource.forbidden =>
-          _createError(ResponseCode.forbidden, ApiErrors.forbiddenError),
-      DataSource.unauthorized =>
-          _createError(ResponseCode.unauthorized, ApiErrors.unauthorizedError),
-      DataSource.notFound =>
-          _createError(ResponseCode.notFound, ApiErrors.notFoundError),
-      DataSource.internalServerError =>
-          _createError(
-              ResponseCode.internalServerError, ApiErrors.internalServerError),
-      DataSource.connectTimeout =>
-          _createError(ResponseCode.connectTimeout, ApiErrors.timeoutError),
-      DataSource.cancel =>
-          _createError(ResponseCode.cancel, ApiErrors.defaultError),
-      DataSource.receiveTimeout =>
-          _createError(ResponseCode.receiveTimeout, ApiErrors.timeoutError),
-      DataSource.sendTimeout =>
-          _createError(ResponseCode.sendTimeout, ApiErrors.timeoutError),
-      DataSource.cacheError =>
-          _createError(ResponseCode.cacheError, ApiErrors.cacheError),
-      DataSource.noInternetConnection =>
-          _createError(
-              ResponseCode.noInternetConnection, ApiErrors.noInternetError),
-      DataSource.badCertificate =>
-          _createError(ResponseCode.badCertificate, ApiErrors.defaultError),
-      DataSource.unknown =>
-          _createError(ResponseCode.unknown, ApiErrors.defaultError),
+      DataSource.noContent => ErrorModel(
+        code: ResponseCode.noContent,
+        message: ErrorsConstant.noContent,
+      ),
+      DataSource.badRequest => ErrorModel(
+        code: ResponseCode.badRequest,
+        message: ErrorsConstant.badRequestError,
+      ),
+      DataSource.forbidden => ErrorModel(
+        code: ResponseCode.forbidden,
+        message: ErrorsConstant.forbiddenError,
+      ),
+      DataSource.unauthorized => ErrorModel(
+        code: ResponseCode.unauthorized,
+        message: ErrorsConstant.unauthorizedError,
+      ),
+      DataSource.notFound => ErrorModel(
+        code: ResponseCode.notFound,
+        message: ErrorsConstant.notFoundError,
+      ),
+      DataSource.internalServerError => ErrorModel(
+        code: ResponseCode.internalServerError,
+        message: ErrorsConstant.internalServerError,
+      ),
+      DataSource.connectTimeout => ErrorModel(
+        code: ResponseCode.connectTimeout,
+        message: ErrorsConstant.timeoutError,
+      ),
+      DataSource.cancel => ErrorModel(
+        code: ResponseCode.cancel,
+        message: ErrorsConstant.defaultError,
+      ),
+      DataSource.receiveTimeout => ErrorModel(
+        code: ResponseCode.receiveTimeout,
+        message: ErrorsConstant.timeoutError,
+      ),
+      DataSource.sendTimeout => ErrorModel(
+        code: ResponseCode.sendTimeout,
+        message: ErrorsConstant.timeoutError,
+      ),
+      DataSource.cacheError => ErrorModel(
+        code: ResponseCode.cacheError,
+        message: ErrorsConstant.cacheError,
+      ),
+      DataSource.noInternetConnection => ErrorModel(
+        code: ResponseCode.noInternetConnection,
+        message: ErrorsConstant.noInternetError,
+      ),
+      DataSource.badCertificate => ErrorModel(
+        code: ResponseCode.badCertificate,
+        message: ErrorsConstant.defaultError,
+      ),
+      DataSource.unknown => ErrorModel(
+        code: ResponseCode.unknown,
+        message: ErrorsConstant.defaultError,
+      ),
     };
-  }
-
-  ApiErrorModel _createError(int code, String message) {
-    return ApiErrorModel(code: code, message: message);
   }
 }
 
 class ErrorHandler implements Exception {
-  final ApiErrorModel apiErrorModel;
+  final ErrorModel errorModel;
 
-  ErrorHandler._({required this.apiErrorModel});
+  ErrorHandler._({required this.errorModel});
 
   factory ErrorHandler.handle(Object error) {
     if (error is DioException) {
-      return ErrorHandler._(apiErrorModel: _handleDioError(error));
-    } else if (error is ApiErrorModel) {
-      return ErrorHandler._(apiErrorModel: error);
+      return ErrorHandler._(errorModel: _handleDioError(error));
+    } else if (error is LocalException) {
+      return ErrorHandler._(errorModel: _handleLocalException(error));
     } else {
-      return ErrorHandler._(apiErrorModel: DataSource.unknown.toFailure());
+      return ErrorHandler._(errorModel: DataSource.unknown.toFailure());
     }
   }
 
-  String? get message => apiErrorModel.message;
+  String? get message => errorModel.message;
 
-  int? get code => apiErrorModel.code;
+  int? get code => errorModel.code;
 
   @override
   String toString() =>
-      'ErrorHandler: ${apiErrorModel.message} (Code: ${apiErrorModel.code})';
+      'ErrorHandler: ${errorModel.message} (Code: ${errorModel.code})';
 }
 
-ApiErrorModel _handleDioError(DioException error) {
+ErrorModel _handleDioError(DioException error) {
   return switch (error.type) {
     DioExceptionType.connectionTimeout => DataSource.connectTimeout.toFailure(),
     DioExceptionType.sendTimeout => DataSource.sendTimeout.toFailure(),
     DioExceptionType.receiveTimeout => DataSource.receiveTimeout.toFailure(),
     DioExceptionType.badResponse => _handleBadResponse(error),
-    DioExceptionType.connectionError => _handleConnectionError(error),
+    DioExceptionType.connectionError =>
+      DataSource.noInternetConnection.toFailure(),
     DioExceptionType.cancel => DataSource.cancel.toFailure(),
     DioExceptionType.badCertificate => DataSource.badCertificate.toFailure(),
     DioExceptionType.unknown => _handleUnknownError(error),
   };
 }
 
-ApiErrorModel _handleBadResponse(DioException error) {
+ErrorModel _handleBadResponse(DioException error) {
   final response = error.response;
   if (response == null) {
     return DataSource.unknown.toFailure();
   }
 
   try {
-    return ApiErrorModel.fromJson(response.data);
+    return ErrorModel.fromResponse(
+      json: response.data,
+      statusCode: response.statusCode,
+    );
   } catch (_) {
     return _mapStatusCodeToDataSource(response.statusCode).toFailure();
   }
@@ -143,16 +170,15 @@ DataSource _mapStatusCodeToDataSource(int? statusCode) {
   };
 }
 
-ApiErrorModel _handleConnectionError(DioException error) {
-  if (error.message?.toLowerCase().contains('socket') ?? false) {
-    return DataSource.noInternetConnection.toFailure();
-  }
-  return DataSource.noInternetConnection.toFailure();
-}
-
-ApiErrorModel _handleUnknownError(DioException error) {
+ErrorModel _handleUnknownError(DioException error) {
   if (error.message?.toLowerCase().contains('socket') ?? false) {
     return DataSource.noInternetConnection.toFailure();
   }
   return DataSource.unknown.toFailure();
+}
+
+ErrorModel _handleLocalException(LocalException error) {
+  return switch (error) {
+    CacheError() => DataSource.cacheError.toFailure(),
+  };
 }

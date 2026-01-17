@@ -12,6 +12,16 @@ extension StringValidation on String? {
     return null;
   }
 
+  String? get validateLoginPassword {
+    if (this == null ||
+        this!.isEmpty ||
+        this!.trim().isEmpty ||
+        this!.length < 8) {
+      return ValidationConstants.passwordRequired;
+    }
+    return null;
+  }
+
   String? get validatePassword {
     if (this == null || this!.isEmpty) {
       return ValidationConstants.passwordRequired;
@@ -70,6 +80,9 @@ class AppValidators {
   static String? validateEmail(String? value) => value.validateEmail;
 
   static String? validatePassword(String? value) => value.validatePassword;
+
+  static String? validateLoginPassword(String? value) =>
+      value.validateLoginPassword;
 
   static String? validateConfirmPassword(
     String? value,
