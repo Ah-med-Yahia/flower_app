@@ -5,16 +5,13 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
 
+import 'package:flower_app/config/base_response/base_response.dart' as _i2;
+import 'package:flower_app/features/auth/forget_password/domain/entities/forget_password_entity.dart' as _i5;
+import 'package:flower_app/features/auth/forget_password/domain/entities/reset_password_entity.dart' as _i7;
+import 'package:flower_app/features/auth/forget_password/domain/entities/verify_otp_code_entity.dart' as _i6;
+import 'package:flower_app/features/auth/forget_password/domain/repositories/forget_password_repo.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:online_exam_app/config/base_response/base_response.dart' as _i2;
-import 'package:online_exam_app/features/auth/forget_password/domain/entities/forget_password_entity.dart'
-    as _i5;
-import 'package:online_exam_app/features/auth/forget_password/domain/entities/reset_password_entity.dart'
-    as _i7;
-import 'package:online_exam_app/features/auth/forget_password/domain/entities/verify_otp_code_entity.dart'
-    as _i6;
-import 'package:online_exam_app/features/auth/forget_password/domain/repositories/forget_password_repo.dart'
-    as _i3;
+
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
