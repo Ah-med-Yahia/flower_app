@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../../config/di/di.dart';
 import '../../../../../../core/constants/app_text_constants.dart';
@@ -18,26 +19,30 @@ class ResetPasswordView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(AppTextConstants.password),
-        leading: const Icon(Icons.arrow_back_ios),
+        leading: InkWell(onTap: () {
+          context.pop();
+        },child: const Icon(Icons.arrow_back_ios)),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Column(
-          children: [
-            40.verticalSpacing,
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: const CustomHeaderTitleWidget(
-                headerTitle: AppTextConstants.resetPasswordHeader,
-                subTitle: AppTextConstants.resetPasswordTitle,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              40.verticalSpacing,
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.8,
+                child: const CustomHeaderTitleWidget(
+                  headerTitle: AppTextConstants.resetPasswordHeader,
+                  subTitle: AppTextConstants.resetPasswordTitle,
+                ),
               ),
-            ),
-            32.verticalSpacing,
-            BlocProvider<ResetPasswordCubit>(
-              create: (context) => getIt<ResetPasswordCubit>(),
-              child: ResetPasswordBody(email: email),
-            ),
-          ],
+              32.verticalSpacing,
+              BlocProvider<ResetPasswordCubit>(
+                create: (context) => getIt<ResetPasswordCubit>(),
+                child: ResetPasswordBody(email: email),
+              ),
+            ],
+          ),
         ),
       ),
     );

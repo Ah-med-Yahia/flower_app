@@ -1,4 +1,5 @@
 import 'package:flower_app/config/di/di.dart';
+import 'package:flower_app/core/constants/app_routes_constant.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flower_app/core/ui_utils/ui_utils.dart';
@@ -14,6 +15,7 @@ import 'package:flower_app/features/auth/register/presentation/widgets/sign_up_b
 import 'package:flower_app/features/auth/register/presentation/widgets/terms_and_conditions_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -61,6 +63,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             backGroundColor: AppColors.darkGreen,
             textColor: AppColors.background,
           );
+          context.pushNamed(AppRoutesConstants.loginRoute);
       }
     });
   }

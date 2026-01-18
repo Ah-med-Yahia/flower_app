@@ -2,6 +2,7 @@ import 'package:flower_app/core/widgets/spacing.dart';
 import 'package:flower_app/features/auth/forget_password/presentation/views/verify_otp_view/verify_otp_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../../config/di/di.dart';
 import '../../../../../../core/constants/app_text_constants.dart';
@@ -19,7 +20,9 @@ class VerifyOtpView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(AppTextConstants.password),
-        leading: const Icon(Icons.arrow_back_ios),
+        leading: InkWell(onTap: () {
+          context.pop();
+        },child: const Icon(Icons.arrow_back_ios)),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),

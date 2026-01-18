@@ -4,7 +4,6 @@ import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/features/auth/register/presentation/cubit/register_cubit.dart';
 import 'package:flower_app/features/auth/register/presentation/cubit/register_events.dart';
 
-
 class PasswordFieldsWidget extends StatelessWidget {
   final TextEditingController password;
   final TextEditingController confirmPassword;
@@ -24,6 +23,7 @@ class PasswordFieldsWidget extends StatelessWidget {
         Expanded(
           child: TextFormField(
             controller: password,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             obscureText: true,
             decoration: const InputDecoration(
               labelText: AppTextConstants.password,
@@ -36,14 +36,14 @@ class PasswordFieldsWidget extends StatelessWidget {
         const SizedBox(width: 12),
         Expanded(
           child: TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: confirmPassword,
             obscureText: true,
             decoration: const InputDecoration(
               labelText: AppTextConstants.confirmPassword,
             ),
             validator: (v) => v.validateMatch(password.text),
-            onChanged: (v) =>
-                cubit.doIntent(ConfirmPasswordChanged(v)),
+            onChanged: (v) => cubit.doIntent(ConfirmPasswordChanged(v)),
           ),
         ),
       ],
