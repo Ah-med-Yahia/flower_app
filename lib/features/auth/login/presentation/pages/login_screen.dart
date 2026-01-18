@@ -47,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
         case NavigateToHome():
           UIUtils.hideLoading(context);
           UIUtils.showMessage(
-            'Login Successful',
+            AppTextConstants.loginSuccess,
             backGroundColor: AppColors.green,
             textColor: AppColors.background,
           );
@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(AppTextConstants.home)),
+      appBar: AppBar(title: Text(AppTextConstants.login)),
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
