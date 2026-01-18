@@ -36,6 +36,7 @@ class AppTextConstants {
   static const String taxNote = "All prices include tax";
   static const String description = "Description:";
   static const String egp = "EGP";
+  static const String loginSuccess = "Login Successful";
 
   //------------------- HOME PAGE -------------------//
   static const String bestSeller = 'Best seller';

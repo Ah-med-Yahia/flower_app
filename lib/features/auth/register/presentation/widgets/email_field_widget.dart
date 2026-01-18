@@ -18,6 +18,7 @@ class EmailFieldWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: const InputDecoration(
         labelText: AppTextConstants.email,
         hintText: AppTextConstants.enterEmail,

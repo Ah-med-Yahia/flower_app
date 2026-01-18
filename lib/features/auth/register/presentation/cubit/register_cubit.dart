@@ -157,7 +157,7 @@ class RegisterCubit extends Cubit<RegisterStates> {
       failure: (e) {
         _uiEventsController.add(
           ShowRegisterError(
-            e.errorHandler.message ?? AppTextConstants.failedToRegister,
+            e.errorHandler.message,
           ),
         );
       },

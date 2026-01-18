@@ -39,7 +39,7 @@ class LoginCubit extends Cubit<LoginStates> {
       },
       failure: (f) {
         _uiEventController.add(
-          ShowErrorMessage(f.errorHandler.message ?? 'Something went wrong'),
+          ShowErrorMessage(f.errorHandler.message),
         );
       },
     );

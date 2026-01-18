@@ -118,7 +118,7 @@ class ErrorHandler implements Exception {
     }
   }
 
-  String? get message => errorModel.message;
+  String get message => errorModel.message;
 
   int? get code => errorModel.code;
 
