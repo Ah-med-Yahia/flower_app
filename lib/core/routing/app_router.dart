@@ -14,7 +14,7 @@ import '../../features/product/best_seller/presentation/views/view/best_seller_v
 
 abstract class AppRouter {
   static GoRouter router = GoRouter(
-    initialLocation: AppRoutesConstants.bestSellerRoute,
+    initialLocation: AppRoutesConstants.loginRoute,
     routes: [
       GoRoute(
         path: AppRoutesConstants.loginRoute,
