@@ -6,7 +6,7 @@ import 'package:online_exam_app/features/occasion/presentation/views/screens/occ
 
 class AppRouter {
   static GoRouter router = GoRouter(
-    initialLocation: AppRoutesConstants.initialLocation,
+    initialLocation: AppRoutesConstants.occasionScreen,
     routes: [
       GoRoute(
         path: AppRoutesConstants.initialLocation,

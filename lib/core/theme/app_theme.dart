@@ -17,7 +17,20 @@ class AppTheme {
         elevation: 0,
         titleSpacing: 0,
       ),
-
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.primary,
+          foregroundColor: AppColors.background,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(screenWidth * 0.07),
+          ),
+          elevation: 0,
+          textStyle: Theme.of(context).textTheme.titleMedium!.copyWith(
+            fontSize: screenWidth * 0.035,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
       textTheme: TextTheme(
         titleLarge: TextStyle(
           fontSize: screenWidth * 0.055,

@@ -3,12 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_exam_app/config/di/di.dart';
 import 'package:online_exam_app/core/constants/app_text_constants.dart';
 import 'package:online_exam_app/core/theme/app_colors.dart';
+import 'package:online_exam_app/core/widgets/loading_indicator_widget.dart';
 import 'package:online_exam_app/features/occasion/presentation/view_model/occasion_cubit.dart';
 import 'package:online_exam_app/features/occasion/presentation/view_model/occasion_event.dart';
 import 'package:online_exam_app/features/occasion/presentation/view_model/occasion_state.dart';
 import 'package:online_exam_app/features/occasion/presentation/views/widgets/app_bar_title.dart';
 import 'package:online_exam_app/features/occasion/presentation/views/widgets/back_button.dart';
 import 'package:online_exam_app/features/occasion/presentation/views/widgets/occasion_tab_bar.dart';
+import 'package:online_exam_app/features/occasion/presentation/views/widgets/products_grid.dart';
 
 class OccasionScreen extends StatelessWidget {
   const OccasionScreen({super.key});
@@ -22,61 +24,104 @@ class OccasionScreen extends StatelessWidget {
           toolbarHeight: MediaQuery.of(context).size.height * 0.09,
           leading: const BackButtonWidget(),
           title: const AppBarTitle(),
+          surfaceTintColor: Colors.transparent,
         ),
-        body: BlocBuilder<OccasionCubit, OccasionState>(
-          builder: (context, state) {
-            if (state.occasionState.isLoading) {
-              return Align(
-                alignment: Alignment.topCenter,
-                child: Text(
-                  AppTextConstants.loading,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleMedium!.copyWith(color: AppColors.grey),
-                ),
-              );
-            }
-
-            if (state.occasionState.errorMessage != null) {
-              return Center(
-                child: Text(
-                  state.occasionState.errorMessage!,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleMedium!.copyWith(color: AppColors.darkRed),
-                ),
-              );
-            }
-
-            final occasions = state.occasionState.data?.occasions ?? [];
-
-            if (occasions.isEmpty) {
-              return Center(
-                child: Text(
-                  AppTextConstants.noOccasionsAvailable,
-                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                    color: AppColors.darkRed,
-                    overflow: TextOverflow.ellipsis,
+        body: SafeArea(
+          top: false,
+          child: BlocBuilder<OccasionCubit, OccasionState>(
+            builder: (context, state) {
+              if (state.occasionState.isLoading) {
+                return Align(
+                  alignment: Alignment.topCenter,
+                  child: Text(
+                    AppTextConstants.loading,
+                    style: Theme.of(
+                      context,
+                    ).textTheme.titleMedium!.copyWith(color: AppColors.grey),
                   ),
-                ),
-              );
-            }
+                );
+              }
 
-            return Column(
-              children: [
-                const SizedBox(height: 8),
-                OccasionTabBar(
-                  occasions: occasions,
-                  selectedIndex: state.selectedIndex,
-                  onTabSelected: (index) {
-                    context.read<OccasionCubit>().onEvent(
-                      SelectOccasion(index),
-                    );
-                  },
-                ),
-              ],
-            );
-          },
+              if (state.occasionState.errorMessage != null) {
+                return Align(
+                  alignment: Alignment.topCenter,
+                  child: Text(
+                    state.occasionState.errorMessage!,
+                    style: Theme.of(
+                      context,
+                    ).textTheme.titleMedium!.copyWith(color: AppColors.darkRed),
+                  ),
+                );
+              }
+
+              final occasions = state.occasionState.data?.occasions ?? [];
+
+              if (occasions.isEmpty) {
+                return Align(
+                  alignment: Alignment.topCenter,
+                  child: Text(
+                    AppTextConstants.noOccasionsAvailable,
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                      color: AppColors.darkRed,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                );
+              }
+
+              return Column(
+                children: [
+                  const SizedBox(height: 8),
+                  OccasionTabBar(
+                    occasions: occasions,
+                    selectedIndex: state.selectedIndex,
+                    onTabSelected: (index) {
+                      context.read<OccasionCubit>().onEvent(
+                        SelectOccasion(index),
+                      );
+                    },
+                  ),
+                  BlocBuilder<OccasionCubit, OccasionState>(
+                    builder: (productContext, productState) {
+                      if (productState.occasionProductsState.isLoading) {
+                        return LoadingIndicator();
+                      }
+
+                      if (productState.occasionProductsState.errorMessage !=
+                          null) {
+                        return Center(
+                          child: Text(
+                            productState.occasionProductsState.errorMessage!,
+                            style: Theme.of(context).textTheme.titleMedium!
+                                .copyWith(color: AppColors.darkRed),
+                          ),
+                        );
+                      }
+                      final occasionsproducts =
+                          productState.occasionProductsState.data?.products ??
+                          [];
+
+                      if (occasionsproducts.isEmpty) {
+                        return Expanded(
+                          child: Center(
+                            child: Text(
+                              AppTextConstants.noProductsAvailable,
+                              style: Theme.of(context).textTheme.titleLarge!
+                                  .copyWith(
+                                    color: AppColors.darkRed,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                            ),
+                          ),
+                        );
+                      }
+                      return ProductsGrid();
+                    },
+                  ),
+                ],
+              );
+            },
+          ),
         ),
       ),
     );
