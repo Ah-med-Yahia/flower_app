@@ -1,13 +1,13 @@
+import 'package:flower_app/core/constants/errors_constants.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:online_exam_app/config/base_response/base_response.dart';
-import 'package:online_exam_app/config/error_handler/error_handler.dart';
-import 'package:online_exam_app/core/constants/api_errors_constants.dart';
-import 'package:online_exam_app/features/occasion/api/api_client/occasion_api_client.dart';
-import 'package:online_exam_app/features/occasion/api/datasources_impl/occasion_data_source_impl.dart';
-import 'package:online_exam_app/features/occasion/data/models/get_all_occassion_models/get_all_occasions_response_model.dart';
-import 'package:online_exam_app/features/occasion/data/models/get_all_occassion_models/metadata_model.dart';
-import 'package:online_exam_app/features/occasion/data/models/get_all_occassion_models/occasion_model.dart';
+import 'package:flower_app/config/base_response/base_response.dart';
+import 'package:flower_app/config/error_handler/error_handler.dart';
+import 'package:flower_app/features/occasion/api/api_client/occasion_api_client.dart';
+import 'package:flower_app/features/occasion/api/datasources_impl/occasion_data_source_impl.dart';
+import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/get_all_occasions_response_model.dart';
+import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/metadata_model.dart';
+import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/occasion_model.dart';
 import 'package:test/test.dart';
 import 'occasion_data_source_impl_test.mocks.dart';
 
@@ -71,7 +71,10 @@ void _testGetAllOccasionsFailureCase(
 
     final failure = result as Failure<GetAllOccasionsResponseModel>;
 
-    expect(failure.errorhandeler.apiErrorModel.message, ApiErrors.defaultError);
+    expect(
+      failure.errorHandler.errorModel.message,
+      ErrorsConstant.defaultError,
+    );
 
     verify(mockApiClient.getallOcassions()).called(1);
   });

@@ -1,41 +1,87 @@
 import 'package:flutter/material.dart';
-import 'package:online_exam_app/core/theme/app_colors.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class AppTheme {
-  static ThemeData appTheme(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
+import 'app_colors.dart';
 
-    return ThemeData(
-      scaffoldBackgroundColor: AppColors.background,
-      iconTheme: IconThemeData(
-        size: screenWidth * 0.07,
+abstract class AppTheme {
+  static ThemeData appTheme = ThemeData(
+    useMaterial3: true,
+    brightness: Brightness.light,
+    scaffoldBackgroundColor: AppColors.background,
+    fontFamily: GoogleFonts.inter().fontFamily,
+    //------------ App Bar Theme -----------------//
+    appBarTheme: AppBarThemeData(
+      backgroundColor: AppColors.background,
+      scrolledUnderElevation: 0,
+      iconTheme: IconThemeData(color: AppColors.textPrimary, size: 30),
+      titleTextStyle: TextStyle(
+        fontSize: 20,
+        color: AppColors.textPrimary,
+        fontWeight: FontWeight.w500,
+      ),
+    ),
+    //------------ Text Form Field Theme -----------------//
+    inputDecorationTheme: InputDecorationTheme(
+      labelStyle: TextStyle(color: AppColors.textSecondary),
+      hintStyle: TextStyle(color: AppColors.grey, letterSpacing: 0.5),
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(4)),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(4),
+        borderSide: BorderSide(color: AppColors.textSecondary),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(4),
+        borderSide: BorderSide(color: AppColors.textSecondary, width: 2),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(4),
+        borderSide: BorderSide(color: AppColors.red),
+      ),
+    ),
+    //------------ Text Theme -----------------//
+    textTheme: TextTheme(
+      headlineSmall: TextStyle(
+        fontSize: 24,
+        fontWeight: FontWeight.w400,
         color: AppColors.textPrimary,
       ),
-      appBarTheme: const AppBarTheme(
-        backgroundColor: AppColors.background,
+      titleLarge: TextStyle(
+        fontSize: 18,
+        color: AppColors.textPrimary,
+        fontWeight: FontWeight.w500,
+      ),
+      titleMedium: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+        color: AppColors.textPrimary,
+      ),
+      titleSmall: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
+        color: AppColors.textPrimary,
+      ),
+
+      bodyMedium: TextStyle(color: AppColors.textSecondary),
+      bodySmall: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+    ),
+    //------------ Button Theme -----------------//
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColors.primary,
+        foregroundColor: AppColors.background,
         elevation: 0,
-        titleSpacing: 0,
-      ),
-
-      textTheme: TextTheme(
-        titleLarge: TextStyle(
-          fontSize: screenWidth * 0.055,
-          fontWeight: FontWeight.w600,
-          color: AppColors.textPrimary,
-        ),
-        titleMedium: TextStyle(
-          fontSize: screenWidth * 0.04,
+        shadowColor: Colors.transparent,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+        textStyle: TextStyle(
+          fontSize: 16,
           fontWeight: FontWeight.w500,
-          color: AppColors.grey,
+          color: AppColors.background,
         ),
-
-        bodyMedium: TextStyle(
-          fontSize: screenWidth * 0.035,
-          fontWeight: FontWeight.w400,
-          color: AppColors.textSecondary,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       ),
-    );
-  }
+    ),
+    //------------ Icon Theme -----------------//
+    iconTheme: IconThemeData(color: AppColors.background, size: 24),
+    //------------ PIN CODE INPUT Theme -----------------//
+  );
 }

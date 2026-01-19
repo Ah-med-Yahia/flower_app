@@ -122,11 +122,11 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( T data)?  success,TResult Function( ErrorHandler errorhandeler)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( T data)?  success,TResult Function( ErrorHandler errorHandler)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case Success() when success != null:
 return success(_that.data);case Failure() when failure != null:
-return failure(_that.errorhandeler);case _:
+return failure(_that.errorHandler);case _:
   return orElse();
 
 }
@@ -144,11 +144,11 @@ return failure(_that.errorhandeler);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( T data)  success,required TResult Function( ErrorHandler errorhandeler)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( T data)  success,required TResult Function( ErrorHandler errorHandler)  failure,}) {final _that = this;
 switch (_that) {
 case Success():
 return success(_that.data);case Failure():
-return failure(_that.errorhandeler);case _:
+return failure(_that.errorHandler);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -165,11 +165,11 @@ return failure(_that.errorhandeler);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( T data)?  success,TResult? Function( ErrorHandler errorhandeler)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( T data)?  success,TResult? Function( ErrorHandler errorHandler)?  failure,}) {final _that = this;
 switch (_that) {
 case Success() when success != null:
 return success(_that.data);case Failure() when failure != null:
-return failure(_that.errorhandeler);case _:
+return failure(_that.errorHandler);case _:
   return null;
 
 }
@@ -247,10 +247,10 @@ as T,
 
 
 class Failure<T> implements BaseResponse<T> {
-  const Failure(this.errorhandeler);
+  const Failure(this.errorHandler);
   
 
- final  ErrorHandler errorhandeler;
+ final  ErrorHandler errorHandler;
 
 /// Create a copy of BaseResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -262,16 +262,16 @@ $FailureCopyWith<T, Failure<T>> get copyWith => _$FailureCopyWithImpl<T, Failure
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Failure<T>&&(identical(other.errorhandeler, errorhandeler) || other.errorhandeler == errorhandeler));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Failure<T>&&(identical(other.errorHandler, errorHandler) || other.errorHandler == errorHandler));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,errorhandeler);
+int get hashCode => Object.hash(runtimeType,errorHandler);
 
 @override
 String toString() {
-  return 'BaseResponse<$T>.failure(errorhandeler: $errorhandeler)';
+  return 'BaseResponse<$T>.failure(errorHandler: $errorHandler)';
 }
 
 
@@ -282,7 +282,7 @@ abstract mixin class $FailureCopyWith<T,$Res> implements $BaseResponseCopyWith<T
   factory $FailureCopyWith(Failure<T> value, $Res Function(Failure<T>) _then) = _$FailureCopyWithImpl;
 @useResult
 $Res call({
- ErrorHandler errorhandeler
+ ErrorHandler errorHandler
 });
 
 
@@ -299,9 +299,9 @@ class _$FailureCopyWithImpl<T,$Res>
 
 /// Create a copy of BaseResponse
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? errorhandeler = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? errorHandler = null,}) {
   return _then(Failure<T>(
-null == errorhandeler ? _self.errorhandeler : errorhandeler // ignore: cast_nullable_to_non_nullable
+null == errorHandler ? _self.errorHandler : errorHandler // ignore: cast_nullable_to_non_nullable
 as ErrorHandler,
   ));
 }
