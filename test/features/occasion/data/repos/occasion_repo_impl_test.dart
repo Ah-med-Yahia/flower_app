@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:flower_app/core/constants/errors_constants.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/error_handler/error_handler.dart';
-import 'package:flower_app/core/constants/api_errors_constants.dart';
 import 'package:flower_app/features/occasion/api/datasources_impl/occasion_data_source_impl.dart';
 import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/get_all_occasions_response_model.dart';
 import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/metadata_model.dart';
@@ -75,13 +75,13 @@ void _testGetAllOccasionsFailureCase(
     final failureResult = result as Failure<GetAllOccasionEntity>;
 
     expect(
-      failureResult.errorHandler.apiErrorModel.message,
-      ApiErrors.defaultError,
+      failureResult.errorHandler.errorModel.message,
+      ErrorsConstant.defaultError,
     );
 
     expect(
-      failureResult.errorHandler.apiErrorModel.message,
-      fakeError.apiErrorModel.message,
+      failureResult.errorHandler.errorModel.message,
+      fakeError.errorModel.message,
     );
 
     expect(failureResult.errorHandler, isA<ErrorHandler>());
@@ -117,13 +117,13 @@ void _testGetAllOccasionsDioFiluresCase(
       expect(failure.errorHandler, same(handledError));
 
       expect(
-        failure.errorHandler.apiErrorModel.code,
-        handledError.apiErrorModel.code,
+        failure.errorHandler.errorModel.code,
+        handledError.errorModel.code,
       );
 
       expect(
-        failure.errorHandler.apiErrorModel.message,
-        handledError.apiErrorModel.message,
+        failure.errorHandler.errorModel.message,
+        handledError.errorModel.message,
       );
 
       verify(mockDataSource.getAllOccasions()).called(1);
