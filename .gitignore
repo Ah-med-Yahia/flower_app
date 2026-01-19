@@ -1,80 +1,62 @@
-# Miscellaneous
+# General / Misc
 *.class
 *.log
 *.pyc
 *.swp
 .DS_Store
 .atom/
-.build/
-.buildlog/
 .history
 .svn/
 .swiftpm/
 migrate_working_dir/
 
-# IntelliJ related
+# IntelliJ / Android Studio
 *.iml
 *.ipr
 *.iws
 .idea/
+.gradle/
+.cxx/
 
-# VS Code
-#.vscode/
-
-# Flutter / Dart / Pub related
-**/doc/api/
-**/ios/Flutter/.last_build_id
+# Dart / Flutter (Generated)
 .dart_tool/
+.flutter-plugins
 .flutter-plugins-dependencies
 .pub-cache/
 .pub/
-/build/
-/coverage/
+build/
+coverage/
+.packages
+.flutter-versions
 
-# Generated files (build_runner / injectable / mockito)
-*.g.dart
-*.config.dart
-*.mocks.dart
-*.freezed.dart
+# Generated files
+**/*.g.dart
+**/*.freezed.dart
+**/*.config.dart
+**/*.mocks.dart
+**/*.template.dart
+**/*.pb.dart
+**/*.pbjson.dart
+**/*.pbenum.dart
 
-# DevTools options
-devtools_options.yaml
+# Flutter plugin registrants
+**/generated_plugin_registrant.*
+**/generated_plugins.cmake
 
+# iOS
+ios/Flutter/.last_build_id
+ios/Pods/
+ios/.symlinks/
+ios/DerivedData/
 
-# Symbolication related
+# Android
+android/.gradle/
+android/local.properties
+android/app/debug/
+android/app/profile/
+android/app/release/
+
+# Symbols
 app.*.symbols
-
-# Obfuscation related
 app.*.map.json
-
-# Android build outputs
-/android/app/debug
-/android/app/profile
-/android/app/release
-
-# Generated-Files related
-# JSON serialization
-*.g.dart
-
-# Freezed code generation
-*.freezed.dart
-
-# Retrofit API generation
-*.retrofit.dart
-
-# Injectable dependency injection
-*.config.dart
-
-# Mockito test mocks
-*.mocks.dart
-
-# Flutter gen assets
-lib/core/gen/
-**/gen/assets.gen.dart
-
-# Plugin registrants (auto-generated)
-#**/GeneratedPluginRegistrant.swift
-#**/GeneratedPluginRegistrant.m
-#**/generated_plugin_registrant.cc
-#**/generated_plugin_registrant.h
-#**/generated_plugins.cmake
+app.*.symbols.json

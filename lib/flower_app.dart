@@ -1,7 +1,6 @@
+import 'package:flower_app/core/routing/app_router.dart';
+import 'package:flower_app/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
-
-import 'core/routing/app_router.dart';
-import 'core/theme/app_theme.dart';
 
 class FlowerApp extends StatelessWidget {
   const FlowerApp({super.key});

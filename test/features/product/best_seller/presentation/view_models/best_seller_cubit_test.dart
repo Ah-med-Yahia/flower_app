@@ -1,7 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flower_app/config/base_response/base_response.dart';
-import 'package:flower_app/config/error_handler/api_error_model.dart';
 import 'package:flower_app/config/error_handler/error_handler.dart';
+import 'package:flower_app/config/error_handler/error_model.dart';
 import 'package:flower_app/features/product/best_seller/domain/entities/best_seller.dart';
 import 'package:flower_app/features/product/best_seller/domain/entities/best_seller_response.dart';
 import 'package:flower_app/features/product/best_seller/domain/entities/pagination_meta_data.dart';
@@ -138,7 +138,7 @@ void _testFailureWhenGetBestSellerEvent(
   BestSellerCubit Function() bestSellerCubit,
 ) {
   final errorMessage = 'Network error';
-  final apiErrorModel = ApiErrorModel(message: errorMessage);
+  final apiErrorModel = ErrorModel(message: errorMessage);
   final errorHandler = ErrorHandler.handle(apiErrorModel);
   final failureResponse = BaseResponse<BestSellerResponse>.failure(
     errorHandler,
@@ -184,7 +184,7 @@ void _testVerifyStoreCorrectDataInStateWhenFailure(
   BestSellerCubit Function() bestSellerCubit,
 ) {
   final errorMessage = 'Network error';
-  final apiErrorModel = ApiErrorModel(message: errorMessage);
+  final apiErrorModel = ErrorModel(message: errorMessage);
   final errorHandler = ErrorHandler.handle(apiErrorModel);
   final failureResponse = BaseResponse<BestSellerResponse>.failure(
     errorHandler,
