@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:online_exam_app/core/theme/app_colors.dart';
-import 'package:online_exam_app/features/occasion/presentation/views/widgets/tab_indicator.dart';
+import 'package:flower_app/core/theme/app_colors.dart';
+import 'package:flower_app/features/occasion/presentation/views/widgets/tab_indicator.dart';
 
 class OccasionTab extends StatelessWidget {
   final String title;

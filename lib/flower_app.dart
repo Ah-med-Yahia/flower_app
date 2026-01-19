@@ -1,6 +1,6 @@
+import 'package:flower_app/core/routing/app_router.dart';
+import 'package:flower_app/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:online_exam_app/core/routing/app_router.dart';
-import 'package:online_exam_app/core/theme/app_theme.dart';
 
 class FlowerApp extends StatelessWidget {
   const FlowerApp({super.key});
@@ -9,7 +9,7 @@ class FlowerApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: AppRouter.router,
-      theme: AppTheme.appTheme(context),
+      theme: AppTheme.appTheme,
       debugShowCheckedModeBanner: false,
     );
   }

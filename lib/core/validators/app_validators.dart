@@ -1,5 +1,5 @@
-import 'package:online_exam_app/core/constants/validation_constants.dart';
-import 'package:online_exam_app/core/validators/app_regex.dart';
+import 'package:flower_app/core/constants/validation_constants.dart';
+import 'package:flower_app/core/validators/app_regex.dart';
 
 extension StringValidation on String? {
   String? get validateEmail {
@@ -8,6 +8,16 @@ extension StringValidation on String? {
     }
     if (!AppRegex.isEmailValid(this!.trim())) {
       return ValidationConstants.invalidEmail;
+    }
+    return null;
+  }
+
+  String? get validateLoginPassword {
+    if (this == null ||
+        this!.isEmpty ||
+        this!.trim().isEmpty ||
+        this!.length < 8) {
+      return ValidationConstants.passwordRequired;
     }
     return null;
   }
@@ -65,14 +75,32 @@ extension StringValidation on String? {
     return null;
   }
 }
-
 class AppValidators {
   static String? validateEmail(String? value) => value.validateEmail;
 
   static String? validatePassword(String? value) => value.validatePassword;
 
+  static String? validateLoginPassword(String? value) =>
+      value.validateLoginPassword;
+
   static String? validateConfirmPassword(
     String? value,
     String? originalPassword,
-  ) => value.validateMatch(originalPassword);
+  ) =>
+      value.validateMatch(originalPassword);
+
+  static String? validateRequired(String? value) => value.validateRequired;
+
+  /// ================= PHONE (UPDATED) =================
+  static String? validatePhoneNumber(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return ValidationConstants.phoneNumberRequired;
+    }
+
+    if (!AppRegex.isPhoneValid(value)) {
+      return ValidationConstants.invalidPhoneNumber;
+    }
+
+    return null;
+  }
 }
