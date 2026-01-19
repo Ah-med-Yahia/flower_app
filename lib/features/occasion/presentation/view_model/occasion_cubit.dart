@@ -1,11 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:online_exam_app/config/base_response/base_response.dart';
-import 'package:online_exam_app/config/base_state/base_state.dart';
-import 'package:online_exam_app/features/occasion/domain/entities/get_all_occasion_entity.dart';
-import 'package:online_exam_app/features/occasion/domain/usecases/get_all_occasion_usecase.dart';
-import 'package:online_exam_app/features/occasion/presentation/view_model/occasion_event.dart';
-import 'package:online_exam_app/features/occasion/presentation/view_model/occasion_state.dart';
+import 'package:flower_app/config/base_response/base_response.dart';
+import 'package:flower_app/config/base_state/base_state.dart';
+import 'package:flower_app/features/occasion/domain/entities/get_all_occasion_entity.dart';
+import 'package:flower_app/features/occasion/domain/usecases/get_all_occasion_usecase.dart';
+import 'package:flower_app/features/occasion/presentation/view_model/occasion_event.dart';
+import 'package:flower_app/features/occasion/presentation/view_model/occasion_state.dart';
 
 @injectable
 class OccasionCubit extends Cubit<OccasionState> {
@@ -40,7 +40,7 @@ class OccasionCubit extends Cubit<OccasionState> {
       failure: (error) => emit(
         state.copyWith(
           occasionState: BaseState<GetAllOccasionEntity>(
-            errorMessage: error.apiErrorModel.message,
+            errorMessage: error.errorModel.message,
             isLoading: false,
           ),
         ),
