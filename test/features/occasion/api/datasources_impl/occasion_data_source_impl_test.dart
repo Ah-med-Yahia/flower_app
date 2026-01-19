@@ -3,7 +3,6 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/error_handler/error_handler.dart';
-import 'package:flower_app/core/constants/api_errors_constants.dart';
 import 'package:flower_app/features/occasion/api/api_client/occasion_api_client.dart';
 import 'package:flower_app/features/occasion/api/datasources_impl/occasion_data_source_impl.dart';
 import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/get_all_occasions_response_model.dart';
@@ -123,7 +122,10 @@ void _testGetOccasionProductsErrorCase(
     final result = await dataSource.getOccasionProducts('');
     expect(result, isA<Failure<GetOccasionProductsResponseModel>>());
     final failure = result as Failure<GetOccasionProductsResponseModel>;
-    expect(failure.errorhandeler.apiErrorModel.message, ApiErrors.defaultError);
+    expect(
+      failure.errorHandler.errorModel.message,
+      ErrorsConstant.defaultError,
+    );
     verify(mockApiClient.getOccasionProducts(id: any)).called(1);
   });
 }

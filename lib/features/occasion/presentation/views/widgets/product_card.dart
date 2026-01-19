@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:online_exam_app/core/constants/app_text_constants.dart';
-import 'package:online_exam_app/core/theme/app_colors.dart';
-import 'package:online_exam_app/core/widgets/loading_indicator_widget.dart';
+import 'package:flower_app/core/constants/app_text_constants.dart';
+import 'package:flower_app/core/theme/app_colors.dart';
+import 'package:flower_app/core/widgets/loading_indicator_widget.dart';
 
 class ProductCard extends StatelessWidget {
   final String id;

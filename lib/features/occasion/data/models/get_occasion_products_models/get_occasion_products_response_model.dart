@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:online_exam_app/features/occasion/domain/entities/get_occasion_products_entity.dart';
+import 'package:flower_app/features/occasion/domain/entities/get_occasion_products_entity.dart';
 import 'product_model.dart';
 import 'product_metadata_model.dart';
 

@@ -87,10 +87,10 @@ void _testGetAllOccasionsFailureCase(
 
       expect(result, isA<Failure<GetAllOccasionEntity>>());
       expect(
-        failureResult.errorhandeler.apiErrorModel.message,
-        fakeError.apiErrorModel.message,
+        failureResult.errorHandler.errorModel.message,
+        fakeError.errorModel.message,
       );
-      expect(failureResult.errorhandeler, isA<ErrorHandler>());
+      expect(failureResult.errorHandler, isA<ErrorHandler>());
 
       verify(mockDataSource.getAllOccasions()).called(1);
     },
@@ -118,7 +118,7 @@ void _testGetAllOccasionsDioFiluresCase(
       final failure = result as Failure<GetAllOccasionEntity>;
 
       expect(result, isA<Failure<GetAllOccasionEntity>>());
-      expect(failure.errorhandeler, same(handledError));
+      expect(failure.errorHandler, same(handledError));
       expect(
         failure.errorHandler.errorModel.code,
         handledError.errorModel.code,
@@ -187,8 +187,8 @@ void _testGetOccasionProductsFailureCase(
 
       expect(result, isA<Failure<GetOccasionProductsEntity>>());
       expect(
-        failure.errorhandeler.apiErrorModel.message,
-        fakeError.apiErrorModel.message,
+        failure.errorHandler.errorModel.message,
+        fakeError.errorModel.message,
       );
 
       verify(mockDataSource.getOccasionProducts(occasionId)).called(1);
@@ -218,10 +218,10 @@ void _testGetOccasionProductsDioFailureCase(
       final failure = result as Failure<GetOccasionProductsEntity>;
 
       expect(result, isA<Failure<GetOccasionProductsEntity>>());
-      expect(failure.errorhandeler, same(handledError));
+      expect(failure.errorHandler, same(handledError));
       expect(
-        failure.errorhandeler.apiErrorModel.code,
-        handledError.apiErrorModel.code,
+        failure.errorHandler.errorModel.code,
+        handledError.errorModel.code,
       );
 
       verify(mockDataSource.getOccasionProducts(occasionId)).called(1);

@@ -86,7 +86,7 @@ class OccasionCubit extends Cubit<OccasionState> {
       failure: (error) => emit(
         state.copyWith(
           occasionProductsState: BaseState<GetOccasionProductsEntity>(
-            errorMessage: error.apiErrorModel.message,
+            errorMessage: error.errorModel.message,
             isLoading: false,
           ),
         ),

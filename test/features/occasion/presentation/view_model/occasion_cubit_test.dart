@@ -1,20 +1,20 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dio/dio.dart';
+import 'package:flower_app/config/error_handler/error_model.dart';
+import 'package:flower_app/core/constants/errors_constants.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:online_exam_app/config/base_response/base_response.dart';
-import 'package:online_exam_app/config/error_handler/api_error_model.dart';
-import 'package:online_exam_app/config/error_handler/error_handler.dart';
-import 'package:online_exam_app/core/constants/api_errors_constants.dart';
-import 'package:online_exam_app/features/occasion/domain/entities/get_all_occasion_entity.dart';
-import 'package:online_exam_app/features/occasion/domain/entities/get_occasion_products_entity.dart';
-import 'package:online_exam_app/features/occasion/domain/entities/occasion_entity.dart';
-import 'package:online_exam_app/features/occasion/domain/entities/occasion_product_entity.dart';
-import 'package:online_exam_app/features/occasion/domain/usecases/get_all_occasion_usecase.dart';
-import 'package:online_exam_app/features/occasion/domain/usecases/get_occasion_products_usecase.dart';
-import 'package:online_exam_app/features/occasion/presentation/view_model/occasion_cubit.dart';
-import 'package:online_exam_app/features/occasion/presentation/view_model/occasion_event.dart';
-import 'package:online_exam_app/features/occasion/presentation/view_model/occasion_state.dart';
+import 'package:flower_app/config/base_response/base_response.dart';
+import 'package:flower_app/config/error_handler/error_handler.dart';
+import 'package:flower_app/features/occasion/domain/entities/get_all_occasion_entity.dart';
+import 'package:flower_app/features/occasion/domain/entities/get_occasion_products_entity.dart';
+import 'package:flower_app/features/occasion/domain/entities/occasion_entity.dart';
+import 'package:flower_app/features/occasion/domain/entities/occasion_product_entity.dart';
+import 'package:flower_app/features/occasion/domain/usecases/get_all_occasion_usecase.dart';
+import 'package:flower_app/features/occasion/domain/usecases/get_occasion_products_usecase.dart';
+import 'package:flower_app/features/occasion/presentation/view_model/occasion_cubit.dart';
+import 'package:flower_app/features/occasion/presentation/view_model/occasion_event.dart';
+import 'package:flower_app/features/occasion/presentation/view_model/occasion_state.dart';
 import 'package:test/test.dart';
 
 import 'occasion_cubit_test.mocks.dart';
@@ -134,12 +134,9 @@ void _verifyGetAllOccasionsFailure(
   OccasionCubit occasionCubit,
   MockGetAllOccasionUsecase mockGetAllOccasionUsecase,
 ) {
-  const errorMessage = ApiErrors.internalServerError;
+  const errorMessage = ErrorsConstant.internalServerError;
   const errorCode = ResponseCode.internalServerError;
-  final mockApiErrorModel = ApiErrorModel(
-    message: errorMessage,
-    code: errorCode,
-  );
+  final mockApiErrorModel = ErrorModel(message: errorMessage, code: errorCode);
   final mockErrorHandler = ErrorHandler.handle(mockApiErrorModel);
   blocTest<OccasionCubit, OccasionState>(
     'emits [Loading, Failure] when GetAllOccasions is added and fails',
@@ -237,9 +234,9 @@ void _verifyGetOccasionProductsFailure(
   OccasionCubit occasionCubit,
   MockGetOccasionProductsUsecase mockGetOccasionProductsUsecase,
 ) {
-  const errorMessage = ApiErrors.internalServerError;
+  const errorMessage = ErrorsConstant.internalServerError;
   const errorCode = ResponseCode.internalServerError;
-  final mockErrorModel = ApiErrorModel(message: errorMessage, code: errorCode);
+  final mockErrorModel = ErrorModel(message: errorMessage, code: errorCode);
   final mockErrorHandler = ErrorHandler.handle(mockErrorModel);
 
   blocTest<OccasionCubit, OccasionState>(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:online_exam_app/features/occasion/presentation/views/widgets/product_card.dart';
+import 'package:flower_app/features/occasion/presentation/views/widgets/product_card.dart';
 
 class ProductsGrid extends StatelessWidget {
   const ProductsGrid({Key? key}) : super(key: key);

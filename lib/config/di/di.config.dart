@@ -65,6 +65,21 @@ import '../../features/auth/register/domain/usecases/register_use_case.dart'
     as _i545;
 import '../../features/auth/register/presentation/cubit/register_cubit.dart'
     as _i805;
+import '../../features/occasion/api/api_client/occasion_api_client.dart'
+    as _i425;
+import '../../features/occasion/api/datasources_impl/occasion_data_source_impl.dart'
+    as _i255;
+import '../../features/occasion/data/datasources/occasion_data_source_contract.dart'
+    as _i27;
+import '../../features/occasion/data/repos/occasion_repo_impl.dart' as _i315;
+import '../../features/occasion/domain/repos/occasion_repo_contract.dart'
+    as _i31;
+import '../../features/occasion/domain/usecases/get_all_occasion_usecase.dart'
+    as _i401;
+import '../../features/occasion/domain/usecases/get_occasion_products_usecase.dart'
+    as _i203;
+import '../../features/occasion/presentation/view_model/occasion_cubit.dart'
+    as _i141;
 import '../../features/product/best_seller/api/api_client/best_seller_api_client.dart'
     as _i113;
 import '../../features/product/best_seller/api/datasource/remote/best_seller_remote_data_source_impl.dart'
@@ -117,6 +132,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i1059.CacheHelper>(
       () => _i1059.CacheHelper(gh<_i460.SharedPreferences>()),
     );
+    gh.lazySingleton<_i425.OccasionApiClient>(
+      () => _i425.OccasionApiClient(gh<_i361.Dio>()),
+    );
     gh.factory<_i478.ForgetPasswordApiClient>(
       () => _i478.ForgetPasswordApiClient(gh<_i361.Dio>()),
     );
@@ -135,6 +153,9 @@ extension GetItInjectableX on _i174.GetIt {
         secureStorageService: gh<_i11.SecureStorageService>(),
       ),
     );
+    gh.lazySingleton<_i27.OccasionDataSourceContract>(
+      () => _i255.OccasionDataSourceImpl(gh<_i425.OccasionApiClient>()),
+    );
     gh.factory<_i842.RemoteLoginDataSource>(
       () => _i793.RemoteLoginDataSourceImpl(gh<_i32.LoginApiClient>()),
     );
@@ -152,6 +173,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i842.RemoteLoginDataSource>(),
         gh<_i326.LocalLoginDataSource>(),
       ),
+    );
+    gh.factory<_i31.OccasionRepoContract>(
+      () => _i315.OccasionRepoImpl(gh<_i27.OccasionDataSourceContract>()),
     );
     gh.factory<_i613.RegisterDataSource>(
       () => _i325.RegisterDataSourceImpl(
@@ -176,6 +200,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i545.RegisterUseCase>(
       () => _i545.RegisterUseCase(gh<_i57.RegisterRepository>()),
+    );
+    gh.factory<_i401.GetAllOccasionUsecase>(
+      () => _i401.GetAllOccasionUsecase(gh<_i31.OccasionRepoContract>()),
     );
     gh.factory<_i198.GetBestSellerUseCase>(
       () => _i198.GetBestSellerUseCase(gh<_i892.BestSellerRepo>()),
@@ -203,6 +230,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i105.ForgetPasswordCubit>(
       () => _i105.ForgetPasswordCubit(gh<_i737.ForgetPasswordUseCase>()),
     );
+    gh.factory<_i203.GetOccasionProductsUsecase>(
+      () => _i203.GetOccasionProductsUsecase(
+        occasionRepoContract: gh<_i31.OccasionRepoContract>(),
+      ),
+    );
     gh.factory<_i888.GetProductDetailsUsecase>(
       () => _i888.GetProductDetailsUsecase(
         gh<_i338.ProductDetailsRepoContract>(),
@@ -221,6 +253,12 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i634.VerifyOtpCodeCubit(
         gh<_i1056.OtpVerificationUseCase>(),
         gh<_i105.ForgetPasswordCubit>(),
+      ),
+    );
+    gh.factory<_i141.OccasionCubit>(
+      () => _i141.OccasionCubit(
+        getAllOccasionUsecase: gh<_i401.GetAllOccasionUsecase>(),
+        getOccasionProductsUsecase: gh<_i203.GetOccasionProductsUsecase>(),
       ),
     );
     gh.factory<_i986.ProductDetailsCubit>(

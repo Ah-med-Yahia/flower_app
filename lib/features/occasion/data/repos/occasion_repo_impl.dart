@@ -12,10 +12,10 @@ class OccasionRepoImpl implements OccasionRepoContract {
   OccasionRepoImpl(this._occasionDataSourceContract);
   @override
   Future<BaseResponse<GetAllOccasionEntity>> getAllOccasions() async {
-    final response = await occasionDataSourceContract.getAllOccasions();
+    final response = await _occasionDataSourceContract.getAllOccasions();
     return response.map(
       success: (success) => BaseResponse.success(success.data.toEntity()),
-      failure: (failure) => BaseResponse.failure(failure.errorhandeler),
+      failure: (failure) => BaseResponse.failure(failure.errorHandler),
     );
   }
 
@@ -23,10 +23,10 @@ class OccasionRepoImpl implements OccasionRepoContract {
   Future<BaseResponse<GetOccasionProductsEntity>> getOccasionProducts(
     String id,
   ) async {
-    final response = await occasionDataSourceContract.getOccasionProducts(id);
+    final response = await _occasionDataSourceContract.getOccasionProducts(id);
     return response.map(
       success: (success) => BaseResponse.success(success.data.toEntity()),
-      failure: (failure) => BaseResponse.failure(failure.errorhandeler),
+      failure: (failure) => BaseResponse.failure(failure.errorHandler),
     );
   }
 }
