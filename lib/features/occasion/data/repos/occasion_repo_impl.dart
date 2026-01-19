@@ -14,7 +14,7 @@ class OccasionRepoImpl implements OccasionRepoContract {
     final response = await _occasionDataSourceContract.getAllOccasions();
     return response.map(
       success: (success) => BaseResponse.success(success.data.toEntity()),
-      failure: (failure) => BaseResponse.failure(failure.errorhandeler),
+      failure: (failure) => BaseResponse.failure(failure.errorHandler),
     );
   }
 }

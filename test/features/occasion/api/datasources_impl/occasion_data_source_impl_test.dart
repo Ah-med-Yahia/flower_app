@@ -71,7 +71,7 @@ void _testGetAllOccasionsFailureCase(
 
     final failure = result as Failure<GetAllOccasionsResponseModel>;
 
-    expect(failure.errorhandeler.apiErrorModel.message, ApiErrors.defaultError);
+    expect(failure.errorHandler.apiErrorModel.message, ApiErrors.defaultError);
 
     verify(mockApiClient.getallOcassions()).called(1);
   });

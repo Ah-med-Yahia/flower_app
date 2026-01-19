@@ -75,16 +75,16 @@ void _testGetAllOccasionsFailureCase(
     final failureResult = result as Failure<GetAllOccasionEntity>;
 
     expect(
-      failureResult.errorhandeler.apiErrorModel.message,
+      failureResult.errorHandler.apiErrorModel.message,
       ApiErrors.defaultError,
     );
 
     expect(
-      failureResult.errorhandeler.apiErrorModel.message,
+      failureResult.errorHandler.apiErrorModel.message,
       fakeError.apiErrorModel.message,
     );
 
-    expect(failureResult.errorhandeler, isA<ErrorHandler>());
+    expect(failureResult.errorHandler, isA<ErrorHandler>());
 
     verify(mockDataSource.getAllOccasions()).called(1);
   });
@@ -114,15 +114,15 @@ void _testGetAllOccasionsDioFiluresCase(
 
       final failure = result as Failure<GetAllOccasionEntity>;
 
-      expect(failure.errorhandeler, same(handledError));
+      expect(failure.errorHandler, same(handledError));
 
       expect(
-        failure.errorhandeler.apiErrorModel.code,
+        failure.errorHandler.apiErrorModel.code,
         handledError.apiErrorModel.code,
       );
 
       expect(
-        failure.errorhandeler.apiErrorModel.message,
+        failure.errorHandler.apiErrorModel.message,
         handledError.apiErrorModel.message,
       );
 
