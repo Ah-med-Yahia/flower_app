@@ -32,17 +32,6 @@ jobs:
       - name: Verify Flutter installation
         run: flutter --version
       
-      # - name: Cache build_runner output
-      #   uses: actions/cache@v5
-      #   with:
-      #     path: |
-      #       .dart_tool
-      #       **/*.g.dart
-      #       **/*.freezed.dart
-      #     key: ${{ runner.os }}-build-runner-${{ hashFiles('**/pubspec.lock') }}-${{ hashFiles('**/*.dart') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-build-runner-${{ hashFiles('**/pubspec.lock') }}-
-      #       ${{ runner.os }}-build-runner-
       
       - name: Install dependencies
         run: flutter pub get
