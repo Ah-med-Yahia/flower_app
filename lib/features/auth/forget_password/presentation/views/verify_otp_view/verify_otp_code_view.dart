@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flower_app/core/widgets/spacing.dart';
 import 'package:flower_app/features/auth/forget_password/presentation/views/verify_otp_view/verify_otp_body.dart';
 import 'package:flutter/material.dart';
@@ -19,10 +20,13 @@ class VerifyOtpView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(AppTextConstants.password),
-        leading: InkWell(onTap: () {
-          context.pop();
-        },child: const Icon(Icons.arrow_back_ios)),
+        title: Text(AppTextConstants.password.tr()),
+        leading: InkWell(
+          onTap: () {
+            context.pop();
+          },
+          child: const Icon(Icons.arrow_back_ios),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -31,9 +35,9 @@ class VerifyOtpView extends StatelessWidget {
             40.verticalSpacing,
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.8,
-              child: const CustomHeaderTitleWidget(
-                headerTitle: AppTextConstants.emailVerificationHeader,
-                subTitle: AppTextConstants.emailVerificationTitle,
+              child: CustomHeaderTitleWidget(
+                headerTitle: AppTextConstants.emailVerificationHeader.tr(),
+                subTitle: AppTextConstants.emailVerificationTitle.tr(),
               ),
             ),
             32.verticalSpacing,

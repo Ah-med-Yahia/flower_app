@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -18,10 +19,13 @@ class ResetPasswordView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(AppTextConstants.password),
-        leading: InkWell(onTap: () {
-          context.pop();
-        },child: const Icon(Icons.arrow_back_ios)),
+        title: Text(AppTextConstants.password.tr()),
+        leading: InkWell(
+          onTap: () {
+            context.pop();
+          },
+          child: const Icon(Icons.arrow_back_ios),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -31,9 +35,9 @@ class ResetPasswordView extends StatelessWidget {
               40.verticalSpacing,
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.8,
-                child: const CustomHeaderTitleWidget(
-                  headerTitle: AppTextConstants.resetPasswordHeader,
-                  subTitle: AppTextConstants.resetPasswordTitle,
+                child: CustomHeaderTitleWidget(
+                  headerTitle: AppTextConstants.resetPasswordHeader.tr(),
+                  subTitle: AppTextConstants.resetPasswordTitle.tr(),
                 ),
               ),
               32.verticalSpacing,

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -70,7 +71,7 @@ class _BestSellerBodyState extends State<BestSellerBody> {
           16.verticalSpacing,
           ElevatedButton(
             onPressed: _getData,
-            child: const Text(AppTextConstants.retry),
+            child: Text(AppTextConstants.retry.tr()),
           ),
         ],
       ),
@@ -78,7 +79,7 @@ class _BestSellerBodyState extends State<BestSellerBody> {
   }
 
   Widget _noProductsWidget() {
-    return const Center(child: Text(AppTextConstants.noProductsAvailable));
+    return Center(child: Text(AppTextConstants.noProductsAvailable.tr()));
   }
 
   Widget _loadingWidget() {

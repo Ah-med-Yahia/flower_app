@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flower_app/config/di/di.dart';
 import 'package:flower_app/core/constants/app_routes_constant.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
@@ -59,7 +60,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         case NavigateToLogin():
           UIUtils.hideLoading(context);
           UIUtils.showMessage(
-            AppTextConstants.accountCreatedSuccessfully,
+            AppTextConstants.accountCreatedSuccessfully.tr(),
             backGroundColor: AppColors.darkGreen,
             textColor: AppColors.background,
           );
@@ -75,7 +76,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       child: Scaffold(
         appBar: AppBar(
           leading: const BackButton(),
-          title: const Text(AppTextConstants.signUp),
+          title: Text(AppTextConstants.signUp.tr()),
           centerTitle: true,
         ),
         body: Form(
@@ -112,12 +113,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       formKey: _formKey,
                       state: state,
                       values: {
-                        AppTextConstants.firstName: _firstName.text,
-                        AppTextConstants.lastName: _lastName.text,
-                        AppTextConstants.email: _email.text,
-                        AppTextConstants.password: _password.text,
-                        AppTextConstants.confirmPassword: _confirmPassword.text,
-                        AppTextConstants.phoneNumber: _phone.text,
+                        AppTextConstants.firstName: _firstName.text.tr(),
+                        AppTextConstants.lastName: _lastName.text.tr(),
+                        AppTextConstants.email: _email.text.tr(),
+                        AppTextConstants.password: _password.text.tr(),
+                        AppTextConstants.confirmPassword: _confirmPassword.text
+                            .tr(),
+                        AppTextConstants.phoneNumber: _phone.text.tr(),
                       },
                     );
                   },

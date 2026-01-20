@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -24,7 +25,7 @@ class CustomBtnAddCardWidget extends StatelessWidget {
             children: [
               const Icon(Icons.shopping_cart_outlined),
               Text(
-                AppTextConstants.addToCart,
+                AppTextConstants.addToCart.tr(),
                 style: TextTheme.of(context).titleSmall?.copyWith(
                   fontSize: 13,
                   fontFamily: GoogleFonts.roboto().fontFamily,

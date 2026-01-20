@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flower_app/features/auth/register/presentation/cubit/register_cubit.dart';
@@ -29,21 +30,21 @@ class SignUpButtonWidget extends StatelessWidget {
                 if (formKey.currentState!.validate()) {
                   cubit.doIntent(
                     SignUpButtonPressed(
-                      firstName: values[AppTextConstants.firstName]!,
-                      lastName: values[AppTextConstants.lastName]!,
-                      email: values[AppTextConstants.email]!,
-                      password: values[AppTextConstants.password]!,
-                      confirmPassword: values[AppTextConstants.confirmPassword]!,
-                      phoneNumber: values[AppTextConstants.phoneNumber]!,
+                      firstName: values[AppTextConstants.firstName.tr()]!,
+                      lastName: values[AppTextConstants.lastName.tr()]!,
+                      email: values[AppTextConstants.email.tr()]!,
+                      password: values[AppTextConstants.password.tr()]!,
+                      confirmPassword: values[AppTextConstants.confirmPassword.tr()]!,
+                      phoneNumber: values[AppTextConstants.phoneNumber.tr()]!,
                       gender: state.gender,
                     ),
                   );
                 }
               }
             : null,
-        child: const Text(
-          AppTextConstants.signUp,
-          style: TextStyle(color: AppColors.background),
+        child: Text(
+          AppTextConstants.signUp.tr(),
+          style: const TextStyle(color: AppColors.background),
         ),
       ),
     );

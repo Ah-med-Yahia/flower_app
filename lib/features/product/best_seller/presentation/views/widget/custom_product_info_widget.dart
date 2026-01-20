@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../core/constants/app_text_constants.dart';
@@ -42,14 +43,14 @@ class CustomProductInfoWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                '${AppTextConstants.egp} ${price?.toStringAsFixed(0)}',
+                '${AppTextConstants.egp.tr()} ${price?.toStringAsFixed(0)}',
                 style: TextTheme.of(context).titleSmall,
               ),
               4.horizontalSpacing,
               if (originalPrice != null) ...[
                 4.verticalSpacing,
                 Text(
-                  '${AppTextConstants.egp} ${originalPrice?.toStringAsFixed(0)}',
+                  '${AppTextConstants.egp.tr()} ${originalPrice?.toStringAsFixed(0)}',
                   style: TextTheme.of(context).bodySmall?.copyWith(
                     fontSize: 12,
                     color: AppColors.textSecondary,

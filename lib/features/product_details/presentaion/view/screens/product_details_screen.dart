@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flower_app/config/di/di.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/constants/errors_constants.dart';
@@ -86,7 +87,7 @@ class ProductDetailsScreen extends StatelessWidget {
           } else {
             return Scaffold(
               body: CustomErrorWidget(
-                error: ErrorsConstant.notFound,
+                error: ErrorsConstant.notFound.tr(),
                 onTryAgain: () {
                   cubit.onEvent(GetProductDetailsEvent(productId));
                 },
