@@ -4,7 +4,7 @@ import 'package:mockito/mockito.dart';
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/error_handler/error_handler.dart';
 import 'package:flower_app/features/occasion/api/api_client/occasion_api_client.dart';
-import 'package:flower_app/features/occasion/api/datasources_impl/occasion_data_source_impl.dart';
+import 'package:flower_app/features/occasion/api/datasources_impl/remote_occasion_data_source_impl.dart';
 import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/get_all_occasions_response_model.dart';
 import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/metadata_model.dart';
 import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/occasion_model.dart';
@@ -13,11 +13,11 @@ import 'occasion_data_source_impl_test.mocks.dart';
 
 @GenerateMocks([OccasionApiClient])
 void main() {
-  late OccasionDataSourceImpl dataSource;
+  late RemoteOccasionDataSourceImpl dataSource;
   late MockOccasionApiClient mockApiClient;
   setUpAll(() {
     mockApiClient = MockOccasionApiClient();
-    dataSource = OccasionDataSourceImpl(mockApiClient);
+    dataSource = RemoteOccasionDataSourceImpl(mockApiClient);
   });
   group(
     'occasion data source implementaion test (get all occasions function)',
@@ -29,7 +29,7 @@ void main() {
 }
 
 void _testGetAllOccasionsSuccessCase(
-  OccasionDataSourceImpl dataSource,
+  RemoteOccasionDataSourceImpl dataSource,
   MockOccasionApiClient mockApiClient,
 ) {
   test('Test Success Case', () async {
@@ -55,7 +55,7 @@ void _testGetAllOccasionsSuccessCase(
 }
 
 void _testGetAllOccasionsFailureCase(
-  OccasionDataSourceImpl dataSource,
+  RemoteOccasionDataSourceImpl dataSource,
   MockOccasionApiClient mockApiClient,
 ) {
   test('Test Error Case', () async {

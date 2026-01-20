@@ -4,7 +4,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/error_handler/error_handler.dart';
-import 'package:flower_app/features/occasion/api/datasources_impl/occasion_data_source_impl.dart';
+import 'package:flower_app/features/occasion/api/datasources_impl/remote_occasion_data_source_impl.dart';
 import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/get_all_occasions_response_model.dart';
 import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/metadata_model.dart';
 import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/occasion_model.dart';
@@ -14,13 +14,13 @@ import 'package:test/test.dart';
 
 import 'occasion_repo_impl_test.mocks.dart';
 
-@GenerateMocks([OccasionDataSourceImpl])
+@GenerateMocks([RemoteOccasionDataSourceImpl])
 void main() {
   late OccasionRepoImpl occasionRepoImpl;
-  late MockOccasionDataSourceImpl mockDataSource;
+  late MockRemoteOccasionDataSourceImpl mockDataSource;
 
   setUpAll(() {
-    mockDataSource = MockOccasionDataSourceImpl();
+    mockDataSource = MockRemoteOccasionDataSourceImpl();
     occasionRepoImpl = OccasionRepoImpl(mockDataSource);
   });
   group('Occasion Repo Implementation Test(get all occasions function)', () {
@@ -32,7 +32,7 @@ void main() {
 
 void _testGetAllOccasionsSuccessCase(
   OccasionRepoImpl occasionRepoImpl,
-  MockOccasionDataSourceImpl mockDataSource,
+  MockRemoteOccasionDataSourceImpl mockDataSource,
 ) {
   test('Test success case', () async {
     final mockOccasionsResponse = GetAllOccasionsResponseModel(
@@ -59,7 +59,7 @@ void _testGetAllOccasionsSuccessCase(
 
 void _testGetAllOccasionsFailureCase(
   OccasionRepoImpl occasionRepoImpl,
-  MockOccasionDataSourceImpl mockDataSource,
+  MockRemoteOccasionDataSourceImpl mockDataSource,
 ) {
   test("should return BaseResponse.failure when datasource fails", () async {
     final fakeError = ErrorHandler.handle(Exception("API Failed"));
@@ -92,7 +92,7 @@ void _testGetAllOccasionsFailureCase(
 
 void _testGetAllOccasionsDioFiluresCase(
   OccasionRepoImpl occasionRepoImpl,
-  MockOccasionDataSourceImpl mockDataSource,
+  MockRemoteOccasionDataSourceImpl mockDataSource,
 ) {
   test(
     "should return BaseResponse.failure with correct error from error handler when datasource fails",
