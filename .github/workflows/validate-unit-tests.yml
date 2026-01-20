@@ -13,10 +13,10 @@ jobs:
   validate_unit_test:
     runs-on: ubuntu-latest
 
-    timeout-minutes: 10
+    timeout-minutes: 5
     concurrency: 
-        group: unit-test-dev
-        cancel-in-progress: true
+      group: unit-test-dev-${{ github.event.pull_request.number }}
+      cancel-in-progress: true
     
     steps:
       - name: Checkout repository
@@ -32,6 +32,18 @@ jobs:
       - name: Verify Flutter installation
         run: flutter --version
       
+      # - name: Cache build_runner output
+      #   uses: actions/cache@v5
+      #   with:
+      #     path: |
+      #       .dart_tool
+      #       **/*.g.dart
+      #       **/*.freezed.dart
+      #     key: ${{ runner.os }}-build-runner-${{ hashFiles('**/pubspec.lock') }}-${{ hashFiles('**/*.dart') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-build-runner-${{ hashFiles('**/pubspec.lock') }}-
+      #       ${{ runner.os }}-build-runner-
+      
       - name: Install dependencies
         run: flutter pub get
       
@@ -43,7 +55,7 @@ jobs:
         run: flutter test --coverage
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         with:
           files: ./coverage/lcov.info
           fail_ci_if_error: false
