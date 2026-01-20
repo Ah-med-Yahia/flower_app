@@ -4,7 +4,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/error_handler/error_handler.dart';
-import 'package:flower_app/features/occasion/api/datasources_impl/occasion_data_source_impl.dart';
+import 'package:flower_app/features/occasion/api/datasources_impl/remote_occasion_data_source_impl.dart';
 import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/get_all_occasions_response_model.dart';
 import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/metadata_model.dart';
 import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/occasion_model.dart';
@@ -12,9 +12,9 @@ import 'package:flower_app/features/occasion/data/repos/occasion_repo_impl.dart'
 import 'package:flower_app/features/occasion/domain/entities/get_all_occasion_entity.dart';
 import 'package:test/test.dart';
 
-import 'occasion_repo_impl_test.mocks.dart';
+import 'remote_occasion_repo_impl_test.mocks.dart';
 
-@GenerateMocks([OccasionDataSourceImpl])
+@GenerateMocks([RemoteOccasionDataSourceImpl])
 void main() {
   late OccasionRepoImpl occasionRepoImpl;
   late MockOccasionDataSourceImpl mockDataSource;
