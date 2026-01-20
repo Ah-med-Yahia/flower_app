@@ -5,8 +5,10 @@ import 'package:flower_app/features/auth/login/presentation/pages/login_screen.d
 import 'package:flower_app/features/auth/register/presentation/pages/register_screen.dart';
 import 'package:flower_app/features/product_details/presentaion/view/screens/product_details_screen.dart';
 import 'package:flower_app/home_screen.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../features/auth/forget_password/presentation/views/forget_password_view/forget_password_view.dart';
 import '../../features/auth/forget_password/presentation/views/reset_password_view/reset_password_view.dart';
 import '../../features/auth/forget_password/presentation/views/verify_otp_view/verify_otp_code_view.dart';
@@ -14,6 +16,8 @@ import '../../features/product/best_seller/presentation/views/view/best_seller_v
 
 abstract class AppRouter {
   static GoRouter router = GoRouter(
+    errorBuilder: (context, state) =>
+        Scaffold(body: Center(child: Text('Page not found: ${state.error}'))),
     initialLocation: AppRoutesConstants.loginRoute,
     routes: [
       GoRoute(

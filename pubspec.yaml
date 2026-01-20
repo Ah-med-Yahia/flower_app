@@ -49,6 +49,8 @@ dependencies:
   carousel_slider: ^5.1.1
 
   rename_app: ^1.6.5
+ # Localization
+  easy_localization: ^3.0.8
 
 dev_dependencies:
   flutter_test:
@@ -72,6 +74,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/lottie/
+    - assets/translations/ 
 
 
 flutter_gen:

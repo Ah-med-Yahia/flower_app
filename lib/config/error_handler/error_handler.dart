@@ -49,19 +49,19 @@ extension DataSourceExtension on DataSource {
       ),
       DataSource.badRequest => ErrorModel(
         code: ResponseCode.badRequest,
-        message: ErrorsConstant.badRequestError,
+        message: ErrorsConstant.badRequest,
       ),
       DataSource.forbidden => ErrorModel(
         code: ResponseCode.forbidden,
-        message: ErrorsConstant.forbiddenError,
+        message: ErrorsConstant.forbidden,
       ),
       DataSource.unauthorized => ErrorModel(
         code: ResponseCode.unauthorized,
-        message: ErrorsConstant.unauthorizedError,
+        message: ErrorsConstant.unauthorized,
       ),
       DataSource.notFound => ErrorModel(
         code: ResponseCode.notFound,
-        message: ErrorsConstant.notFoundError,
+        message: ErrorsConstant.notFound,
       ),
       DataSource.internalServerError => ErrorModel(
         code: ResponseCode.internalServerError,

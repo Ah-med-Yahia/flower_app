@@ -93,6 +93,10 @@ import '../../features/product_details/domain/use_cases/get_product_details_usec
     as _i888;
 import '../../features/product_details/presentaion/view_model/product_details_cubit.dart'
     as _i986;
+import '../../features/profile/profile_main/domain/repos/profile_main_repo.dart'
+    as _i652;
+import '../../features/profile/profile_main/domain/use_cases/get_user_data_use_case.dart'
+    as _i658;
 import '../cache_modules/secure_storage_module.dart' as _i11;
 import '../cache_modules/shared_preferences_module.dart' as _i1059;
 import '../dio_module/dio_module.dart' as _i773;
@@ -142,6 +146,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i517.ForgetPasswordRemoteDataSourceImpl(
         gh<_i478.ForgetPasswordApiClient>(),
       ),
+    );
+    gh.factory<_i658.GetUserDataUseCase>(
+      () => _i658.GetUserDataUseCase(gh<_i652.ProfileMainRepo>()),
     );
     gh.factory<_i1058.BestSellerRemoteDataSource>(
       () =>

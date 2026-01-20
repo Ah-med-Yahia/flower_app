@@ -31,7 +31,7 @@ class CustomErrorWidget extends StatelessWidget {
                 width: 200, // Limit button width
                 child: CustomElevatedButtonWidget(
                   onPressed: onTryAgain!,
-                  text: ErrorsConstant.retryAgainMessage,
+                  text: ErrorsConstant.retryAgain,
                 ),
               ),
           ],

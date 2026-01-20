@@ -42,14 +42,14 @@ class CustomProductInfoWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                '${AppTextConstants.egy} ${price?.toStringAsFixed(0)}',
+                '${AppTextConstants.egp} ${price?.toStringAsFixed(0)}',
                 style: TextTheme.of(context).titleSmall,
               ),
               4.horizontalSpacing,
               if (originalPrice != null) ...[
                 4.verticalSpacing,
                 Text(
-                  '${originalPrice?.toStringAsFixed(0)}',
+                  '${AppTextConstants.egp} ${originalPrice?.toStringAsFixed(0)}',
                   style: TextTheme.of(context).bodySmall?.copyWith(
                     fontSize: 12,
                     color: AppColors.textSecondary,

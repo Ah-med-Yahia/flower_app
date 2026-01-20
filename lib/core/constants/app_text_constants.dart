@@ -1,74 +1,78 @@
 class AppTextConstants {
-    AppTextConstants._();
-  static const String home = "Home";
-  static const String categories = "Categories";
-  static const String cart = "Cart";
-  static const String profile = "Profile";
-  static const String failedToRegister =
-      "Failed to register. Please try again.";
-  static const String signUp = "Sign Up";
-  static const String firstName = "First Name";
-  static const String lastName = "Last Name";
-  static const String enterFirstName = "Enter first name";
-  static const String enterLastName = "Enter last name";
-  static const String password = "Password";
-  static const String enterPassword = "Enter password";
-  static const String confirmPassword = "Confirm Password";
-  static const String enterConfirmPassword = "Enter confirm password";
-  static const String email = "Email";
-  static const String enterEmail = "Enter email";
-  static const String phoneNumber = "Phone Number";
-  static const String enterPhoneNumber = "Enter phone number";
-  static const String gender = "Gender";
-  static const String female = "Female";
-  static const String male = "Male";
-  static const String creatingAccountAgreement =
-      "Creating an account, you agree to our ";
-  static const String termsAndConditions = "Terms&Conditions";
-  static const String alreadyHaveAccount = "Already have an account?";
-  static const String login = "Login";
-  static const String invalidPhoneNumber = "Invalid phone number";
-  static const String accountCreatedSuccessfully = "Account created successfully";
-  static const String addToCart = "Add to Cart";
-  static const String status = "Status: ";
-  static const String inStock = "in stock";
-  static const String outOfStock = "out of stock";
-  static const String taxNote = "All prices include tax";
-  static const String description = "Description:";
-  static const String egp = "EGP";
-  static const String loginSuccess = "Login Successful";
+  AppTextConstants._();
 
-  //------------------- HOME PAGE -------------------//
-  static const String bestSeller = 'Best seller';
-  static const String bestSellerSubTitle =
-      'Bloom with our exquisite best sellers';
-  static const String noProductsAvailable = 'No products available';
-  static const String retry = 'Retry';
+  static const home = 'home';
+  static const categories = 'categories';
+  static const cart = 'cart';
+  static const profile = 'profile';
 
-  //------------------- BEST SELLER PAGE -------------------//
-  static const String egy = 'EGP';
-  static const String rememberMe = 'Remember Me';
-  static const String forgetPasswordHeadLine = "Forget password";
-  static const String dontHaveAccount = "Don't have an account?";
-  static const String guestUser = 'Continue as Guest';
+  static const failedToRegister = 'failed_to_register';
+  static const signUp = 'sign_up';
 
-  //-------------------------- FORGET-PASSWORD PAGE --------------------------//
-  static const String forgetPasswordHeader = 'Forget Password';
-  static const String forgetPasswordTitle =
-      'Please enter your email associated to your account';
-  static const String emailVerificationHeader = 'Email verification';
-  static const String emailVerificationTitle =
-      'Please enter your code that send to your email address ';
-  static const String resetPasswordHeader = 'Reset password';
-  static const String resetPasswordTitle =
-      'Password must not be empty and must'
-      ' contain 6 characters with upper case letter and one number at least ';
-  static const String emailLabel = 'Email';
-  static const String emailHint = 'Enter your email';
-  static const String newPasswordLabel = 'New Password';
-  static const String newPasswordHint = 'Enter your password';
-  static const String confirmPasswordLabel = 'Confirm Password';
-  static const String emailFocusError = 'This Email is not valid';
-  static const String confirmBtn = 'Confirm';
-  static const String otpResentSuccess = 'OTP resent successfully';
+  static const firstName = 'first_name';
+  static const lastName = 'last_name';
+  static const enterFirstName = 'enter_first_name';
+  static const enterLastName = 'enter_last_name';
+
+  static const password = 'password';
+  static const enterPassword = 'enter_password';
+  static const confirmPassword = 'confirm_password';
+  static const enterConfirmPassword = 'enter_confirm_password';
+
+  static const email = 'email';
+  static const enterEmail = 'enter_email';
+
+  static const phoneNumber = 'phone_number';
+  static const enterPhoneNumber = 'enter_phone_number';
+
+  static const gender = 'gender';
+  static const female = 'female';
+  static const male = 'male';
+
+  static const creatingAccountAgreement = 'creating_account_agreement';
+  static const termsAndConditions = 'terms_and_conditions';
+
+  static const alreadyHaveAccount = 'already_have_account';
+  static const login = 'login';
+
+  static const invalidPhoneNumber = 'invalid_phone_number';
+  static const accountCreatedSuccessfully = 'account_created_successfully';
+
+  static const addToCart = 'add_to_cart';
+  static const status = 'status';
+  static const inStock = 'in_stock';
+  static const outOfStock = 'out_of_stock';
+  static const taxNote = 'tax_note';
+  static const description = 'description';
+  static const egp = 'egp';
+  static const loginSuccess = 'login_success';
+
+  // ---------------- HOME PAGE ----------------
+  static const bestSeller = 'best_seller';
+  static const bestSellerSubTitle = 'best_seller_subtitle';
+  static const noProductsAvailable = 'no_products_available';
+  static const retry = 'retry';
+
+  // ---------------- BEST SELLER PAGE ----------------
+  static const rememberMe = 'remember_me';
+  static const forgetPasswordHeadLine = 'forget_password_headline';
+  static const dontHaveAccount = 'dont_have_account';
+  static const guestUser = 'guest_user';
+
+  // ---------------- FORGET PASSWORD ----------------
+  static const forgetPasswordHeader = 'forget_password_header';
+  static const forgetPasswordTitle = 'forget_password_title';
+  static const emailVerificationHeader = 'email_verification_header';
+  static const emailVerificationTitle = 'email_verification_title';
+  static const resetPasswordHeader = 'reset_password_header';
+  static const resetPasswordTitle = 'reset_password_title';
+
+  static const emailLabel = 'email_label';
+  static const emailHint = 'email_hint';
+  static const newPasswordLabel = 'new_password_label';
+  static const newPasswordHint = 'new_password_hint';
+  static const confirmPasswordLabel = 'confirm_password_label';
+  static const emailFocusError = 'email_focus_error';
+  static const confirmBtn = 'confirm_btn';
+  static const otpResentSuccess = 'otp_resent_success';
 }
