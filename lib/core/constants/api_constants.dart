@@ -20,5 +20,5 @@ class ApiConstants {
   //------------------------ CATEGORIES ------------------------//
   static const String getAllOccasions = "occasions";
   static const String loginEndPoint = 'auth/signin';
-  static const String getOccasionProducts = "related/occasion/{id}";
+  static const String getOccasionProducts = "occasions/{id}";
 }

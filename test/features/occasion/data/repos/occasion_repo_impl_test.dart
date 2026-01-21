@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flower_app/core/constants/errors_constants.dart';
+import 'package:flower_app/features/occasion/data/models/get_occasion_products_models/product_model.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:flower_app/config/base_response/base_response.dart';
@@ -9,7 +10,6 @@ import 'package:flower_app/features/occasion/data/models/get_all_occassion_model
 import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/metadata_model.dart';
 import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/occasion_model.dart';
 import 'package:flower_app/features/occasion/data/models/get_occasion_products_models/get_occasion_products_response_model.dart';
-import 'package:flower_app/features/occasion/data/models/get_occasion_products_models/product_metadata_model.dart';
 import 'package:flower_app/features/occasion/data/repos/occasion_repo_impl.dart';
 import 'package:flower_app/features/occasion/domain/entities/get_all_occasion_entity.dart';
 import 'package:flower_app/features/occasion/domain/entities/get_occasion_products_entity.dart';
@@ -143,13 +143,15 @@ void _testGetOccasionProductsSuccessCase(
       const occasionId = '123';
       final mockResponse = GetOccasionProductsResponseModel(
         message: 'Success',
-        metadata: ProductMetadataModel(
-          currentPage: 1,
-          totalPages: 1,
-          limit: 10,
-          totalItems: 0,
+        product: ProductModel(
+          id: '1',
+          name: 'Rose Bouquet',
+          image: 'https://example.com/rose_bouquet.jpg',
+          slug: 'Rose-Bouquet',
+          createdAt: '',
+          updatedAt: '',
+          isSuperAdmin: false,
         ),
-        products: [],
       );
 
       when(
@@ -160,8 +162,6 @@ void _testGetOccasionProductsSuccessCase(
       final success = result as Success<GetOccasionProductsEntity>;
 
       expect(result, isA<Success<GetOccasionProductsEntity>>());
-      expect(success.data.products, isA<List>());
-      expect(success.data.products.length, 0);
 
       verify(mockDataSource.getOccasionProducts(occasionId)).called(1);
     },

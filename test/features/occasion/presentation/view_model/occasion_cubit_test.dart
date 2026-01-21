@@ -172,22 +172,13 @@ void _verifyGetOccasionProductsSuccess(
   MockGetOccasionProductsUsecase mockGetOccasionProductsUsecase,
 ) {
   final mockResponse = GetOccasionProductsEntity(
-    products: [
-      OccasionProductEntity(
-        id: '1',
-        title: 'Product 1',
-        imgCover: '',
-        price: 100,
-        priceAfterDiscount: 80,
-      ),
-      OccasionProductEntity(
-        id: '2',
-        title: 'Product 2',
-        imgCover: '',
-        price: 200,
-        priceAfterDiscount: 150,
-      ),
-    ],
+    products: OccasionProductEntity(
+      id: '1',
+      name: 'Rose Bouquet',
+      image: 'https://example.com/rose_bouquet.jpg',
+      price: 800,
+      priceAfterDiscount: 600,
+    ),
   );
 
   blocTest<OccasionCubit, OccasionState>(
@@ -198,7 +189,7 @@ void _verifyGetOccasionProductsSuccess(
       ).thenAnswer((_) async => BaseResponse.success(mockResponse));
       return occasionCubit;
     },
-    act: (cubit) => cubit.getOccasionProducts('123'),
+    act: (cubit) => cubit.onEvent(GetOccasionProducts('123')),
     expect: () => [
       isA<OccasionState>().having(
         (state) => state.occasionProductsState.isLoading,
@@ -247,7 +238,7 @@ void _verifyGetOccasionProductsFailure(
       ).thenAnswer((_) async => BaseResponse.failure(mockErrorHandler));
       return occasionCubit;
     },
-    act: (cubit) => cubit.getOccasionProducts('123'),
+    act: (cubit) => cubit.onEvent(GetOccasionProducts('123')),
     expect: () => [
       isA<OccasionState>().having(
         (state) => state.occasionProductsState.isLoading,

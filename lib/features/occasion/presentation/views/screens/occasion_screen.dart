@@ -84,7 +84,7 @@ class OccasionScreen extends StatelessWidget {
                   BlocBuilder<OccasionCubit, OccasionState>(
                     builder: (productContext, productState) {
                       if (productState.occasionProductsState.isLoading) {
-                        return LoadingIndicator();
+                        return Expanded(child: LoadingIndicator(size: 130));
                       }
 
                       if (productState.occasionProductsState.errorMessage !=
@@ -98,10 +98,9 @@ class OccasionScreen extends StatelessWidget {
                         );
                       }
                       final occasionsproducts =
-                          productState.occasionProductsState.data?.products ??
-                          [];
+                          productState.occasionProductsState.data?.products;
 
-                      if (occasionsproducts.isEmpty) {
+                      if (occasionsproducts == null) {
                         return Expanded(
                           child: Center(
                             child: Text(
@@ -115,7 +114,7 @@ class OccasionScreen extends StatelessWidget {
                           ),
                         );
                       }
-                      return ProductsGrid();
+                      return ProductsGrid(occasionsproducts);
                     },
                   ),
                 ],

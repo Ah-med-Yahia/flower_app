@@ -9,7 +9,6 @@ import 'package:flower_app/features/occasion/data/models/get_all_occassion_model
 import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/metadata_model.dart';
 import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/occasion_model.dart';
 import 'package:flower_app/features/occasion/data/models/get_occasion_products_models/get_occasion_products_response_model.dart';
-import 'package:flower_app/features/occasion/data/models/get_occasion_products_models/product_metadata_model.dart';
 import 'package:flower_app/features/occasion/data/models/get_occasion_products_models/product_model.dart';
 import 'package:test/test.dart';
 import 'occasion_data_source_impl_test.mocks.dart';
@@ -89,13 +88,15 @@ void _testGetOccasionProductsSuccessCase(
   test('Test get occasion products Success Case', () async {
     final mockResponse = GetOccasionProductsResponseModel(
       message: 'Success',
-      metadata: ProductMetadataModel(
-        currentPage: 1,
-        totalPages: 1,
-        limit: 2,
-        totalItems: 50,
+      product: ProductModel(
+        id: '1',
+        name: 'Rose Bouquet',
+        image: 'https://example.com/rose_bouquet.jpg',
+        slug: 'Rose-Bouquet',
+        createdAt: 'fake_date',
+        updatedAt: 'fake_date',
+        isSuperAdmin: false,
       ),
-      products: [],
     );
     when(
       mockApiClient.getOccasionProducts(id: any),
@@ -104,8 +105,10 @@ void _testGetOccasionProductsSuccessCase(
     final success = result as Success<GetOccasionProductsResponseModel>;
     expect(result, isA<GetOccasionProductsResponseModel>());
     expect(success.data.message, 'Success');
-    expect(success.data.metadata, isA<ProductMetadataModel>());
-    expect(success.data.products, isA<List<ProductModel>>());
+    expect(success.data.product, isA<ProductModel>());
+    expect(success.data.product.id, '1');
+    expect(success.data.product.name, 'Rose Bouquet');
+    expect(success.data.product.image, 'https://example.com/rose_bouquet.jpg');
     verify(mockApiClient.getOccasionProducts(id: any)).called(1);
   });
 }

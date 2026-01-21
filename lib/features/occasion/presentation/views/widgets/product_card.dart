@@ -1,26 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flower_app/features/occasion/domain/entities/occasion_product_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flower_app/core/widgets/loading_indicator_widget.dart';
 
 class ProductCard extends StatelessWidget {
-  final String id;
-  final String imageUrl;
-  final String productName;
-  final int price;
-  final int originalPrice;
-  final int discount;
+  final OccasionProductEntity _occasionProductEntity;
 
-  const ProductCard({
-    Key? key,
-    required this.id,
-    required this.imageUrl,
-    required this.productName,
-    required this.price,
-    required this.originalPrice,
-    required this.discount,
-  }) : super(key: key);
+  const ProductCard(this._occasionProductEntity);
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +31,9 @@ class ProductCard extends StatelessWidget {
               padding: EdgeInsets.all(screenWidth * 0.03),
 
               child: AspectRatio(
-                aspectRatio: 1.2,
+                aspectRatio: 1.3,
                 child: CachedNetworkImage(
-                  imageUrl: imageUrl,
+                  imageUrl: _occasionProductEntity.image,
                   fit: BoxFit.cover,
                   placeholder: (context, url) =>
                       LoadingIndicator(size: screenWidth * 0.20),
@@ -65,10 +53,11 @@ class ProductCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    productName,
+                    _occasionProductEntity.name,
                     style: Theme.of(context).textTheme.titleMedium!.copyWith(
                       color: AppColors.textPrimary,
                       fontWeight: FontWeight.w400,
+                      fontSize: fontSize,
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -78,16 +67,17 @@ class ProductCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        '${AppTextConstants.egp} $price',
+                        '${AppTextConstants.egp} ${_occasionProductEntity.priceAfterDiscount}',
                         style: Theme.of(context).textTheme.titleMedium
                             ?.copyWith(
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w600,
                               color: AppColors.textPrimary,
+                              fontSize: screenWidth * 0.039,
                             ),
                       ),
-                      SizedBox(width: screenWidth * 0.019),
+                      SizedBox(width: screenWidth * 0.018),
                       Text(
-                        '$originalPrice',
+                        '${_occasionProductEntity.price}',
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontSize: fontSize,
                           color: AppColors.textSecondary,
@@ -95,10 +85,10 @@ class ProductCard extends StatelessWidget {
                         ),
                       ),
 
-                      SizedBox(width: screenWidth * 0.019),
+                      SizedBox(width: screenWidth * 0.018),
 
                       Text(
-                        '$discount${AppTextConstants.percentageSign}',
+                        '${100 - (_occasionProductEntity.priceAfterDiscount / _occasionProductEntity.price * 100).toInt()}${AppTextConstants.percentageSign}',
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontSize: screenWidth * 0.032,
                           color: AppColors.green,
@@ -124,7 +114,10 @@ class ProductCard extends StatelessWidget {
                     Icons.shopping_cart_outlined,
                     size: screenWidth * 0.055,
                   ),
-                  label: Text(AppTextConstants.addToCart),
+                  label: Text(
+                    AppTextConstants.addToCart,
+                    style: TextStyle(fontSize: fontSize),
+                  ),
                 ),
               ),
             ),

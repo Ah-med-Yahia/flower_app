@@ -1,14 +1,14 @@
 class OccasionProductEntity {
   final String id;
-  final String title;
-  final String imgCover;
+  final String name;
+  final String image;
   final num price;
   final num priceAfterDiscount;
 
   OccasionProductEntity({
     required this.id,
-    required this.title,
-    required this.imgCover,
+    required this.name,
+    required this.image,
     required this.price,
     required this.priceAfterDiscount,
   });
