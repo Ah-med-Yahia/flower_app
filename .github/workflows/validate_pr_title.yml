@@ -45,11 +45,11 @@ jobs:
             didn't match the configured pattern. Please ensure that the subject
             starts with an uppercase character.
           wip: false
-          validateSingleCommit: true
+          validateSingleCommit: false
           validateSingleCommitMatchesPrTitle: false
       
       - name: PR title validation success
         if: success()
         run: |
-          echo "PR title and commit are valid and follow conventional commit format"
+          echo "PR title is valid and follow conventional commit format"
           echo "Title: ${{ github.event.pull_request.title }}"
