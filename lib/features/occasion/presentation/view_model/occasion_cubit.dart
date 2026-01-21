@@ -29,7 +29,7 @@ class OccasionCubit extends Cubit<OccasionState> {
       case SelectOccasion():
         _selectOccasion(event.index);
       case GetOccasionProducts():
-        getOccasionProducts(event.occasionId);
+        _getOccasionProducts(event.occasionId);
     }
   }
 
@@ -41,14 +41,24 @@ class OccasionCubit extends Cubit<OccasionState> {
     );
     final occasions = await getAllOccasionUsecase.getAllOccasions();
     occasions.when(
-      success: (data) => emit(
-        state.copyWith(
-          occasionState: BaseState<GetAllOccasionEntity>(
-            data: data,
-            isLoading: false,
+      success: (data) {
+        emit(
+          state.copyWith(
+            occasionState: BaseState<GetAllOccasionEntity>(
+              data: data,
+              isLoading: false,
+            ),
           ),
-        ),
-      ),
+        );
+
+        if (data.occasions != null && data.occasions!.isNotEmpty) {
+          final firstOccasionId = data.occasions![0].id;
+
+          if (firstOccasionId != null) {
+            _getOccasionProducts(firstOccasionId);
+          }
+        }
+      },
       failure: (error) => emit(
         state.copyWith(
           occasionState: BaseState<GetAllOccasionEntity>(
@@ -62,9 +72,19 @@ class OccasionCubit extends Cubit<OccasionState> {
 
   void _selectOccasion(int index) {
     emit(state.copyWith(selectedIndex: index));
+
+    final occasions = state.occasionState.data?.occasions ?? [];
+
+    if (index < occasions.length) {
+      final occasionId = occasions[index].id;
+
+      if (occasionId != null) {
+        _getOccasionProducts(occasionId);
+      }
+    }
   }
 
-  Future<void> getOccasionProducts(String occasionId) async {
+  Future<void> _getOccasionProducts(String occasionId) async {
     emit(
       state.copyWith(
         occasionProductsState: BaseState<GetOccasionProductsEntity>(
