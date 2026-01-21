@@ -1,0 +1,48 @@
+name: Dart Linting
+
+on:
+  pull_request:
+    branches:
+      - dev
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  dart_linting:
+    runs-on: ubuntu-latest
+    
+    timeout-minutes: 5
+    concurrency:
+      group: dart-linting-${{ github.event.pull_request.number }}
+      cancel-in-progress: true
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.38.7
+          channel: 'stable'
+          cache: true
+      
+      - name: Verify Flutter installation
+        run: flutter --version
+      
+      - name: Install dependencies
+        run: flutter pub get
+      
+      - name: Run Dart analyzer
+        run: flutter analyze --no-fatal-infos
+      
+      - name: Run Dart formatter check
+        run: dart format --set-exit-if-changed --output=none .
+      
+      - name: Linting validation success
+        if: success()
+        run: |
+          echo "✅ Dart code passes all linting checks"
+          echo "  - Analysis: Passed"
+          echo "  - Formatting: Passed"
