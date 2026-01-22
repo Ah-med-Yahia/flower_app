@@ -23,4 +23,6 @@ class ApiConstants {
 
   //------------------------ Home Screen ------------------------//
   static const String homeScreenEndPoint = 'home';
+  //------------------------ PROFILE ------------------------//
+  static const String profileDataEndPoint = 'auth/profile-data';
 }
