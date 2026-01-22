@@ -4,9 +4,15 @@ class GetUserDataIntent extends ProfileMainIntents {}
 
 class LoadCachedDataIntent extends ProfileMainIntents {}
 
-class NotificationIToggledIntent extends ProfileMainIntents {}
+class NotificationToggledIntent extends ProfileMainIntents {}
 
 class SelectLanguageIntent extends ProfileMainIntents {}
+
+class UpdateLanguageIntent extends ProfileMainIntents {
+  final String language;
+
+  UpdateLanguageIntent(this.language);
+}
 
 class EditProfileIntent extends ProfileMainIntents {}
 

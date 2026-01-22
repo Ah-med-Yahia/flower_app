@@ -28,22 +28,31 @@ class ProfileMainCubit extends Cubit<ProfileMainStates> {
   Future<void> doIntent(ProfileMainIntents intent) async {
     switch (intent) {
       case GetUserDataIntent():
-        await _checkTokenAndLoadData();
-      case NotificationIToggledIntent():
+        await _apiCall();
+      // await _checkTokenAndLoadData();
+      case NotificationToggledIntent():
         _notifyUIToggled();
       case SelectLanguageIntent():
         _handleLanguageSelection();
       case EditProfileIntent():
         _navigateToEditProfile();
       case LoadCachedDataIntent():
-        _loadCachedUserData();
+      // await  _loadCachedUserData();
       case LogoutIntent():
-        _logout();
+        await _logout();
+      case UpdateLanguageIntent():
+        _updateLanguage(intent.language);
     }
   }
 
   void _emitSideEffect(ProfileMainSideEffects effect) {
-    _sideEffectController.add(effect);
+    if (!_sideEffectController.isClosed) {
+      _sideEffectController.add(effect);
+    }
+  }
+
+  void _updateLanguage(String language) {
+    emit(state.copyWith(selectedLanguage: language));
   }
 
   Future<void> _checkTokenAndLoadData() async {
@@ -77,6 +86,7 @@ class ProfileMainCubit extends Cubit<ProfileMainStates> {
                   ),
                 ),
               );
+              _emitSideEffect(NavigateToLoginSideEffect());
               return;
             }
 
@@ -101,6 +111,7 @@ class ProfileMainCubit extends Cubit<ProfileMainStates> {
         emit(
           state.copyWith(
             userData: state.userData.copyWith(
+              isLoading: false,
               errorMessage: 'Authentication check failed: ${error.message}',
             ),
           ),
@@ -159,7 +170,6 @@ class ProfileMainCubit extends Cubit<ProfileMainStates> {
   }
 
   void _handleLanguageSelection() {
-    // Emit side effect to trigger language selection bottom sheet
     _emitSideEffect(ShowLanguageBottomSheetSideEffect());
   }
 
