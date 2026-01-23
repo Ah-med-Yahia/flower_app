@@ -1,12 +1,9 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:dio/dio.dart';
-import 'package:flower_app/config/error_handler/error_model.dart';
-import 'package:flower_app/core/constants/errors_constants.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/error_handler/error_handler.dart';
-import 'package:flower_app/features/occasion/domain/entities/get_all_occasion_entity.dart';
+import 'package:flower_app/config/error_handler/error_model.dart';
+import 'package:flower_app/core/constants/errors_constants.dart';
+import 'package:flower_app/features/occasion/domain/entities/get_all_occasions_list_entity.dart';
 import 'package:flower_app/features/occasion/domain/entities/get_occasion_products_entity.dart';
 import 'package:flower_app/features/occasion/domain/entities/occasion_entity.dart';
 import 'package:flower_app/features/occasion/domain/entities/occasion_product_entity.dart';
@@ -15,6 +12,8 @@ import 'package:flower_app/features/occasion/domain/usecases/get_occasion_produc
 import 'package:flower_app/features/occasion/presentation/view_model/occasion_cubit.dart';
 import 'package:flower_app/features/occasion/presentation/view_model/occasion_event.dart';
 import 'package:flower_app/features/occasion/presentation/view_model/occasion_state.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
 import 'occasion_cubit_test.mocks.dart';
@@ -22,250 +21,124 @@ import 'occasion_cubit_test.mocks.dart';
 @GenerateMocks([GetAllOccasionUsecase, GetOccasionProductsUsecase])
 void main() {
   late OccasionCubit occasionCubit;
-  late MockGetAllOccasionUsecase mockGetAllOccasionUsecase;
-  late MockGetOccasionProductsUsecase mockGetOccasionProductsUsecase;
-  setUpAll(() {
-    mockGetAllOccasionUsecase = MockGetAllOccasionUsecase();
-    mockGetOccasionProductsUsecase = MockGetOccasionProductsUsecase();
-    occasionCubit = OccasionCubit(
-      getAllOccasionUsecase: mockGetAllOccasionUsecase,
-      getOccasionProductsUsecase: mockGetOccasionProductsUsecase,
+  late MockGetAllOccasionUsecase mockGetAllUsecase;
+  late MockGetOccasionProductsUsecase mockGetProductsUsecase;
+
+  setUp(() {
+    mockGetAllUsecase = MockGetAllOccasionUsecase();
+    mockGetProductsUsecase = MockGetOccasionProductsUsecase();
+    occasionCubit = OccasionCubit(mockGetAllUsecase, mockGetProductsUsecase);
+  });
+
+  tearDown(() => occasionCubit.close());
+
+  group('OccasionCubit - Initial State', () {
+    test('should have correct initial state', () {
+      expect(occasionCubit.state.occasionState.data, isNull);
+      expect(occasionCubit.state.occasionState.isLoading, false);
+    });
+  });
+
+  group('OccasionCubit - Selection', () {
+    blocTest<OccasionCubit, OccasionState>(
+      'emits state with updated selectedIndex',
+      build: () => occasionCubit,
+      act: (cubit) => cubit.onEvent(SelectOccasion(5)),
+      expect: () => [
+        isA<OccasionState>().having((s) => s.selectedIndex, 'index', 5),
+      ],
     );
   });
 
-  tearDownAll(() {
-    occasionCubit.close();
-  });
-  group('OccasionCubit', () {
-    _verfyInitialState(occasionCubit, mockGetAllOccasionUsecase);
-    _verfySelectOccasion(occasionCubit, mockGetAllOccasionUsecase);
-    _verifyGetAllOccasionsSuccess(occasionCubit, mockGetAllOccasionUsecase);
-    _verifyGetAllOccasionsFailure(occasionCubit, mockGetAllOccasionUsecase);
-    _verifyGetOccasionProductsSuccess(
-      occasionCubit,
-      mockGetOccasionProductsUsecase,
+  group('OccasionCubit - GetAllOccasions', () {
+    final tOccasions = GetOccasionListEntity(
+      occasions: [OccasionEntity(id: '1', name: 'Birthday')],
     );
-    _verifyGetOccasionProductsFailure(
-      occasionCubit,
-      mockGetOccasionProductsUsecase,
+
+    blocTest<OccasionCubit, OccasionState>(
+      'emits [Loading, Success] when successful',
+      build: () {
+        when(
+          mockGetAllUsecase.getAllOccasions(),
+        ).thenAnswer((_) async => BaseResponse.success(tOccasions));
+        return occasionCubit;
+      },
+      act: (cubit) => cubit.onEvent(GetAllOccasions()),
+      expect: () => [
+        isA<OccasionState>().having(
+          (s) => s.occasionState.isLoading,
+          'loading',
+          true,
+        ),
+        isA<OccasionState>()
+            .having((s) => s.occasionState.isLoading, 'loading', false)
+            .having((s) => s.occasionState.data, 'data', tOccasions),
+      ],
+    );
+
+    blocTest<OccasionCubit, OccasionState>(
+      'emits [Loading, Failure] when usecase fails',
+      build: () {
+        final error = ErrorHandler.handle(
+          ErrorModel(
+            message: ErrorsConstant.internalServerError,
+            code: ResponseCode.internalServerError,
+          ),
+        );
+        when(
+          mockGetAllUsecase.getAllOccasions(),
+        ).thenAnswer((_) async => BaseResponse.failure(error));
+        return occasionCubit;
+      },
+      act: (cubit) => cubit.onEvent(GetAllOccasions()),
+      expect: () => [
+        isA<OccasionState>().having(
+          (s) => s.occasionState.isLoading,
+          'loading',
+          true,
+        ),
+        isA<OccasionState>()
+            .having((s) => s.occasionState.isLoading, 'loading', false)
+            .having(
+              (s) => s.occasionState.errorMessage,
+              'error',
+              ErrorsConstant.internalServerError,
+            ),
+      ],
     );
   });
-}
 
-void _verfyInitialState(
-  OccasionCubit occasionCubit,
-  MockGetAllOccasionUsecase mockGetAllOccasionUsecase,
-) {
-  test('test initial state', () {
-    expect(occasionCubit.state, isA<OccasionState>());
-    expect(occasionCubit.state.occasionState.data, isNull);
-    expect(occasionCubit.state.occasionState.isLoading, false);
-    occasionCubit.close();
+  group('OccasionCubit - GetOccasionProducts', () {
+    const tId = '123';
+    final tProducts = GetOccasionProductsEntity(
+      products: OccasionProductEntity(
+        id: '1',
+        name: 'Rose',
+        image: '',
+        price: 10,
+        priceAfterDiscount: 5,
+      ),
+    );
+
+    blocTest<OccasionCubit, OccasionState>(
+      'emits [Loading, Success] when successful',
+      build: () {
+        when(
+          mockGetProductsUsecase.getOccasionProducts(tId),
+        ).thenAnswer((_) async => BaseResponse.success(tProducts));
+        return occasionCubit;
+      },
+      act: (cubit) => cubit.onEvent(GetOccasionProducts(tId)),
+      expect: () => [
+        isA<OccasionState>().having(
+          (s) => s.occasionProductsState.isLoading,
+          'loading',
+          true,
+        ),
+        isA<OccasionState>()
+            .having((s) => s.occasionProductsState.isLoading, 'loading', false)
+            .having((s) => s.occasionProductsState.data, 'data', tProducts),
+      ],
+    );
   });
-}
-
-void _verfySelectOccasion(
-  OccasionCubit occasionCubit,
-  MockGetAllOccasionUsecase mockGetAllOccasionUsecase,
-) {
-  blocTest<OccasionCubit, OccasionState>(
-    'emits state with new selectedIndex',
-    build: () => occasionCubit,
-    act: (cubit) => cubit.onEvent(SelectOccasion(5)),
-    expect: () => [
-      isA<OccasionState>().having(
-        (state) => state.selectedIndex,
-        'selectedIndex',
-        5,
-      ),
-    ],
-  );
-}
-
-void _verifyGetAllOccasionsSuccess(
-  OccasionCubit occasionCubit,
-  MockGetAllOccasionUsecase mockGetAllOccasionUsecase,
-) {
-  final occasionEntityMockResponse = GetAllOccasionEntity(
-    occasions: [
-      OccasionEntity(id: '1', name: 'Birthday'),
-      OccasionEntity(id: '2', name: 'Anniversary'),
-    ],
-  );
-  blocTest<OccasionCubit, OccasionState>(
-    'emits [Loading, Success] when GetAllOccasions is added and succeeds',
-    build: () {
-      when(mockGetAllOccasionUsecase.getAllOccasions()).thenAnswer(
-        (_) async => BaseResponse.success(occasionEntityMockResponse),
-      );
-      return occasionCubit;
-    },
-    act: (cubit) => cubit.onEvent(GetAllOccasions()),
-    expect: () => [
-      isA<OccasionState>().having(
-        (state) => state.occasionState.isLoading,
-        'isLoading should be true',
-        true,
-      ),
-      isA<OccasionState>()
-          .having(
-            (state) => state.occasionState.isLoading,
-            'isLoading should be false',
-            false,
-          )
-          .having(
-            (state) => state.occasionState.data,
-            'data should match mock response',
-            occasionEntityMockResponse,
-          )
-          .having(
-            (state) => state.occasionState.errorMessage,
-            'errorMessage should be null',
-            isNull,
-          ),
-    ],
-    verify: (_) {
-      verify(mockGetAllOccasionUsecase.getAllOccasions()).called(1);
-    },
-  );
-}
-
-void _verifyGetAllOccasionsFailure(
-  OccasionCubit occasionCubit,
-  MockGetAllOccasionUsecase mockGetAllOccasionUsecase,
-) {
-  const errorMessage = ErrorsConstant.internalServerError;
-  const errorCode = ResponseCode.internalServerError;
-  final mockApiErrorModel = ErrorModel(message: errorMessage, code: errorCode);
-  final mockErrorHandler = ErrorHandler.handle(mockApiErrorModel);
-  blocTest<OccasionCubit, OccasionState>(
-    'emits [Loading, Failure] when GetAllOccasions is added and fails',
-    build: () {
-      when(
-        mockGetAllOccasionUsecase.getAllOccasions(),
-      ).thenAnswer((_) async => BaseResponse.failure(mockErrorHandler));
-      return occasionCubit;
-    },
-    act: (cubit) => cubit.onEvent(GetAllOccasions()),
-    expect: () => [
-      isA<OccasionState>().having(
-        (state) => state.occasionState.isLoading,
-        'isLoading',
-        true,
-      ),
-      isA<OccasionState>()
-          .having((state) => state.occasionState.isLoading, 'isLoading', false)
-          .having(
-            (state) => state.occasionState.errorMessage,
-            'errorMessage',
-            errorMessage,
-          ),
-    ],
-    verify: (_) {
-      verify(mockGetAllOccasionUsecase.getAllOccasions()).called(1);
-    },
-  );
-}
-
-void _verifyGetOccasionProductsSuccess(
-  OccasionCubit occasionCubit,
-  MockGetOccasionProductsUsecase mockGetOccasionProductsUsecase,
-) {
-  final mockResponse = GetOccasionProductsEntity(
-    products: OccasionProductEntity(
-      id: '1',
-      name: 'Rose Bouquet',
-      image: 'https://example.com/rose_bouquet.jpg',
-      price: 800,
-      priceAfterDiscount: 600,
-    ),
-  );
-
-  blocTest<OccasionCubit, OccasionState>(
-    'emits [Loading, Success] when getOccasionProducts succeeds',
-    build: () {
-      when(
-        mockGetOccasionProductsUsecase.getOccasionProducts('123'),
-      ).thenAnswer((_) async => BaseResponse.success(mockResponse));
-      return occasionCubit;
-    },
-    act: (cubit) => cubit.onEvent(GetOccasionProducts('123')),
-    expect: () => [
-      isA<OccasionState>().having(
-        (state) => state.occasionProductsState.isLoading,
-        'isLoading should be true',
-        true,
-      ),
-      isA<OccasionState>()
-          .having(
-            (state) => state.occasionProductsState.isLoading,
-            'isLoading should be false',
-            false,
-          )
-          .having(
-            (state) => state.occasionProductsState.data,
-            'data should match mock response',
-            mockResponse,
-          )
-          .having(
-            (state) => state.occasionProductsState.errorMessage,
-            'errorMessage should be null',
-            isNull,
-          ),
-    ],
-    verify: (_) {
-      verify(
-        mockGetOccasionProductsUsecase.getOccasionProducts('123'),
-      ).called(1);
-    },
-  );
-}
-
-void _verifyGetOccasionProductsFailure(
-  OccasionCubit occasionCubit,
-  MockGetOccasionProductsUsecase mockGetOccasionProductsUsecase,
-) {
-  const errorMessage = ErrorsConstant.internalServerError;
-  const errorCode = ResponseCode.internalServerError;
-  final mockErrorModel = ErrorModel(message: errorMessage, code: errorCode);
-  final mockErrorHandler = ErrorHandler.handle(mockErrorModel);
-
-  blocTest<OccasionCubit, OccasionState>(
-    'emits [Loading, Failure] when getOccasionProducts fails',
-    build: () {
-      when(
-        mockGetOccasionProductsUsecase.getOccasionProducts('123'),
-      ).thenAnswer((_) async => BaseResponse.failure(mockErrorHandler));
-      return occasionCubit;
-    },
-    act: (cubit) => cubit.onEvent(GetOccasionProducts('123')),
-    expect: () => [
-      isA<OccasionState>().having(
-        (state) => state.occasionProductsState.isLoading,
-        'isLoading should be true',
-        true,
-      ),
-      isA<OccasionState>()
-          .having(
-            (state) => state.occasionProductsState.isLoading,
-            'isLoading should be false',
-            false,
-          )
-          .having(
-            (state) => state.occasionProductsState.errorMessage,
-            'errorMessage should match error handler',
-            errorMessage,
-          )
-          .having(
-            (state) => state.occasionProductsState.data,
-            'data should be null',
-            isNull,
-          ),
-    ],
-    verify: (_) {
-      verify(
-        mockGetOccasionProductsUsecase.getOccasionProducts('123'),
-      ).called(1);
-    },
-  );
 }

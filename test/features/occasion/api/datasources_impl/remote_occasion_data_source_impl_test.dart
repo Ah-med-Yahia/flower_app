@@ -4,22 +4,22 @@ import 'package:mockito/mockito.dart';
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/error_handler/error_handler.dart';
 import 'package:flower_app/features/occasion/api/api_client/occasion_api_client.dart';
-import 'package:flower_app/features/occasion/api/datasources_impl/occasion_data_source_impl.dart';
+import 'package:flower_app/features/occasion/api/datasources_impl/remote_occasion_data_source_impl.dart';
 import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/get_all_occasions_response_model.dart';
 import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/metadata_model.dart';
 import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/occasion_model.dart';
 import 'package:flower_app/features/occasion/data/models/get_occasion_products_models/get_occasion_products_response_model.dart';
 import 'package:flower_app/features/occasion/data/models/get_occasion_products_models/product_model.dart';
 import 'package:test/test.dart';
-import 'occasion_data_source_impl_test.mocks.dart';
+import 'remote_occasion_data_source_impl_test.mocks.dart';
 
 @GenerateMocks([OccasionApiClient])
 void main() {
-  late OccasionDataSourceImpl dataSource;
+  late RemoteOccasionDataSourceImpl dataSource;
   late MockOccasionApiClient mockApiClient;
   setUpAll(() {
     mockApiClient = MockOccasionApiClient();
-    dataSource = OccasionDataSourceImpl(mockApiClient);
+    dataSource = RemoteOccasionDataSourceImpl(mockApiClient);
   });
   group('occasion data source implementaion test', () {
     _testGetAllOccasionsSuccessCase(dataSource, mockApiClient);
@@ -30,7 +30,7 @@ void main() {
 }
 
 void _testGetAllOccasionsSuccessCase(
-  OccasionDataSourceImpl dataSource,
+  RemoteOccasionDataSourceImpl dataSource,
   MockOccasionApiClient mockApiClient,
 ) {
   test('Test get all occasions Success Case', () async {
@@ -56,7 +56,7 @@ void _testGetAllOccasionsSuccessCase(
 }
 
 void _testGetAllOccasionsFailureCase(
-  OccasionDataSourceImpl dataSource,
+  RemoteOccasionDataSourceImpl dataSource,
   MockOccasionApiClient mockApiClient,
 ) {
   test('Test get all occasions Error Case', () async {
@@ -82,7 +82,7 @@ void _testGetAllOccasionsFailureCase(
 }
 
 void _testGetOccasionProductsSuccessCase(
-  OccasionDataSourceImpl dataSource,
+  RemoteOccasionDataSourceImpl dataSource,
   MockOccasionApiClient mockApiClient,
 ) {
   test('Test get occasion products Success Case', () async {
@@ -106,15 +106,15 @@ void _testGetOccasionProductsSuccessCase(
     expect(result, isA<GetOccasionProductsResponseModel>());
     expect(success.data.message, 'Success');
     expect(success.data.product, isA<ProductModel>());
-    expect(success.data.product.id, '1');
-    expect(success.data.product.name, 'Rose Bouquet');
-    expect(success.data.product.image, 'https://example.com/rose_bouquet.jpg');
+    expect(success.data.product?.id, '1');
+    expect(success.data.product?.name, 'Rose Bouquet');
+    expect(success.data.product?.image, 'https://example.com/rose_bouquet.jpg');
     verify(mockApiClient.getOccasionProducts(id: any)).called(1);
   });
 }
 
 void _testGetOccasionProductsErrorCase(
-  OccasionDataSourceImpl dataSource,
+  RemoteOccasionDataSourceImpl dataSource,
   MockOccasionApiClient mockApiClient,
 ) {
   test('Test get occasion products Error Case', () async {

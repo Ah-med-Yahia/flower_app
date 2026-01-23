@@ -5,11 +5,11 @@ import 'package:flower_app/features/occasion/domain/repos/occasion_repo_contract
 
 @injectable
 class GetOccasionProductsUsecase {
-  final OccasionRepoContract occasionRepoContract;
-  GetOccasionProductsUsecase({required this.occasionRepoContract});
+  final OccasionRepoContract _occasionRepoContract;
+  GetOccasionProductsUsecase(this._occasionRepoContract);
   Future<BaseResponse<GetOccasionProductsEntity>> getOccasionProducts(
     String occasionId,
   ) async {
-    return await occasionRepoContract.getOccasionProducts(occasionId);
+    return await _occasionRepoContract.getOccasionProducts(occasionId);
   }
 }

@@ -6,24 +6,33 @@ part 'product_model.g.dart';
 @JsonSerializable()
 class ProductModel {
   @JsonKey(name: '_id')
-  final String id;
+  final String? id;
 
-  final String name;
-  final String slug;
-  final String image;
+  @JsonKey(name: 'name')
+  final String? name;
 
-  final String createdAt;
-  final String updatedAt;
+  @JsonKey(name: 'slug')
+  final String? slug;
 
+  @JsonKey(name: 'image')
+  final String? image;
+
+  @JsonKey(name: 'createdAt')
+  final String? createdAt;
+
+  @JsonKey(name: 'updatedAt')
+  final String? updatedAt;
+
+  @JsonKey(name: 'isSuperAdmin', defaultValue: false)
   final bool isSuperAdmin;
 
   const ProductModel({
-    required this.id,
-    required this.name,
-    required this.slug,
-    required this.image,
-    required this.createdAt,
-    required this.updatedAt,
+    this.id,
+    this.name,
+    this.slug,
+    this.image,
+    this.createdAt,
+    this.updatedAt,
     required this.isSuperAdmin,
   });
 
@@ -34,9 +43,9 @@ class ProductModel {
 
   OccasionProductEntity toEntity() {
     return OccasionProductEntity(
-      id: id,
-      name: name,
-      image: image,
+      id: id ?? '',
+      name: name ?? '',
+      image: image ?? '',
       price: 800,
       priceAfterDiscount: 600,
     );

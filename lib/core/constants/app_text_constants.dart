@@ -72,6 +72,10 @@ class AppTextConstants {
   static const String emailFocusError = 'This Email is not valid';
   static const String confirmBtn = 'Confirm';
   static const String otpResentSuccess = 'OTP resent successfully';
+
+  //-------------------------- PROFILE PAGE --------------------------//
+  static const String defaultAvatarUrl =
+      'https://flower.elevateegy.com/uploads/default-profile.png';
   static const String occasion = 'Occasion';
   static const String bloomExquisiteBestSellers =
       'Bloom exquisite best sellers';
