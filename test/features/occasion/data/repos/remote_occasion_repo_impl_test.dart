@@ -9,7 +9,7 @@ import 'package:flower_app/features/occasion/data/models/get_all_occassion_model
 import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/metadata_model.dart';
 import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/occasion_model.dart';
 import 'package:flower_app/features/occasion/data/repos/occasion_repo_impl.dart';
-import 'package:flower_app/features/occasion/domain/entities/get_all_occasion_entity.dart';
+import 'package:flower_app/features/occasion/domain/entities/get_all_occasions_list_entity.dart';
 import 'package:test/test.dart';
 
 import 'remote_occasion_repo_impl_test.mocks.dart';
@@ -17,10 +17,10 @@ import 'remote_occasion_repo_impl_test.mocks.dart';
 @GenerateMocks([RemoteOccasionDataSourceImpl])
 void main() {
   late OccasionRepoImpl occasionRepoImpl;
-  late MockOccasionDataSourceImpl mockDataSource;
+  late MockRemoteOccasionDataSourceImpl mockDataSource;
 
   setUpAll(() {
-    mockDataSource = MockOccasionDataSourceImpl();
+    mockDataSource = MockRemoteOccasionDataSourceImpl();
     occasionRepoImpl = OccasionRepoImpl(mockDataSource);
   });
   group('Occasion Repo Implementation Test(get all occasions function)', () {
@@ -32,7 +32,7 @@ void main() {
 
 void _testGetAllOccasionsSuccessCase(
   OccasionRepoImpl occasionRepoImpl,
-  MockOccasionDataSourceImpl mockDataSource,
+  MockRemoteOccasionDataSourceImpl mockDataSource,
 ) {
   test('Test success case', () async {
     final mockOccasionsResponse = GetAllOccasionsResponseModel(
@@ -49,8 +49,8 @@ void _testGetAllOccasionsSuccessCase(
       mockDataSource.getAllOccasions(),
     ).thenAnswer((_) async => BaseResponse.success(mockOccasionsResponse));
     final result = await occasionRepoImpl.getAllOccasions();
-    final success = result as Success<GetAllOccasionEntity>;
-    expect(result, isA<GetAllOccasionEntity>());
+    final success = result as Success<GetOccasionListEntity>;
+    expect(result, isA<GetOccasionListEntity>());
     expect(success.data.occasions, isA<List<OccasionModel>>());
     expect(success.data.occasions!.length, 0);
     verify(mockDataSource.getAllOccasions()).called(1);
@@ -59,7 +59,7 @@ void _testGetAllOccasionsSuccessCase(
 
 void _testGetAllOccasionsFailureCase(
   OccasionRepoImpl occasionRepoImpl,
-  MockOccasionDataSourceImpl mockDataSource,
+  MockRemoteOccasionDataSourceImpl mockDataSource,
 ) {
   test("should return BaseResponse.failure when datasource fails", () async {
     final fakeError = ErrorHandler.handle(Exception("API Failed"));
@@ -70,9 +70,9 @@ void _testGetAllOccasionsFailureCase(
 
     final result = await occasionRepoImpl.getAllOccasions();
 
-    expect(result, isA<Failure<GetAllOccasionEntity>>());
+    expect(result, isA<Failure<GetOccasionListEntity>>());
 
-    final failureResult = result as Failure<GetAllOccasionEntity>;
+    final failureResult = result as Failure<GetOccasionListEntity>;
 
     expect(
       failureResult.errorHandler.errorModel.message,
@@ -92,7 +92,7 @@ void _testGetAllOccasionsFailureCase(
 
 void _testGetAllOccasionsDioFiluresCase(
   OccasionRepoImpl occasionRepoImpl,
-  MockOccasionDataSourceImpl mockDataSource,
+  MockRemoteOccasionDataSourceImpl mockDataSource,
 ) {
   test(
     "should return BaseResponse.failure with correct error from error handler when datasource fails",
@@ -110,9 +110,9 @@ void _testGetAllOccasionsDioFiluresCase(
 
       final result = await occasionRepoImpl.getAllOccasions();
 
-      expect(result, isA<Failure<GetAllOccasionEntity>>());
+      expect(result, isA<Failure<GetOccasionListEntity>>());
 
-      final failure = result as Failure<GetAllOccasionEntity>;
+      final failure = result as Failure<GetOccasionListEntity>;
 
       expect(failure.errorHandler, same(handledError));
 

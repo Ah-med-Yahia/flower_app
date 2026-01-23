@@ -1,5 +1,5 @@
 class AppTextConstants {
-    AppTextConstants._();
+  AppTextConstants._();
   static const String home = "Home";
   static const String categories = "Categories";
   static const String cart = "Cart";
@@ -28,7 +28,8 @@ class AppTextConstants {
   static const String alreadyHaveAccount = "Already have an account?";
   static const String login = "Login";
   static const String invalidPhoneNumber = "Invalid phone number";
-  static const String accountCreatedSuccessfully = "Account created successfully";
+  static const String accountCreatedSuccessfully =
+      "Account created successfully";
   static const String addToCart = "Add to Cart";
   static const String status = "Status: ";
   static const String inStock = "in stock";
@@ -75,4 +76,9 @@ class AppTextConstants {
   //-------------------------- PROFILE PAGE --------------------------//
   static const String defaultAvatarUrl =
       'https://flower.elevateegy.com/uploads/default-profile.png';
+  static const String occasion = 'Occasion';
+  static const String bloomExquisiteBestSellers =
+      'Bloom exquisite best sellers';
+  static const String noOccasionsAvailable = 'No occasions available';
+  static const String loading = 'Loading...';
 }

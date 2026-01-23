@@ -9,7 +9,7 @@ import 'package:flower_app/features/occasion/data/models/get_all_occassion_model
 import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/metadata_model.dart';
 import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/occasion_model.dart';
 import 'package:test/test.dart';
-import 'occasion_data_source_impl_test.mocks.dart';
+import 'remote_occasion_data_source_impl_test.mocks.dart';
 
 @GenerateMocks([OccasionApiClient])
 void main() {
