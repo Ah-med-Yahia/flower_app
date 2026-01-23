@@ -8,9 +8,9 @@ extension HomeResponseMapper on HomeResponseDto {
   HomeResponseEntity toEntity() {
     return HomeResponseEntity(
       message: message,
-      categories: categories.map((dto) => dto.toEntity()).toList(),
-      bestSeller: bestSeller.map((dto) => dto.toEntity()).toList(),
-      occasions: occasions.map((dto) => dto.toEntity()).toList(),
+      categories: categories?.map((dto) => dto.toEntity()).toList(),
+      bestSeller: bestSeller?.map((dto) => dto.toEntity()).toList(),
+      occasions: occasions?.map((dto) => dto.toEntity()).toList(),
     );
   }
 }

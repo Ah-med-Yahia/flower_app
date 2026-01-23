@@ -101,15 +101,19 @@ class HomeTap extends StatelessWidget {
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
 
-                          itemCount: data!.categories.length,
+                          itemCount: data!.categories?.length ?? 0,
                           itemBuilder: (context, index) {
                             return GestureDetector(
                               onTap: () {},
                               child: Padding(
                                 padding: const EdgeInsets.only(right: 16.0),
                                 child: CategoryCardWidget(
-                                  imageUrl: data.categories[index].image,
-                                  label: data.categories[index].name,
+                                  imageUrl:
+                                      data.categories?[index].image ??
+                                      AppTextConstants.defaultImage,
+                                  label:
+                                      data.categories?[index].name ??
+                                      AppTextConstants.flowr,
                                   bgColor: AppColors.primary.withOpacity(0.1),
                                 ),
                               ),
@@ -143,7 +147,7 @@ class HomeTap extends StatelessWidget {
                         height: 220,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: data.bestSeller.length,
+                          itemCount: data.bestSeller?.length ?? 0,
                           itemBuilder: (context, index) {
                             return Padding(
                               padding: const EdgeInsets.only(right: 16.0),
@@ -152,17 +156,21 @@ class HomeTap extends StatelessWidget {
                                   log('best seller tapped');
                                   context.pushNamed(
                                     AppRoutesConstants.productDetailsRoute,
-                                    extra: data.bestSeller[index].id,
+                                    extra: data.bestSeller?[index].id,
                                   );
                                 },
                                 child: BestSellerCardWidget(
-                                  image: data.bestSeller[index].imgCover,
-                                  title: data.bestSeller[index].title,
-                                  price: data
-                                      .bestSeller[index]
-                                      .priceAfterDiscount
-                                      .toInt()
-                                      .toString(),
+                                  image:
+                                      data.bestSeller?[index].imgCover ??
+                                      AppTextConstants.defaultImage,
+                                  title:
+                                      data.bestSeller?[index].title ??
+                                      AppTextConstants.flowr,
+                                  price:
+                                      data.bestSeller?[index].priceAfterDiscount
+                                          ?.toInt()
+                                          .toString() ??
+                                      '0',
                                 ),
                               ),
                             );
@@ -189,13 +197,17 @@ class HomeTap extends StatelessWidget {
                         height: 195,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: data.occasions.length,
+                          itemCount: data.occasions?.length ?? 0,
                           itemBuilder: (context, index) {
                             return Padding(
                               padding: const EdgeInsets.only(right: 16.0),
                               child: BestSellerCardWidget(
-                                image: data.occasions[index].image,
-                                title: data.occasions[index].name,
+                                image:
+                                    data.occasions?[index].image ??
+                                    AppTextConstants.defaultImage,
+                                title:
+                                    data.occasions?[index].name ??
+                                    AppTextConstants.flowr,
                               ),
                             );
                           },

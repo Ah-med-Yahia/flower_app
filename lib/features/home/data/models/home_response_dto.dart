@@ -11,13 +11,13 @@ class HomeResponseDto {
   final String message;
 
   @JsonKey(name: 'categories')
-  final List<CategoryDto> categories;
+  final List<CategoryDto>? categories;
 
   @JsonKey(name: 'bestSeller')
-  final List<HomeScreenProductDto> bestSeller;
+  final List<HomeScreenProductDto>? bestSeller;
 
   @JsonKey(name: 'occasions')
-  final List<OccasionDto> occasions;
+  final List<OccasionDto>? occasions;
 
   HomeResponseDto({
     required this.message,

@@ -5,22 +5,22 @@ part 'occasion_dto.g.dart';
 @JsonSerializable(explicitToJson: true)
 class OccasionDto {
   @JsonKey(name: '_id')
-  final String id;
+  final String? id;
 
   @JsonKey(name: 'name')
-  final String name;
+  final String? name;
 
   @JsonKey(name: 'slug')
-  final String slug;
+  final String? slug;
 
   @JsonKey(name: 'image')
-  final String image;
+  final String? image;
 
   @JsonKey(name: 'createdAt')
-  final DateTime createdAt;
+  final DateTime? createdAt;
 
   @JsonKey(name: 'updatedAt')
-  final DateTime updatedAt;
+  final DateTime? updatedAt;
 
   @JsonKey(name: 'isSuperAdmin')
   final bool? isSuperAdmin;

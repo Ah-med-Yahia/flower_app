@@ -50,6 +50,9 @@ class AppTextConstants {
   static const String search = 'Search';
   static const String flowery = 'Flowery';
   static const String viewAll = 'View All';
+  static const String flowr = 'Flower';
+  static const String defaultImage =
+      'https://flower.elevateegy.com/uploads/66c36d5d-c067-46d9-b339-d81be57e0149-image_one.pngs';
 
   //------------------- BEST SELLER PAGE -------------------//
   static const String egy = 'EGP';

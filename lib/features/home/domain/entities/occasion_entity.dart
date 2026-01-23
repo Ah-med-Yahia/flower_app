@@ -1,10 +1,10 @@
 class OccasionEntity {
-  final String id;
-  final String name;
-  final String slug;
-  final String image;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+  final String? id;
+  final String? name;
+  final String? slug;
+  final String? image;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
   final bool isSuperAdmin;
 
   OccasionEntity({

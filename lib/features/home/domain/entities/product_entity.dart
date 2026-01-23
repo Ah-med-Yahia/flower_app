@@ -1,23 +1,23 @@
 class ProductEntity {
-  final String id;
-  final String title;
-  final String slug;
-  final String description;
-  final String imgCover;
-  final List<String> images;
-  final double price;
-  final double priceAfterDiscount;
+  final String? id;
+  final String? title;
+  final String? slug;
+  final String? description;
+  final String? imgCover;
+  final List<String>? images;
+  final double? price;
+  final double? priceAfterDiscount;
   final int? discount;
-  final int quantity;
-  final String category;
-  final String occasion;
-  final DateTime createdAt;
-  final DateTime updatedAt;
-  final int v;
+  final int? quantity;
+  final String? category;
+  final String? occasion;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
+  final int? v;
   final bool isSuperAdmin;
   final int? sold;
-  final double rateAvg;
-  final int rateCount;
+  final double? rateAvg;
+  final int? rateCount;
 
   ProductEntity({
     required this.id,

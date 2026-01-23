@@ -5,49 +5,49 @@ part 'home_screen_product_dto.g.dart';
 @JsonSerializable(explicitToJson: true)
 class HomeScreenProductDto {
   @JsonKey(name: '_id')
-  final String id;
+  final String? id;
 
   @JsonKey(name: 'title')
-  final String title;
+  final String? title;
 
   @JsonKey(name: 'slug')
-  final String slug;
+  final String? slug;
 
   @JsonKey(name: 'description')
-  final String description;
+  final String? description;
 
   @JsonKey(name: 'imgCover')
-  final String imgCover;
+  final String? imgCover;
 
   @JsonKey(name: 'images')
-  final List<String> images;
+  final List<String>? images;
 
   @JsonKey(name: 'price')
-  final double price;
+  final double? price;
 
   @JsonKey(name: 'priceAfterDiscount')
-  final double priceAfterDiscount;
+  final double? priceAfterDiscount;
 
   @JsonKey(name: 'discount')
   final int? discount;
 
   @JsonKey(name: 'quantity')
-  final int quantity;
+  final int? quantity;
 
   @JsonKey(name: 'category')
-  final String category;
+  final String? category;
 
   @JsonKey(name: 'occasion')
-  final String occasion;
+  final String? occasion;
 
   @JsonKey(name: 'createdAt')
-  final DateTime createdAt;
+  final DateTime? createdAt;
 
   @JsonKey(name: 'updatedAt')
-  final DateTime updatedAt;
+  final DateTime? updatedAt;
 
   @JsonKey(name: '__v')
-  final int v;
+  final int? v;
 
   @JsonKey(name: 'isSuperAdmin')
   final bool? isSuperAdmin;
@@ -56,10 +56,10 @@ class HomeScreenProductDto {
   final int? sold;
 
   @JsonKey(name: 'rateAvg')
-  final double rateAvg;
+  final double? rateAvg;
 
   @JsonKey(name: 'rateCount')
-  final int rateCount;
+  final int? rateCount;
 
   HomeScreenProductDto({
     required this.id,
