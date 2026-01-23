@@ -65,6 +65,8 @@ import '../../features/auth/register/domain/usecases/register_use_case.dart'
     as _i545;
 import '../../features/auth/register/presentation/cubit/register_cubit.dart'
     as _i805;
+import '../../features/categories/api/api_service/categories_api_client.dart'
+    as _i199;
 import '../../features/occasion/api/api_client/occasion_api_client.dart'
     as _i425;
 import '../../features/occasion/api/datasources_impl/remote_occasion_data_source_impl.dart'
@@ -142,6 +144,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i141.OccasionCubit>(() => _i141.OccasionCubit(gh<dynamic>()));
     gh.lazySingleton<_i1059.CacheHelper>(
       () => _i1059.CacheHelper(gh<_i460.SharedPreferences>()),
+    );
+    gh.lazySingleton<_i199.CategoriesApiClient>(
+      () => _i199.CategoriesApiClient(gh<_i361.Dio>()),
     );
     gh.lazySingleton<_i425.OccasionApiClient>(
       () => _i425.OccasionApiClient(gh<_i361.Dio>()),
