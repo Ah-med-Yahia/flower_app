@@ -14,6 +14,20 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
+import '../../features/auth/change_password/api/api_client/change_password_api_client.dart'
+    as _i971;
+import '../../features/auth/change_password/api/data_sources/change_password_data_source_impl.dart'
+    as _i300;
+import '../../features/auth/change_password/data/datasources/change_password_data_source.dart'
+    as _i390;
+import '../../features/auth/change_password/data/repositories/change_password_repo_impl.dart'
+    as _i960;
+import '../../features/auth/change_password/domain/repositories/change_password_repo.dart'
+    as _i784;
+import '../../features/auth/change_password/domain/usecases/change_password_use_case.dart'
+    as _i780;
+import '../../features/auth/change_password/presentation/cubit/change_password_cubit.dart'
+    as _i81;
 import '../../features/auth/forget_password/api/api_client/forget_password_api_client.dart'
     as _i478;
 import '../../features/auth/forget_password/api/datasources/remote/forget_password_remote_data_source_impl.dart'
@@ -93,6 +107,10 @@ import '../../features/product_details/domain/use_cases/get_product_details_usec
     as _i888;
 import '../../features/product_details/presentaion/view_model/product_details_cubit.dart'
     as _i986;
+import '../../features/profile/profile_main/domain/repos/profile_main_repo.dart'
+    as _i652;
+import '../../features/profile/profile_main/domain/use_cases/get_user_data_use_case.dart'
+    as _i658;
 import '../cache_modules/secure_storage_module.dart' as _i11;
 import '../cache_modules/shared_preferences_module.dart' as _i1059;
 import '../dio_module/dio_module.dart' as _i773;
@@ -110,12 +128,25 @@ extension GetItInjectableX on _i174.GetIt {
       () => sharedPreferencesModule.prefs,
       preResolve: true,
     );
-    gh.singleton<_i361.Dio>(() => dioModule.dio);
     gh.lazySingleton<_i11.SecureStorageService>(
       () => _i11.SecureStorageService(),
     );
     gh.lazySingleton<_i1059.CacheHelper>(
       () => _i1059.CacheHelper(gh<_i460.SharedPreferences>()),
+    );
+    gh.singleton<_i326.LocalLoginDataSource>(
+      () => _i654.LoginLocalDataSourceImpl(
+        secureStorageService: gh<_i11.SecureStorageService>(),
+      ),
+    );
+    gh.singleton<_i361.Dio>(
+      () => dioModule.dio(gh<_i11.SecureStorageService>()),
+    );
+    gh.factory<_i658.GetUserDataUseCase>(
+      () => _i658.GetUserDataUseCase(gh<_i652.ProfileMainRepo>()),
+    );
+    gh.factory<_i971.ChangePasswordApiClient>(
+      () => _i971.ChangePasswordApiClient(gh<_i361.Dio>()),
     );
     gh.factory<_i478.ForgetPasswordApiClient>(
       () => _i478.ForgetPasswordApiClient(gh<_i361.Dio>()),
@@ -130,11 +161,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i373.ProductDetailsApiClient>(
       () => _i373.ProductDetailsApiClient(gh<_i361.Dio>()),
     );
-    gh.singleton<_i326.LocalLoginDataSource>(
-      () => _i654.LoginLocalDataSourceImpl(
-        secureStorageService: gh<_i11.SecureStorageService>(),
-      ),
-    );
     gh.factory<_i842.RemoteLoginDataSource>(
       () => _i793.RemoteLoginDataSourceImpl(gh<_i32.LoginApiClient>()),
     );
@@ -143,9 +169,20 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i478.ForgetPasswordApiClient>(),
       ),
     );
+    gh.factory<_i390.ChangePasswordDataSource>(
+      () => _i300.ChangePasswordDataSourceImpl(
+        gh<_i971.ChangePasswordApiClient>(),
+      ),
+    );
     gh.factory<_i1058.BestSellerRemoteDataSource>(
       () =>
           _i920.BestSellerRemoteDataSourceImpl(gh<_i113.BestSellerApiClient>()),
+    );
+    gh.factory<_i784.ChangePasswordRepo>(
+      () => _i960.ChangePasswordRepoImpl(gh<_i390.ChangePasswordDataSource>()),
+    );
+    gh.factory<_i780.ChangePasswordUseCase>(
+      () => _i780.ChangePasswordUseCase(gh<_i784.ChangePasswordRepo>()),
     );
     gh.factory<_i176.LoginRepository>(
       () => _i470.LoginRepositoryImpl(
@@ -156,6 +193,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i613.RegisterDataSource>(
       () => _i325.RegisterDataSourceImpl(
         registerApiClient: gh<_i517.RegisterApiClient>(),
+      ),
+    );
+    gh.factory<_i81.ChangePasswordCubit>(
+      () => _i81.ChangePasswordCubit(
+        gh<_i780.ChangePasswordUseCase>(),
+        gh<_i11.SecureStorageService>(),
       ),
     );
     gh.factory<_i924.ForgetPasswordRepo>(

@@ -1,5 +1,6 @@
 import 'package:flower_app/config/di/di.dart';
 import 'package:flower_app/core/constants/app_routes_constant.dart';
+import 'package:flower_app/features/auth/change_password/presentation/screens/change_password_screen.dart';
 import 'package:flower_app/features/auth/login/presentation/cubit/login_cubit.dart';
 import 'package:flower_app/features/auth/login/presentation/pages/login_screen.dart';
 import 'package:flower_app/features/auth/register/presentation/pages/register_screen.dart';
@@ -65,6 +66,11 @@ abstract class AppRouter {
           final email = state.extra is String ? state.extra as String : '';
           return ResetPasswordView(email: email);
         },
+      ),
+       GoRoute(
+        path: AppRoutesConstants.changePasswordRoute,
+        name: AppRoutesConstants.changePasswordRoute,
+        builder: (context, state) => const ChangePasswordScreen(),
       ),
     ],
   );

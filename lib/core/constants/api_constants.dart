@@ -20,4 +20,7 @@ class ApiConstants {
   //------------------------ CATEGORIES ------------------------//
   static const String getAllOccasions = "occasions";
   static const String loginEndPoint = 'auth/signin';
+
+  //-------------------------forget password--------------------//
+  static const String changePasswordEndPoint = 'auth/change-password';
 }

@@ -5,6 +5,7 @@ abstract class AppRoutesConstants {
   static const String forgetPasswordRoute = '/forget_password';
   static const String verifyOtpRoute = '/verify_otp';
   static const String resetPasswordRoute = '/reset_password';
+  static const String changePasswordRoute = '/change_password';
 
   //--------------- HOME ROUTES -----------------//
   static const String homeRoute = '/home';

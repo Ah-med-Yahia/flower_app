@@ -1,5 +1,5 @@
 class AppTextConstants {
-    AppTextConstants._();
+  AppTextConstants._();
   static const String home = "Home";
   static const String categories = "Categories";
   static const String cart = "Cart";
@@ -28,7 +28,8 @@ class AppTextConstants {
   static const String alreadyHaveAccount = "Already have an account?";
   static const String login = "Login";
   static const String invalidPhoneNumber = "Invalid phone number";
-  static const String accountCreatedSuccessfully = "Account created successfully";
+  static const String accountCreatedSuccessfully =
+      "Account created successfully";
   static const String addToCart = "Add to Cart";
   static const String status = "Status: ";
   static const String inStock = "in stock";
@@ -37,6 +38,20 @@ class AppTextConstants {
   static const String description = "Description:";
   static const String egp = "EGP";
   static const String loginSuccess = "Login Successful";
+  static const String passwordUpdatedSuccessfully =
+      "Password Updated Successfully!";
+  static const String failedToUpdatePassword = "Failed To Update Password!";
+  static const String resetPassword = "Reset Password";
+  static const String update = "Update";
+  static const String newPasswordSameAsOld =
+      "New password must be different from current password";
+  static const String pleaseConfirmYourNewPassword =
+      "Please confirm your new password";
+
+  static const String pleaseEnterYourCurrentPassword =
+      "Please enter your current password";
+  static const String pleaseEnterYourNewPassword =
+      "Please enter your new password";
 
   //------------------- HOME PAGE -------------------//
   static const String bestSeller = 'Best seller';
@@ -71,4 +86,8 @@ class AppTextConstants {
   static const String emailFocusError = 'This Email is not valid';
   static const String confirmBtn = 'Confirm';
   static const String otpResentSuccess = 'OTP resent successfully';
+  static const String currentPassword = 'current password';
+  static const String newPassword = 'new password';
+
+  static const String passwordsDoNotMatch = "Passwords do not match";
 }
