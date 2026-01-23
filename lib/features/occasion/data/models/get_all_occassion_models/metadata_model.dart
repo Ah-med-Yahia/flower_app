@@ -4,9 +4,13 @@ part 'metadata_model.g.dart';
 
 @JsonSerializable()
 class MetadataModel {
+  @JsonKey(name: 'currentPage')
   final int currentPage;
+  @JsonKey(name: 'limit')
   final int limit;
+  @JsonKey(name: 'totalPages')
   final int totalPages;
+  @JsonKey(name: 'totalItems')
   final int totalItems;
 
   MetadataModel({

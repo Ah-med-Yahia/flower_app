@@ -65,6 +65,17 @@ import '../../features/auth/register/domain/usecases/register_use_case.dart'
     as _i545;
 import '../../features/auth/register/presentation/cubit/register_cubit.dart'
     as _i805;
+import '../../features/occasion/api/api_client/occasion_api_client.dart'
+    as _i425;
+import '../../features/occasion/api/datasources_impl/remote_occasion_data_source_impl.dart'
+    as _i181;
+import '../../features/occasion/data/datasources/remote_occasion_data_source.dart'
+    as _i948;
+import '../../features/occasion/data/repos/occasion_repo_impl.dart' as _i315;
+import '../../features/occasion/domain/repos/occasion_repo_contract.dart'
+    as _i31;
+import '../../features/occasion/domain/usecases/get_all_occasion_usecase.dart'
+    as _i401;
 import '../../features/product/best_seller/api/api_client/best_seller_api_client.dart'
     as _i113;
 import '../../features/product/best_seller/api/datasource/remote/best_seller_remote_data_source_impl.dart'
@@ -117,6 +128,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i1059.CacheHelper>(
       () => _i1059.CacheHelper(gh<_i460.SharedPreferences>()),
     );
+    gh.lazySingleton<_i425.OccasionApiClient>(
+      () => _i425.OccasionApiClient(gh<_i361.Dio>()),
+    );
     gh.factory<_i478.ForgetPasswordApiClient>(
       () => _i478.ForgetPasswordApiClient(gh<_i361.Dio>()),
     );
@@ -147,6 +161,12 @@ extension GetItInjectableX on _i174.GetIt {
       () =>
           _i920.BestSellerRemoteDataSourceImpl(gh<_i113.BestSellerApiClient>()),
     );
+    gh.factory<_i31.OccasionRepoContract>(
+      () => _i315.OccasionRepoImpl(gh<_i948.RemoteOccasionDataSource>()),
+    );
+    gh.factory<_i181.RemoteOccasionDataSourceImpl>(
+      () => _i181.RemoteOccasionDataSourceImpl(gh<_i425.OccasionApiClient>()),
+    );
     gh.factory<_i176.LoginRepository>(
       () => _i470.LoginRepositoryImpl(
         gh<_i842.RemoteLoginDataSource>(),
@@ -176,6 +196,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i545.RegisterUseCase>(
       () => _i545.RegisterUseCase(gh<_i57.RegisterRepository>()),
+    );
+    gh.factory<_i401.GetAllOccasionUsecase>(
+      () => _i401.GetAllOccasionUsecase(gh<_i31.OccasionRepoContract>()),
     );
     gh.factory<_i198.GetBestSellerUseCase>(
       () => _i198.GetBestSellerUseCase(gh<_i892.BestSellerRepo>()),

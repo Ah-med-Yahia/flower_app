@@ -1,6 +1,6 @@
 import 'package:flower_app/features/occasion/domain/entities/occasion_entity.dart';
 
-class GetAllOccasionEntity {
+class GetOccasionListEntity {
   final List<OccasionEntity>? occasions;
-  GetAllOccasionEntity({required this.occasions});
+  GetOccasionListEntity({required this.occasions});
 }
