@@ -67,6 +67,18 @@ import '../../features/auth/register/presentation/cubit/register_cubit.dart'
     as _i805;
 import '../../features/categories/api/api_service/categories_api_client.dart'
     as _i199;
+import '../../features/categories/api/datasources_impl/remote_categories_data_source_impl.dart'
+    as _i425;
+import '../../features/categories/data/datasources/remote_categories_data_source.dart'
+    as _i81;
+import '../../features/categories/data/repos/categories_repo_impl.dart'
+    as _i337;
+import '../../features/categories/domain/repos/categories_repo_contract.dart'
+    as _i761;
+import '../../features/categories/domain/usecases/get_all_categories_usecase.dart'
+    as _i943;
+import '../../features/categories/domain/usecases/get_categories_products_usecase.dart'
+    as _i290;
 import '../../features/occasion/api/api_client/occasion_api_client.dart'
     as _i425;
 import '../../features/occasion/api/datasources_impl/remote_occasion_data_source_impl.dart'
@@ -192,6 +204,10 @@ extension GetItInjectableX on _i174.GetIt {
       () =>
           _i920.BestSellerRemoteDataSourceImpl(gh<_i113.BestSellerApiClient>()),
     );
+    gh.factory<_i81.RemoteCategoriesDataSource>(
+      () =>
+          _i425.RemoteCategoriesDataSourceImpl(gh<_i199.CategoriesApiClient>()),
+    );
     gh.factory<_i31.OccasionRepoContract>(
       () => _i315.OccasionRepoImpl(gh<_i948.RemoteOccasionDataSource>()),
     );
@@ -222,6 +238,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i892.BestSellerRepo>(
       () => _i20.BestSellerRepoImpl(gh<_i1058.BestSellerRemoteDataSource>()),
     );
+    gh.factory<_i761.CategoriesRepoContract>(
+      () => _i337.CategoriesRepoImpl(gh<_i81.RemoteCategoriesDataSource>()),
+    );
     gh.factory<_i57.RegisterRepository>(
       () => _i200.RegisterRepositoryImpl(gh<_i613.RegisterDataSource>()),
     );
@@ -230,6 +249,13 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i545.RegisterUseCase>(
       () => _i545.RegisterUseCase(gh<_i57.RegisterRepository>()),
+    );
+    gh.factory<_i943.GetAllCategoriesUsecase>(
+      () => _i943.GetAllCategoriesUsecase(gh<_i761.CategoriesRepoContract>()),
+    );
+    gh.factory<_i290.GetCategoryProductsUsecase>(
+      () =>
+          _i290.GetCategoryProductsUsecase(gh<_i761.CategoriesRepoContract>()),
     );
     gh.factory<_i401.GetAllOccasionUsecase>(
       () => _i401.GetAllOccasionUsecase(gh<_i31.OccasionRepoContract>()),
