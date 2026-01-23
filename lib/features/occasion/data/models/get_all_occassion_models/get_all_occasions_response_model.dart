@@ -8,20 +8,23 @@ part 'get_all_occasions_response_model.g.dart';
 @JsonSerializable()
 class GetAllOccasionsResponseModel {
   @JsonKey(name: 'message')
-  final String message;
+  final String? message;
+
   @JsonKey(name: 'metadata')
-  final MetadataModel metadata;
-  @JsonKey(name: 'occasions')
+  final MetadataModel? metadata;
+
+  @JsonKey(name: 'occasions', defaultValue: [])
   final List<OccasionModel> occasions;
 
   GetAllOccasionsResponseModel({
-    required this.message,
-    required this.metadata,
+    this.message,
+    this.metadata,
     required this.occasions,
   });
 
   factory GetAllOccasionsResponseModel.fromJson(Map<String, dynamic> json) =>
       _$GetAllOccasionsResponseModelFromJson(json);
+
   Map<String, dynamic> toJson() => _$GetAllOccasionsResponseModelToJson(this);
 
   GetOccasionListEntity toEntity() {

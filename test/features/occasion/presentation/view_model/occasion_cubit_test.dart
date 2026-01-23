@@ -22,9 +22,7 @@ void main() {
 
   setUpAll(() {
     mockGetAllOccasionUsecase = MockGetAllOccasionUsecase();
-    occasionCubit = OccasionCubit(
-      getAllOccasionUsecase: mockGetAllOccasionUsecase,
-    );
+    occasionCubit = OccasionCubit(mockGetAllOccasionUsecase);
   });
 
   tearDownAll(() {
