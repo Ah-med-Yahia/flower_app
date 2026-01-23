@@ -1,11 +1,11 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flower_app/config/error_handler/error_model.dart';
 import 'package:flower_app/core/constants/errors_constants.dart';
+import 'package:flower_app/features/occasion/domain/entities/get_all_occasions_list_entity.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/error_handler/error_handler.dart';
-import 'package:flower_app/features/occasion/domain/entities/get_all_occasion_entity.dart';
 import 'package:flower_app/features/occasion/domain/entities/occasion_entity.dart';
 import 'package:flower_app/features/occasion/domain/usecases/get_all_occasion_usecase.dart';
 import 'package:flower_app/features/occasion/presentation/view_model/occasion_cubit.dart';
@@ -72,7 +72,7 @@ void _verifyGetAllOccasionsSuccess(
   OccasionCubit occasionCubit,
   MockGetAllOccasionUsecase mockGetAllOccasionUsecase,
 ) {
-  final occasionEntityMockResponse = GetAllOccasionEntity(
+  final occasionEntityMockResponse = GetOccasionListEntity(
     occasions: [
       OccasionEntity(id: '1', name: 'Birthday'),
       OccasionEntity(id: '2', name: 'Anniversary'),
