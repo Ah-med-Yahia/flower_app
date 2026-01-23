@@ -10,7 +10,7 @@ extension OccasionMapper on OccasionDto {
       image: image,
       createdAt: createdAt,
       updatedAt: updatedAt,
-      isSuperAdmin: isSuperAdmin,
+      isSuperAdmin: isSuperAdmin ?? false,
     );
   }
 }

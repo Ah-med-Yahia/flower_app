@@ -3,13 +3,13 @@ import 'package:flower_app/config/error_handler/error_handler.dart';
 import 'package:flower_app/features/home/data/data_sources/remote/home_screen_data_source.dart';
 import 'package:flower_app/features/home/data/models/category_dto.dart';
 import 'package:flower_app/features/home/data/models/home_response_dto.dart';
+import 'package:flower_app/features/home/data/models/home_screen_product_dto.dart';
 import 'package:flower_app/features/home/data/models/occasion_dto.dart';
 import 'package:flower_app/features/home/data/repo/home_screen_repo_impl.dart';
 import 'package:flower_app/features/home/domain/entities/category_entity.dart';
 import 'package:flower_app/features/home/domain/entities/home_response_entity.dart';
 import 'package:flower_app/features/home/domain/entities/occasion_entity.dart';
 import 'package:flower_app/features/home/domain/entities/product_entity.dart';
-import 'package:flower_app/features/product_details/data/models/product_dto.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -59,7 +59,7 @@ void main() {
         ),
       ],
       bestSeller: [
-        ProductDto(
+        HomeScreenProductDto(
           id: '101',
           title: 'Red Rose Bouquet',
           slug: 'red-rose-bouquet',
@@ -81,9 +81,8 @@ void main() {
           sold: 100,
           rateAvg: 4.5,
           rateCount: 25,
-          isInWishlist: false,
         ),
-        ProductDto(
+        HomeScreenProductDto(
           id: '102',
           title: 'White Lily Arrangement',
           slug: 'white-lily-arrangement',
@@ -102,9 +101,8 @@ void main() {
           sold: 75,
           rateAvg: 4.8,
           rateCount: 40,
-          isInWishlist: false,
         ),
-        ProductDto(
+        HomeScreenProductDto(
           id: '103',
           title: 'Sunflower Delight',
           slug: 'sunflower-delight',
@@ -127,7 +125,6 @@ void main() {
           sold: 150,
           rateAvg: 4.7,
           rateCount: 60,
-          isInWishlist: false,
         ),
       ],
       occasions: [

@@ -23,7 +23,7 @@ class CategoryDto {
   final DateTime updatedAt;
 
   @JsonKey(name: 'isSuperAdmin')
-  final bool isSuperAdmin;
+  final bool? isSuperAdmin;
 
   CategoryDto({
     required this.id,

@@ -2,8 +2,8 @@ import 'package:flower_app/config/error_handler/error_handler.dart';
 import 'package:flower_app/features/home/api/data_sources/remote/home_screen_data_source_impl.dart';
 import 'package:flower_app/features/home/data/models/category_dto.dart';
 import 'package:flower_app/features/home/data/models/home_response_dto.dart';
+import 'package:flower_app/features/home/data/models/home_screen_product_dto.dart';
 import 'package:flower_app/features/home/data/models/occasion_dto.dart';
-import 'package:flower_app/features/product_details/data/models/product_dto.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/features/home/api/api_clinet/home_screen_api_client.dart';
@@ -38,7 +38,7 @@ void main() {
         ),
       ],
       bestSeller: [
-        ProductDto(
+        HomeScreenProductDto(
           id: '1',
           title: 'Test Product',
           slug: 'test-product',
@@ -57,7 +57,6 @@ void main() {
           sold: 5,
           rateAvg: 4.5,
           rateCount: 10,
-          isInWishlist: false,
         ),
       ],
       occasions: [

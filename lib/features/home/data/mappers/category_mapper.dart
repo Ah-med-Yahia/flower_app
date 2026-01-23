@@ -10,7 +10,7 @@ extension CategoryMapper on CategoryDto {
       image: image,
       createdAt: createdAt,
       updatedAt: updatedAt,
-      isSuperAdmin: isSuperAdmin,
+      isSuperAdmin: isSuperAdmin ?? false,
     );
   }
 }

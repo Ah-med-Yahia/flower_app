@@ -50,7 +50,7 @@ class HomeScreenProductDto {
   final int v;
 
   @JsonKey(name: 'isSuperAdmin')
-  final bool isSuperAdmin;
+  final bool? isSuperAdmin;
 
   @JsonKey(name: 'sold')
   final int? sold;

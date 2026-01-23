@@ -1,8 +1,9 @@
 class AppTextConstants {
-    AppTextConstants._();
+  AppTextConstants._();
   static const String home = "Home";
   static const String categories = "Categories";
   static const String cart = "Cart";
+  static const String occasion = "Occasion";
   static const String profile = "Profile";
   static const String failedToRegister =
       "Failed to register. Please try again.";
@@ -28,7 +29,8 @@ class AppTextConstants {
   static const String alreadyHaveAccount = "Already have an account?";
   static const String login = "Login";
   static const String invalidPhoneNumber = "Invalid phone number";
-  static const String accountCreatedSuccessfully = "Account created successfully";
+  static const String accountCreatedSuccessfully =
+      "Account created successfully";
   static const String addToCart = "Add to Cart";
   static const String status = "Status: ";
   static const String inStock = "in stock";
@@ -44,6 +46,10 @@ class AppTextConstants {
       'Bloom with our exquisite best sellers';
   static const String noProductsAvailable = 'No products available';
   static const String retry = 'Retry';
+  static const String deliverTo = 'Deliver to';
+  static const String search = 'Search';
+  static const String flowery = 'Flowery';
+  static const String viewAll = 'View All';
 
   //------------------- BEST SELLER PAGE -------------------//
   static const String egy = 'EGP';

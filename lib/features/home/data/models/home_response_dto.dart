@@ -1,6 +1,6 @@
 import 'package:flower_app/features/home/data/models/category_dto.dart';
+import 'package:flower_app/features/home/data/models/home_screen_product_dto.dart';
 import 'package:flower_app/features/home/data/models/occasion_dto.dart';
-import 'package:flower_app/features/product_details/data/models/product_dto.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'home_response_dto.g.dart';
@@ -14,7 +14,7 @@ class HomeResponseDto {
   final List<CategoryDto> categories;
 
   @JsonKey(name: 'bestSeller')
-  final List<ProductDto> bestSeller;
+  final List<HomeScreenProductDto> bestSeller;
 
   @JsonKey(name: 'occasions')
   final List<OccasionDto> occasions;

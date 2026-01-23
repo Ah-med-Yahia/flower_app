@@ -1,7 +1,7 @@
+import 'package:flower_app/features/home/data/models/home_screen_product_dto.dart';
 import 'package:flower_app/features/home/domain/entities/product_entity.dart';
-import 'package:flower_app/features/product_details/data/models/product_dto.dart';
 
-extension ProductDtoMapper on ProductDto {
+extension ProductDtoMapper on HomeScreenProductDto {
   ProductEntity toEntity() {
     return ProductEntity(
       id: id,
@@ -18,7 +18,7 @@ extension ProductDtoMapper on ProductDto {
       createdAt: createdAt,
       updatedAt: updatedAt,
       v: v,
-      isSuperAdmin: isSuperAdmin,
+      isSuperAdmin: isSuperAdmin ?? false,
       rateAvg: rateAvg,
       rateCount: rateCount,
     );
