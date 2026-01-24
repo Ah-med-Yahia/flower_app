@@ -39,7 +39,6 @@ abstract class DioModule {
           if (error.response?.statusCode == 401) {
             // Clear the invalid token from secure storage
             await secureStorageService.clearAuthTokens();
-            print('Invalid token detected. User needs to login again.');
           }
           return handler.next(error);
         },
