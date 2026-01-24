@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:developer' as developer;
-
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/base_state/base_state.dart';
 import 'package:flower_app/config/cache_modules/secure_storage_module.dart';
@@ -81,7 +79,9 @@ class ChangePasswordCubit extends Cubit<ChangePasswordStates> {
   Future<void> _updatePawssord() async {
     if (state.oldPassword.trim().isEmpty) {
       _streamController.add(
-        ShowErrorIntent(message: AppTextConstants.pleaseEnterYourCurrentPassword),
+        ShowErrorIntent(
+          message: AppTextConstants.pleaseEnterYourCurrentPassword,
+        ),
       );
       return;
     }
@@ -102,18 +102,14 @@ class ChangePasswordCubit extends Cubit<ChangePasswordStates> {
 
     if (state.newPassword.trim() != state.confirmPassword.trim()) {
       _streamController.add(
-        ShowErrorIntent(
-          message: AppTextConstants.passwordsDoNotMatch,
-        ),
+        ShowErrorIntent(message: AppTextConstants.passwordsDoNotMatch),
       );
       return;
     }
 
     if (state.oldPassword.trim() == state.newPassword.trim()) {
       _streamController.add(
-        ShowErrorIntent(
-          message: AppTextConstants.newPasswordSameAsOld,
-        ),
+        ShowErrorIntent(message: AppTextConstants.newPasswordSameAsOld),
       );
       return;
     }
@@ -125,25 +121,13 @@ class ChangePasswordCubit extends Cubit<ChangePasswordStates> {
       newPassword: state.newPassword.trim(),
     );
 
-    developer.log('Change password request: $request');
-
     final response = await _passwordUseCase(request);
 
     response.map(
       success: (response) async {
-        developer.log('Password updated successfully');
-
         if (response.data.token != null && response.data.token!.isNotEmpty) {
-          final saveResult = await _secureStorageService.saveAuthTokens(
+           await _secureStorageService.saveAuthTokens(
             accessToken: response.data.token!,
-          );
-          saveResult.map(
-            success: (result) {
-              developer.log('New token saved to secure storage');
-            },
-            failure: (error) {
-              developer.log('Failed to save new token: ${error.errorHandler.message}');
-            },
           );
         }
 
@@ -154,9 +138,6 @@ class ChangePasswordCubit extends Cubit<ChangePasswordStates> {
         );
       },
       failure: (errorHandler) {
-        developer.log(
-          'Password update failed: ${errorHandler.errorHandler.message}, Code: ${errorHandler.errorHandler.code}',
-        );
         _streamController.add(
           ShowErrorIntent(message: errorHandler.errorHandler.message),
         );

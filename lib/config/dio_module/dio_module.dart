@@ -3,6 +3,8 @@ import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/cache_modules/secure_storage_module.dart';
 import 'package:flower_app/core/constants/api_constants.dart';
 import 'package:flower_app/core/constants/cache_constants.dart';
+import 'package:flower_app/core/theme/app_colors.dart';
+import 'package:flower_app/core/ui_utils/ui_utils.dart';
 import 'package:injectable/injectable.dart';
 
 @module
@@ -29,7 +31,11 @@ abstract class DioModule {
               }
             },
             failure: (error) {
-              // Token not found or error reading, continue without token
+              UIUtils.showMessage(
+                error.errorHandler.message,
+                backGroundColor: AppColors.red,
+                textColor: AppColors.background,
+              );
             },
           );
           return handler.next(options);
@@ -39,7 +45,6 @@ abstract class DioModule {
           if (error.response?.statusCode == 401) {
             // Clear the invalid token from secure storage
             await secureStorageService.clearAuthTokens();
-            print('Invalid token detected. User needs to login again.');
           }
           return handler.next(error);
         },
