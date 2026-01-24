@@ -65,6 +65,11 @@ import '../../features/auth/register/domain/usecases/register_use_case.dart'
     as _i545;
 import '../../features/auth/register/presentation/cubit/register_cubit.dart'
     as _i805;
+import '../../features/cart/api/api_clients/cart_api_client.dart' as _i632;
+import '../../features/cart/api/data_sources/cart_remote_data_source_impl.dart'
+    as _i866;
+import '../../features/cart/data/datasources/cart_remote_data_source.dart'
+    as _i607;
 import '../../features/product/best_seller/api/api_client/best_seller_api_client.dart'
     as _i113;
 import '../../features/product/best_seller/api/datasource/remote/best_seller_remote_data_source_impl.dart'
@@ -93,6 +98,10 @@ import '../../features/product_details/domain/use_cases/get_product_details_usec
     as _i888;
 import '../../features/product_details/presentaion/view_model/product_details_cubit.dart'
     as _i986;
+import '../../features/profile/profile_main/domain/repos/profile_main_repo.dart'
+    as _i652;
+import '../../features/profile/profile_main/domain/use_cases/get_user_data_use_case.dart'
+    as _i658;
 import '../cache_modules/secure_storage_module.dart' as _i11;
 import '../cache_modules/shared_preferences_module.dart' as _i1059;
 import '../dio_module/dio_module.dart' as _i773;
@@ -124,6 +133,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i517.RegisterApiClient>(
       () => _i517.RegisterApiClient(gh<_i361.Dio>()),
     );
+    gh.factory<_i632.CartApiClient>(() => _i632.CartApiClient(gh<_i361.Dio>()));
     gh.factory<_i113.BestSellerApiClient>(
       () => _i113.BestSellerApiClient(gh<_i361.Dio>()),
     );
@@ -143,9 +153,15 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i478.ForgetPasswordApiClient>(),
       ),
     );
+    gh.factory<_i658.GetUserDataUseCase>(
+      () => _i658.GetUserDataUseCase(gh<_i652.ProfileMainRepo>()),
+    );
     gh.factory<_i1058.BestSellerRemoteDataSource>(
       () =>
           _i920.BestSellerRemoteDataSourceImpl(gh<_i113.BestSellerApiClient>()),
+    );
+    gh.factory<_i607.CartRemoteDataSource>(
+      () => _i866.CartRemoteDataSourceImpl(gh<_i632.CartApiClient>()),
     );
     gh.factory<_i176.LoginRepository>(
       () => _i470.LoginRepositoryImpl(
