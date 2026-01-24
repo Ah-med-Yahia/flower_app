@@ -12,6 +12,7 @@ import '../../features/auth/forget_password/presentation/views/forget_password_v
 import '../../features/auth/forget_password/presentation/views/reset_password_view/reset_password_view.dart';
 import '../../features/auth/forget_password/presentation/views/verify_otp_view/verify_otp_code_view.dart';
 import '../../features/product/best_seller/presentation/views/view/best_seller_view.dart';
+import 'package:flower_app/features/occasion/presentation/views/screens/occasion_screen.dart';
 
 abstract class AppRouter {
   static GoRouter router = GoRouter(
@@ -66,6 +67,10 @@ abstract class AppRouter {
           final email = state.extra is String ? state.extra as String : '';
           return ResetPasswordView(email: email);
         },
+      ),
+      GoRoute(
+        path: AppRoutesConstants.occasionScreen,
+        builder: (context, state) => OccasionScreen(),
       ),
        GoRoute(
         path: AppRoutesConstants.changePasswordRoute,

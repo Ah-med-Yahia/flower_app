@@ -29,6 +29,7 @@ class AppTextConstants {
   static const String login = "Login";
   static const String invalidPhoneNumber = "Invalid phone number";
   static const String accountCreatedSuccessfully =
+     
       "Account created successfully";
   static const String addToCart = "Add to Cart";
   static const String status = "Status: ";
@@ -90,4 +91,13 @@ class AppTextConstants {
   static const String newPassword = 'new password';
 
   static const String passwordsDoNotMatch = "Passwords do not match";
+
+  //-------------------------- PROFILE PAGE --------------------------//
+  static const String defaultAvatarUrl =
+      'https://flower.elevateegy.com/uploads/default-profile.png';
+  static const String occasion = 'Occasion';
+  static const String bloomExquisiteBestSellers =
+      'Bloom exquisite best sellers';
+  static const String noOccasionsAvailable = 'No occasions available';
+  static const String loading = 'Loading...';
 }

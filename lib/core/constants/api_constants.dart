@@ -23,4 +23,7 @@ class ApiConstants {
 
   //-------------------------forget password--------------------//
   static const String changePasswordEndPoint = 'auth/change-password';
+
+  //------------------------ PROFILE ------------------------//
+  static const String profileDataEndPoint = 'auth/profile-data';
 }
