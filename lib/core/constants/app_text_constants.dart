@@ -3,7 +3,11 @@ class AppTextConstants {
   static const String home = "Home";
   static const String categories = "Categories";
   static const String cart = "Cart";
+  static const String occasion = "Occasion";
   static const String profile = "Profile";
+  static const String logout = "Logout";
+  static const String confirmLogout = 'Confirm logout!!';
+  static const String cancel = 'Cancel';
   static const String failedToRegister =
       "Failed to register. Please try again.";
   static const String signUp = "Sign Up";
@@ -60,6 +64,13 @@ class AppTextConstants {
       'Bloom with our exquisite best sellers';
   static const String noProductsAvailable = 'No products available';
   static const String retry = 'Retry';
+  static const String deliverTo = 'Deliver to';
+  static const String search = 'Search';
+  static const String flowery = 'Flowery';
+  static const String viewAll = 'View All';
+  static const String flowr = 'Flower';
+  static const String defaultImage =
+      'https://flower.elevateegy.com/uploads/66c36d5d-c067-46d9-b339-d81be57e0149-image_one.pngs';
 
   //------------------- BEST SELLER PAGE -------------------//
   static const String egy = 'EGP';
@@ -95,7 +106,6 @@ class AppTextConstants {
   //-------------------------- PROFILE PAGE --------------------------//
   static const String defaultAvatarUrl =
       'https://flower.elevateegy.com/uploads/default-profile.png';
-  static const String occasion = 'Occasion';
   static const String bloomExquisiteBestSellers =
       'Bloom exquisite best sellers';
   static const String noOccasionsAvailable = 'No occasions available';
