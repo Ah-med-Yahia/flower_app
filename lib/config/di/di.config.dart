@@ -79,6 +79,8 @@ import '../../features/categories/domain/usecases/get_all_categories_usecase.dar
     as _i943;
 import '../../features/categories/domain/usecases/get_categories_products_usecase.dart'
     as _i290;
+import '../../features/categories/presentation/view_model/categories_cubit.dart'
+    as _i960;
 import '../../features/occasion/api/api_client/occasion_api_client.dart'
     as _i425;
 import '../../features/occasion/api/datasources_impl/remote_occasion_data_source_impl.dart'
@@ -153,7 +155,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i11.SecureStorageService>(
       () => _i11.SecureStorageService(),
     );
-    gh.factory<_i141.OccasionCubit>(() => _i141.OccasionCubit(gh<dynamic>()));
     gh.lazySingleton<_i1059.CacheHelper>(
       () => _i1059.CacheHelper(gh<_i460.SharedPreferences>()),
     );
@@ -271,6 +272,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i316.LoginUseCase>(
       () => _i316.LoginUseCase(gh<_i176.LoginRepository>()),
     );
+    gh.factory<_i960.CategoriesCubit>(
+      () => _i960.CategoriesCubit(
+        gh<_i943.GetAllCategoriesUsecase>(),
+        gh<_i290.GetCategoryProductsUsecase>(),
+      ),
+    );
     gh.factory<_i737.ForgetPasswordUseCase>(
       () => _i737.ForgetPasswordUseCase(gh<_i924.ForgetPasswordRepo>()),
     );
@@ -290,6 +297,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i888.GetProductDetailsUsecase(
         gh<_i338.ProductDetailsRepoContract>(),
       ),
+    );
+    gh.factory<_i141.OccasionCubit>(
+      () => _i141.OccasionCubit(gh<_i401.GetAllOccasionUsecase>()),
     );
     gh.factory<_i126.LoginCubit>(
       () => _i126.LoginCubit(gh<_i316.LoginUseCase>()),

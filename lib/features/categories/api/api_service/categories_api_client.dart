@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/features/categories/data/models/get_products_models/category_product_response.dart';
 import 'package:injectable/injectable.dart';
 import 'package:flower_app/core/constants/api_constants.dart';
@@ -17,6 +18,6 @@ abstract class CategoriesApiClient {
 
   @GET(ApiConstants.getCategoryProducts)
   Future<CategoryProductResponse> getCategoryProducts({
-    @Path("id") required String id,
+    @Path(AppTextConstants.id) required String id,
   });
 }
