@@ -139,7 +139,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i11.SecureStorageService>(
       () => _i11.SecureStorageService(),
     );
-    gh.factory<_i141.OccasionCubit>(() => _i141.OccasionCubit(gh<dynamic>()));
+    gh.factory<_i141.OccasionCubit>(
+      () => _i141.OccasionCubit(gh<_i425.OccasionApiClient>()),
+    );
     gh.lazySingleton<_i1059.CacheHelper>(
       () => _i1059.CacheHelper(gh<_i460.SharedPreferences>()),
     );

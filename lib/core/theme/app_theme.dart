@@ -83,5 +83,8 @@ abstract class AppTheme {
     //------------ Icon Theme -----------------//
     iconTheme: IconThemeData(color: AppColors.background, size: 24),
     //------------ PIN CODE INPUT Theme -----------------//
+    radioTheme: RadioThemeData(
+      fillColor: WidgetStateProperty.all(AppColors.primary),
+    ),
   );
 }

@@ -16,4 +16,5 @@ abstract class AppColors {
   static const Color transparent = Color(0x00000000);
   static const Color black = Colors.black;
   static const Color iconGrey = Color(0xff7D7D7D);
+  static const Color darkGray = Color(0xff535353);
 }

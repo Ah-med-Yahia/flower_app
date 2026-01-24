@@ -81,4 +81,7 @@ class AppTextConstants {
       'Bloom exquisite best sellers';
   static const String noOccasionsAvailable = 'No occasions available';
   static const String loading = 'Loading...';
+  static const String editProfile = 'Edit Profile';
+  static const String updateProfile = 'Update';
+  static const String change = 'Change';
 }
