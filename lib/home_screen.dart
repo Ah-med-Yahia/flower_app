@@ -23,27 +23,6 @@ class _HomeScreenState extends State<HomeScreen> {
     HomeNavTab.profile: const ProfileTap(),
   };
 
-  List<BottomNavigationBarItem> createNabBerItems() {
-    return const[
-      BottomNavigationBarItem(
-        icon: Icon(Icons.home_outlined),
-        label: AppTextConstants.home,
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.category_outlined),
-        label: AppTextConstants.categories,
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.shopping_cart_outlined),
-        label: AppTextConstants.cart,
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.person_outline),
-        label: AppTextConstants.profile,
-      ),
-    ];
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +40,24 @@ class _HomeScreenState extends State<HomeScreen> {
         currentIndex: _currentTab.index,
         selectedItemColor: AppColors.primary,
         unselectedItemColor: AppColors.iconGrey,
-        items: createNabBerItems(),
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_outlined),
+            label: AppTextConstants.home,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.category_outlined),
+            label: AppTextConstants.categories,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart_outlined),
+            label: AppTextConstants.cart,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_outline),
+            label: AppTextConstants.profile,
+          ),
+        ],
       ),
       body: _taps[_currentTab],
     );
