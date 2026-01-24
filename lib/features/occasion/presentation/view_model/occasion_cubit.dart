@@ -10,8 +10,8 @@ import 'package:flower_app/features/occasion/presentation/view_model/occasion_st
 @injectable
 class OccasionCubit extends Cubit<OccasionState> {
   final GetAllOccasionUsecase _getAllOccasionUsecase;
-  OccasionCubit(_getAllOccasionUsecase)
-    : _getAllOccasionUsecase = _getAllOccasionUsecase,
+  OccasionCubit(GetAllOccasionUsecase getAllOccasionUsecase)
+    : _getAllOccasionUsecase = getAllOccasionUsecase,
       super(OccasionState(occasionState: BaseState<GetOccasionListEntity>()));
   void onEvent(OccasionEvent event) {
     switch (event) {
