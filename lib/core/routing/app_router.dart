@@ -11,7 +11,6 @@ import '../../features/auth/forget_password/presentation/views/forget_password_v
 import '../../features/auth/forget_password/presentation/views/reset_password_view/reset_password_view.dart';
 import '../../features/auth/forget_password/presentation/views/verify_otp_view/verify_otp_code_view.dart';
 import '../../features/product/best_seller/presentation/views/view/best_seller_view.dart';
-import 'package:flower_app/home_screen.dart';
 import 'package:flower_app/features/occasion/presentation/views/screens/occasion_screen.dart';
 
 abstract class AppRouter {
