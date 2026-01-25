@@ -28,6 +28,7 @@ class OccasionTab extends StatelessWidget {
               color: isSelected
                   ? AppColors.primary
                   : Theme.of(context).textTheme.titleMedium?.color,
+              fontSize: MediaQuery.of(context).size.width * 0.04,
             ),
           ),
           const SizedBox(height: 4),
