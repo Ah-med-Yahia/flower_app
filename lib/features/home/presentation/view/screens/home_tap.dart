@@ -23,7 +23,14 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeTap extends StatelessWidget {
-  const HomeTap({super.key});
+  final VoidCallback onNavigateToCategories;
+  final void Function(String categoryId) onNavigateSelectedToCategory;
+
+  const HomeTap({
+    super.key,
+    required this.onNavigateToCategories,
+    required this.onNavigateSelectedToCategory,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +54,7 @@ class HomeTap extends StatelessWidget {
                 context.pushNamed(AppRoutesConstants.bestSellerRoute);
 
               case NavigateToCategoryEvent():
+                onNavigateSelectedToCategory(nav.categoryId!);
               case NavigateToOccasionEvent():
                 context.pushNamed(AppRoutesConstants.occasionScreen);
             }
@@ -113,7 +121,7 @@ class HomeTap extends StatelessWidget {
                               fontSize: 20,
                             ),
                           ),
-                          ViewAllButton(onPressed: () {}),
+                          ViewAllButton(onPressed: onNavigateToCategories),
                         ],
                       ),
                       const SizedBox(height: 8),
