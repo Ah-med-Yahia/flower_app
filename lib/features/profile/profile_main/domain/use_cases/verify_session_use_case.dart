@@ -1,0 +1,47 @@
+import 'package:injectable/injectable.dart';
+
+import '../../../../../config/base_response/base_response.dart';
+import '../../../../../core/services/token_service.dart';
+
+sealed class SessionStatus {}
+
+class SessionValid extends SessionStatus {}
+
+class SessionInvalid extends SessionStatus {
+  final String reason;
+
+  SessionInvalid(this.reason);
+}
+
+@injectable
+class VerifySessionUseCase {
+  final TokenService _tokenService;
+
+  VerifySessionUseCase(this._tokenService);
+
+  Future<BaseResponse<SessionStatus>> call() async {
+    final isLoggedInResponse = await _tokenService.isLoggedIn();
+
+    return await isLoggedInResponse.when(
+      success: (isLoggedIn) async {
+        if (!isLoggedIn) {
+          // TODO(ahmed): Hardcoded message for now
+          return BaseResponse.success(SessionInvalid('User not logged in'));
+        }
+
+        final tokenValidResponse = await _tokenService.isTokenValid();
+        return tokenValidResponse.when(
+          success: (isTokenValid) {
+            if (!isTokenValid) {
+              // TODO(ahmed): Hardcoded message for now
+              return BaseResponse.success(SessionInvalid('Session expired'));
+            }
+            return BaseResponse.success(SessionValid());
+          },
+          failure: (error) => BaseResponse.failure(error),
+        );
+      },
+      failure: (error) => BaseResponse.failure(error),
+    );
+  }
+}

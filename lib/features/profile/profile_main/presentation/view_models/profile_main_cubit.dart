@@ -6,19 +6,27 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../config/base_response/base_response.dart';
-import '../../../../../core/services/token_service.dart';
 import '../../domain/use_cases/get_user_data_use_case.dart';
+import '../../domain/use_cases/load_cached_user_data_use_case.dart';
+import '../../domain/use_cases/logout_use_case.dart';
+import '../../domain/use_cases/verify_session_use_case.dart';
 import 'profile_main_intents.dart';
 import 'profile_main_side_effects.dart';
 import 'profile_main_states.dart';
 
 @injectable
 class ProfileMainCubit extends Cubit<ProfileMainStates> {
-  ProfileMainCubit(this._getUserDataUseCase, this._tokenService)
-    : super(const ProfileMainStates());
+  ProfileMainCubit(
+    this._getUserDataUseCase,
+    this._verifySessionUseCase,
+    this._loadCachedUserDataUseCase,
+    this._logoutUseCase,
+  ) : super(const ProfileMainStates());
 
   final GetUserDataUseCase _getUserDataUseCase;
-  final TokenService _tokenService;
+  final LoadCachedUserDataUseCase _loadCachedUserDataUseCase;
+  final VerifySessionUseCase _verifySessionUseCase;
+  final LogoutUseCase _logoutUseCase;
   final _sideEffectController =
       StreamController<ProfileMainSideEffects>.broadcast();
 
@@ -28,8 +36,7 @@ class ProfileMainCubit extends Cubit<ProfileMainStates> {
   Future<void> doIntent(ProfileMainIntents intent) async {
     switch (intent) {
       case GetUserDataIntent():
-        await _apiCall();
-      // await _checkTokenAndLoadData();
+        await _checkTokenAndLoadData();
       case NotificationToggledIntent():
         _notifyUIToggled();
       case SelectLanguageIntent():
@@ -37,7 +44,7 @@ class ProfileMainCubit extends Cubit<ProfileMainStates> {
       case EditProfileIntent():
         _navigateToEditProfile();
       case LoadCachedDataIntent():
-      // await  _loadCachedUserData();
+        await _loadCachedUserData();
       case LogoutIntent():
         await _logout();
       case UpdateLanguageIntent():
@@ -57,73 +64,44 @@ class ProfileMainCubit extends Cubit<ProfileMainStates> {
 
   Future<void> _checkTokenAndLoadData() async {
     emit(state.copyWith(userData: state.userData.copyWith(isLoading: true)));
-    final isLoggedInResponse = await _tokenService.isLoggedIn();
 
-    await isLoggedInResponse.when(
-      success: (isLoggedIn) async {
-        if (!isLoggedIn) {
-          emit(
-            state.copyWith(
-              userData: state.userData.copyWith(
-                isLoading: false,
-                errorMessage: 'User not logged in',
-              ),
-            ),
-          );
-          _emitSideEffect(NavigateToLoginSideEffect());
-          return;
-        }
-
-        final tokenValidResponse = await _tokenService.isTokenValid();
-        await tokenValidResponse.when(
-          success: (isTokenValid) async {
-            if (!isTokenValid) {
-              emit(
-                state.copyWith(
-                  userData: state.userData.copyWith(
-                    isLoading: false,
-                    errorMessage: 'Session expired',
-                  ),
-                ),
-              );
-              _emitSideEffect(NavigateToLoginSideEffect());
-              return;
-            }
-
-            await _apiCall();
-          },
-          failure: (error) {
+    final sessionResult = await _verifySessionUseCase.call();
+    await sessionResult.when(
+      success: (status) async {
+        switch (status) {
+          case SessionValid():
+            await _fetchUserData();
+          case SessionInvalid(:final reason):
             emit(
               state.copyWith(
                 userData: state.userData.copyWith(
                   isLoading: false,
-                  errorMessage: 'Token validation failed: ${error.message}',
+                  errorMessage: reason,
                 ),
               ),
             );
-            _emitSideEffect(
-              ShowErrorSideEffect('Token validation failed: ${error.message}'),
-            );
-          },
-        );
+            _emitSideEffect(NavigateToLoginSideEffect());
+        }
       },
       failure: (error) {
         emit(
           state.copyWith(
             userData: state.userData.copyWith(
               isLoading: false,
+              // TODO(ahmed): Hardcoded message for now
               errorMessage: 'Authentication check failed: ${error.message}',
             ),
           ),
         );
         _emitSideEffect(
+          // TODO(ahmed): Hardcoded message for now
           ShowErrorSideEffect('Authentication check failed: ${error.message}'),
         );
       },
     );
   }
 
-  Future<void> _apiCall() async {
+  Future<void> _fetchUserData() async {
     final apiCallResult = await _getUserDataUseCase.call();
     apiCallResult.when(
       success: (userData) {
@@ -146,24 +124,24 @@ class ProfileMainCubit extends Cubit<ProfileMainStates> {
             ),
           ),
         );
-        _handleApiErrorTokenExpired(
-          errorMessage: error.message,
-          statusCode: error.code,
-        );
+        // _handleApiErrorTokenExpired(
+        //    errorMessage: error.message,
+        //    statusCode: error.code,
+        //  );
       },
     );
   }
 
-  void _handleApiErrorTokenExpired({
-    required String errorMessage,
-    required int? statusCode,
-  }) {
-    if (statusCode == 401) {
-      _emitSideEffect(NavigateToLoginSideEffect());
-      return;
-    }
-    _emitSideEffect(ShowErrorSideEffect(errorMessage));
-  }
+  // void _handleApiErrorTokenExpired({
+  //   required String errorMessage,
+  //   required int? statusCode,
+  // }) {
+  //   if (statusCode == 401) {
+  //     _emitSideEffect(NavigateToLoginSideEffect());
+  //     return;
+  //   }
+  //   _emitSideEffect(ShowErrorSideEffect(errorMessage));
+  // }
 
   void _notifyUIToggled() {
     emit(state.copyWith(isNotificationsEnabled: !state.isNotificationsEnabled));
@@ -180,8 +158,8 @@ class ProfileMainCubit extends Cubit<ProfileMainStates> {
   /// Get cached user data without API call
   Future<void> _loadCachedUserData() async {
     emit(state.copyWith(userData: state.userData.copyWith(isLoading: true)));
-    final userDataResponse = await _tokenService.getUserData();
-    userDataResponse.when(
+    final loadUserDataResult = await _loadCachedUserDataUseCase.call();
+    loadUserDataResult.when(
       success: (userData) {
         if (userData != null) {
           emit(
@@ -196,6 +174,7 @@ class ProfileMainCubit extends Cubit<ProfileMainStates> {
           emit(
             state.copyWith(userData: state.userData.copyWith(isLoading: false)),
           );
+          // TODO(ahmed): Hardcoded message for now
           _emitSideEffect(ShowErrorSideEffect('No cached data available'));
         }
       },
@@ -204,10 +183,13 @@ class ProfileMainCubit extends Cubit<ProfileMainStates> {
           state.copyWith(userData: state.userData.copyWith(isLoading: false)),
         );
         _emitSideEffect(
+          // TODO(ahmed): Hardcoded message for now
           ShowErrorSideEffect('Failed to load cached data: ${error.message}'),
         );
+        // TODO(ahmed): Remove this log statement in production
         if (kDebugMode) {
           log(
+            // TODO(ahmed): Hardcoded message for now
             'Failed to load cached user data: ${error.message}',
             error: error,
           );
@@ -216,10 +198,11 @@ class ProfileMainCubit extends Cubit<ProfileMainStates> {
     );
   }
 
+  //TODO(Mahmoud-Younes): Handle logout
   Future<void> _logout() async {
     emit(state.copyWith(userData: state.userData.copyWith(isLoading: true)));
-    final clearAuthResponse = await _tokenService.clearAuthData();
-    clearAuthResponse.when(
+    final logoutResult = await _logoutUseCase.call();
+    logoutResult.when(
       success: (_) {
         emit(
           state.copyWith(userData: state.userData.copyWith(isLoading: false)),
