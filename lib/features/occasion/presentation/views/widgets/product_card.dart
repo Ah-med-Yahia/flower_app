@@ -88,7 +88,7 @@ class ProductCard extends StatelessWidget {
                       SizedBox(width: screenWidth * 0.018),
 
                       Text(
-                        '${100 - (_occasionProductEntity.priceAfterDiscount / _occasionProductEntity.price * 100).toInt()}${AppTextConstants.percentageSign}',
+                        '${_occasionProductEntity.discountPercentage}${AppTextConstants.percentageSign}',
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontSize: screenWidth * 0.032,
                           color: AppColors.green,

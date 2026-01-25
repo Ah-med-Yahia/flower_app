@@ -12,4 +12,11 @@ class OccasionProductEntity {
     required this.price,
     required this.priceAfterDiscount,
   });
+
+  int get discountPercentage {
+    if (price <= 0 || priceAfterDiscount > price) return 0;
+
+    final percentage = 100 - ((priceAfterDiscount / price) * 100);
+    return percentage.round();
+  }
 }

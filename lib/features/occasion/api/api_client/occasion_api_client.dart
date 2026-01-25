@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:injectable/injectable.dart';
 import 'package:flower_app/core/constants/api_constants.dart';
 import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/get_all_occasions_response_model.dart';
@@ -17,6 +18,6 @@ abstract class OccasionApiClient {
 
   @GET(ApiConstants.getOccasionProducts)
   Future<GetOccasionProductsResponseModel> getOccasionProducts({
-    @Path("id") required String id,
+    @Path(AppTextConstants.id) required String id,
   });
 }
