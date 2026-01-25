@@ -16,12 +16,19 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   HomeNavTab _currentTab = HomeNavTab.home;
-  final Map<HomeNavTab, Widget> _taps = {
-    HomeNavTab.home: const HomeTap(),
-    HomeNavTab.categories: const CategoriesTap(),
+  String? _selectedCategoryId;
+
+  final Map<HomeNavTab, Widget> _baseTaps = {
     HomeNavTab.cart: const CartTap(),
     HomeNavTab.profile: const ProfileTap(),
   };
+
+  void _switchToCategories({String? categoryId}) {
+    setState(() {
+      _currentTab = HomeNavTab.categories;
+      _selectedCategoryId = categoryId;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +41,8 @@ class _HomeScreenState extends State<HomeScreen> {
           if (selectedTab == _currentTab) return;
           setState(() {
             _currentTab = selectedTab;
+            _selectedCategoryId =
+                null; // Clear category selection on manual tab switch
           });
         },
         type: BottomNavigationBarType.fixed,
@@ -59,7 +68,22 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      body: _taps[_currentTab],
+      body: _buildCurrentTab(),
     );
+  }
+
+  Widget _buildCurrentTab() {
+    switch (_currentTab) {
+      case HomeNavTab.home:
+        return HomeTap(
+          onNavigateToCategories: () => _switchToCategories(),
+          onNavigateSelectedToCategory: (categoryId) =>
+              _switchToCategories(categoryId: categoryId),
+        );
+      case HomeNavTab.categories:
+        return CategoriesTap(categoryId: _selectedCategoryId);
+      default:
+        return _baseTaps[_currentTab] ?? const SizedBox.shrink();
+    }
   }
 }
