@@ -65,6 +65,14 @@ import '../../features/auth/register/domain/usecases/register_use_case.dart'
     as _i545;
 import '../../features/auth/register/presentation/cubit/register_cubit.dart'
     as _i805;
+import '../../features/cart/api/api_clients/cart_api_client.dart' as _i632;
+import '../../features/cart/api/data_sources/cart_remote_data_source_impl.dart'
+    as _i866;
+import '../../features/cart/data/data_sources/cart_remote_data_source.dart'
+    as _i164;
+import '../../features/cart/data/repositories/cart_repository_impl.dart'
+    as _i642;
+import '../../features/cart/domain/repositories/cart_repository.dart' as _i322;
 import '../../features/occasion/api/api_client/occasion_api_client.dart'
     as _i425;
 import '../../features/occasion/api/datasources_impl/remote_occasion_data_source_impl.dart'
@@ -153,6 +161,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i517.RegisterApiClient>(
       () => _i517.RegisterApiClient(gh<_i361.Dio>()),
     );
+    gh.factory<_i632.CartApiClient>(() => _i632.CartApiClient(gh<_i361.Dio>()));
     gh.factory<_i113.BestSellerApiClient>(
       () => _i113.BestSellerApiClient(gh<_i361.Dio>()),
     );
@@ -195,6 +204,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i842.RemoteLoginDataSource>(),
         gh<_i326.LocalLoginDataSource>(),
       ),
+    );
+    gh.factory<_i164.CartRemoteDataSource>(
+      () => _i866.CartRemoteDataSourceImpl(gh<_i632.CartApiClient>()),
     );
     gh.factory<_i613.RegisterDataSource>(
       () => _i325.RegisterDataSourceImpl(
@@ -248,6 +260,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i374.ResetPasswordUseCase>(
       () => _i374.ResetPasswordUseCase(gh<_i924.ForgetPasswordRepo>()),
+    );
+    gh.factory<_i322.CartRepository>(
+      () => _i642.CartRepositoryImpl(gh<_i164.CartRemoteDataSource>()),
     );
     gh.factory<_i805.RegisterCubit>(
       () => _i805.RegisterCubit(gh<_i545.RegisterUseCase>()),
