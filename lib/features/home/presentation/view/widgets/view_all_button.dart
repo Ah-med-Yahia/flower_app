@@ -7,12 +7,12 @@ class ViewAllButton extends StatelessWidget {
   final void Function() onPressed;
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final bodyMedium = Theme.of(context).textTheme.bodyMedium;
     return TextButton(
       onPressed: onPressed,
       child: Text(
         AppTextConstants.viewAll,
-        style: theme.textTheme.titleMedium?.copyWith(
+        style: bodyMedium?.copyWith(
           color: AppColors.primary,
           decoration: TextDecoration.underline,
           decorationColor: AppColors.primary,

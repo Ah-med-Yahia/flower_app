@@ -1,8 +1,8 @@
 import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flutter/material.dart';
 
-class BestSellerCardWidget extends StatelessWidget {
-  const BestSellerCardWidget({
+class BestSellerOccationsCardWidget extends StatelessWidget {
+  const BestSellerOccationsCardWidget({
     super.key,
     required this.image,
     required this.title,
@@ -14,7 +14,7 @@ class BestSellerCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final bodyMedium = Theme.of(context).textTheme.bodyMedium;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -32,7 +32,7 @@ class BestSellerCardWidget extends StatelessWidget {
               child: Text(
                 title,
                 overflow: TextOverflow.ellipsis,
-                style: theme.textTheme.bodyMedium?.copyWith(
+                style: bodyMedium?.copyWith(
                   fontWeight: price != null ? FontWeight.w500 : FontWeight.bold,
                   fontSize: 16,
                 ),
@@ -42,7 +42,7 @@ class BestSellerCardWidget extends StatelessWidget {
             if (price != null)
               Text(
                 '$price ${AppTextConstants.egp}',
-                style: theme.textTheme.bodyMedium?.copyWith(
+                style: bodyMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
                 ),

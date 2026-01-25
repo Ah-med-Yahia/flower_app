@@ -8,7 +8,7 @@ part 'home_response_dto.g.dart';
 @JsonSerializable(explicitToJson: true)
 class HomeResponseDto {
   @JsonKey(name: 'message')
-  final String message;
+  final String? message;
 
   @JsonKey(name: 'categories')
   final List<CategoryDto>? categories;

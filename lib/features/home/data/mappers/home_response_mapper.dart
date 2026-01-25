@@ -7,10 +7,10 @@ import 'package:flower_app/features/home/domain/entities/home_response_entity.da
 extension HomeResponseMapper on HomeResponseDto {
   HomeResponseEntity toEntity() {
     return HomeResponseEntity(
-      message: message,
-      categories: categories?.map((dto) => dto.toEntity()).toList(),
-      bestSeller: bestSeller?.map((dto) => dto.toEntity()).toList(),
-      occasions: occasions?.map((dto) => dto.toEntity()).toList(),
+      message: message ?? '',
+      categories: categories?.map((e) => e.toEntity()).toList() ?? [],
+      bestSeller: bestSeller?.map((e) => e.toEntity()).toList() ?? [],
+      occasions: occasions?.map((e) => e.toEntity()).toList() ?? [],
     );
   }
 }
