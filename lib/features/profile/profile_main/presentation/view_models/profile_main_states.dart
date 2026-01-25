@@ -11,7 +11,7 @@ class ProfileMainStates extends Equatable {
   const ProfileMainStates({
     this.isNotificationsEnabled = true,
     this.userData = const BaseState<UserDataResponse>(),
-    this.selectedLanguage = 'English',
+    this.selectedLanguage = 'English', // TODO(ahmed): Hardcoded message for now
   });
 
   ProfileMainStates copyWith({
