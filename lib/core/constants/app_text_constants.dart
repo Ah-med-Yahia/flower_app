@@ -84,4 +84,11 @@ class AppTextConstants {
   //-------------------------- PROFILE PAGE --------------------------//
   static const String defaultAvatarUrl =
       'https://flower.elevateegy.com/uploads/default-profile.png';
+  static const String occasion = 'Occasion';
+  static const String bloomExquisiteBestSellers =
+      'Bloom exquisite best sellers';
+  static const String noOccasionsAvailable = 'No occasions available';
+  static const String loading = 'Loading...';
+  static const String percentageSign = '%';
+  static const String id = 'id';
 }
