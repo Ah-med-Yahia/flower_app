@@ -27,4 +27,5 @@ class ApiConstants {
 
   //------------------------ PROFILE ------------------------//
   static const String profileDataEndPoint = 'auth/profile-data';
+  static const String getOccasionProducts = "occasions/{id}";
 }
