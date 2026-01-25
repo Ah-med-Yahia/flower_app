@@ -1,13 +1,12 @@
 part of 'change_password_cubit.dart';
 
-class ChangePasswordStates extends BaseState<ChangePasswordResponseEntity> {
+class ChangePasswordStates extends BaseState<void> {
   final String oldPassword;
   final String newPassword;
   final String confirmPassword;
   final bool isvalidForm;
 
   const ChangePasswordStates({
-    super.data,
     super.errorMessage,
     super.isLoading,
     this.oldPassword = '',
@@ -18,7 +17,6 @@ class ChangePasswordStates extends BaseState<ChangePasswordResponseEntity> {
 
   @override
   List<Object?> get props => [
-    data,
     errorMessage,
     isLoading,
     oldPassword,
@@ -29,7 +27,7 @@ class ChangePasswordStates extends BaseState<ChangePasswordResponseEntity> {
 
   @override
   ChangePasswordStates copyWith({
-    ChangePasswordResponseEntity? data,
+     data,
     String? errorMessage,
     bool? isLoading,
     String? oldPassword,
@@ -38,7 +36,6 @@ class ChangePasswordStates extends BaseState<ChangePasswordResponseEntity> {
     bool? isvalidForm,
   }) {
     return ChangePasswordStates(
-      data: data ?? this.data,
       errorMessage: errorMessage ?? this.errorMessage,
       isLoading: isLoading ?? this.isLoading,
       oldPassword: oldPassword ?? this.oldPassword,

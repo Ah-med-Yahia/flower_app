@@ -1,6 +1,5 @@
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/features/auth/change_password/domain/entities/change_password_request_entity/change_password_request_entity.dart';
-import 'package:flower_app/features/auth/change_password/domain/entities/change_password_response_entity/change_password_response_entity.dart';
 import 'package:flower_app/features/auth/change_password/domain/repositories/change_password_repo.dart';
 import 'package:injectable/injectable.dart';
 
@@ -10,7 +9,7 @@ class ChangePasswordUseCase {
 
   ChangePasswordUseCase(this._repo);
 
-  Future<BaseResponse<ChangePasswordResponseEntity>> call(
+  Future<BaseResponse<void>> call(
     ChangePasswordRequestEntity request,
   ) => _repo.changePassword(request);
 }

@@ -1,10 +1,8 @@
 import 'dart:async';
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/base_state/base_state.dart';
-import 'package:flower_app/config/cache_modules/secure_storage_module.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/features/auth/change_password/domain/entities/change_password_request_entity/change_password_request_entity.dart';
-import 'package:flower_app/features/auth/change_password/domain/entities/change_password_response_entity/change_password_response_entity.dart';
 import 'package:flower_app/features/auth/change_password/domain/usecases/change_password_use_case.dart';
 import 'package:flower_app/features/auth/change_password/presentation/cubit/change_password_intents.dart';
 import 'package:flower_app/features/auth/change_password/presentation/cubit/change_pasword_ui_intents.dart';
@@ -16,13 +14,12 @@ part 'change_password_states.dart';
 @injectable
 class ChangePasswordCubit extends Cubit<ChangePasswordStates> {
   final ChangePasswordUseCase _passwordUseCase;
-  final SecureStorageService _secureStorageService;
   final StreamController<ChangePaswordUiIntents> _streamController =
       StreamController();
 
   Stream<ChangePaswordUiIntents> get UIInenet => _streamController.stream;
 
-  ChangePasswordCubit(this._passwordUseCase, this._secureStorageService)
+  ChangePasswordCubit(this._passwordUseCase)
     : super(ChangePasswordStates());
 
   void doIntent(ChangePasswordIntents intent) {
@@ -125,12 +122,7 @@ class ChangePasswordCubit extends Cubit<ChangePasswordStates> {
 
     response.map(
       success: (response) async {
-        if (response.data.token != null && response.data.token!.isNotEmpty) {
-           await _secureStorageService.saveAuthTokens(
-            accessToken: response.data.token!,
-          );
-        }
-
+       
         _streamController.add(
           NavigateToEditProfileIntent(
             message: AppTextConstants.passwordUpdatedSuccessfully,
