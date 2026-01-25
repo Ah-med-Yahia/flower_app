@@ -2,7 +2,6 @@ import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/enums/home_nav_tab.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flower_app/features/cart/cart_tap.dart';
-import 'package:flower_app/features/categorey/categorey_tap.dart';
 import 'package:flower_app/features/home/presentation/view/screens/home_tap.dart';
 import 'package:flower_app/features/profile/profile_tap.dart';
 import 'package:flutter/material.dart';
@@ -41,8 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
           if (selectedTab == _currentTab) return;
           setState(() {
             _currentTab = selectedTab;
-            _selectedCategoryId =
-                null; // Clear category selection on manual tab switch
+            _selectedCategoryId = null;
           });
         },
         type: BottomNavigationBarType.fixed,
@@ -81,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
               _switchToCategories(categoryId: categoryId),
         );
       case HomeNavTab.categories:
-        return CategoriesTap();
+        //  return CategoriesTap();
       default:
         return _baseTaps[_currentTab] ?? const SizedBox.shrink();
     }
