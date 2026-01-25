@@ -21,6 +21,9 @@ class ApiConstants {
   static const String getAllOccasions = "occasions";
   static const String loginEndPoint = 'auth/signin';
 
+  //------------------------ Home Screen ------------------------//
+  static const String homeScreenEndPoint = 'home';
   //------------------------ PROFILE ------------------------//
   static const String profileDataEndPoint = 'auth/profile-data';
+  static const String getOccasionProducts = "occasions/{id}";
 }

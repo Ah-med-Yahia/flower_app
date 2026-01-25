@@ -1,8 +1,9 @@
 class AppTextConstants {
-    AppTextConstants._();
+  AppTextConstants._();
   static const String home = "Home";
   static const String categories = "Categories";
   static const String cart = "Cart";
+  static const String occasion = "Occasion";
   static const String profile = "Profile";
   static const String failedToRegister =
       "Failed to register. Please try again.";
@@ -28,7 +29,8 @@ class AppTextConstants {
   static const String alreadyHaveAccount = "Already have an account?";
   static const String login = "Login";
   static const String invalidPhoneNumber = "Invalid phone number";
-  static const String accountCreatedSuccessfully = "Account created successfully";
+  static const String accountCreatedSuccessfully =
+      "Account created successfully";
   static const String addToCart = "Add to Cart";
   static const String status = "Status: ";
   static const String inStock = "in stock";
@@ -44,6 +46,13 @@ class AppTextConstants {
       'Bloom with our exquisite best sellers';
   static const String noProductsAvailable = 'No products available';
   static const String retry = 'Retry';
+  static const String deliverTo = 'Deliver to';
+  static const String search = 'Search';
+  static const String flowery = 'Flowery';
+  static const String viewAll = 'View All';
+  static const String flowr = 'Flower';
+  static const String defaultImage =
+      'https://flower.elevateegy.com/uploads/66c36d5d-c067-46d9-b339-d81be57e0149-image_one.pngs';
 
   //------------------- BEST SELLER PAGE -------------------//
   static const String egy = 'EGP';
@@ -88,4 +97,10 @@ class AppTextConstants {
   static const String myOrders = 'My Orders';
   static const String savedAddresses = 'Saved Addresses';
   static const String guestUser = 'Guest User';
+  static const String bloomExquisiteBestSellers =
+      'Bloom exquisite best sellers';
+  static const String noOccasionsAvailable = 'No occasions available';
+  static const String loading = 'Loading...';
+  static const String percentageSign = '%';
+  static const String id = 'id';
 }
