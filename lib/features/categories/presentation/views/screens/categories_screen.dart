@@ -12,12 +12,15 @@ import 'package:flower_app/features/categories/presentation/views/widgets/catego
 import 'package:flower_app/features/categories/presentation/views/widgets/products_grid.dart';
 
 class CategoriesTap extends StatelessWidget {
-  const CategoriesTap({super.key});
+  final String? id;
+  CategoriesTap({super.key, this.id});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => getIt<CategoriesCubit>()..onEvent(GetAllCategories()),
+      create: (_) =>
+          getIt<CategoriesCubit>()
+            ..onEvent(GetAllCategories(initialCategoryId: id)),
       child: SafeArea(
         child: Column(
           children: [

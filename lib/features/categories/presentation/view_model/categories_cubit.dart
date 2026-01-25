@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flower_app/features/categories/domain/entities/get_all_categories_list_entity.dart';
 import 'package:flower_app/features/categories/domain/entities/get_categories_products_entity.dart';
 import 'package:flower_app/features/categories/domain/usecases/get_categories_products_usecase.dart';
@@ -28,7 +30,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
   void onEvent(CategoriesEvent event) {
     switch (event) {
       case GetAllCategories():
-        _getAllCategories();
+        _getAllCategories(event.initialCategoryId);
       case SelectCategory():
         _selectCategory(event.index);
       case GetCategoryProducts():
@@ -36,7 +38,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
     }
   }
 
-  Future<void> _getAllCategories() async {
+  Future<void> _getAllCategories(String? initialCategoryId) async {
     emit(
       state.copyWith(
         categoriesState: BaseState<GetCategoryListEntity>(isLoading: true),
@@ -47,20 +49,38 @@ class CategoriesCubit extends Cubit<CategoriesState> {
 
     categories.when(
       success: (data) {
+        int selectedIndex = 0;
+        if (data.categories != null && data.categories!.isNotEmpty) {
+          if (initialCategoryId != null) {
+            final index = data.categories!.indexWhere(
+              (occasion) => occasion.id == initialCategoryId,
+            );
+
+            if (index != -1) {
+              selectedIndex = index;
+            } else {
+              selectedIndex = 0;
+            }
+          } else {
+            selectedIndex = 0;
+          }
+        }
+
         emit(
           state.copyWith(
             categoriesState: BaseState<GetCategoryListEntity>(
               data: data,
               isLoading: false,
             ),
+            selectedIndex: selectedIndex,
           ),
         );
+        final occasionsList = data.categories ?? [];
 
-        if (data.categories != null && data.categories!.isNotEmpty) {
-          final firstCategoryId = data.categories![0].id;
-
-          if (firstCategoryId != null) {
-            _getCategoryProducts(firstCategoryId);
+        if (occasionsList.isNotEmpty) {
+          final occasionId = occasionsList[selectedIndex].id;
+          if (occasionId != null) {
+            _getCategoryProducts(occasionId);
           }
         }
       },

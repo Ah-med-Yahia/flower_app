@@ -1,6 +1,10 @@
 sealed class CategoriesEvent {}
 
-class GetAllCategories extends CategoriesEvent {}
+class GetAllCategories extends CategoriesEvent {
+  final String? initialCategoryId;
+
+  GetAllCategories({required this.initialCategoryId});
+}
 
 class SelectCategory extends CategoriesEvent {
   final int index;

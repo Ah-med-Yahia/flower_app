@@ -18,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   HomeNavTab _currentTab = HomeNavTab.home;
   final Map<HomeNavTab, Widget> _taps = {
     HomeNavTab.home: const HomeTap(),
-    HomeNavTab.categories: const CategoriesTap(),
+    HomeNavTab.categories: CategoriesTap(),
     HomeNavTab.cart: const CartTap(),
     HomeNavTab.profile: const ProfileTap(),
   };
