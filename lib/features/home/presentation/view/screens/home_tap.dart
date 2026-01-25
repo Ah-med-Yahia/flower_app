@@ -16,7 +16,7 @@ import 'package:flower_app/features/home/presentation/view/widgets/view_all_butt
 import 'package:flower_app/features/home/presentation/view_model/home_screen_cubit.dart';
 import 'package:flower_app/features/home/presentation/view_model/home_screen_events.dart';
 import 'package:flower_app/features/home/presentation/view_model/home_screen_states.dart';
-import 'package:flower_app/features/home/presentation/view_model/navigation_events.dart';
+import 'package:flower_app/features/home/presentation/view_model/ui_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -38,17 +38,17 @@ class HomeTap extends StatelessWidget {
           final nav = state.navigationEvent;
           if (nav != null) {
             switch (nav) {
-              case NavigateToProductDetails():
+              case NavigateToProductDetailsEvent():
                 context.pushNamed(
                   AppRoutesConstants.productDetailsRoute,
                   extra: nav.productId,
                 );
-              case NavigateToBestSellerScreen():
+              case NavigateToBestSellerScreenEvent():
                 context.pushNamed(AppRoutesConstants.bestSellerRoute);
-              case NavigateToCategoryDetails():
-              // Add routing when category details screen is ready
-              case NavigateToOccasionDetails():
-              // Add routing when occasion details screen is ready
+
+              case NavigateToCategoryEvent():
+              case NavigateToOccasionEvent():
+                context.pushNamed(AppRoutesConstants.occasionScreen);
             }
           }
         },
@@ -209,7 +209,13 @@ class HomeTap extends StatelessWidget {
                               fontSize: 20,
                             ),
                           ),
-                          ViewAllButton(onPressed: () {}),
+                          ViewAllButton(
+                            onPressed: () {
+                              cubit.onEvent(
+                                WhenOccasionViewAllIsClickedEvent(),
+                              );
+                            },
+                          ),
                         ],
                       ),
                       const SizedBox(height: 8),

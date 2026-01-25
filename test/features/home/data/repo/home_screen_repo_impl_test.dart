@@ -305,15 +305,9 @@ void main() {
       result.when(
         success: (data) {
           expect(data.message, 'success');
-          expect(
-            data.bestSeller?.length,
-            homeResponseEntity.bestSeller?.length,
-          );
-          expect(
-            data.categories?.length,
-            homeResponseEntity.categories?.length,
-          );
-          expect(data.occasions?.length, homeResponseEntity.occasions?.length);
+          expect(data.bestSeller.length, homeResponseEntity.bestSeller.length);
+          expect(data.categories.length, homeResponseEntity.categories.length);
+          expect(data.occasions.length, homeResponseEntity.occasions.length);
         },
         failure: (_) => fail('Expected success but got failure'),
       );

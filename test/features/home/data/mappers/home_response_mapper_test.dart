@@ -136,40 +136,40 @@ void main() {
       // Assert
       expect(homeResponseEntity.message, homeResponseDto.message);
       expect(
-        homeResponseEntity.categories?.first.name,
+        homeResponseEntity.categories.first.name,
         homeResponseDto.categories?.first.name,
       );
       expect(
-        homeResponseEntity.categories?.first.id,
+        homeResponseEntity.categories.first.id,
         homeResponseDto.categories?.first.id,
       );
       expect(
-        homeResponseEntity.categories?.first.image,
+        homeResponseEntity.categories.first.image,
         homeResponseDto.categories?.first.image,
       );
       expect(
-        homeResponseEntity.categories?.first.slug,
+        homeResponseEntity.categories.first.slug,
         homeResponseDto.categories?.first.slug,
       );
       expect(
-        homeResponseEntity.categories?.first.createdAt,
+        homeResponseEntity.categories.first.createdAt,
         homeResponseDto.categories?.first.createdAt,
       );
       expect(
-        homeResponseEntity.categories?.first.updatedAt,
+        homeResponseEntity.categories.first.updatedAt,
         homeResponseDto.categories?.first.updatedAt,
       );
-      expect(homeResponseEntity.categories?.first.isSuperAdmin, false);
+      expect(homeResponseEntity.categories.first.isSuperAdmin, false);
       expect(
-        homeResponseEntity.categories?.length,
+        homeResponseEntity.categories.length,
         homeResponseDto.categories?.length,
       );
       expect(
-        homeResponseEntity.bestSeller?.length,
+        homeResponseEntity.bestSeller.length,
         homeResponseDto.bestSeller?.length,
       );
       expect(
-        homeResponseEntity.occasions?.length,
+        homeResponseEntity.occasions.length,
         homeResponseDto.occasions?.length,
       );
     });

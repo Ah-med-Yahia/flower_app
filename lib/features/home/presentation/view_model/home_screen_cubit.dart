@@ -3,7 +3,7 @@ import 'package:flower_app/config/base_state/base_state.dart';
 import 'package:flower_app/features/home/domain/usecases/get_home_data_usecase.dart';
 import 'package:flower_app/features/home/presentation/view_model/home_screen_events.dart';
 import 'package:flower_app/features/home/presentation/view_model/home_screen_states.dart';
-import 'package:flower_app/features/home/presentation/view_model/navigation_events.dart';
+import 'package:flower_app/features/home/presentation/view_model/ui_events.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
@@ -67,22 +67,20 @@ class HomeScreenCubit extends Cubit<HomeScreenStates> {
   }
 
   void _navigateToProductDetails(String productId) {
-    emit(state.copyWith(navigationEvent: NavigateToProductDetails(productId)));
+    emit(
+      state.copyWith(navigationEvent: NavigateToProductDetailsEvent(productId)),
+    );
   }
 
   void _navigateToBestSeller() {
-    emit(state.copyWith(navigationEvent: NavigateToBestSellerScreen()));
+    emit(state.copyWith(navigationEvent: NavigateToBestSellerScreenEvent()));
   }
 
   void _navigateToCategoryDetails(String? categoryId) {
-    emit(
-      state.copyWith(navigationEvent: NavigateToCategoryDetails(categoryId)),
-    );
+    emit(state.copyWith(navigationEvent: NavigateToCategoryEvent(categoryId)));
   }
 
   void _navigateToOccasionDetails(String? occasionId) {
-    emit(
-      state.copyWith(navigationEvent: NavigateToOccasionDetails(occasionId)),
-    );
+    emit(state.copyWith(navigationEvent: NavigateToOccasionEvent(occasionId)));
   }
 }

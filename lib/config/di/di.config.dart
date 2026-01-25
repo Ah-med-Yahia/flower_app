@@ -65,6 +65,18 @@ import '../../features/auth/register/domain/usecases/register_use_case.dart'
     as _i545;
 import '../../features/auth/register/presentation/cubit/register_cubit.dart'
     as _i805;
+import '../../features/home/api/api_clinet/home_screen_api_client.dart'
+    as _i279;
+import '../../features/home/api/data_sources/remote/home_screen_data_source_impl.dart'
+    as _i213;
+import '../../features/home/data/data_sources/remote/home_screen_data_source.dart'
+    as _i525;
+import '../../features/home/data/repo/home_screen_repo_impl.dart' as _i209;
+import '../../features/home/domain/repo/home_screen_repo.dart' as _i202;
+import '../../features/home/domain/usecases/get_home_data_usecase.dart'
+    as _i1033;
+import '../../features/home/presentation/view_model/home_screen_cubit.dart'
+    as _i193;
 import '../../features/occasion/api/api_client/occasion_api_client.dart'
     as _i425;
 import '../../features/occasion/api/datasources_impl/remote_occasion_data_source_impl.dart'
@@ -141,7 +153,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i11.SecureStorageService>(
       () => _i11.SecureStorageService(),
     );
-    gh.factory<_i141.OccasionCubit>(() => _i141.OccasionCubit(gh<dynamic>()));
     gh.lazySingleton<_i1059.CacheHelper>(
       () => _i1059.CacheHelper(gh<_i460.SharedPreferences>()),
     );
@@ -154,6 +165,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i32.LoginApiClient>(() => _i32.LoginApiClient(gh<_i361.Dio>()));
     gh.factory<_i517.RegisterApiClient>(
       () => _i517.RegisterApiClient(gh<_i361.Dio>()),
+    );
+    gh.factory<_i279.HomeScreenApiClient>(
+      () => _i279.HomeScreenApiClient(gh<_i361.Dio>()),
     );
     gh.factory<_i113.BestSellerApiClient>(
       () => _i113.BestSellerApiClient(gh<_i361.Dio>()),
@@ -189,13 +203,11 @@ extension GetItInjectableX on _i174.GetIt {
       () =>
           _i920.BestSellerRemoteDataSourceImpl(gh<_i113.BestSellerApiClient>()),
     );
+    gh.factory<_i525.HomeScreenDataSource>(
+      () => _i213.HomeScreenDataSourceImpl(gh<_i279.HomeScreenApiClient>()),
+    );
     gh.factory<_i31.OccasionRepoContract>(
       () => _i315.OccasionRepoImpl(gh<_i948.RemoteOccasionDataSource>()),
-    );
-    gh.factory<_i203.GetOccasionProductsUsecase>(
-      () => _i203.GetOccasionProductsUsecase(
-        occasionRepoContract: gh<_i31.OccasionRepoContract>(),
-      ),
     );
     gh.factory<_i176.LoginRepository>(
       () => _i470.LoginRepositoryImpl(
@@ -221,6 +233,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i652.ProfileMainRepo>(
       () => _i753.ProfileMainRepoImpl(gh<_i718.ProfileMainRemoteDataSource>()),
     );
+    gh.factory<_i202.HomeScreenRepo>(
+      () => _i209.HomeScreenRepoImpl(gh<_i525.HomeScreenDataSource>()),
+    );
     gh.factory<_i892.BestSellerRepo>(
       () => _i20.BestSellerRepoImpl(gh<_i1058.BestSellerRemoteDataSource>()),
     );
@@ -235,6 +250,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i401.GetAllOccasionUsecase>(
       () => _i401.GetAllOccasionUsecase(gh<_i31.OccasionRepoContract>()),
+    );
+    gh.factory<_i203.GetOccasionProductsUsecase>(
+      () => _i203.GetOccasionProductsUsecase(gh<_i31.OccasionRepoContract>()),
     );
     gh.factory<_i198.GetBestSellerUseCase>(
       () => _i198.GetBestSellerUseCase(gh<_i892.BestSellerRepo>()),
@@ -269,6 +287,18 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i126.LoginCubit>(
       () => _i126.LoginCubit(gh<_i316.LoginUseCase>()),
+    );
+    gh.factory<_i1033.GetHomeDataUsecase>(
+      () => _i1033.GetHomeDataUsecase(gh<_i202.HomeScreenRepo>()),
+    );
+    gh.factory<_i141.OccasionCubit>(
+      () => _i141.OccasionCubit(
+        gh<_i401.GetAllOccasionUsecase>(),
+        gh<_i203.GetOccasionProductsUsecase>(),
+      ),
+    );
+    gh.factory<_i193.HomeScreenCubit>(
+      () => _i193.HomeScreenCubit(gh<_i1033.GetHomeDataUsecase>()),
     );
     gh.factory<_i531.ResetPasswordCubit>(
       () => _i531.ResetPasswordCubit(gh<_i374.ResetPasswordUseCase>()),
