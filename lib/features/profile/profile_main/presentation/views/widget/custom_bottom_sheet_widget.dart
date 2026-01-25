@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../../../core/constants/app_text_constants.dart';
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/widgets/spacing.dart';
 
@@ -31,7 +32,9 @@ class _CustomBottomSheetWidgetState extends State<CustomBottomSheetWidget> {
           });
         },
         title: Text(
-          language == Language.english ? 'English' : 'Arabic',
+          language == Language.english
+              ? AppTextConstants.english
+              : AppTextConstants.arabic,
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
             fontFamily: GoogleFonts.outfit().fontFamily,
           ),
@@ -63,7 +66,7 @@ class _CustomBottomSheetWidgetState extends State<CustomBottomSheetWidget> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             (sizeHeight * 0.03).verticalSpacing,
-            Text('Choose Language', style: titleLarge),
+            Text(AppTextConstants.chooseLanguage, style: titleLarge),
             (sizeHeight * 0.015).verticalSpacing,
             RadioGroup(
               groupValue: selectedLanguage,

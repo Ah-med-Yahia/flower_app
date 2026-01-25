@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../../core/constants/app_text_constants.dart';
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/widgets/spacing.dart';
 
@@ -13,11 +14,11 @@ class OrderAndAddressSection extends StatelessWidget {
       child: Column(
         children: [
           ProfileCardItem(
-            title: 'My Orders',
+            title: AppTextConstants.myOrders,
             icon: Icons.shopping_bag_outlined,
           ),
           ProfileCardItem(
-            title: 'Saved Addresses',
+            title: AppTextConstants.savedAddresses,
             icon: Icons.location_on_outlined,
           ),
         ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../../core/constants/app_text_constants.dart';
 import '../../../../../../core/theme/app_colors.dart';
 import 'order_and_address_section.dart';
 
@@ -20,7 +21,7 @@ class LogoutSection extends StatelessWidget {
         leadingWidget: _logoutIC(
           iconThemeData: iconTheme.copyWith(color: AppColors.textPrimary),
         ),
-        title: 'Logout',
+        title: AppTextConstants.logout,
         showArrow: false,
         trailingWidget: _logoutIC(
           iconThemeData: iconTheme.copyWith(color: AppColors.textSecondary),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../../core/constants/app_text_constants.dart';
+import '../../../../../../core/constants/validation_constants.dart';
 import '../../../../../../core/gen/assets.gen.dart';
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/widgets/spacing.dart';
@@ -98,7 +100,7 @@ class UserDataSection extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    userData?.firstName ?? 'Guest User',
+                    userData?.firstName ?? AppTextConstants.guestUser,
                     style: titleLarge?.copyWith(color: AppColors.textPrimary),
                   ),
                   8.horizontalSpacing,
@@ -116,7 +118,7 @@ class UserDataSection extends StatelessWidget {
 
               /// User Email
               Text(
-                userData?.email ?? 'No email available',
+                userData?.email ?? ValidationConstants.noEmailAvailable,
                 style: titleLarge?.copyWith(color: AppColors.textSecondary),
               ),
               const SizedBox(height: 16),

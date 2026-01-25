@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../../core/constants/app_text_constants.dart';
 import '../../../../../../core/theme/app_colors.dart';
 import '../../view_models/profile_main_cubit.dart';
 import '../../view_models/profile_main_intents.dart';
@@ -19,7 +20,7 @@ class LanguageAndPolicesSection extends StatelessWidget {
           BlocBuilder<ProfileMainCubit, ProfileMainStates>(
             builder: (context, state) {
               return ProfileCardItem(
-                title: 'Language',
+                title: AppTextConstants.language,
                 icon: Icons.translate,
                 showArrow: false,
                 trailingWidget: InkWell(
@@ -31,15 +32,21 @@ class LanguageAndPolicesSection extends StatelessWidget {
                     );
                   },
                   child: Text(
-                    state.selectedLanguage ?? 'English',
+                    state.selectedLanguage ?? AppTextConstants.english,
                     style: const TextStyle(color: AppColors.primary),
                   ),
                 ),
               );
             },
           ),
-          const ProfileCardItem(showIcon: false, title: 'About us'),
-          const ProfileCardItem(showIcon: false, title: 'Terms & conditions'),
+          const ProfileCardItem(
+            showIcon: false,
+            title: AppTextConstants.aboutUsPolicy,
+          ),
+          const ProfileCardItem(
+            showIcon: false,
+            title: AppTextConstants.termsAndConditionsPolicy,
+          ),
         ],
       ),
     );

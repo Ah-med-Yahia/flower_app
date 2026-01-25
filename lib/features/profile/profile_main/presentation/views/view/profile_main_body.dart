@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/constants/app_routes_constant.dart';
+import '../../../../../../core/constants/app_text_constants.dart';
 import '../../../../../../core/theme/app_colors.dart';
+import '../../../../../../core/ui_utils/ui_utils.dart';
 import '../../view_models/profile_main_cubit.dart';
 import '../../view_models/profile_main_intents.dart';
 import '../../view_models/profile_main_side_effects.dart';
@@ -41,7 +43,7 @@ class _ProfileMainBodyState extends State<ProfileMainBody> {
   ) {
     switch (sideEffect) {
       case ShowErrorSideEffect():
-        _showErrorMessage(context, sideEffect.message);
+        _showErrorMessage(sideEffect.message);
       case NavigateToLoginSideEffect():
         _navigateToLogin(context);
       case ShowLanguageBottomSheetSideEffect():
@@ -74,7 +76,7 @@ class _ProfileMainBodyState extends State<ProfileMainBody> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: ProfileCardItem(
-                      title: 'Notification',
+                      title: AppTextConstants.notification,
                       showIcon: false,
                       leadingWidget: Switch(
                         activeThumbColor: AppColors.background,
@@ -105,9 +107,11 @@ class _ProfileMainBodyState extends State<ProfileMainBody> {
     );
   }
 
-  void _showErrorMessage(BuildContext context, String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message), backgroundColor: Colors.red),
+  void _showErrorMessage(String message) {
+    UIUtils.showMessage(
+      message,
+      backGroundColor: AppColors.red,
+      textColor: AppColors.background,
     );
   }
 
@@ -123,18 +127,18 @@ class _ProfileMainBodyState extends State<ProfileMainBody> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('LOGOUT'),
-        content: const Text('Confirm logout!!'),
+        title: Text(AppTextConstants.logout.toUpperCase()),
+        content: const Text(AppTextConstants.confirmLogout),
         actions: [
           TextButton(
             onPressed: () => GoRouter.of(context).pop(),
-            child: const Text('Cancel'),
+            child: const Text(AppTextConstants.cancel),
           ),
           TextButton(
             onPressed: () {
               cubit.doIntent(LogoutIntent());
             },
-            child: const Text('Logout'),
+            child: const Text(AppTextConstants.logout),
           ),
         ],
       ),

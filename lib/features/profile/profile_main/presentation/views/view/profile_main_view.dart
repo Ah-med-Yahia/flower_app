@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../config/di/di.dart';
+import '../../../../../../core/constants/app_ui_key_constant.dart';
 import '../../../../../../core/gen/assets.gen.dart';
 import '../../view_models/profile_main_cubit.dart';
 import 'profile_main_body.dart';
@@ -13,9 +14,13 @@ class ProfileMainView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Assets.images.logo.image(key: const Key('logo')),
+        key: const Key(AppUiKeyConstant.profileAppbarKey),
+        title: Assets.images.logo.image(
+          key: const Key(AppUiKeyConstant.profileAppbarTxtTitleKey),
+        ),
         actions: [
-          Assets.images.notification.image(key: const Key('notification')),
+          Assets.images.notification.image(
+              key: const Key(AppUiKeyConstant.profileAppbarNotifyICKey)),
         ],
         actionsPadding: const EdgeInsets.only(right: 8),
       ),
