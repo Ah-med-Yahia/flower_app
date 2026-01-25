@@ -156,6 +156,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i1059.CacheHelper>(
       () => _i1059.CacheHelper(gh<_i460.SharedPreferences>()),
     );
+    gh.lazySingleton<_i199.CategoriesApiClient>(
+      () => _i199.CategoriesApiClient(gh<_i361.Dio>()),
+    );
     gh.lazySingleton<_i425.OccasionApiClient>(
       () => _i425.OccasionApiClient(gh<_i361.Dio>()),
     );
@@ -239,6 +242,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i892.BestSellerRepo>(
       () => _i20.BestSellerRepoImpl(gh<_i1058.BestSellerRemoteDataSource>()),
     );
+    gh.factory<_i761.CategoriesRepoContract>(
+      () => _i337.CategoriesRepoImpl(gh<_i81.RemoteCategoriesDataSource>()),
+    );
     gh.factory<_i57.RegisterRepository>(
       () => _i200.RegisterRepositoryImpl(gh<_i613.RegisterDataSource>()),
     );
@@ -247,6 +253,13 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i545.RegisterUseCase>(
       () => _i545.RegisterUseCase(gh<_i57.RegisterRepository>()),
+    );
+    gh.factory<_i943.GetAllCategoriesUsecase>(
+      () => _i943.GetAllCategoriesUsecase(gh<_i761.CategoriesRepoContract>()),
+    );
+    gh.factory<_i290.GetCategoryProductsUsecase>(
+      () =>
+          _i290.GetCategoryProductsUsecase(gh<_i761.CategoriesRepoContract>()),
     );
     gh.factory<_i401.GetAllOccasionUsecase>(
       () => _i401.GetAllOccasionUsecase(gh<_i31.OccasionRepoContract>()),
