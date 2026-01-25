@@ -5,11 +5,11 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class GetHomeDataUsecase {
-  final HomeScreenRepo homeRepository;
+  final HomeScreenRepo _homeRepository;
 
-  GetHomeDataUsecase(this.homeRepository);
+  GetHomeDataUsecase(this._homeRepository);
 
   Future<BaseResponse<HomeResponseEntity>> call() async {
-    return await homeRepository.getHomeScreenData();
+    return await _homeRepository.getHomeScreenData();
   }
 }
