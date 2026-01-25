@@ -8,6 +8,8 @@ import 'package:flower_app/features/occasion/api/datasources_impl/remote_occasio
 import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/get_all_occasions_response_model.dart';
 import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/metadata_model.dart';
 import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/occasion_model.dart';
+import 'package:flower_app/features/occasion/data/models/get_occasion_products_models/get_occasion_products_response_model.dart';
+import 'package:flower_app/features/occasion/data/models/get_occasion_products_models/product_model.dart';
 import 'package:test/test.dart';
 import 'remote_occasion_data_source_impl_test.mocks.dart';
 
@@ -19,20 +21,19 @@ void main() {
     mockApiClient = MockOccasionApiClient();
     dataSource = RemoteOccasionDataSourceImpl(mockApiClient);
   });
-  group(
-    'occasion data source implementaion test (get all occasions function)',
-    () {
-      _testGetAllOccasionsSuccessCase(dataSource, mockApiClient);
-      _testGetAllOccasionsFailureCase(dataSource, mockApiClient);
-    },
-  );
+  group('occasion data source implementaion test', () {
+    _testGetAllOccasionsSuccessCase(dataSource, mockApiClient);
+    _testGetAllOccasionsFailureCase(dataSource, mockApiClient);
+    _testGetOccasionProductsSuccessCase(dataSource, mockApiClient);
+    _testGetOccasionProductsErrorCase(dataSource, mockApiClient);
+  });
 }
 
 void _testGetAllOccasionsSuccessCase(
   RemoteOccasionDataSourceImpl dataSource,
   MockOccasionApiClient mockApiClient,
 ) {
-  test('Test Success Case', () async {
+  test('Test get all occasions Success Case', () async {
     final mockResponse = GetAllOccasionsResponseModel(
       message: 'Success',
       metadata: MetadataModel(
@@ -58,7 +59,7 @@ void _testGetAllOccasionsFailureCase(
   RemoteOccasionDataSourceImpl dataSource,
   MockOccasionApiClient mockApiClient,
 ) {
-  test('Test Error Case', () async {
+  test('Test get all occasions Error Case', () async {
     final dummyError = ErrorHandler.handle(
       Exception('Failed to fetch occasions'),
     );
@@ -77,5 +78,57 @@ void _testGetAllOccasionsFailureCase(
     );
 
     verify(mockApiClient.getallOcassions()).called(1);
+  });
+}
+
+void _testGetOccasionProductsSuccessCase(
+  RemoteOccasionDataSourceImpl dataSource,
+  MockOccasionApiClient mockApiClient,
+) {
+  test('Test get occasion products Success Case', () async {
+    final mockResponse = GetOccasionProductsResponseModel(
+      message: 'Success',
+      product: ProductModel(
+        id: '1',
+        name: 'Rose Bouquet',
+        image: 'https://example.com/rose_bouquet.jpg',
+        slug: 'Rose-Bouquet',
+        createdAt: 'fake_date',
+        updatedAt: 'fake_date',
+        isSuperAdmin: false,
+      ),
+    );
+    when(
+      mockApiClient.getOccasionProducts(id: any),
+    ).thenAnswer((_) async => mockResponse);
+    final result = await dataSource.getOccasionProducts('');
+    final success = result as Success<GetOccasionProductsResponseModel>;
+    expect(result, isA<GetOccasionProductsResponseModel>());
+    expect(success.data.message, 'Success');
+    expect(success.data.product, isA<ProductModel>());
+    expect(success.data.product?.id, '1');
+    expect(success.data.product?.name, 'Rose Bouquet');
+    expect(success.data.product?.image, 'https://example.com/rose_bouquet.jpg');
+    verify(mockApiClient.getOccasionProducts(id: any)).called(1);
+  });
+}
+
+void _testGetOccasionProductsErrorCase(
+  RemoteOccasionDataSourceImpl dataSource,
+  MockOccasionApiClient mockApiClient,
+) {
+  test('Test get occasion products Error Case', () async {
+    final dummyError = ErrorHandler.handle(
+      Exception('Failed to fetch occasion products'),
+    );
+    when(mockApiClient.getOccasionProducts(id: any)).thenThrow(dummyError);
+    final result = await dataSource.getOccasionProducts('');
+    expect(result, isA<Failure<GetOccasionProductsResponseModel>>());
+    final failure = result as Failure<GetOccasionProductsResponseModel>;
+    expect(
+      failure.errorHandler.errorModel.message,
+      ErrorsConstant.defaultError,
+    );
+    verify(mockApiClient.getOccasionProducts(id: any)).called(1);
   });
 }
