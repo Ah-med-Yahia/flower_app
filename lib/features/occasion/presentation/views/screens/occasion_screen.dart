@@ -11,7 +11,8 @@ import 'package:flower_app/features/occasion/presentation/views/widgets/back_but
 import 'package:flower_app/features/occasion/presentation/views/widgets/occasion_tab_bar.dart';
 
 class OccasionScreen extends StatelessWidget {
-  const OccasionScreen({super.key});
+  final String? id;
+  const OccasionScreen({super.key, required this.id});
 
   @override
   Widget build(BuildContext context) {

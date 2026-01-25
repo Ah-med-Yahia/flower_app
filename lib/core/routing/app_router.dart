@@ -70,7 +70,10 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: AppRoutesConstants.occasionScreen,
-        builder: (context, state) => OccasionScreen(),
+        builder: (context, state) {
+          final id = state.extra as String?;
+          return OccasionScreen(id: id);
+        },
       ),
     ],
   );
