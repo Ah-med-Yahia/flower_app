@@ -3,6 +3,7 @@ import 'package:flower_app/config/base_state/base_state.dart';
 import 'package:flower_app/features/home/domain/usecases/get_home_data_usecase.dart';
 import 'package:flower_app/features/home/presentation/view_model/home_screen_events.dart';
 import 'package:flower_app/features/home/presentation/view_model/home_screen_states.dart';
+import 'package:flower_app/features/home/presentation/view_model/ui_events.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
@@ -15,6 +16,18 @@ class HomeScreenCubit extends Cubit<HomeScreenStates> {
     switch (event) {
       case GetHomeScreenDataEvent():
         _getHomeScreenData();
+      case WhenBestSellerIsClickedEvent():
+        _navigateToProductDetails(event.productId);
+      case WhenViewAllBestSellerIsClickedEvent():
+        _navigateToBestSeller();
+      case WhenCategoryIsClickedEvent():
+        _navigateToCategoryDetails(event.categoryId);
+      case WhenOccasionIsClickedEvent():
+        _navigateToOccasionDetails(event.occasionId);
+      case WhenCategoryViewAllIsClickedEvent():
+        _navigateToCategoryDetails(null);
+      case WhenOccasionViewAllIsClickedEvent():
+        _navigateToOccasionDetails(null);
     }
   }
 
@@ -53,11 +66,21 @@ class HomeScreenCubit extends Cubit<HomeScreenStates> {
     );
   }
 
-  // void _navigateToCategoryScreen(String? categoryId) {
-  //   if (categoryId != null) {}
-  // }
+  void _navigateToProductDetails(String productId) {
+    emit(
+      state.copyWith(navigationEvent: NavigateToProductDetailsEvent(productId)),
+    );
+  }
 
-  // void _navigateToBestSellerScreen(String? productId) {}
-  // void _navigateToOccasionScreen(String? occasionId) {}
-  // void _navigateToProductDetailsScreen(String productId) {}
+  void _navigateToBestSeller() {
+    emit(state.copyWith(navigationEvent: NavigateToBestSellerScreenEvent()));
+  }
+
+  void _navigateToCategoryDetails(String? categoryId) {
+    emit(state.copyWith(navigationEvent: NavigateToCategoryEvent(categoryId)));
+  }
+
+  void _navigateToOccasionDetails(String? occasionId) {
+    emit(state.copyWith(navigationEvent: NavigateToOccasionEvent(occasionId)));
+  }
 }

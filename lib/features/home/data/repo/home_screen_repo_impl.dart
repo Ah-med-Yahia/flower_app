@@ -7,12 +7,12 @@ import 'package:injectable/injectable.dart';
 
 @Injectable(as: HomeScreenRepo)
 class HomeScreenRepoImpl implements HomeScreenRepo {
-  final HomeScreenDataSource homeScreenDataSource;
-  HomeScreenRepoImpl(this.homeScreenDataSource);
+  final HomeScreenDataSource _homeScreenDataSource;
+  HomeScreenRepoImpl(this._homeScreenDataSource);
 
   @override
   Future<BaseResponse<HomeResponseEntity>> getHomeScreenData() async {
-    final response = await homeScreenDataSource.getHomeScreenData();
+    final response = await _homeScreenDataSource.getHomeScreenData();
     return response.when(
       success: (dto) => BaseResponse.success(dto.toEntity()),
       failure: (errorHandler) => BaseResponse.failure(errorHandler),

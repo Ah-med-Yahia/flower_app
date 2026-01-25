@@ -20,7 +20,7 @@ class OccasionTabBar extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return Container(
-      height: screenHeight * 0.09,
+      height: screenHeight * 0.06,
       padding: EdgeInsets.only(
         right: screenWidth * 0.06,
         left: screenWidth * 0.03,

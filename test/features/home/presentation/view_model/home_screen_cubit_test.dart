@@ -59,6 +59,8 @@ Future<void> main() async {
           isSuperAdmin: false,
           rateAvg: 1,
           rateCount: 1,
+          discount: 1,
+          sold: 1,
         ),
       ],
       occasions: [

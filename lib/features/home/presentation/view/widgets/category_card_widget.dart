@@ -14,7 +14,7 @@ class CategoryCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final bodyMedium = Theme.of(context).textTheme.bodyMedium;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -36,12 +36,7 @@ class CategoryCardWidget extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 8),
-        Text(
-          label,
-          style: theme.textTheme.bodyMedium?.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        Text(label, style: bodyMedium?.copyWith(fontWeight: FontWeight.bold)),
       ],
     );
   }

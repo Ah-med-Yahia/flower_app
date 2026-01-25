@@ -9,53 +9,83 @@ import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flower_app/core/widgets/custom_error_widget.dart';
 import 'package:flower_app/core/widgets/loading_indicator_widget.dart';
 import 'package:flower_app/features/home/presentation/view/widgets/address_widget.dart';
-import 'package:flower_app/features/home/presentation/view/widgets/best_seller_&_occations_card_widget.dart';
+import 'package:flower_app/features/home/presentation/view/widgets/best_seller_occations_card_widget.dart';
 import 'package:flower_app/features/home/presentation/view/widgets/category_card_widget.dart';
 import 'package:flower_app/features/home/presentation/view/widgets/search_widget.dart';
 import 'package:flower_app/features/home/presentation/view/widgets/view_all_button.dart';
 import 'package:flower_app/features/home/presentation/view_model/home_screen_cubit.dart';
 import 'package:flower_app/features/home/presentation/view_model/home_screen_events.dart';
 import 'package:flower_app/features/home/presentation/view_model/home_screen_states.dart';
+import 'package:flower_app/features/home/presentation/view_model/ui_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeTap extends StatelessWidget {
-  const HomeTap({super.key});
+  final VoidCallback onNavigateToCategories;
+  final void Function(String categoryId) onNavigateSelectedToCategory;
+
+  const HomeTap({
+    super.key,
+    required this.onNavigateToCategories,
+    required this.onNavigateSelectedToCategory,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final titleLarge = Theme.of(context).textTheme.titleLarge;
+    double height = MediaQuery.of(context).size.height;
     final HomeScreenCubit cubit = getIt<HomeScreenCubit>();
     return BlocProvider(
       create: (context) => cubit..onEvent(GetHomeScreenDataEvent()),
-      child: BlocBuilder<HomeScreenCubit, HomeScreenStates>(
-        builder: (context, state) {
-          if ((state.homeScreenStates?.errorMessage?.isNotEmpty ?? false) &&
-              state.homeScreenStates?.errorMessage != null &&
-              state.homeScreenStates?.isLoading == false) {
-            return Scaffold(
-              body: CustomErrorWidget(
-                error:
-                    state.homeScreenStates?.errorMessage ??
-                    ErrorsConstant.defaultError,
-                onTryAgain: () {
-                  cubit.onEvent(GetHomeScreenDataEvent());
-                },
-              ),
-            );
+      child: BlocListener<HomeScreenCubit, HomeScreenStates>(
+        listenWhen: (previous, current) => current.navigationEvent != null,
+        listener: (context, state) {
+          final nav = state.navigationEvent;
+          if (nav != null) {
+            switch (nav) {
+              case NavigateToProductDetailsEvent():
+                context.pushNamed(
+                  AppRoutesConstants.productDetailsRoute,
+                  extra: nav.productId,
+                );
+              case NavigateToBestSellerScreenEvent():
+                context.pushNamed(AppRoutesConstants.bestSellerRoute);
+
+              case NavigateToCategoryEvent():
+                onNavigateSelectedToCategory(nav.categoryId!);
+              case NavigateToOccasionEvent():
+                context.pushNamed(AppRoutesConstants.occasionScreen);
+            }
           }
-          if (state.homeScreenStates?.isLoading == true) {
-            return Scaffold(body: Center(child: LoadingIndicator()));
-          }
-          if (state.homeScreenStates?.data != null &&
-              state.homeScreenStates?.isLoading == false) {
-            final data = state.homeScreenStates!.data;
-            return Scaffold(
-              backgroundColor: theme.scaffoldBackgroundColor,
-              body: SafeArea(
-                child: Padding(
+        },
+        child: BlocBuilder<HomeScreenCubit, HomeScreenStates>(
+          builder: (context, state) {
+            if ((state.homeScreenStates?.errorMessage?.isNotEmpty ?? false) &&
+                state.homeScreenStates?.errorMessage != null &&
+                state.homeScreenStates?.isLoading == false) {
+              return Scaffold(
+                body: CustomErrorWidget(
+                  error:
+                      state.homeScreenStates?.errorMessage ??
+                      ErrorsConstant.defaultError,
+                  onTryAgain: () {
+                    cubit.onEvent(GetHomeScreenDataEvent());
+                  },
+                ),
+              );
+            }
+            if (state.homeScreenStates?.isLoading == true) {
+              return Scaffold(body: Center(child: LoadingIndicator()));
+            }
+            if (state.homeScreenStates?.data != null &&
+                state.homeScreenStates?.isLoading == false) {
+              final data = state.homeScreenStates!.data;
+              return Scaffold(
+                appBar: AppBar(toolbarHeight: height * 0.0),
+                backgroundColor: AppColors.background,
+                body: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,7 +96,7 @@ class HomeTap extends StatelessWidget {
                           const SizedBox(width: 4),
                           Text(
                             AppTextConstants.flowery,
-                            style: theme.textTheme.titleLarge?.copyWith(
+                            style: titleLarge?.copyWith(
                               color: AppColors.primary,
                               fontWeight: FontWeight.bold,
                               fontFamily:
@@ -86,12 +116,12 @@ class HomeTap extends StatelessWidget {
                         children: [
                           Text(
                             AppTextConstants.categories,
-                            style: theme.textTheme.titleLarge!.copyWith(
+                            style: titleLarge?.copyWith(
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
                             ),
                           ),
-                          ViewAllButton(onPressed: () {}),
+                          ViewAllButton(onPressed: onNavigateToCategories),
                         ],
                       ),
                       const SizedBox(height: 8),
@@ -101,19 +131,21 @@ class HomeTap extends StatelessWidget {
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
 
-                          itemCount: data!.categories?.length ?? 0,
+                          itemCount: data!.categories.length,
                           itemBuilder: (context, index) {
                             return GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                cubit.onEvent(
+                                  WhenCategoryIsClickedEvent(
+                                    categoryId: data.categories[index].id,
+                                  ),
+                                );
+                              },
                               child: Padding(
                                 padding: const EdgeInsets.only(right: 16.0),
                                 child: CategoryCardWidget(
-                                  imageUrl:
-                                      data.categories?[index].image ??
-                                      AppTextConstants.defaultImage,
-                                  label:
-                                      data.categories?[index].name ??
-                                      AppTextConstants.flowr,
+                                  imageUrl: data.categories[index].image,
+                                  label: data.categories[index].name,
                                   bgColor: AppColors.primary.withOpacity(0.1),
                                 ),
                               ),
@@ -127,15 +159,15 @@ class HomeTap extends StatelessWidget {
                         children: [
                           Text(
                             AppTextConstants.bestSeller,
-                            style: theme.textTheme.titleLarge!.copyWith(
+                            style: titleLarge?.copyWith(
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
                             ),
                           ),
                           ViewAllButton(
                             onPressed: () {
-                              context.pushNamed(
-                                AppRoutesConstants.bestSellerRoute,
+                              cubit.onEvent(
+                                WhenViewAllBestSellerIsClickedEvent(),
                               );
                             },
                           ),
@@ -147,30 +179,27 @@ class HomeTap extends StatelessWidget {
                         height: 220,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: data.bestSeller?.length ?? 0,
+                          itemCount: data.bestSeller.length,
                           itemBuilder: (context, index) {
                             return Padding(
                               padding: const EdgeInsets.only(right: 16.0),
                               child: GestureDetector(
                                 onTap: () {
                                   log('best seller tapped');
-                                  context.pushNamed(
-                                    AppRoutesConstants.productDetailsRoute,
-                                    extra: data.bestSeller?[index].id,
+                                  cubit.onEvent(
+                                    WhenBestSellerIsClickedEvent(
+                                      productId: data.bestSeller[index].id,
+                                    ),
                                   );
                                 },
-                                child: BestSellerCardWidget(
-                                  image:
-                                      data.bestSeller?[index].imgCover ??
-                                      AppTextConstants.defaultImage,
-                                  title:
-                                      data.bestSeller?[index].title ??
-                                      AppTextConstants.flowr,
-                                  price:
-                                      data.bestSeller?[index].priceAfterDiscount
-                                          ?.toInt()
-                                          .toString() ??
-                                      '0',
+                                child: BestSellerOccationsCardWidget(
+                                  image: data.bestSeller[index].imgCover,
+                                  title: data.bestSeller[index].title,
+                                  price: data
+                                      .bestSeller[index]
+                                      .priceAfterDiscount
+                                      .toInt()
+                                      .toString(),
                                 ),
                               ),
                             );
@@ -183,12 +212,18 @@ class HomeTap extends StatelessWidget {
                         children: [
                           Text(
                             AppTextConstants.occasion,
-                            style: theme.textTheme.titleLarge!.copyWith(
+                            style: titleLarge?.copyWith(
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
                             ),
                           ),
-                          ViewAllButton(onPressed: () {}),
+                          ViewAllButton(
+                            onPressed: () {
+                              cubit.onEvent(
+                                WhenOccasionViewAllIsClickedEvent(),
+                              );
+                            },
+                          ),
                         ],
                       ),
                       const SizedBox(height: 8),
@@ -197,17 +232,22 @@ class HomeTap extends StatelessWidget {
                         height: 195,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: data.occasions?.length ?? 0,
+                          itemCount: data.occasions.length,
                           itemBuilder: (context, index) {
                             return Padding(
                               padding: const EdgeInsets.only(right: 16.0),
-                              child: BestSellerCardWidget(
-                                image:
-                                    data.occasions?[index].image ??
-                                    AppTextConstants.defaultImage,
-                                title:
-                                    data.occasions?[index].name ??
-                                    AppTextConstants.flowr,
+                              child: GestureDetector(
+                                onTap: () {
+                                  cubit.onEvent(
+                                    WhenOccasionIsClickedEvent(
+                                      occasionId: data.occasions[index].id,
+                                    ),
+                                  );
+                                },
+                                child: BestSellerOccationsCardWidget(
+                                  image: data.occasions[index].image,
+                                  title: data.occasions[index].name,
+                                ),
                               ),
                             );
                           },
@@ -217,11 +257,11 @@ class HomeTap extends StatelessWidget {
                     ],
                   ),
                 ),
-              ),
-            );
-          }
-          return const SizedBox.shrink();
-        },
+              );
+            }
+            return const SizedBox.shrink();
+          },
+        ),
       ),
     );
   }
