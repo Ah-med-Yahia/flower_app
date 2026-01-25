@@ -25,7 +25,7 @@ class OccasionCubit extends Cubit<OccasionState> {
   void onEvent(OccasionEvent event) {
     switch (event) {
       case GetAllOccasions():
-        _getAllOccasions();
+        _getAllOccasions(event.initialOccasionId);
       case SelectOccasion():
         _selectOccasion(event.index);
       case GetOccasionProducts():
@@ -33,7 +33,7 @@ class OccasionCubit extends Cubit<OccasionState> {
     }
   }
 
-  Future<void> _getAllOccasions() async {
+  Future<void> _getAllOccasions(String? initialOccasionId) async {
     emit(
       state.copyWith(
         occasionState: BaseState<GetOccasionListEntity>(isLoading: true),
@@ -42,20 +42,39 @@ class OccasionCubit extends Cubit<OccasionState> {
     final occasions = await _getAllOccasionUsecase.getAllOccasions();
     occasions.when(
       success: (data) {
+        int selectedIndex = 0;
+
+        if (data.occasions != null && data.occasions!.isNotEmpty) {
+          if (initialOccasionId != null) {
+            final index = data.occasions!.indexWhere(
+              (occasion) => occasion.id == initialOccasionId,
+            );
+
+            if (index != -1) {
+              selectedIndex = index;
+            } else {
+              selectedIndex = 0;
+            }
+          } else {
+            selectedIndex = 0;
+          }
+        }
+
         emit(
           state.copyWith(
             occasionState: BaseState<GetOccasionListEntity>(
               data: data,
               isLoading: false,
             ),
+            selectedIndex: selectedIndex,
           ),
         );
+        final occasionsList = data.occasions ?? [];
 
-        if (data.occasions != null && data.occasions!.isNotEmpty) {
-          final firstOccasionId = data.occasions![0].id;
-
-          if (firstOccasionId != null) {
-            _getOccasionProducts(firstOccasionId);
+        if (occasionsList.isNotEmpty) {
+          final occasionId = occasionsList[selectedIndex].id;
+          if (occasionId != null) {
+            _getOccasionProducts(occasionId);
           }
         }
       },

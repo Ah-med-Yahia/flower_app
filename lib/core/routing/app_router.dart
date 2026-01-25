@@ -16,7 +16,7 @@ import 'package:flower_app/features/occasion/presentation/views/screens/occasion
 
 abstract class AppRouter {
   static GoRouter router = GoRouter(
-    initialLocation: AppRoutesConstants.homeRoute,
+    initialLocation: AppRoutesConstants.loginRoute,
     routes: [
       GoRoute(
         path: AppRoutesConstants.loginRoute,

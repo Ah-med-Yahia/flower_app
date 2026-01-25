@@ -214,11 +214,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i31.OccasionRepoContract>(
       () => _i315.OccasionRepoImpl(gh<_i948.RemoteOccasionDataSource>()),
     );
-    gh.factory<_i203.GetOccasionProductsUsecase>(
-      () => _i203.GetOccasionProductsUsecase(
-        occasionRepoContract: gh<_i31.OccasionRepoContract>(),
-      ),
-    );
     gh.factory<_i176.LoginRepository>(
       () => _i470.LoginRepositoryImpl(
         gh<_i842.RemoteLoginDataSource>(),
@@ -268,6 +263,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i401.GetAllOccasionUsecase>(
       () => _i401.GetAllOccasionUsecase(gh<_i31.OccasionRepoContract>()),
     );
+    gh.factory<_i203.GetOccasionProductsUsecase>(
+      () => _i203.GetOccasionProductsUsecase(gh<_i31.OccasionRepoContract>()),
+    );
     gh.factory<_i198.GetBestSellerUseCase>(
       () => _i198.GetBestSellerUseCase(gh<_i892.BestSellerRepo>()),
     );
@@ -305,11 +303,14 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i338.ProductDetailsRepoContract>(),
       ),
     );
-    gh.factory<_i141.OccasionCubit>(
-      () => _i141.OccasionCubit(gh<_i401.GetAllOccasionUsecase>()),
-    );
     gh.factory<_i126.LoginCubit>(
       () => _i126.LoginCubit(gh<_i316.LoginUseCase>()),
+    );
+    gh.factory<_i141.OccasionCubit>(
+      () => _i141.OccasionCubit(
+        gh<_i401.GetAllOccasionUsecase>(),
+        gh<_i203.GetOccasionProductsUsecase>(),
+      ),
     );
     gh.factory<_i531.ResetPasswordCubit>(
       () => _i531.ResetPasswordCubit(gh<_i374.ResetPasswordUseCase>()),

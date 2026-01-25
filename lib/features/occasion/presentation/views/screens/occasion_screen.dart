@@ -19,7 +19,9 @@ class OccasionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<OccasionCubit>()..onEvent(GetAllOccasions()),
+      create: (context) =>
+          getIt<OccasionCubit>()
+            ..onEvent(GetAllOccasions(initialOccasionId: id)),
       child: Scaffold(
         appBar: AppBar(
           toolbarHeight: MediaQuery.of(context).size.height * 0.09,
