@@ -4,27 +4,27 @@ part 'user_dto.g.dart';
 
 @JsonSerializable()
 class UserDto {
-  @JsonKey(name: "_id")
+  @JsonKey(name: '_id')
   String? id;
-  @JsonKey(name: "firstName")
+  @JsonKey(name: 'firstName')
   String? firstName;
-  @JsonKey(name: "lastName")
+  @JsonKey(name: 'lastName')
   String? lastName;
-  @JsonKey(name: "email")
+  @JsonKey(name: 'email')
   String? email;
-  @JsonKey(name: "gender")
+  @JsonKey(name: 'gender')
   String? gender;
-  @JsonKey(name: "phone")
+  @JsonKey(name: 'phone')
   String? phone;
-  @JsonKey(name: "photo")
+  @JsonKey(name: 'photo')
   String? photo;
-  @JsonKey(name: "role")
+  @JsonKey(name: 'role')
   String? role;
-  @JsonKey(name: "wishlist")
+  @JsonKey(name: 'wishlist')
   List<dynamic>? wishlist;
-  @JsonKey(name: "addresses")
+  @JsonKey(name: 'addresses')
   List<dynamic>? addresses;
-  @JsonKey(name: "createdAt")
+  @JsonKey(name: 'createdAt')
   DateTime? createdAt;
 
   UserDto({

@@ -8,9 +8,9 @@ part 'best_seller_response_dto.g.dart';
 
 @JsonSerializable()
 class BestSellerResponseDto {
-  @JsonKey(name: "message")
+  @JsonKey(name: 'message')
   String? message;
-  @JsonKey(name: "bestSeller")
+  @JsonKey(name: 'bestSeller')
   List<BestSellerDto>? bestSellerDto;
 
   BestSellerResponseDto({this.message, this.bestSellerDto});

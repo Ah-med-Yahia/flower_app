@@ -6,13 +6,14 @@ import 'package:flower_app/features/auth/login/domain/entities/login_request_ent
 import 'package:flower_app/features/auth/login/presentation/cubit/login_ui_events.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+
 import '../../domain/usecases/login_use_case.dart';
 import 'login_intents.dart';
 import 'login_state.dart';
 
 @injectable
 class LoginCubit extends Cubit<LoginStates> {
-  LoginCubit(this._loginUseCase) : super(LoginStates());
+  LoginCubit(this._loginUseCase) : super(const LoginStates());
   final LoginUseCase _loginUseCase;
   final _uiEventController = StreamController<LoginUIEvent>.broadcast();
   Stream<LoginUIEvent> get uiEvents => _uiEventController.stream;
@@ -38,15 +39,13 @@ class LoginCubit extends Cubit<LoginStates> {
         _uiEventController.add(NavigateToHome());
       },
       failure: (f) {
-        _uiEventController.add(
-          ShowErrorMessage(f.errorHandler.message),
-        );
+        _uiEventController.add(ShowErrorMessage(f.errorHandler.message));
       },
     );
   }
 
   void _validateForm({required String email, required String password}) {
-    bool isValid =
+    final bool isValid =
         AppValidators.validateEmail(email) == null &&
         AppValidators.validatePassword(password) == null;
     emit(state.copyWith(isFieldsValid: isValid));

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flower_app/core/constants/app_text_constants.dart';
-import 'package:flower_app/core/theme/app_colors.dart';
+
+import '../../../../../core/constants/app_text_constants.dart';
+import '../../../../../core/theme/app_colors.dart';
 
 class ProductDetailsInfo extends StatelessWidget {
   final double priceAfterDiscount;
@@ -61,7 +62,7 @@ class ProductDetailsInfo extends StatelessWidget {
                     (quantity > 0)
                         ? AppTextConstants.inStock
                         : AppTextConstants.outOfStock,
-                    style: Theme.of(context).textTheme.titleLarge!,
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
                 ],
               ),
