@@ -1,9 +1,12 @@
 name: Validate Branch Name
 
 on:
+  push:
+    branches:
+      - test/git_hub_actions
   pull_request:
     branches:
-      - dev
+      - develop
     types:
       - opened
       - synchronize

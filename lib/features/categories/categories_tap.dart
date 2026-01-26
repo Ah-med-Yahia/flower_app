@@ -8,7 +8,7 @@ class CategoriesTap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Categories')),
+      appBar: AppBar(title: const Text('test')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
