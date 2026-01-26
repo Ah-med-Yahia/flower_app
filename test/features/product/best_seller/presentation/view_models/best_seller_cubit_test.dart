@@ -137,8 +137,9 @@ void _testFailureWhenGetBestSellerEvent(
   MockGetBestSellerUseCase Function() mockUGetBestSellerUseCase,
   BestSellerCubit Function() bestSellerCubit,
 ) {
-  const errorMessage = 'Network error';
-  final apiErrorModel = ErrorModel(message: errorMessage);
+  // ErrorHandler.handle() returns default error for non-DioException/LocalException
+  const errorMessage = 'Something went wrong. Please try again.';
+  final apiErrorModel = ErrorModel(message: 'Network error');
   final errorHandler = ErrorHandler.handle(apiErrorModel);
   final failureResponse = BaseResponse<BestSellerResponse>.failure(
     errorHandler,
@@ -165,7 +166,7 @@ void _testFailureWhenGetBestSellerEvent(
       state.copyWith(
         bestSellerState: state.bestSellerState.copyWith(isLoading: true),
       ),
-      // Success state with data
+      // Failure state with error
       state.copyWith(
         bestSellerState: state.bestSellerState.copyWith(
           isLoading: false,
@@ -183,8 +184,9 @@ void _testVerifyStoreCorrectDataInStateWhenFailure(
   MockGetBestSellerUseCase Function() mockUGetBestSellerUseCase,
   BestSellerCubit Function() bestSellerCubit,
 ) {
-  const errorMessage = 'Network error';
-  final apiErrorModel = ErrorModel(message: errorMessage);
+  // ErrorHandler.handle() returns default error for non-DioException/LocalException
+  const errorMessage = 'Something went wrong. Please try again.';
+  final apiErrorModel = ErrorModel(message: 'Network error');
   final errorHandler = ErrorHandler.handle(apiErrorModel);
   final failureResponse = BaseResponse<BestSellerResponse>.failure(
     errorHandler,

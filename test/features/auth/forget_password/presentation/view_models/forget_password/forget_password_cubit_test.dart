@@ -108,8 +108,9 @@ void main() {
       });
 
       group('In Case Failure Response', () {
-        const String errorMessage = 'Invalid email address';
-        final errorModel = ErrorModel(message: errorMessage);
+        // ErrorHandler.handle() returns default error for non-DioException/LocalException
+        const String errorMessage = 'Something went wrong. Please try again.';
+        final errorModel = ErrorModel(message: 'Invalid email address');
         final errorHandler = ErrorHandler.handle(errorModel);
         final failureResponse = BaseResponse<ForgetPasswordEntity>.failure(
           errorHandler,

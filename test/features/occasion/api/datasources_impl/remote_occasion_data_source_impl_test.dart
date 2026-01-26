@@ -18,118 +18,102 @@ import 'remote_occasion_data_source_impl_test.mocks.dart';
 void main() {
   late RemoteOccasionDataSourceImpl dataSource;
   late MockOccasionApiClient mockApiClient;
-  setUpAll(() {
+
+  setUp(() {
     mockApiClient = MockOccasionApiClient();
     dataSource = RemoteOccasionDataSourceImpl(mockApiClient);
   });
+
   group('occasion data source implementation test', () {
-    _testGetAllOccasionsSuccessCase(dataSource, mockApiClient);
-    _testGetAllOccasionsFailureCase(dataSource, mockApiClient);
-    _testGetOccasionProductsSuccessCase(dataSource, mockApiClient);
-    _testGetOccasionProductsErrorCase(dataSource, mockApiClient);
-  });
-}
+    test('Test get all occasions Success Case', () async {
+      final mockResponse = GetAllOccasionsResponseModel(
+        message: 'Success',
+        metadata: MetadataModel(
+          currentPage: 1,
+          totalPages: 1,
+          limit: 2,
+          totalItems: 50,
+        ),
+        occasions: [],
+      );
+      when(
+        mockApiClient.getallOcassions(),
+      ).thenAnswer((_) async => mockResponse);
+      final result = await dataSource.getAllOccasions();
+      final success = result as Success<GetAllOccasionsResponseModel>;
+      expect(result, isA<Success<GetAllOccasionsResponseModel>>());
+      expect(success.data.message, 'Success');
+      expect(success.data.metadata, isA<MetadataModel>());
+      expect(success.data.occasions, isA<List<OccasionModel>>());
+      verify(mockApiClient.getallOcassions()).called(1);
+    });
 
-void _testGetAllOccasionsSuccessCase(
-  RemoteOccasionDataSourceImpl dataSource,
-  MockOccasionApiClient mockApiClient,
-) {
-  test('Test get all occasions Success Case', () async {
-    final mockResponse = GetAllOccasionsResponseModel(
-      message: 'Success',
-      metadata: MetadataModel(
-        currentPage: 1,
-        totalPages: 1,
-        limit: 2,
-        totalItems: 50,
-      ),
-      occasions: [],
-    );
-    when(mockApiClient.getallOcassions()).thenAnswer((_) async => mockResponse);
-    final result = await dataSource.getAllOccasions();
-    final success = result as Success<GetAllOccasionsResponseModel>;
-    expect(result, isA<GetAllOccasionsResponseModel>());
-    expect(success.data.message, 'Success');
-    expect(success.data.metadata, isA<MetadataModel>());
-    expect(success.data.occasions, isA<List<OccasionModel>>());
-    verify(mockApiClient.getallOcassions()).called(1);
-  });
-}
+    test('Test get all occasions Error Case', () async {
+      final dummyError = ErrorHandler.handle(
+        Exception('Failed to fetch occasions'),
+      );
 
-void _testGetAllOccasionsFailureCase(
-  RemoteOccasionDataSourceImpl dataSource,
-  MockOccasionApiClient mockApiClient,
-) {
-  test('Test get all occasions Error Case', () async {
-    final dummyError = ErrorHandler.handle(
-      Exception('Failed to fetch occasions'),
-    );
+      when(mockApiClient.getallOcassions()).thenThrow(dummyError);
 
-    when(mockApiClient.getallOcassions()).thenThrow(dummyError);
+      final result = await dataSource.getAllOccasions();
 
-    final result = await dataSource.getAllOccasions();
+      expect(result, isA<Failure<GetAllOccasionsResponseModel>>());
 
-    expect(result, isA<Failure<GetAllOccasionsResponseModel>>());
+      final failure = result as Failure<GetAllOccasionsResponseModel>;
 
-    final failure = result as Failure<GetAllOccasionsResponseModel>;
+      expect(
+        failure.errorHandler.errorModel.message,
+        ErrorsConstant.defaultError,
+      );
 
-    expect(
-      failure.errorHandler.errorModel.message,
-      ErrorsConstant.defaultError,
-    );
+      verify(mockApiClient.getallOcassions()).called(1);
+    });
 
-    verify(mockApiClient.getallOcassions()).called(1);
-  });
-}
+    test('Test get occasion products Success Case', () async {
+      const mockResponse = GetOccasionProductsResponseModel(
+        message: 'Success',
+        product: ProductModel(
+          id: '1',
+          name: 'Rose Bouquet',
+          image: 'https://example.com/rose_bouquet.jpg',
+          slug: 'Rose-Bouquet',
+          createdAt: 'fake_date',
+          updatedAt: 'fake_date',
+          isSuperAdmin: false,
+        ),
+      );
+      when(
+        mockApiClient.getOccasionProducts(id: anyNamed('id')),
+      ).thenAnswer((_) async => mockResponse);
+      final result = await dataSource.getOccasionProducts('');
+      final success = result as Success<GetOccasionProductsResponseModel>;
+      expect(result, isA<Success<GetOccasionProductsResponseModel>>());
+      expect(success.data.message, 'Success');
+      expect(success.data.product, isA<ProductModel>());
+      expect(success.data.product?.id, '1');
+      expect(success.data.product?.name, 'Rose Bouquet');
+      expect(
+        success.data.product?.image,
+        'https://example.com/rose_bouquet.jpg',
+      );
+      verify(mockApiClient.getOccasionProducts(id: anyNamed('id'))).called(1);
+    });
 
-void _testGetOccasionProductsSuccessCase(
-  RemoteOccasionDataSourceImpl dataSource,
-  MockOccasionApiClient mockApiClient,
-) {
-  test('Test get occasion products Success Case', () async {
-    const mockResponse = GetOccasionProductsResponseModel(
-      message: 'Success',
-      product: ProductModel(
-        id: '1',
-        name: 'Rose Bouquet',
-        image: 'https://example.com/rose_bouquet.jpg',
-        slug: 'Rose-Bouquet',
-        createdAt: 'fake_date',
-        updatedAt: 'fake_date',
-        isSuperAdmin: false,
-      ),
-    );
-    when(
-      mockApiClient.getOccasionProducts(id: any),
-    ).thenAnswer((_) async => mockResponse);
-    final result = await dataSource.getOccasionProducts('');
-    final success = result as Success<GetOccasionProductsResponseModel>;
-    expect(result, isA<GetOccasionProductsResponseModel>());
-    expect(success.data.message, 'Success');
-    expect(success.data.product, isA<ProductModel>());
-    expect(success.data.product?.id, '1');
-    expect(success.data.product?.name, 'Rose Bouquet');
-    expect(success.data.product?.image, 'https://example.com/rose_bouquet.jpg');
-    verify(mockApiClient.getOccasionProducts(id: any)).called(1);
-  });
-}
-
-void _testGetOccasionProductsErrorCase(
-  RemoteOccasionDataSourceImpl dataSource,
-  MockOccasionApiClient mockApiClient,
-) {
-  test('Test get occasion products Error Case', () async {
-    final dummyError = ErrorHandler.handle(
-      Exception('Failed to fetch occasion products'),
-    );
-    when(mockApiClient.getOccasionProducts(id: any)).thenThrow(dummyError);
-    final result = await dataSource.getOccasionProducts('');
-    expect(result, isA<Failure<GetOccasionProductsResponseModel>>());
-    final failure = result as Failure<GetOccasionProductsResponseModel>;
-    expect(
-      failure.errorHandler.errorModel.message,
-      ErrorsConstant.defaultError,
-    );
-    verify(mockApiClient.getOccasionProducts(id: any)).called(1);
+    test('Test get occasion products Error Case', () async {
+      final dummyError = ErrorHandler.handle(
+        Exception('Failed to fetch occasion products'),
+      );
+      when(
+        mockApiClient.getOccasionProducts(id: anyNamed('id')),
+      ).thenThrow(dummyError);
+      final result = await dataSource.getOccasionProducts('');
+      expect(result, isA<Failure<GetOccasionProductsResponseModel>>());
+      final failure = result as Failure<GetOccasionProductsResponseModel>;
+      expect(
+        failure.errorHandler.errorModel.message,
+        ErrorsConstant.defaultError,
+      );
+      verify(mockApiClient.getOccasionProducts(id: anyNamed('id'))).called(1);
+    });
   });
 }

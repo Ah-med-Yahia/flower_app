@@ -40,7 +40,7 @@ void main() {
     user: testUser,
   );
 
-  setUpAll(() {
+  setUp(() {
     mockLocal = MockLocalLoginDataSource();
     mockRemote = MockRemoteLoginDataSource();
     repository = LoginRepositoryImpl(mockRemote, mockLocal);
