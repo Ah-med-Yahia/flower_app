@@ -50,6 +50,10 @@ dependencies:
 
   rename_app: ^1.6.5
 
+  # Debugging
+  logger: ^2.6.2
+  pretty_dio_logger: ^1.4.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -72,6 +76,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/lottie/
+    - assets/images/
 
 
 flutter_gen:
@@ -79,3 +84,7 @@ flutter_gen:
   integrations:
     lottie: true
     flutter_svg: true
+  assets:
+    enabled: true
+    outputs:
+      package_parameter_enabled: false
