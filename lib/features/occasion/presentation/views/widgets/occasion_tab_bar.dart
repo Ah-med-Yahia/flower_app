@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:flower_app/features/occasion/domain/entities/occasion_entity.dart';
 import 'package:flower_app/features/occasion/presentation/views/widgets/occasion_tab.dart';
+import 'package:flutter/material.dart';
 
 class OccasionTabBar extends StatelessWidget {
   final List<OccasionEntity> occasions;
@@ -8,11 +8,11 @@ class OccasionTabBar extends StatelessWidget {
   final Function(int) onTabSelected;
 
   const OccasionTabBar({
-    Key? key,
+    super.key,
     required this.occasions,
     required this.selectedIndex,
     required this.onTabSelected,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

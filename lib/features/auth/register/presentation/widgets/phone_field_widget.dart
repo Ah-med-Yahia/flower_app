@@ -1,8 +1,9 @@
-import 'package:flower_app/core/validators/app_validators.dart';
 import 'package:flutter/material.dart';
-import 'package:flower_app/core/constants/app_text_constants.dart';
-import 'package:flower_app/features/auth/register/presentation/cubit/register_cubit.dart';
-import 'package:flower_app/features/auth/register/presentation/cubit/register_events.dart';
+
+import '../../../../../core/constants/app_text_constants.dart';
+import '../../../../../core/validators/app_validators.dart';
+import '../cubit/register_cubit.dart';
+import '../cubit/register_events.dart';
 
 class PhoneFieldWidget extends StatelessWidget {
   final TextEditingController controller;

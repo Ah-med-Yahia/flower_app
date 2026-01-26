@@ -12,7 +12,7 @@ class AddressWidget extends StatelessWidget {
     final theme = Theme.of(context);
     return Row(
       children: [
-        Icon(
+        const Icon(
           Icons.location_on_outlined,
           size: 25,
           color: AppColors.textPrimary,
@@ -22,7 +22,11 @@ class AddressWidget extends StatelessWidget {
           '${AppTextConstants.deliverTo} $address ',
           style: theme.textTheme.titleMedium,
         ),
-        Icon(Icons.keyboard_arrow_down, size: 30, color: AppColors.primary),
+        const Icon(
+          Icons.keyboard_arrow_down,
+          size: 30,
+          color: AppColors.primary,
+        ),
       ],
     );
   }

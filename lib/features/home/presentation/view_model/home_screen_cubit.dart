@@ -9,8 +9,9 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class HomeScreenCubit extends Cubit<HomeScreenStates> {
-  final GetHomeDataUsecase getHomeDataUsecase;
-  HomeScreenCubit(this.getHomeDataUsecase) : super(HomeScreenStates());
+  final GetHomeDataUsecase getHomeDataUseCase;
+
+  HomeScreenCubit(this.getHomeDataUseCase) : super(HomeScreenStates());
 
   void onEvent(HomeScreenEvents event) {
     switch (event) {
@@ -34,14 +35,14 @@ class HomeScreenCubit extends Cubit<HomeScreenStates> {
   void _getHomeScreenData() async {
     emit(
       state.copyWith(
-        homeScreenStates: BaseState(
+        homeScreenStates: const BaseState(
           isLoading: true,
           data: null,
           errorMessage: null,
         ),
       ),
     );
-    final response = await getHomeDataUsecase.call();
+    final response = await getHomeDataUseCase.call();
     response.when(
       success: (data) {
         emit(

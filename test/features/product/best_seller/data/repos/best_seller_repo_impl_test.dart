@@ -23,23 +23,42 @@ void main() {
 
   group('getBestSeller', () {
     _testSuccessfulGetBestSeller(() => mockRemoteDataSource, () => repository);
-    _testGetBestSellerWithMultipleItems(() => mockRemoteDataSource, () => repository);
-    _testGetBestSellerWithEmptyList(() => mockRemoteDataSource, () => repository);
-    _testGetBestSellerWithNullList(() => mockRemoteDataSource, () => repository);
-    _testGetBestSellerThrowsException(() => mockRemoteDataSource, () => repository);
+    _testGetBestSellerWithMultipleItems(
+      () => mockRemoteDataSource,
+      () => repository,
+    );
+    _testGetBestSellerWithEmptyList(
+      () => mockRemoteDataSource,
+      () => repository,
+    );
+    _testGetBestSellerWithNullList(
+      () => mockRemoteDataSource,
+      () => repository,
+    );
+    _testGetBestSellerThrowsException(
+      () => mockRemoteDataSource,
+      () => repository,
+    );
     _testGetBestSellerThrowsError(() => mockRemoteDataSource, () => repository);
-    _testTransformDtoToEntityWithPagination(() => mockRemoteDataSource, () => repository);
-    _testNoMoreThanOncePerInvocation(() => mockRemoteDataSource, () => repository);
+    _testTransformDtoToEntityWithPagination(
+      () => mockRemoteDataSource,
+      () => repository,
+    );
+    _testNoMoreThanOncePerInvocation(
+      () => mockRemoteDataSource,
+      () => repository,
+    );
   });
 }
 
 void _testSuccessfulGetBestSeller(
-    MockBestSellerRemoteDataSource Function() getMockRemoteDataSource,
-    BestSellerRepoImpl Function() getRepository,) {
+  MockBestSellerRemoteDataSource Function() getMockRemoteDataSource,
+  BestSellerRepoImpl Function() getRepository,
+) {
   test(
     'When call getBestSeller, '
-        'it should return Success with BestSellerResponse when remote data source call succeeds',
-        () async {
+    'it should return Success with BestSellerResponse when remote data source call succeeds',
+    () async {
       final mockRemoteDataSource = getMockRemoteDataSource();
       final repository = getRepository();
 
@@ -85,12 +104,13 @@ void _testSuccessfulGetBestSeller(
 }
 
 void _testGetBestSellerWithMultipleItems(
-    MockBestSellerRemoteDataSource Function() getMockRemoteDataSource,
-    BestSellerRepoImpl Function() getRepository,) {
+  MockBestSellerRemoteDataSource Function() getMockRemoteDataSource,
+  BestSellerRepoImpl Function() getRepository,
+) {
   test(
     'When call getBestSeller, '
-        'it should return Success with multiple items when remote data source returns multiple items',
-        () async {
+    'it should return Success with multiple items when remote data source returns multiple items',
+    () async {
       final mockRemoteDataSource = getMockRemoteDataSource();
       final repository = getRepository();
 
@@ -156,12 +176,13 @@ void _testGetBestSellerWithMultipleItems(
 }
 
 void _testGetBestSellerWithEmptyList(
-    MockBestSellerRemoteDataSource Function() getMockRemoteDataSource,
-    BestSellerRepoImpl Function() getRepository,) {
+  MockBestSellerRemoteDataSource Function() getMockRemoteDataSource,
+  BestSellerRepoImpl Function() getRepository,
+) {
   test(
     'When call getBestSeller, '
-        'it should return Success with empty list when remote data source returns empty list',
-        () async {
+    'it should return Success with empty list when remote data source returns empty list',
+    () async {
       final mockRemoteDataSource = getMockRemoteDataSource();
       final repository = getRepository();
 
@@ -191,12 +212,13 @@ void _testGetBestSellerWithEmptyList(
 }
 
 void _testGetBestSellerWithNullList(
-    MockBestSellerRemoteDataSource Function() getMockRemoteDataSource,
-    BestSellerRepoImpl Function() getRepository,) {
+  MockBestSellerRemoteDataSource Function() getMockRemoteDataSource,
+  BestSellerRepoImpl Function() getRepository,
+) {
   test(
     'When call getBestSeller, '
-        'it should return Success with empty list when remote data source returns null list',
-        () async {
+    'it should return Success with empty list when remote data source returns null list',
+    () async {
       final mockRemoteDataSource = getMockRemoteDataSource();
       final repository = getRepository();
 
@@ -225,12 +247,13 @@ void _testGetBestSellerWithNullList(
 }
 
 void _testGetBestSellerThrowsException(
-    MockBestSellerRemoteDataSource Function() getMockRemoteDataSource,
-    BestSellerRepoImpl Function() getRepository,) {
+  MockBestSellerRemoteDataSource Function() getMockRemoteDataSource,
+  BestSellerRepoImpl Function() getRepository,
+) {
   test(
     'When call getBestSeller, '
-        'it should return Failure when remote data source throws exception',
-        () async {
+    'it should return Failure when remote data source throws exception',
+    () async {
       final mockRemoteDataSource = getMockRemoteDataSource();
       final repository = getRepository();
 
@@ -255,12 +278,13 @@ void _testGetBestSellerThrowsException(
 }
 
 void _testGetBestSellerThrowsError(
-    MockBestSellerRemoteDataSource Function() getMockRemoteDataSource,
-    BestSellerRepoImpl Function() getRepository,) {
+  MockBestSellerRemoteDataSource Function() getMockRemoteDataSource,
+  BestSellerRepoImpl Function() getRepository,
+) {
   test(
     'When call getBestSeller, '
-        'it should return Failure when remote data source throws any error',
-        () async {
+    'it should return Failure when remote data source throws any error',
+    () async {
       final mockRemoteDataSource = getMockRemoteDataSource();
       final repository = getRepository();
 
@@ -284,12 +308,13 @@ void _testGetBestSellerThrowsError(
 }
 
 void _testTransformDtoToEntityWithPagination(
-    MockBestSellerRemoteDataSource Function() getMockRemoteDataSource,
-    BestSellerRepoImpl Function() getRepository,) {
+  MockBestSellerRemoteDataSource Function() getMockRemoteDataSource,
+  BestSellerRepoImpl Function() getRepository,
+) {
   test(
     'When call getBestSeller, '
-        'it should correctly transform DTO to entity with pagination metadata',
-        () async {
+    'it should correctly transform DTO to entity with pagination metadata',
+    () async {
       final mockRemoteDataSource = getMockRemoteDataSource();
       final repository = getRepository();
 
@@ -298,18 +323,17 @@ void _testTransformDtoToEntityWithPagination(
         message: 'success',
         bestSellerDto: List.generate(
           15,
-              (index) =>
-              BestSellerDto(
-                id: '$index',
-                title: 'Product $index',
-                imgCover: 'img$index.jpg',
-                price: 100 * (index + 1),
-                priceAfterDiscount: 90 * (index + 1),
-                quantity: 10,
-                sold: 5,
-                bestSellerId: 'bs$index',
-                discount: 10,
-              ),
+          (index) => BestSellerDto(
+            id: '$index',
+            title: 'Product $index',
+            imgCover: 'img$index.jpg',
+            price: 100 * (index + 1),
+            priceAfterDiscount: 90 * (index + 1),
+            quantity: 10,
+            sold: 5,
+            bestSellerId: 'bs$index',
+            discount: 10,
+          ),
         ),
       );
       when(
@@ -334,12 +358,13 @@ void _testTransformDtoToEntityWithPagination(
 }
 
 void _testNoMoreThanOncePerInvocation(
-    MockBestSellerRemoteDataSource Function() getMockRemoteDataSource,
-    BestSellerRepoImpl Function() getRepository,) {
+  MockBestSellerRemoteDataSource Function() getMockRemoteDataSource,
+  BestSellerRepoImpl Function() getRepository,
+) {
   test(
     'When call getBestSeller, '
-        'it should not call remote data source more than once per invocation',
-        () async {
+    'it should not call remote data source more than once per invocation',
+    () async {
       final mockRemoteDataSource = getMockRemoteDataSource();
       final repository = getRepository();
 

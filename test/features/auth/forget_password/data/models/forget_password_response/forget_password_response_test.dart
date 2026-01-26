@@ -22,7 +22,7 @@ void main() {
 
           // Assert
           expect(result, isA<ForgetPasswordEntity>());
-          final expectedToEntity = ForgetPasswordEntity(
+          const expectedToEntity = ForgetPasswordEntity(
             message: testMessage,
             info: testInfo,
           );
@@ -46,7 +46,7 @@ void main() {
 
           // Assert
           expect(result, isA<ForgetPasswordEntity>());
-          final expectedToEntity = ForgetPasswordEntity(message: '', info: '');
+          const expectedToEntity = ForgetPasswordEntity(message: '', info: '');
           expect(result.message, equals(expectedToEntity.message));
           expect(result.info, equals(expectedToEntity.info));
         },
