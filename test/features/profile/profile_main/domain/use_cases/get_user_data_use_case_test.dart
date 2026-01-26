@@ -41,7 +41,7 @@ void _testSuccessfulCallWithData(
       final useCase = getUseCase();
 
       // Arrange
-      final mockResponse = UserDataResponse(
+      const mockResponse = UserDataResponse(
         'success',
         UserEntity(
           id: '1',
@@ -53,7 +53,7 @@ void _testSuccessfulCallWithData(
 
       when(
         mockProfileMainRepo.getLoggedUserData(),
-      ).thenAnswer((_) async => BaseResponse.success(mockResponse));
+      ).thenAnswer((_) async => const BaseResponse.success(mockResponse));
 
       // Act
       final result = await useCase.call();

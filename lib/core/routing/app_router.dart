@@ -28,7 +28,7 @@ abstract class AppRouter {
       GoRoute(
         path: AppRoutesConstants.bestSellerRoute,
         name: AppRoutesConstants.bestSellerRoute,
-        builder: (context, state) => BestSellerView(),
+        builder: (context, state) => const BestSellerView(),
       ),
       GoRoute(
         path: AppRoutesConstants.homeRoute,
@@ -49,7 +49,7 @@ abstract class AppRouter {
       GoRoute(
         path: AppRoutesConstants.forgetPasswordRoute,
         name: AppRoutesConstants.forgetPasswordRoute,
-        builder: (context, state) => ForgetPasswordView(),
+        builder: (context, state) => const ForgetPasswordView(),
       ),
       GoRoute(
         path: AppRoutesConstants.verifyOtpRoute,
@@ -70,7 +70,7 @@ abstract class AppRouter {
       GoRoute(
         path: AppRoutesConstants.occasionScreen,
         name: AppRoutesConstants.occasionScreen,
-        builder: (context, state) => OccasionScreen(),
+        builder: (context, state) => const OccasionScreen(),
       ),
     ],
   );

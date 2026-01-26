@@ -27,7 +27,7 @@ void main() {
       }) => VerifyOtpCodeEntity(status: testStatus);
       test(
         'When resetCode is valid, should return VerifyOtpCodeEntity with status contain Success',
-            () async {
+        () async {
           // arrange
           final verifyOtpCodeEntity = mockVerifyOtpCodeEntity();
           final successResponse = BaseResponse<VerifyOtpCodeEntity>.success(
@@ -39,7 +39,9 @@ void main() {
           ).thenAnswer((_) async => successResponse);
 
           // act
-          final result = await otpVerificationUseCase.execute(otpCode: testOTPCode);
+          final result = await otpVerificationUseCase.execute(
+            otpCode: testOTPCode,
+          );
 
           // assert
           expect(result, isA<BaseResponse<VerifyOtpCodeEntity>>());
@@ -64,33 +66,37 @@ void main() {
         return BaseResponse<VerifyOtpCodeEntity>.failure(errorHandler);
       }
 
-      test('When resetCode is invalid, should return API error message', () async {
-        // arrange
-        const String testError =
-            'Reset code is invalid or has expired';
-        final errorResponse = mockFailureResponse(testMessage: testError);
+      test(
+        'When resetCode is invalid, should return API error message',
+        () async {
+          // arrange
+          const String testError = 'Reset code is invalid or has expired';
+          final errorResponse = mockFailureResponse(testMessage: testError);
 
-        when(
-          mockRepo.verifyOtpCode(resetCode: testOTPCode),
-        ).thenAnswer((_) async => errorResponse);
+          when(
+            mockRepo.verifyOtpCode(resetCode: testOTPCode),
+          ).thenAnswer((_) async => errorResponse);
 
-        // act
-        final result = await otpVerificationUseCase.execute(otpCode: testOTPCode);
+          // act
+          final result = await otpVerificationUseCase.execute(
+            otpCode: testOTPCode,
+          );
 
-        // assert
-        expect(result, isA<BaseResponse<VerifyOtpCodeEntity>>());
-        result.when(
-          success: (data) => fail('Expected failure but got success'),
-          failure: (error) {
-            expect(error.message, equals(testError));
-          },
-        );
-        verify(mockRepo.verifyOtpCode(resetCode: testOTPCode)).called(1);
-      });
+          // assert
+          expect(result, isA<BaseResponse<VerifyOtpCodeEntity>>());
+          result.when(
+            success: (data) => fail('Expected failure but got success'),
+            failure: (error) {
+              expect(error.message, equals(testError));
+            },
+          );
+          verify(mockRepo.verifyOtpCode(resetCode: testOTPCode)).called(1);
+        },
+      );
       test('When resetCode is null should return API error message', () async {
         // arrange
         const String errorMessage =
-            "The \"data\" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received undefined";
+            'The "data" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received undefined';
         final errorResponse = mockFailureResponse(testMessage: errorMessage);
 
         when(

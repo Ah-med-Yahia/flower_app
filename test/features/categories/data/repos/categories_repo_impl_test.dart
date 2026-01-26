@@ -1,15 +1,15 @@
 import 'package:dio/dio.dart';
-import 'package:flower_app/core/constants/errors_constants.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/error_handler/error_handler.dart';
+import 'package:flower_app/core/constants/errors_constants.dart';
 import 'package:flower_app/features/categories/api/datasources_impl/remote_categories_data_source_impl.dart';
+import 'package:flower_app/features/categories/data/models/get_all_categories_models/category_model.dart';
 import 'package:flower_app/features/categories/data/models/get_all_categories_models/get_all_categories_response_model.dart';
 import 'package:flower_app/features/categories/data/models/get_all_categories_models/metadata_model.dart';
-import 'package:flower_app/features/categories/data/models/get_all_categories_models/category_model.dart';
 import 'package:flower_app/features/categories/data/repos/categories_repo_impl.dart';
 import 'package:flower_app/features/categories/domain/entities/get_all_categories_list_entity.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
 import 'categories_repo_impl_test.mocks.dart';
@@ -69,8 +69,8 @@ void _testGetAllCategoriesFailureCase(
   CategoriesRepoImpl categoriesRepoImpl,
   MockRemoteCategoriesDataSourceImpl mockDataSource,
 ) {
-  test("should return BaseResponse.failure when datasource fails", () async {
-    final fakeError = ErrorHandler.handle(Exception("API Failed"));
+  test('should return BaseResponse.failure when datasource fails', () async {
+    final fakeError = ErrorHandler.handle(Exception('API Failed'));
 
     when(
       mockDataSource.getAllCategories(),
@@ -103,10 +103,10 @@ void _testGetAllCategoriesDioFailuresCase(
   MockRemoteCategoriesDataSourceImpl mockDataSource,
 ) {
   test(
-    "should return BaseResponse.failure with correct error from error handler when datasource fails",
+    'should return BaseResponse.failure with correct error from error handler when datasource fails',
     () async {
       final dioError = DioException(
-        requestOptions: RequestOptions(path: "/categories"),
+        requestOptions: RequestOptions(path: '/categories'),
         type: DioExceptionType.connectionError,
       );
 

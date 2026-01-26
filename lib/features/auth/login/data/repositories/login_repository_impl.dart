@@ -1,10 +1,11 @@
-import 'package:flower_app/features/auth/login/data/mapper/login_request_mapper.dart';
 import 'package:injectable/injectable.dart';
+
 import '../../../../../config/base_response/base_response.dart';
 import '../../domain/entities/login_request_entity.dart';
 import '../../domain/repositories/login_repository.dart';
 import '../datasources/local/local_login_data_source.dart';
 import '../datasources/remote/remote_login_data_source.dart';
+import '../mapper/login_request_mapper.dart';
 
 @Injectable(as: LoginRepository)
 class LoginRepositoryImpl implements LoginRepository {
@@ -28,7 +29,7 @@ class LoginRepositoryImpl implements LoginRepository {
           );
           return localResponse.map(
             success: (s) {
-              return BaseResponse<void>.success(null);
+              return const BaseResponse<void>.success(null);
             },
             failure: (f) {
               return BaseResponse<void>.failure(f.errorHandler);
@@ -36,7 +37,7 @@ class LoginRepositoryImpl implements LoginRepository {
           );
         }
 
-        return BaseResponse<void>.success(null);
+        return const BaseResponse<void>.success(null);
       },
       failure: (failure) {
         return BaseResponse<void>.failure(failure.errorHandler);

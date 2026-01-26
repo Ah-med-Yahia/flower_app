@@ -11,7 +11,7 @@ import 'forget_password_state.dart';
 @injectable
 class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   ForgetPasswordCubit(this._forgetPasswordUseCase)
-    : super(ForgetPasswordState());
+    : super(const ForgetPasswordState());
 
   final ForgetPasswordUseCase _forgetPasswordUseCase;
   final StreamController<ForgetPasswordEvents> _eventsStream =

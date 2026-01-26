@@ -51,7 +51,7 @@ void main() {
     test(
       'should return Failure entity when datasource returns failure',
       () async {
-        final fakeError = ErrorHandler.handle(Exception("API Failed"));
+        final fakeError = ErrorHandler.handle(Exception('API Failed'));
         when(
           mockDataSource.getAllOccasions(),
         ).thenAnswer((_) async => BaseResponse.failure(fakeError));
@@ -69,7 +69,7 @@ void main() {
 
     test('should handle DioException correctly', () async {
       final dioError = DioException(
-        requestOptions: RequestOptions(path: "/occasions"),
+        requestOptions: RequestOptions(path: '/occasions'),
         type: DioExceptionType.connectionError,
       );
       final handledError = ErrorHandler.handle(dioError);
@@ -87,7 +87,7 @@ void main() {
 
   group('getOccasionProducts', () {
     const tOccasionId = '123';
-    final mockProductResponse = GetOccasionProductsResponseModel(
+    const mockProductResponse = GetOccasionProductsResponseModel(
       message: 'Success',
       product: ProductModel(
         id: '1',
@@ -101,9 +101,9 @@ void main() {
     );
 
     test('should return Success entity when datasource succeeds', () async {
-      when(
-        mockDataSource.getOccasionProducts(tOccasionId),
-      ).thenAnswer((_) async => BaseResponse.success(mockProductResponse));
+      when(mockDataSource.getOccasionProducts(tOccasionId)).thenAnswer(
+        (_) async => const BaseResponse.success(mockProductResponse),
+      );
 
       final result = await occasionRepoImpl.getOccasionProducts(tOccasionId);
 

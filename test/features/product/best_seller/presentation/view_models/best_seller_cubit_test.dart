@@ -137,7 +137,7 @@ void _testFailureWhenGetBestSellerEvent(
   MockGetBestSellerUseCase Function() mockUGetBestSellerUseCase,
   BestSellerCubit Function() bestSellerCubit,
 ) {
-  final errorMessage = 'Network error';
+  const errorMessage = 'Network error';
   final apiErrorModel = ErrorModel(message: errorMessage);
   final errorHandler = ErrorHandler.handle(apiErrorModel);
   final failureResponse = BaseResponse<BestSellerResponse>.failure(
@@ -183,7 +183,7 @@ void _testVerifyStoreCorrectDataInStateWhenFailure(
   MockGetBestSellerUseCase Function() mockUGetBestSellerUseCase,
   BestSellerCubit Function() bestSellerCubit,
 ) {
-  final errorMessage = 'Network error';
+  const errorMessage = 'Network error';
   final apiErrorModel = ErrorModel(message: errorMessage);
   final errorHandler = ErrorHandler.handle(apiErrorModel);
   final failureResponse = BaseResponse<BestSellerResponse>.failure(

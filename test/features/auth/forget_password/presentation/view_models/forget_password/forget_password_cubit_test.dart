@@ -42,11 +42,11 @@ void main() {
 
     group('When call ForgetPasswordEvent intent', () {
       group('In Case Success Response', () {
-        final mockEntity = const ForgetPasswordEntity(
+        const mockEntity = ForgetPasswordEntity(
           message: 'success',
           info: 'OTP sent to your email',
         );
-        final successResponse = BaseResponse<ForgetPasswordEntity>.success(
+        const successResponse = BaseResponse<ForgetPasswordEntity>.success(
           mockEntity,
         );
         void successResponseSetUp() async {
@@ -187,11 +187,11 @@ void main() {
       });
 
       group('In Case Success Response', () {
-        final mockEntity = const ForgetPasswordEntity(
+        const mockEntity = ForgetPasswordEntity(
           message: 'success',
           info: 'OTP sent to your email',
         );
-        final successResponse = BaseResponse<ForgetPasswordEntity>.success(
+        const successResponse = BaseResponse<ForgetPasswordEntity>.success(
           mockEntity,
         );
         void successResponseSetUp() async {
