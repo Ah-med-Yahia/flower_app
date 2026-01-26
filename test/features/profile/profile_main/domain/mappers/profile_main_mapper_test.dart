@@ -88,7 +88,7 @@ void _testMappingToUserEntityWithCorrectData() {
 void _testMappingToUserEntityWithNullData() {
   test('When response is Success, '
       'with null data, should be mapped with UserEntity correctly', () {
-    final UserDto? userDto = null;
+    const UserDto? userDto = null;
 
     final result = ProfileMainMapper.mapUserDtoToUserEntity(
       userDto ?? UserDto(),

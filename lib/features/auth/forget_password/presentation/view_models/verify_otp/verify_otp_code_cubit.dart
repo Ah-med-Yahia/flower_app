@@ -1,7 +1,5 @@
 import 'dart:async';
 
-import 'package:flower_app/features/auth/forget_password/presentation/view_models/verify_otp/verify_otp_code_events.dart';
-import 'package:flower_app/features/auth/forget_password/presentation/view_models/verify_otp/verify_otp_code_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
@@ -10,11 +8,13 @@ import '../../../../../../config/base_state/base_state.dart';
 import '../../../domain/usecases/otp_verification_use_case.dart';
 import '../forget_password/forget_password_cubit.dart';
 import '../forget_password/forget_password_events.dart';
+import 'verify_otp_code_events.dart';
+import 'verify_otp_code_state.dart';
 
 @injectable
 class VerifyOtpCodeCubit extends Cubit<VerifyOtpCodeState> {
   VerifyOtpCodeCubit(this._otpVerificationUseCase, this._forgetPasswordCubit)
-    : super(VerifyOtpCodeState());
+    : super(const VerifyOtpCodeState());
 
   final OtpVerificationUseCase _otpVerificationUseCase;
   final ForgetPasswordCubit _forgetPasswordCubit;
@@ -45,7 +45,7 @@ class VerifyOtpCodeCubit extends Cubit<VerifyOtpCodeState> {
         // if (kDebugMode) {
         //   debugPrint('➡️ [Cubit] Handling NavigateToResetPassword');
         // }
-        _eventsStream.add(NavigateToResetPassword());
+        _eventsStream.add(const NavigateToResetPassword());
     }
   }
 
@@ -92,7 +92,7 @@ class VerifyOtpCodeCubit extends Cubit<VerifyOtpCodeState> {
         //     '🚀 [Cubit] Adding NavigateToResetPassword event to stream',
         //   );
         // }
-        _eventsStream.add(NavigateToResetPassword());
+        _eventsStream.add(const NavigateToResetPassword());
       },
       failure: (error) {
         // if (kDebugMode) {

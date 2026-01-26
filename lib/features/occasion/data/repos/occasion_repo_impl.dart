@@ -1,3 +1,4 @@
+import 'package:flower_app/features/occasion/domain/entities/get_occasion_products_entity.dart';
 import 'package:injectable/injectable.dart';
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/features/occasion/data/datasources/remote_occasion_data_source.dart';
@@ -12,6 +13,17 @@ class OccasionRepoImpl implements OccasionRepoContract {
   @override
   Future<BaseResponse<GetOccasionListEntity>> getAllOccasions() async {
     final response = await _occasionDataSourceContract.getAllOccasions();
+    return response.map(
+      success: (success) => BaseResponse.success(success.data.toEntity()),
+      failure: (failure) => BaseResponse.failure(failure.errorHandler),
+    );
+  }
+
+  @override
+  Future<BaseResponse<GetOccasionProductsEntity>> getOccasionProducts(
+    String id,
+  ) async {
+    final response = await _occasionDataSourceContract.getOccasionProducts(id);
     return response.map(
       success: (success) => BaseResponse.success(success.data.toEntity()),
       failure: (failure) => BaseResponse.failure(failure.errorHandler),

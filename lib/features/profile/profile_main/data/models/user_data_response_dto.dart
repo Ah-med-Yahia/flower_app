@@ -6,9 +6,9 @@ part 'user_data_response_dto.g.dart';
 
 @JsonSerializable()
 class UserDataResponseDto {
-  @JsonKey(name: "message")
+  @JsonKey(name: 'message')
   String? message;
-  @JsonKey(name: "user")
+  @JsonKey(name: 'user')
   UserDto? user;
 
   UserDataResponseDto({this.message, this.user});

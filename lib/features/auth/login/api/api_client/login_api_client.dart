@@ -10,9 +10,8 @@ part 'login_api_client.g.dart';
 @injectable
 @RestApi()
 abstract class LoginApiClient {
-
-@factoryMethod
-factory LoginApiClient(Dio dio) = _LoginApiClient;
-    @POST(ApiConstants.loginEndPoint)
-    Future<LoginResponseModel> login(@Body() LoginRequestModel body);
+  @factoryMethod
+  factory LoginApiClient(Dio dio) = _LoginApiClient;
+  @POST(ApiConstants.loginEndPoint)
+  Future<LoginResponseModel> login(@Body() LoginRequestModel body);
 }

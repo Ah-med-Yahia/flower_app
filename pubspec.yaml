@@ -45,10 +45,15 @@ dependencies:
   fluttertoast: ^9.0.0
 
   equatable: ^2.0.7
+  freezed_annotation: ^3.0.0
   pinput: ^6.0.1
   carousel_slider: ^5.1.1
 
   rename_app: ^1.6.5
+
+  # Debugging
+  logger: ^2.6.2
+  pretty_dio_logger: ^1.4.0
 
 dev_dependencies:
   flutter_test:
@@ -59,7 +64,6 @@ dev_dependencies:
   # Code generation tools
   build_runner: ^2.6.0
   freezed: ^3.0.0
-  freezed_annotation: ^3.0.0
   injectable_generator: ^2.7.0
   json_serializable: ^6.7.1
   retrofit_generator: ^10.2.1
@@ -79,3 +83,7 @@ flutter_gen:
   integrations:
     lottie: true
     flutter_svg: true
+  assets:
+    enabled: true
+    outputs:
+      package_parameter_enabled: false
