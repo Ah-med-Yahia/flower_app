@@ -14,6 +14,8 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
+import '../../core/services/session_manager.dart' as _i570;
+import '../../core/services/token_service.dart' as _i115;
 import '../../features/auth/change_password/api/api_client/change_password_api_client.dart'
     as _i971;
 import '../../features/auth/change_password/api/data_sources/change_password_data_source_impl.dart'
@@ -174,7 +176,9 @@ import '../../features/profile/profile_main/domain/use_cases/get_user_data_use_c
     as _i658;
 import '../cache_modules/secure_storage_module.dart' as _i11;
 import '../cache_modules/shared_preferences_module.dart' as _i1059;
+import '../dio_module/auth_interceptor.dart' as _i815;
 import '../dio_module/dio_module.dart' as _i773;
+import '../dio_module/logger_interceptor.dart' as _i754;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -189,8 +193,22 @@ extension GetItInjectableX on _i174.GetIt {
       () => sharedPreferencesModule.prefs,
       preResolve: true,
     );
+    gh.singleton<_i754.LoggerInterceptor>(() => _i754.LoggerInterceptor());
+    gh.singleton<_i570.SessionManager>(
+      () => _i570.SessionManager(),
+      dispose: (i) => i.dispose(),
+    );
     gh.lazySingleton<_i11.SecureStorageService>(
       () => _i11.SecureStorageService(),
+    );
+    gh.factory<_i115.TokenService>(
+      () => _i115.TokenService(gh<_i11.SecureStorageService>()),
+    );
+    gh.factory<_i815.AuthInterceptor>(
+      () => _i815.AuthInterceptor(
+        gh<_i11.SecureStorageService>(),
+        gh<_i570.SessionManager>(),
+      ),
     );
     gh.lazySingleton<_i1059.CacheHelper>(
       () => _i1059.CacheHelper(gh<_i460.SharedPreferences>()),
@@ -201,7 +219,10 @@ extension GetItInjectableX on _i174.GetIt {
       ),
     );
     gh.singleton<_i361.Dio>(
-      () => dioModule.dio(gh<_i11.SecureStorageService>()),
+      () => dioModule.dio(
+        gh<_i815.AuthInterceptor>(),
+        gh<_i754.LoggerInterceptor>(),
+      ),
     );
     gh.factory<_i52.LogoutLocalDataSource>(
       () => _i521.LogoutLocalDataSourceImpl(gh<_i11.SecureStorageService>()),

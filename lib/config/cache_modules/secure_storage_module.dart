@@ -29,7 +29,7 @@ class SecureStorageService {
   Future<BaseResponse<bool>> write(String key, String value) async {
     try {
       await _storage.write(key: key, value: value);
-      return BaseResponse<bool>.success(true);
+      return const BaseResponse<bool>.success(true);
     } catch (e) {
       return BaseResponse<bool>.failure(_handleError(StorageMethods.write, e));
     }
@@ -49,7 +49,7 @@ class SecureStorageService {
   Future<BaseResponse<bool>> delete(String key) async {
     try {
       await _storage.delete(key: key);
-      return BaseResponse<bool>.success(true);
+      return const BaseResponse<bool>.success(true);
     } catch (e) {
       return BaseResponse<bool>.failure(_handleError(StorageMethods.delete, e));
     }
@@ -58,7 +58,7 @@ class SecureStorageService {
   Future<BaseResponse<bool>> deleteAll() async {
     try {
       await _storage.deleteAll();
-      return BaseResponse<bool>.success(true);
+      return const BaseResponse<bool>.success(true);
     } catch (e) {
       return BaseResponse<bool>.failure(
         _handleError(StorageMethods.deleteAll, e),
@@ -110,7 +110,7 @@ class SecureStorageService {
       return response.when(
         success: (s) {
           if (s == null) {
-            return BaseResponse<Map<String, dynamic>?>.success(null);
+            return const BaseResponse<Map<String, dynamic>?>.success(null);
           }
 
           return BaseResponse<Map<String, dynamic>?>.success(
@@ -147,7 +147,7 @@ class SecureStorageService {
       return response.when(
         success: (s) {
           if (s == null) {
-            return BaseResponse<List<String>?>.success(null);
+            return const BaseResponse<List<String>?>.success(null);
           }
 
           final decoded = jsonDecode(s);
@@ -184,7 +184,7 @@ class SecureStorageService {
       return response.when(
         success: (s) {
           if (s == null) {
-            return BaseResponse<bool?>.success(null);
+            return const BaseResponse<bool?>.success(null);
           }
 
           return BaseResponse<bool?>.success(s.toLowerCase() == 'true');
@@ -218,7 +218,7 @@ class SecureStorageService {
       return response.when(
         success: (s) {
           if (s == null) {
-            return BaseResponse<int?>.success(null);
+            return const BaseResponse<int?>.success(null);
           }
 
           return BaseResponse<int?>.success(int.tryParse(s));
@@ -251,7 +251,7 @@ class SecureStorageService {
       return resultResponse.when(
         success: (s) {
           if (s == null) {
-            return BaseResponse<double?>.success(null);
+            return const BaseResponse<double?>.success(null);
           }
           return BaseResponse<double?>.success(double.tryParse(s));
         },
@@ -279,7 +279,7 @@ extension SecureStorageExtension on SecureStorageService {
   }) async {
     final result = await write(StorageKeys.accessToken, accessToken);
     return result.map(
-      success: (s) => BaseResponse<bool>.success(true),
+      success: (s) => const BaseResponse<bool>.success(true),
       failure: (f) => BaseResponse<bool>.failure(f.errorHandler),
     );
   }

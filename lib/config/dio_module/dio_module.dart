@@ -1,56 +1,33 @@
 import 'package:dio/dio.dart';
-import 'package:flower_app/config/base_response/base_response.dart';
-import 'package:flower_app/config/cache_modules/secure_storage_module.dart';
-import 'package:flower_app/core/constants/api_constants.dart';
-import 'package:flower_app/core/constants/cache_constants.dart';
-import 'package:flower_app/core/theme/app_colors.dart';
-import 'package:flower_app/core/ui_utils/ui_utils.dart';
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../core/constants/api_constants.dart';
+import 'auth_interceptor.dart';
+import 'logger_interceptor.dart';
 
 @module
 abstract class DioModule {
   @singleton
-  Dio dio(SecureStorageService secureStorageService) {
+  Dio dio(
+    AuthInterceptor authInterceptor,
+    LoggerInterceptor loggerInterceptor,
+  ) {
     final dio = Dio(
       BaseOptions(
         baseUrl: ApiConstants.baseUrl,
-        headers: {'Content-Type': 'application/json'},
+        connectTimeout: const Duration(seconds: 30),
+        receiveTimeout: const Duration(seconds: 30),
+        sendTimeout: const Duration(seconds: 30),
       ),
     );
 
-    dio.interceptors.add(
-      InterceptorsWrapper(
-        onRequest: (options, handler) async {
-          final tokenResponse = await secureStorageService.read(
-            StorageKeys.accessToken,
-          );
-          tokenResponse.map(
-            success: (token) {
-              if (token.data != null && token.data!.isNotEmpty) {
-                options.headers['Authorization'] = 'Bearer ${token.data}';
-              }
-            },
-            failure: (error) {
-              UIUtils.showMessage(
-                error.errorHandler.message,
-                backGroundColor: AppColors.red,
-                textColor: AppColors.background,
-              );
-            },
-          );
-          return handler.next(options);
-        },
-        onError: (error, handler) async {
-          // Handle 401 Unauthorized - token is invalid or expired
-          if (error.response?.statusCode == 401) {
-            // Clear the invalid token from secure storage
-            await secureStorageService.clearAuthTokens();
-          }
-          return handler.next(error);
-        },
-      ),
-    );
-
+    // Add the auth interceptor to automatically handle token injection
+    dio.interceptors.add(authInterceptor);
+    // Add the PrettyDioLogger interceptor for logging requests and responses
+    if (kDebugMode) {
+      dio.interceptors.add(loggerInterceptor);
+    }
     return dio;
   }
 }

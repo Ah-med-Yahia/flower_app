@@ -19,7 +19,7 @@ class CacheHelper {
     if (value is bool) return await _prefs.setBool(key, value);
     if (value is double) return await _prefs.setDouble(key, value);
     if (value is List<String>) return await _prefs.setStringList(key, value);
-    throw Exception("Unsupported value type: ${value.runtimeType}");
+    throw Exception('Unsupported value type: ${value.runtimeType}');
   }
 
   T? getData<T>({required String key}) {

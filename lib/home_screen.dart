@@ -47,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
         currentIndex: _currentTab.index,
         selectedItemColor: AppColors.primary,
         unselectedItemColor: AppColors.iconGrey,
-        items: [
+        items:const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),
             label: AppTextConstants.home,
