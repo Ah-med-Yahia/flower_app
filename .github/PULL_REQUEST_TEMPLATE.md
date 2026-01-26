@@ -1,21 +1,44 @@
-### PR Title Format
-**Format:**  
-`type(scope): Subject`
+## Description
+<!-- Briefly describe what this PR does and why -->
 
-**Example:**  
-`feat(auth): Add login with Google`
 
-**Types you can use:**  
-- `feat` → New feature  
-- `fix` → Bug fix  
-- `docs` → Documentation only changes  
-- `style` → Formatting, missing semi-colons, etc  
-- `refactor` → Code changes that neither fixes a bug nor adds a feature  
-- `test` → Adding missing tests or correcting existing tests  
-- `chore` → Changes to the build process or auxiliary tools
+## Type of Change
+<!-- Check the relevant option -->
+- [ ] 🎉 `feat` - New feature
+- [ ] 🐛 `fix` - Bug fix
+- [ ] 📝 `docs` - Documentation update
+- [ ] 💄 `style` - Code formatting, no logic change
+- [ ] ♻️ `refactor` - Code restructuring, no behavior change
+- [ ] ✅ `test` - Adding or updating tests
+- [ ] 🔧 `chore` - Build process or tooling changes
 
-**Scope:**  
-The part of the code affected (e.g., auth, ui, api, database).
+## Scope
+<!-- What part of the codebase is affected? (e.g., auth, ui, api, database) -->
 
-**Subject:**  
-A short description of the change, written in imperative mood (e.g., “Add login with Google”).
+
+## Changes Made
+<!-- List the main changes in this PR -->
+- 
+- 
+- 
+
+## Testing
+<!-- How did you test these changes? -->
+- [ ] Unit tests added/updated
+- [ ] Manual testing completed
+- [ ] All tests passing
+
+## Screenshots (if applicable)
+<!-- Add screenshots for UI changes -->
+
+
+## Checklist
+- [ ] My code follows the project's style guidelines
+- [ ] I have reviewed my own code
+- [ ] I have commented complex code sections
+- [ ] My changes generate no new warnings
+- [ ] Branch name follows convention: `type/description`
+- [ ] PR title follows format: `type(scope): Subject`
+
+## Related Issues
+<!-- Link any related issues: Fixes #123, Closes #456 -->
