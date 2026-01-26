@@ -17,7 +17,7 @@ class AuthInterceptor extends Interceptor {
   AuthInterceptor(this._secureStorageService, this._sessionManager);
 
   @override
-  void onRequest(
+  Future<void> onRequest(
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
@@ -41,7 +41,7 @@ class AuthInterceptor extends Interceptor {
       },
     );
 
-    super.onRequest(options, handler);
+    handler.next(options);
   }
 
   @override
@@ -69,7 +69,6 @@ class AuthInterceptor extends Interceptor {
       );
     }
     handler.next(err);
-    super.onError(err, handler);
   }
 
   /// Clear expired token from storage using SecureStorageService methods
