@@ -2,9 +2,9 @@ sealed class ChangePasswordIntents {
   const ChangePasswordIntents();
 }
 
-class OldPasswordChanged extends ChangePasswordIntents {
-  final String oldaPassword;
-  OldPasswordChanged(this.oldaPassword);
+class CurrentPasswordChanged extends ChangePasswordIntents {
+  final String currentPassword;
+  CurrentPasswordChanged(this.currentPassword);
 }
 
 class NewPasswordChanged extends ChangePasswordIntents {

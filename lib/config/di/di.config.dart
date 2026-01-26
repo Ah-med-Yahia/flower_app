@@ -245,6 +245,11 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i478.ForgetPasswordApiClient>(),
       ),
     );
+    gh.factory<_i390.ChangePasswordDataSource>(
+      () => _i300.ChangePasswordDataSourceImpl(
+        gh<_i971.ChangePasswordApiClient>(),
+      ),
+    );
     gh.factory<_i718.ProfileMainRemoteDataSource>(
       () => _i550.ProfileMainRemoteDataSourceImpl(
         gh<_i120.ProfileMainApiClient>(),
@@ -253,6 +258,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i1058.BestSellerRemoteDataSource>(
       () =>
           _i920.BestSellerRemoteDataSourceImpl(gh<_i113.BestSellerApiClient>()),
+    );
+    gh.factory<_i784.ChangePasswordRepo>(
+      () => _i960.ChangePasswordRepoImpl(
+        gh<_i390.ChangePasswordDataSource>(),
+        gh<_i11.SecureStorageService>(),
+      ),
     );
     gh.factory<_i498.LogoutRepo>(
       () => _i387.LogoutRepoImpl(gh<_i52.LogoutLocalDataSource>()),
@@ -270,6 +281,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i31.OccasionRepoContract>(
       () => _i315.OccasionRepoImpl(gh<_i948.RemoteOccasionDataSource>()),
     );
+    gh.factory<_i780.ChangePasswordUseCase>(
+      () => _i780.ChangePasswordUseCase(gh<_i784.ChangePasswordRepo>()),
+    );
     gh.factory<_i670.LogoutCubit>(
       () => _i670.LogoutCubit(gh<_i205.LogoutUsecase>()),
     );
@@ -284,15 +298,12 @@ extension GetItInjectableX on _i174.GetIt {
         registerApiClient: gh<_i517.RegisterApiClient>(),
       ),
     );
+    gh.factory<_i81.ChangePasswordCubit>(
+      () => _i81.ChangePasswordCubit(gh<_i780.ChangePasswordUseCase>()),
+    );
     gh.factory<_i924.ForgetPasswordRepo>(
       () => _i769.ForgetPasswordRepoImpl(
         gh<_i142.ForgetPasswordRemoteDataSource>(),
-      ),
-    );
-    gh.factory<_i390.ChangePasswordDataSource>(
-      () => _i300.ChangePasswordDataSourceImpl(
-        gh<_i971.ChangePasswordApiClient>(),
-        gh<_i11.SecureStorageService>(),
       ),
     );
     gh.factory<_i856.ProductDetailsDataSourceContract>(
@@ -334,9 +345,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i203.GetOccasionProductsUsecase>(
       () => _i203.GetOccasionProductsUsecase(gh<_i31.OccasionRepoContract>()),
     );
-    gh.factory<_i784.ChangePasswordRepo>(
-      () => _i960.ChangePasswordRepoImpl(gh<_i390.ChangePasswordDataSource>()),
-    );
     gh.factory<_i198.GetBestSellerUseCase>(
       () => _i198.GetBestSellerUseCase(gh<_i892.BestSellerRepo>()),
     );
@@ -366,9 +374,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i1033.GetHomeDataUsecase>(
       () => _i1033.GetHomeDataUsecase(gh<_i202.HomeScreenRepo>()),
     );
-    gh.factory<_i780.ChangePasswordUseCase>(
-      () => _i780.ChangePasswordUseCase(gh<_i784.ChangePasswordRepo>()),
-    );
     gh.factory<_i888.GetProductDetailsUsecase>(
       () => _i888.GetProductDetailsUsecase(
         gh<_i338.ProductDetailsRepoContract>(),
@@ -382,9 +387,6 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i401.GetAllOccasionUsecase>(),
         gh<_i203.GetOccasionProductsUsecase>(),
       ),
-    );
-    gh.factory<_i81.ChangePasswordCubit>(
-      () => _i81.ChangePasswordCubit(gh<_i780.ChangePasswordUseCase>()),
     );
     gh.factory<_i193.HomeScreenCubit>(
       () => _i193.HomeScreenCubit(gh<_i1033.GetHomeDataUsecase>()),

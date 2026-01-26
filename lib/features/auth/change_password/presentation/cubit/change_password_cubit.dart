@@ -17,54 +17,65 @@ class ChangePasswordCubit extends Cubit<ChangePasswordStates> {
   final StreamController<ChangePaswordUiIntents> _streamController =
       StreamController();
 
-  Stream<ChangePaswordUiIntents> get UIInenet => _streamController.stream;
+  Stream<ChangePaswordUiIntents> get uiInenet => _streamController.stream;
 
-  ChangePasswordCubit(this._passwordUseCase)
-    : super(ChangePasswordStates());
+  ChangePasswordCubit(this._passwordUseCase) : super(ChangePasswordStates());
 
   void doIntent(ChangePasswordIntents intent) {
     switch (intent) {
-      case OldPasswordChanged():
-        emit(
-          state.copyWith(
-            oldPassword: intent.oldaPassword,
-            isvalidForm: _validate(password: intent.oldaPassword),
-          ),
-        );
+      case CurrentPasswordChanged():
+        _updateCurrentPassword(intent.currentPassword);
         break;
       case NewPasswordChanged():
-        emit(
-          state.copyWith(
-            newPassword: intent.newPassword,
-            isvalidForm: _validate(newPassword: intent.newPassword),
-          ),
-        );
+        _updateNewPassword(intent.newPassword);
         break;
 
       case ConfirmPasswordChanged():
-        emit(
-          state.copyWith(
-            confirmPassword: intent.confirmPassword,
-            isvalidForm: _validate(confirmPassword: intent.confirmPassword),
-          ),
-        );
+        _updateConfirmPassword(intent.confirmPassword);
         break;
       case UpdateIntent():
         _updatePawssord();
     }
   }
 
+  void _updateCurrentPassword(String currentPassword) {
+    emit(
+      state.copyWith(
+        currentPassword: currentPassword,
+        isvalidForm: _validate(currentPassword: currentPassword),
+      ),
+    );
+  }
+
+  void _updateNewPassword(String newPassword) {
+    emit(
+      state.copyWith(
+        newPassword: newPassword,
+        isvalidForm: _validate(newPassword: newPassword),
+      ),
+    );
+  }
+
+  void _updateConfirmPassword(String confirmPassword) {
+    emit(
+      state.copyWith(
+        confirmPassword: confirmPassword,
+        isvalidForm: _validate(confirmPassword: confirmPassword),
+      ),
+    );
+  }
+
   bool? _validate({
-    String? password,
+    String? currentPassword,
     String? newPassword,
     String? confirmPassword,
   }) {
-    final currentPassword = password ?? state.oldPassword;
+    final current = currentPassword ?? state.currentPassword;
     final currentNewPassword = newPassword ?? state.newPassword;
     final currentConfirmPassword = confirmPassword ?? state.confirmPassword;
 
     final allFieldsFilled =
-        currentPassword.isNotEmpty &&
+        current.isNotEmpty &&
         currentNewPassword.isNotEmpty &&
         currentConfirmPassword.isNotEmpty;
 
@@ -74,7 +85,7 @@ class ChangePasswordCubit extends Cubit<ChangePasswordStates> {
   }
 
   Future<void> _updatePawssord() async {
-    if (state.oldPassword.trim().isEmpty) {
+    if (state.currentPassword.trim().isEmpty) {
       _streamController.add(
         ShowErrorIntent(
           message: AppTextConstants.pleaseEnterYourCurrentPassword,
@@ -104,7 +115,7 @@ class ChangePasswordCubit extends Cubit<ChangePasswordStates> {
       return;
     }
 
-    if (state.oldPassword.trim() == state.newPassword.trim()) {
+    if (state.currentPassword.trim() == state.newPassword.trim()) {
       _streamController.add(
         ShowErrorIntent(message: AppTextConstants.newPasswordSameAsOld),
       );
@@ -114,7 +125,7 @@ class ChangePasswordCubit extends Cubit<ChangePasswordStates> {
     _streamController.add(ShowLoadingIntent());
 
     final request = ChangePasswordRequestEntity(
-      password: state.oldPassword.trim(),
+      password: state.currentPassword.trim(),
       newPassword: state.newPassword.trim(),
     );
 
@@ -122,7 +133,6 @@ class ChangePasswordCubit extends Cubit<ChangePasswordStates> {
 
     response.map(
       success: (response) async {
-       
         _streamController.add(
           NavigateToEditProfileIntent(
             message: AppTextConstants.passwordUpdatedSuccessfully,

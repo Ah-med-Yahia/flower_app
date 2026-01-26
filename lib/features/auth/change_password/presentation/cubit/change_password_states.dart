@@ -1,36 +1,36 @@
 part of 'change_password_cubit.dart';
 
 class ChangePasswordStates extends BaseState<void> {
-  final String oldPassword;
+  final String currentPassword;
   final String newPassword;
   final String confirmPassword;
-  final bool isvalidForm;
+  final bool isValidForm;
 
   const ChangePasswordStates({
     super.errorMessage,
     super.isLoading,
-    this.oldPassword = '',
+    this.currentPassword = '',
     this.newPassword = '',
     this.confirmPassword = '',
-    this.isvalidForm = false,
+    this.isValidForm = false,
   });
 
   @override
   List<Object?> get props => [
     errorMessage,
     isLoading,
-    oldPassword,
+    currentPassword,
     newPassword,
     confirmPassword,
-    isvalidForm,
+    isValidForm,
   ];
 
   @override
   ChangePasswordStates copyWith({
-     data,
+    data,
     String? errorMessage,
     bool? isLoading,
-    String? oldPassword,
+    String? currentPassword,
     String? newPassword,
     String? confirmPassword,
     bool? isvalidForm,
@@ -38,10 +38,10 @@ class ChangePasswordStates extends BaseState<void> {
     return ChangePasswordStates(
       errorMessage: errorMessage ?? this.errorMessage,
       isLoading: isLoading ?? this.isLoading,
-      oldPassword: oldPassword ?? this.oldPassword,
+      currentPassword: currentPassword ?? this.currentPassword,
       newPassword: newPassword ?? this.newPassword,
       confirmPassword: confirmPassword ?? this.confirmPassword,
-      isvalidForm: isvalidForm ?? this.isvalidForm,
+      isValidForm: isvalidForm ?? this.isValidForm,
     );
   }
 }

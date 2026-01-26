@@ -4,7 +4,9 @@ part 'change_password_request.g.dart';
 
 @JsonSerializable()
 class ChangePasswordRequest {
+  @JsonKey(name: 'password')
   final String? password;
+  @JsonKey(name: 'newPassword')
   final String? newPassword;
 
   const ChangePasswordRequest({this.password, this.newPassword});

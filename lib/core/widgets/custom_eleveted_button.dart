@@ -1,4 +1,3 @@
-import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomElevatedButtonWidget extends StatelessWidget {
@@ -17,26 +16,18 @@ class CustomElevatedButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final myTextTheme = Theme.of(context).textTheme;
     return SizedBox(
       width: double.infinity,
-      height: 48,
+      height: MediaQuery.of(context).size.height * 0.07,
       child: ElevatedButton(
         onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: backgroundColor,
-          side: backgroundColor != null
-              ? BorderSide(width: 1.5, color: AppColors.textSecondary)
-              : null,
-        ),
-        child: Text(
-          text ?? '',
-          style: myTextTheme.titleSmall?.copyWith(
-            fontSize: 16,
-            fontWeight: FontWeight.w700,
-            color: textColor ?? AppColors.background,
-          ),
-        ),
+        style: backgroundColor != null || textColor != null
+            ? ElevatedButton.styleFrom(
+                backgroundColor: backgroundColor,
+                foregroundColor: textColor,
+              )
+            : null,
+        child: Text(text ?? ''),
       ),
     );
   }

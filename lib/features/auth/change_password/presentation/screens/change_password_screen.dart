@@ -29,7 +29,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
     _passwordCubit = getIt<ChangePasswordCubit>();
 
     _currentPassword.addListener(() {
-      _passwordCubit.doIntent(OldPasswordChanged(_currentPassword.text));
+      _passwordCubit.doIntent(CurrentPasswordChanged(_currentPassword.text));
     });
 
     _newpassword.addListener(() {
@@ -40,7 +40,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
       _passwordCubit.doIntent(ConfirmPasswordChanged(_confirmPassword.text));
     });
 
-    _passwordCubit.UIInenet.listen((intent) {
+    _passwordCubit.uiInenet.listen((intent) {
       if (!mounted) return;
 
       switch (intent) {

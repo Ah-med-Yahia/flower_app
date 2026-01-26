@@ -34,7 +34,7 @@ class LogoutCubit extends Cubit<LogoutStates> {
           state.copyWith(
             logoutState: BaseState(
               isLoading: false,
-              data: data,
+              data: null,
               errorMessage: null,
             ),
           ),
