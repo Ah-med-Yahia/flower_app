@@ -1,0 +1,55 @@
+name: Validate Branch Name
+
+on:
+  pull_request:
+    branches:
+      - dev
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  validate_branch_name:
+    runs-on: ubuntu-latest
+    
+    timeout-minutes: 5
+    concurrency:
+      group: branch-name-validation-${{ github.event.pull_request.number }}
+      cancel-in-progress: true
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      
+      - name: Validate branch name format
+        run: |
+          BRANCH_NAME="${{ github.head_ref }}"
+          echo "Validating branch name: $BRANCH_NAME"
+          
+          PATTERN="^(feature|bugfix|hotfix|fix|chore|refactor|docs|test|ci|perf|style|build|revert)\/[a-z0-9_-]+$"
+          
+          if [[ ! $BRANCH_NAME =~ $PATTERN ]]; then
+            echo " Branch name '$BRANCH_NAME' is invalid!"
+            echo ""
+            echo "Branch name must follow the pattern: <type>/<description>"
+            echo ""
+            echo "Valid types:"
+            echo "  - feature   : New feature"
+            echo "  - bugfix    : Bug fix"
+            echo "  - hotfix    : Urgent fix for production"
+            echo "  - fix       : General fix"
+            echo "  - chore     : Maintenance tasks"
+            echo "  - refactor  : Code refactoring"
+            echo "  - docs      : Documentation changes"
+            echo "  - test      : Test updates"
+            echo "  - ci        : CI/CD changes"
+            echo "  - perf      : Performance improvements"
+            echo "  - style     : Code style changes"
+            echo "  - build     : Build system changes"
+            echo "  - revert    : Revert previous changes"
+            echo ""
+            echo "Description should be lowercase with hyphens (e.g., feature/add-user-authentication)"
+            exit 1
+          fi
+          
+          echo " Branch name is valid: $BRANCH_NAME"
