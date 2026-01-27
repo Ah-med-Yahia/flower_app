@@ -121,7 +121,7 @@ void main() {
       ).called(1);
     });
   });
-  group('updateAddress', () {
+  group('updateAddress', () async {
     const String id = 'test-id-123';
 
     final addUpdateAddressRequestEntity = AddUpdateAddressRequestEntity(
