@@ -1,14 +1,19 @@
-class AddUpdateAddressResponseEntity {
+import 'package:equatable/equatable.dart';
+
+class AddUpdateAddressResponseEntity extends Equatable {
   final String message;
   final List<AddressEntity> address;
 
-  AddUpdateAddressResponseEntity({
+  const AddUpdateAddressResponseEntity({
     required this.message,
     required this.address,
   });
+
+  @override
+  List<Object?> get props => [message, address];
 }
 
-class AddressEntity {
+class AddressEntity extends Equatable {
   final String id;
   final String street;
   final String phone;
@@ -17,7 +22,7 @@ class AddressEntity {
   final String long;
   final String username;
 
-  AddressEntity({
+  const AddressEntity({
     required this.id,
     required this.street,
     required this.phone,
@@ -26,4 +31,7 @@ class AddressEntity {
     required this.long,
     required this.username,
   });
+
+  @override
+  List<Object?> get props => [id, street, phone, city, lat, long, username];
 }

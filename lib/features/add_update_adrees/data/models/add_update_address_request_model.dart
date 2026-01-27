@@ -1,9 +1,10 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'add_update_address_request_model.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class AddUpdateAddressRequestModel {
+class AddUpdateAddressRequestModel extends Equatable {
   @JsonKey(name: 'street')
   final String street;
 
@@ -22,7 +23,7 @@ class AddUpdateAddressRequestModel {
   @JsonKey(name: 'username')
   final String username;
 
-  AddUpdateAddressRequestModel({
+  const AddUpdateAddressRequestModel({
     required this.street,
     required this.phone,
     required this.city,
@@ -35,4 +36,7 @@ class AddUpdateAddressRequestModel {
       _$AddUpdateAddressRequestModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$AddUpdateAddressRequestModelToJson(this);
+
+  @override
+  List<Object?> get props => [street, phone, city, lat, long, username];
 }

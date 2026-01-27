@@ -46,7 +46,7 @@ void main() {
         ),
       ],
     );
-    final addUpdateAddressResponseEntity = AddUpdateAddressResponseEntity(
+    const addUpdateAddressResponseEntity = AddUpdateAddressResponseEntity(
       message: 'message',
       address: [
         AddressEntity(
@@ -148,7 +148,7 @@ void main() {
       ],
     );
 
-    final addUpdateAddressResponseEntity = AddUpdateAddressResponseEntity(
+    const addUpdateAddressResponseEntity = AddUpdateAddressResponseEntity(
       message: 'Address updated successfully',
       address: [
         AddressEntity(

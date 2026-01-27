@@ -23,7 +23,7 @@ void main() {
     );
   });
   group('add address test', () {
-    final addUpdateAddressRequestModel = AddUpdateAddressRequestModel(
+    const addUpdateAddressRequestModel = AddUpdateAddressRequestModel(
       street: 'street',
       phone: 'phone',
       city: 'city',
@@ -205,7 +205,7 @@ void main() {
   group('update address test', () {
     const String id = 'id';
 
-    final addUpdateAddressRequestModel = AddUpdateAddressRequestModel(
+    const addUpdateAddressRequestModel = AddUpdateAddressRequestModel(
       street: 'street',
       phone: 'phone',
       city: 'city',
