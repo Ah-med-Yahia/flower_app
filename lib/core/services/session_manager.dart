@@ -13,10 +13,8 @@ class SessionManager {
   /// Emit session expired event
   void notifySessionExpired({String? message}) {
     if (!_sessionExpiredController.isClosed) {
-      // TODO(dev): Hardcoded message for now
       final msg = message ?? 'Session expired. Please login again.';
       _sessionExpiredController.add(msg);
-      // TODO(dev): Remove this log statement in production
       if (kDebugMode) {
         log('Session expired event emitted: $msg');
       }

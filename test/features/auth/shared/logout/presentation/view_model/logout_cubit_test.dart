@@ -33,7 +33,7 @@ Future<void> main() async {
       build: () {
         when(
           mockUseCase.call(),
-        ).thenAnswer((_) async => BaseResponse.success(null));
+        ).thenAnswer((_) async => const BaseResponse.success(null));
         return cubit;
       },
       act: (cubit) => cubit.onEvent(LogoutRequested()),

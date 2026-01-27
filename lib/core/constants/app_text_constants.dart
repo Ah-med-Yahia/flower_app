@@ -26,6 +26,7 @@ class AppTextConstants {
   static const String gender = 'Gender';
   static const String female = 'Female';
   static const String male = 'Male';
+ 
   static const String creatingAccountAgreement =
       'Creating an account, you agree to our ';
   static const String termsAndConditions = 'Terms&Conditions';
@@ -67,7 +68,7 @@ class AppTextConstants {
   static const String search = 'Search';
   static const String flowery = 'Flowery';
   static const String viewAll = 'View All';
-  static const String flowr = 'Flower';
+  static const String flower = 'Flower';
   static const String defaultImage =
       'https://flower.elevateegy.com/uploads/66c36d5d-c067-46d9-b339-d81be57e0149-image_one.pngs';
 

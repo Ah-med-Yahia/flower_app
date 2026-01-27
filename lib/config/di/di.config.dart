@@ -409,9 +409,6 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i203.GetOccasionProductsUsecase>(),
       ),
     );
-    gh.factory<_i193.HomeScreenCubit>(
-      () => _i193.HomeScreenCubit(gh<_i1033.GetHomeDataUsecase>()),
-    );
     gh.factory<_i531.ResetPasswordCubit>(
       () => _i531.ResetPasswordCubit(gh<_i374.ResetPasswordUseCase>()),
     );
@@ -423,6 +420,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i1056.OtpVerificationUseCase>(),
         gh<_i105.ForgetPasswordCubit>(),
       ),
+    );
+    gh.factory<_i193.HomeScreenCubit>(
+      () => _i193.HomeScreenCubit(gh<_i1033.GetHomeDataUsecase>()),
     );
     gh.factory<_i986.ProductDetailsCubit>(
       () => _i986.ProductDetailsCubit(gh<_i888.GetProductDetailsUsecase>()),

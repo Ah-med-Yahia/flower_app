@@ -25,7 +25,7 @@ class ChangePasswordRepoImpl implements ChangePasswordRepo {
         await _secureStorageService.saveAuthTokens(
           accessToken: response.data.token,
         );
-        return BaseResponse<void>.success(null);
+        return const BaseResponse<void>.success(null);
       },
       failure: (error) {
         return BaseResponse<void>.failure(error.errorHandler);

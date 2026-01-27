@@ -22,6 +22,6 @@ class LogoutLocalDataSourceImpl implements LogoutLocalDataSource {
         return BaseResponse<void>.failure(failure.errorHandler);
       }
     }
-    return BaseResponse<void>.success(null);
+    return const BaseResponse<void>.success(null);
   }
 }

@@ -27,13 +27,13 @@ void main() {
         // Arrange - Mock the base delete method, not the extension
         when(
           mockSecureStorage.delete(StorageKeys.accessToken),
-        ).thenAnswer((_) async => BaseResponse<bool>.success(true));
+        ).thenAnswer((_) async => const BaseResponse<bool>.success(true));
         when(
           mockSecureStorage.delete(StorageKeys.isLoggedIn),
-        ).thenAnswer((_) async => BaseResponse<bool>.success(true));
+        ).thenAnswer((_) async => const BaseResponse<bool>.success(true));
         when(
           mockSecureStorage.delete(StorageKeys.userModel),
-        ).thenAnswer((_) async => BaseResponse<bool>.success(true));
+        ).thenAnswer((_) async => const BaseResponse<bool>.success(true));
 
         // Act
         final result = await dataSource.clearUserTokens();
@@ -64,10 +64,10 @@ void main() {
       ).thenAnswer((_) async => BaseResponse<bool>.failure(errorHandler));
       when(
         mockSecureStorage.delete(StorageKeys.isLoggedIn),
-      ).thenAnswer((_) async => BaseResponse<bool>.success(true));
+      ).thenAnswer((_) async => const BaseResponse<bool>.success(true));
       when(
         mockSecureStorage.delete(StorageKeys.userModel),
-      ).thenAnswer((_) async => BaseResponse<bool>.success(true));
+      ).thenAnswer((_) async => const BaseResponse<bool>.success(true));
 
       // Act
       final result = await dataSource.clearUserTokens();
@@ -93,13 +93,13 @@ void main() {
 
       when(
         mockSecureStorage.delete(StorageKeys.accessToken),
-      ).thenAnswer((_) async => BaseResponse<bool>.success(true));
+      ).thenAnswer((_) async => const BaseResponse<bool>.success(true));
       when(
         mockSecureStorage.delete(StorageKeys.isLoggedIn),
       ).thenAnswer((_) async => BaseResponse<bool>.failure(errorHandler));
       when(
         mockSecureStorage.delete(StorageKeys.userModel),
-      ).thenAnswer((_) async => BaseResponse<bool>.success(true));
+      ).thenAnswer((_) async => const BaseResponse<bool>.success(true));
 
       // Act
       final result = await dataSource.clearUserTokens();
@@ -121,10 +121,10 @@ void main() {
 
       when(
         mockSecureStorage.delete(StorageKeys.accessToken),
-      ).thenAnswer((_) async => BaseResponse<bool>.success(true));
+      ).thenAnswer((_) async => const BaseResponse<bool>.success(true));
       when(
         mockSecureStorage.delete(StorageKeys.isLoggedIn),
-      ).thenAnswer((_) async => BaseResponse<bool>.success(true));
+      ).thenAnswer((_) async => const BaseResponse<bool>.success(true));
       when(
         mockSecureStorage.delete(StorageKeys.userModel),
       ).thenAnswer((_) async => BaseResponse<bool>.failure(errorHandler));

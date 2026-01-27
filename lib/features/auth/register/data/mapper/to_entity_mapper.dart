@@ -3,10 +3,6 @@ import '../../domain/entities/register_entity.dart';
 
 extension ToEntity on RegisterResponseModel {
   RegisterEntity toEntity() {
-    return RegisterEntity(
-      message: message,
-      user: user,
-      token: token,
-    );
+    return RegisterEntity(message: message, user: user, token: token);
   }
 }

@@ -18,11 +18,12 @@ class UIUtils {
     ),
   );
 
-static void hideLoading(BuildContext context) {
-  if (Navigator.of(context).canPop()) {
-    Navigator.of(context).pop();
+  static void hideLoading(BuildContext context) {
+    if (Navigator.of(context).canPop()) {
+      Navigator.of(context).pop();
+    }
   }
-}
+
   static void showMessage(
     String message, {
     required Color backGroundColor,

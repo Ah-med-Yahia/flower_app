@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -29,7 +32,9 @@ class CacheHelper {
     try {
       return value as T;
     } catch (e) {
-      print('CacheHelper: Failed to cast value for key "$key" to $T');
+      if (kDebugMode) {
+        log('CacheHelper: Failed to cast value for key "$key" to $T');
+      }
       return null;
     }
   }

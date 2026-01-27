@@ -1,8 +1,8 @@
-import 'package:flower_app/core/constants/validation_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 
 import '../../../../../../../core/theme/app_colors.dart';
+import '../../../../../../core/constants/validation_constants.dart';
 import '../../view_models/verify_otp/verify_otp_code_state.dart';
 
 class CustomPinCodeInputFieldWidget extends StatelessWidget {
@@ -55,11 +55,11 @@ class CustomPinCodeInputFieldWidget extends StatelessWidget {
       focusedPinTheme: focusedPinTheme,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          final message = ValidationConstants.pleaseEnterOTPCode;
+          const message = ValidationConstants.pleaseEnterOTPCode;
           return message;
         }
         if (value.length < 6) {
-          final message = ValidationConstants.otpMustBe6Digits;
+          const message = ValidationConstants.otpMustBe6Digits;
           return message;
         }
         return null;

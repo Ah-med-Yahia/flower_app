@@ -4,10 +4,10 @@ part 'change_password_response.g.dart';
 
 @JsonSerializable()
 class ChangePasswordResponse {
-  @JsonKey(name: "message")
+  @JsonKey(name: 'message')
   final String message;
 
-  @JsonKey(name: "token")
+  @JsonKey(name: 'token')
   final String token;
 
   const ChangePasswordResponse({

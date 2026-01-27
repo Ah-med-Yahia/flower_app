@@ -55,12 +55,26 @@ void main() {
       occasions: [OccasionEntity(id: '1', name: 'Birthday')],
     );
 
+    final tProducts = GetOccasionProductsEntity(
+      products: OccasionProductEntity(
+        id: '1',
+        name: 'Rose',
+        image: '',
+        price: 10,
+        priceAfterDiscount: 5,
+      ),
+    );
+
     blocTest<OccasionCubit, OccasionState>(
       'emits [Loading, Success] when successful',
       build: () {
         when(
           mockGetAllUsecase.getAllOccasions(),
         ).thenAnswer((_) async => BaseResponse.success(tOccasions));
+        // Stub for the automatic call to getOccasionProducts after success
+        when(
+          mockGetProductsUsecase.getOccasionProducts('1'),
+        ).thenAnswer((_) async => BaseResponse.success(tProducts));
         return occasionCubit;
       },
       act: (cubit) => cubit.onEvent(GetAllOccasions()),
@@ -73,6 +87,15 @@ void main() {
         isA<OccasionState>()
             .having((s) => s.occasionState.isLoading, 'loading', false)
             .having((s) => s.occasionState.data, 'data', tOccasions),
+        // Additional states from getOccasionProducts call
+        isA<OccasionState>().having(
+          (s) => s.occasionProductsState.isLoading,
+          'products loading',
+          true,
+        ),
+        isA<OccasionState>()
+            .having((s) => s.occasionProductsState.isLoading, 'loading', false)
+            .having((s) => s.occasionProductsState.data, 'data', tProducts),
       ],
     );
 
@@ -102,7 +125,8 @@ void main() {
             .having(
               (s) => s.occasionState.errorMessage,
               'error',
-              ErrorsConstant.internalServerError,
+              // ErrorHandler.handle() returns default error for non-DioException/LocalException
+              ErrorsConstant.defaultError,
             ),
       ],
     );

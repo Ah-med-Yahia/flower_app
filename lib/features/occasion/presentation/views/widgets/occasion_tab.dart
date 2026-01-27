@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flower_app/features/occasion/presentation/views/widgets/tab_indicator.dart';
+import 'package:flutter/material.dart';
 
 class OccasionTab extends StatelessWidget {
   final String title;
@@ -8,11 +8,11 @@ class OccasionTab extends StatelessWidget {
   final VoidCallback onTap;
 
   const OccasionTab({
-    Key? key,
+    super.key,
     required this.title,
     required this.isSelected,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,14 +34,14 @@ class OccasionTab extends StatelessWidget {
           const SizedBox(height: 4),
           TabIndicator(
             isSelected: isSelected,
-            width: _IndicatorWidth(title, context),
+            width: _indicatorWidth(title, context),
           ),
         ],
       ),
     );
   }
 
-  double _IndicatorWidth(String text, BuildContext context) {
+  double _indicatorWidth(String text, BuildContext context) {
     final textPainter = TextPainter(
       text: TextSpan(text: text),
       textDirection: TextDirection.ltr,

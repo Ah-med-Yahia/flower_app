@@ -23,7 +23,7 @@ void main() {
       // Arrange
       when(
         mockLocalDataSource.clearUserTokens(),
-      ).thenAnswer((_) async => BaseResponse<void>.success(null));
+      ).thenAnswer((_) async => const BaseResponse<void>.success(null));
 
       // Act
       final result = await repository.clearUserTokens();

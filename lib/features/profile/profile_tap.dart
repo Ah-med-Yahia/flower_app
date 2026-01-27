@@ -12,7 +12,7 @@ class ProfileTap extends StatelessWidget {
         child: InkWell(
           onTap: () =>
               context.pushNamed(AppRoutesConstants.changePasswordRoute),
-          child: Text('Profile'),
+          child: const Text('Profile'),
         ),
       ),
     );

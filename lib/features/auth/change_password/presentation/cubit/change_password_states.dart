@@ -33,7 +33,7 @@ class ChangePasswordStates extends BaseState<void> {
     String? currentPassword,
     String? newPassword,
     String? confirmPassword,
-    bool? isvalidForm,
+    bool? isValidForm,
   }) {
     return ChangePasswordStates(
       errorMessage: errorMessage ?? this.errorMessage,
@@ -41,7 +41,7 @@ class ChangePasswordStates extends BaseState<void> {
       currentPassword: currentPassword ?? this.currentPassword,
       newPassword: newPassword ?? this.newPassword,
       confirmPassword: confirmPassword ?? this.confirmPassword,
-      isValidForm: isvalidForm ?? this.isValidForm,
+      isValidForm: isValidForm ?? this.isValidForm,
     );
   }
 }

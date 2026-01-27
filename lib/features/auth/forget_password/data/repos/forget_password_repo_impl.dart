@@ -1,4 +1,5 @@
 import 'package:injectable/injectable.dart';
+
 import '../../../../../config/base_response/base_response.dart';
 import '../../../../../config/network/safe_api_call.dart';
 import '../../domain/entities/forget_password_entity.dart';
@@ -17,7 +18,7 @@ class ForgetPasswordRepoImpl implements ForgetPasswordRepo {
   Future<BaseResponse<ForgetPasswordEntity>> forgetPassword({
     required String? email,
   }) async => safeApiCall<ForgetPasswordEntity>(() async {
-    final response = await _remoteDataSource.forgetPassword(email: email ?? "");
+    final response = await _remoteDataSource.forgetPassword(email: email ?? '');
     return response.toEntity();
   });
 
@@ -27,8 +28,8 @@ class ForgetPasswordRepoImpl implements ForgetPasswordRepo {
     required String? newPassword,
   }) async => safeApiCall<ResetPasswordEntity>(() async {
     final response = await _remoteDataSource.resetPassword(
-      email: email ?? "",
-      newPassword: newPassword ?? "",
+      email: email ?? '',
+      newPassword: newPassword ?? '',
     );
     return response.toEntity();
   });
@@ -38,7 +39,7 @@ class ForgetPasswordRepoImpl implements ForgetPasswordRepo {
     required String? resetCode,
   }) async => safeApiCall<VerifyOtpCodeEntity>(() async {
     final response = await _remoteDataSource.verifyOtpCode(
-      resetCode: resetCode ?? "",
+      resetCode: resetCode ?? '',
     );
     return response.toEntity();
   });

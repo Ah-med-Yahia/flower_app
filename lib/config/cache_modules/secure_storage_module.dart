@@ -1,11 +1,18 @@
+import 'dart:convert';
+
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/error_handler/error_handler.dart';
 import 'package:flower_app/config/error_handler/local_exception.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
-import 'dart:convert';
 
 import '../../core/constants/cache_constants.dart';
+
+/// [SecureStorageService] Too Many Type Handlers
+/// Issues:
+///       Handles too many data types (String, JSON, List, Bool, Int, Double)
+/// Recommendation:
+/// Consider using a generic approach or creating specialized storage services for different data types.
 
 @lazySingleton
 class SecureStorageService {
@@ -278,25 +285,25 @@ extension SecureStorageExtension on SecureStorageService {
     required String accessToken,
   }) async {
     final result = await write(StorageKeys.accessToken, accessToken);
-    return result.map(
+    return result.when(
       success: (s) => const BaseResponse<bool>.success(true),
-      failure: (f) => BaseResponse<bool>.failure(f.errorHandler),
+      failure: (f) => BaseResponse<bool>.failure(f),
     );
   }
 
   Future<BaseResponse<String?>> getAuthTokens() async {
     final result = await read(StorageKeys.accessToken);
-    return result.map(
-      success: (s) => BaseResponse.success(s.data),
-      failure: (f) => BaseResponse.failure(f.errorHandler),
+    return result.when(
+      success: (s) => BaseResponse.success(s),
+      failure: (f) => BaseResponse.failure(f),
     );
   }
 
   Future<BaseResponse<bool>> clearAuthTokens() async {
     final results = await delete(StorageKeys.accessToken);
-    return results.map(
-      success: (s) => BaseResponse.success(s.data),
-      failure: (f) => BaseResponse.failure(f.errorHandler),
+    return results.when(
+      success: (s) => BaseResponse.success(s),
+      failure: (f) => BaseResponse.failure(f),
     );
   }
 }

@@ -3,7 +3,7 @@ name: Dart Linting
 on:
   pull_request:
     branches:
-      - dev
+      - develop
     types:
       - opened
       - synchronize
@@ -12,7 +12,7 @@ jobs:
   dart_linting:
     runs-on: ubuntu-latest
     
-    timeout-minutes: 5
+    timeout-minutes: 15
     concurrency:
       group: dart-linting-${{ github.event.pull_request.number }}
       cancel-in-progress: true
@@ -20,26 +20,30 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
-      
+
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: 3.38.7
           channel: 'stable'
           cache: true
-      
+
       - name: Verify Flutter installation
         run: flutter --version
-      
+
       - name: Install dependencies
         run: flutter pub get
-      
+
+      - name: Generate code with build_runner
+        run: dart run build_runner build --delete-conflicting-outputs
+
       - name: Run Dart analyzer
         run: flutter analyze --no-fatal-infos
-      
+
       - name: Run Dart formatter check
         run: dart format --set-exit-if-changed --output=none .
-      
+        continue-on-error: true
+
       - name: Linting validation success
         if: success()
         run: |

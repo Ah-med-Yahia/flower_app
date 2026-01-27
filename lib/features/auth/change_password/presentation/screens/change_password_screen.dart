@@ -79,17 +79,17 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
     return BlocProvider.value(
       value: _passwordCubit,
       child: Scaffold(
-        appBar: AppBar(title: Text(AppTextConstants.resetPassword)),
+        appBar: AppBar(title: const Text(AppTextConstants.resetPassword)),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Form(
             key: formKey,
             child: Column(
               children: [
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 TextFormField(
                   controller: _currentPassword,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     label: Text(AppTextConstants.currentPassword),
                     hintText: AppTextConstants.currentPassword,
                     helperText: '',
@@ -97,10 +97,10 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   validator: AppValidators.validatePassword,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 TextFormField(
                   controller: _newpassword,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     label: Text(AppTextConstants.newPassword),
                     hintText: AppTextConstants.newPassword,
                     helperText: '',
@@ -108,11 +108,11 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   validator: AppValidators.validatePassword,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
 
                 TextFormField(
                   controller: _confirmPassword,
-                  decoration: InputDecoration(
+                  decoration:const InputDecoration(
                     label: Text(AppTextConstants.confirmPassword),
                     hintText: AppTextConstants.confirmPassword,
                     helperText: '',
@@ -123,7 +123,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   ),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
-                SizedBox(height: 40),
+               const SizedBox(height: 40),
                 SizedBox(
                   height: 48,
                   width: double.infinity,
@@ -133,7 +133,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         _passwordCubit.doIntent(UpdateIntent());
                       }
                     },
-                    child: Text(
+                    child:const Text(
                       AppTextConstants.update,
                       style: TextStyle(fontSize: 16),
                     ),

@@ -19,9 +19,12 @@ class ResetPasswordView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(AppTextConstants.password),
-        leading: InkWell(onTap: () {
-          context.pop();
-        },child: const Icon(Icons.arrow_back_ios)),
+        leading: InkWell(
+          onTap: () {
+            context.pop();
+          },
+          child: const Icon(Icons.arrow_back_ios),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
