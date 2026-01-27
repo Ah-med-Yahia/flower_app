@@ -23,7 +23,7 @@ void main() {
     repo = AddUpdateAddressRepoImpl(mockRemoteDataSource);
   });
 
-  group('addAddress', () async {
+  group('addAddress', () {
     final addUpdateAddressRequestEntity = AddUpdateAddressRequestEntity(
       street: 'street',
       phone: 'phone',
