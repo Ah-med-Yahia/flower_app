@@ -1,6 +1,7 @@
 import 'package:injectable/injectable.dart';
 
 import '../../../../../config/base_response/base_response.dart';
+import '../../../../../core/constants/errors_constants.dart';
 import '../../../../../core/services/token_service.dart';
 
 sealed class SessionStatus {}
@@ -25,16 +26,20 @@ class VerifySessionUseCase {
     return await isLoggedInResponse.when(
       success: (isLoggedIn) async {
         if (!isLoggedIn) {
-          // TODO(ahmed): Hardcoded message for now
-          return BaseResponse.success(SessionInvalid('User not logged in'));
+          // TODO(Salah): Handle Localization
+          return BaseResponse.success(
+            SessionInvalid(ErrorsConstant.userNotLoggedInError),
+          );
         }
 
         final tokenValidResponse = await _tokenService.isTokenValid();
         return tokenValidResponse.when(
           success: (isTokenValid) {
             if (!isTokenValid) {
-              // TODO(ahmed): Hardcoded message for now
-              return BaseResponse.success(SessionInvalid('Session expired'));
+              // TODO(Salah): Handle Localization
+              return BaseResponse.success(
+                SessionInvalid(ErrorsConstant.sessionExpiredError),
+              );
             }
             return BaseResponse.success(SessionValid());
           },

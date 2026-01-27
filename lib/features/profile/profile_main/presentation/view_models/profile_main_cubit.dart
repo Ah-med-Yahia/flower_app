@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../config/base_response/base_response.dart';
+import '../../../../../core/constants/errors_constants.dart';
 import '../../domain/use_cases/get_user_data_use_case.dart';
 import '../../domain/use_cases/load_cached_user_data_use_case.dart';
 import '../../domain/use_cases/logout_use_case.dart';
@@ -53,8 +54,11 @@ class ProfileMainCubit extends Cubit<ProfileMainStates> {
   }
 
   void _emitSideEffect(ProfileMainSideEffects effect) {
-    if (!_sideEffectController.isClosed) {
+    if (_sideEffectController.isClosed) return;
+    try {
       _sideEffectController.add(effect);
+    } on StateError {
+      // Ignore - controller was already closed
     }
   }
 
@@ -84,18 +88,21 @@ class ProfileMainCubit extends Cubit<ProfileMainStates> {
         }
       },
       failure: (error) {
+        // TODO(Salah): Handle Localization
         emit(
           state.copyWith(
             userData: state.userData.copyWith(
               isLoading: false,
-              // TODO(ahmed): Hardcoded message for now
-              errorMessage: 'Authentication check failed: ${error.message}',
+              errorMessage:
+                  '${ErrorsConstant.authenticationCheckError} ${error.message}',
             ),
           ),
         );
+        // TODO(Salah): Handle Localization
         _emitSideEffect(
-          // TODO(ahmed): Hardcoded message for now
-          ShowErrorSideEffect('Authentication check failed: ${error.message}'),
+          ShowErrorSideEffect(
+            '${ErrorsConstant.authenticationCheckError} ${error.message}',
+          ),
         );
       },
     );
@@ -124,24 +131,9 @@ class ProfileMainCubit extends Cubit<ProfileMainStates> {
             ),
           ),
         );
-        // _handleApiErrorTokenExpired(
-        //    errorMessage: error.message,
-        //    statusCode: error.code,
-        //  );
       },
     );
   }
-
-  // void _handleApiErrorTokenExpired({
-  //   required String errorMessage,
-  //   required int? statusCode,
-  // }) {
-  //   if (statusCode == 401) {
-  //     _emitSideEffect(NavigateToLoginSideEffect());
-  //     return;
-  //   }
-  //   _emitSideEffect(ShowErrorSideEffect(errorMessage));
-  // }
 
   void _notifyUIToggled() {
     emit(state.copyWith(isNotificationsEnabled: !state.isNotificationsEnabled));
@@ -174,23 +166,26 @@ class ProfileMainCubit extends Cubit<ProfileMainStates> {
           emit(
             state.copyWith(userData: state.userData.copyWith(isLoading: false)),
           );
-          // TODO(ahmed): Hardcoded message for now
-          _emitSideEffect(ShowErrorSideEffect('No cached data available'));
+          // TODO(Salah): Handle Localization
+          _emitSideEffect(
+            ShowErrorSideEffect(ErrorsConstant.noCacheDataAvailableError),
+          );
         }
       },
       failure: (error) {
         emit(
           state.copyWith(userData: state.userData.copyWith(isLoading: false)),
         );
+        // TODO(Salah): Handle Localization
         _emitSideEffect(
-          // TODO(ahmed): Hardcoded message for now
-          ShowErrorSideEffect('Failed to load cached data: ${error.message}'),
+          ShowErrorSideEffect(
+            '${ErrorsConstant.failedToLoadCachedDataError} ${error.message}',
+          ),
         );
         // TODO(ahmed): Remove this log statement in production
         if (kDebugMode) {
           log(
-            // TODO(ahmed): Hardcoded message for now
-            'Failed to load cached user data: ${error.message}',
+            '${ErrorsConstant.failedToLoadCachedDataError} ${error.message}',
             error: error,
           );
         }
@@ -213,7 +208,12 @@ class ProfileMainCubit extends Cubit<ProfileMainStates> {
         emit(
           state.copyWith(userData: state.userData.copyWith(isLoading: false)),
         );
-        _emitSideEffect(ShowErrorSideEffect('Logout failed: ${error.message}'));
+        // TODO(Salah): Handle Localization
+        _emitSideEffect(
+          ShowErrorSideEffect(
+            '${ErrorsConstant.logoutFailedError} ${error.message}',
+          ),
+        );
       },
     );
   }

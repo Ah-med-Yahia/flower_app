@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 import '../../../../../config/base_state/base_state.dart';
+import '../../../../../core/constants/app_text_constants.dart';
 import '../../domain/entities/user_data_response.dart';
 
 class ProfileMainStates extends Equatable {
@@ -11,7 +12,7 @@ class ProfileMainStates extends Equatable {
   const ProfileMainStates({
     this.isNotificationsEnabled = true,
     this.userData = const BaseState<UserDataResponse>(),
-    this.selectedLanguage = 'English', // TODO(ahmed): Hardcoded message for now
+    this.selectedLanguage = AppTextConstants.english,
   });
 
   ProfileMainStates copyWith({
