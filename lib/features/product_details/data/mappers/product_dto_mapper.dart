@@ -1,5 +1,5 @@
-import 'package:flower_app/features/product_details/data/models/product_dto.dart';
-import 'package:flower_app/features/product_details/domain/models/product_model.dart';
+import '../../domain/models/product_model.dart';
+import '../models/product_dto.dart';
 
 extension ProductDtoMapper on ProductDto {
   ProductModel toDomain() {

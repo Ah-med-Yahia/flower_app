@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
+import 'package:flutter/material.dart';
 
 class AppBarTitle extends StatelessWidget {
-  const AppBarTitle({Key? key}) : super(key: key);
+  const AppBarTitle({super.key});
 
   @override
   Widget build(BuildContext context) {

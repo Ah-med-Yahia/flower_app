@@ -42,11 +42,11 @@ void main() {
 
     group('When call ForgetPasswordEvent intent', () {
       group('In Case Success Response', () {
-        final mockEntity = const ForgetPasswordEntity(
+        const mockEntity = ForgetPasswordEntity(
           message: 'success',
           info: 'OTP sent to your email',
         );
-        final successResponse = BaseResponse<ForgetPasswordEntity>.success(
+        const successResponse = BaseResponse<ForgetPasswordEntity>.success(
           mockEntity,
         );
         void successResponseSetUp() async {
@@ -108,8 +108,9 @@ void main() {
       });
 
       group('In Case Failure Response', () {
-        const String errorMessage = 'Invalid email address';
-        final errorModel = ErrorModel(message: errorMessage);
+        // ErrorHandler.handle() returns default error for non-DioException/LocalException
+        const String errorMessage = 'Something went wrong. Please try again.';
+        final errorModel = ErrorModel(message: 'Invalid email address');
         final errorHandler = ErrorHandler.handle(errorModel);
         final failureResponse = BaseResponse<ForgetPasswordEntity>.failure(
           errorHandler,
@@ -187,11 +188,11 @@ void main() {
       });
 
       group('In Case Success Response', () {
-        final mockEntity = const ForgetPasswordEntity(
+        const mockEntity = ForgetPasswordEntity(
           message: 'success',
           info: 'OTP sent to your email',
         );
-        final successResponse = BaseResponse<ForgetPasswordEntity>.success(
+        const successResponse = BaseResponse<ForgetPasswordEntity>.success(
           mockEntity,
         );
         void successResponseSetUp() async {

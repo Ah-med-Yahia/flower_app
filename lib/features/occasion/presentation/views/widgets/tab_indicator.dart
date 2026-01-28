@@ -1,12 +1,15 @@
-import 'package:flutter/material.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
+import 'package:flutter/material.dart';
 
 class TabIndicator extends StatelessWidget {
   final bool isSelected;
   final double width;
 
-  const TabIndicator({Key? key, required this.isSelected, required this.width})
-    : super(key: key);
+  const TabIndicator({
+    super.key,
+    required this.isSelected,
+    required this.width,
+  });
 
   @override
   Widget build(BuildContext context) {

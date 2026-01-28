@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flower_app/config/di/di.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
@@ -11,6 +9,8 @@ import 'package:flower_app/features/occasion/presentation/views/widgets/app_bar_
 import 'package:flower_app/features/occasion/presentation/views/widgets/back_button.dart';
 import 'package:flower_app/features/occasion/presentation/views/widgets/occasion_tab_bar.dart';
 import 'package:flower_app/features/occasion/presentation/views/widgets/products_grid.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OccasionScreen extends StatelessWidget {
   final String? id;
@@ -87,7 +87,9 @@ class OccasionScreen extends StatelessWidget {
                   BlocBuilder<OccasionCubit, OccasionState>(
                     builder: (productContext, productState) {
                       if (productState.occasionProductsState.isLoading) {
-                        return Expanded(child: LoadingIndicator(size: 130));
+                        return const Expanded(
+                          child: LoadingIndicator(size: 130),
+                        );
                       }
 
                       if (productState.occasionProductsState.errorMessage !=
@@ -100,10 +102,10 @@ class OccasionScreen extends StatelessWidget {
                           ),
                         );
                       }
-                      final occasionsproducts =
+                      final occasionsProducts =
                           productState.occasionProductsState.data?.products;
 
-                      if (occasionsproducts == null) {
+                      if (occasionsProducts == null) {
                         return Expanded(
                           child: Center(
                             child: Text(
@@ -117,7 +119,7 @@ class OccasionScreen extends StatelessWidget {
                           ),
                         );
                       }
-                      return ProductsGrid(occasionsproducts);
+                      return ProductsGrid(occasionsProducts);
                     },
                   ),
                 ],

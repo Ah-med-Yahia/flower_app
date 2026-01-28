@@ -35,7 +35,7 @@ class HomeTap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final titleLarge = Theme.of(context).textTheme.titleLarge;
-    double height = MediaQuery.of(context).size.height;
+    final double height = MediaQuery.of(context).size.height;
     final HomeScreenCubit cubit = getIt<HomeScreenCubit>();
     return BlocProvider(
       create: (context) => cubit..onEvent(GetHomeScreenDataEvent()),
@@ -77,7 +77,7 @@ class HomeTap extends StatelessWidget {
               );
             }
             if (state.homeScreenStates?.isLoading == true) {
-              return Scaffold(body: Center(child: LoadingIndicator()));
+              return const Scaffold(body: Center(child: LoadingIndicator()));
             }
             if (state.homeScreenStates?.data != null &&
                 state.homeScreenStates?.isLoading == false) {
@@ -104,7 +104,7 @@ class HomeTap extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(width: 16),
-                          Expanded(child: SearchWidget()),
+                          const Expanded(child: SearchWidget()),
                         ],
                       ),
                       const SizedBox(height: 16),
@@ -146,7 +146,9 @@ class HomeTap extends StatelessWidget {
                                 child: CategoryCardWidget(
                                   imageUrl: data.categories[index].image,
                                   label: data.categories[index].name,
-                                  bgColor: AppColors.primary.withOpacity(0.1),
+                                  bgColor: AppColors.primary.withValues(
+                                    alpha: 0.1,
+                                  ),
                                 ),
                               ),
                             );

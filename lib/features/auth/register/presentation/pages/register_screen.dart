@@ -1,21 +1,22 @@
-import 'package:flower_app/config/di/di.dart';
-import 'package:flower_app/core/constants/app_routes_constant.dart';
-import 'package:flower_app/core/constants/app_text_constants.dart';
-import 'package:flower_app/core/theme/app_colors.dart';
-import 'package:flower_app/core/ui_utils/ui_utils.dart';
-import 'package:flower_app/features/auth/register/presentation/cubit/register_cubit.dart';
-import 'package:flower_app/features/auth/register/presentation/cubit/register_states.dart';
-import 'package:flower_app/features/auth/register/presentation/cubit/register_ui_events.dart';
-import 'package:flower_app/features/auth/register/presentation/widgets/email_field_widget.dart';
-import 'package:flower_app/features/auth/register/presentation/widgets/gender_selector_widget.dart';
-import 'package:flower_app/features/auth/register/presentation/widgets/name_field_widget.dart';
-import 'package:flower_app/features/auth/register/presentation/widgets/password_field_widget.dart';
-import 'package:flower_app/features/auth/register/presentation/widgets/phone_field_widget.dart';
-import 'package:flower_app/features/auth/register/presentation/widgets/sign_up_button_widget.dart';
-import 'package:flower_app/features/auth/register/presentation/widgets/terms_and_conditions_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../../../../config/di/di.dart';
+import '../../../../../core/constants/app_routes_constant.dart';
+import '../../../../../core/constants/app_text_constants.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/ui_utils/ui_utils.dart';
+import '../cubit/register_cubit.dart';
+import '../cubit/register_states.dart';
+import '../cubit/register_ui_events.dart';
+import '../widgets/email_field_widget.dart';
+import '../widgets/gender_selector_widget.dart';
+import '../widgets/name_field_widget.dart';
+import '../widgets/password_field_widget.dart';
+import '../widgets/phone_field_widget.dart';
+import '../widgets/sign_up_button_widget.dart';
+import '../widgets/terms_and_conditions_widget.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -103,7 +104,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 const SizedBox(height: 30),
                 GenderSelectorWidget(cubit: cubit),
                 const SizedBox(height: 12),
-                TermsAndConditionsWidget(),
+                const TermsAndConditionsWidget(),
                 const SizedBox(height: 30),
                 BlocBuilder<RegisterCubit, RegisterStates>(
                   builder: (_, state) {

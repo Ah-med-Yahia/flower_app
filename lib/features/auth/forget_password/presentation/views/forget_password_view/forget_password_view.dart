@@ -39,7 +39,7 @@ class ForgetPasswordView extends StatelessWidget {
             32.verticalSpacing,
             BlocProvider<ForgetPasswordCubit>(
               create: (context) => getIt<ForgetPasswordCubit>(),
-              child: ForgetPasswordBody(),
+              child: const ForgetPasswordBody(),
             ),
           ],
         ),

@@ -1,16 +1,17 @@
-import 'package:flower_app/core/constants/errors_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flower_app/config/di/di.dart';
-import 'package:flower_app/core/constants/app_text_constants.dart';
-import 'package:flower_app/core/widgets/custom_eleveted_button.dart';
-import 'package:flower_app/core/widgets/loading_indicator_widget.dart';
-import 'package:flower_app/core/widgets/custom_error_widget.dart';
-import 'package:flower_app/features/product_details/presentaion/view/widgets/product_details_info.dart';
-import 'package:flower_app/features/product_details/presentaion/view/widgets/product_images_slider.dart';
-import 'package:flower_app/features/product_details/presentaion/view_model/product_details_cubit.dart';
-import 'package:flower_app/features/product_details/presentaion/view_model/product_details_events.dart';
-import 'package:flower_app/features/product_details/presentaion/view_model/product_details_states.dart';
+
+import '../../../../../config/di/di.dart';
+import '../../../../../core/constants/app_text_constants.dart';
+import '../../../../../core/constants/errors_constants.dart';
+import '../../../../../core/widgets/custom_eleveted_button.dart';
+import '../../../../../core/widgets/custom_error_widget.dart';
+import '../../../../../core/widgets/loading_indicator_widget.dart';
+import '../../view_model/product_details_cubit.dart';
+import '../../view_model/product_details_events.dart';
+import '../../view_model/product_details_states.dart';
+import '../widgets/product_details_info.dart';
+import '../widgets/product_images_slider.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
   const ProductDetailsScreen({super.key, required this.productId});
@@ -40,7 +41,7 @@ class ProductDetailsScreen extends StatelessWidget {
           }
 
           if (state.productDetailsState?.isLoading == true) {
-            return Scaffold(body: Center(child: LoadingIndicator()));
+            return const Scaffold(body: Center(child: LoadingIndicator()));
           }
 
           if (state.productDetailsState?.data != null &&

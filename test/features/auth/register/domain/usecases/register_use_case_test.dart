@@ -16,26 +16,26 @@ void main() {
   late RegisterUseCase useCase;
   late MockRegisterRepository mockRepository;
 
-  final request = RegisterRequestModel(
-    email: "omar@gmail.com",
-    firstName: "Omar",
-    lastName: "Ahmed",
-    password: "123456",
-    rePassword: "123456",
-    phone: "0123456789",
-    gender: "male",
+  const request = RegisterRequestModel(
+    email: 'omar@gmail.com',
+    firstName: 'Omar',
+    lastName: 'Ahmed',
+    password: '123456',
+    rePassword: '123456',
+    phone: '0123456789',
+    gender: 'male',
   );
 
-  final entity = RegisterEntity(
-    token: "token",
+  const entity = RegisterEntity(
+    token: 'token',
     user: User(
-      firstName: "Omar",
-      lastName: "Ahmed",
-      email: "omar@gmail.com",
-      gender: "male",
-      phone: "0123456789",
+      firstName: 'Omar',
+      lastName: 'Ahmed',
+      email: 'omar@gmail.com',
+      gender: 'male',
+      phone: '0123456789',
     ),
-    message: "successful",
+    message: 'successful',
   );
 
   setUp(() {
@@ -48,7 +48,7 @@ void main() {
       // Arrange
       when(
         mockRepository.register(request),
-      ).thenAnswer((_) async => BaseResponse.success(entity));
+      ).thenAnswer((_) async => const BaseResponse.success(entity));
 
       // Act
       final result = await useCase(request);

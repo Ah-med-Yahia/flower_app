@@ -1,9 +1,11 @@
-import 'package:flower_app/core/constants/app_text_constants.dart';
-import 'package:flower_app/core/theme/app_colors.dart';
-import 'package:flower_app/features/auth/register/presentation/cubit/register_cubit.dart';
-import 'package:flower_app/features/auth/register/presentation/cubit/register_events.dart';
-import 'package:flower_app/features/auth/register/presentation/cubit/register_states.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../../core/constants/app_text_constants.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../cubit/register_cubit.dart';
+import '../cubit/register_events.dart';
+import '../cubit/register_states.dart';
+
 class SignUpButtonWidget extends StatelessWidget {
   final RegisterCubit cubit;
   final GlobalKey<FormState> formKey;
@@ -33,7 +35,8 @@ class SignUpButtonWidget extends StatelessWidget {
                       lastName: values[AppTextConstants.lastName]!,
                       email: values[AppTextConstants.email]!,
                       password: values[AppTextConstants.password]!,
-                      confirmPassword: values[AppTextConstants.confirmPassword]!,
+                      confirmPassword:
+                          values[AppTextConstants.confirmPassword]!,
                       phoneNumber: values[AppTextConstants.phoneNumber]!,
                       gender: state.gender,
                     ),

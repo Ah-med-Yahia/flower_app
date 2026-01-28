@@ -1,5 +1,4 @@
 import 'package:flower_app/features/categories/domain/entities/categories_product_entity.dart';
-import 'package:flower_app/features/categories/domain/entities/get_categories_products_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'category_product_model.g.dart';
