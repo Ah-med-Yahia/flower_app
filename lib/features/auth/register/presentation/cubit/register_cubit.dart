@@ -1,18 +1,20 @@
 import 'dart:async';
 import 'dart:developer';
-import 'package:flower_app/config/base_response/base_response.dart';
-import 'package:flower_app/core/constants/app_text_constants.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../../../../config/base_response/base_response.dart';
+import '../../../../../core/constants/app_text_constants.dart';
+import '../../data/models/register_request/register_request.dart';
+import '../../domain/usecases/register_use_case.dart';
 import 'register_events.dart';
 import 'register_states.dart';
 import 'register_ui_events.dart';
-import '../../data/models/register_request/register_request.dart';
-import '../../domain/usecases/register_use_case.dart';
 
 @injectable
 class RegisterCubit extends Cubit<RegisterStates> {
-  RegisterCubit(this._registerUseCase) : super(RegisterStates());
+  RegisterCubit(this._registerUseCase) : super(const RegisterStates());
 
   final RegisterUseCase _registerUseCase;
 
@@ -155,11 +157,7 @@ class RegisterCubit extends Cubit<RegisterStates> {
         _uiEventsController.add(NavigateToLogin());
       },
       failure: (e) {
-        _uiEventsController.add(
-          ShowRegisterError(
-            e.errorHandler.message,
-          ),
-        );
+        _uiEventsController.add(ShowRegisterError(e.errorHandler.message));
       },
     );
   }

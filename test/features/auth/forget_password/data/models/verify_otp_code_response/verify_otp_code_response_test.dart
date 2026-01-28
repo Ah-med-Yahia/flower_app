@@ -11,7 +11,7 @@ void main() {
         () {
           // Arrange
           const String testStatus = 'Success';
-          final VerifyOtpCodeResponse response = VerifyOtpCodeResponse(
+          const VerifyOtpCodeResponse response = VerifyOtpCodeResponse(
             status: testStatus,
           );
 
@@ -20,7 +20,7 @@ void main() {
 
           // Assert
           expect(result, isA<VerifyOtpCodeEntity>());
-          final expectedToEntity = VerifyOtpCodeEntity(status: testStatus);
+          const expectedToEntity = VerifyOtpCodeEntity(status: testStatus);
           expect(result.status, equals(expectedToEntity.status));
         },
       );
@@ -29,7 +29,7 @@ void main() {
         () {
           // Arrange
           const String? testStatus = null;
-          final VerifyOtpCodeResponse response = VerifyOtpCodeResponse(
+          const VerifyOtpCodeResponse response = VerifyOtpCodeResponse(
             status: testStatus,
           );
 
@@ -38,7 +38,7 @@ void main() {
 
           // Assert
           expect(result, isA<VerifyOtpCodeEntity>());
-          final expectedToEntity = VerifyOtpCodeEntity(status: '');
+          const expectedToEntity = VerifyOtpCodeEntity(status: '');
           expect(result.status, equals(expectedToEntity.status));
         },
       );

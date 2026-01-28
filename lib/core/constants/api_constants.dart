@@ -20,8 +20,11 @@ class ApiConstants {
   // ---------------------- BEST SELLER -------------------- //
   static const String bestSellerEndPoint = 'best-seller';
 
-  // ---------------------- CATEGORIES --------------------- //
-  static const String getAllOccasionsEndpoint = 'occasions';
+
+  //------------------------ CATEGORIES ------------------------//
+  static const String getAllCategories = 'categories';
+  static const String getCategoryProducts = 'categories/{id}';
+  static const String getAllOccasions = "occasions";
 
   // ------------------------- CART ------------------------ //
   static const String cartEndpoint = 'cart';

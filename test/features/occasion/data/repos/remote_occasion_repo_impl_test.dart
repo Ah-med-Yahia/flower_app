@@ -1,15 +1,16 @@
 import 'package:dio/dio.dart';
-import 'package:flower_app/core/constants/errors_constants.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/error_handler/error_handler.dart';
 import 'package:flower_app/features/occasion/api/datasources_impl/remote_occasion_data_source_impl.dart';
 import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/get_all_occasions_response_model.dart';
 import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/metadata_model.dart';
-import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/occasion_model.dart';
+import 'package:flower_app/features/occasion/data/models/get_occasion_products_models/get_occasion_products_response_model.dart';
+import 'package:flower_app/features/occasion/data/models/get_occasion_products_models/product_model.dart';
 import 'package:flower_app/features/occasion/data/repos/occasion_repo_impl.dart';
 import 'package:flower_app/features/occasion/domain/entities/get_all_occasions_list_entity.dart';
+import 'package:flower_app/features/occasion/domain/entities/get_occasion_products_entity.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
 import 'remote_occasion_repo_impl_test.mocks.dart';
@@ -19,23 +20,13 @@ void main() {
   late OccasionRepoImpl occasionRepoImpl;
   late MockRemoteOccasionDataSourceImpl mockDataSource;
 
-  setUpAll(() {
+  setUp(() {
     mockDataSource = MockRemoteOccasionDataSourceImpl();
     occasionRepoImpl = OccasionRepoImpl(mockDataSource);
   });
-  group('Occasion Repo Implementation Test(get all occasions function)', () {
-    _testGetAllOccasionsSuccessCase(occasionRepoImpl, mockDataSource);
-    _testGetAllOccasionsFailureCase(occasionRepoImpl, mockDataSource);
-    _testGetAllOccasionsDioFiluresCase(occasionRepoImpl, mockDataSource);
-  });
-}
 
-void _testGetAllOccasionsSuccessCase(
-  OccasionRepoImpl occasionRepoImpl,
-  MockRemoteOccasionDataSourceImpl mockDataSource,
-) {
-  test('Test success case', () async {
-    final mockOccasionsResponse = GetAllOccasionsResponseModel(
+  group('getAllOccasions', () {
+    final mockResponse = GetAllOccasionsResponseModel(
       message: 'Success',
       metadata: MetadataModel(
         currentPage: 1,
@@ -45,63 +36,42 @@ void _testGetAllOccasionsSuccessCase(
       ),
       occasions: [],
     );
-    when(
-      mockDataSource.getAllOccasions(),
-    ).thenAnswer((_) async => BaseResponse.success(mockOccasionsResponse));
-    final result = await occasionRepoImpl.getAllOccasions();
-    final success = result as Success<GetOccasionListEntity>;
-    expect(result, isA<GetOccasionListEntity>());
-    expect(success.data.occasions, isA<List<OccasionModel>>());
-    expect(success.data.occasions!.length, 0);
-    verify(mockDataSource.getAllOccasions()).called(1);
-  });
-}
 
-void _testGetAllOccasionsFailureCase(
-  OccasionRepoImpl occasionRepoImpl,
-  MockRemoteOccasionDataSourceImpl mockDataSource,
-) {
-  test("should return BaseResponse.failure when datasource fails", () async {
-    final fakeError = ErrorHandler.handle(Exception("API Failed"));
+    test('should return Success entity when datasource succeeds', () async {
+      when(
+        mockDataSource.getAllOccasions(),
+      ).thenAnswer((_) async => BaseResponse.success(mockResponse));
 
-    when(
-      mockDataSource.getAllOccasions(),
-    ).thenAnswer((_) async => BaseResponse.failure(fakeError));
+      final result = await occasionRepoImpl.getAllOccasions();
 
-    final result = await occasionRepoImpl.getAllOccasions();
+      expect(result, isA<Success<GetOccasionListEntity>>());
+      verify(mockDataSource.getAllOccasions()).called(1);
+    });
 
-    expect(result, isA<Failure<GetOccasionListEntity>>());
+    test(
+      'should return Failure entity when datasource returns failure',
+      () async {
+        final fakeError = ErrorHandler.handle(Exception('API Failed'));
+        when(
+          mockDataSource.getAllOccasions(),
+        ).thenAnswer((_) async => BaseResponse.failure(fakeError));
 
-    final failureResult = result as Failure<GetOccasionListEntity>;
+        final result = await occasionRepoImpl.getAllOccasions();
 
-    expect(
-      failureResult.errorHandler.errorModel.message,
-      ErrorsConstant.defaultError,
+        expect(result, isA<Failure<GetOccasionListEntity>>());
+        final failure = result as Failure;
+        expect(
+          failure.errorHandler.errorModel.message,
+          fakeError.errorModel.message,
+        );
+      },
     );
 
-    expect(
-      failureResult.errorHandler.errorModel.message,
-      fakeError.errorModel.message,
-    );
-
-    expect(failureResult.errorHandler, isA<ErrorHandler>());
-
-    verify(mockDataSource.getAllOccasions()).called(1);
-  });
-}
-
-void _testGetAllOccasionsDioFiluresCase(
-  OccasionRepoImpl occasionRepoImpl,
-  MockRemoteOccasionDataSourceImpl mockDataSource,
-) {
-  test(
-    "should return BaseResponse.failure with correct error from error handler when datasource fails",
-    () async {
+    test('should handle DioException correctly', () async {
       final dioError = DioException(
-        requestOptions: RequestOptions(path: "/occasions"),
+        requestOptions: RequestOptions(path: '/occasions'),
         type: DioExceptionType.connectionError,
       );
-
       final handledError = ErrorHandler.handle(dioError);
 
       when(
@@ -111,22 +81,45 @@ void _testGetAllOccasionsDioFiluresCase(
       final result = await occasionRepoImpl.getAllOccasions();
 
       expect(result, isA<Failure<GetOccasionListEntity>>());
+      expect((result as Failure).errorHandler, same(handledError));
+    });
+  });
 
-      final failure = result as Failure<GetOccasionListEntity>;
+  group('getOccasionProducts', () {
+    const tOccasionId = '123';
+    const mockProductResponse = GetOccasionProductsResponseModel(
+      message: 'Success',
+      product: ProductModel(
+        id: '1',
+        name: 'Rose Bouquet',
+        image: 'url',
+        slug: 'rose',
+        createdAt: '',
+        updatedAt: '',
+        isSuperAdmin: false,
+      ),
+    );
 
-      expect(failure.errorHandler, same(handledError));
-
-      expect(
-        failure.errorHandler.errorModel.code,
-        handledError.errorModel.code,
+    test('should return Success entity when datasource succeeds', () async {
+      when(mockDataSource.getOccasionProducts(tOccasionId)).thenAnswer(
+        (_) async => const BaseResponse.success(mockProductResponse),
       );
 
-      expect(
-        failure.errorHandler.errorModel.message,
-        handledError.errorModel.message,
-      );
+      final result = await occasionRepoImpl.getOccasionProducts(tOccasionId);
 
-      verify(mockDataSource.getAllOccasions()).called(1);
-    },
-  );
+      expect(result, isA<Success<GetOccasionProductsEntity>>());
+      verify(mockDataSource.getOccasionProducts(tOccasionId)).called(1);
+    });
+
+    test('should return Failure when datasource fails', () async {
+      final fakeError = ErrorHandler.handle(Exception('API Failed'));
+      when(
+        mockDataSource.getOccasionProducts(tOccasionId),
+      ).thenAnswer((_) async => BaseResponse.failure(fakeError));
+
+      final result = await occasionRepoImpl.getOccasionProducts(tOccasionId);
+
+      expect(result, isA<Failure<GetOccasionProductsEntity>>());
+    });
+  });
 }

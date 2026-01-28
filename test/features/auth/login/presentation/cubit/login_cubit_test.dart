@@ -7,9 +7,9 @@ import 'package:flower_app/features/auth/login/presentation/cubit/login_cubit.da
 import 'package:flower_app/features/auth/login/presentation/cubit/login_intents.dart';
 import 'package:flower_app/features/auth/login/presentation/cubit/login_state.dart';
 import 'package:flower_app/features/auth/login/presentation/cubit/login_ui_events.dart';
-import 'package:test/test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:test/test.dart';
 
 import 'login_cubit_test.mocks.dart';
 
@@ -45,7 +45,9 @@ void main() {
         build: () => cubit,
         act: (cubit) =>
             cubit.doIntent(ValidateFields('test@example.com', 'Password123#')),
-        expect: () => [LoginStates(isFieldsValid: true, rememberMe: false)],
+        expect: () => [
+          const LoginStates(isFieldsValid: true, rememberMe: false),
+        ],
       );
 
       blocTest<LoginCubit, LoginStates>(
@@ -53,7 +55,9 @@ void main() {
         build: () => cubit,
         act: (cubit) =>
             cubit.doIntent(ValidateFields('invalid-email', 'Password123#')),
-        expect: () => [LoginStates(isFieldsValid: false, rememberMe: false)],
+        expect: () => [
+          const LoginStates(isFieldsValid: false, rememberMe: false),
+        ],
       );
 
       blocTest<LoginCubit, LoginStates>(
@@ -61,7 +65,9 @@ void main() {
         build: () => cubit,
         act: (cubit) =>
             cubit.doIntent(ValidateFields('test@example.com', '123')),
-        expect: () => [LoginStates(isFieldsValid: false, rememberMe: false)],
+        expect: () => [
+          const LoginStates(isFieldsValid: false, rememberMe: false),
+        ],
       );
     });
 
@@ -70,15 +76,19 @@ void main() {
         'should toggle rememberMe from false to true',
         build: () => cubit,
         act: (cubit) => cubit.doIntent(RememberMeToggled()),
-        expect: () => [LoginStates(isFieldsValid: false, rememberMe: true)],
+        expect: () => [
+          const LoginStates(isFieldsValid: false, rememberMe: true),
+        ],
       );
 
       blocTest<LoginCubit, LoginStates>(
         'should toggle rememberMe from true to false',
         build: () => cubit,
-        seed: () => LoginStates(isFieldsValid: false, rememberMe: true),
+        seed: () => const LoginStates(isFieldsValid: false, rememberMe: true),
         act: (cubit) => cubit.doIntent(RememberMeToggled()),
-        expect: () => [LoginStates(isFieldsValid: false, rememberMe: false)],
+        expect: () => [
+          const LoginStates(isFieldsValid: false, rememberMe: false),
+        ],
       );
     });
 
@@ -88,7 +98,7 @@ void main() {
         () async {
           when(
             mockLoginUseCase.call(any, any),
-          ).thenAnswer((_) async => BaseResponse<void>.success(null));
+          ).thenAnswer((_) async => const BaseResponse<void>.success(null));
 
           final future = expectLater(
             cubit.uiEvents,

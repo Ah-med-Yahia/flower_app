@@ -29,7 +29,7 @@ void main() {
     photo: '',
     createdAt: DateTime.now(),
   );
-  final loginRequestTest = LoginRequestModel(
+  const loginRequestTest = LoginRequestModel(
     email: 'ahmed@gmail.com',
     password: 'Ahmed22',
   );

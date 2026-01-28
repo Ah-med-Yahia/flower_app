@@ -40,7 +40,7 @@ void main() {
     user: testUser,
   );
 
-  setUpAll(() {
+  setUp(() {
     mockLocal = MockLocalLoginDataSource();
     mockRemote = MockRemoteLoginDataSource();
     repository = LoginRepositoryImpl(mockRemote, mockLocal);
@@ -77,7 +77,7 @@ void main() {
               token: anyNamed('token'),
               user: anyNamed('user'),
             ),
-          ).thenAnswer((_) async => BaseResponse<void>.success(null));
+          ).thenAnswer((_) async => const BaseResponse<void>.success(null));
 
           final result = await repository.login(loginRequestTest, true);
 

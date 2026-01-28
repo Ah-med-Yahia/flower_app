@@ -1,6 +1,5 @@
-
-import 'package:flower_app/config/base_state/base_state.dart';
-import 'package:flower_app/features/auth/register/domain/entities/register_entity.dart';
+import '../../../../../config/base_state/base_state.dart';
+import '../../domain/entities/register_entity.dart';
 
 class RegisterStates extends BaseState<RegisterEntity> {
   final String firstName;
@@ -12,7 +11,7 @@ class RegisterStates extends BaseState<RegisterEntity> {
   final String gender;
   final bool isFormValid;
 
-   RegisterStates({
+  const RegisterStates({
     super.isLoading = false,
     super.data,
     super.errorMessage,
@@ -26,6 +25,7 @@ class RegisterStates extends BaseState<RegisterEntity> {
     this.isFormValid = false,
   });
 
+  @override
   List<Object?> get props => [
     isLoading,
     data,
