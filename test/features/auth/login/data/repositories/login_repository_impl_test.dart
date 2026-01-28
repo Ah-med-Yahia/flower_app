@@ -48,22 +48,26 @@ void main() {
 
   group('Test cases for Repo', () {
     group('Success', () {
-      test(
-        'returns success when remote succeeds and remembered is false',
-        () async {
-          when(mockRemote.login(any)).thenAnswer(
-            (_) async =>
-                BaseResponse<LoginResponseModel>.success(loginResponseTest),
-          );
+      test('returns failure when local storage fails', () async {
+        when(mockRemote.login(any)).thenAnswer(
+          (_) async =>
+              BaseResponse<LoginResponseModel>.success(loginResponseTest),
+        );
 
-          final result = await repository.login(loginRequestTest, false);
+        when(
+          mockLocal.saveLoggedUserData(
+            token: anyNamed('token'),
+            user: anyNamed('user'),
+          ),
+        ).thenAnswer(
+          (_) async =>
+              BaseResponse<void>.failure(ErrorHandler.handle('local error')),
+        );
 
-          expect(result, isA<Success<void>>());
-          verify(mockRemote.login(any)).called(1);
-          verifyZeroInteractions(mockLocal);
-        },
-      );
+        final result = await repository.login(loginRequestTest, true);
 
+        expect(result, isA<Failure<void>>());
+      });
       test(
         'returns success when remote and local succeed and remembered is true',
         () async {

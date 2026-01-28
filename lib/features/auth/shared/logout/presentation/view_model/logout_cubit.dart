@@ -22,7 +22,11 @@ class LogoutCubit extends Cubit<LogoutStates> {
   void _logout() async {
     emit(
       state.copyWith(
-        logoutState: const BaseState(isLoading: true, data: null, errorMessage: null),
+        logoutState: const BaseState(
+          isLoading: true,
+          data: null,
+          errorMessage: null,
+        ),
       ),
     );
 

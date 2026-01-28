@@ -26,7 +26,7 @@ class AppTextConstants {
   static const String gender = 'Gender';
   static const String female = 'Female';
   static const String male = 'Male';
- 
+
   static const String creatingAccountAgreement =
       'Creating an account, you agree to our ';
   static const String termsAndConditions = 'Terms&Conditions';
