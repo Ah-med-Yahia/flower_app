@@ -69,6 +69,7 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: AppRoutesConstants.occasionScreen,
+        name: AppRoutesConstants.occasionScreen,
         builder: (context, state) {
           final id = state.extra as String?;
           return OccasionScreen(id: id);
