@@ -48,14 +48,21 @@ linter:
     - unnecessary_null_checks
     - unnecessary_nullable_for_final_variable_declarations
     # Naming conventions
-    - camel_case_types
-    - camel_case_extensions
-    - file_names
-    - library_names
-    - library_prefixes
-    - non_constant_identifier_names
-    - constant_identifier_names
+    - camel_case_types # Classes, typedefs, type parameters
+    - camel_case_extensions # Extension names
+    - file_names # Files should be lowercase_with_underscores
+    - library_names # Library names use lowercase_with_underscores
+    - library_prefixes # Import prefixes use lowercase_with_underscores
+    - non_constant_identifier_names # Variables, functions use lowerCamelCase
+    - constant_identifier_names # Constants use lowerCamelCase or SCREAMING_SNAKE_CASE
     - package_names
+
+    # Style
+    - flutter_style_todos # // T0D0(username): clear description
+
+    # Importing
+    - implementation_imports
+    - prefer_relative_imports
 
 analyzer:
   errors:

@@ -1,6 +1,7 @@
-import 'package:flower_app/core/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+
+import '../gen/assets.gen.dart';
 
 class LoadingIndicator extends StatelessWidget {
   final double size;

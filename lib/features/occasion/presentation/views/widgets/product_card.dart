@@ -1,9 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flower_app/core/constants/app_text_constants.dart';
-import 'package:flower_app/core/theme/app_colors.dart';
-import 'package:flower_app/core/widgets/loading_indicator_widget.dart';
-import 'package:flower_app/features/occasion/domain/entities/occasion_product_entity.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../../core/constants/app_text_constants.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/widgets/loading_indicator_widget.dart';
+import '../../../domain/entities/occasion_product_entity.dart';
 
 class ProductCard extends StatelessWidget {
   final OccasionProductEntity _occasionProductEntity;

@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:flower_app/features/occasion/domain/entities/occasion_entity.dart';
+
+import '../../../domain/entities/occasion_entity.dart';
 
 part 'occasion_model.g.dart';
 

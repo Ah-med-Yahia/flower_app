@@ -1,5 +1,6 @@
-import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../../core/constants/app_text_constants.dart';
 
 class AppBarTitle extends StatelessWidget {
   const AppBarTitle({super.key});

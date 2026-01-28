@@ -1,8 +1,8 @@
-import 'package:flower_app/features/home/data/mappers/category_mapper.dart';
-import 'package:flower_app/features/home/data/mappers/occasion_mapper.dart';
-import 'package:flower_app/features/home/data/mappers/product_dto_mapper.dart';
-import 'package:flower_app/features/home/data/models/home_response_dto.dart';
-import 'package:flower_app/features/home/domain/entities/home_response_entity.dart';
+import '../../domain/entities/home_response_entity.dart';
+import '../models/home_response_dto.dart';
+import 'category_mapper.dart';
+import 'occasion_mapper.dart';
+import 'product_dto_mapper.dart';
 
 extension HomeResponseMapper on HomeResponseDto {
   HomeResponseEntity toEntity() {

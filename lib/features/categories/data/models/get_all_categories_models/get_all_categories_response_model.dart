@@ -1,7 +1,8 @@
-import 'package:flower_app/features/categories/data/models/get_all_categories_models/category_model.dart';
-import 'package:flower_app/features/categories/data/models/get_all_categories_models/metadata_model.dart';
-import 'package:flower_app/features/categories/domain/entities/get_all_categories_list_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import '../../../domain/entities/get_all_categories_list_entity.dart';
+import 'category_model.dart';
+import 'metadata_model.dart';
 
 part 'get_all_categories_response_model.g.dart';
 

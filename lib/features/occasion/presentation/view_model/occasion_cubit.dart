@@ -1,13 +1,14 @@
-import 'package:flower_app/config/base_response/base_response.dart';
-import 'package:flower_app/config/base_state/base_state.dart';
-import 'package:flower_app/features/occasion/domain/entities/get_all_occasions_list_entity.dart';
-import 'package:flower_app/features/occasion/domain/entities/get_occasion_products_entity.dart';
-import 'package:flower_app/features/occasion/domain/usecases/get_all_occasion_usecase.dart';
-import 'package:flower_app/features/occasion/domain/usecases/get_occasion_products_usecase.dart';
-import 'package:flower_app/features/occasion/presentation/view_model/occasion_event.dart';
-import 'package:flower_app/features/occasion/presentation/view_model/occasion_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../../../config/base_response/base_response.dart';
+import '../../../../config/base_state/base_state.dart';
+import '../../domain/entities/get_all_occasions_list_entity.dart';
+import '../../domain/entities/get_occasion_products_entity.dart';
+import '../../domain/usecases/get_all_occasion_usecase.dart';
+import '../../domain/usecases/get_occasion_products_usecase.dart';
+import 'occasion_event.dart';
+import 'occasion_state.dart';
 
 @injectable
 class OccasionCubit extends Cubit<OccasionState> {

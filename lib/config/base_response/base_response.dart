@@ -1,5 +1,6 @@
-import 'package:flower_app/config/error_handler/error_handler.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../error_handler/error_handler.dart';
 
 part 'base_response.freezed.dart';
 

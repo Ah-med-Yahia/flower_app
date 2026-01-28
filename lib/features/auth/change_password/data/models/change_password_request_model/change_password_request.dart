@@ -1,5 +1,7 @@
-import 'package:flower_app/features/auth/change_password/domain/entities/change_password_request_entity/change_password_request_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import '../../../domain/entities/change_password_request_entity/change_password_request_entity.dart';
+
 part 'change_password_request.g.dart';
 
 @JsonSerializable()

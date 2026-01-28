@@ -1,9 +1,10 @@
-import 'package:flower_app/features/auth/login/domain/entities/login_request_entity.dart';
+import '../../domain/entities/login_request_entity.dart';
 
 sealed class LoginIntents {}
 
 class LoginSubmitted extends LoginIntents {
   final LoginRequestEntity loginRequestEntity;
+
   LoginSubmitted(this.loginRequestEntity);
 }
 

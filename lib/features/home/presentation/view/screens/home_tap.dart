@@ -1,26 +1,27 @@
 import 'dart:developer';
 
-import 'package:flower_app/config/di/di.dart';
-import 'package:flower_app/core/constants/app_routes_constant.dart';
-import 'package:flower_app/core/constants/app_text_constants.dart';
-import 'package:flower_app/core/constants/errors_constants.dart';
-import 'package:flower_app/core/gen/assets.gen.dart';
-import 'package:flower_app/core/theme/app_colors.dart';
-import 'package:flower_app/core/widgets/custom_error_widget.dart';
-import 'package:flower_app/core/widgets/loading_indicator_widget.dart';
-import 'package:flower_app/features/home/presentation/view/widgets/address_widget.dart';
-import 'package:flower_app/features/home/presentation/view/widgets/best_seller_occations_card_widget.dart';
-import 'package:flower_app/features/home/presentation/view/widgets/category_card_widget.dart';
-import 'package:flower_app/features/home/presentation/view/widgets/search_widget.dart';
-import 'package:flower_app/features/home/presentation/view/widgets/view_all_button.dart';
-import 'package:flower_app/features/home/presentation/view_model/home_screen_cubit.dart';
-import 'package:flower_app/features/home/presentation/view_model/home_screen_events.dart';
-import 'package:flower_app/features/home/presentation/view_model/home_screen_states.dart';
-import 'package:flower_app/features/home/presentation/view_model/ui_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../../../../config/di/di.dart';
+import '../../../../../core/constants/app_routes_constant.dart';
+import '../../../../../core/constants/app_text_constants.dart';
+import '../../../../../core/constants/errors_constants.dart';
+import '../../../../../core/gen/assets.gen.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/widgets/custom_error_widget.dart';
+import '../../../../../core/widgets/loading_indicator_widget.dart';
+import '../../view_model/home_screen_cubit.dart';
+import '../../view_model/home_screen_events.dart';
+import '../../view_model/home_screen_states.dart';
+import '../../view_model/ui_events.dart';
+import '../widgets/address_widget.dart';
+import '../widgets/best_seller_occations_card_widget.dart';
+import '../widgets/category_card_widget.dart';
+import '../widgets/search_widget.dart';
+import '../widgets/view_all_button.dart';
 
 class HomeTap extends StatelessWidget {
   final VoidCallback onNavigateToCategories;

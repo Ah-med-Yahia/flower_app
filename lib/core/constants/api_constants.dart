@@ -28,9 +28,9 @@ class ApiConstants {
   //-------------------------forget password--------------------//
   static const String changePasswordEndPoint = 'auth/change-password';
 
-
   //------------------------ Home Screen ------------------------//
   static const String homeScreenEndPoint = 'home';
+
   //------------------------ PROFILE ------------------------//
   static const String profileDataEndPoint = 'auth/profile-data';
   static const String getOccasionProducts = 'occasions/{id}';

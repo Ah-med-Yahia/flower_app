@@ -1,11 +1,12 @@
-import 'package:flower_app/config/base_response/base_response.dart';
-import 'package:flower_app/config/base_state/base_state.dart';
-import 'package:flower_app/features/home/domain/usecases/get_home_data_usecase.dart';
-import 'package:flower_app/features/home/presentation/view_model/home_screen_events.dart';
-import 'package:flower_app/features/home/presentation/view_model/home_screen_states.dart';
-import 'package:flower_app/features/home/presentation/view_model/ui_events.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../../../config/base_response/base_response.dart';
+import '../../../../config/base_state/base_state.dart';
+import '../../domain/usecases/get_home_data_usecase.dart';
+import 'home_screen_events.dart';
+import 'home_screen_states.dart';
+import 'ui_events.dart';
 
 @injectable
 class HomeScreenCubit extends Cubit<HomeScreenStates> {

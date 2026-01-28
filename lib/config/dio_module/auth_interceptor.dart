@@ -34,8 +34,7 @@ class AuthInterceptor extends Interceptor {
         }
       },
       failure: (error) {
-        if (kDebugMode) {
-        }
+        if (kDebugMode) {}
       },
     );
 
@@ -45,7 +44,7 @@ class AuthInterceptor extends Interceptor {
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
     if (err.response?.statusCode == 401) {
-     _clearExpiredToken();
+      _clearExpiredToken();
       _sessionManager.notifySessionExpired(
         message: 'Your session has expired. Please login again.',
       );
@@ -69,7 +68,7 @@ class AuthInterceptor extends Interceptor {
     try {
       await _secureStorageService.clearAuthTokens();
       await _secureStorageService.writeBool(StorageKeys.isLoggedIn, false);
-      
+
       if (kDebugMode) {
         log('Auth tokens cleared due to session expiration');
       }
