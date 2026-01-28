@@ -7,6 +7,9 @@ class AppTextConstants {
   static const String cart = 'Cart';
   static const String occasion = 'Occasion';
   static const String profile = 'Profile';
+  static const String logout = 'Logout';
+  static const String confirmLogout = 'Confirm logout!!';
+  static const String cancel = 'Cancel';
   static const String failedToRegister =
       'Failed to register. Please try again.';
   static const String signUp = 'Sign Up';
@@ -25,6 +28,7 @@ class AppTextConstants {
   static const String gender = 'Gender';
   static const String female = 'Female';
   static const String male = 'Male';
+ 
   static const String creatingAccountAgreement =
       'Creating an account, you agree to our ';
   static const String termsAndConditions = 'Terms&Conditions';
@@ -41,6 +45,20 @@ class AppTextConstants {
   static const String description = 'Description:';
   static const String egp = 'EGP';
   static const String loginSuccess = 'Login Successful';
+  static const String passwordUpdatedSuccessfully =
+      'Password Updated Successfully!';
+  static const String failedToUpdatePassword = 'Failed To Update Password!';
+  static const String resetPassword = 'Reset Password';
+  static const String update = 'Update';
+  static const String newPasswordSameAsOld =
+      'New password must be different from current password';
+  static const String pleaseConfirmYourNewPassword =
+      'Please confirm your new password';
+
+  static const String pleaseEnterYourCurrentPassword =
+      'Please enter your current password';
+  static const String pleaseEnterYourNewPassword =
+      'Please enter your new password';
 
   //------------------- HOME PAGE -------------------//
   static const String bestSeller = 'Best seller';
@@ -60,7 +78,7 @@ class AppTextConstants {
   static const String egy = 'EGP';
   static const String rememberMe = 'Remember Me';
   static const String forgetPasswordHeadLine = 'Forget password';
-  static const String doNotHaveAccount = "Don't have an account?";
+  static const String dontHaveAccount = 'Don\'t have an account?';
   static const String guestUser = 'Continue as Guest';
 
   //-------------------------- FORGET-PASSWORD PAGE --------------------------//
@@ -82,6 +100,10 @@ class AppTextConstants {
   static const String emailFocusError = 'This Email is not valid';
   static const String confirmBtn = 'Confirm';
   static const String otpResentSuccess = 'OTP resent successfully';
+  static const String currentPassword = 'current password';
+  static const String newPassword = 'new password';
+
+  static const String passwordsDoNotMatch = 'Passwords do not match';
 
   //-------------------------- PROFILE PAGE --------------------------//
   static const String defaultAvatarUrl =

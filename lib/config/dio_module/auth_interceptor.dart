@@ -34,9 +34,7 @@ class AuthInterceptor extends Interceptor {
         }
       },
       failure: (error) {
-        // TODO(dev): Remove this log statement in production
         if (kDebugMode) {
-          log('Failed to get auth token: ${error.message}', error: error);
         }
       },
     );
@@ -46,19 +44,14 @@ class AuthInterceptor extends Interceptor {
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
-    // Handle 401 unauthorized errors
     if (err.response?.statusCode == 401) {
-      // Token might be expired, clear it from storage
-      _clearExpiredToken();
-      // TODO(dev): Hardcoded message for now
+     _clearExpiredToken();
       _sessionManager.notifySessionExpired(
         message: 'Your session has expired. Please login again.',
       );
-      // TODO(dev): Remove this log statement in production
       if (kDebugMode) {
         log('401 Unauthorized - Session expired');
       }
-      // You can emit an event to logout the user or refresh token
 
       return handler.reject(
         DioException(
@@ -76,12 +69,11 @@ class AuthInterceptor extends Interceptor {
     try {
       await _secureStorageService.clearAuthTokens();
       await _secureStorageService.writeBool(StorageKeys.isLoggedIn, false);
-      // TODO(dev): Remove this log statement in production
+      
       if (kDebugMode) {
         log('Auth tokens cleared due to session expiration');
       }
     } catch (e) {
-      // TODO(dev): Remove this log statement in production
       if (kDebugMode) {
         log('Failed to clear expired token', error: e);
       }

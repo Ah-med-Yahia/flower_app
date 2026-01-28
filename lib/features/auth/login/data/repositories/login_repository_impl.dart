@@ -22,22 +22,18 @@ class LoginRepositoryImpl implements LoginRepository {
     return response.map(
       success: (response) async {
         final loginResponse = response.data;
-        if (remembered) {
-          final localResponse = await localDataSource.saveLoggedUserData(
-            token: loginResponse.token,
-            user: loginResponse.user,
-          );
-          return localResponse.map(
-            success: (s) {
-              return const BaseResponse<void>.success(null);
-            },
-            failure: (f) {
-              return BaseResponse<void>.failure(f.errorHandler);
-            },
-          );
-        }
-
-        return const BaseResponse<void>.success(null);
+        final localResponse = await localDataSource.saveLoggedUserData(
+          token: loginResponse.token,
+          user: loginResponse.user,
+        );
+        return localResponse.map(
+          success: (s) {
+            return const BaseResponse<void>.success(null);
+          },
+          failure: (f) {
+            return BaseResponse<void>.failure(f.errorHandler);
+          },
+        );
       },
       failure: (failure) {
         return BaseResponse<void>.failure(failure.errorHandler);
