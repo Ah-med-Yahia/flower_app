@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -19,7 +22,7 @@ class CacheHelper {
     if (value is bool) return await _prefs.setBool(key, value);
     if (value is double) return await _prefs.setDouble(key, value);
     if (value is List<String>) return await _prefs.setStringList(key, value);
-    throw Exception("Unsupported value type: ${value.runtimeType}");
+    throw Exception('Unsupported value type: ${value.runtimeType}');
   }
 
   T? getData<T>({required String key}) {
@@ -29,7 +32,9 @@ class CacheHelper {
     try {
       return value as T;
     } catch (e) {
-      print('CacheHelper: Failed to cast value for key "$key" to $T');
+      if (kDebugMode) {
+        log('CacheHelper: Failed to cast value for key "$key" to $T');
+      }
       return null;
     }
   }

@@ -5,26 +5,29 @@ class CustomElevatedButtonWidget extends StatelessWidget {
     super.key,
     required this.onPressed,
     this.text,
+    this.backgroundColor,
+    this.textColor,
   });
 
   final VoidCallback onPressed;
   final String? text;
+  final Color? backgroundColor;
+  final Color? textColor;
 
   @override
   Widget build(BuildContext context) {
-    final myTextTheme = Theme.of(context).textTheme;
     return SizedBox(
       width: double.infinity,
-      height: 48,
+      height: MediaQuery.of(context).size.height * 0.07,
       child: ElevatedButton(
         onPressed: onPressed,
-        child: Text(
-          text ?? '',
-          style: myTextTheme.titleSmall?.copyWith(
-            fontSize: 16,
-            color: Colors.white,
-          ),
-        ),
+        style: backgroundColor != null || textColor != null
+            ? ElevatedButton.styleFrom(
+                backgroundColor: backgroundColor,
+                foregroundColor: textColor,
+              )
+            : null,
+        child: Text(text ?? ''),
       ),
     );
   }

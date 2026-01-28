@@ -1,16 +1,17 @@
 import 'dart:async';
 
-import 'package:flower_app/features/auth/forget_password/presentation/view_models/reset_password/reset_password_events.dart';
-import 'package:flower_app/features/auth/forget_password/presentation/view_models/reset_password/reset_password_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../../config/base_response/base_response.dart';
 import '../../../domain/usecases/reset_password_use_case.dart';
+import 'reset_password_events.dart';
+import 'reset_password_state.dart';
 
 @injectable
 class ResetPasswordCubit extends Cubit<ResetPasswordState> {
-  ResetPasswordCubit(this._resetPasswordUseCase) : super(ResetPasswordState());
+  ResetPasswordCubit(this._resetPasswordUseCase)
+    : super(const ResetPasswordState());
   final ResetPasswordUseCase _resetPasswordUseCase;
   final StreamController<ResetPasswordEvents> _eventsStream =
       StreamController.broadcast();

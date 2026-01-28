@@ -9,6 +9,8 @@ class LoginUseCase {
 
   LoginUseCase(this._loginRepository);
 
-  Future<BaseResponse<void>> call(LoginRequestEntity request,bool remembered) =>
-      _loginRepository.login(request,remembered);
+  Future<BaseResponse<void>> call(
+    LoginRequestEntity request,
+    bool remembered,
+  ) => _loginRepository.login(request, remembered);
 }

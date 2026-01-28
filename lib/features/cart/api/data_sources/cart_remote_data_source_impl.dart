@@ -1,7 +1,7 @@
+import 'package:flower_app/config/base_response/message_response.dart';
 import 'package:flower_app/features/cart/api/api_clients/cart_api_client.dart';
 import 'package:flower_app/features/cart/data/data_sources/cart_remote_data_source.dart';
 import 'package:flower_app/features/cart/data/models/add_to_cart_request_model.dart';
-import 'package:flower_app/features/cart/data/models/clear_cart_response_model.dart';
 import 'package:flower_app/features/cart/data/models/get_cart_response_model/get_cart_response_model.dart';
 import 'package:flower_app/features/cart/data/models/update_item_quantity_request_model.dart';
 import 'package:injectable/injectable.dart';
@@ -17,12 +17,14 @@ class CartRemoteDataSourceImpl implements CartRemoteDataSource {
   }
 
   @override
-  Future<GetCartResponseModel> addToCart({required AddToCartRequestModel requestModel}) {
+  Future<GetCartResponseModel> addToCart({
+    required AddToCartRequestModel requestModel,
+  }) {
     return _apiClient.addToCart(body: requestModel);
   }
 
   @override
-  Future<ClearCartResponseModel> clearCart() {
+  Future<MessageResponse> clearCart() {
     return _apiClient.clearCart();
   }
 
@@ -32,7 +34,13 @@ class CartRemoteDataSourceImpl implements CartRemoteDataSource {
   }
 
   @override
-  Future<GetCartResponseModel> updateItemQuantity({required String productId, required UpdateItemQuantityRequestModel requestModel}) {
-    return _apiClient.updateItemQuantity(productId: productId, body: requestModel);
+  Future<GetCartResponseModel> updateItemQuantity({
+    required String productId,
+    required UpdateItemQuantityRequestModel requestModel,
+  }) {
+    return _apiClient.updateItemQuantity(
+      productId: productId,
+      body: requestModel,
+    );
   }
 }

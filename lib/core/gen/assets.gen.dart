@@ -28,6 +28,9 @@ class $AssetsIconsGen {
 class $AssetsLottieGen {
   const $AssetsLottieGen();
 
+  /// File path: assets/lottie/Flower.svg
+  SvgGenImage get flower => const SvgGenImage('assets/lottie/Flower.svg');
+
   /// File path: assets/lottie/FlowerLoading.json
   LottieGenImage get flowerLoading =>
       const LottieGenImage('assets/lottie/FlowerLoading.json');
@@ -41,7 +44,7 @@ class $AssetsLottieGen {
       const LottieGenImage('assets/lottie/empty_cart.json');
 
   /// List of all assets
-  List<LottieGenImage> get values => [flowerLoading, cartError, emptyCart];
+  List<dynamic> get values => [flower, flowerLoading, cartError, emptyCart];
 }
 
 class Assets {

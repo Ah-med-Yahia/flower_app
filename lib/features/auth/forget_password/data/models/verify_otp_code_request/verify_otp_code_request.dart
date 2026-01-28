@@ -13,4 +13,3 @@ class VerifyOtpCodeRequest {
 
   Map<String, dynamic> toJson() => _$VerifyOtpCodeRequestToJson(this);
 }
-

@@ -40,7 +40,7 @@ void main() {
     user: testUser,
   );
 
-  setUpAll(() {
+  setUp(() {
     mockLocal = MockLocalLoginDataSource();
     mockRemote = MockRemoteLoginDataSource();
     repository = LoginRepositoryImpl(mockRemote, mockLocal);
@@ -56,11 +56,24 @@ void main() {
                 BaseResponse<LoginResponseModel>.success(loginResponseTest),
           );
 
+          when(
+            mockLocal.saveLoggedUserData(
+              token: anyNamed('token'),
+              user: anyNamed('user'),
+            ),
+          ).thenAnswer((_) async => const BaseResponse<void>.success(null));
+
           final result = await repository.login(loginRequestTest, false);
 
           expect(result, isA<Success<void>>());
           verify(mockRemote.login(any)).called(1);
-          verifyZeroInteractions(mockLocal);
+          verify(
+            mockLocal.saveLoggedUserData(
+              token: anyNamed('token'),
+              user: anyNamed('user'),
+            ),
+          ).called(1);
+          verifyNoMoreInteractions(mockLocal);
         },
       );
 
@@ -77,7 +90,7 @@ void main() {
               token: anyNamed('token'),
               user: anyNamed('user'),
             ),
-          ).thenAnswer((_) async => BaseResponse<void>.success(null));
+          ).thenAnswer((_) async => const BaseResponse<void>.success(null));
 
           final result = await repository.login(loginRequestTest, true);
 

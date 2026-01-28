@@ -40,9 +40,9 @@ class CartProductModel {
   @JsonKey(name: 'description')
   final String description;
   @JsonKey(name: 'imgCover')
-  final String imgCover;
+  final String? imgCover;
   @JsonKey(name: 'images')
-  final List<String> images;
+  final List<String>? images;
   @JsonKey(name: 'price')
   final int price;
   @JsonKey(name: 'priceAfterDiscount')
@@ -75,8 +75,8 @@ class CartProductModel {
     required this.title,
     required this.slug,
     required this.description,
-    required this.imgCover,
-    required this.images,
+    this.imgCover,
+    this.images,
     required this.price,
     required this.priceAfterDiscount,
     required this.quantity,

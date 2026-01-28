@@ -1,8 +1,9 @@
 import 'dart:async';
-import 'package:flower_app/config/base_response/base_response.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../../config/base_response/base_response.dart';
 import '../../domain/use_cases/get_best_seller_use_case.dart';
 import 'best_seller_events.dart';
 import 'best_seller_state.dart';
@@ -60,7 +61,7 @@ class BestSellerCubit extends Cubit<BestSellerState> {
   }
 
   void _navigateToCartEvent(NavigateToCartEvent event) {
-    _streamController.add(NavigateToCartEvent());
+    _streamController.add(const NavigateToCartEvent());
   }
 
   void _navigateToProductDetailsEvent(

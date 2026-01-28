@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
-import 'package:flower_app/features/product/best_seller/domain/entities/pagination_meta_data.dart';
 
 import 'best_seller.dart';
+import 'pagination_meta_data.dart';
 
 class BestSellerResponse extends Equatable {
   final String? message;

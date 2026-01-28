@@ -7,13 +7,9 @@ import 'package:flower_app/features/cart/domain/entities/cart_entity/cart_produc
 extension CartModelMapper on CartModel {
   CartEntity toEntity() {
     return CartEntity(
-      id: id,
-      user: user,
       cartItems: cartItems.map((e) => e.toEntity()).toList(),
       appliedCoupons: appliedCoupons,
       totalPrice: totalPrice,
-      createdAt: createdAt,
-      updatedAt: updatedAt,
     );
   }
 }
@@ -24,7 +20,6 @@ extension CartItemModelMapper on CartItemModel {
       product: product.toEntity(),
       price: price,
       quantity: quantity,
-      id: id,
     );
   }
 }
@@ -32,7 +27,6 @@ extension CartItemModelMapper on CartItemModel {
 extension CartProductModelMapper on CartProductModel {
   CartProductEntity toEntity() {
     return CartProductEntity(
-      id: id,
       title: title,
       slug: slug,
       description: description,
@@ -43,13 +37,6 @@ extension CartProductModelMapper on CartProductModel {
       quantity: quantity,
       category: category,
       occasion: occasion,
-      createdAt: createdAt,
-      updatedAt: updatedAt,
-      isSuperAdmin: isSuperAdmin,
-      sold: sold,
-      rateAvg: rateAvg,
-      rateCount: rateCount,
-      productId: productId,
     );
   }
 }

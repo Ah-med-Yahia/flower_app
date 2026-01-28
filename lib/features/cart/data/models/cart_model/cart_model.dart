@@ -6,31 +6,31 @@ part 'cart_model.g.dart';
 @JsonSerializable()
 class CartModel extends Equatable {
   @JsonKey(name: '_id')
-  final String id;
+  final String? id;
   @JsonKey(name: 'user')
-  final String user;
+  final String? user;
   @JsonKey(name: 'cartItems')
   final List<CartItemModel> cartItems;
   @JsonKey(name: 'appliedCoupons')
-  final List<dynamic> appliedCoupons;
+  final List<dynamic>? appliedCoupons;
   @JsonKey(name: 'totalPrice')
   final int totalPrice;
   @JsonKey(name: 'createdAt')
-  final DateTime createdAt;
+  final DateTime? createdAt;
   @JsonKey(name: 'updatedAt')
-  final DateTime updatedAt;
+  final DateTime? updatedAt;
   @JsonKey(name: '__v')
-  final int v;
+  final int? v;
 
   const CartModel({
-    required this.id,
-    required this.user,
+    this.id,
+    this.user,
     required this.cartItems,
-    required this.appliedCoupons,
+    this.appliedCoupons,
     required this.totalPrice,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.v,
+    this.createdAt,
+    this.updatedAt,
+    this.v,
   });
 
   factory CartModel.fromJson(Map<String, dynamic> json) =>

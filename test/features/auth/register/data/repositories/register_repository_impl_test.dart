@@ -10,7 +10,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-
 import 'register_repository_impl_test.mocks.dart';
 
 @GenerateMocks([RegisterDataSource])
@@ -18,29 +17,29 @@ void main() {
   late RegisterRepositoryImpl repository;
   late MockRegisterDataSource mockDataSource;
 
-  final request = RegisterRequestModel(
-    email: "omar@gmail.com",
-    firstName: "Omar",
-    lastName: "Ahmed",
-    password: "123456",
-    rePassword: "123456",
-    phone: "0123456789",
-    gender: "male",
+  const request = RegisterRequestModel(
+    email: 'omar@gmail.com',
+    firstName: 'Omar',
+    lastName: 'Ahmed',
+    password: '123456',
+    rePassword: '123456',
+    phone: '0123456789',
+    gender: 'male',
   );
 
   final user = User(
-    firstName: "Omar",
-    lastName: "Ahmed",
-    email: "omar@gmail.com",
-    gender: "male",
-    phone: "0123456789",
+    firstName: 'Omar',
+    lastName: 'Ahmed',
+    email: 'omar@gmail.com',
+    gender: 'male',
+    phone: '0123456789',
     createdAt: DateTime.now(),
   );
 
   final responseModel = RegisterResponseModel(
-    message: "success",
+    message: 'success',
     user: user,
-    token: "token",
+    token: 'token',
   );
 
   setUp(() {
@@ -51,9 +50,9 @@ void main() {
   group('RegisterRepositoryImplementation Scenarios', () {
     test('should return RegisterEntity when success', () async {
       // Arrange
-      when(mockDataSource.register(request)).thenAnswer(
-        (_) async => BaseResponse.success(responseModel),
-      );
+      when(
+        mockDataSource.register(request),
+      ).thenAnswer((_) async => BaseResponse.success(responseModel));
 
       // Act
       final result = await repository.register(request);

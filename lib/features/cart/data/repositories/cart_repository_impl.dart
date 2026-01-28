@@ -1,12 +1,11 @@
 import 'package:flower_app/config/base_response/base_response.dart';
+import 'package:flower_app/config/base_response/message_response.dart';
 import 'package:flower_app/config/network/safe_api_call.dart';
 import 'package:flower_app/features/cart/data/data_sources/cart_remote_data_source.dart';
 import 'package:flower_app/features/cart/data/mappers/add_to_cart_request_mapper.dart';
-import 'package:flower_app/features/cart/data/mappers/clear_cart_response_mapper.dart';
 import 'package:flower_app/features/cart/data/mappers/get_cart_response_mapper.dart';
 import 'package:flower_app/features/cart/data/mappers/update_item_quantity_request_mapper.dart';
 import 'package:flower_app/features/cart/domain/entities/add_to_cart_request_entity.dart';
-import 'package:flower_app/features/cart/domain/entities/clear_cart_response_entity.dart';
 import 'package:flower_app/features/cart/domain/entities/get_cart_response_entity.dart';
 import 'package:flower_app/features/cart/domain/entities/update_item_quantity_request_entity.dart';
 import 'package:flower_app/features/cart/domain/repositories/cart_repository.dart';
@@ -39,10 +38,9 @@ class CartRepositoryImpl implements CartRepository {
   }
 
   @override
-  Future<BaseResponse<ClearCartResponseEntity>> clearCart() async {
-    return safeApiCall<ClearCartResponseEntity>(() async {
-      final response = await _remoteDataSource.clearCart();
-      return response.toEntity();
+  Future<BaseResponse<MessageResponse>> clearCart() async {
+    return safeApiCall<MessageResponse>(() async {
+      return await _remoteDataSource.clearCart();
     });
   }
 

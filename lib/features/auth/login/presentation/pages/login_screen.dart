@@ -1,5 +1,5 @@
-import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/constants/app_routes_constant.dart';
+import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flower_app/core/ui_utils/ui_utils.dart';
 import 'package:flower_app/core/validators/app_validators.dart';
@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(AppTextConstants.login)),
+      appBar: AppBar(title: const Text(AppTextConstants.login)),
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -92,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: AppTextConstants.email,
                     hintText: AppTextConstants.enterEmail,
                     contentPadding: EdgeInsets.symmetric(
@@ -113,7 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     FocusManager.instance.primaryFocus?.unfocus();
                   },
                   autovalidateMode: AutovalidateMode.onUserInteraction,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: AppTextConstants.password,
                     hintText: AppTextConstants.enterPassword,
                     contentPadding: EdgeInsets.symmetric(
@@ -172,7 +172,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: ElevatedButton.styleFrom(
                         fixedSize: Size(screenSize.width, 48),
                       ),
-                      child: Text(AppTextConstants.login),
+                      child: const Text(AppTextConstants.login),
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           loginCubit.doIntent(
@@ -191,13 +191,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 16.verticalSpacing,
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    side: BorderSide(color: AppColors.textSecondary),
+                    side: const BorderSide(color: AppColors.textSecondary),
                     fixedSize: Size(screenSize.width, 48),
                     backgroundColor: Colors.white,
                     foregroundColor: AppColors.textSecondary,
                   ),
 
-                  child: Text(AppTextConstants.guestUser),
+                  child: const Text(AppTextConstants.guestUser),
                   onPressed: () {
                     context.go(AppRoutesConstants.homeRoute);
                   },
@@ -206,7 +206,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(AppTextConstants.dontHaveAccount),
+                    const Text(AppTextConstants.dontHaveAccount),
                     TextButton(
                       onPressed: () {
                         // Navigate to Sign Up screen

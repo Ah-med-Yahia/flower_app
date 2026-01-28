@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
-import 'package:flower_app/config/base_state/base_state.dart';
-import 'package:flower_app/features/product/best_seller/domain/entities/best_seller.dart';
 
+import '../../../../../config/base_state/base_state.dart';
+import '../../domain/entities/best_seller.dart';
 import '../../domain/entities/best_seller_response.dart';
 
 class BestSellerState extends Equatable {

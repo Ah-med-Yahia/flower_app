@@ -22,7 +22,7 @@ void main() {
 
           // Assert
           expect(result, isA<ResetPasswordEntity>());
-          final expectedToEntity = ResetPasswordEntity(message: testMessage);
+          const expectedToEntity = ResetPasswordEntity(message: testMessage);
           expect(result.message, equals(expectedToEntity.message));
         },
       );
@@ -42,7 +42,7 @@ void main() {
 
           // Assert
           expect(result, isA<ResetPasswordEntity>());
-          final expectedToEntity = ResetPasswordEntity(message: '');
+          const expectedToEntity = ResetPasswordEntity(message: '');
           expect(result.message, equals(expectedToEntity.message));
         },
       );

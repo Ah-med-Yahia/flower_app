@@ -11,6 +11,7 @@ class ApiConstants {
   static const String forgetPasswordEndpoint = 'auth/forgotPassword';
   static const String verifyResetCodeEndpoint = 'auth/verifyResetCode';
   static const String resetPasswordEndpoint = 'auth/resetPassword';
+  static const String changePasswordEndPoint = 'auth/change-password';
 
   // ------------------------ PRODUCTS --------------------- //
   static const String productByIdEndpoint = 'products/{id}';
@@ -20,8 +21,19 @@ class ApiConstants {
   // ---------------------- BEST SELLER -------------------- //
   static const String bestSellerEndPoint = 'best-seller';
 
-  // ---------------------- CATEGORIES --------------------- //
-  static const String getAllOccasionsEndpoint = 'occasions';
+  //------------------------ CATEGORIES ------------------------//
+  static const String getAllCategories = 'categories';
+  static const String getCategoryProducts = 'categories/{id}';
+
+  //------------------------ Occasions ------------------------//
+  static const String getAllOccasions = 'occasions';
+  static const String getOccasionProducts = 'occasions/{id}';
+
+  //------------------------ Home Screen ------------------------//
+  static const String homeScreenEndPoint = 'home';
+
+  //------------------------ PROFILE ------------------------//
+  static const String profileDataEndPoint = 'auth/profile-data';
 
   // ------------------------- CART ------------------------ //
   static const String cartEndpoint = 'cart';
