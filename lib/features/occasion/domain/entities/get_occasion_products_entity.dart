@@ -4,4 +4,7 @@ class GetOccasionProductsEntity {
   final OccasionProductEntity? products;
 
   GetOccasionProductsEntity({required this.products});
+  GetOccasionProductsEntity copyWith({OccasionProductEntity? products}) {
+    return GetOccasionProductsEntity(products: products ?? this.products);
+  }
 }
