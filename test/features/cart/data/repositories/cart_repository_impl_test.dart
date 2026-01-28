@@ -34,7 +34,7 @@ final tCartItemModel = CartItemModel(
 
 final tCartModel = CartModel(
   id: 'cart1', user: 'user1', cartItems: [tCartItemModel],
-  appliedCoupons: [], totalPrice: 180, createdAt: DateTime.now(),
+  appliedCoupons: const [], totalPrice: 180, createdAt: DateTime.now(),
   updatedAt: DateTime.now(), v: 1,
 );
 
@@ -44,8 +44,8 @@ final tGetCartResponseModel = GetCartResponseModel(
 
 final tClearCartResponseModel = ClearCartResponseModel(message: 'Cart Cleared');
 
-final tAddToCartRequestEntity = AddToCartRequestEntity(productId: 'prod123', quantity: 2);
-final tUpdateItemQuantityRequestEntity = UpdateItemQuantityRequestEntity(quantity: 5);
+const tAddToCartRequestEntity = AddToCartRequestEntity(productId: 'prod123', quantity: 2);
+const tUpdateItemQuantityRequestEntity = UpdateItemQuantityRequestEntity(quantity: 5);
 
 void verifyOnlyThisCall(Function verification, dynamic mockObject) {
   verification();

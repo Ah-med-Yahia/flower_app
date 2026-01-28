@@ -37,7 +37,7 @@ CartItemModel createTestItemModel() {
 CartModel createTestCartModel() {
   return CartModel(
     id: 'cart1', user: 'user1', cartItems: [createTestItemModel()],
-    appliedCoupons: [], totalPrice: 180, createdAt: DateTime.now(),
+    appliedCoupons: const [], totalPrice: 180, createdAt: DateTime.now(),
     updatedAt: DateTime.now(), v: 1,
   );
 }

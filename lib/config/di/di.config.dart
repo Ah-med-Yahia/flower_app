@@ -81,14 +81,6 @@ import '../../features/auth/register/domain/usecases/register_use_case.dart'
     as _i545;
 import '../../features/auth/register/presentation/cubit/register_cubit.dart'
     as _i805;
-import '../../features/cart/api/api_clients/cart_api_client.dart' as _i632;
-import '../../features/cart/api/data_sources/cart_remote_data_source_impl.dart'
-    as _i866;
-import '../../features/cart/data/data_sources/cart_remote_data_source.dart'
-    as _i164;
-import '../../features/cart/data/repositories/cart_repository_impl.dart'
-    as _i642;
-import '../../features/cart/domain/repositories/cart_repository.dart' as _i322;
 import '../../features/auth/shared/logout/api/datasources/local/logout_local_data_source_impl.dart'
     as _i521;
 import '../../features/auth/shared/logout/data/datasoources/local/logout_local_data_source.dart'
@@ -101,6 +93,14 @@ import '../../features/auth/shared/logout/domain/usecases/logout_usecase.dart'
     as _i205;
 import '../../features/auth/shared/logout/presentation/view_model/logout_cubit.dart'
     as _i670;
+import '../../features/cart/api/api_clients/cart_api_client.dart' as _i632;
+import '../../features/cart/api/data_sources/cart_remote_data_source_impl.dart'
+    as _i866;
+import '../../features/cart/data/data_sources/cart_remote_data_source.dart'
+    as _i164;
+import '../../features/cart/data/repositories/cart_repository_impl.dart'
+    as _i642;
+import '../../features/cart/domain/repositories/cart_repository.dart' as _i322;
 import '../../features/categories/api/api_service/categories_api_client.dart'
     as _i199;
 import '../../features/categories/api/datasources_impl/remote_categories_data_source_impl.dart'
