@@ -5,13 +5,16 @@ import '../../../../../config/network/safe_api_call.dart';
 import '../../domain/entities/user_data_response.dart';
 import '../../domain/mappers/profile_main_mapper.dart';
 import '../../domain/repos/profile_main_repo.dart';
+import '../datasource/local/profile_main_local_data_source.dart';
 import '../datasource/profile_main_remote_data_source.dart';
+import '../models/terms_and_conditions/terms_and_conditions.dart';
 
 @Injectable(as: ProfileMainRepo)
 class ProfileMainRepoImpl implements ProfileMainRepo {
   final ProfileMainRemoteDataSource _remoteDataSource;
+  final ProfileMainLocalDataSource _localDataSource;
 
-  ProfileMainRepoImpl(this._remoteDataSource);
+  ProfileMainRepoImpl(this._remoteDataSource, this._localDataSource);
 
   @override
   Future<BaseResponse<UserDataResponse>> getLoggedUserData() async {
@@ -20,6 +23,14 @@ class ProfileMainRepoImpl implements ProfileMainRepo {
       final toEntity =
           ProfileMainMapper.mapUserDataResponseDtoToUserDataResponse(response);
       return toEntity;
+    });
+  }
+
+  @override
+  Future<BaseResponse<TermsAndConditions>> getTermsData() async {
+    return safeApiCall(() async {
+      final response = await _localDataSource.getTermsData();
+      return response;
     });
   }
 }
