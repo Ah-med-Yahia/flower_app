@@ -81,4 +81,15 @@ class AppTextConstants {
       'Bloom exquisite best sellers';
   static const String noOccasionsAvailable = 'No occasions available';
   static const String loading = 'Loading...';
+  static const String deliverTo = 'Deliver to ';
+  static const String items = 'items';
+  static const String cartClearedSuccessfully = 'Cart cleared successfully';
+  static const String cartError = 'Cart Error';
+  static const String cartErrorMessage = 'We couldn\'t load your cart. Please try again.';
+  static const String close = 'Close';
+  static const String emptyCart = 'Empty Cart';
+  static const String clearCart = 'Clear';
+  static const String clearCartConfirmation = 'Are you sure you want to clear your cart?';
+  static const String confirm = 'Confirm';
+  static const String cancel = 'Cancel';
 }

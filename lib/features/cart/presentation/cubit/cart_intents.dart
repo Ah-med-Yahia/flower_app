@@ -1,15 +1,8 @@
-import 'package:flower_app/features/cart/domain/entities/add_to_cart_request_entity.dart';
 import 'package:flower_app/features/cart/domain/entities/update_item_quantity_request_entity.dart';
 
 abstract class CartIntents {}
 
 class GetCartIntent extends CartIntents {}
-
-class AddToCartIntent extends CartIntents {
-  final AddToCartRequestEntity requestEntity;
-
-  AddToCartIntent({required this.requestEntity});
-}
 
 class UpdateItemQuantityIntent extends CartIntents {
   final String productId;

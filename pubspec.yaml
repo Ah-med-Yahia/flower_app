@@ -45,10 +45,15 @@ dependencies:
   fluttertoast: ^9.0.0
 
   equatable: ^2.0.7
+  freezed_annotation: ^3.0.0
   pinput: ^6.0.1
   carousel_slider: ^5.1.1
 
   rename_app: ^1.6.5
+
+  # Debugging
+  logger: ^2.6.2
+  pretty_dio_logger: ^1.4.0
 
 dev_dependencies:
   flutter_test:
@@ -72,6 +77,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/lottie/
+    - assets/icons/
 
 
 flutter_gen:
@@ -79,3 +85,7 @@ flutter_gen:
   integrations:
     lottie: true
     flutter_svg: true
+  assets:
+    enabled: true
+    outputs:
+      package_parameter_enabled: false

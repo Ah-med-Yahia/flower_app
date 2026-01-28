@@ -2,7 +2,6 @@ sealed class CartEventUI {}
 
 class LoadingCart extends CartEventUI {}  
 
-class AddingToCart extends CartEventUI {}  
 class Error extends CartEventUI {
   final String message;
 
