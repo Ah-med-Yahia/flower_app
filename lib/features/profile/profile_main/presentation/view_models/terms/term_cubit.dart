@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../../../config/base_response/base_response.dart';
 import '../../../../../../config/base_state/base_state.dart';
-import '../../../data/models/terms_and_conditions/terms_and_conditions.dart';
+import '../../../domain/entities/term_section_entity.dart';
 import '../../../domain/use_cases/get_term_use_case.dart';
 
 @injectable
@@ -23,15 +23,16 @@ class TermCubit extends Cubit<TermStates> {
   Future<void> _loadTermData() async {
     emit(
       state.copyWith(
-        termState: const BaseState<TermsAndConditions>(isLoading: true),
+        termState: const BaseState<TermsAndConditionsEntity>(isLoading: true),
       ),
     );
-    final BaseResponse<TermsAndConditions> res = await _getTermUseCase.call();
+    final BaseResponse<TermsAndConditionsEntity> res = await _getTermUseCase
+        .call();
     res.when(
       success: (data) {
         emit(
           state.copyWith(
-            termState: BaseState<TermsAndConditions>(
+            termState: BaseState<TermsAndConditionsEntity>(
               isLoading: false,
               data: data,
             ),
@@ -41,7 +42,7 @@ class TermCubit extends Cubit<TermStates> {
       failure: (error) {
         emit(
           state.copyWith(
-            termState: BaseState<TermsAndConditions>(
+            termState: BaseState<TermsAndConditionsEntity>(
               isLoading: false,
               errorMessage: error.message,
             ),
@@ -53,22 +54,14 @@ class TermCubit extends Cubit<TermStates> {
 }
 
 class TermStates extends Equatable {
-  final BaseState<TermsAndConditions> termState;
+  final BaseState<TermsAndConditionsEntity> termState;
 
-  const TermStates({this.termState = const BaseState<TermsAndConditions>()});
+  const TermStates({
+    this.termState = const BaseState<TermsAndConditionsEntity>(),
+  });
 
-  TermStates copyWith({BaseState<TermsAndConditions>? termState}) {
+  TermStates copyWith({BaseState<TermsAndConditionsEntity>? termState}) {
     return TermStates(termState: termState ?? this.termState);
-  }
-
-  // Get the current Title
-  String? get sectionTitle {
-    for (int i = 0; i < termState.data!.sections.length; i++) {
-      if (termState.data != null && termState.data!.sections.isNotEmpty) {
-        return termState.data?.sections[i].section;
-      }
-    }
-    return null;
   }
 
   @override
