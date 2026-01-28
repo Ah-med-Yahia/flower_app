@@ -1,5 +1,6 @@
 import 'package:flower_app/config/di/di.dart';
 import 'package:flower_app/core/constants/app_routes_constant.dart';
+import 'package:flower_app/features/auth/change_password/presentation/screens/change_password_screen.dart';
 import 'package:flower_app/features/auth/login/presentation/cubit/login_cubit.dart';
 import 'package:flower_app/features/auth/login/presentation/pages/login_screen.dart';
 import 'package:flower_app/features/auth/register/presentation/pages/register_screen.dart';
@@ -70,7 +71,12 @@ abstract class AppRouter {
       GoRoute(
         path: AppRoutesConstants.occasionScreen,
         name: AppRoutesConstants.occasionScreen,
-        builder: (context, state) => const OccasionScreen(),
+        builder: (context, state) =>const OccasionScreen(),
+      ),
+       GoRoute(
+        path: AppRoutesConstants.changePasswordRoute,
+        name: AppRoutesConstants.changePasswordRoute,
+        builder: (context, state) => const ChangePasswordScreen(),
       ),
     ],
   );

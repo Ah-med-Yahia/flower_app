@@ -206,7 +206,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Text(AppTextConstants.doNotHaveAccount),
+                    const Text(AppTextConstants.dontHaveAccount),
                     TextButton(
                       onPressed: () {
                         // Navigate to Sign Up screen
