@@ -1,13 +1,14 @@
-import 'package:flower_app/config/di/di.dart';
-import 'package:flower_app/core/constants/app_text_constants.dart';
-import 'package:flower_app/core/theme/app_colors.dart';
-import 'package:flower_app/core/ui_utils/ui_utils.dart';
-import 'package:flower_app/core/validators/app_validators.dart';
-import 'package:flower_app/features/auth/change_password/presentation/cubit/change_password_cubit.dart';
-import 'package:flower_app/features/auth/change_password/presentation/cubit/change_password_intents.dart';
-import 'package:flower_app/features/auth/change_password/presentation/cubit/change_pasword_ui_intents.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../../config/di/di.dart';
+import '../../../../../core/constants/app_text_constants.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/ui_utils/ui_utils.dart';
+import '../../../../../core/validators/app_validators.dart';
+import '../cubit/change_password_cubit.dart';
+import '../cubit/change_password_intents.dart';
+import '../cubit/change_pasword_ui_intents.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
   const ChangePasswordScreen({super.key});
@@ -112,7 +113,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
 
                 TextFormField(
                   controller: _confirmPassword,
-                  decoration:const InputDecoration(
+                  decoration: const InputDecoration(
                     label: Text(AppTextConstants.confirmPassword),
                     hintText: AppTextConstants.confirmPassword,
                     helperText: '',
@@ -123,7 +124,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   ),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
-               const SizedBox(height: 40),
+                const SizedBox(height: 40),
                 SizedBox(
                   height: 48,
                   width: double.infinity,
@@ -133,7 +134,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         _passwordCubit.doIntent(UpdateIntent());
                       }
                     },
-                    child:const Text(
+                    child: const Text(
                       AppTextConstants.update,
                       style: TextStyle(fontSize: 16),
                     ),

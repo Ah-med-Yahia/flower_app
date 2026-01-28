@@ -1,5 +1,6 @@
-import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../../core/constants/app_text_constants.dart';
 
 class BestSellerOccationsCardWidget extends StatelessWidget {
   const BestSellerOccationsCardWidget({
@@ -8,6 +9,7 @@ class BestSellerOccationsCardWidget extends StatelessWidget {
     required this.title,
     this.price,
   });
+
   final String image;
   final String title;
   final String? price;

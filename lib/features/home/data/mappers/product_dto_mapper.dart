@@ -1,5 +1,5 @@
-import 'package:flower_app/features/home/data/models/home_screen_product_dto.dart';
-import 'package:flower_app/features/home/domain/entities/product_entity.dart';
+import '../../domain/entities/product_entity.dart';
+import '../models/home_screen_product_dto.dart';
 
 extension ProductDtoMapper on HomeScreenProductDto {
   ProductEntity toEntity() {

@@ -1,10 +1,11 @@
-import 'package:flower_app/core/constants/app_text_constants.dart';
-import 'package:flower_app/core/enums/home_nav_tab.dart';
-import 'package:flower_app/core/theme/app_colors.dart';
-import 'package:flower_app/features/cart/cart_tap.dart';
-import 'package:flower_app/features/home/presentation/view/screens/home_tap.dart';
-import 'package:flower_app/features/profile/profile_tap.dart';
 import 'package:flutter/material.dart';
+
+import 'core/constants/app_text_constants.dart';
+import 'core/enums/home_nav_tab.dart';
+import 'core/theme/app_colors.dart';
+import 'features/cart/cart_tap.dart';
+import 'features/home/presentation/view/screens/home_tap.dart';
+import 'features/profile/profile_tap.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

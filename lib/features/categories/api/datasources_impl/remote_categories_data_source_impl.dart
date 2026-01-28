@@ -1,10 +1,11 @@
-import 'package:flower_app/features/categories/api/api_service/categories_api_client.dart';
-import 'package:flower_app/features/categories/data/datasources/remote_categories_data_source.dart';
-import 'package:flower_app/features/categories/data/models/get_products_models/category_product_response.dart';
 import 'package:injectable/injectable.dart';
-import 'package:flower_app/config/base_response/base_response.dart';
-import 'package:flower_app/config/network/safe_api_call.dart';
-import 'package:flower_app/features/categories/data/models/get_all_categories_models/get_all_categories_response_model.dart';
+
+import '../../../../config/base_response/base_response.dart';
+import '../../../../config/network/safe_api_call.dart';
+import '../../data/datasources/remote_categories_data_source.dart';
+import '../../data/models/get_all_categories_models/get_all_categories_response_model.dart';
+import '../../data/models/get_products_models/category_product_response.dart';
+import '../api_service/categories_api_client.dart';
 
 @Injectable(as: RemoteCategoriesDataSource)
 class RemoteCategoriesDataSourceImpl implements RemoteCategoriesDataSource {

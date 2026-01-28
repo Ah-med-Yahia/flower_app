@@ -1,6 +1,6 @@
-import 'package:flower_app/config/base_state/base_state.dart';
-import 'package:flower_app/features/home/domain/entities/home_response_entity.dart';
-import 'package:flower_app/features/home/presentation/view_model/ui_events.dart';
+import '../../../../config/base_state/base_state.dart';
+import '../../domain/entities/home_response_entity.dart';
+import 'ui_events.dart';
 
 class HomeScreenStates {
   BaseState<HomeResponseEntity>? homeScreenStates;

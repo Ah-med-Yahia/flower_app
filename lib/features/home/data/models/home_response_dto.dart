@@ -1,7 +1,8 @@
-import 'package:flower_app/features/home/data/models/category_dto.dart';
-import 'package:flower_app/features/home/data/models/home_screen_product_dto.dart';
-import 'package:flower_app/features/home/data/models/occasion_dto.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import 'category_dto.dart';
+import 'home_screen_product_dto.dart';
+import 'occasion_dto.dart';
 
 part 'home_response_dto.g.dart';
 

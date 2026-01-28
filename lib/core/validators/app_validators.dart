@@ -1,5 +1,5 @@
-import 'package:flower_app/core/constants/validation_constants.dart';
-import 'package:flower_app/core/validators/app_regex.dart';
+import '../constants/validation_constants.dart';
+import 'app_regex.dart';
 
 extension StringValidation on String? {
   String? get validateEmail {

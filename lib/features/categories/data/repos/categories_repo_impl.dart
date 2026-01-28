@@ -1,9 +1,10 @@
-import 'package:flower_app/features/categories/domain/entities/get_categories_products_entity.dart';
 import 'package:injectable/injectable.dart';
-import 'package:flower_app/config/base_response/base_response.dart';
-import 'package:flower_app/features/categories/data/datasources/remote_categories_data_source.dart';
-import 'package:flower_app/features/categories/domain/entities/get_all_categories_list_entity.dart';
-import 'package:flower_app/features/categories/domain/repos/categories_repo_contract.dart';
+
+import '../../../../config/base_response/base_response.dart';
+import '../../domain/entities/get_all_categories_list_entity.dart';
+import '../../domain/entities/get_categories_products_entity.dart';
+import '../../domain/repos/categories_repo_contract.dart';
+import '../datasources/remote_categories_data_source.dart';
 
 @Injectable(as: CategoriesRepoContract)
 class CategoriesRepoImpl implements CategoriesRepoContract {

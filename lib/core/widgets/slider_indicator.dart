@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flower_app/core/theme/app_colors.dart';
+
+import '../theme/app_colors.dart';
 
 class SliderIndicator extends StatelessWidget {
   final int currentIndex;

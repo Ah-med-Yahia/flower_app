@@ -1,5 +1,5 @@
-import 'package:flower_app/features/home/data/models/occasion_dto.dart';
-import 'package:flower_app/features/home/domain/entities/occasion_entity.dart';
+import '../../domain/entities/occasion_entity.dart';
+import '../models/occasion_dto.dart';
 
 extension OccasionMapper on OccasionDto {
   OccasionEntity toEntity() {

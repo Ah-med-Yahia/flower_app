@@ -1,6 +1,7 @@
-import 'package:flower_app/core/widgets/loading_indicator_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
+import 'loading_indicator_widget.dart';
 
 class UIUtils {
   static void showLoading(BuildContext context) => showDialog(

@@ -1,7 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/metadata_model.dart';
-import 'package:flower_app/features/occasion/data/models/get_all_occassion_models/occasion_model.dart';
-import 'package:flower_app/features/occasion/domain/entities/get_all_occasions_list_entity.dart';
+
+import '../../../domain/entities/get_all_occasions_list_entity.dart';
+import 'metadata_model.dart';
+import 'occasion_model.dart';
 
 part 'get_all_occasions_response_model.g.dart';
 

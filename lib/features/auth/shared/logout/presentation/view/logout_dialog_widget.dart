@@ -1,7 +1,8 @@
-import 'package:flower_app/core/constants/app_text_constants.dart';
-import 'package:flower_app/core/theme/app_colors.dart';
-import 'package:flower_app/core/widgets/custom_eleveted_button.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../../../core/constants/app_text_constants.dart';
+import '../../../../../../core/theme/app_colors.dart';
+import '../../../../../../core/widgets/custom_eleveted_button.dart';
 
 class LogoutDialogWidget extends StatelessWidget {
   final VoidCallback onLogoutConfirmed;

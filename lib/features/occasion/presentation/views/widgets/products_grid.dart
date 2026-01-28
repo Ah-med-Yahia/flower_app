@@ -1,6 +1,7 @@
-import 'package:flower_app/features/occasion/domain/entities/occasion_product_entity.dart';
-import 'package:flower_app/features/occasion/presentation/views/widgets/product_card.dart';
 import 'package:flutter/material.dart';
+
+import '../../../domain/entities/occasion_product_entity.dart';
+import 'product_card.dart';
 
 class ProductsGrid extends StatelessWidget {
   final OccasionProductEntity _occasionProductEntity;

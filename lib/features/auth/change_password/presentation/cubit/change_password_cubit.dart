@@ -1,13 +1,15 @@
 import 'dart:async';
-import 'package:flower_app/config/base_response/base_response.dart';
-import 'package:flower_app/config/base_state/base_state.dart';
-import 'package:flower_app/core/constants/app_text_constants.dart';
-import 'package:flower_app/features/auth/change_password/domain/entities/change_password_request_entity/change_password_request_entity.dart';
-import 'package:flower_app/features/auth/change_password/domain/usecases/change_password_use_case.dart';
-import 'package:flower_app/features/auth/change_password/presentation/cubit/change_password_intents.dart';
-import 'package:flower_app/features/auth/change_password/presentation/cubit/change_pasword_ui_intents.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../../../../config/base_response/base_response.dart';
+import '../../../../../config/base_state/base_state.dart';
+import '../../../../../core/constants/app_text_constants.dart';
+import '../../domain/entities/change_password_request_entity/change_password_request_entity.dart';
+import '../../domain/usecases/change_password_use_case.dart';
+import 'change_password_intents.dart';
+import 'change_pasword_ui_intents.dart';
 
 part 'change_password_states.dart';
 
@@ -19,7 +21,8 @@ class ChangePasswordCubit extends Cubit<ChangePasswordStates> {
 
   Stream<ChangePaswordUiIntents> get uiInenet => _streamController.stream;
 
-  ChangePasswordCubit(this._passwordUseCase) : super(const ChangePasswordStates());
+  ChangePasswordCubit(this._passwordUseCase)
+    : super(const ChangePasswordStates());
 
   void doIntent(ChangePasswordIntents intent) {
     switch (intent) {
@@ -87,7 +90,7 @@ class ChangePasswordCubit extends Cubit<ChangePasswordStates> {
   Future<void> _updatePawssord() async {
     if (state.currentPassword.trim().isEmpty) {
       _streamController.add(
-       const ShowErrorIntent(
+        const ShowErrorIntent(
           message: AppTextConstants.pleaseEnterYourCurrentPassword,
         ),
       );
@@ -96,28 +99,32 @@ class ChangePasswordCubit extends Cubit<ChangePasswordStates> {
 
     if (state.newPassword.trim().isEmpty) {
       _streamController.add(
-      const  ShowErrorIntent(message: AppTextConstants.pleaseEnterYourNewPassword),
+        const ShowErrorIntent(
+          message: AppTextConstants.pleaseEnterYourNewPassword,
+        ),
       );
       return;
     }
 
     if (state.confirmPassword.trim().isEmpty) {
       _streamController.add(
-      const  ShowErrorIntent(message: AppTextConstants.pleaseConfirmYourNewPassword),
+        const ShowErrorIntent(
+          message: AppTextConstants.pleaseConfirmYourNewPassword,
+        ),
       );
       return;
     }
 
     if (state.newPassword.trim() != state.confirmPassword.trim()) {
       _streamController.add(
-      const  ShowErrorIntent(message: AppTextConstants.passwordsDoNotMatch),
+        const ShowErrorIntent(message: AppTextConstants.passwordsDoNotMatch),
       );
       return;
     }
 
     if (state.currentPassword.trim() == state.newPassword.trim()) {
       _streamController.add(
-       const ShowErrorIntent(message: AppTextConstants.newPasswordSameAsOld),
+        const ShowErrorIntent(message: AppTextConstants.newPasswordSameAsOld),
       );
       return;
     }
@@ -134,7 +141,7 @@ class ChangePasswordCubit extends Cubit<ChangePasswordStates> {
     response.map(
       success: (response) async {
         _streamController.add(
-         const NavigateToEditProfileIntent(
+          const NavigateToEditProfileIntent(
             message: AppTextConstants.passwordUpdatedSuccessfully,
           ),
         );

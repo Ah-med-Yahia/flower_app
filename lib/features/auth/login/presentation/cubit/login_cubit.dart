@@ -1,21 +1,22 @@
 import 'dart:async';
 
-import 'package:flower_app/config/base_response/base_response.dart';
-import 'package:flower_app/core/validators/app_validators.dart';
-import 'package:flower_app/features/auth/login/domain/entities/login_request_entity.dart';
-import 'package:flower_app/features/auth/login/presentation/cubit/login_ui_events.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../../config/base_response/base_response.dart';
+import '../../../../../core/validators/app_validators.dart';
+import '../../domain/entities/login_request_entity.dart';
 import '../../domain/usecases/login_use_case.dart';
 import 'login_intents.dart';
 import 'login_state.dart';
+import 'login_ui_events.dart';
 
 @injectable
 class LoginCubit extends Cubit<LoginStates> {
   LoginCubit(this._loginUseCase) : super(const LoginStates());
   final LoginUseCase _loginUseCase;
   final _uiEventController = StreamController<LoginUIEvent>.broadcast();
+
   Stream<LoginUIEvent> get uiEvents => _uiEventController.stream;
 
   Future<void> doIntent(LoginIntents intent) async {

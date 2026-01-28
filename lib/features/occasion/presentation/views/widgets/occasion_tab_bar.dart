@@ -1,6 +1,7 @@
-import 'package:flower_app/features/occasion/domain/entities/occasion_entity.dart';
-import 'package:flower_app/features/occasion/presentation/views/widgets/occasion_tab.dart';
 import 'package:flutter/material.dart';
+
+import '../../../domain/entities/occasion_entity.dart';
+import 'occasion_tab.dart';
 
 class OccasionTabBar extends StatelessWidget {
   final List<OccasionEntity> occasions;

@@ -1,6 +1,6 @@
-import 'package:flower_app/config/base_state/base_state.dart';
-import 'package:flower_app/features/occasion/domain/entities/get_all_occasions_list_entity.dart';
-import 'package:flower_app/features/occasion/domain/entities/get_occasion_products_entity.dart';
+import '../../../../config/base_state/base_state.dart';
+import '../../domain/entities/get_all_occasions_list_entity.dart';
+import '../../domain/entities/get_occasion_products_entity.dart';
 
 class OccasionState {
   final BaseState<GetOccasionListEntity> occasionState;
@@ -12,6 +12,7 @@ class OccasionState {
     this.selectedIndex = 0,
     required this.occasionProductsState,
   });
+
   OccasionState copyWith({
     BaseState<GetOccasionListEntity>? occasionState,
     int? selectedIndex,
