@@ -1,19 +1,16 @@
 import 'package:flower_app/features/cart/data/mappers/add_to_cart_request_mapper.dart';
 import 'package:flower_app/features/cart/data/mappers/cart_mapper.dart';
-import 'package:flower_app/features/cart/data/mappers/clear_cart_response_mapper.dart';
 import 'package:flower_app/features/cart/data/mappers/get_cart_response_mapper.dart';
 import 'package:flower_app/features/cart/data/mappers/update_item_quantity_request_mapper.dart';
 import 'package:flower_app/features/cart/data/models/add_to_cart_request_model.dart';
 import 'package:flower_app/features/cart/data/models/cart_model/cart_item_model.dart';
 import 'package:flower_app/features/cart/data/models/cart_model/cart_model.dart';
-import 'package:flower_app/features/cart/data/models/clear_cart_response_model.dart';
 import 'package:flower_app/features/cart/data/models/get_cart_response_model/get_cart_response_model.dart';
 import 'package:flower_app/features/cart/data/models/update_item_quantity_request_model.dart';
 import 'package:flower_app/features/cart/domain/entities/add_to_cart_request_entity.dart';
 import 'package:flower_app/features/cart/domain/entities/cart_entity/cart_entity.dart';
 import 'package:flower_app/features/cart/domain/entities/cart_entity/cart_item_entity.dart';
 import 'package:flower_app/features/cart/domain/entities/cart_entity/cart_product_entity.dart';
-import 'package:flower_app/features/cart/domain/entities/clear_cart_response_entity.dart';
 import 'package:flower_app/features/cart/domain/entities/get_cart_response_entity.dart';
 import 'package:flower_app/features/cart/domain/entities/update_item_quantity_request_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -46,7 +43,6 @@ void main() {
   group('Cart Mappers', () {
     testAddToCartRequestMapper();
     testUpdateItemQuantityRequestMapper();
-    testClearCartResponseMapper();
     testCartProductModelMapper();
     testCartItemModelMapper();
     testCartModelMapper();
@@ -73,21 +69,12 @@ void testUpdateItemQuantityRequestMapper() {
   });
 }
 
-void testClearCartResponseMapper() {
-  test('ClearCartResponseMapper maps Model to Entity', () {
-    final model = ClearCartResponseModel(message: 'Cart cleared');
-    final entity = model.toEntity();
-    expect(entity, isA<ClearCartResponseEntity>());
-    expect(entity.message, model.message);
-  });
-}
 
 void testCartProductModelMapper() {
   test('CartProductModelMapper maps Model to Entity', () {
     final model = createTestProductModel();
     final entity = model.toEntity();
     expect(entity, isA<CartProductEntity>());
-    expect(entity.id, model.id);
     expect(entity.title, model.title);
     expect(entity.price, model.price);
   });
@@ -98,7 +85,6 @@ void testCartItemModelMapper() {
     final model = createTestItemModel();
     final entity = model.toEntity();
     expect(entity, isA<CartItemEntity>());
-    expect(entity.id, model.id);
     expect(entity.quantity, model.quantity);
     expect(entity.product, isA<CartProductEntity>());
   });
@@ -109,7 +95,6 @@ void testCartModelMapper() {
     final model = createTestCartModel();
     final entity = model.toEntity();
     expect(entity, isA<CartEntity>());
-    expect(entity.id, model.id);
     expect(entity.cartItems.length, 1);
     expect(entity.cartItems.first, isA<CartItemEntity>());
   });

@@ -1,12 +1,11 @@
 import 'package:flower_app/config/base_response/base_response.dart';
+import 'package:flower_app/config/base_response/message_response.dart';
 import 'package:flower_app/features/cart/data/data_sources/cart_remote_data_source.dart';
 import 'package:flower_app/features/cart/data/models/cart_model/cart_item_model.dart';
 import 'package:flower_app/features/cart/data/models/cart_model/cart_model.dart';
-import 'package:flower_app/features/cart/data/models/clear_cart_response_model.dart';
 import 'package:flower_app/features/cart/data/models/get_cart_response_model/get_cart_response_model.dart';
 import 'package:flower_app/features/cart/data/repositories/cart_repository_impl.dart';
 import 'package:flower_app/features/cart/domain/entities/add_to_cart_request_entity.dart';
-import 'package:flower_app/features/cart/domain/entities/clear_cart_response_entity.dart';
 import 'package:flower_app/features/cart/domain/entities/get_cart_response_entity.dart';
 import 'package:flower_app/features/cart/domain/entities/update_item_quantity_request_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -42,7 +41,6 @@ final tGetCartResponseModel = GetCartResponseModel(
   message: 'Success', numOfCartItems: 1, cart: tCartModel,
 );
 
-final tClearCartResponseModel = ClearCartResponseModel(message: 'Cart Cleared');
 
 const tAddToCartRequestEntity = AddToCartRequestEntity(productId: 'prod123', quantity: 2);
 const tUpdateItemQuantityRequestEntity = UpdateItemQuantityRequestEntity(quantity: 5);
@@ -103,9 +101,9 @@ void addToCartTests() {
 void clearCartTests() {
   group('clearCart', () {
     test('should return success response when remote data source is successful', () async {
-      when(mockRemoteDataSource.clearCart()).thenAnswer((_) async => tClearCartResponseModel);
+      when(mockRemoteDataSource.clearCart()).thenAnswer((_) async => const MessageResponse(message: 'Cart cleared successfully'));
       final result = await cartRepository.clearCart();
-      expect(result, isA<BaseResponse<ClearCartResponseEntity>>());
+      expect(result, isA<BaseResponse<MessageResponse>>());
       verifyOnlyThisCall(() => verify(mockRemoteDataSource.clearCart()).called(1), mockRemoteDataSource);
     });
   });

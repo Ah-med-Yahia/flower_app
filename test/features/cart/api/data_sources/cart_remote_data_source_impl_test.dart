@@ -1,9 +1,9 @@
+import 'package:flower_app/config/base_response/message_response.dart';
 import 'package:flower_app/features/cart/api/data_sources/cart_remote_data_source_impl.dart';
 import 'package:flower_app/features/cart/data/data_sources/cart_remote_data_source.dart';
 import 'package:flower_app/features/cart/data/models/add_to_cart_request_model.dart';
 import 'package:flower_app/features/cart/data/models/cart_model/cart_item_model.dart';
 import 'package:flower_app/features/cart/data/models/cart_model/cart_model.dart';
-import 'package:flower_app/features/cart/data/models/clear_cart_response_model.dart';
 import 'package:flower_app/features/cart/data/models/get_cart_response_model/get_cart_response_model.dart';
 import 'package:flower_app/features/cart/data/models/update_item_quantity_request_model.dart';
 import 'package:test/test.dart';
@@ -70,10 +70,6 @@ final tGetCartResponseModel = GetCartResponseModel(
     totalPrice: 20,
     v: 2,
   ),
-);
-
-final tClearCartResponseModel = ClearCartResponseModel(
-  message: 'Cart cleared successfully',
 );
 
 void verifyOnlyThisCall(Function verification, dynamic mockObject) {
@@ -175,10 +171,11 @@ void removeItemTests() {
 
 void clearCartTests() {
   group('clearCart', () {
-    test('should return ClearCartResponseModel when successful', () async {
-      when(mockCartApiClient.clearCart()).thenAnswer((_) async => tClearCartResponseModel);
+    test('should return MessageResponse when successful', () async {
+      when(mockCartApiClient.clearCart()).thenAnswer((_) async => const MessageResponse(message: 'Cart cleared successfully'));
       final result = await cartRemoteDataSource.clearCart();
-      expect(result, tClearCartResponseModel);
+      expect(result, isA<MessageResponse>());
+      expect(result.message, 'Cart cleared successfully');
       verifyOnlyThisCall(() => verify(mockCartApiClient.clearCart()).called(1), mockCartApiClient);
     });
 
