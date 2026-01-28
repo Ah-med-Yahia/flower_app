@@ -5,8 +5,13 @@ import 'package:flower_app/features/cart/data/models/update_item_quantity_reques
 
 abstract interface class CartRemoteDataSource {
   Future<GetCartResponseModel> getCart();
-  Future<GetCartResponseModel> addToCart({required AddToCartRequestModel requestModel});
+  Future<GetCartResponseModel> addToCart({
+    required AddToCartRequestModel requestModel,
+  });
   Future<MessageResponse> clearCart();
   Future<GetCartResponseModel> removeItemFromCart({required String productId});
-  Future<GetCartResponseModel> updateItemQuantity({required String productId, required UpdateItemQuantityRequestModel requestModel});
+  Future<GetCartResponseModel> updateItemQuantity({
+    required String productId,
+    required UpdateItemQuantityRequestModel requestModel,
+  });
 }

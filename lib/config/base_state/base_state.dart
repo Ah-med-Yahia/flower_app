@@ -25,11 +25,7 @@ class CartBaseState<T> extends Equatable {
   final T? data;
   const CartBaseState({this.isError = false, this.isEmpty = false, this.data});
 
-  CartBaseState<T> copyWith({
-    bool? isError,
-    bool? isEmpty,
-    T? data,
-  }) {
+  CartBaseState<T> copyWith({bool? isError, bool? isEmpty, T? data}) {
     return CartBaseState<T>(
       isError: isError ?? this.isError,
       isEmpty: isEmpty ?? this.isEmpty,

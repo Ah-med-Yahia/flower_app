@@ -14,7 +14,6 @@ import 'package:mockito/mockito.dart';
 import 'cart_remote_data_source_impl_test.mocks.dart';
 
 @GenerateMocks([CartApiClient])
-
 late CartRemoteDataSource cartRemoteDataSource;
 late MockCartApiClient mockCartApiClient;
 
@@ -98,16 +97,24 @@ void setUpTests() {
 void getCartTests() {
   group('getCart', () {
     test('should return GetCartResponseModel when successful', () async {
-      when(mockCartApiClient.getCart()).thenAnswer((_) async => tGetCartResponseModel);
+      when(
+        mockCartApiClient.getCart(),
+      ).thenAnswer((_) async => tGetCartResponseModel);
       final result = await cartRemoteDataSource.getCart();
       expect(result, tGetCartResponseModel);
-      verifyOnlyThisCall(() => verify(mockCartApiClient.getCart()).called(1), mockCartApiClient);
+      verifyOnlyThisCall(
+        () => verify(mockCartApiClient.getCart()).called(1),
+        mockCartApiClient,
+      );
     });
 
     test('should throw exception when call fails', () async {
       when(mockCartApiClient.getCart()).thenThrow(Exception('API call failed'));
       expect(() => cartRemoteDataSource.getCart(), throwsException);
-      verifyOnlyThisCall(() => verify(mockCartApiClient.getCart()).called(1), mockCartApiClient);
+      verifyOnlyThisCall(
+        () => verify(mockCartApiClient.getCart()).called(1),
+        mockCartApiClient,
+      );
     });
   });
 }
@@ -115,18 +122,37 @@ void getCartTests() {
 void addToCartTests() {
   group('addToCart', () {
     test('should return GetCartResponseModel when successful', () async {
-      when(mockCartApiClient.addToCart(body: tAddToCartRequestModel))
-          .thenAnswer((_) async => tGetCartResponseModel);
-      final result = await cartRemoteDataSource.addToCart(requestModel: tAddToCartRequestModel);
+      when(
+        mockCartApiClient.addToCart(body: tAddToCartRequestModel),
+      ).thenAnswer((_) async => tGetCartResponseModel);
+      final result = await cartRemoteDataSource.addToCart(
+        requestModel: tAddToCartRequestModel,
+      );
       expect(result, tGetCartResponseModel);
-      verifyOnlyThisCall(() => verify(mockCartApiClient.addToCart(body: tAddToCartRequestModel)).called(1), mockCartApiClient);
+      verifyOnlyThisCall(
+        () => verify(
+          mockCartApiClient.addToCart(body: tAddToCartRequestModel),
+        ).called(1),
+        mockCartApiClient,
+      );
     });
 
     test('should throw exception when call fails', () async {
-      when(mockCartApiClient.addToCart(body: tAddToCartRequestModel))
-          .thenThrow(Exception('API call failed'));
-      expect(() => cartRemoteDataSource.addToCart(requestModel: tAddToCartRequestModel), throwsException);
-      verifyOnlyThisCall(() => verify(mockCartApiClient.addToCart(body: tAddToCartRequestModel)).called(1), mockCartApiClient);
+      when(
+        mockCartApiClient.addToCart(body: tAddToCartRequestModel),
+      ).thenThrow(Exception('API call failed'));
+      expect(
+        () => cartRemoteDataSource.addToCart(
+          requestModel: tAddToCartRequestModel,
+        ),
+        throwsException,
+      );
+      verifyOnlyThisCall(
+        () => verify(
+          mockCartApiClient.addToCart(body: tAddToCartRequestModel),
+        ).called(1),
+        mockCartApiClient,
+      );
     });
   });
 }
@@ -134,18 +160,51 @@ void addToCartTests() {
 void updateItemQuantityTests() {
   group('updateItemQuantity', () {
     test('should return GetCartResponseModel when successful', () async {
-      when(mockCartApiClient.updateItemQuantity(productId: tProductId, body: tUpdateItemQuantityRequestModel))
-          .thenAnswer((_) async => tGetCartResponseModel);
-      final result = await cartRemoteDataSource.updateItemQuantity(productId: tProductId, requestModel: tUpdateItemQuantityRequestModel);
+      when(
+        mockCartApiClient.updateItemQuantity(
+          productId: tProductId,
+          body: tUpdateItemQuantityRequestModel,
+        ),
+      ).thenAnswer((_) async => tGetCartResponseModel);
+      final result = await cartRemoteDataSource.updateItemQuantity(
+        productId: tProductId,
+        requestModel: tUpdateItemQuantityRequestModel,
+      );
       expect(result, tGetCartResponseModel);
-      verifyOnlyThisCall(() => verify(mockCartApiClient.updateItemQuantity(productId: tProductId, body: tUpdateItemQuantityRequestModel)).called(1), mockCartApiClient);
+      verifyOnlyThisCall(
+        () => verify(
+          mockCartApiClient.updateItemQuantity(
+            productId: tProductId,
+            body: tUpdateItemQuantityRequestModel,
+          ),
+        ).called(1),
+        mockCartApiClient,
+      );
     });
 
     test('should throw exception when call fails', () async {
-      when(mockCartApiClient.updateItemQuantity(productId: tProductId, body: tUpdateItemQuantityRequestModel))
-          .thenThrow(Exception('API call failed'));
-      expect(() => cartRemoteDataSource.updateItemQuantity(productId: tProductId, requestModel: tUpdateItemQuantityRequestModel), throwsException);
-      verifyOnlyThisCall(() => verify(mockCartApiClient.updateItemQuantity(productId: tProductId, body: tUpdateItemQuantityRequestModel)).called(1), mockCartApiClient);
+      when(
+        mockCartApiClient.updateItemQuantity(
+          productId: tProductId,
+          body: tUpdateItemQuantityRequestModel,
+        ),
+      ).thenThrow(Exception('API call failed'));
+      expect(
+        () => cartRemoteDataSource.updateItemQuantity(
+          productId: tProductId,
+          requestModel: tUpdateItemQuantityRequestModel,
+        ),
+        throwsException,
+      );
+      verifyOnlyThisCall(
+        () => verify(
+          mockCartApiClient.updateItemQuantity(
+            productId: tProductId,
+            body: tUpdateItemQuantityRequestModel,
+          ),
+        ).called(1),
+        mockCartApiClient,
+      );
     });
   });
 }
@@ -153,18 +212,35 @@ void updateItemQuantityTests() {
 void removeItemTests() {
   group('removeItem', () {
     test('should return GetCartResponseModel when successful', () async {
-      when(mockCartApiClient.removeItemFromCart(productId: tProductId))
-          .thenAnswer((_) async => tGetCartResponseModel);
-      final result = await cartRemoteDataSource.removeItemFromCart(productId: tProductId);
+      when(
+        mockCartApiClient.removeItemFromCart(productId: tProductId),
+      ).thenAnswer((_) async => tGetCartResponseModel);
+      final result = await cartRemoteDataSource.removeItemFromCart(
+        productId: tProductId,
+      );
       expect(result, tGetCartResponseModel);
-      verifyOnlyThisCall(() => verify(mockCartApiClient.removeItemFromCart(productId: tProductId)).called(1), mockCartApiClient);
+      verifyOnlyThisCall(
+        () => verify(
+          mockCartApiClient.removeItemFromCart(productId: tProductId),
+        ).called(1),
+        mockCartApiClient,
+      );
     });
 
     test('should throw exception when call fails', () async {
-      when(mockCartApiClient.removeItemFromCart(productId: tProductId))
-          .thenThrow(Exception('API call failed'));
-      expect(() => cartRemoteDataSource.removeItemFromCart(productId: tProductId), throwsException);
-      verifyOnlyThisCall(() => verify(mockCartApiClient.removeItemFromCart(productId: tProductId)).called(1), mockCartApiClient);
+      when(
+        mockCartApiClient.removeItemFromCart(productId: tProductId),
+      ).thenThrow(Exception('API call failed'));
+      expect(
+        () => cartRemoteDataSource.removeItemFromCart(productId: tProductId),
+        throwsException,
+      );
+      verifyOnlyThisCall(
+        () => verify(
+          mockCartApiClient.removeItemFromCart(productId: tProductId),
+        ).called(1),
+        mockCartApiClient,
+      );
     });
   });
 }
@@ -172,17 +248,28 @@ void removeItemTests() {
 void clearCartTests() {
   group('clearCart', () {
     test('should return MessageResponse when successful', () async {
-      when(mockCartApiClient.clearCart()).thenAnswer((_) async => const MessageResponse(message: 'Cart cleared successfully'));
+      when(mockCartApiClient.clearCart()).thenAnswer(
+        (_) async =>
+            const MessageResponse(message: 'Cart cleared successfully'),
+      );
       final result = await cartRemoteDataSource.clearCart();
       expect(result, isA<MessageResponse>());
       expect(result.message, 'Cart cleared successfully');
-      verifyOnlyThisCall(() => verify(mockCartApiClient.clearCart()).called(1), mockCartApiClient);
+      verifyOnlyThisCall(
+        () => verify(mockCartApiClient.clearCart()).called(1),
+        mockCartApiClient,
+      );
     });
 
     test('should throw exception when call fails', () async {
-      when(mockCartApiClient.clearCart()).thenThrow(Exception('API call failed'));
+      when(
+        mockCartApiClient.clearCart(),
+      ).thenThrow(Exception('API call failed'));
       expect(() => cartRemoteDataSource.clearCart(), throwsException);
-      verifyOnlyThisCall(() => verify(mockCartApiClient.clearCart()).called(1), mockCartApiClient);
+      verifyOnlyThisCall(
+        () => verify(mockCartApiClient.clearCart()).called(1),
+        mockCartApiClient,
+      );
     });
   });
 }

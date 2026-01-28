@@ -9,7 +9,6 @@ class ChangePasswordUseCase {
 
   ChangePasswordUseCase(this._repo);
 
-  Future<BaseResponse<void>> call(
-    ChangePasswordRequestEntity request,
-  ) => _repo.changePassword(request);
+  Future<BaseResponse<void>> call(ChangePasswordRequestEntity request) =>
+      _repo.changePassword(request);
 }

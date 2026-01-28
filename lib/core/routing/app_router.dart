@@ -71,9 +71,9 @@ abstract class AppRouter {
       GoRoute(
         path: AppRoutesConstants.occasionScreen,
         name: AppRoutesConstants.occasionScreen,
-        builder: (context, state) =>const OccasionScreen(),
+        builder: (context, state) => const OccasionScreen(),
       ),
-       GoRoute(
+      GoRoute(
         path: AppRoutesConstants.changePasswordRoute,
         name: AppRoutesConstants.changePasswordRoute,
         builder: (context, state) => const ChangePasswordScreen(),

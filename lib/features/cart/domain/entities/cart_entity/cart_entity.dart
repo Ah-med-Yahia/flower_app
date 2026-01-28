@@ -13,9 +13,5 @@ class CartEntity extends Equatable {
   });
 
   @override
-  List<Object?> get props => [
-    cartItems,
-    appliedCoupons,
-    totalPrice,
-  ];
+  List<Object?> get props => [cartItems, appliedCoupons, totalPrice];
 }
