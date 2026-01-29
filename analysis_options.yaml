@@ -2,6 +2,7 @@ include: package:flutter_lints/flutter.yaml
 
 linter:
   rules:
+    - comment_references: false
     - avoid_empty_else
     - avoid_print
     - avoid_relative_lib_imports
@@ -9,7 +10,6 @@ linter:
     - avoid_slow_async_io
     - cancel_subscriptions
     - close_sinks
-    - comment_references
     - control_flow_in_finally
     - empty_statements
     - invariant_booleans

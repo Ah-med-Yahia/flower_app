@@ -78,6 +78,8 @@ flutter:
   assets:
     - assets/lottie/
     - assets/icons/
+    - assets/files/
+    - assets/images/
 
 
 flutter_gen:

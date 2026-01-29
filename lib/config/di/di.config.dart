@@ -180,16 +180,32 @@ import '../../features/product_details/presentaion/view_model/product_details_cu
     as _i986;
 import '../../features/profile/profile_main/api/api_client/profile_main_api_client.dart'
     as _i120;
+import '../../features/profile/profile_main/api/datasource/local/profile_main_local_data_source_impl.dart'
+    as _i176;
 import '../../features/profile/profile_main/api/datasource/remote/profile_main_remote_data_source_impl.dart'
     as _i550;
+import '../../features/profile/profile_main/data/datasource/local/profile_main_local_data_source.dart'
+    as _i455;
 import '../../features/profile/profile_main/data/datasource/profile_main_remote_data_source.dart'
     as _i718;
 import '../../features/profile/profile_main/data/repos/profile_main_repo_impl.dart'
     as _i753;
 import '../../features/profile/profile_main/domain/repos/profile_main_repo.dart'
     as _i652;
+import '../../features/profile/profile_main/domain/use_cases/get_term_use_case.dart'
+    as _i307;
 import '../../features/profile/profile_main/domain/use_cases/get_user_data_use_case.dart'
     as _i658;
+import '../../features/profile/profile_main/domain/use_cases/load_cached_user_data_use_case.dart'
+    as _i721;
+import '../../features/profile/profile_main/domain/use_cases/logout_use_case.dart'
+    as _i239;
+import '../../features/profile/profile_main/domain/use_cases/verify_session_use_case.dart'
+    as _i773;
+import '../../features/profile/profile_main/presentation/view_models/profile_main_cubit.dart'
+    as _i422;
+import '../../features/profile/profile_main/presentation/view_models/terms/term_cubit.dart'
+    as _i492;
 import '../cache_modules/secure_storage_module.dart' as _i11;
 import '../cache_modules/shared_preferences_module.dart' as _i1059;
 import '../dio_module/auth_interceptor.dart' as _i815;
@@ -228,6 +244,18 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i1059.CacheHelper>(
       () => _i1059.CacheHelper(gh<_i460.SharedPreferences>()),
+    );
+    gh.factory<_i455.ProfileMainLocalDataSource>(
+      () => _i176.ProfileMainLocalDataSourceImpl(),
+    );
+    gh.factory<_i721.LoadCachedUserDataUseCase>(
+      () => _i721.LoadCachedUserDataUseCase(gh<_i115.TokenService>()),
+    );
+    gh.factory<_i239.LogoutUseCase>(
+      () => _i239.LogoutUseCase(gh<_i115.TokenService>()),
+    );
+    gh.factory<_i773.VerifySessionUseCase>(
+      () => _i773.VerifySessionUseCase(gh<_i115.TokenService>()),
     );
     gh.singleton<_i326.LocalLoginDataSource>(
       () => _i654.LoginLocalDataSourceImpl(
@@ -353,7 +381,10 @@ extension GetItInjectableX on _i174.GetIt {
       ),
     );
     gh.factory<_i652.ProfileMainRepo>(
-      () => _i753.ProfileMainRepoImpl(gh<_i718.ProfileMainRemoteDataSource>()),
+      () => _i753.ProfileMainRepoImpl(
+        gh<_i718.ProfileMainRemoteDataSource>(),
+        gh<_i455.ProfileMainLocalDataSource>(),
+      ),
     );
     gh.factory<_i202.HomeScreenRepo>(
       () => _i209.HomeScreenRepoImpl(gh<_i525.HomeScreenDataSource>()),
@@ -366,6 +397,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i57.RegisterRepository>(
       () => _i200.RegisterRepositoryImpl(gh<_i613.RegisterDataSource>()),
+    );
+    gh.factory<_i307.GetTermUseCase>(
+      () => _i307.GetTermUseCase(gh<_i652.ProfileMainRepo>()),
     );
     gh.factory<_i658.GetUserDataUseCase>(
       () => _i658.GetUserDataUseCase(gh<_i652.ProfileMainRepo>()),
@@ -389,6 +423,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i198.GetBestSellerUseCase>(
       () => _i198.GetBestSellerUseCase(gh<_i892.BestSellerRepo>()),
     );
+    gh.factory<_i422.ProfileMainCubit>(
+      () => _i422.ProfileMainCubit(
+        gh<_i658.GetUserDataUseCase>(),
+        gh<_i773.VerifySessionUseCase>(),
+        gh<_i721.LoadCachedUserDataUseCase>(),
+        gh<_i239.LogoutUseCase>(),
+      ),
+    );
     gh.factory<_i338.ProductDetailsRepoContract>(
       () => _i402.ProductDetailsRepoImpl(
         gh<_i856.ProductDetailsDataSourceContract>(),
@@ -411,6 +453,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i805.RegisterCubit>(
       () => _i805.RegisterCubit(gh<_i545.RegisterUseCase>()),
+    );
+    gh.factory<_i492.TermCubit>(
+      () => _i492.TermCubit(gh<_i307.GetTermUseCase>()),
     );
     gh.factory<_i105.ForgetPasswordCubit>(
       () => _i105.ForgetPasswordCubit(gh<_i737.ForgetPasswordUseCase>()),
