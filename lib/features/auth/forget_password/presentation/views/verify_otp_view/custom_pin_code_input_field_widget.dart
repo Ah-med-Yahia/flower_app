@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flower_app/core/constants/validation_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
@@ -55,11 +56,11 @@ class CustomPinCodeInputFieldWidget extends StatelessWidget {
       focusedPinTheme: focusedPinTheme,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          final message = ValidationConstants.pleaseEnterOTPCode;
+          final message = ValidationConstants.pleaseEnterOTPCode.tr();
           return message;
         }
         if (value.length < 6) {
-          final message = ValidationConstants.otpMustBe6Digits;
+          final message = ValidationConstants.otpMustBe6Digits.tr();
           return message;
         }
         return null;
@@ -69,7 +70,7 @@ class CustomPinCodeInputFieldWidget extends StatelessWidget {
         onCompleted?.call(pin);
       },
       forceErrorState: state.verifyOtpCodeState.errorMessage != null,
-      errorText: state.verifyOtpCodeState.errorMessage,
+      errorText: state.verifyOtpCodeState.errorMessage?.tr(),
     );
   }
 }

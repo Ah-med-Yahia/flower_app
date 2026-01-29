@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flower_app/core/validators/app_validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
@@ -20,9 +21,9 @@ class PhoneFieldWidget extends StatelessWidget {
       controller: controller,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       keyboardType: TextInputType.phone,
-      decoration: const InputDecoration(
-        labelText: AppTextConstants.phoneNumber,
-        hintText: AppTextConstants.enterPhoneNumber,
+      decoration: InputDecoration(
+        labelText: AppTextConstants.phoneNumber.tr(),
+        hintText: AppTextConstants.enterPhoneNumber.tr(),
       ),
       validator: AppValidators.validatePhoneNumber,
       onChanged: (v) => cubit.doIntent(PhoneNumberChanged(v)),

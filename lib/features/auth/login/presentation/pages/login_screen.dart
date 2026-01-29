@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/constants/app_routes_constant.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
@@ -93,8 +94,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
-                    labelText: AppTextConstants.email,
-                    hintText: AppTextConstants.enterEmail,
+                    labelText: AppTextConstants.email.tr(),
+                    hintText: AppTextConstants.enterEmail.tr(),
                     contentPadding: EdgeInsets.symmetric(
                       horizontal: 16.0,
                       vertical: 18.0,
@@ -114,8 +115,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: InputDecoration(
-                    labelText: AppTextConstants.password,
-                    hintText: AppTextConstants.enterPassword,
+                    labelText: AppTextConstants.password.tr(),
+                    hintText: AppTextConstants.enterPassword.tr(),
                     contentPadding: EdgeInsets.symmetric(
                       horizontal: 16.0,
                       vertical: 18.0,
@@ -142,7 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     TextButton(
                       child: Text(
-                        AppTextConstants.rememberMe,
+                        AppTextConstants.rememberMe.tr(),
                         style: textTheme.titleSmall,
                       ),
                       onPressed: () {
@@ -152,7 +153,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     const Spacer(),
                     TextButton(
                       child: Text(
-                        AppTextConstants.forgetPasswordHeadLine,
+                        AppTextConstants.forgetPasswordHeadLine.tr(),
                         style: textTheme.titleSmall!.copyWith(
                           decoration: TextDecoration.underline,
                         ),
@@ -172,7 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: ElevatedButton.styleFrom(
                         fixedSize: Size(screenSize.width, 48),
                       ),
-                      child: Text(AppTextConstants.login),
+                      child: Text(AppTextConstants.login.tr()),
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           loginCubit.doIntent(
@@ -197,7 +198,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     foregroundColor: AppColors.textSecondary,
                   ),
 
-                  child: Text(AppTextConstants.guestUser),
+                  child: Text(AppTextConstants.guestUser.tr()),
                   onPressed: () {
                     context.go(AppRoutesConstants.homeRoute);
                   },
@@ -206,14 +207,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(AppTextConstants.dontHaveAccount),
+                    Text(AppTextConstants.dontHaveAccount.tr()),
                     TextButton(
                       onPressed: () {
                         // Navigate to Sign Up screen
                         context.pushNamed(AppRoutesConstants.registerRoute);
                       },
                       child: Text(
-                        AppTextConstants.signUp,
+                        AppTextConstants.signUp.tr(),
                         style: textTheme.bodySmall!.copyWith(
                           color: AppColors.primary,
                           decoration: TextDecoration.underline,

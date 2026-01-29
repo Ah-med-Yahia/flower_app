@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/validators/app_validators.dart';
 import 'package:flower_app/features/auth/register/presentation/cubit/register_cubit.dart';
@@ -19,9 +20,9 @@ class EmailFieldWidget extends StatelessWidget {
     return TextFormField(
       controller: controller,
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      decoration: const InputDecoration(
-        labelText: AppTextConstants.email,
-        hintText: AppTextConstants.enterEmail,
+      decoration: InputDecoration(
+        labelText: AppTextConstants.email.tr(),
+        hintText: AppTextConstants.enterEmail.tr(),
       ),
       validator: (v) => v.validateEmail,
       onChanged: (v) => cubit.doIntent(EmailChanged(v)),

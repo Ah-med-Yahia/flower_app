@@ -1,9 +1,10 @@
-import 'package:flower_app/features/auth/register/presentation/cubit/register_states.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/features/auth/register/presentation/cubit/register_cubit.dart';
 import 'package:flower_app/features/auth/register/presentation/cubit/register_events.dart';
+import 'package:flower_app/features/auth/register/presentation/cubit/register_states.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GenderSelectorWidget extends StatelessWidget {
   final RegisterCubit cubit;
@@ -16,7 +17,7 @@ class GenderSelectorWidget extends StatelessWidget {
       builder: (_, state) {
         return Row(
           children: [
-            Text(AppTextConstants.gender),
+            Text(AppTextConstants.gender.tr()),
             const SizedBox(width: 20),
             Radio<String>(
               value: AppTextConstants.female,
@@ -25,7 +26,7 @@ class GenderSelectorWidget extends StatelessWidget {
                 if (v != null) cubit.doIntent(GenderChanged(v));
               },
             ),
-            const Text(AppTextConstants.female),
+            Text(AppTextConstants.female.tr()),
             Radio<String>(
               value: AppTextConstants.male,
               groupValue: state.gender,
@@ -33,7 +34,7 @@ class GenderSelectorWidget extends StatelessWidget {
                 if (v != null) cubit.doIntent(GenderChanged(v));
               },
             ),
-            const Text(AppTextConstants.male),
+            Text(AppTextConstants.male.tr()),
           ],
         );
       },

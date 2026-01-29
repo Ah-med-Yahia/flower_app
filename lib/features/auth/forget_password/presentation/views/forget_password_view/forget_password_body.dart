@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -79,9 +80,9 @@ class _ForgetPasswordBodyState extends State<ForgetPasswordBody> {
                 edtTxtController: _emailController,
                 keyboardType: TextInputType.emailAddress,
                 isEnabled: !state.forgetPasswordState.isLoading,
-                labelText: AppTextConstants.emailLabel,
-                hintText: AppTextConstants.emailHint,
-                focusErrorText: ValidationConstants.invalidEmail,
+                labelText: AppTextConstants.emailLabel.tr(),
+                hintText: AppTextConstants.emailHint.tr(),
+                focusErrorText: ValidationConstants.invalidEmail.tr(),
                 validator: _validateEmail,
               ),
               48.verticalSpacing,

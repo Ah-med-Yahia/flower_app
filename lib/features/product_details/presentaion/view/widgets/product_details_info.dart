@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
@@ -31,7 +32,7 @@ class ProductDetailsInfo extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    '${AppTextConstants.egp} ${priceAfterDiscount.floor().toString()}',
+                    '${AppTextConstants.egp.tr()} ${priceAfterDiscount.floor().toString()}',
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -39,7 +40,7 @@ class ProductDetailsInfo extends StatelessWidget {
                   ),
                   const SizedBox(width: 20),
                   Text(
-                    '${AppTextConstants.egp} ${priceBeforeDiscount.floor().toString()}',
+                    '${AppTextConstants.egp.tr()} ${priceBeforeDiscount.floor().toString()}',
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
@@ -52,15 +53,15 @@ class ProductDetailsInfo extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    AppTextConstants.status,
+                    AppTextConstants.status.tr(),
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   Text(
                     (quantity > 0)
-                        ? AppTextConstants.inStock
-                        : AppTextConstants.outOfStock,
+                        ? AppTextConstants.inStock.tr()
+                        : AppTextConstants.outOfStock.tr(),
                     style: Theme.of(context).textTheme.titleLarge!,
                   ),
                 ],
@@ -69,7 +70,7 @@ class ProductDetailsInfo extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            AppTextConstants.taxNote,
+            AppTextConstants.taxNote.tr(),
             style: Theme.of(
               context,
             ).textTheme.titleMedium!.copyWith(color: AppColors.grey),
@@ -83,7 +84,7 @@ class ProductDetailsInfo extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           Text(
-            AppTextConstants.description,
+            AppTextConstants.description.tr(),
             style: Theme.of(
               context,
             ).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.bold),

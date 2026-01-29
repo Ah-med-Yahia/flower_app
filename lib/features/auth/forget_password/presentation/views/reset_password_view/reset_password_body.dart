@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -62,9 +63,7 @@ class _ResetPasswordBodyState extends State<ResetPasswordBody> {
       final confirmPassword = _confirmPasswordController.text;
       if (newPassword != confirmPassword) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text(ValidationConstants.passwordsDoNotMatch),
-          ),
+          SnackBar(content: Text(ValidationConstants.passwordsDoNotMatch.tr())),
         );
         return;
       }
@@ -98,8 +97,8 @@ class _ResetPasswordBodyState extends State<ResetPasswordBody> {
                 edtTxtController: _newPasswordController,
                 keyboardType: TextInputType.text,
                 isEnabled: !state.resetPasswordState.isLoading,
-                labelText: AppTextConstants.newPasswordLabel,
-                hintText: AppTextConstants.newPasswordHint,
+                labelText: AppTextConstants.newPasswordLabel.tr(),
+                hintText: AppTextConstants.newPasswordHint.tr(),
                 focusErrorText: '',
                 validator: _validateNewPassword,
                 isPassword: !_isNewPasswordVisible,
@@ -120,8 +119,8 @@ class _ResetPasswordBodyState extends State<ResetPasswordBody> {
                 edtTxtController: _confirmPasswordController,
                 keyboardType: TextInputType.text,
                 isEnabled: !state.resetPasswordState.isLoading,
-                labelText: AppTextConstants.confirmPasswordLabel,
-                hintText: AppTextConstants.confirmPasswordLabel,
+                labelText: AppTextConstants.confirmPasswordLabel.tr(),
+                hintText: AppTextConstants.confirmPasswordLabel.tr(),
                 focusErrorText: '',
                 validator: _validateConfirmPassword,
                 isPassword: !_isConfirmPasswordVisible,

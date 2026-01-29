@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class CategoriesTap extends StatelessWidget {
@@ -5,6 +6,6 @@ class CategoriesTap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: Center(child: Text('Categories')));
+    return Scaffold(body: Center(child: Text('Categories'.tr())));
   }
 }

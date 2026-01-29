@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flower_app/core/constants/app_routes_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -17,7 +18,7 @@ class HomeTap extends StatelessWidget {
               extra: '673e1cd711599201718280fb',
             );
           },
-          text: 'Go to Product Details',
+          text: 'Go to Product Details'.tr(),
         ),
       ),
     );
