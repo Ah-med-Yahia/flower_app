@@ -10,7 +10,7 @@ import 'package:injectable/injectable.dart';
 class ChangePasswordDataSourceImpl implements ChangePasswordDataSource {
   final ChangePasswordApiClient _apiClient;
 
-  ChangePasswordDataSourceImpl(this._apiClient,);
+  ChangePasswordDataSourceImpl(this._apiClient);
   @override
   Future<BaseResponse<ChangePasswordResponse>> changePassword(
     ChangePasswordRequest request,

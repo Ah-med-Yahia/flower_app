@@ -28,7 +28,7 @@ class AppTextConstants {
   static const String gender = 'Gender';
   static const String female = 'Female';
   static const String male = 'Male';
- 
+
   static const String creatingAccountAgreement =
       'Creating an account, you agree to our ';
   static const String termsAndConditions = 'Terms&Conditions';
@@ -109,9 +109,10 @@ class AppTextConstants {
   static const String defaultAvatarUrl =
       'https://flower.elevateegy.com/uploads/default-profile.png';
   static const String notification = 'Notification';
-  static const String logout = 'Logout';
-  static const String confirmLogout = 'Confirm logout!!';
-  static const String cancel = 'Cancel';
+
+  // static const String logout = 'Logout';
+  // static const String confirmLogout = 'Confirm logout!!';
+  // static const String cancel = 'Cancel';
   static const String chooseLanguage = 'Choose Language';
   static const String english = 'English';
   static const String arabic = 'Arabic';
