@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class CartProductEntity extends Equatable {
+  final String productId;
   final String title;
   final String slug;
   final String description;
@@ -13,6 +14,7 @@ class CartProductEntity extends Equatable {
   final String occasion;
 
   const CartProductEntity({
+    required this.productId,
     required this.title,
     required this.slug,
     required this.description,

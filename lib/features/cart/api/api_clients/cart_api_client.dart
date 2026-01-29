@@ -25,12 +25,12 @@ abstract class CartApiClient {
   @DELETE(ApiConstants.cartEndpoint)
   Future<MessageResponse> clearCart();
 
-  @DELETE(ApiConstants.cartEndpoint)
+  @DELETE(ApiConstants.removeItemFromCartEndpoint)
   Future<GetCartResponseModel> removeItemFromCart({
     @Path(ApiConstants.idPathQuery) required String productId,
   });
 
-  @PUT(ApiConstants.cartEndpoint)
+  @PUT(ApiConstants.updateCartItemEndpoint)
   Future<GetCartResponseModel> updateItemQuantity({
     @Path(ApiConstants.idPathQuery) required String productId,
     @Body() required UpdateItemQuantityRequestModel body,

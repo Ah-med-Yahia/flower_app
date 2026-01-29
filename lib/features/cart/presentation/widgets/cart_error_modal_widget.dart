@@ -3,7 +3,11 @@ import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CartErrorModal extends StatefulWidget {
-  const CartErrorModal({super.key, required this.onRetry, required this.errorMessage});
+  const CartErrorModal({
+    super.key,
+    required this.onRetry,
+    required this.errorMessage,
+  });
 
   final VoidCallback onRetry;
   final String errorMessage;

@@ -4,19 +4,20 @@ import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/gen/assets.gen.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flower_app/core/ui_utils/ui_utils.dart';
+import 'package:flower_app/core/widgets/spacing.dart';
+import 'package:flower_app/features/cart/domain/entities/update_item_quantity_request_entity.dart';
 import 'package:flower_app/features/cart/presentation/cubit/cart_cubit.dart';
 import 'package:flower_app/features/cart/presentation/cubit/cart_event_ui.dart';
 import 'package:flower_app/features/cart/presentation/cubit/cart_intents.dart';
 import 'package:flower_app/features/cart/presentation/cubit/cart_states.dart';
+import 'package:flower_app/features/cart/presentation/widgets/button_clear_cart_widget.dart';
 import 'package:flower_app/features/cart/presentation/widgets/cart_error_modal_widget.dart';
 import 'package:flower_app/features/cart/presentation/widgets/cart_item_widget.dart';
 import 'package:flower_app/features/cart/presentation/widgets/cart_lottie_states_widget.dart';
 import 'package:flower_app/features/cart/presentation/widgets/cart_summary_widget.dart';
-import 'package:flower_app/features/cart/presentation/widgets/clear_cart_modal_widget.dart';
 import 'package:flower_app/features/cart/presentation/widgets/location_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 
 class CartTab extends StatefulWidget {
   const CartTab({super.key});
@@ -30,7 +31,6 @@ class _CartTabState extends State<CartTab> {
   late final TextTheme textStyle;
   late final Size screenSize;
   StreamSubscription<CartEventUI>? _uiSubscription;
-  bool _loadingDialogVisible = false;
 
   @override
   void initState() {
@@ -42,10 +42,12 @@ class _CartTabState extends State<CartTab> {
       switch (event) {
         case LoadingCart():
           _handleLoadingUIEvent();
-        case Error():
+        case ErrorGetCart():
           _handleErrorUIEvent(event.message);
-        case SuccessClearCart():
-          _handleSuccessClearCartUIEvent();
+        case SuccessAfterLoading():
+          _handleSuccessAfterLoading(event.message);
+        case ErrorCartItemsUpdate():
+          _handleErrorRemoveItemFromCart(event.message);
       }
     });
 
@@ -54,53 +56,39 @@ class _CartTabState extends State<CartTab> {
 
   void _handleLoadingUIEvent() {
     UIUtils.showLoading(context);
-    _loadingDialogVisible = true;
-    Future.delayed(const Duration(seconds: 1), () {
-      if (_loadingDialogVisible) {
-        UIUtils.hideLoading(context);
-        _loadingDialogVisible = false;
-      }
-    });
   }
 
-  void _handleErrorUIEvent(String message) {
-    if (_loadingDialogVisible) {
-      UIUtils.hideLoading(context);
-      _loadingDialogVisible = false;
-    }
-    showCartErrorModal(
-      context,
-      errorMessage: message,
-      onRetry: () {
-        _cubit.doIntent(GetCartIntent());
-      },
-    );
-  }
-
-  void _handleSuccessClearCartUIEvent() {
-    if (_loadingDialogVisible) {
-      UIUtils.hideLoading(context);
-      _loadingDialogVisible = false;
-    }
+  void _handleErrorRemoveItemFromCart(String message) {
     UIUtils.showMessage(
-      AppTextConstants.cartClearedSuccessfully,
-      backGroundColor: AppColors.green,
+      message,
+      backGroundColor: AppColors.red,
       textColor: AppColors.background,
     );
   }
 
-  void showCartErrorModal(
-    BuildContext context, {
-    required VoidCallback onRetry,
-    required String errorMessage,
-  }) {
+  void _handleErrorUIEvent(String message) {
+    UIUtils.hideLoading(context);
     showDialog(
       context: context,
       barrierDismissible: true,
       builder: (BuildContext context) {
-        return CartErrorModal(onRetry: onRetry, errorMessage: errorMessage);
+        return CartErrorModal(
+          onRetry: () => _cubit.doIntent(GetCartIntent()),
+          errorMessage: message,
+        );
       },
     );
+  }
+
+  void _handleSuccessAfterLoading(String? message) {
+    UIUtils.hideLoading(context);
+    if (message != null) {
+      UIUtils.showMessage(
+        message,
+        backGroundColor: AppColors.green,
+        textColor: AppColors.background,
+      );
+    }
   }
 
   @override
@@ -125,25 +113,31 @@ class _CartTabState extends State<CartTab> {
         builder: (context, state) {
           if (state.cartBaseState == null) {
             return const SizedBox();
-          } else if (state.cartBaseState!.error) {
+          } else if (state.cartBaseState!.isError) {
             return CartLottieStatesWidget(
               lottie: Assets.lottie.cartError.path,
               text: AppTextConstants.cartError,
             );
-          } else if (state.cartBaseState!.emptyCart) {
+          } else if (state.cartBaseState!.isEmpty) {
             return CartLottieStatesWidget(
               lottie: Assets.lottie.emptyCart.path,
               text: AppTextConstants.emptyCart,
               textColor: AppColors.primary,
             );
           } else {
-            final items = state.cartBaseState!.data!.cart!.cartItems!;
+            final cart = state.cartBaseState!.data!.cart;
+            final items = cart.cartItems;
             return SafeArea(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Row(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: 16,
+                  left: 16,
+                  right: 16,
+                  bottom: 12,
+                ),
+                child: Column(
+                  children: [
+                    Row(
                       children: [
                         Text(
                           AppTextConstants.cart,
@@ -156,91 +150,82 @@ class _CartTabState extends State<CartTab> {
                           style: textStyle.headlineSmall,
                         ),
                         const Spacer(),
-                        SizedBox(
-                          height: screenSize.height * .057,
-                          width: screenSize.width * .096,
-                          child: IconButton(
-                            onPressed: () async {
-                              showDialog(
-                                context: context,
-                                barrierDismissible: true,
-                                builder: (BuildContext context) {
-                                  return ClearCartConfirmationModal(
-                                    onConfirm: () async => await _cubit
-                                        .doIntent(ClearCartIntent()),
-                                  );
-                                },
-                              );
-                            },
-                            padding: EdgeInsets.zero,
-                            icon: Column(
-                              children: [
-                                SvgPicture.asset(
-                                  Assets.icons.clearCart.path,
-                                  width: 24,
-                                  height: 24,
-                                  colorFilter: ColorFilter.mode(
-                                    AppColors.primary,
-                                    BlendMode.srcIn,
-                                  ),
-                                ),
-                                Text(
-                                  AppTextConstants.clearCart,
-                                  style: textStyle.labelSmall!.copyWith(
-                                    decoration: TextDecoration.underline,
-                                    color: AppColors.black,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                        ButtonClearCartWidget(
+                          onConfirm: () async {
+                            await _cubit.doIntent(ClearCartIntent());
+                          },
                         ),
                       ],
                     ),
-                  ),
-                  Expanded(
-                    child: CustomScrollView(
-                      slivers: [
-                        SliverToBoxAdapter(
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 16.0,
-                              vertical: 12.0,
-                            ),
-                            child: LocationWidget(),
-                          ),
-                        ),
-                        SliverPadding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          sliver: SliverList(
+                    16.verticalSpacing,
+                    Expanded(
+                      child: CustomScrollView(
+                        slivers: [
+                          const SliverToBoxAdapter(child: LocationWidget()),
+                          SliverToBoxAdapter(child: 16.verticalSpacing),
+                          SliverList(
                             delegate: SliverChildBuilderDelegate((
                               context,
                               index,
                             ) {
                               final item = items[index];
                               return CartItemWidget(
-                                key: ValueKey(item.id),
+                                key: ValueKey('${item.id}_${item.hashCode}'),
                                 item: item,
                                 onIncrement: () {
-                                  
+                                  _cubit.doIntent(
+                                    UpdateItemQuantityIntent(
+                                      productId: item.product.productId,
+                                      requestEntity:
+                                          UpdateItemQuantityRequestEntity(
+                                            quantity: item.quantity + 1,
+                                          ),
+                                    ),
+                                  );
                                 },
-                                onDecrement: () {},
-                                onDelete: () {},
+                                onDecrement: () {
+                                  if (item.quantity > 1) {
+                                    _cubit.doIntent(
+                                      UpdateItemQuantityIntent(
+                                        productId: item.product.productId,
+                                        requestEntity:
+                                            UpdateItemQuantityRequestEntity(
+                                              quantity: item.quantity - 1,
+                                            ),
+                                      ),
+                                    );
+                                  }
+                                },
+                                onDelete: () async {
+                                  await _cubit.doIntent(
+                                    RemoveItemFromCartIntent(
+                                      productId: item.product.productId,
+                                    ),
+                                  );
+                                },
                               );
                             }, childCount: items.length),
                           ),
-                        ),
-                      ],
+                          SliverFillRemaining(
+                            hasScrollBody: false,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                const Spacer(),
+                                CartSummaryWidget(
+                                  onCheckout: () => {},
+                                  deliveryFee: cart.deliveryFee,
+                                  subTotal: cart.totalPrice,
+                                  total: cart.totalPrice + cart.deliveryFee,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  CartSummaryWidget(
-                    onCheckout: () => {},
-                    key: ValueKey(items.length),
-                    deliveryFee: 10,
-                    subTotal: state.cartBaseState!.data!.cart!.totalPrice!,
-                    total: state.cartBaseState!.data!.cart!.totalPrice! + 10,
-                  ),
-                ],
+                  ],
+                ),
               ),
             );
           }

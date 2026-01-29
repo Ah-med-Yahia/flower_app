@@ -37,4 +37,6 @@ class ApiConstants {
 
   // ------------------------- CART ------------------------ //
   static const String cartEndpoint = 'cart';
+  static const String removeItemFromCartEndpoint = 'cart/{id}';
+  static const String updateCartItemEndpoint = 'cart/{id}';
 }

@@ -1,7 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
+import 'package:flower_app/core/widgets/spacing.dart';
 import 'package:flower_app/features/cart/domain/entities/cart_entity/cart_item_entity.dart';
+import 'package:flower_app/features/cart/presentation/widgets/confirmation_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 class CartItemWidget extends StatelessWidget {
   final CartItemEntity item;
@@ -19,10 +23,24 @@ class CartItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size screenSize = MediaQuery.sizeOf(context);
+    final TextTheme textTheme = Theme.of(context).textTheme;
     return Dismissible(
-      key: Key(item.id),
+      key: ValueKey('${item.id}_${item.hashCode}'),
       direction: DismissDirection.endToStart,
-      onDismissed: (_) => onDelete(),
+      onDismissed: (_) {
+        onDelete();
+      },
+      confirmDismiss: (direction) async {
+        final result = await showDialog<bool>(
+          context: context,
+          builder: (context) => const ConfirmationDialog(
+            title: AppTextConstants.confirm,
+            message: AppTextConstants.deleteThisItem,
+          ),
+        );
+        return result;
+      },
       background: Container(
         padding: const EdgeInsets.only(right: 20),
         alignment: Alignment.centerRight,
@@ -30,12 +48,16 @@ class CartItemWidget extends StatelessWidget {
           color: AppColors.red,
           borderRadius: BorderRadius.circular(12),
         ),
-        child: const Icon(Icons.delete_outline, color: Colors.white, size: 30),
+        child: const Icon(
+          Icons.delete_outline,
+          color: AppColors.background,
+          size: 30,
+        ),
       ),
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 8),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColors.background,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(color: AppColors.lightGrey.withValues(alpha: 0.5)),
         ),
@@ -44,8 +66,8 @@ class CartItemWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              width: 80,
-              height: 80,
+              width: screenSize.width * 0.2,
+              height: screenSize.height * 0.1114,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
                 color: AppColors.lightPink, // Placeholder background
@@ -59,14 +81,19 @@ class CartItemWidget extends StatelessWidget {
                     Icons.image_not_supported,
                     color: AppColors.grey,
                   ),
-                  placeholder: (context, url) => const Center(
-                    child: CircularProgressIndicator(strokeWidth: 2),
+                  placeholder: (context, url) => Shimmer.fromColors(
+                    baseColor: AppColors.shimmerBaseColor,
+                    highlightColor: AppColors.shimmerHighlightColor,
+                    child: Container(
+                      width: double.infinity,
+                      height: double.infinity,
+                      color: AppColors.background,
+                    ),
                   ),
                 ),
               ),
             ),
             const SizedBox(width: 12),
-            // Details
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,16 +103,15 @@ class CartItemWidget extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          item.product.title!,
-                          style: const TextStyle(
-                            fontSize: 16,
+                          item.product.title,
+                          style: textTheme.titleMedium?.copyWith(
                             fontWeight: FontWeight.bold,
-                            color: AppColors.textPrimary,
                           ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
+                      2.horizontalSpacing,
                       GestureDetector(
                         onTap: onDelete,
                         child: const Icon(
@@ -96,26 +122,24 @@ class CartItemWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 4),
+                  5.verticalSpacing,
                   Text(
-                    item.product.description!, // Or subtitle if available, using description for now as per entity
-                    style: const TextStyle(
+                    item.product.description,
+                    style: textTheme.bodyMedium?.copyWith(
                       fontSize: 12,
                       color: AppColors.textSecondary,
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  const SizedBox(height: 12),
+                  12.verticalSpacing,
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "EGP ${item.price}",
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.textPrimary,
+                        '${AppTextConstants.currency} ${item.price}',
+                        style: textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                       Row(
@@ -127,9 +151,8 @@ class CartItemWidget extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 12),
                             child: Text(
-                              "${item.quantity}",
-                              style: const TextStyle(
-                                fontSize: 16,
+                              '${item.quantity}',
+                              style: textTheme.titleMedium?.copyWith(
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -161,10 +184,6 @@ class _QuantityButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(4),
-        // decoration: BoxDecoration(
-        //   borderRadius: BorderRadius.circular(4),
-        //   border: Border.all(color: AppColors.lightGrey),
-        // ),
         child: Icon(icon, size: 20, color: AppColors.textPrimary),
       ),
     );

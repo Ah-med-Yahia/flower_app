@@ -54,6 +54,7 @@ dependencies:
   # Debugging
   logger: ^2.6.2
   pretty_dio_logger: ^1.4.0
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_test:

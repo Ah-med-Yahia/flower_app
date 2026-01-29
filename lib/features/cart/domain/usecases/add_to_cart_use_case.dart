@@ -12,6 +12,5 @@ class AddToCartUseCase {
 
   Future<BaseResponse<GetCartResponseEntity>> call({
     required AddToCartRequestEntity requestEntity,
-  }) =>
-      _cartRepository.addToCart(requestEntity: requestEntity);
+  }) => _cartRepository.addToCart(requestEntity: requestEntity);
 }

@@ -1,15 +1,21 @@
 sealed class CartEventUI {}
 
-class LoadingCart extends CartEventUI {}  
+class LoadingCart extends CartEventUI {}
 
-class Error extends CartEventUI {
+class ErrorGetCart extends CartEventUI {
   final String message;
 
-  Error({required this.message});
+  ErrorGetCart({required this.message});
 }
 
-class SuccessClearCart extends CartEventUI {
+class ErrorCartItemsUpdate extends CartEventUI {
   final String message;
 
-  SuccessClearCart({required this.message});
+  ErrorCartItemsUpdate({required this.message});
+}
+
+class SuccessAfterLoading extends CartEventUI {
+  final String? message;
+
+  SuccessAfterLoading({this.message});
 }

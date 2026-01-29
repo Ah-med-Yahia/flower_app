@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/base_state/base_state.dart';
 import 'package:flower_app/features/cart/domain/entities/get_cart_response_entity.dart';
@@ -49,12 +48,12 @@ class CartCubit extends Cubit<CartState> {
     final response = await _getCartUseCase();
     response.when(
       success: (success) {
-        
+        _uiEventController.add(SuccessAfterLoading());
         success.numOfCartItems == 0
             ? emit(
                 state.copyWith(
                   cartBaseState: CartBaseState<GetCartResponseEntity>(
-                    emptyCart: true,
+                    isEmpty: true,
                     data: success,
                   ),
                 ),
@@ -68,10 +67,12 @@ class CartCubit extends Cubit<CartState> {
               );
       },
       failure: (failure) {
-        _uiEventController.add(Error(message: failure.message));
+        _uiEventController.add(ErrorGetCart(message: failure.message));
         emit(
           state.copyWith(
-            cartBaseState: CartBaseState<GetCartResponseEntity>(error: true),
+            cartBaseState: const CartBaseState<GetCartResponseEntity>(
+              isError: true,
+            ),
           ),
         );
       },
@@ -82,30 +83,72 @@ class CartCubit extends Cubit<CartState> {
     String productId,
     UpdateItemQuantityRequestEntity requestEntity,
   ) async {
-    // final response = await _updateItemQuantityUseCase(
-    //   productId: productId,
-    //   requestEntity: requestEntity,
-    // );
-    // response.when(
-    //   success: (success) {
-    //     emit(state.copyWith(getCartResponse: success));
-    //   },
-    //   failure: (failure) {
-    //     _uiEventController.add(Error(message: failure.message));
-    //   },
-    // );
+    final response = await _updateItemQuantityUseCase(
+      productId: productId,
+      requestEntity: requestEntity,
+    );
+    response.when(
+      success: (success) {
+        emit(
+          state.copyWith(
+            cartBaseState: CartBaseState<GetCartResponseEntity>(data: success),
+          ),
+        );
+      },
+      failure: (failure) {
+        emit(
+          state.copyWith(
+            cartBaseState: CartBaseState<GetCartResponseEntity>(
+              data: state.cartBaseState?.data,
+            ),
+          ),
+        );
+        _uiEventController.add(ErrorCartItemsUpdate(message: failure.message));
+      },
+    );
   }
 
   Future<void> _removeItemFromCart(String productId) async {
-    // final response = await _removeItemFromCartUseCase(productId: productId);
-    // response.when(
-    //   success: (success) {
-    //     emit(state.copyWith(getCartResponse: success));
-    //   },
-    //   failure: (failure) {
-    //     _uiEventController.add(Error(message: failure.message));
-    //   },
-    // );
+    final response = await _removeItemFromCartUseCase(productId: productId);
+    response.when(
+      success: (success) {
+        success.numOfCartItems == 0
+            ? emit(
+                state.copyWith(
+                  cartBaseState: CartBaseState<GetCartResponseEntity>(
+                    isEmpty: true,
+                    data: success,
+                  ),
+                ),
+              )
+            : emit(
+                state.copyWith(
+                  cartBaseState: CartBaseState<GetCartResponseEntity>(
+                    data: success,
+                  ),
+                ),
+              );
+      },
+      failure: (failure) {
+        final previousResponse = state.cartBaseState?.data;
+        if (previousResponse != null) {
+          final updatedItems = previousResponse.cart.cartItems.map((item) {
+            return item.copyWith();
+          }).toList();
+          final updatedData = previousResponse.copyWith(
+            cart: previousResponse.cart.copyWith(cartItems: updatedItems),
+          );
+          emit(
+            state.copyWith(
+              cartBaseState: CartBaseState<GetCartResponseEntity>(
+                data: updatedData,
+              ),
+            ),
+          );
+        }
+        _uiEventController.add(ErrorCartItemsUpdate(message: failure.message));
+      },
+    );
   }
 
   Future<void> _clearCart() async {
@@ -113,12 +156,24 @@ class CartCubit extends Cubit<CartState> {
     final response = await _clearCartUseCase();
     response.when(
       success: (success) {
-        emit(state.copyWith(cartBaseState: CartBaseState<GetCartResponseEntity>(emptyCart: true)));
-        _uiEventController.add(SuccessClearCart(message: success.message));
+        _uiEventController.add(SuccessAfterLoading(message: success.message));
+        emit(
+          state.copyWith(
+            cartBaseState: const CartBaseState<GetCartResponseEntity>(
+              isEmpty: true,
+            ),
+          ),
+        );
       },
       failure: (failure) {
-        _uiEventController.add(Error(message: failure.message));
-        emit(state.copyWith(cartBaseState: CartBaseState<GetCartResponseEntity>(error: true)));
+        _uiEventController.add(ErrorGetCart(message: failure.message));
+        emit(
+          state.copyWith(
+            cartBaseState: const CartBaseState<GetCartResponseEntity>(
+              isError: true,
+            ),
+          ),
+        );
       },
     );
   }

@@ -12,6 +12,18 @@ class GetCartResponseEntity extends Equatable {
     required this.cart,
   });
 
+  GetCartResponseEntity copyWith({
+    String? message,
+    int? numOfCartItems,
+    CartEntity? cart,
+  }) {
+    return GetCartResponseEntity(
+      message: message ?? this.message,
+      numOfCartItems: numOfCartItems ?? this.numOfCartItems,
+      cart: cart ?? this.cart,
+    );
+  }
+
   @override
   List<Object?> get props => [message, numOfCartItems, cart];
 }

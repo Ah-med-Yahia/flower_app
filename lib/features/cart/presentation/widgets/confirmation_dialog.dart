@@ -2,82 +2,63 @@ import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
-class ClearCartConfirmationModal extends StatefulWidget {
-  const ClearCartConfirmationModal({
+class ConfirmationDialog extends StatefulWidget {
+  const ConfirmationDialog({
     super.key,
-    required this.onConfirm,
+    required this.title,
+    required this.message,
+    this.onConfirm,
+    this.icon = Icons.delete_outline,
   });
 
-  final VoidCallback onConfirm;
+  final String title;
+  final String message;
+  final IconData icon;
+  final VoidCallback? onConfirm;
 
   @override
-  State<ClearCartConfirmationModal> createState() =>
-      _ClearCartConfirmationModalState();
+  State<ConfirmationDialog> createState() => _ConfirmationDialogState();
 }
 
-class _ClearCartConfirmationModalState
-    extends State<ClearCartConfirmationModal>
+class _ConfirmationDialogState extends State<ConfirmationDialog>
     with SingleTickerProviderStateMixin {
-  late AnimationController _animationController;
-  late Animation<double> _scaleAnimation;
-  late Animation<double> _fadeAnimation;
-
-  late final Size _screenSize;
-  late final TextTheme textStyle;
+  late final AnimationController _controller;
+  late final Animation<double> _scale;
+  late final Animation<double> _fade;
 
   @override
   void initState() {
     super.initState();
-
-    _animationController = AnimationController(
+    _controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 300),
     );
 
-    _scaleAnimation = CurvedAnimation(
-      parent: _animationController,
-      curve: Curves.easeOutBack,
-    );
+    _scale = CurvedAnimation(parent: _controller, curve: Curves.easeOutBack);
 
-    _fadeAnimation = CurvedAnimation(
-      parent: _animationController,
-      curve: Curves.easeOut,
-    );
+    _fade = CurvedAnimation(parent: _controller, curve: Curves.easeOut);
 
-    _animationController.forward();
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    _screenSize = MediaQuery.of(context).size;
-    textStyle = Theme.of(context).textTheme;
+    _controller.forward();
   }
 
   @override
   void dispose() {
-    _animationController.dispose();
+    _controller.dispose();
     super.dispose();
-  }
-
-  void _handleConfirm() {
-    Navigator.of(context).pop();
-    widget.onConfirm();
-  }
-
-  void _handleCancel() {
-    Navigator.of(context).pop();
   }
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final textTheme = Theme.of(context).textTheme;
+
     return FadeTransition(
-      opacity: _fadeAnimation,
+      opacity: _fade,
       child: Dialog(
         backgroundColor: AppColors.transparent,
         elevation: 0,
         child: ScaleTransition(
-          scale: _scaleAnimation,
+          scale: _scale,
           child: Container(
             padding: const EdgeInsets.all(24),
             decoration: BoxDecoration(
@@ -87,55 +68,45 @@ class _ClearCartConfirmationModalState
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                // 🗑️ Icon
                 Container(
-                  width: _screenSize.width * 0.25,
-                  height: _screenSize.height * 0.12,
+                  width: size.width * 0.25,
+                  height: size.height * 0.12,
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
                       colors: [AppColors.background, AppColors.lightPrimary],
                     ),
                     borderRadius: BorderRadius.circular(40),
                   ),
-                  child: const Icon(
-                    Icons.delete_outline,
-                    size: 48,
-                    color: AppColors.primary,
-                  ),
+                  child: Icon(widget.icon, size: 48, color: AppColors.primary),
                 ),
 
                 const SizedBox(height: 24),
 
-                Text(
-                  AppTextConstants.clearCart,
-                  style: textStyle.headlineMedium,
-                ),
-
+                Text(widget.title, style: textTheme.headlineMedium),
                 const SizedBox(height: 12),
 
                 Text(
-                  AppTextConstants.clearCartConfirmation,
+                  widget.message,
                   textAlign: TextAlign.center,
-                  style: textStyle.bodyMedium,
+                  style: textTheme.bodyMedium,
                 ),
 
                 const SizedBox(height: 32),
 
-                // ✅ Confirm
                 SizedBox(
                   width: double.infinity,
-                  height: _screenSize.height * 0.07,
+                  height: size.height * 0.07,
                   child: ElevatedButton(
-                    onPressed: _handleConfirm,
+                    onPressed: () {
+                      Navigator.of(context).pop(true);
+                      if (widget.onConfirm != null) {
+                        widget.onConfirm!();
+                      }
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.transparent,
                       shadowColor: AppColors.transparent,
                       padding: EdgeInsets.zero,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
                     ),
                     child: Ink(
                       decoration: BoxDecoration(
@@ -144,14 +115,12 @@ class _ClearCartConfirmationModalState
                         ),
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      child: Container(
-                        alignment: Alignment.center,
+                      child: Center(
                         child: Text(
                           AppTextConstants.confirm,
-                          style: textStyle.bodyMedium?.copyWith(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
+                          style: textTheme.bodyMedium?.copyWith(
                             color: AppColors.background,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
@@ -161,25 +130,19 @@ class _ClearCartConfirmationModalState
 
                 const SizedBox(height: 12),
 
-                // ❌ Cancel
                 SizedBox(
                   width: double.infinity,
-                  height: _screenSize.height * 0.07,
+                  height: size.height * 0.07,
                   child: OutlinedButton(
-                    onPressed: _handleCancel,
+                    onPressed: () => Navigator.of(context).pop(false),
                     style: OutlinedButton.styleFrom(
-                      side: const BorderSide(
-                        color: AppColors.lightGrey,
-                        width: 1,
-                      ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
                     child: Text(
                       AppTextConstants.cancel,
-                      style: textStyle.bodyMedium?.copyWith(
-                        fontSize: 16,
+                      style: textTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: AppColors.grey,
                       ),

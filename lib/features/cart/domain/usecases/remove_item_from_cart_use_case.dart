@@ -11,6 +11,5 @@ class RemoveItemFromCartUseCase {
 
   Future<BaseResponse<GetCartResponseEntity>> call({
     required String productId,
-  }) =>
-      _cartRepository.removeItemFromCart(productId: productId);
+  }) => _cartRepository.removeItemFromCart(productId: productId);
 }

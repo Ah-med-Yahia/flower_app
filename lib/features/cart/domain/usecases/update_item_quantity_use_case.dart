@@ -13,9 +13,8 @@ class UpdateItemQuantityUseCase {
   Future<BaseResponse<GetCartResponseEntity>> call({
     required String productId,
     required UpdateItemQuantityRequestEntity requestEntity,
-  }) =>
-      _cartRepository.updateItemQuantity(
-        productId: productId,
-        requestEntity: requestEntity,
-      );
+  }) => _cartRepository.updateItemQuantity(
+    productId: productId,
+    requestEntity: requestEntity,
+  );
 }

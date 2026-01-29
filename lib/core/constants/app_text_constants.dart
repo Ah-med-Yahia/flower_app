@@ -123,4 +123,14 @@ class AppTextConstants {
   static const String confirm = 'Confirm';
   static const String percentageSign = '%';
   static const String id = 'id';
+  static const String currency = 'EGP';
+  static const String deleteThisItem = 'Delete this item?';
+  static const String delete = 'Delete';
+  static const String checkout = 'Checkout';
+  static const String subTotal = 'Sub Total';
+  static const String deliveryFee = 'Delivery Fee';
+  static const String total = 'Total';
+  static const String dollarSign = '\$';
+  static const String clearCartMessage =
+      'Are you sure you want to clear your cart?';
 }

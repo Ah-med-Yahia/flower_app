@@ -5,12 +5,26 @@ class CartEntity extends Equatable {
   final List<CartItemEntity> cartItems;
   final List<dynamic>? appliedCoupons;
   final int totalPrice;
+  final int deliveryFee;
 
   const CartEntity({
     required this.cartItems,
     required this.appliedCoupons,
     required this.totalPrice,
+    this.deliveryFee = 10,
   });
+
+  CartEntity copyWith({
+    List<CartItemEntity>? cartItems,
+    List<dynamic>? appliedCoupons,
+    int? totalPrice,
+  }) {
+    return CartEntity(
+      cartItems: cartItems ?? this.cartItems,
+      appliedCoupons: appliedCoupons ?? this.appliedCoupons,
+      totalPrice: totalPrice ?? this.totalPrice,
+    );
+  }
 
   @override
   List<Object?> get props => [cartItems, appliedCoupons, totalPrice];

@@ -15,7 +15,7 @@ class LocationWidget extends StatelessWidget {
         Text(AppTextConstants.deliverTo, style: textStyle.bodyMedium),
         Expanded(
           child: Text(
-            "2XVP+XC - Sheikh Zayed.....",
+            '2XVP+XC - Sheikh Zayed.....',
             style: textStyle.bodyMedium?.copyWith(
               color: AppColors.textPrimary,
               fontWeight: FontWeight.bold,
