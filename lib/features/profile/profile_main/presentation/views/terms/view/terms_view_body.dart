@@ -46,8 +46,11 @@ class _TermsViewBodyState extends State<TermsViewBody> {
           return const Center(child: LoadingIndicator());
         }
         if (termState.errorMessage != null) {
+          final error = termState.errorMessage!.trim().isEmpty
+              ? ErrorsConstant.defaultError
+              : termState.errorMessage!;
           return CustomErrorWidget(
-            error: termState.errorMessage ?? ErrorsConstant.defaultError,
+            error: error,
             onTryAgain: () => cubit.doIntent(GetTermDataEvent()),
           );
         }

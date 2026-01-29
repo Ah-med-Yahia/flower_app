@@ -147,8 +147,8 @@ void _testSuccessfulGetTermsData(
   ProfileMainRepoImpl Function() getRepository,
 ) {
   test(
-    'When call getLoggedUserData, '
-    'it should return Success with UserDataResponse when remote data source call succeeds',
+    'When call getTermsData, '
+    'it should return Success with loaded TermsAndConditions when local data source call succeeds',
     () async {
       final mockLocalDataSource = getMockLocalDataSource();
       final repository = getRepository();

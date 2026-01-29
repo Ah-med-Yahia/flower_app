@@ -27,33 +27,36 @@ class TermsSectionWidget extends StatelessWidget {
 
   Widget _buildTitle() {
     final titleStyle = section.style.title;
-    if (titleStyle == null) return const SizedBox.shrink();
+    final titleText = section.title?[language];
+    if (titleStyle == null || titleText == null) return const SizedBox.shrink();
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: Text(
-        section.title![language]!,
+        titleText,
         style: TextStyle(
           fontSize: titleStyle.fontSize,
           fontWeight: titleStyle.fontWeight,
           color: titleStyle.color,
         ),
-        textAlign: titleStyle.textAlign[language],
+        textAlign: titleStyle.textAlign[language] ?? TextAlign.start,
       ),
     );
   }
 
   Widget _buildContent() {
     final dynamic rawContent = section.content[language];
+    if (rawContent == null) return const SizedBox.shrink();
+
     if (section.style.fontSize != null) {
       return Text(
-        rawContent as String,
+        rawContent.toString(),
         style: TextStyle(
           fontSize: section.style.fontSize,
           fontWeight: section.style.fontWeight,
           color: section.style.color,
         ),
-        textAlign: section.style.textAlign?[language],
+        textAlign: section.style.textAlign?[language] ?? TextAlign.start,
       );
     }
 
@@ -64,13 +67,13 @@ class TermsSectionWidget extends StatelessWidget {
       return _buildListContent(rawContent.cast<String>(), contentStyle);
     } else {
       return Text(
-        rawContent as String,
+        rawContent.toString(),
         style: TextStyle(
           fontSize: contentStyle.fontSize,
           fontWeight: contentStyle.fontWeight,
           color: contentStyle.color,
         ),
-        textAlign: contentStyle.textAlign[language],
+        textAlign: contentStyle.textAlign[language] ?? TextAlign.start,
       );
     }
   }
@@ -106,7 +109,7 @@ class TermsSectionWidget extends StatelessWidget {
                     fontWeight: style.fontWeight,
                     color: style.color,
                   ),
-                  textAlign: style.textAlign[language],
+                  textAlign: style.textAlign[language] ?? TextAlign.start,
                   textDirection: isRTL ? TextDirection.rtl : TextDirection.ltr,
                 ),
               ),

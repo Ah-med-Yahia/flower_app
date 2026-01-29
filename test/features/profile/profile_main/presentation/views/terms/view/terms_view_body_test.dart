@@ -81,7 +81,7 @@ void main() {
         );
 
         await tester.pumpWidget(buildTestableWidget());
-        // CustomErroWidget
+        // CustomErrorWidget
         expect(find.byType(CustomErrorWidget), findsOneWidget);
         expect(find.byType(Center), findsNWidgets(2));
         expect(find.byType(Padding), findsNWidgets(2));
