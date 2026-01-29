@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/base_state/base_state.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
@@ -19,7 +20,8 @@ class ChangePasswordCubit extends Cubit<ChangePasswordStates> {
 
   Stream<ChangePaswordUiIntents> get uiInenet => _streamController.stream;
 
-  ChangePasswordCubit(this._passwordUseCase) : super(const ChangePasswordStates());
+  ChangePasswordCubit(this._passwordUseCase)
+    : super(const ChangePasswordStates());
 
   void doIntent(ChangePasswordIntents intent) {
     switch (intent) {
@@ -87,7 +89,7 @@ class ChangePasswordCubit extends Cubit<ChangePasswordStates> {
   Future<void> _updatePawssord() async {
     if (state.currentPassword.trim().isEmpty) {
       _streamController.add(
-       const ShowErrorIntent(
+        const ShowErrorIntent(
           message: AppTextConstants.pleaseEnterYourCurrentPassword,
         ),
       );
@@ -96,28 +98,32 @@ class ChangePasswordCubit extends Cubit<ChangePasswordStates> {
 
     if (state.newPassword.trim().isEmpty) {
       _streamController.add(
-      const  ShowErrorIntent(message: AppTextConstants.pleaseEnterYourNewPassword),
+        const ShowErrorIntent(
+          message: AppTextConstants.pleaseEnterYourNewPassword,
+        ),
       );
       return;
     }
 
     if (state.confirmPassword.trim().isEmpty) {
       _streamController.add(
-      const  ShowErrorIntent(message: AppTextConstants.pleaseConfirmYourNewPassword),
+        const ShowErrorIntent(
+          message: AppTextConstants.pleaseConfirmYourNewPassword,
+        ),
       );
       return;
     }
 
     if (state.newPassword.trim() != state.confirmPassword.trim()) {
       _streamController.add(
-      const  ShowErrorIntent(message: AppTextConstants.passwordsDoNotMatch),
+        const ShowErrorIntent(message: AppTextConstants.passwordsDoNotMatch),
       );
       return;
     }
 
     if (state.currentPassword.trim() == state.newPassword.trim()) {
       _streamController.add(
-       const ShowErrorIntent(message: AppTextConstants.newPasswordSameAsOld),
+        const ShowErrorIntent(message: AppTextConstants.newPasswordSameAsOld),
       );
       return;
     }
@@ -134,7 +140,7 @@ class ChangePasswordCubit extends Cubit<ChangePasswordStates> {
     response.map(
       success: (response) async {
         _streamController.add(
-         const NavigateToEditProfileIntent(
+          const NavigateToEditProfileIntent(
             message: AppTextConstants.passwordUpdatedSuccessfully,
           ),
         );

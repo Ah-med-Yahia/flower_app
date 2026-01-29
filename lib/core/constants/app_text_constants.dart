@@ -26,7 +26,7 @@ class AppTextConstants {
   static const String gender = 'Gender';
   static const String female = 'Female';
   static const String male = 'Male';
- 
+
   static const String creatingAccountAgreement =
       'Creating an account, you agree to our ';
   static const String termsAndConditions = 'Terms&Conditions';
@@ -112,4 +112,13 @@ class AppTextConstants {
   static const String loading = 'Loading...';
   static const String percentageSign = '%';
   static const String id = 'id';
+
+  //-------------------------- TERMS-&-CONDITIONS PAGE --------------------------//
+  static const String noTermsDataAvailable = 'No terms data available';
+  static const String termsAppBarTitleEn = 'Terms and Conditions';
+  static const String termsAppBarTitleAr = 'الشروط والأحكام';
+  static const String enLang = 'en';
+  static const String arLang = 'ar';
+  static const String switchToArabic = 'Switch to Arabic';
+  static const String switchToEnglish = 'التبديل إلى الإنجليزية';
 }
