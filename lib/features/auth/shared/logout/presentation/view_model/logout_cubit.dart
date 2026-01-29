@@ -2,6 +2,7 @@ import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/features/auth/shared/logout/domain/usecases/logout_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+
 import '../../../../../../config/base_state/base_state.dart';
 import 'logout_events.dart';
 import 'logout_states.dart';
@@ -22,7 +23,11 @@ class LogoutCubit extends Cubit<LogoutStates> {
   void _logout() async {
     emit(
       state.copyWith(
-        logoutState: const BaseState(isLoading: true, data: null, errorMessage: null),
+        logoutState: const BaseState(
+          isLoading: true,
+          data: null,
+          errorMessage: null,
+        ),
       ),
     );
 
