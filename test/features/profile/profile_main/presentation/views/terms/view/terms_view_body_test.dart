@@ -5,7 +5,8 @@ import 'package:flower_app/core/widgets/custom_eleveted_button.dart';
 import 'package:flower_app/core/widgets/custom_error_widget.dart';
 import 'package:flower_app/core/widgets/loading_indicator_widget.dart';
 import 'package:flower_app/features/profile/profile_main/domain/entities/term_section_entity.dart';
-import 'package:flower_app/features/profile/profile_main/presentation/view_models/terms/term_cubit.dart';
+import 'package:flower_app/features/profile/profile_main/presentation/view_models/terms/static_content_cubit.dart';
+import 'package:flower_app/features/profile/profile_main/presentation/view_models/terms/static_content_states.dart';
 import 'package:flower_app/features/profile/profile_main/presentation/views/terms/view/terms_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,17 +16,17 @@ import 'package:mockito/mockito.dart';
 
 import 'terms_view_body_test.mocks.dart';
 
-@GenerateMocks([TermCubit])
+@GenerateMocks([StaticContentCubit])
 void main() {
-  late MockTermCubit mockCubit;
+  late MockStaticContentCubit mockCubit;
   setUp(() {
-    mockCubit = MockTermCubit();
+    mockCubit = MockStaticContentCubit();
   });
-  Widget buildTestableWidget() {
+  Widget buildTestableWidget({bool isAboutApp = false}) {
     return MaterialApp(
-      home: BlocProvider<TermCubit>(
+      home: BlocProvider<StaticContentCubit>(
         create: (context) => mockCubit,
-        child: const TermsViewBody(),
+        child: TermsViewBody(isAboutApp: isAboutApp),
       ),
     );
   }
@@ -36,14 +37,14 @@ void main() {
       '(1) Test Case: When in Loading state, should show loading indicator',
       (WidgetTester tester) async {
         when(mockCubit.state).thenReturn(
-          const TermStates(
-            termState: BaseState<TermsAndConditionsEntity>(isLoading: true),
+          const StaticContentStates(
+            legalState: BaseState<TermsAndConditionsEntity>(isLoading: true),
           ),
         );
         when(mockCubit.stream).thenAnswer(
           (_) => Stream.value(
-            const TermStates(
-              termState: BaseState<TermsAndConditionsEntity>(isLoading: true),
+            const StaticContentStates(
+              legalState: BaseState<TermsAndConditionsEntity>(isLoading: true),
             ),
           ),
         );
@@ -62,8 +63,8 @@ void main() {
       (WidgetTester tester) async {
         const String mockErrorMsg = 'Error Msg';
         when(mockCubit.state).thenReturn(
-          const TermStates(
-            termState: BaseState<TermsAndConditionsEntity>(
+          const StaticContentStates(
+            legalState: BaseState<TermsAndConditionsEntity>(
               isLoading: false,
               errorMessage: mockErrorMsg,
             ),
@@ -71,8 +72,8 @@ void main() {
         );
         when(mockCubit.stream).thenAnswer(
           (_) => Stream.value(
-            const TermStates(
-              termState: BaseState<TermsAndConditionsEntity>(
+            const StaticContentStates(
+              legalState: BaseState<TermsAndConditionsEntity>(
                 isLoading: false,
                 errorMessage: mockErrorMsg,
               ),
@@ -103,8 +104,8 @@ void main() {
       WidgetTester tester,
     ) async {
       when(mockCubit.state).thenReturn(
-        const TermStates(
-          termState: BaseState<TermsAndConditionsEntity>(
+        const StaticContentStates(
+          legalState: BaseState<TermsAndConditionsEntity>(
             isLoading: false,
             data: null,
             errorMessage: null,
@@ -113,8 +114,8 @@ void main() {
       );
       when(mockCubit.stream).thenAnswer(
         (_) => Stream.value(
-          const TermStates(
-            termState: BaseState<TermsAndConditionsEntity>(
+          const StaticContentStates(
+            legalState: BaseState<TermsAndConditionsEntity>(
               isLoading: false,
               data: null,
               errorMessage: null,
@@ -154,8 +155,8 @@ void main() {
       ];
       final mockData = TermsAndConditionsEntity(sections: mockSections);
       when(mockCubit.state).thenReturn(
-        TermStates(
-          termState: BaseState<TermsAndConditionsEntity>(
+        StaticContentStates(
+          legalState: BaseState<TermsAndConditionsEntity>(
             isLoading: false,
             data: mockData,
             errorMessage: null,
@@ -164,8 +165,8 @@ void main() {
       );
       when(mockCubit.stream).thenAnswer(
         (_) => Stream.value(
-          TermStates(
-            termState: BaseState<TermsAndConditionsEntity>(
+          StaticContentStates(
+            legalState: BaseState<TermsAndConditionsEntity>(
               isLoading: false,
               data: mockData,
               errorMessage: null,
