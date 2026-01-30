@@ -76,6 +76,8 @@ flutter:
   uses-material-design: true
   assets:
     - assets/lottie/
+    - assets/files/
+    - assets/images/
 
 
 flutter_gen:
