@@ -389,6 +389,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i805.RegisterCubit>(
       () => _i805.RegisterCubit(gh<_i545.RegisterUseCase>()),
     );
+    gh.factory<_i513.AddUpdateAddressRepo>(
+      () => _i324.AddUpdateAddressRepoImpl(
+        gh<_i746.AddUpdateAddressRemoteDataSource>(),
+      ),
+    );
     gh.factory<_i105.ForgetPasswordCubit>(
       () => _i105.ForgetPasswordCubit(gh<_i737.ForgetPasswordUseCase>()),
     );
