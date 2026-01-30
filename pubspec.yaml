@@ -54,6 +54,7 @@ dependencies:
   # Debugging
   logger: ^2.6.2
   pretty_dio_logger: ^1.4.0
+  latlong2: ^0.9.1
 
 dev_dependencies:
   flutter_test:
@@ -76,6 +77,8 @@ flutter:
   uses-material-design: true
   assets:
     - assets/lottie/
+    - assets/files/
+    - assets/images/
 
 
 flutter_gen:

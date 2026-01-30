@@ -14,8 +14,6 @@ import '../../core/constants/cache_constants.dart';
 /// Recommendation:
 /// Consider using a generic approach or creating specialized storage services for different data types.
 
-// TODO(ahmed-salah): Create specialized storage services for each data type
-
 @lazySingleton
 class SecureStorageService {
   late final FlutterSecureStorage _storage;

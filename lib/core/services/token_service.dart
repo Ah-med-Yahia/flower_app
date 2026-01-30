@@ -11,7 +11,6 @@ import '../constants/cache_constants.dart';
 ///        Manages login state (isLoggedIn, saveLoginData)
 ///        Provides status reporting (getTokenStatus)
 
-// TODO(ahmed-salah): Split into separate services for each responsibility
 @injectable
 class TokenService {
   final SecureStorageService _secureStorageService;

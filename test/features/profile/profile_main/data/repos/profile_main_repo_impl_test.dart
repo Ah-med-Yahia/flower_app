@@ -1,10 +1,19 @@
+import 'dart:ui';
+
 import 'package:dio/dio.dart';
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/error_handler/error_handler.dart';
+import 'package:flower_app/features/profile/profile_main/data/datasource/local/profile_main_local_data_source.dart';
 import 'package:flower_app/features/profile/profile_main/data/datasource/profile_main_remote_data_source.dart';
+import 'package:flower_app/features/profile/profile_main/data/models/terms_and_conditions/bilingual_content.dart';
+import 'package:flower_app/features/profile/profile_main/data/models/terms_and_conditions/bilingual_list.dart';
+import 'package:flower_app/features/profile/profile_main/data/models/terms_and_conditions/section_style.dart';
+import 'package:flower_app/features/profile/profile_main/data/models/terms_and_conditions/term_section.dart';
+import 'package:flower_app/features/profile/profile_main/data/models/terms_and_conditions/terms_and_conditions.dart';
 import 'package:flower_app/features/profile/profile_main/data/models/user_data_response_dto.dart';
 import 'package:flower_app/features/profile/profile_main/data/models/user_dto.dart';
 import 'package:flower_app/features/profile/profile_main/data/repos/profile_main_repo_impl.dart';
+import 'package:flower_app/features/profile/profile_main/domain/entities/term_section_entity.dart';
 import 'package:flower_app/features/profile/profile_main/domain/entities/user_data_response.dart';
 import 'package:flower_app/features/profile/profile_main/domain/entities/user_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -13,14 +22,16 @@ import 'package:mockito/mockito.dart';
 
 import 'profile_main_repo_impl_test.mocks.dart';
 
-@GenerateMocks([ProfileMainRemoteDataSource])
+@GenerateMocks([ProfileMainRemoteDataSource, ProfileMainLocalDataSource])
 void main() {
   late ProfileMainRepoImpl repository;
   late MockProfileMainRemoteDataSource mockRemoteDataSource;
+  late MockProfileMainLocalDataSource mockLocalDataSource;
 
   setUp(() {
     mockRemoteDataSource = MockProfileMainRemoteDataSource();
-    repository = ProfileMainRepoImpl(mockRemoteDataSource);
+    mockLocalDataSource = MockProfileMainLocalDataSource();
+    repository = ProfileMainRepoImpl(mockRemoteDataSource, mockLocalDataSource);
   });
 
   group('getLoggedUserData', () {
@@ -28,10 +39,14 @@ void main() {
       () => mockRemoteDataSource,
       () => repository,
     );
-    _testGetBestSellerThrowsException(
+    _testGetLoggedUserDataThrowsException(
       () => mockRemoteDataSource,
       () => repository,
     );
+  });
+
+  group('getTermsData', () {
+    _testSuccessfulGetTermsData(() => mockLocalDataSource, () => repository);
   });
 }
 
@@ -85,7 +100,7 @@ void _testSuccessfulGetLoggedUserData(
   );
 }
 
-void _testGetBestSellerThrowsException(
+void _testGetLoggedUserDataThrowsException(
   MockProfileMainRemoteDataSource Function() getMockRemoteDataSource,
   ProfileMainRepoImpl Function() getRepository,
 ) {
@@ -123,6 +138,58 @@ void _testGetBestSellerThrowsException(
         },
       );
       verify(mockRemoteDataSource.getLoggedUserData()).called(1);
+    },
+  );
+}
+
+void _testSuccessfulGetTermsData(
+  MockProfileMainLocalDataSource Function() getMockLocalDataSource,
+  ProfileMainRepoImpl Function() getRepository,
+) {
+  test(
+    'When call getTermsData, '
+    'it should return Success with loaded TermsAndConditions when local data source call succeeds',
+    () async {
+      final mockLocalDataSource = getMockLocalDataSource();
+      final repository = getRepository();
+
+      // Arrange
+      final section = TermSection(
+        section: 'section 1',
+        title: BilingualContent(en: 'en', ar: 'ar'),
+        content: BilingualList(en: ['en1', 'en2'], ar: ['ar1', 'ar2']),
+        style: SectionStyle(),
+      );
+
+      final mockDto = TermsAndConditions(sections: [section]);
+      when(mockLocalDataSource.getTermsData()).thenAnswer((_) async => mockDto);
+
+      // Act
+      final result = await repository.getTermsData();
+
+      // Assert
+      expect(result, isA<Success<TermsAndConditionsEntity>>());
+      result.when(
+        success: (data) {
+          expect(data.sections, isA<List<TermSectionEntity>>());
+          expect(data.sections[0].content, isA<Map<String, List<String>>>());
+          expect(data.sections[0].style, isA<SectionStyleEntity>());
+          expect(data.sections[0].style.title, isA<TextStyleEntity?>());
+          expect(data.sections[0].style.content, isA<TextStyleEntity?>());
+          expect(data.sections[0].style.color, isA<Color?>());
+          expect(
+            data.sections[0].style.textAlign,
+            isA<Map<String, TextAlign>?>(),
+          );
+          expect(data.sections[0].section, 'section 1');
+          expect(data.sections[0].content['en'], ['en1', 'en2']);
+          expect(data.sections[0].content['ar'], ['ar1', 'ar2']);
+          expect(data.sections[0].section, 'section 1');
+          expect(data.sections[0].title, {'en': 'en', 'ar': 'ar'});
+        },
+        failure: (_) => fail('Expected success but got failure'),
+      );
+      verify(mockLocalDataSource.getTermsData()).called(1);
     },
   );
 }
