@@ -10,7 +10,7 @@ class GetTermUseCase {
 
   GetTermUseCase(this._profileMainRepo);
 
-  Future<BaseResponse<TermsAndConditionsEntity>> call() {
+  Future<BaseResponse<List<TermSectionEntity>>> call() {
     return _profileMainRepo.getTermsData();
   }
 }
