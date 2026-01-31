@@ -9,8 +9,8 @@ class OrderAndAddressSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsetsGeometry.symmetric(horizontal: 16),
+    return Padding(
+      padding: const EdgeInsetsGeometry.symmetric(horizontal: 16),
       child: Column(
         children: [
           ProfileCardItem(

@@ -26,7 +26,7 @@ class _TermsViewBodyState extends State<TermsViewBody> {
   void initState() {
     super.initState();
     isAboutApp = widget.isAboutApp;
-    currentLanguage = AppTextConstants.enLang;
+    currentLanguage = AppTextConstants.enLangKey;
     cubit = context.read<StaticContentCubit>();
     _loadInitialData();
   }
@@ -41,9 +41,9 @@ class _TermsViewBodyState extends State<TermsViewBody> {
 
   void toggleLanguage() {
     setState(() {
-      currentLanguage = currentLanguage == AppTextConstants.enLang
-          ? AppTextConstants.arLang
-          : AppTextConstants.enLang;
+      currentLanguage = currentLanguage == AppTextConstants.enLangKey
+          ? AppTextConstants.arLangKey
+          : AppTextConstants.enLangKey;
     });
   }
 
@@ -53,10 +53,10 @@ class _TermsViewBodyState extends State<TermsViewBody> {
       appBar: AppBar(
         title: Text(
           isAboutApp
-              ? (currentLanguage == AppTextConstants.enLang
+              ? (currentLanguage == AppTextConstants.enLangKey
                     ? AppTextConstants.appInfoAppBarTitleEn
                     : AppTextConstants.appInfoAppBarTitleAr)
-              : (currentLanguage == AppTextConstants.enLang
+              : (currentLanguage == AppTextConstants.enLangKey
                     ? AppTextConstants.termsAppBarTitleEn
                     : AppTextConstants.termsAppBarTitleAr),
         ),
@@ -64,7 +64,7 @@ class _TermsViewBodyState extends State<TermsViewBody> {
           IconButton(
             icon: const Icon(Icons.language),
             onPressed: toggleLanguage,
-            tooltip: currentLanguage == AppTextConstants.enLang
+            tooltip: currentLanguage == AppTextConstants.enLangKey
                 ? AppTextConstants.switchToArabic
                 : AppTextConstants.switchToEnglish,
           ),
@@ -87,9 +87,7 @@ class _TermsViewBodyState extends State<TermsViewBody> {
           }
 
           if (state.contentsData.isEmpty) {
-            return const Center(
-              child: Text(AppTextConstants.noTermsDataAvailable),
-            );
+            return Center(child: Text(AppTextConstants.noTermsDataAvailable));
           }
 
           final data = state.contentsData;

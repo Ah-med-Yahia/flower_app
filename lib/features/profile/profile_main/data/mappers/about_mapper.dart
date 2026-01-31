@@ -28,8 +28,8 @@ class AboutMapper {
     );
   }
 
-  static const String _enLangKey = AppTextConstants.enLang;
-  static const String _arLangKey = AppTextConstants.arLang;
+  static const String _enLangKey = AppTextConstants.enLangKey;
+  static const String _arLangKey = AppTextConstants.arLangKey;
 
   /// Maps an individual section to its entity.
   static TermSectionEntity _toSectionEntity(TermSection model) {

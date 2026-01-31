@@ -19,10 +19,10 @@ class TermsAndConditionsWidget extends StatelessWidget {
           color: AppColors.textSecondary,
           fontWeight: FontWeight.bold,
         ),
-        children: const [
+        children: [
           TextSpan(
             text: AppTextConstants.termsAndConditions,
-            style: TextStyle(
+            style: const TextStyle(
               color: AppColors.primary,
               fontWeight: FontWeight.bold,
               decoration: TextDecoration.underline,

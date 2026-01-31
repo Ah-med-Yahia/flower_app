@@ -15,7 +15,8 @@ void main() {
   late MockForgetPasswordRepo mockRepo;
   late ForgetPasswordUseCase forgetPasswordUseCase;
 
-  setUpAll(() {
+  setUpAll(() async {
+    TestWidgetsFlutterBinding.ensureInitialized();
     mockRepo = MockForgetPasswordRepo();
     forgetPasswordUseCase = ForgetPasswordUseCase(mockRepo);
   });
@@ -86,18 +87,14 @@ void main() {
         result.when(
           success: (data) => fail('Expected failure but got success'),
           failure: (error) {
-            // ErrorHandler.handle() returns default error for non-DioException/LocalException
-            expect(
-              error.message,
-              equals('Something went wrong. Please try again.'),
-            );
+            expect(error.message, equals(testError));
           },
         );
         verify(mockRepo.forgetPassword(email: testEmail)).called(1);
       });
       test('When email is null should return API error message', () async {
         // arrange
-        const String errorMessage = 'Something went wrong. Please try again.';
+        const String errorMessage = 'Email is required';
         final errorResponse = mockFailureResponse(testMessage: errorMessage);
 
         when(
@@ -112,11 +109,7 @@ void main() {
         result.when(
           success: (data) => fail('Expected failure but got success'),
           failure: (error) {
-            // ErrorHandler.handle() returns default error for non-DioException/LocalException
-            expect(
-              error.message,
-              equals('Something went wrong. Please try again.'),
-            );
+            expect(error.message, equals(errorMessage));
           },
         );
         verify(mockRepo.forgetPassword(email: null)).called(1);

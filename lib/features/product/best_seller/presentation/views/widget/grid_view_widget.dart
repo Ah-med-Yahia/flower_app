@@ -14,7 +14,7 @@ class GridViewWidget extends StatelessWidget {
     final cubit = context.read<BestSellerCubit>();
     final productItem = cubit.state.bestSellerList ?? [];
     if (productItem.isEmpty) {
-      return const Center(child: Text(AppTextConstants.noProductsAvailable));
+      return Center(child: Text(AppTextConstants.noProductsAvailable));
     }
 
     return GridView.builder(

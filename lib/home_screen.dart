@@ -50,21 +50,21 @@ class _HomeScreenState extends State<HomeScreen> {
         currentIndex: _currentTab.index,
         selectedItemColor: AppColors.primary,
         unselectedItemColor: AppColors.iconGrey,
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
+            icon: const Icon(Icons.home_outlined),
             label: AppTextConstants.home,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.category_outlined),
+            icon: const Icon(Icons.category_outlined),
             label: AppTextConstants.categories,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart_outlined),
+            icon: const Icon(Icons.shopping_cart_outlined),
             label: AppTextConstants.cart,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
+            icon: const Icon(Icons.person_outline),
             label: AppTextConstants.profile,
           ),
         ],
