@@ -8,7 +8,7 @@ import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 part 'cart_api_client.g.dart';
 
-@injectable
+@singleton
 @RestApi()
 abstract class CartApiClient {
   @factoryMethod

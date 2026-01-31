@@ -289,6 +289,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i425.OccasionApiClient>(
       () => _i425.OccasionApiClient(gh<_i361.Dio>()),
     );
+    gh.singleton<_i632.CartApiClient>(
+      () => _i632.CartApiClient(gh<_i361.Dio>()),
+    );
     gh.factory<_i619.AddUpdateAdreesApiClient>(
       () => _i619.AddUpdateAdreesApiClient(gh<_i361.Dio>()),
     );
@@ -302,7 +305,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i517.RegisterApiClient>(
       () => _i517.RegisterApiClient(gh<_i361.Dio>()),
     );
-    gh.factory<_i632.CartApiClient>(() => _i632.CartApiClient(gh<_i361.Dio>()));
     gh.factory<_i279.HomeScreenApiClient>(
       () => _i279.HomeScreenApiClient(gh<_i361.Dio>()),
     );

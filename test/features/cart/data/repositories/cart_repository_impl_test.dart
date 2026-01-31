@@ -117,7 +117,7 @@ void getCartTests() {
       () async {
         when(mockRemoteDataSource.getCart()).thenThrow(Exception('API Error'));
         final result = await cartRepository.getCart();
-        expect(result, isA<BaseResponse<GetCartResponseEntity>>());
+        expect(result, isA<Failure<void>>());
         verifyOnlyThisCall(
           () => verify(mockRemoteDataSource.getCart()).called(1),
           mockRemoteDataSource,
@@ -151,6 +151,30 @@ void addToCartTests() {
         );
       },
     );
+
+    test(
+      'should return failure response when remote data source throws exception',
+      () async {
+        when(
+          mockRemoteDataSource.addToCart(
+            requestModel: anyNamed('requestModel'),
+          ),
+        ).thenThrow(Exception('API Error'));
+        final result = await cartRepository.addToCart(
+          requestEntity: tAddToCartRequestEntity,
+        );
+        expect(result, isA<Failure<GetCartResponseEntity>>());
+
+        verifyOnlyThisCall(
+          () => verify(
+            mockRemoteDataSource.addToCart(
+              requestModel: anyNamed('requestModel'),
+            ),
+          ).called(1),
+          mockRemoteDataSource,
+        );
+      },
+    );
   });
 }
 
@@ -165,6 +189,21 @@ void clearCartTests() {
         );
         final result = await cartRepository.clearCart();
         expect(result, isA<BaseResponse<MessageResponse>>());
+        verifyOnlyThisCall(
+          () => verify(mockRemoteDataSource.clearCart()).called(1),
+          mockRemoteDataSource,
+        );
+      },
+    );
+    test(
+      'should return failure response when remote data source throws exception',
+      () async {
+        when(
+          mockRemoteDataSource.clearCart(),
+        ).thenThrow(Exception('API Error'));
+        final result = await cartRepository.clearCart();
+        expect(result, isA<Failure<MessageResponse>>());
+
         verifyOnlyThisCall(
           () => verify(mockRemoteDataSource.clearCart()).called(1),
           mockRemoteDataSource,
@@ -198,6 +237,29 @@ void removeItemFromCartTests() {
         );
       },
     );
+    test(
+      'should return failure response when remote data source throws exception',
+      () async {
+        when(
+          mockRemoteDataSource.removeItemFromCart(
+            productId: anyNamed('productId'),
+          ),
+        ).thenThrow(Exception('API Error'));
+        final result = await cartRepository.removeItemFromCart(
+          productId: 'prod123',
+        );
+        expect(result, isA<Failure<GetCartResponseEntity>>());
+
+        verifyOnlyThisCall(
+          () => verify(
+            mockRemoteDataSource.removeItemFromCart(
+              productId: anyNamed('productId'),
+            ),
+          ).called(1),
+          mockRemoteDataSource,
+        );
+      },
+    );
   });
 }
 
@@ -217,6 +279,32 @@ void updateItemQuantityTests() {
           requestEntity: tUpdateItemQuantityRequestEntity,
         );
         expect(result, isA<BaseResponse<GetCartResponseEntity>>());
+        verifyOnlyThisCall(
+          () => verify(
+            mockRemoteDataSource.updateItemQuantity(
+              productId: anyNamed('productId'),
+              requestModel: anyNamed('requestModel'),
+            ),
+          ).called(1),
+          mockRemoteDataSource,
+        );
+      },
+    );
+    test(
+      'should return failure response when remote data source throws exception',
+      () async {
+        when(
+          mockRemoteDataSource.updateItemQuantity(
+            productId: anyNamed('productId'),
+            requestModel: anyNamed('requestModel'),
+          ),
+        ).thenThrow(Exception('API Error'));
+        final result = await cartRepository.updateItemQuantity(
+          productId: 'prod123',
+          requestEntity: tUpdateItemQuantityRequestEntity,
+        );
+        expect(result, isA<Failure<GetCartResponseEntity>>());
+
         verifyOnlyThisCall(
           () => verify(
             mockRemoteDataSource.updateItemQuantity(
