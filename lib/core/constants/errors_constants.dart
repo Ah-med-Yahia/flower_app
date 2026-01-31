@@ -1,7 +1,7 @@
 class ErrorsConstant {
   ErrorsConstant._();
 
-  // TODO(Salah): Handle Localization
+  // Todo(Salah): Handle Localization
   static const String badRequestError = 'Invalid request.';
   static const String noContent = 'No content available.';
   static const String forbiddenError = 'Access forbidden.';
