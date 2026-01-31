@@ -1,6 +1,6 @@
 import 'package:flower_app/core/constants/app_text_constants.dart';
-import 'package:flutter/material.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
+import 'package:flutter/material.dart';
 
 class CustomECategoryAppBar extends StatelessWidget {
   const CustomECategoryAppBar({super.key});
@@ -15,7 +15,7 @@ class CustomECategoryAppBar extends StatelessWidget {
         horizontal: size.width * 0.04,
         vertical: size.height * 0.018,
       ),
-      decoration: BoxDecoration(color: AppColors.background),
+      decoration: const BoxDecoration(color: AppColors.background),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

@@ -1,11 +1,11 @@
 import 'package:flower_app/features/categories/domain/entities/categories_product_entity.dart';
-import 'package:flutter/material.dart';
 import 'package:flower_app/features/categories/presentation/views/widgets/product_card.dart';
+import 'package:flutter/material.dart';
 
 class ProductsGrid extends StatelessWidget {
   final CategoryProductEntity _categoryProductEntity;
 
-  ProductsGrid(this._categoryProductEntity);
+  const ProductsGrid(this._categoryProductEntity, {super.key});
 
   @override
   Widget build(BuildContext context) {

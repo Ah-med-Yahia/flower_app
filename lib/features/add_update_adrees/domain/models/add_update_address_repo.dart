@@ -6,6 +6,7 @@ abstract interface class AddUpdateAddressRepo {
   Future<BaseResponse<AddUpdateAddressResponseModel>> addAddress(
     AddUpdateAddressRequestModel body,
   );
+
   Future<BaseResponse<AddUpdateAddressResponseModel>> updateAddress(
     AddUpdateAddressRequestModel body,
     String id,

@@ -1,26 +1,26 @@
-import 'package:flower_app/features/categories/domain/entities/get_all_categories_list_entity.dart';
-import 'package:flower_app/features/categories/domain/entities/get_categories_products_entity.dart';
-import 'package:flower_app/features/categories/domain/usecases/get_categories_products_usecase.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:injectable/injectable.dart';
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/base_state/base_state.dart';
+import 'package:flower_app/features/categories/domain/entities/get_all_categories_list_entity.dart';
+import 'package:flower_app/features/categories/domain/entities/get_categories_products_entity.dart';
 import 'package:flower_app/features/categories/domain/usecases/get_all_categories_usecase.dart';
+import 'package:flower_app/features/categories/domain/usecases/get_categories_products_usecase.dart';
 import 'package:flower_app/features/categories/presentation/view_model/categories_event.dart';
 import 'package:flower_app/features/categories/presentation/view_model/categories_state.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 
 @injectable
 class CategoriesCubit extends Cubit<CategoriesState> {
-  final GetAllCategoriesUsecase _getAllCategoriesUsecase;
-  final GetCategoryProductsUsecase _getCategoryProductsUsecase;
+  final GetAllCategoriesUsecase _getAllCategoriesUseCase;
+  final GetCategoryProductsUsecase _getCategoryProductsUseCase;
 
   CategoriesCubit(
-    this._getAllCategoriesUsecase,
-    this._getCategoryProductsUsecase,
+    this._getAllCategoriesUseCase,
+    this._getCategoryProductsUseCase,
   ) : super(
         CategoriesState(
-          categoriesState: BaseState<GetCategoryListEntity>(),
-          categoryProductsState: BaseState<GetCategoryProductsEntity>(),
+          categoriesState: const BaseState<GetCategoryListEntity>(),
+          categoryProductsState: const BaseState<GetCategoryProductsEntity>(),
           selectedIndex: 0,
         ),
       );
@@ -39,11 +39,13 @@ class CategoriesCubit extends Cubit<CategoriesState> {
   Future<void> _getAllCategories(String? initialCategoryId) async {
     emit(
       state.copyWith(
-        categoriesState: BaseState<GetCategoryListEntity>(isLoading: true),
+        categoriesState: const BaseState<GetCategoryListEntity>(
+          isLoading: true,
+        ),
       ),
     );
 
-    final categories = await _getAllCategoriesUsecase.getAllCategories();
+    final categories = await _getAllCategoriesUseCase.getAllCategories();
 
     categories.when(
       success: (data) {
@@ -110,13 +112,13 @@ class CategoriesCubit extends Cubit<CategoriesState> {
   Future<void> _getCategoryProducts(String categoryId) async {
     emit(
       state.copyWith(
-        categoryProductsState: BaseState<GetCategoryProductsEntity>(
+        categoryProductsState: const BaseState<GetCategoryProductsEntity>(
           isLoading: true,
         ),
       ),
     );
 
-    final categoryProducts = await _getCategoryProductsUsecase
+    final categoryProducts = await _getCategoryProductsUseCase
         .getCategoryProducts(categoryId);
 
     categoryProducts.when(

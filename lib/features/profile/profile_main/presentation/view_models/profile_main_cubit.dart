@@ -50,6 +50,10 @@ class ProfileMainCubit extends Cubit<ProfileMainStates> {
         await _logout();
       case UpdateLanguageIntent():
         _updateLanguage(intent.language);
+      case TapAboutUsIntent():
+        _navigateToAppInfo();
+      case TapTermsAndConditionsIntent():
+        _navigateToAppPolice();
     }
   }
 
@@ -145,6 +149,14 @@ class ProfileMainCubit extends Cubit<ProfileMainStates> {
 
   void _navigateToEditProfile() {
     _emitSideEffect(NavigateToEditProfileSideEffect());
+  }
+
+  void _navigateToAppPolice() {
+    _emitSideEffect(NavigateToAppPolicySideEffect());
+  }
+
+  void _navigateToAppInfo() {
+    _emitSideEffect(NavigateToAppInformationSideEffect());
   }
 
   /// Get cached user data without API call

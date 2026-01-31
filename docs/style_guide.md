@@ -3,24 +3,31 @@
 ## Repository Pattern
 
 ### Abstract Repository (Interface)
+
 ❌ **Don't:**
+
 - `LoginRepoContract`
 - `LoginRepository` (too verbose)
 - `ILoginRepository`
 
 ✅ **Do:**
+
 - `LoginRepo` (abstract class/interface)
 
 ### Repository Implementation
+
 ❌ **Don't:**
+
 - `LoginRepoImplementation`
 - `LoginRepository`
 - `LoginRepoService`
 
 ✅ **Do:**
+
 - `LoginRepoImpl`
 
 ### Examples:
+
 ```dart
 // ❌ Wrong
 abstract class LoginRepoContract { }
@@ -36,26 +43,33 @@ class LoginRepoImpl implements LoginRepo { }
 ## Data Sources
 
 ### Remote Data Sources
+
 ❌ **Don't:**
+
 - `LoginRemoteDS`
 - `LoginRemote`
 - `LoginAPI`
 - `LoginRemoteDataSourceImpl`
 
 ✅ **Do:**
+
 - `LoginRemoteDataSource`
 
 ### Local Data Sources
+
 ❌ **Don't:**
+
 - `LoginLocalDS`
 - `LoginLocal`
 - `LoginCache`
 - `LoginLocalDataSourceImpl`
 
 ✅ **Do:**
+
 - `LoginLocalDataSource`
 
 ### Examples:
+
 ```dart
 // ❌ Wrong
 class LoginRemoteDS { }
@@ -71,16 +85,20 @@ class LoginLocalDataSource { }
 ## Domain Layer
 
 ### Entities
+
 ❌ **Don't:**
+
 - `UserDTO`
 - `UserModel`
 - `UserData`
 - `UserObject`
 
 ✅ **Do:**
+
 - `UserEntity` (entity - domain layer)
 
 ### Examples:
+
 ```dart
 // ❌ Wrong
 class UserDTO {
@@ -105,16 +123,20 @@ class UserEntity {
 ## Data Layer
 
 ### Models (Data Transfer Objects)
+
 ❌ **Don't:**
+
 - `UserDTO`
 - `UserEntity`
 - `UserData`
 - `User` (conflicts with domain entity)
 
 ✅ **Do:**
+
 - `UserModel` (data layer - for API/DB mapping)
 
 ### Examples:
+
 ```dart
 // ❌ Wrong
 class UserDTO {
@@ -140,36 +162,44 @@ class UserModel {
 ## State Management (BLoC/Cubit Pattern)
 
 ### Cubit
+
 ❌ **Don't:**
+
 - `LoginController`
 - `LoginManager`
 - `LoginViewModel`
 
 ✅ **Do:**
+
 - `LoginCubit` (for simple state management)
 
 ### States
+
 ❌ **Don't:**
+
 - `LoginState` (singular - conflicts with single state classes)
 - `LoginBlocStates`
 - `LoginScreenStates`
 
 ✅ **Do:**
+
 - `LoginStates` (plural - sealed class with multiple states)
 
-
-
 ### UI Events/Intents
+
 ❌ **Don't:**
+
 - `LoginEvent`
 - `LoginAction`
 - `LoginUserIntent`
 
 ✅ **Do:**
+
 - `LoginUIEvent` (for UI-triggered actions)
 - `LoginIntent` (for user intentions)
 
 ### Examples:
+
 ```dart
 // ❌ Wrong
 class LoginBloc extends Cubit<LoginState> { } // Use Cubit for simple cases
@@ -201,7 +231,9 @@ class LogoutRequested extends LoginUIEvent { }
 ## Presentation Layer Structure
 
 ### Folder Structure
+
 ❌ **Don't use "views" folder:**
+
 ```
 presentation/
   views/
@@ -210,6 +242,7 @@ presentation/
 ```
 
 ✅ **Do use "screens" and "widgets":**
+
 ```
 presentation/
   screens/
@@ -221,24 +254,31 @@ presentation/
 ```
 
 ### Screen Files
+
 ❌ **Don't:**
+
 - `LoginView`
 - `LoginPage` (unless using navigation context)
 - `LoginUI`
 
 ✅ **Do:**
+
 - `LoginScreen`
 
 ### Widget Files
+
 ❌ **Don't:**
+
 - `LoginFormView`
 - `CustomButtonView`
 
 ✅ **Do:**
+
 - `LoginFormWidget` (widget)
 - `CustomButtonWidget` (widget)
 
 ### Examples:
+
 ```dart
 // ❌ Wrong - In views folder
 // views/login_view.dart

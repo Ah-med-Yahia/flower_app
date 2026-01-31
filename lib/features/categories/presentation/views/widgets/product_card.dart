@@ -1,14 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flower_app/features/categories/domain/entities/categories_product_entity.dart';
-import 'package:flutter/material.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flower_app/core/widgets/loading_indicator_widget.dart';
+import 'package:flower_app/features/categories/domain/entities/categories_product_entity.dart';
+import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
   final CategoryProductEntity _categoryProductEntity;
 
-  const ProductCard(this._categoryProductEntity);
+  const ProductCard(this._categoryProductEntity, {super.key});
 
   @override
   Widget build(BuildContext context) {

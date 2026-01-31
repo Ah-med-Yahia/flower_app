@@ -1,6 +1,3 @@
-import 'package:flower_app/features/categories/presentation/views/widgets/custom_category_app_bar.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flower_app/config/di/di.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
@@ -9,11 +6,15 @@ import 'package:flower_app/features/categories/presentation/view_model/categorie
 import 'package:flower_app/features/categories/presentation/view_model/categories_event.dart';
 import 'package:flower_app/features/categories/presentation/view_model/categories_state.dart';
 import 'package:flower_app/features/categories/presentation/views/widgets/category_tab_bar.dart';
+import 'package:flower_app/features/categories/presentation/views/widgets/custom_category_app_bar.dart';
 import 'package:flower_app/features/categories/presentation/views/widgets/products_grid.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CategoriesTap extends StatelessWidget {
   final String? id;
-  CategoriesTap({super.key, this.id});
+
+  const CategoriesTap({super.key, this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class CategoriesTap extends StatelessWidget {
       child: SafeArea(
         child: Column(
           children: [
-            CustomECategoryAppBar(),
+            const CustomECategoryAppBar(),
             Expanded(
               child: BlocBuilder<CategoriesCubit, CategoriesState>(
                 builder: (context, state) {

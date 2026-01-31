@@ -9,7 +9,9 @@ import 'package:injectable/injectable.dart';
 @Injectable(as: AddUpdateAddressRepo)
 class AddUpdateAddressRepoImpl implements AddUpdateAddressRepo {
   final AddUpdateAddressRemoteDataSource _remoteDataSource;
+
   AddUpdateAddressRepoImpl(this._remoteDataSource);
+
   @override
   Future<BaseResponse<AddUpdateAddressResponseEntity>> addAddress(
     AddUpdateAddressRequestEntity body,
