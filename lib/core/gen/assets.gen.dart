@@ -33,6 +33,16 @@ class $AssetsFilesGen {
   ];
 }
 
+class $AssetsIconsGen {
+  const $AssetsIconsGen();
+
+  /// File path: assets/icons/clear_cart.svg
+  SvgGenImage get clearCart => const SvgGenImage('assets/icons/clear_cart.svg');
+
+  /// List of all assets
+  List<SvgGenImage> get values => [clearCart];
+}
+
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
@@ -60,14 +70,23 @@ class $AssetsLottieGen {
   LottieGenImage get flowerLoading =>
       const LottieGenImage('assets/lottie/FlowerLoading.json');
 
+  /// File path: assets/lottie/cart_error.json
+  LottieGenImage get cartError =>
+      const LottieGenImage('assets/lottie/cart_error.json');
+
+  /// File path: assets/lottie/empty_cart.json
+  LottieGenImage get emptyCart =>
+      const LottieGenImage('assets/lottie/empty_cart.json');
+
   /// List of all assets
-  List<dynamic> get values => [flower, flowerLoading];
+  List<dynamic> get values => [flower, flowerLoading, cartError, emptyCart];
 }
 
 class Assets {
   const Assets._();
 
   static const $AssetsFilesGen files = $AssetsFilesGen();
+  static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsLottieGen lottie = $AssetsLottieGen();
 }

@@ -88,7 +88,7 @@ class ProfileMainCubit extends Cubit<ProfileMainStates> {
         }
       },
       failure: (error) {
-        // TODO(Salah): Handle Localization
+        // Todo(Salah): Handle Localization
         emit(
           state.copyWith(
             userData: state.userData.copyWith(
@@ -98,7 +98,7 @@ class ProfileMainCubit extends Cubit<ProfileMainStates> {
             ),
           ),
         );
-        // TODO(Salah): Handle Localization
+        // Todo(Salah): Handle Localization
         _emitSideEffect(
           ShowErrorSideEffect(
             '${ErrorsConstant.authenticationCheckError} ${error.message}',
@@ -166,7 +166,7 @@ class ProfileMainCubit extends Cubit<ProfileMainStates> {
           emit(
             state.copyWith(userData: state.userData.copyWith(isLoading: false)),
           );
-          // TODO(Salah): Handle Localization
+          // Todo(Salah): Handle Localization
           _emitSideEffect(
             ShowErrorSideEffect(ErrorsConstant.noCacheDataAvailableError),
           );
@@ -176,13 +176,13 @@ class ProfileMainCubit extends Cubit<ProfileMainStates> {
         emit(
           state.copyWith(userData: state.userData.copyWith(isLoading: false)),
         );
-        // TODO(Salah): Handle Localization
+        // Todo(Salah): Handle Localization
         _emitSideEffect(
           ShowErrorSideEffect(
             '${ErrorsConstant.failedToLoadCachedDataError} ${error.message}',
           ),
         );
-        // TODO(ahmed): Remove this log statement in production
+        // Todo(ahmed): Remove this log statement in production
         if (kDebugMode) {
           log(
             '${ErrorsConstant.failedToLoadCachedDataError} ${error.message}',
@@ -193,7 +193,7 @@ class ProfileMainCubit extends Cubit<ProfileMainStates> {
     );
   }
 
-  //TODO(Mahmoud-Younes): Handle logout
+  // Todo(Mahmoud-Younes): Handle logout
   Future<void> _logout() async {
     emit(state.copyWith(userData: state.userData.copyWith(isLoading: true)));
     final logoutResult = await _logoutUseCase.call();
@@ -208,7 +208,7 @@ class ProfileMainCubit extends Cubit<ProfileMainStates> {
         emit(
           state.copyWith(userData: state.userData.copyWith(isLoading: false)),
         );
-        // TODO(Salah): Handle Localization
+        // Todo(Salah): Handle Localization
         _emitSideEffect(
           ShowErrorSideEffect(
             '${ErrorsConstant.logoutFailedError} ${error.message}',

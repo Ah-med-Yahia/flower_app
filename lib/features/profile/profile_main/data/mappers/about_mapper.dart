@@ -12,8 +12,8 @@ import '../models/terms_and_conditions/terms_and_conditions.dart';
 import '../models/terms_and_conditions/text_style_config.dart';
 import 'terms_mapper.dart';
 
-/// TODO(Ahmed-Salah): Next PR Refactor [AboutMapper] and [TermsMapper]
-/// TODO(Ahmed-Salah): Next PR Refactor [FloweryAboutAppModel] and [TermsAndConditions]
+/// Todo(Ahmed-Salah): Next PR Refactor [AboutMapper] and [TermsMapper]
+/// Todo(Ahmed-Salah): Next PR Refactor [FloweryAboutAppModel] and [TermsAndConditions]
 class AboutMapper {
   AboutMapper._();
 
