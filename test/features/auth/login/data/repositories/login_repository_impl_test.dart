@@ -67,10 +67,12 @@ void main() {
 
           expect(result, isA<Success<void>>());
           verify(mockRemote.login(any)).called(1);
-          verify(mockLocal.saveLoggedUserData(
-            token: anyNamed('token'),
-            user: anyNamed('user'),
-          )).called(1);
+          verify(
+            mockLocal.saveLoggedUserData(
+              token: anyNamed('token'),
+              user: anyNamed('user'),
+            ),
+          ).called(1);
           verifyNoMoreInteractions(mockLocal);
         },
       );

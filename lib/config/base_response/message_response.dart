@@ -6,9 +6,7 @@ class MessageResponse extends Equatable {
   const MessageResponse({required this.message});
 
   factory MessageResponse.fromJson(Map<String, dynamic> json) {
-    return MessageResponse(
-      message: json['message'] ?? '',
-    );
+    return MessageResponse(message: json['message'] ?? '');
   }
 
   @override

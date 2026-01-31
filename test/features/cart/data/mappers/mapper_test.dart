@@ -17,25 +17,47 @@ import 'package:flutter_test/flutter_test.dart';
 
 CartProductModel createTestProductModel() {
   return CartProductModel(
-    id: 'p1', title: 'Rose', slug: 'rose', description: 'Red rose',
-    imgCover: 'img.jpg', images: ['img1.jpg'], price: 100, priceAfterDiscount: 90,
-    quantity: 10, category: 'flowers', occasion: 'love', createdAt: DateTime.now(),
-    updatedAt: DateTime.now(), v: 1, isSuperAdmin: false, sold: 5,
-    rateAvg: 4, rateCount: 10, productId: 'prod123',
+    id: 'p1',
+    title: 'Rose',
+    slug: 'rose',
+    description: 'Red rose',
+    imgCover: 'img.jpg',
+    images: ['img1.jpg'],
+    price: 100,
+    priceAfterDiscount: 90,
+    quantity: 10,
+    category: 'flowers',
+    occasion: 'love',
+    createdAt: DateTime.now(),
+    updatedAt: DateTime.now(),
+    v: 1,
+    isSuperAdmin: false,
+    sold: 5,
+    rateAvg: 4,
+    rateCount: 10,
+    productId: 'prod123',
   );
 }
 
 CartItemModel createTestItemModel() {
   return CartItemModel(
-    product: createTestProductModel(), price: 90, quantity: 2, id: 'item1',
+    product: createTestProductModel(),
+    price: 90,
+    quantity: 2,
+    id: 'item1',
   );
 }
 
 CartModel createTestCartModel() {
   return CartModel(
-    id: 'cart1', user: 'user1', cartItems: [createTestItemModel()],
-    appliedCoupons: const [], totalPrice: 180, createdAt: DateTime.now(),
-    updatedAt: DateTime.now(), v: 1,
+    id: 'cart1',
+    user: 'user1',
+    cartItems: [createTestItemModel()],
+    appliedCoupons: const [],
+    totalPrice: 180,
+    createdAt: DateTime.now(),
+    updatedAt: DateTime.now(),
+    v: 1,
   );
 }
 
@@ -68,7 +90,6 @@ void testUpdateItemQuantityRequestMapper() {
     expect(model.quantity, entity.quantity);
   });
 }
-
 
 void testCartProductModelMapper() {
   test('CartProductModelMapper maps Model to Entity', () {
@@ -103,7 +124,9 @@ void testCartModelMapper() {
 void testGetCartResponseMapper() {
   test('GetCartResponseMapper maps Model to Entity', () {
     final model = GetCartResponseModel(
-      message: 'Success', numOfCartItems: 1, cart: createTestCartModel(),
+      message: 'Success',
+      numOfCartItems: 1,
+      cart: createTestCartModel(),
     );
     final entity = model.toEntity();
     expect(entity, isA<GetCartResponseEntity>());

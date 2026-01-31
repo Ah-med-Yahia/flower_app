@@ -17,6 +17,7 @@ extension CartModelMapper on CartModel {
 extension CartItemModelMapper on CartItemModel {
   CartItemEntity toEntity() {
     return CartItemEntity(
+      id: id,
       product: product.toEntity(),
       price: price,
       quantity: quantity,
@@ -27,6 +28,7 @@ extension CartItemModelMapper on CartItemModel {
 extension CartProductModelMapper on CartProductModel {
   CartProductEntity toEntity() {
     return CartProductEntity(
+      productId: productId,
       title: title,
       slug: slug,
       description: description,

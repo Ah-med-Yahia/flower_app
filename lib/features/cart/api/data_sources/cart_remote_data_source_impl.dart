@@ -17,7 +17,9 @@ class CartRemoteDataSourceImpl implements CartRemoteDataSource {
   }
 
   @override
-  Future<GetCartResponseModel> addToCart({required AddToCartRequestModel requestModel}) {
+  Future<GetCartResponseModel> addToCart({
+    required AddToCartRequestModel requestModel,
+  }) {
     return _apiClient.addToCart(body: requestModel);
   }
 
@@ -32,7 +34,13 @@ class CartRemoteDataSourceImpl implements CartRemoteDataSource {
   }
 
   @override
-  Future<GetCartResponseModel> updateItemQuantity({required String productId, required UpdateItemQuantityRequestModel requestModel}) {
-    return _apiClient.updateItemQuantity(productId: productId, body: requestModel);
+  Future<GetCartResponseModel> updateItemQuantity({
+    required String productId,
+    required UpdateItemQuantityRequestModel requestModel,
+  }) {
+    return _apiClient.updateItemQuantity(
+      productId: productId,
+      body: requestModel,
+    );
   }
 }

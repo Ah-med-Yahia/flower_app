@@ -15,7 +15,6 @@ class ApiConstants {
 
   // ------------------------ PRODUCTS --------------------- //
   static const String productByIdEndpoint = 'products/{id}';
-  static const String productsEndpoint = 'products/{id}';
   static const String idPathQuery = 'id';
 
   // ---------------------- BEST SELLER -------------------- //
@@ -37,4 +36,9 @@ class ApiConstants {
 
   // ------------------------- CART ------------------------ //
   static const String cartEndpoint = 'cart';
+  static const String removeItemFromCartEndpoint = 'cart/{id}';
+  static const String updateCartItemEndpoint = 'cart/{id}';
+  //------------------------ ADDRESS ------------------------//
+  static const String addAddress = 'addresses';
+  static const String updateAddress = 'addresses/{id}';
 }

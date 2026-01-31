@@ -1,5 +1,7 @@
 class AppTextConstants {
   AppTextConstants._();
+
+  // TODO(Salah): Handle Localization
   static const String home = 'Home';
   static const String categories = 'Categories';
   static const String cart = 'Cart';
@@ -26,7 +28,7 @@ class AppTextConstants {
   static const String gender = 'Gender';
   static const String female = 'Female';
   static const String male = 'Male';
- 
+
   static const String creatingAccountAgreement =
       'Creating an account, you agree to our ';
   static const String termsAndConditions = 'Terms&Conditions';
@@ -72,7 +74,7 @@ class AppTextConstants {
   static const String defaultImage =
       'https://flower.elevateegy.com/uploads/66c36d5d-c067-46d9-b339-d81be57e0149-image_one.pngs';
 
-  //------------------- BEST SELLER PAGE -------------------//
+  //------------------- BEST-SELLER PAGE -------------------//
   static const String egy = 'EGP';
   static const String rememberMe = 'Remember Me';
   static const String forgetPasswordHeadLine = 'Forget password';
@@ -106,10 +108,35 @@ class AppTextConstants {
   //-------------------------- PROFILE PAGE --------------------------//
   static const String defaultAvatarUrl =
       'https://flower.elevateegy.com/uploads/default-profile.png';
+  static const String notification = 'Notification';
+
+  // static const String logout = 'Logout';
+  // static const String confirmLogout = 'Confirm logout!!';
+  // static const String cancel = 'Cancel';
+  static const String chooseLanguage = 'Choose Language';
+  static const String english = 'English';
+  static const String arabic = 'Arabic';
+  static const String language = 'Language';
+  static const String termsAndConditionsPolicy = 'Terms & conditions';
+  static const String aboutUsPolicy = 'About us';
+  static const String myOrders = 'My Orders';
+  static const String savedAddresses = 'Saved Addresses';
+  static const String guestUserProfile = 'Guest User';
+
+  //-------------------------- OCCASION PAGE --------------------------//
   static const String bloomExquisiteBestSellers =
       'Bloom exquisite best sellers';
   static const String noOccasionsAvailable = 'No occasions available';
   static const String loading = 'Loading...';
   static const String percentageSign = '%';
   static const String id = 'id';
+
+  //-------------------------- TERMS-&-CONDITIONS PAGE --------------------------//
+  static const String noTermsDataAvailable = 'No terms data available';
+  static const String termsAppBarTitleEn = 'Terms and Conditions';
+  static const String termsAppBarTitleAr = 'الشروط والأحكام';
+  static const String enLang = 'en';
+  static const String arLang = 'ar';
+  static const String switchToArabic = 'Switch to Arabic';
+  static const String switchToEnglish = 'التبديل إلى الإنجليزية';
 }

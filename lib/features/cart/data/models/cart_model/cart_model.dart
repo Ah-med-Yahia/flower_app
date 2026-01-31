@@ -29,8 +29,8 @@ class CartModel extends Equatable {
     this.appliedCoupons,
     required this.totalPrice,
     this.createdAt,
-     this.updatedAt,
-     this.v,
+    this.updatedAt,
+    this.v,
   });
 
   factory CartModel.fromJson(Map<String, dynamic> json) =>
