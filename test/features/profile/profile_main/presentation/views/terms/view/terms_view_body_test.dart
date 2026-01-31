@@ -1,6 +1,5 @@
 import 'package:flower_app/config/base_state/base_state.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
-import 'package:flower_app/core/constants/errors_constants.dart';
 import 'package:flower_app/core/widgets/custom_eleveted_button.dart';
 import 'package:flower_app/core/widgets/custom_error_widget.dart';
 import 'package:flower_app/core/widgets/loading_indicator_widget.dart';
@@ -38,23 +37,32 @@ void main() {
       (WidgetTester tester) async {
         when(mockCubit.state).thenReturn(
           const StaticContentStates(
-            legalState: BaseState<TermsAndConditionsEntity>(isLoading: true),
+            contentState: BaseState<List<TermSectionEntity>>(isLoading: true),
           ),
         );
         when(mockCubit.stream).thenAnswer(
           (_) => Stream.value(
             const StaticContentStates(
-              legalState: BaseState<TermsAndConditionsEntity>(isLoading: true),
+              contentState: BaseState<List<TermSectionEntity>>(isLoading: true),
             ),
           ),
         );
 
         await tester.pumpWidget(buildTestableWidget());
 
+        // TermsViewBody => Scaffold => appBar => title
+        expect(find.byType(Scaffold), findsOneWidget);
+        expect(find.byType(AppBar), findsOneWidget);
+        expect(find.byType(Text), findsOneWidget);
+        expect(find.text(AppTextConstants.termsAppBarTitleEn), findsOneWidget);
+        // TermsViewBody => Scaffold => appBar => actions => IconButton
+        expect(find.byType(IconButton), findsOneWidget);
+        expect(find.byIcon(Icons.language), findsOneWidget);
+        expect(find.byTooltip(AppTextConstants.switchToArabic), findsOneWidget);
+        // TermsViewBody => Scaffold => body => Center
         expect(find.byType(LoadingIndicator), findsOneWidget);
-        expect(find.byType(Center), findsOneWidget);
+        expect(find.byType(Center), findsNWidgets(2));
         expect(find.byType(TermsViewBody), findsOneWidget);
-        expect(find.byType(AppBar), findsNothing);
       },
     );
     // 2 Test Case
@@ -64,7 +72,7 @@ void main() {
         const String mockErrorMsg = 'Error Msg';
         when(mockCubit.state).thenReturn(
           const StaticContentStates(
-            legalState: BaseState<TermsAndConditionsEntity>(
+            contentState: BaseState<List<TermSectionEntity>>(
               isLoading: false,
               errorMessage: mockErrorMsg,
             ),
@@ -73,7 +81,7 @@ void main() {
         when(mockCubit.stream).thenAnswer(
           (_) => Stream.value(
             const StaticContentStates(
-              legalState: BaseState<TermsAndConditionsEntity>(
+              contentState: BaseState<List<TermSectionEntity>>(
                 isLoading: false,
                 errorMessage: mockErrorMsg,
               ),
@@ -82,18 +90,26 @@ void main() {
         );
 
         await tester.pumpWidget(buildTestableWidget());
-        // CustomErrorWidget
+
+        // TermsViewBody => Scaffold => appBar => title
+        expect(find.byType(Scaffold), findsOneWidget);
+        expect(find.byType(AppBar), findsOneWidget);
+        expect(find.text(AppTextConstants.termsAppBarTitleEn), findsOneWidget);
+        // TermsViewBody => Scaffold => appBar => actions => IconButton
+        expect(find.byType(IconButton), findsOneWidget);
+        expect(find.byIcon(Icons.language), findsOneWidget);
+        expect(find.byTooltip(AppTextConstants.switchToArabic), findsOneWidget);
+        // TermsViewBody => Scaffold => body => CustomErrorWidget
         expect(find.byType(CustomErrorWidget), findsOneWidget);
-        expect(find.byType(Center), findsNWidgets(2));
-        expect(find.byType(Padding), findsNWidgets(2));
+        expect(find.byType(Center), findsNWidgets(3));
+        expect(find.byType(Padding), findsNWidgets(5));
         expect(find.byType(Column), findsOneWidget);
-        expect(find.byType(Icon), findsOneWidget);
-        expect(find.byType(Text), findsNWidgets(2));
-        expect(find.byType(SizedBox), findsNWidgets(5));
+        expect(find.byType(Icon), findsNWidgets(2));
+        expect(find.byType(Text), findsNWidgets(3));
+        expect(find.byType(SizedBox), findsNWidgets(6));
         expect(find.byType(CustomElevatedButtonWidget), findsOneWidget);
         // TermsViewBody
         expect(find.byType(TermsViewBody), findsOneWidget);
-        expect(find.byType(AppBar), findsNothing);
         expect(find.text(mockErrorMsg), findsOneWidget);
       },
     );
@@ -103,11 +119,12 @@ void main() {
         'should show Text widget with no content message', (
       WidgetTester tester,
     ) async {
+      const List<TermSectionEntity> mockSections = [];
       when(mockCubit.state).thenReturn(
         const StaticContentStates(
-          legalState: BaseState<TermsAndConditionsEntity>(
+          contentState: BaseState<List<TermSectionEntity>>(
             isLoading: false,
-            data: null,
+            data: mockSections,
             errorMessage: null,
           ),
         ),
@@ -115,9 +132,9 @@ void main() {
       when(mockCubit.stream).thenAnswer(
         (_) => Stream.value(
           const StaticContentStates(
-            legalState: BaseState<TermsAndConditionsEntity>(
+            contentState: BaseState<List<TermSectionEntity>>(
               isLoading: false,
-              data: null,
+              data: mockSections,
               errorMessage: null,
             ),
           ),
@@ -127,11 +144,11 @@ void main() {
       await tester.pumpWidget(buildTestableWidget());
 
       // TermsViewBody
-      expect(find.byType(Center), findsOneWidget);
-      expect(find.byType(Text), findsOneWidget);
+      expect(find.byType(Scaffold), findsOneWidget);
+      expect(find.byType(AppBar), findsOneWidget);
+      expect(find.byType(Center), findsNWidgets(3));
+      expect(find.byType(Text), findsNWidgets(3));
       expect(find.byType(TermsViewBody), findsOneWidget);
-      expect(find.byType(AppBar), findsNothing);
-      expect(find.text(ErrorsConstant.noContent), findsOneWidget);
     });
 
     // 4 Test Case
@@ -153,12 +170,11 @@ void main() {
           style: SectionStyleEntity(),
         ),
       ];
-      final mockData = TermsAndConditionsEntity(sections: mockSections);
       when(mockCubit.state).thenReturn(
         StaticContentStates(
-          legalState: BaseState<TermsAndConditionsEntity>(
+          contentState: BaseState<List<TermSectionEntity>>(
             isLoading: false,
-            data: mockData,
+            data: mockSections,
             errorMessage: null,
           ),
         ),
@@ -166,9 +182,9 @@ void main() {
       when(mockCubit.stream).thenAnswer(
         (_) => Stream.value(
           StaticContentStates(
-            legalState: BaseState<TermsAndConditionsEntity>(
+            contentState: BaseState<List<TermSectionEntity>>(
               isLoading: false,
-              data: mockData,
+              data: mockSections,
               errorMessage: null,
             ),
           ),

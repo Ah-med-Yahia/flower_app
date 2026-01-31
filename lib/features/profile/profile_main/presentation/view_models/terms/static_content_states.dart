@@ -2,43 +2,31 @@ import 'package:equatable/equatable.dart';
 
 import '../../../../../../config/base_state/base_state.dart';
 import '../../../../../../core/constants/errors_constants.dart';
-import '../../../domain/entities/about_app_entity.dart';
 import '../../../domain/entities/term_section_entity.dart';
 
 class StaticContentStates extends Equatable {
-  final BaseState<TermsAndConditionsEntity> legalState;
-  final BaseState<AboutAppEntity> aboutState;
-
   // Use List<TermSectionEntity> as the common denominator
   final BaseState<List<TermSectionEntity>> contentState;
 
   const StaticContentStates({
-    this.legalState = const BaseState<TermsAndConditionsEntity>(),
-    this.aboutState = const BaseState<AboutAppEntity>(),
     this.contentState = const BaseState<List<TermSectionEntity>>(),
   });
 
   StaticContentStates copyWith({
-    BaseState<TermsAndConditionsEntity>? legalState,
-    BaseState<AboutAppEntity>? aboutState,
     BaseState<List<TermSectionEntity>>? contentState,
   }) {
-    return StaticContentStates(
-      legalState: legalState ?? this.legalState,
-      aboutState: aboutState ?? this.aboutState,
-      contentState: contentState ?? this.contentState,
-    );
+    return StaticContentStates(contentState: contentState ?? this.contentState);
   }
 
-  bool get isLoading => contentState.isLoading;
+  bool get contentIsLoading => contentState.isLoading;
 
-  String? get errorMessage =>
+  String get contentErrorMessage =>
       contentState.errorMessage ?? ErrorsConstant.defaultError;
 
-  List<TermSectionEntity>? get date => contentState.data ?? [];
+  List<TermSectionEntity> get contentsData => contentState.data ?? [];
 
   @override
-  List<Object?> get props => [legalState, aboutState, contentState];
+  List<Object?> get props => [contentState];
 }
 
 sealed class StaticContentEvents {}

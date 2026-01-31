@@ -2,7 +2,6 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../../config/base_response/base_response.dart';
 import '../../../../../config/network/safe_api_call.dart';
-import '../../domain/entities/about_app_entity.dart';
 import '../../domain/entities/term_section_entity.dart';
 import '../../domain/entities/user_data_response.dart';
 import '../../domain/mappers/profile_main_mapper.dart';
@@ -30,18 +29,18 @@ class ProfileMainRepoImpl implements ProfileMainRepo {
   }
 
   @override
-  Future<BaseResponse<TermsAndConditionsEntity>> getTermsData() async {
+  Future<BaseResponse<List<TermSectionEntity>>> getTermsData() async {
     return safeApiCall(() async {
       final response = await _localDataSource.getTermsData();
-      return TermsMapper.toEntity(response);
+      return TermsMapper.toEntity(response).sections;
     });
   }
 
   @override
-  Future<BaseResponse<AboutAppEntity>> getAboutAppData() {
+  Future<BaseResponse<List<TermSectionEntity>>> getAboutAppData() {
     return safeApiCall(() async {
       final response = await _localDataSource.getAboutAppData();
-      return AboutMapper.toEntity(response);
+      return AboutMapper.toEntity(response).aboutApp;
     });
   }
 }

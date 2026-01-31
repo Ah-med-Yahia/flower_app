@@ -168,24 +168,21 @@ void _testSuccessfulGetTermsData(
       final result = await repository.getTermsData();
 
       // Assert
-      expect(result, isA<Success<TermsAndConditionsEntity>>());
+      expect(result, isA<Success<List<TermSectionEntity>>>());
       result.when(
         success: (data) {
-          expect(data.sections, isA<List<TermSectionEntity>>());
-          expect(data.sections[0].content, isA<Map<String, List<String>>>());
-          expect(data.sections[0].style, isA<SectionStyleEntity>());
-          expect(data.sections[0].style.title, isA<TextStyleEntity?>());
-          expect(data.sections[0].style.content, isA<TextStyleEntity?>());
-          expect(data.sections[0].style.color, isA<Color?>());
-          expect(
-            data.sections[0].style.textAlign,
-            isA<Map<String, TextAlign>?>(),
-          );
-          expect(data.sections[0].section, 'section 1');
-          expect(data.sections[0].content['en'], ['en1', 'en2']);
-          expect(data.sections[0].content['ar'], ['ar1', 'ar2']);
-          expect(data.sections[0].section, 'section 1');
-          expect(data.sections[0].title, {'en': 'en', 'ar': 'ar'});
+          expect(data, isA<List<TermSectionEntity>>());
+          expect(data[0].content, isA<Map<String, List<String>>>());
+          expect(data[0].style, isA<SectionStyleEntity>());
+          expect(data[0].style.title, isA<TextStyleEntity?>());
+          expect(data[0].style.content, isA<TextStyleEntity?>());
+          expect(data[0].style.color, isA<Color?>());
+          expect(data[0].style.textAlign, isA<Map<String, TextAlign>?>());
+          expect(data[0].section, 'section 1');
+          expect(data[0].content['en'], ['en1', 'en2']);
+          expect(data[0].content['ar'], ['ar1', 'ar2']);
+          expect(data[0].section, 'section 1');
+          expect(data[0].title, {'en': 'en', 'ar': 'ar'});
         },
         failure: (_) => fail('Expected success but got failure'),
       );

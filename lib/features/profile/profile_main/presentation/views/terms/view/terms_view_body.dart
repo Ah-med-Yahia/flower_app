@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../../core/constants/app_text_constants.dart';
-import '../../../../../../../core/constants/errors_constants.dart';
 import '../../../../../../../core/widgets/custom_error_widget.dart';
 import '../../../../../../../core/widgets/loading_indicator_widget.dart';
-import '../../../../domain/entities/about_app_entity.dart';
-import '../../../../domain/entities/term_section_entity.dart';
 import '../../../view_models/terms/static_content_cubit.dart';
 import '../../../view_models/terms/static_content_states.dart';
 import '../widget/terms_section_widget.dart';
@@ -20,16 +17,15 @@ class TermsViewBody extends StatefulWidget {
   State<TermsViewBody> createState() => _TermsViewBodyState();
 }
 
-enum ShowContent { terms, about }
-
 class _TermsViewBodyState extends State<TermsViewBody> {
   late final StaticContentCubit cubit;
   late String currentLanguage;
-  late final isAboutApp = widget.isAboutApp;
+  late final bool isAboutApp;
 
   @override
   void initState() {
     super.initState();
+    isAboutApp = widget.isAboutApp;
     currentLanguage = AppTextConstants.enLang;
     cubit = context.read<StaticContentCubit>();
     _loadInitialData();
@@ -53,66 +49,64 @@ class _TermsViewBodyState extends State<TermsViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<StaticContentCubit, StaticContentStates>(
-      builder: (context, state) {
-        final contentState = isAboutApp ? state.aboutState : state.legalState;
-        if (contentState.isLoading) {
-          return const Center(child: LoadingIndicator());
-        }
-        if (contentState.errorMessage != null) {
-          final error = contentState.errorMessage!.trim().isEmpty
-              ? ErrorsConstant.defaultError
-              : contentState.errorMessage!;
-          return CustomErrorWidget(
-            error: error,
-            onTryAgain: () => cubit.doIntent(
-              isAboutApp ? GetAboutAppDataEvent() : GetTermDataEvent(),
-            ),
-          );
-        }
-        if (contentState.data == null) {
-          return const Center(child: Text(ErrorsConstant.noContent));
-        }
-
-        final List<TermSectionEntity> contentData = isAboutApp
-            ? (contentState.data as AboutAppEntity).aboutApp
-            : (contentState.data as TermsAndConditionsEntity).sections;
-
-        return Scaffold(
-          appBar: AppBar(
-            title: Text(
-              isAboutApp
-                  ? (currentLanguage == AppTextConstants.enLang
-                        ? AppTextConstants.appInfoAppBarTitleEn
-                        : AppTextConstants.appInfoAppBarTitleAr)
-                  : (currentLanguage == AppTextConstants.enLang
-                        ? AppTextConstants.termsAppBarTitleEn
-                        : AppTextConstants.termsAppBarTitleAr),
-            ),
-            actions: [
-              IconButton(
-                icon: const Icon(Icons.language),
-                onPressed: toggleLanguage,
-                tooltip: currentLanguage == AppTextConstants.enLang
-                    ? AppTextConstants.switchToArabic
-                    : AppTextConstants.switchToEnglish,
-              ),
-            ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          isAboutApp
+              ? (currentLanguage == AppTextConstants.enLang
+                    ? AppTextConstants.appInfoAppBarTitleEn
+                    : AppTextConstants.appInfoAppBarTitleAr)
+              : (currentLanguage == AppTextConstants.enLang
+                    ? AppTextConstants.termsAppBarTitleEn
+                    : AppTextConstants.termsAppBarTitleAr),
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.language),
+            onPressed: toggleLanguage,
+            tooltip: currentLanguage == AppTextConstants.enLang
+                ? AppTextConstants.switchToArabic
+                : AppTextConstants.switchToEnglish,
           ),
-          body: ListView.separated(
+        ],
+      ),
+      body: BlocBuilder<StaticContentCubit, StaticContentStates>(
+        builder: (context, state) {
+          if (state.contentIsLoading) {
+            return const Center(child: LoadingIndicator());
+          }
+
+          if (state.contentErrorMessage.isNotEmpty &&
+              state.contentsData.isEmpty) {
+            return CustomErrorWidget(
+              error: state.contentErrorMessage,
+              onTryAgain: () => cubit.doIntent(
+                isAboutApp ? GetAboutAppDataEvent() : GetTermDataEvent(),
+              ),
+            );
+          }
+
+          if (state.contentsData.isEmpty) {
+            return const Center(
+              child: Text(AppTextConstants.noTermsDataAvailable),
+            );
+          }
+
+          final data = state.contentsData;
+          return ListView.separated(
             separatorBuilder: (context, index) => const Divider(),
             padding: const EdgeInsets.all(16),
-            itemCount: contentData.length,
+            itemCount: data.length,
             itemBuilder: (context, index) {
-              final section = contentData[index];
+              final section = data[index];
               return TermsSectionWidget(
                 section: section,
                 language: currentLanguage,
               );
             },
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }
