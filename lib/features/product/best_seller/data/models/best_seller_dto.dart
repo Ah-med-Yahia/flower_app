@@ -6,45 +6,45 @@ part 'best_seller_dto.g.dart';
 
 @JsonSerializable()
 class BestSellerDto {
-  @JsonKey(name: "_id")
+  @JsonKey(name: '_id')
   String? id;
-  @JsonKey(name: "title")
+  @JsonKey(name: 'title')
   String? title;
-  @JsonKey(name: "slug")
+  @JsonKey(name: 'slug')
   String? slug;
-  @JsonKey(name: "description")
+  @JsonKey(name: 'description')
   String? description;
-  @JsonKey(name: "imgCover")
+  @JsonKey(name: 'imgCover')
   String? imgCover;
-  @JsonKey(name: "images")
+  @JsonKey(name: 'images')
   List<String>? images;
-  @JsonKey(name: "price")
+  @JsonKey(name: 'price')
   int? price;
-  @JsonKey(name: "priceAfterDiscount")
+  @JsonKey(name: 'priceAfterDiscount')
   int? priceAfterDiscount;
-  @JsonKey(name: "quantity")
+  @JsonKey(name: 'quantity')
   int? quantity;
-  @JsonKey(name: "category")
+  @JsonKey(name: 'category')
   String? category;
-  @JsonKey(name: "occasion")
+  @JsonKey(name: 'occasion')
   String? occasion;
-  @JsonKey(name: "createdAt")
+  @JsonKey(name: 'createdAt')
   DateTime? createdAt;
-  @JsonKey(name: "updatedAt")
+  @JsonKey(name: 'updatedAt')
   DateTime? updatedAt;
-  @JsonKey(name: "__v")
+  @JsonKey(name: '__v')
   int? v;
-  @JsonKey(name: "isSuperAdmin")
+  @JsonKey(name: 'isSuperAdmin')
   bool? isSuperAdmin;
-  @JsonKey(name: "sold")
+  @JsonKey(name: 'sold')
   int? sold;
-  @JsonKey(name: "rateAvg")
+  @JsonKey(name: 'rateAvg')
   int? rateAvg;
-  @JsonKey(name: "rateCount")
+  @JsonKey(name: 'rateCount')
   int? rateCount;
-  @JsonKey(name: "id")
+  @JsonKey(name: 'id')
   String? bestSellerId;
-  @JsonKey(name: "discount")
+  @JsonKey(name: 'discount')
   int? discount;
 
   BestSellerDto({

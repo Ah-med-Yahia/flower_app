@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:flower_app/config/error_handler/error_model.dart';
-import 'package:flower_app/config/error_handler/local_exception.dart';
-import 'package:flower_app/core/constants/errors_constants.dart';
+
+import '../../core/constants/errors_constants.dart';
+import 'error_model.dart';
+import 'local_exception.dart';
 
 enum DataSource {
   noContent,
@@ -103,6 +104,7 @@ extension DataSourceExtension on DataSource {
   }
 }
 
+/// This Entry Error Manager
 class ErrorHandler implements Exception {
   final ErrorModel errorModel;
 
@@ -165,7 +167,8 @@ DataSource _mapStatusCodeToDataSource(int? statusCode) {
     401 => DataSource.unauthorized,
     403 => DataSource.forbidden,
     404 => DataSource.notFound,
-    int code when code >= 500 && code < 600 => DataSource.internalServerError,
+    final int code when code >= 500 && code < 600 =>
+      DataSource.internalServerError,
     _ => DataSource.unknown,
   };
 }

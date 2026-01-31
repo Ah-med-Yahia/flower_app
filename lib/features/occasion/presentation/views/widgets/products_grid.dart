@@ -1,11 +1,11 @@
 import 'package:flower_app/features/occasion/domain/entities/occasion_product_entity.dart';
-import 'package:flutter/material.dart';
 import 'package:flower_app/features/occasion/presentation/views/widgets/product_card.dart';
+import 'package:flutter/material.dart';
 
 class ProductsGrid extends StatelessWidget {
   final OccasionProductEntity _occasionProductEntity;
 
-  ProductsGrid(this._occasionProductEntity);
+  const ProductsGrid(this._occasionProductEntity, {super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -20,7 +20,8 @@ class ProfileMainView extends StatelessWidget {
         ),
         actions: [
           Assets.images.notification.image(
-              key: const Key(AppUiKeyConstant.profileAppbarNotifyICKey)),
+            key: const Key(AppUiKeyConstant.profileAppbarNotifyICKey),
+          ),
         ],
         actionsPadding: const EdgeInsets.only(right: 8),
       ),

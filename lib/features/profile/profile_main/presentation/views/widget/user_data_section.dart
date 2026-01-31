@@ -15,7 +15,7 @@ class UserDataSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var titleLarge = Theme.of(context).textTheme.titleLarge;
+    final titleLarge = Theme.of(context).textTheme.titleLarge;
     return BlocBuilder<ProfileMainCubit, ProfileMainStates>(
       builder: (context, state) {
         if (state.userData.isLoading) {

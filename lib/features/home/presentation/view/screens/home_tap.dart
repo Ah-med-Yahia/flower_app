@@ -23,12 +23,19 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeTap extends StatelessWidget {
-  const HomeTap({super.key});
+  final VoidCallback onNavigateToCategories;
+  final void Function(String categoryId) onNavigateSelectedToCategory;
+
+  const HomeTap({
+    super.key,
+    required this.onNavigateToCategories,
+    required this.onNavigateSelectedToCategory,
+  });
 
   @override
   Widget build(BuildContext context) {
     final titleLarge = Theme.of(context).textTheme.titleLarge;
-    double height = MediaQuery.of(context).size.height;
+    final double height = MediaQuery.of(context).size.height;
     final HomeScreenCubit cubit = getIt<HomeScreenCubit>();
     return BlocProvider(
       create: (context) => cubit..onEvent(GetHomeScreenDataEvent()),
@@ -47,6 +54,7 @@ class HomeTap extends StatelessWidget {
                 context.pushNamed(AppRoutesConstants.bestSellerRoute);
 
               case NavigateToCategoryEvent():
+                onNavigateSelectedToCategory(nav.categoryId!);
               case NavigateToOccasionEvent():
                 context.pushNamed(AppRoutesConstants.occasionScreen);
             }
@@ -69,7 +77,7 @@ class HomeTap extends StatelessWidget {
               );
             }
             if (state.homeScreenStates?.isLoading == true) {
-              return Scaffold(body: Center(child: LoadingIndicator()));
+              return const Scaffold(body: Center(child: LoadingIndicator()));
             }
             if (state.homeScreenStates?.data != null &&
                 state.homeScreenStates?.isLoading == false) {
@@ -96,7 +104,7 @@ class HomeTap extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(width: 16),
-                          Expanded(child: SearchWidget()),
+                          const Expanded(child: SearchWidget()),
                         ],
                       ),
                       const SizedBox(height: 16),
@@ -113,7 +121,7 @@ class HomeTap extends StatelessWidget {
                               fontSize: 20,
                             ),
                           ),
-                          ViewAllButton(onPressed: () {}),
+                          ViewAllButton(onPressed: onNavigateToCategories),
                         ],
                       ),
                       const SizedBox(height: 8),
@@ -138,7 +146,9 @@ class HomeTap extends StatelessWidget {
                                 child: CategoryCardWidget(
                                   imageUrl: data.categories[index].image,
                                   label: data.categories[index].name,
-                                  bgColor: AppColors.primary.withOpacity(0.1),
+                                  bgColor: AppColors.primary.withValues(
+                                    alpha: 0.1,
+                                  ),
                                 ),
                               ),
                             );

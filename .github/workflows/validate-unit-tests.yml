@@ -1,0 +1,50 @@
+name: Validate Unit Tests
+
+on:
+  pull_request:
+    branches:
+      - develop
+    types:
+      - opened
+      - synchronize
+
+
+jobs:
+  validate_unit_test:
+    runs-on: ubuntu-latest
+
+    timeout-minutes: 5
+    concurrency:
+      group: unit-test-dev-${{ github.event.pull_request.number }}
+      cancel-in-progress: true
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.38.7
+          channel: 'stable'
+          cache: true
+
+      - name: Verify Flutter installation
+        run: flutter --version
+
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run generated files
+        run: dart run build_runner build --delete-conflicting-outputs
+
+
+      - name: Run unit tests
+        run: flutter test --coverage
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          files: ./coverage/lcov.info
+          fail_ci_if_error: false

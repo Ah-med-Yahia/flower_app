@@ -13,7 +13,7 @@ class LogoutSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var iconTheme = Theme.of(context).iconTheme;
+    final iconTheme = Theme.of(context).iconTheme;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: ProfileCardItem(

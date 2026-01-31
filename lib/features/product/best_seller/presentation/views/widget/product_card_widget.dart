@@ -1,6 +1,6 @@
-import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/widgets/loading_indicator_widget.dart';
 import 'custom_btn_add_card_widget.dart';
 import 'custom_product_info_widget.dart';
@@ -45,7 +45,7 @@ class ProductCardWidget extends StatelessWidget {
         imageUrl ?? '',
         fit: BoxFit.cover,
         errorBuilder: (context, error, stackTrace) {
-          return Center(
+          return const Center(
             child: Icon(
               Icons.local_florist,
               size: 48,

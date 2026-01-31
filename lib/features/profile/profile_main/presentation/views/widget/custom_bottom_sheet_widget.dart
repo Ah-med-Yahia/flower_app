@@ -21,7 +21,7 @@ class _CustomBottomSheetWidgetState extends State<CustomBottomSheetWidget> {
   Widget buildLanguageItem({required Language language}) {
     return Container(
       decoration: BoxDecoration(
-        boxShadow: [const BoxShadow(color: Colors.grey, blurRadius: 1)],
+        boxShadow: const [BoxShadow(color: Colors.grey, blurRadius: 1)],
         borderRadius: BorderRadius.circular(8),
         color: Colors.white,
       ),

@@ -8,7 +8,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-
 import 'register_data_source_impl_test.mocks.dart';
 
 @GenerateMocks([RegisterApiClient])
@@ -16,22 +15,22 @@ void main() {
   late MockRegisterApiClient mockApi;
   late RegisterDataSourceImpl dataSource;
 
-  final request = RegisterRequestModel(
-    email: "omar@gmail.com",
-    firstName: "Omar",
-    lastName: "Ahmed",
-    password: "123456",
-    rePassword: "123456",
-    phone: "0123456789",
-    gender: "male",
+  const request = RegisterRequestModel(
+    email: 'omar@gmail.com',
+    firstName: 'Omar',
+    lastName: 'Ahmed',
+    password: '123456',
+    rePassword: '123456',
+    phone: '0123456789',
+    gender: 'male',
   );
 
   final user = User(
-    firstName: "Omar",
-    lastName: "Ahmed",
-    email: "omar@gmail.com",
-    gender: "male",
-    phone: "0123456789",
+    firstName: 'Omar',
+    lastName: 'Ahmed',
+    email: 'omar@gmail.com',
+    gender: 'male',
+    phone: '0123456789',
     createdAt: DateTime.now(),
   );
 

@@ -41,15 +41,15 @@ void main() {
     test('should return success when all storage operations succeed', () async {
       when(
         mockSecureStorageService.write(StorageKeys.accessToken, testToken),
-      ).thenAnswer((_) async => BaseResponse<bool>.success(true));
+      ).thenAnswer((_) async => const BaseResponse<bool>.success(true));
 
       when(
         mockSecureStorageService.writeBool(any, any),
-      ).thenAnswer((_) async => BaseResponse<bool>.success(true));
+      ).thenAnswer((_) async => const BaseResponse<bool>.success(true));
 
       when(
         mockSecureStorageService.writeJson(any, any),
-      ).thenAnswer((_) async => BaseResponse<bool>.success(true));
+      ).thenAnswer((_) async => const BaseResponse<bool>.success(true));
 
       final result = await dataSource.saveLoggedUserData(
         token: testToken,
@@ -74,10 +74,10 @@ void main() {
         );
         when(
           mockSecureStorageService.writeBool(any, any),
-        ).thenAnswer((_) async => BaseResponse<bool>.success(true));
+        ).thenAnswer((_) async => const BaseResponse<bool>.success(true));
         when(
           mockSecureStorageService.writeJson(any, any),
-        ).thenAnswer((_) async => BaseResponse<bool>.success(true));
+        ).thenAnswer((_) async => const BaseResponse<bool>.success(true));
 
         final result = await dataSource.saveLoggedUserData(
           token: testToken,
@@ -90,7 +90,7 @@ void main() {
       test('should return failure if writeBool fails', () async {
         when(
           mockSecureStorageService.write(StorageKeys.accessToken, testToken),
-        ).thenAnswer((_) async => BaseResponse<bool>.success(true));
+        ).thenAnswer((_) async => const BaseResponse<bool>.success(true));
 
         when(mockSecureStorageService.writeBool(any, any)).thenAnswer(
           (_) async => BaseResponse<bool>.failure(
@@ -100,7 +100,7 @@ void main() {
 
         when(
           mockSecureStorageService.writeJson(any, any),
-        ).thenAnswer((_) async => BaseResponse<bool>.success(true));
+        ).thenAnswer((_) async => const BaseResponse<bool>.success(true));
 
         final result = await dataSource.saveLoggedUserData(
           token: testToken,
@@ -113,11 +113,11 @@ void main() {
       test('should return failure if writeJson fails', () async {
         when(
           mockSecureStorageService.write(StorageKeys.accessToken, testToken),
-        ).thenAnswer((_) async => BaseResponse<bool>.success(true));
+        ).thenAnswer((_) async => const BaseResponse<bool>.success(true));
 
         when(
           mockSecureStorageService.writeBool(any, any),
-        ).thenAnswer((_) async => BaseResponse<bool>.success(true));
+        ).thenAnswer((_) async => const BaseResponse<bool>.success(true));
 
         when(mockSecureStorageService.writeJson(any, any)).thenAnswer(
           (_) async => BaseResponse<bool>.failure(
@@ -132,8 +132,6 @@ void main() {
 
         expect(result, isA<Failure<void>>());
       });
-
-      
     });
   });
 }

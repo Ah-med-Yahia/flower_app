@@ -1,7 +1,8 @@
-import 'package:flower_app/features/auth/register/domain/entities/register_entity.dart';
 import 'package:injectable/injectable.dart';
+
 import '../../../../../config/base_response/base_response.dart';
 import '../../data/models/register_request/register_request.dart';
+import '../entities/register_entity.dart';
 import '../repositories/register_repository.dart';
 
 @injectable
@@ -10,9 +11,7 @@ class RegisterUseCase {
 
   RegisterUseCase(this.registerRepository);
 
-  Future<BaseResponse<RegisterEntity>> call(
-    RegisterRequestModel request,
-  ) {
+  Future<BaseResponse<RegisterEntity>> call(RegisterRequestModel request) {
     return registerRepository.register(request);
   }
 }

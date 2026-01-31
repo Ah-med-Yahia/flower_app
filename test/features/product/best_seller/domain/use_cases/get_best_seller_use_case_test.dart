@@ -23,28 +23,41 @@ void main() {
 
   group('call', () {
     _testSuccessfulCallWithSingleItem(() => mockBestSellerRepo, () => useCase);
-    _testSuccessfulCallWithMultipleItems(() => mockBestSellerRepo, () => useCase);
+    _testSuccessfulCallWithMultipleItems(
+      () => mockBestSellerRepo,
+      () => useCase,
+    );
     _testSuccessfulCallWithEmptyList(() => mockBestSellerRepo, () => useCase);
-    _testSuccessfulCallWithNullBestSellerList(() => mockBestSellerRepo, () => useCase);
-    _testFailureWhenRepositoryReturnsFailure(() => mockBestSellerRepo, () => useCase);
+    _testSuccessfulCallWithNullBestSellerList(
+      () => mockBestSellerRepo,
+      () => useCase,
+    );
+    _testFailureWhenRepositoryReturnsFailure(
+      () => mockBestSellerRepo,
+      () => useCase,
+    );
     _testSuccessWithPaginationMetadata(() => mockBestSellerRepo, () => useCase);
     _testNoMoreThanOncePerInvocation(() => mockBestSellerRepo, () => useCase);
-    _testDelegateToRepositoryAndReturnExactResponse(() => mockBestSellerRepo, () => useCase);
+    _testDelegateToRepositoryAndReturnExactResponse(
+      () => mockBestSellerRepo,
+      () => useCase,
+    );
   });
 }
 
 void _testSuccessfulCallWithSingleItem(
-    MockBestSellerRepo Function() getMockBestSellerRepo,
-    GetBestSellerUseCase Function() getUseCase,) {
+  MockBestSellerRepo Function() getMockBestSellerRepo,
+  GetBestSellerUseCase Function() getUseCase,
+) {
   test(
     'When call use case, '
-        'it should return Success with BestSellerResponse when repository call succeeds',
-        () async {
+    'it should return Success with BestSellerResponse when repository call succeeds',
+    () async {
       final mockBestSellerRepo = getMockBestSellerRepo();
       final useCase = getUseCase();
 
       // Arrange
-      final mockResponse = BestSellerResponse(
+      const mockResponse = BestSellerResponse(
         message: 'success',
         bestSeller: [
           BestSeller(
@@ -68,7 +81,7 @@ void _testSuccessfulCallWithSingleItem(
       );
       when(
         mockBestSellerRepo.getBestSeller(),
-      ).thenAnswer((_) async => BaseResponse.success(mockResponse));
+      ).thenAnswer((_) async => const BaseResponse.success(mockResponse));
 
       // Act
       final result = await useCase.call();
@@ -91,17 +104,18 @@ void _testSuccessfulCallWithSingleItem(
 }
 
 void _testSuccessfulCallWithMultipleItems(
-    MockBestSellerRepo Function() getMockBestSellerRepo,
-    GetBestSellerUseCase Function() getUseCase,) {
+  MockBestSellerRepo Function() getMockBestSellerRepo,
+  GetBestSellerUseCase Function() getUseCase,
+) {
   test(
     'When call use case, '
-        'it should return Success with multiple items when repository returns multiple items',
-        () async {
+    'it should return Success with multiple items when repository returns multiple items',
+    () async {
       final mockBestSellerRepo = getMockBestSellerRepo();
       final useCase = getUseCase();
 
       // Arrange
-      final mockResponse = BestSellerResponse(
+      const mockResponse = BestSellerResponse(
         message: 'success',
         bestSeller: [
           BestSeller(
@@ -136,7 +150,7 @@ void _testSuccessfulCallWithMultipleItems(
       );
       when(
         mockBestSellerRepo.getBestSeller(),
-      ).thenAnswer((_) async => BaseResponse.success(mockResponse));
+      ).thenAnswer((_) async => const BaseResponse.success(mockResponse));
 
       // Act
       final result = await useCase.call();
@@ -157,17 +171,18 @@ void _testSuccessfulCallWithMultipleItems(
 }
 
 void _testSuccessfulCallWithEmptyList(
-    MockBestSellerRepo Function() getMockBestSellerRepo,
-    GetBestSellerUseCase Function() getUseCase,) {
+  MockBestSellerRepo Function() getMockBestSellerRepo,
+  GetBestSellerUseCase Function() getUseCase,
+) {
   test(
     'When call use case, '
-        'it should return Success with empty list when repository returns empty list',
-        () async {
+    'it should return Success with empty list when repository returns empty list',
+    () async {
       final mockBestSellerRepo = getMockBestSellerRepo();
       final useCase = getUseCase();
 
       // Arrange
-      final mockResponse = BestSellerResponse(
+      const mockResponse = BestSellerResponse(
         message: 'No items',
         bestSeller: [],
         paginationMetadata: PaginationMetadata(
@@ -179,7 +194,7 @@ void _testSuccessfulCallWithEmptyList(
       );
       when(
         mockBestSellerRepo.getBestSeller(),
-      ).thenAnswer((_) async => BaseResponse.success(mockResponse));
+      ).thenAnswer((_) async => const BaseResponse.success(mockResponse));
 
       // Act
       final result = await useCase.call();
@@ -199,24 +214,25 @@ void _testSuccessfulCallWithEmptyList(
 }
 
 void _testSuccessfulCallWithNullBestSellerList(
-    MockBestSellerRepo Function() getMockBestSellerRepo,
-    GetBestSellerUseCase Function() getUseCase,) {
+  MockBestSellerRepo Function() getMockBestSellerRepo,
+  GetBestSellerUseCase Function() getUseCase,
+) {
   test(
     'When call use case, '
-        'it should return Success with null best seller list when repository returns null',
-        () async {
+    'it should return Success with null best seller list when repository returns null',
+    () async {
       final mockBestSellerRepo = getMockBestSellerRepo();
       final useCase = getUseCase();
 
       // Arrange
-      final mockResponse = BestSellerResponse(
+      const mockResponse = BestSellerResponse(
         message: 'success',
         bestSeller: null,
         paginationMetadata: null,
       );
       when(
         mockBestSellerRepo.getBestSeller(),
-      ).thenAnswer((_) async => BaseResponse.success(mockResponse));
+      ).thenAnswer((_) async => const BaseResponse.success(mockResponse));
 
       // Act
       final result = await useCase.call();
@@ -235,8 +251,9 @@ void _testSuccessfulCallWithNullBestSellerList(
 }
 
 void _testFailureWhenRepositoryReturnsFailure(
-    MockBestSellerRepo Function() getMockBestSellerRepo,
-    GetBestSellerUseCase Function() getUseCase,) {
+  MockBestSellerRepo Function() getMockBestSellerRepo,
+  GetBestSellerUseCase Function() getUseCase,
+) {
   test('When call use case, '
       'it should return Failure when repository returns Failure', () async {
     final mockBestSellerRepo = getMockBestSellerRepo();
@@ -264,12 +281,13 @@ void _testFailureWhenRepositoryReturnsFailure(
 }
 
 void _testSuccessWithPaginationMetadata(
-    MockBestSellerRepo Function() getMockBestSellerRepo,
-    GetBestSellerUseCase Function() getUseCase,) {
+  MockBestSellerRepo Function() getMockBestSellerRepo,
+  GetBestSellerUseCase Function() getUseCase,
+) {
   test(
     'When call use case, '
-        'it should return Success with pagination metadata when repository returns data with pagination',
-        () async {
+    'it should return Success with pagination metadata when repository returns data with pagination',
+    () async {
       final mockBestSellerRepo = getMockBestSellerRepo();
       final useCase = getUseCase();
 
@@ -278,20 +296,19 @@ void _testSuccessWithPaginationMetadata(
         message: 'success',
         bestSeller: List.generate(
           25,
-              (index) =>
-              BestSeller(
-                id: '$index',
-                title: 'Product $index',
-                imgCover: 'img$index.jpg',
-                price: 100,
-                priceAfterDiscount: 90,
-                quantity: 10,
-                sold: 5,
-                bestSellerId: 'bs$index',
-                discount: 10,
-              ),
+          (index) => BestSeller(
+            id: '$index',
+            title: 'Product $index',
+            imgCover: 'img$index.jpg',
+            price: 100,
+            priceAfterDiscount: 90,
+            quantity: 10,
+            sold: 5,
+            bestSellerId: 'bs$index',
+            discount: 10,
+          ),
         ),
-        paginationMetadata: PaginationMetadata(
+        paginationMetadata: const PaginationMetadata(
           currentPage: 1,
           numberOfPages: 3,
           limit: 10,
@@ -323,46 +340,42 @@ void _testSuccessWithPaginationMetadata(
 }
 
 void _testNoMoreThanOncePerInvocation(
-    MockBestSellerRepo Function() getMockBestSellerRepo,
-    GetBestSellerUseCase Function() getUseCase,) {
-  test(
-    'When call use case, '
-        'it should not call repository more than once per invocation',
-        () async {
-      final mockBestSellerRepo = getMockBestSellerRepo();
-      final useCase = getUseCase();
+  MockBestSellerRepo Function() getMockBestSellerRepo,
+  GetBestSellerUseCase Function() getUseCase,
+) {
+  test('When call use case, '
+      'it should not call repository more than once per invocation', () async {
+    final mockBestSellerRepo = getMockBestSellerRepo();
+    final useCase = getUseCase();
 
-      // Arrange
-      final mockResponse = BestSellerResponse(
-        message: 'success',
-        bestSeller: [],
-      );
-      when(
-        mockBestSellerRepo.getBestSeller(),
-      ).thenAnswer((_) async => BaseResponse.success(mockResponse));
+    // Arrange
+    const mockResponse = BestSellerResponse(message: 'success', bestSeller: []);
+    when(
+      mockBestSellerRepo.getBestSeller(),
+    ).thenAnswer((_) async => const BaseResponse.success(mockResponse));
 
-      // Act
-      await useCase.call();
+    // Act
+    await useCase.call();
 
-      // Assert
-      verify(mockBestSellerRepo.getBestSeller()).called(1);
-      verifyNoMoreInteractions(mockBestSellerRepo);
-    },
-  );
+    // Assert
+    verify(mockBestSellerRepo.getBestSeller()).called(1);
+    verifyNoMoreInteractions(mockBestSellerRepo);
+  });
 }
 
 void _testDelegateToRepositoryAndReturnExactResponse(
-    MockBestSellerRepo Function() getMockBestSellerRepo,
-    GetBestSellerUseCase Function() getUseCase,) {
+  MockBestSellerRepo Function() getMockBestSellerRepo,
+  GetBestSellerUseCase Function() getUseCase,
+) {
   test(
     'When call use case, '
-        'it should delegate to repository and return the exact response from repository',
-        () async {
+    'it should delegate to repository and return the exact response from repository',
+    () async {
       final mockBestSellerRepo = getMockBestSellerRepo();
       final useCase = getUseCase();
 
       // Arrange
-      final mockResponse = BestSellerResponse(
+      const mockResponse = BestSellerResponse(
         message: 'custom message',
         bestSeller: [
           BestSeller(
@@ -378,7 +391,7 @@ void _testDelegateToRepositoryAndReturnExactResponse(
           ),
         ],
       );
-      final expectedResult = BaseResponse.success(mockResponse);
+      const expectedResult = BaseResponse.success(mockResponse);
       when(
         mockBestSellerRepo.getBestSeller(),
       ).thenAnswer((_) async => expectedResult);

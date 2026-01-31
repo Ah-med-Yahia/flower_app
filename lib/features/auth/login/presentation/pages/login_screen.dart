@@ -1,18 +1,17 @@
+import 'package:flower_app/core/constants/app_routes_constant.dart';
+import 'package:flower_app/core/constants/app_text_constants.dart';
+import 'package:flower_app/core/theme/app_colors.dart';
+import 'package:flower_app/core/ui_utils/ui_utils.dart';
+import 'package:flower_app/core/validators/app_validators.dart';
+import 'package:flower_app/core/widgets/spacing.dart';
+import 'package:flower_app/features/auth/login/domain/entities/login_request_entity.dart';
+import 'package:flower_app/features/auth/login/presentation/cubit/login_cubit.dart';
+import 'package:flower_app/features/auth/login/presentation/cubit/login_intents.dart';
+import 'package:flower_app/features/auth/login/presentation/cubit/login_state.dart';
+import 'package:flower_app/features/auth/login/presentation/cubit/login_ui_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../../../../core/constants/app_routes_constant.dart';
-import '../../../../../core/constants/app_text_constants.dart';
-import '../../../../../core/theme/app_colors.dart';
-import '../../../../../core/ui_utils/ui_utils.dart';
-import '../../../../../core/validators/app_validators.dart';
-import '../../../../../core/widgets/spacing.dart';
-import '../../domain/entities/login_request_entity.dart';
-import '../cubit/login_cubit.dart';
-import '../cubit/login_intents.dart';
-import '../cubit/login_state.dart';
-import '../cubit/login_ui_events.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -198,7 +197,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     foregroundColor: AppColors.textSecondary,
                   ),
 
-                  child: const Text(AppTextConstants.continueAsGuest),
+                  child: const Text(AppTextConstants.guestUser),
                   onPressed: () {
                     context.go(AppRoutesConstants.homeRoute);
                   },

@@ -1,9 +1,9 @@
-import 'package:flower_app/features/product/best_seller/presentation/view_models/best_seller_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../core/constants/app_text_constants.dart';
 import '../../view_models/best_seller_cubit.dart';
+import '../../view_models/best_seller_events.dart';
 import 'product_card_widget.dart';
 
 class GridViewWidget extends StatelessWidget {
@@ -11,7 +11,7 @@ class GridViewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var cubit = context.read<BestSellerCubit>();
+    final cubit = context.read<BestSellerCubit>();
     final productItem = cubit.state.bestSellerList ?? [];
     if (productItem.isEmpty) {
       return const Center(child: Text(AppTextConstants.noProductsAvailable));

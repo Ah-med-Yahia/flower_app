@@ -45,6 +45,7 @@ dependencies:
   fluttertoast: ^9.0.0
 
   equatable: ^2.0.7
+  freezed_annotation: ^3.0.0
   pinput: ^6.0.1
   carousel_slider: ^5.1.1
 
@@ -53,6 +54,7 @@ dependencies:
   # Debugging
   logger: ^2.6.2
   pretty_dio_logger: ^1.4.0
+  latlong2: ^0.9.1
 
 dev_dependencies:
   flutter_test:
@@ -63,7 +65,6 @@ dev_dependencies:
   # Code generation tools
   build_runner: ^2.6.0
   freezed: ^3.0.0
-  freezed_annotation: ^3.0.0
   injectable_generator: ^2.7.0
   json_serializable: ^6.7.1
   retrofit_generator: ^10.2.1
@@ -76,6 +77,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/lottie/
+    - assets/files/
     - assets/images/
 
 

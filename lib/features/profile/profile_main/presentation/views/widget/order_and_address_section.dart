@@ -47,7 +47,7 @@ class ProfileCardItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var iconTheme = Theme.of(context).iconTheme;
+    final iconTheme = Theme.of(context).iconTheme;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 11.0),
       child: Row(
