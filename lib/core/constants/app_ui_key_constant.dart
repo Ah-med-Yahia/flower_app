@@ -5,4 +5,5 @@ class AppUiKeyConstant {
   static const String profileAppbarKey = 'profileAppBar_key';
   static const String profileAppbarTxtTitleKey = 'logo_key';
   static const String profileAppbarNotifyICKey = 'notification_key';
+  static const String profileUserInfoShowErrorWidgetKey = 'showErrorWidget_key';
 }
