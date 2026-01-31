@@ -52,6 +52,10 @@ class _ProfileMainBodyState extends State<ProfileMainBody> {
         _navigateToEditProfile(context);
       case ShowAlertDialogSideEffect():
         _showAlertDialog();
+      case NavigateToAppPolicySideEffect():
+        _navigateToPolicy(context);
+      case NavigateToAppInformationSideEffect():
+        _navigateToAboutUs(context);
     }
   }
 
@@ -147,6 +151,14 @@ class _ProfileMainBodyState extends State<ProfileMainBody> {
 
   void _navigateToLogin(BuildContext context) {
     GoRouter.of(context).pushReplacementNamed(AppRoutesConstants.loginRoute);
+  }
+
+  void _navigateToPolicy(BuildContext context) {
+    GoRouter.of(context).pushNamed(AppRoutesConstants.appPolicyRoute);
+  }
+
+  void _navigateToAboutUs(BuildContext context) {
+    GoRouter.of(context).pushNamed(AppRoutesConstants.appInfoRoute);
   }
 
   void _navigateToEditProfile(BuildContext context) {

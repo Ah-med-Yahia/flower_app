@@ -13,6 +13,7 @@ class LanguageAndPoliciesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<ProfileMainCubit>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
@@ -24,13 +25,7 @@ class LanguageAndPoliciesSection extends StatelessWidget {
                 icon: Icons.translate,
                 showArrow: false,
                 trailingWidget: InkWell(
-                  onTap: () {
-                    // Proper MVI: View sends Intent to Cubit only
-                    // UI events are handled by the parent ProfileMainBody widget
-                    context.read<ProfileMainCubit>().doIntent(
-                      SelectLanguageIntent(),
-                    );
-                  },
+                  onTap: () => cubit.doIntent(SelectLanguageIntent()),
                   child: Text(
                     state.selectedLanguage ?? AppTextConstants.english,
                     style: const TextStyle(color: AppColors.primary),
@@ -40,14 +35,14 @@ class LanguageAndPoliciesSection extends StatelessWidget {
             },
           ),
           InkWell(
-            onTap: () {},
+            onTap: () => cubit.doIntent(TapAboutUsIntent()),
             child: const ProfileCardItem(
               showIcon: false,
               title: AppTextConstants.aboutUsPolicy,
             ),
           ),
           InkWell(
-            onTap: () {},
+            onTap: () => cubit.doIntent(TapTermsAndConditionsIntent()),
             child: const ProfileCardItem(
               showIcon: false,
               title: AppTextConstants.termsAndConditionsPolicy,

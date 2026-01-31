@@ -14,6 +14,8 @@ import '../../features/auth/forget_password/presentation/views/forget_password_v
 import '../../features/auth/forget_password/presentation/views/reset_password_view/reset_password_view.dart';
 import '../../features/auth/forget_password/presentation/views/verify_otp_view/verify_otp_code_view.dart';
 import '../../features/product/best_seller/presentation/views/view/best_seller_view.dart';
+import '../../features/profile/profile_main/presentation/views/terms/view/about_app_view.dart';
+import '../../features/profile/profile_main/presentation/views/terms/view/terms_view.dart';
 
 abstract class AppRouter {
   static GoRouter router = GoRouter(
@@ -81,6 +83,16 @@ abstract class AppRouter {
         path: AppRoutesConstants.changePasswordRoute,
         name: AppRoutesConstants.changePasswordRoute,
         builder: (context, state) => const ChangePasswordScreen(),
+      ),
+      GoRoute(
+        path: AppRoutesConstants.appPolicyRoute,
+        name: AppRoutesConstants.appPolicyRoute,
+        builder: (context, state) => const TermsView(),
+      ),
+      GoRoute(
+        path: AppRoutesConstants.appInfoRoute,
+        name: AppRoutesConstants.appInfoRoute,
+        builder: (context, state) => const AboutAppView(),
       ),
     ],
   );
