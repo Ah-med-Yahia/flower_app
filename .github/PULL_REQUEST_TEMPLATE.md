@@ -1,5 +1,4 @@
 ### PR Title Format
-
 **Format:**  
 `type(scope): Subject`
 
@@ -7,7 +6,6 @@
 `feat(auth): Add login with Google`
 
 **Types you can use:**
-
 - `feat` → New feature
 - `fix` → Bug fix
 - `docs` → Documentation only changes
