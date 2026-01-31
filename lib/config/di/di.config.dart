@@ -111,6 +111,14 @@ import '../../features/cart/data/data_sources/cart_remote_data_source.dart'
 import '../../features/cart/data/repositories/cart_repository_impl.dart'
     as _i642;
 import '../../features/cart/domain/repositories/cart_repository.dart' as _i322;
+import '../../features/cart/domain/usecases/add_to_cart_use_case.dart' as _i625;
+import '../../features/cart/domain/usecases/clear_cart_use_case.dart' as _i989;
+import '../../features/cart/domain/usecases/get_cart_use_case.dart' as _i488;
+import '../../features/cart/domain/usecases/remove_item_from_cart_use_case.dart'
+    as _i925;
+import '../../features/cart/domain/usecases/update_item_quantity_use_case.dart'
+    as _i520;
+import '../../features/cart/presentation/cubit/cart_cubit.dart' as _i499;
 import '../../features/categories/api/api_service/categories_api_client.dart'
     as _i199;
 import '../../features/categories/api/datasources_impl/remote_categories_data_source_impl.dart'
@@ -502,6 +510,21 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i531.ResetPasswordCubit>(
       () => _i531.ResetPasswordCubit(gh<_i374.ResetPasswordUseCase>()),
     );
+    gh.factory<_i625.AddToCartUseCase>(
+      () => _i625.AddToCartUseCase(gh<_i322.CartRepository>()),
+    );
+    gh.factory<_i989.ClearCartUseCase>(
+      () => _i989.ClearCartUseCase(gh<_i322.CartRepository>()),
+    );
+    gh.factory<_i488.GetCartUseCase>(
+      () => _i488.GetCartUseCase(gh<_i322.CartRepository>()),
+    );
+    gh.factory<_i925.RemoveItemFromCartUseCase>(
+      () => _i925.RemoveItemFromCartUseCase(gh<_i322.CartRepository>()),
+    );
+    gh.factory<_i520.UpdateItemQuantityUseCase>(
+      () => _i520.UpdateItemQuantityUseCase(gh<_i322.CartRepository>()),
+    );
     gh.factory<_i988.BestSellerCubit>(
       () => _i988.BestSellerCubit(gh<_i198.GetBestSellerUseCase>()),
     );
@@ -513,6 +536,14 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i193.HomeScreenCubit>(
       () => _i193.HomeScreenCubit(gh<_i1033.GetHomeDataUsecase>()),
+    );
+    gh.factory<_i499.CartCubit>(
+      () => _i499.CartCubit(
+        gh<_i989.ClearCartUseCase>(),
+        gh<_i488.GetCartUseCase>(),
+        gh<_i925.RemoveItemFromCartUseCase>(),
+        gh<_i520.UpdateItemQuantityUseCase>(),
+      ),
     );
     gh.factory<_i986.ProductDetailsCubit>(
       () => _i986.ProductDetailsCubit(gh<_i888.GetProductDetailsUsecase>()),

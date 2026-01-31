@@ -1,7 +1,7 @@
 class AppTextConstants {
   AppTextConstants._();
 
-  // TODO(Salah): Handle Localization
+  // Todo(Salah): Handle Localization
   static const String home = 'Home';
   static const String categories = 'Categories';
   static const String cart = 'Cart';
@@ -128,6 +128,17 @@ class AppTextConstants {
       'Bloom exquisite best sellers';
   static const String noOccasionsAvailable = 'No occasions available';
   static const String loading = 'Loading...';
+  static const String items = 'items';
+  static const String cartClearedSuccessfully = 'Cart cleared successfully';
+  static const String cartError = 'Cart Error';
+  static const String cartErrorMessage =
+      'We couldn\'t load your cart. Please try again.';
+  static const String close = 'Close';
+  static const String emptyCart = 'Empty Cart';
+  static const String clearCart = 'Clear';
+  static const String clearCartConfirmation =
+      'Are you sure you want to clear your cart?';
+  static const String confirm = 'Confirm';
   static const String percentageSign = '%';
   static const String id = 'id';
 
@@ -139,4 +150,12 @@ class AppTextConstants {
   static const String arLang = 'ar';
   static const String switchToArabic = 'Switch to Arabic';
   static const String switchToEnglish = 'التبديل إلى الإنجليزية';
+  static const String currency = 'EGP';
+  static const String deleteThisItem = 'Delete this item?';
+  static const String delete = 'Delete';
+  static const String checkout = 'Checkout';
+  static const String subTotal = 'Sub Total';
+  static const String deliveryFee = 'Delivery Fee';
+  static const String total = 'Total';
+  static const String currencySign = 'E£';
 }
