@@ -6,16 +6,16 @@ import '../../../view_models/terms/static_content_cubit.dart';
 import '../../../view_models/terms/static_content_states.dart';
 import 'terms_view_body.dart';
 
-class TermsView extends StatelessWidget {
-  const TermsView({super.key});
+class AboutAppView extends StatelessWidget {
+  const AboutAppView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocProvider<StaticContentCubit>(
         create: (context) =>
-            getIt<StaticContentCubit>()..doIntent(GetTermDataEvent()),
-        child: const TermsViewBody(isAboutApp: false),
+            getIt<StaticContentCubit>()..doIntent(GetAboutAppDataEvent()),
+        child: const TermsViewBody(isAboutApp: true),
       ),
     );
   }

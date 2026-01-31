@@ -13,12 +13,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OccasionScreen extends StatelessWidget {
-  const OccasionScreen({super.key});
+  final String? id;
+  const OccasionScreen({super.key, required this.id});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<OccasionCubit>()..onEvent(GetAllOccasions()),
+      create: (context) =>
+          getIt<OccasionCubit>()
+            ..onEvent(GetAllOccasions(initialOccasionId: id)),
       child: Scaffold(
         appBar: AppBar(
           toolbarHeight: MediaQuery.of(context).size.height * 0.09,

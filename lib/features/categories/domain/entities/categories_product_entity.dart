@@ -4,6 +4,7 @@ class CategoryProductEntity {
   final String image;
   final num price;
   final num priceAfterDiscount;
+  final int discountPercentage;
 
   CategoryProductEntity({
     required this.id,
@@ -11,5 +12,17 @@ class CategoryProductEntity {
     required this.image,
     required this.price,
     required this.priceAfterDiscount,
+    this.discountPercentage = 0,
   });
+
+  CategoryProductEntity copyWith({int? discountPercentage}) {
+    return CategoryProductEntity(
+      id: id,
+      name: name,
+      image: image,
+      price: price,
+      priceAfterDiscount: priceAfterDiscount,
+      discountPercentage: discountPercentage ?? this.discountPercentage,
+    );
+  }
 }

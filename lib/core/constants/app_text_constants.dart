@@ -10,6 +10,7 @@ class AppTextConstants {
   static const String logout = 'Logout';
   static const String confirmLogout = 'Confirm logout!!';
   static const String cancel = 'Cancel';
+  static const String noCategoriesAvailable = 'No Categories Available';
   static const String failedToRegister =
       'Failed to register. Please try again.';
   static const String signUp = 'Sign Up';
@@ -143,6 +144,8 @@ class AppTextConstants {
   static const String noTermsDataAvailable = 'No terms data available';
   static const String termsAppBarTitleEn = 'Terms and Conditions';
   static const String termsAppBarTitleAr = 'الشروط والأحكام';
+  static const String appInfoAppBarTitleEn = 'About App';
+  static const String appInfoAppBarTitleAr = 'حول التطبيق';
   static const String enLang = 'en';
   static const String arLang = 'ar';
   static const String switchToArabic = 'Switch to Arabic';
