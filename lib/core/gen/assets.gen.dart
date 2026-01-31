@@ -18,12 +18,19 @@ import 'package:vector_graphics/vector_graphics.dart' as _vg;
 class $AssetsFilesGen {
   const $AssetsFilesGen();
 
+  /// File path: assets/files/Flowery About Section JSON with Expanded Content.json
+  String get floweryAboutSectionJSONWithExpandedContent =>
+      'assets/files/Flowery About Section JSON with Expanded Content.json';
+
   /// File path: assets/files/flowery_terms_and_condition_with_arabic_and_english.json
   String get floweryTermsAndConditionWithArabicAndEnglish =>
       'assets/files/flowery_terms_and_condition_with_arabic_and_english.json';
 
   /// List of all assets
-  List<String> get values => [floweryTermsAndConditionWithArabicAndEnglish];
+  List<String> get values => [
+    floweryAboutSectionJSONWithExpandedContent,
+    floweryTermsAndConditionWithArabicAndEnglish,
+  ];
 }
 
 class $AssetsIconsGen {

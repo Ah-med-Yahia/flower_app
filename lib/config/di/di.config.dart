@@ -16,6 +16,16 @@ import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
 import '../../core/services/session_manager.dart' as _i570;
 import '../../core/services/token_service.dart' as _i115;
+import '../../features/add_update_adrees/api/api_clinet/add_update_adrees_api_client.dart'
+    as _i619;
+import '../../features/add_update_adrees/api/data_source/remote/add_update_address_remote_data_source_impl.dart'
+    as _i569;
+import '../../features/add_update_adrees/data/data_source/remote/add_update_address_remote_data_source.dart'
+    as _i746;
+import '../../features/add_update_adrees/data/repo/add_update_address_repo_impl.dart'
+    as _i324;
+import '../../features/add_update_adrees/domain/repo/add_update_address_repo.dart'
+    as _i513;
 import '../../features/auth/change_password/api/api_client/change_password_api_client.dart'
     as _i971;
 import '../../features/auth/change_password/api/data_sources/change_password_data_source_impl.dart'
@@ -192,6 +202,8 @@ import '../../features/profile/profile_main/data/repos/profile_main_repo_impl.da
     as _i753;
 import '../../features/profile/profile_main/domain/repos/profile_main_repo.dart'
     as _i652;
+import '../../features/profile/profile_main/domain/use_cases/get_about_app_use_case.dart'
+    as _i420;
 import '../../features/profile/profile_main/domain/use_cases/get_term_use_case.dart'
     as _i307;
 import '../../features/profile/profile_main/domain/use_cases/get_user_data_use_case.dart'
@@ -277,6 +289,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i425.OccasionApiClient>(
       () => _i425.OccasionApiClient(gh<_i361.Dio>()),
     );
+    gh.factory<_i619.AddUpdateAdreesApiClient>(
+      () => _i619.AddUpdateAdreesApiClient(gh<_i361.Dio>()),
+    );
     gh.factory<_i971.ChangePasswordApiClient>(
       () => _i971.ChangePasswordApiClient(gh<_i361.Dio>()),
     );
@@ -346,6 +361,11 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i31.OccasionRepoContract>(
       () => _i315.OccasionRepoImpl(gh<_i948.RemoteOccasionDataSource>()),
+    );
+    gh.factory<_i746.AddUpdateAddressRemoteDataSource>(
+      () => _i569.AddUpdateAddressRemoteDataSourceImpl(
+        gh<_i619.AddUpdateAdreesApiClient>(),
+      ),
     );
     gh.factory<_i780.ChangePasswordUseCase>(
       () => _i780.ChangePasswordUseCase(gh<_i784.ChangePasswordRepo>()),
@@ -457,11 +477,19 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i492.TermCubit>(
       () => _i492.TermCubit(gh<_i307.GetTermUseCase>()),
     );
+    gh.factory<_i513.AddUpdateAddressRepo>(
+      () => _i324.AddUpdateAddressRepoImpl(
+        gh<_i746.AddUpdateAddressRemoteDataSource>(),
+      ),
+    );
     gh.factory<_i105.ForgetPasswordCubit>(
       () => _i105.ForgetPasswordCubit(gh<_i737.ForgetPasswordUseCase>()),
     );
     gh.factory<_i1033.GetHomeDataUsecase>(
       () => _i1033.GetHomeDataUsecase(gh<_i202.HomeScreenRepo>()),
+    );
+    gh.factory<_i420.GetAboutAppUseCase>(
+      () => _i420.GetAboutAppUseCase(gh<_i652.ProfileMainRepo>()),
     );
     gh.factory<_i888.GetProductDetailsUsecase>(
       () => _i888.GetProductDetailsUsecase(
