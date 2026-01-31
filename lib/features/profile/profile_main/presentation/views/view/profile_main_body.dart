@@ -11,7 +11,7 @@ import '../../view_models/profile_main_intents.dart';
 import '../../view_models/profile_main_side_effects.dart';
 import '../../view_models/profile_main_states.dart';
 import '../widget/custom_bottom_sheet_widget.dart';
-import '../widget/language_and_polices_section.dart';
+import '../widget/language_and_policies_section.dart';
 import '../widget/logout_section.dart';
 import '../widget/order_and_address_section.dart';
 import '../widget/user_data_section.dart';
@@ -90,7 +90,7 @@ class _ProfileMainBodyState extends State<ProfileMainBody> {
                     ),
                   ),
                   const Divider(),
-                  const LanguageAndPolicesSection(),
+                  const LanguageAndPoliciesSection(),
                   const Divider(),
                   InkWell(
                     onTap: () {

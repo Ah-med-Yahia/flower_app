@@ -8,8 +8,8 @@ import '../../view_models/profile_main_intents.dart';
 import '../../view_models/profile_main_states.dart';
 import 'order_and_address_section.dart';
 
-class LanguageAndPolicesSection extends StatelessWidget {
-  const LanguageAndPolicesSection({super.key});
+class LanguageAndPoliciesSection extends StatelessWidget {
+  const LanguageAndPoliciesSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,13 +39,19 @@ class LanguageAndPolicesSection extends StatelessWidget {
               );
             },
           ),
-          const ProfileCardItem(
-            showIcon: false,
-            title: AppTextConstants.aboutUsPolicy,
+          InkWell(
+            onTap: () {},
+            child: const ProfileCardItem(
+              showIcon: false,
+              title: AppTextConstants.aboutUsPolicy,
+            ),
           ),
-          const ProfileCardItem(
-            showIcon: false,
-            title: AppTextConstants.termsAndConditionsPolicy,
+          InkWell(
+            onTap: () {},
+            child: const ProfileCardItem(
+              showIcon: false,
+              title: AppTextConstants.termsAndConditionsPolicy,
+            ),
           ),
         ],
       ),

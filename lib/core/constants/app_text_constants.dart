@@ -110,10 +110,6 @@ class AppTextConstants {
   static const String defaultAvatarUrl =
       'https://flower.elevateegy.com/uploads/default-profile.png';
   static const String notification = 'Notification';
-
-  // static const String logout = 'Logout';
-  // static const String confirmLogout = 'Confirm logout!!';
-  // static const String cancel = 'Cancel';
   static const String chooseLanguage = 'Choose Language';
   static const String english = 'English';
   static const String arabic = 'Arabic';
