@@ -9,7 +9,6 @@ linter:
     - avoid_slow_async_io
     - cancel_subscriptions
     - close_sinks
-    - comment_references
     - control_flow_in_finally
     - empty_statements
     - invariant_booleans
