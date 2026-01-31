@@ -24,7 +24,7 @@ class ButtonClearCartWidget extends StatelessWidget {
               return ConfirmationDialog(
                 onConfirm: onConfirm,
                 title: AppTextConstants.clearCart,
-                message: AppTextConstants.clearCartMessage,
+                message: AppTextConstants.clearCartConfirmation,
                 icon: Icons.delete_outline,
               );
             },

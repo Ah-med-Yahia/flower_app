@@ -39,7 +39,7 @@ class CartItemWidget extends StatelessWidget {
             message: AppTextConstants.deleteThisItem,
           ),
         );
-        return result;
+        return result ?? false;
       },
       background: Container(
         padding: const EdgeInsets.only(right: 20),

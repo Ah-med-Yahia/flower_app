@@ -15,7 +15,6 @@ class ApiConstants {
 
   // ------------------------ PRODUCTS --------------------- //
   static const String productByIdEndpoint = 'products/{id}';
-  static const String productsEndpoint = 'products/{id}';
   static const String idPathQuery = 'id';
 
   // ---------------------- BEST SELLER -------------------- //

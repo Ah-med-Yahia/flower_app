@@ -213,7 +213,9 @@ class _CartTabState extends State<CartTab> {
                               children: [
                                 const Spacer(),
                                 CartSummaryWidget(
-                                  onCheckout: () => {},
+                                  onCheckout: () => {
+                                    // Todo: implement checkout
+                                  },
                                   deliveryFee: cart.deliveryFee,
                                   subTotal: cart.totalPrice,
                                   total: cart.totalPrice + cart.deliveryFee,

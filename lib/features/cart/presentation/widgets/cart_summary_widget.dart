@@ -23,12 +23,12 @@ class CartSummaryWidget extends StatelessWidget {
       children: [
         SummaryRow(
           label: AppTextConstants.subTotal,
-          value: '$subTotal${AppTextConstants.dollarSign}',
+          value: '$subTotal${AppTextConstants.currencySign}',
         ),
         const SizedBox(height: 8),
         SummaryRow(
           label: AppTextConstants.deliveryFee,
-          value: '$deliveryFee${AppTextConstants.dollarSign}',
+          value: '$deliveryFee${AppTextConstants.currencySign}',
         ),
         const Padding(
           padding: EdgeInsets.symmetric(vertical: 12),
@@ -36,7 +36,7 @@ class CartSummaryWidget extends StatelessWidget {
         ),
         SummaryRow(
           label: AppTextConstants.total,
-          value: '$total${AppTextConstants.dollarSign}',
+          value: '$total${AppTextConstants.currencySign}',
           isTotal: true,
         ),
         20.verticalSpacing,

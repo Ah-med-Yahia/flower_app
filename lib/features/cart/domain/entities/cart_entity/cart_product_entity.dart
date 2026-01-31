@@ -30,7 +30,6 @@ class CartProductEntity extends Equatable {
   @override
   List<Object?> get props => [
     title,
-    title,
     slug,
     description,
     imgCover,

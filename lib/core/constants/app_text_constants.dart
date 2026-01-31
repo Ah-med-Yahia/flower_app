@@ -157,7 +157,5 @@ class AppTextConstants {
   static const String subTotal = 'Sub Total';
   static const String deliveryFee = 'Delivery Fee';
   static const String total = 'Total';
-  static const String dollarSign = '\$';
-  static const String clearCartMessage =
-      'Are you sure you want to clear your cart?';
+  static const String currencySign = 'E£';
 }
