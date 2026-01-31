@@ -1,9 +1,8 @@
 import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/enums/home_nav_tab.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
-import 'package:flower_app/features/cart/cart_tap.dart';
-import 'package:flower_app/features/categories/presentation/views/screens/categories_screen.dart';
 import 'package:flower_app/features/cart/presentation/cart_tab.dart';
+import 'package:flower_app/features/categories/presentation/views/screens/categories_screen.dart';
 import 'package:flower_app/features/home/presentation/view/screens/home_tap.dart';
 import 'package:flower_app/features/profile/profile_tap.dart';
 import 'package:flutter/material.dart';

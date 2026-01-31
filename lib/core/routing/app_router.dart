@@ -76,7 +76,6 @@ abstract class AppRouter {
           final id = state.extra as String?;
           return OccasionScreen(id: id);
         },
-        builder: (context, state) => const OccasionScreen(),
       ),
       GoRoute(
         path: AppRoutesConstants.changePasswordRoute,

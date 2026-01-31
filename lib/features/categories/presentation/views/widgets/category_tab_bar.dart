@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:flower_app/features/categories/domain/entities/category_entity.dart';
 import 'package:flower_app/features/categories/presentation/views/widgets/category_tab.dart';
+import 'package:flutter/material.dart';
 
 class CategoryTabBar extends StatelessWidget {
   final List<CategoryEntity> categories;
@@ -8,11 +8,11 @@ class CategoryTabBar extends StatelessWidget {
   final Function(int) onTabSelected;
 
   const CategoryTabBar({
-    Key? key,
+    super.key,
     required this.categories,
     required this.selectedIndex,
     required this.onTabSelected,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
