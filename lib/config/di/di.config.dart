@@ -461,6 +461,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i316.LoginUseCase>(
       () => _i316.LoginUseCase(gh<_i176.LoginRepository>()),
     );
+    gh.factory<_i960.CategoriesCubit>(
+      () => _i960.CategoriesCubit(
+        gh<_i943.GetAllCategoriesUsecase>(),
+        gh<_i290.GetCategoryProductsUsecase>(),
+      ),
+    );
     gh.factory<_i737.ForgetPasswordUseCase>(
       () => _i737.ForgetPasswordUseCase(gh<_i924.ForgetPasswordRepo>()),
     );

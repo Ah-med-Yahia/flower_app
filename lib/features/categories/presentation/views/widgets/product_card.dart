@@ -1,14 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flower_app/features/categories/domain/entities/categories_product_entity.dart';
+import 'package:flutter/material.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flower_app/core/widgets/loading_indicator_widget.dart';
-import 'package:flower_app/features/occasion/domain/entities/occasion_product_entity.dart';
-import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
-  final OccasionProductEntity _occasionProductEntity;
+  final CategoryProductEntity _categoryProductEntity;
 
-  const ProductCard(this._occasionProductEntity, {super.key});
+  const ProductCard(this._categoryProductEntity);
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +26,15 @@ class ProductCard extends StatelessWidget {
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
               padding: EdgeInsets.all(screenWidth * 0.03),
 
               child: AspectRatio(
-                aspectRatio: 1.3,
+                aspectRatio: 1.2,
                 child: CachedNetworkImage(
-                  imageUrl: _occasionProductEntity.image,
+                  imageUrl: _categoryProductEntity.image,
                   fit: BoxFit.cover,
                   placeholder: (context, url) =>
                       LoadingIndicator(size: screenWidth * 0.20),
@@ -53,7 +54,7 @@ class ProductCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    _occasionProductEntity.name,
+                    _categoryProductEntity.name,
                     style: Theme.of(context).textTheme.titleMedium!.copyWith(
                       color: AppColors.textPrimary,
                       fontWeight: FontWeight.w400,
@@ -67,7 +68,7 @@ class ProductCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        '${AppTextConstants.egp} ${_occasionProductEntity.priceAfterDiscount}',
+                        '${AppTextConstants.egp} ${_categoryProductEntity.priceAfterDiscount}',
                         style: Theme.of(context).textTheme.titleMedium
                             ?.copyWith(
                               fontWeight: FontWeight.w600,
@@ -77,7 +78,7 @@ class ProductCard extends StatelessWidget {
                       ),
                       SizedBox(width: screenWidth * 0.018),
                       Text(
-                        '${_occasionProductEntity.price}',
+                        '${_categoryProductEntity.price}',
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontSize: fontSize,
                           color: AppColors.textSecondary,
@@ -88,9 +89,9 @@ class ProductCard extends StatelessWidget {
                       SizedBox(width: screenWidth * 0.018),
 
                       Visibility(
-                        visible: _occasionProductEntity.discountPercentage != 0,
+                        visible: _categoryProductEntity.discountPercentage != 0,
                         child: Text(
-                          '${_occasionProductEntity.discountPercentage}${AppTextConstants.percentageSign}',
+                          '${_categoryProductEntity.discountPercentage}${AppTextConstants.percentageSign}',
                           style: Theme.of(context).textTheme.bodyMedium
                               ?.copyWith(
                                 fontSize: screenWidth * 0.032,

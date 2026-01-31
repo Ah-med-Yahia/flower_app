@@ -4,6 +4,7 @@ class OccasionProductEntity {
   final String image;
   final num price;
   final num priceAfterDiscount;
+  final int discountPercentage;
 
   OccasionProductEntity({
     required this.id,
@@ -11,12 +12,16 @@ class OccasionProductEntity {
     required this.image,
     required this.price,
     required this.priceAfterDiscount,
+    this.discountPercentage = 0,
   });
-
-  int get discountPercentage {
-    if (price <= 0 || priceAfterDiscount > price) return 0;
-
-    final percentage = 100 - ((priceAfterDiscount / price) * 100);
-    return percentage.round();
+  OccasionProductEntity copyWith({int? discountPercentage}) {
+    return OccasionProductEntity(
+      id: id,
+      name: name,
+      image: image,
+      price: price,
+      priceAfterDiscount: priceAfterDiscount,
+      discountPercentage: discountPercentage ?? this.discountPercentage,
+    );
   }
 }
