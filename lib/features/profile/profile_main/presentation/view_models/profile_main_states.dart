@@ -12,7 +12,7 @@ class ProfileMainStates extends Equatable {
   const ProfileMainStates({
     this.isNotificationsEnabled = true,
     this.userData = const BaseState<UserDataResponse>(),
-    this.selectedLanguage = AppTextConstants.english,
+    this.selectedLanguage = AppTextConstants.englishProfileState,
   });
 
   ProfileMainStates copyWith({

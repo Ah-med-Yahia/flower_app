@@ -31,7 +31,8 @@ void main() {
   late MockLogoutUseCase mockLogoutUseCase;
   late ProfileMainCubit cubit;
 
-  setUp(() {
+  setUp(() async {
+    TestWidgetsFlutterBinding.ensureInitialized();
     mockGetUserDataUseCase = MockGetUserDataUseCase();
     mockLoadCachedUserDataUseCase = MockLoadCachedUserDataUseCase();
     mockVerifySessionUseCase = MockVerifySessionUseCase();
@@ -64,7 +65,7 @@ void main() {
         expect(notificationsState, true);
         // Language State
         final languageState = profileMainState.selectedLanguage;
-        expect(languageState, AppTextConstants.english);
+        expect(languageState, AppTextConstants.englishProfileState);
       },
     );
 

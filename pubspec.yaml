@@ -10,6 +10,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+   # Localization
+  easy_localization: ^3.0.8
+
   # UI and Design
   cached_network_image: ^3.4.1
   cupertino_icons: ^1.0.8
@@ -81,7 +84,7 @@ flutter:
     - assets/icons/
     - assets/files/
     - assets/images/
-
+    - assets/translations/
 
 flutter_gen:
   output: lib/core/gen/

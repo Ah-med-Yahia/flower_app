@@ -36,7 +36,7 @@ class ChangePasswordCubit extends Cubit<ChangePasswordStates> {
         _updateConfirmPassword(intent.confirmPassword);
         break;
       case UpdateIntent():
-        _updatePawssord();
+        _updatePassword();
     }
   }
 
@@ -86,10 +86,10 @@ class ChangePasswordCubit extends Cubit<ChangePasswordStates> {
     return allFieldsFilled && passwordsMatch;
   }
 
-  Future<void> _updatePawssord() async {
+  Future<void> _updatePassword() async {
     if (state.currentPassword.trim().isEmpty) {
       _streamController.add(
-        const ShowErrorIntent(
+        ShowErrorIntent(
           message: AppTextConstants.pleaseEnterYourCurrentPassword,
         ),
       );
@@ -98,32 +98,28 @@ class ChangePasswordCubit extends Cubit<ChangePasswordStates> {
 
     if (state.newPassword.trim().isEmpty) {
       _streamController.add(
-        const ShowErrorIntent(
-          message: AppTextConstants.pleaseEnterYourNewPassword,
-        ),
+        ShowErrorIntent(message: AppTextConstants.pleaseEnterYourNewPassword),
       );
       return;
     }
 
     if (state.confirmPassword.trim().isEmpty) {
       _streamController.add(
-        const ShowErrorIntent(
-          message: AppTextConstants.pleaseConfirmYourNewPassword,
-        ),
+        ShowErrorIntent(message: AppTextConstants.pleaseConfirmYourNewPassword),
       );
       return;
     }
 
     if (state.newPassword.trim() != state.confirmPassword.trim()) {
       _streamController.add(
-        const ShowErrorIntent(message: AppTextConstants.passwordsDoNotMatch),
+        ShowErrorIntent(message: AppTextConstants.passwordsDoNotMatch),
       );
       return;
     }
 
     if (state.currentPassword.trim() == state.newPassword.trim()) {
       _streamController.add(
-        const ShowErrorIntent(message: AppTextConstants.newPasswordSameAsOld),
+        ShowErrorIntent(message: AppTextConstants.newPasswordSameAsOld),
       );
       return;
     }
@@ -140,7 +136,7 @@ class ChangePasswordCubit extends Cubit<ChangePasswordStates> {
     response.map(
       success: (response) async {
         _streamController.add(
-          const NavigateToEditProfileIntent(
+          NavigateToEditProfileIntent(
             message: AppTextConstants.passwordUpdatedSuccessfully,
           ),
         );

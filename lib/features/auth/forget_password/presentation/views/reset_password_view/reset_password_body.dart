@@ -62,9 +62,7 @@ class _ResetPasswordBodyState extends State<ResetPasswordBody> {
       final confirmPassword = _confirmPasswordController.text;
       if (newPassword != confirmPassword) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text(ValidationConstants.passwordsDoNotMatch),
-          ),
+          SnackBar(content: Text(ValidationConstants.passwordsDoNotMatch)),
         );
         return;
       }

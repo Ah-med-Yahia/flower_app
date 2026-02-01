@@ -79,7 +79,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
     return BlocProvider.value(
       value: _passwordCubit,
       child: Scaffold(
-        appBar: AppBar(title: const Text(AppTextConstants.resetPassword)),
+        appBar: AppBar(title: Text(AppTextConstants.resetPasswordHeader)),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Form(
@@ -89,7 +89,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 const SizedBox(height: 10),
                 TextFormField(
                   controller: _currentPassword,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     label: Text(AppTextConstants.currentPassword),
                     hintText: AppTextConstants.currentPassword,
                     helperText: '',
@@ -100,7 +100,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 const SizedBox(height: 10),
                 TextFormField(
                   controller: _newpassword,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     label: Text(AppTextConstants.newPassword),
                     hintText: AppTextConstants.newPassword,
                     helperText: '',
@@ -112,7 +112,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
 
                 TextFormField(
                   controller: _confirmPassword,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     label: Text(AppTextConstants.confirmPassword),
                     hintText: AppTextConstants.confirmPassword,
                     helperText: '',
@@ -133,9 +133,9 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         _passwordCubit.doIntent(UpdateIntent());
                       }
                     },
-                    child: const Text(
+                    child: Text(
                       AppTextConstants.update,
-                      style: TextStyle(fontSize: 16),
+                      style: const TextStyle(fontSize: 16),
                     ),
                   ),
                 ),

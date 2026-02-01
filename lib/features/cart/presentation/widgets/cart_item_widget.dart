@@ -34,7 +34,7 @@ class CartItemWidget extends StatelessWidget {
       confirmDismiss: (direction) async {
         final result = await showDialog<bool>(
           context: context,
-          builder: (context) => const ConfirmationDialog(
+          builder: (context) => ConfirmationDialog(
             title: AppTextConstants.confirm,
             message: AppTextConstants.deleteThisItem,
           ),
@@ -137,7 +137,7 @@ class CartItemWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '${AppTextConstants.currency} ${item.price}',
+                        '${AppTextConstants.currencySign} ${item.price}',
                         style: textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),

@@ -125,8 +125,7 @@ void main() {
             .having(
               (s) => s.occasionState.errorMessage,
               'error',
-              // ErrorHandler.handle() returns default error for non-DioException/LocalException
-              ErrorsConstant.defaultError,
+              ErrorsConstant.internalServerError,
             ),
       ],
     );

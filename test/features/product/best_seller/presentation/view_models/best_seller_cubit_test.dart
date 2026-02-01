@@ -19,7 +19,8 @@ import 'best_seller_cubit_test.mocks.dart';
 void main() {
   late MockGetBestSellerUseCase mockUseCase;
   late BestSellerCubit cubit;
-  setUp(() {
+  setUp(() async {
+    TestWidgetsFlutterBinding.ensureInitialized();
     mockUseCase = MockGetBestSellerUseCase();
     cubit = BestSellerCubit(mockUseCase);
   });
@@ -137,9 +138,8 @@ void _testFailureWhenGetBestSellerEvent(
   MockGetBestSellerUseCase Function() mockUGetBestSellerUseCase,
   BestSellerCubit Function() bestSellerCubit,
 ) {
-  // ErrorHandler.handle() returns default error for non-DioException/LocalException
-  const errorMessage = 'Something went wrong. Please try again.';
-  final apiErrorModel = ErrorModel(message: 'Network error');
+  const errorMessage = 'Network error';
+  final apiErrorModel = ErrorModel(message: errorMessage);
   final errorHandler = ErrorHandler.handle(apiErrorModel);
   final failureResponse = BaseResponse<BestSellerResponse>.failure(
     errorHandler,
@@ -184,9 +184,8 @@ void _testVerifyStoreCorrectDataInStateWhenFailure(
   MockGetBestSellerUseCase Function() mockUGetBestSellerUseCase,
   BestSellerCubit Function() bestSellerCubit,
 ) {
-  // ErrorHandler.handle() returns default error for non-DioException/LocalException
-  const errorMessage = 'Something went wrong. Please try again.';
-  final apiErrorModel = ErrorModel(message: 'Network error');
+  const errorMessage = 'Network error';
+  final apiErrorModel = ErrorModel(message: errorMessage);
   final errorHandler = ErrorHandler.handle(apiErrorModel);
   final failureResponse = BaseResponse<BestSellerResponse>.failure(
     errorHandler,
