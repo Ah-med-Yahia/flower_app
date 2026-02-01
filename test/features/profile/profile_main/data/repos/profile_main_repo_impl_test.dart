@@ -28,7 +28,8 @@ void main() {
   late MockProfileMainRemoteDataSource mockRemoteDataSource;
   late MockProfileMainLocalDataSource mockLocalDataSource;
 
-  setUp(() {
+  setUp(() async {
+    TestWidgetsFlutterBinding.ensureInitialized();
     mockRemoteDataSource = MockProfileMainRemoteDataSource();
     mockLocalDataSource = MockProfileMainLocalDataSource();
     repository = ProfileMainRepoImpl(mockRemoteDataSource, mockLocalDataSource);
@@ -119,9 +120,6 @@ void _testGetLoggedUserDataThrowsException(
       );
       when(mockRemoteDataSource.getLoggedUserData()).thenThrow(dioException);
 
-      final errorMessage = ErrorHandler.handle(dioException).message;
-      final statusCode = ErrorHandler.handle(dioException).code;
-
       // Act
       final result = await repository.getLoggedUserData();
 
@@ -131,9 +129,7 @@ void _testGetLoggedUserDataThrowsException(
         success: (_) => fail('Expected failure but got success'),
         failure: (errorHandler) {
           expect(errorHandler, isA<ErrorHandler>());
-          expect(errorHandler.message, errorMessage);
-          expect(errorHandler.code, statusCode);
-          expect(errorHandler.message, 'Connection timeout. Please try again.');
+          expect(errorHandler.message, equals('errors.timeout'));
           expect(errorHandler.code, -1);
         },
       );

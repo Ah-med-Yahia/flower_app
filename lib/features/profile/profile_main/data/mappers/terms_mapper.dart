@@ -20,8 +20,8 @@ class TermsMapper {
     );
   }
 
-  static const String _enLangKey = AppTextConstants.enLang;
-  static const String _arLangKey = AppTextConstants.arLang;
+  static const String _enLangKey = AppTextConstants.enLangKey;
+  static const String _arLangKey = AppTextConstants.arLangKey;
 
   static TermSectionEntity _toSectionEntity(TermSection model) {
     return TermSectionEntity(

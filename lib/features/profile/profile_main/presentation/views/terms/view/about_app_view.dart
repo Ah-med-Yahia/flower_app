@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../../config/di/di.dart';
 import '../../../view_models/terms/static_content_cubit.dart';
-import '../../../view_models/terms/static_content_states.dart';
+import '../../../view_models/terms/static_content_events.dart';
 import 'terms_view_body.dart';
 
 class AboutAppView extends StatelessWidget {

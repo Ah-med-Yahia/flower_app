@@ -91,11 +91,7 @@ void main() {
         result.when(
           success: (data) => fail('Expected failure but got success'),
           failure: (error) {
-            // ErrorHandler.handle() returns default error for non-DioException/LocalException
-            expect(
-              error.message,
-              equals('Something went wrong. Please try again.'),
-            );
+            expect(error.message, equals(testError));
           },
         );
         verify(
@@ -124,11 +120,7 @@ void main() {
           result.when(
             success: (data) => fail('Expected failure but got success'),
             failure: (error) {
-              // ErrorHandler.handle() returns default error for non-DioException/LocalException
-              expect(
-                error.message,
-                equals('Something went wrong. Please try again.'),
-              );
+              expect(error.message, equals(testError));
             },
           );
           verify(
@@ -158,11 +150,7 @@ void main() {
           result.when(
             success: (data) => fail('Expected failure but got success'),
             failure: (error) {
-              // ErrorHandler.handle() returns default error for non-DioException/LocalException
-              expect(
-                error.message,
-                equals('Something went wrong. Please try again.'),
-              );
+              expect(error.message, equals(testError));
             },
           );
           verify(
@@ -170,37 +158,36 @@ void main() {
           ).called(1);
         },
       );
-      test('When only email is null, should return API error message', () async {
-        // arrange
-        const String testError = 'reset code not verified';
-        final errorResponse = mockFailureResponse(testMessage: testError);
+      test(
+        'When only email is null, should return API error message',
+        () async {
+          // arrange
+          const String testError = 'reset code not verified';
+          final errorResponse = mockFailureResponse(testMessage: testError);
 
-        when(
-          mockRepo.resetPassword(email: null, newPassword: testNewPass),
-        ).thenAnswer((_) async => errorResponse);
+          when(
+            mockRepo.resetPassword(email: null, newPassword: testNewPass),
+          ).thenAnswer((_) async => errorResponse);
 
-        // act
-        final result = await resetPasswordUseCase.execute(
-          email: null,
-          newPassword: testNewPass,
-        );
+          // act
+          final result = await resetPasswordUseCase.execute(
+            email: null,
+            newPassword: testNewPass,
+          );
 
-        // assert
-        expect(result, isA<BaseResponse<ResetPasswordEntity>>());
-        result.when(
-          success: (data) => fail('Expected failure but got success'),
-          failure: (error) {
-            // ErrorHandler.handle() returns default error for non-DioException/LocalException
-            expect(
-              error.message,
-              equals('Something went wrong. Please try again.'),
-            );
-          },
-        );
-        verify(
-          mockRepo.resetPassword(email: null, newPassword: testNewPass),
-        ).called(1);
-      });
+          // assert
+          expect(result, isA<BaseResponse<ResetPasswordEntity>>());
+          result.when(
+            success: (data) => fail('Expected failure but got success'),
+            failure: (error) {
+              expect(error.message, equals(testError));
+            },
+          );
+          verify(
+            mockRepo.resetPassword(email: null, newPassword: testNewPass),
+          ).called(1);
+        },
+      );
       test(
         'When only new password is null, should return API error message',
         () async {
@@ -223,11 +210,7 @@ void main() {
           result.when(
             success: (data) => fail('Expected failure but got success'),
             failure: (error) {
-              // ErrorHandler.handle() returns default error for non-DioException/LocalException
-              expect(
-                error.message,
-                equals('Something went wrong. Please try again.'),
-              );
+              expect(error.message, equals(testError));
             },
           );
           verify(

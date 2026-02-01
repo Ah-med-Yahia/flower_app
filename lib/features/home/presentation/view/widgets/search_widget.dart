@@ -13,12 +13,12 @@ class SearchWidget extends StatelessWidget {
         color: AppColors.background,
         border: Border.all(color: AppColors.background),
       ),
-      child: const TextField(
+      child: TextField(
         decoration: InputDecoration(
           hintText: AppTextConstants.search,
-          prefixIcon: Icon(Icons.search, color: AppColors.iconGrey),
+          prefixIcon: const Icon(Icons.search, color: AppColors.iconGrey),
           border: InputBorder.none,
-          contentPadding: EdgeInsets.symmetric(vertical: 10),
+          contentPadding: const EdgeInsets.symmetric(vertical: 10),
         ),
       ),
     );

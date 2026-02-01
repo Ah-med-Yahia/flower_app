@@ -79,7 +79,7 @@ class TermsSectionWidget extends StatelessWidget {
   }
 
   Widget _buildListContent(List<String> items, TextStyleEntity style) {
-    final isRTL = language == AppTextConstants.arLang;
+    final isRTL = language == AppTextConstants.arLangKey;
 
     return Column(
       crossAxisAlignment: isRTL

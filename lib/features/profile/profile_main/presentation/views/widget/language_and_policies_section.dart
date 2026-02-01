@@ -36,14 +36,14 @@ class LanguageAndPoliciesSection extends StatelessWidget {
           ),
           InkWell(
             onTap: () => cubit.doIntent(TapAboutUsIntent()),
-            child: const ProfileCardItem(
+            child: ProfileCardItem(
               showIcon: false,
               title: AppTextConstants.aboutUsPolicy,
             ),
           ),
           InkWell(
             onTap: () => cubit.doIntent(TapTermsAndConditionsIntent()),
-            child: const ProfileCardItem(
+            child: ProfileCardItem(
               showIcon: false,
               title: AppTextConstants.termsAndConditionsPolicy,
             ),
