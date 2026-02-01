@@ -4,8 +4,8 @@ import 'package:flower_app/features/categories/domain/entities/get_all_categorie
 import 'package:flower_app/features/categories/domain/entities/get_categories_products_entity.dart';
 import 'package:flower_app/features/categories/domain/usecases/get_all_categories_usecase.dart';
 import 'package:flower_app/features/categories/domain/usecases/get_categories_products_usecase.dart';
-import 'package:flower_app/features/categories/presentation/view_model/categories_event.dart';
-import 'package:flower_app/features/categories/presentation/view_model/categories_state.dart';
+import 'package:flower_app/features/categories/presentation/cubit/categories_event.dart';
+import 'package:flower_app/features/categories/presentation/cubit/categories_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 

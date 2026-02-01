@@ -2,9 +2,9 @@ import 'package:flower_app/config/di/di.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flower_app/core/widgets/loading_indicator_widget.dart';
-import 'package:flower_app/features/categories/presentation/view_model/categories_cubit.dart';
-import 'package:flower_app/features/categories/presentation/view_model/categories_event.dart';
-import 'package:flower_app/features/categories/presentation/view_model/categories_state.dart';
+import 'package:flower_app/features/categories/presentation/cubit/categories_cubit.dart';
+import 'package:flower_app/features/categories/presentation/cubit/categories_event.dart';
+import 'package:flower_app/features/categories/presentation/cubit/categories_state.dart';
 import 'package:flower_app/features/categories/presentation/views/widgets/category_tab_bar.dart';
 import 'package:flower_app/features/categories/presentation/views/widgets/custom_category_app_bar.dart';
 import 'package:flower_app/features/categories/presentation/views/widgets/products_grid.dart';
@@ -25,7 +25,7 @@ class CategoriesTap extends StatelessWidget {
       child: SafeArea(
         child: Column(
           children: [
-            const CustomECategoryAppBar(),
+            const SearchAndFilterProducts(),
             Expanded(
               child: BlocBuilder<CategoriesCubit, CategoriesState>(
                 builder: (context, state) {

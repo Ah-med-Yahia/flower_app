@@ -133,6 +133,8 @@ import '../../features/categories/domain/usecases/get_all_categories_usecase.dar
     as _i943;
 import '../../features/categories/domain/usecases/get_categories_products_usecase.dart'
     as _i290;
+import '../../features/categories/presentation/cubit/categories_cubit.dart'
+    as _i802;
 import '../../features/home/api/api_clinet/home_screen_api_client.dart'
     as _i279;
 import '../../features/home/api/data_sources/remote/home_screen_data_source_impl.dart'
@@ -216,8 +218,8 @@ import '../../features/profile/profile_main/domain/use_cases/verify_session_use_
     as _i773;
 import '../../features/profile/profile_main/presentation/view_models/profile_main_cubit.dart'
     as _i422;
-import '../../features/profile/profile_main/presentation/view_models/terms/term_cubit.dart'
-    as _i492;
+import '../../features/profile/profile_main/presentation/view_models/terms/static_content_cubit.dart'
+    as _i398;
 import '../cache_modules/secure_storage_module.dart' as _i11;
 import '../cache_modules/shared_preferences_module.dart' as _i1059;
 import '../dio_module/auth_interceptor.dart' as _i815;
@@ -461,12 +463,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i316.LoginUseCase>(
       () => _i316.LoginUseCase(gh<_i176.LoginRepository>()),
     );
-    gh.factory<_i960.CategoriesCubit>(
-      () => _i960.CategoriesCubit(
-        gh<_i943.GetAllCategoriesUsecase>(),
-        gh<_i290.GetCategoryProductsUsecase>(),
-      ),
-    );
     gh.factory<_i737.ForgetPasswordUseCase>(
       () => _i737.ForgetPasswordUseCase(gh<_i924.ForgetPasswordRepo>()),
     );
@@ -481,9 +477,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i805.RegisterCubit>(
       () => _i805.RegisterCubit(gh<_i545.RegisterUseCase>()),
-    );
-    gh.factory<_i492.TermCubit>(
-      () => _i492.TermCubit(gh<_i307.GetTermUseCase>()),
     );
     gh.factory<_i513.AddUpdateAddressRepo>(
       () => _i324.AddUpdateAddressRepoImpl(
@@ -504,8 +497,20 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i338.ProductDetailsRepoContract>(),
       ),
     );
+    gh.factory<_i398.StaticContentCubit>(
+      () => _i398.StaticContentCubit(
+        gh<_i307.GetTermUseCase>(),
+        gh<_i420.GetAboutAppUseCase>(),
+      ),
+    );
     gh.factory<_i126.LoginCubit>(
       () => _i126.LoginCubit(gh<_i316.LoginUseCase>()),
+    );
+    gh.factory<_i802.CategoriesCubit>(
+      () => _i802.CategoriesCubit(
+        gh<_i943.GetAllCategoriesUsecase>(),
+        gh<_i290.GetCategoryProductsUsecase>(),
+      ),
     );
     gh.factory<_i141.OccasionCubit>(
       () => _i141.OccasionCubit(
