@@ -13,4 +13,5 @@ abstract class AppRoutesConstants {
 
   static const String productDetailsRoute = '/productDetails';
   static const String occasionScreen = '/occasionScreen';
+  static const String checkoutScreen = '/checkoutScreen';
 }

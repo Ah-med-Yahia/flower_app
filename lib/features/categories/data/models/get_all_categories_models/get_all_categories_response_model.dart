@@ -10,7 +10,7 @@ class GetAllCategoriesResponseModel {
   @JsonKey(name: 'message')
   final String? message;
   @JsonKey(name: 'metadata')
-  final Metadata? metadata;
+  final MetadataModel? metadata;
   @JsonKey(name: 'categories', defaultValue: [])
   final List<Category>? categories;
 
