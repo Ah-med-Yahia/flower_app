@@ -4,6 +4,8 @@ import 'package:flower_app/features/auth/change_password/presentation/screens/ch
 import 'package:flower_app/features/auth/login/presentation/cubit/login_cubit.dart';
 import 'package:flower_app/features/auth/login/presentation/pages/login_screen.dart';
 import 'package:flower_app/features/auth/register/presentation/pages/register_screen.dart';
+import 'package:flower_app/features/checkout/presentaion/cubit/checkout_cubit.dart';
+import 'package:flower_app/features/checkout/presentaion/view/screens/checkout_screen.dart';
 import 'package:flower_app/features/product_details/presentaion/view/screens/product_details_screen.dart';
 import 'package:flower_app/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -71,12 +73,20 @@ abstract class AppRouter {
       GoRoute(
         path: AppRoutesConstants.occasionScreen,
         name: AppRoutesConstants.occasionScreen,
-        builder: (context, state) =>const OccasionScreen(),
+        builder: (context, state) => const OccasionScreen(),
       ),
-       GoRoute(
+      GoRoute(
         path: AppRoutesConstants.changePasswordRoute,
         name: AppRoutesConstants.changePasswordRoute,
         builder: (context, state) => const ChangePasswordScreen(),
+      ),
+      GoRoute(
+        path: AppRoutesConstants.checkoutScreen,
+        name: AppRoutesConstants.checkoutScreen,
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt<CheckoutCubit>(),
+          child: const CheckoutScreen(),
+        ),
       ),
     ],
   );

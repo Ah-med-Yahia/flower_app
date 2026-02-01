@@ -26,7 +26,7 @@ class AppTextConstants {
   static const String gender = 'Gender';
   static const String female = 'Female';
   static const String male = 'Male';
- 
+
   static const String creatingAccountAgreement =
       'Creating an account, you agree to our ';
   static const String termsAndConditions = 'Terms&Conditions';
@@ -57,6 +57,37 @@ class AppTextConstants {
       'Please enter your current password';
   static const String pleaseEnterYourNewPassword =
       'Please enter your new password';
+
+  static const String orderPlacedSuccessfully = 'Order placed successfully';
+  static const String deliveryTime = 'Delivery Time';
+  static const String schedule = 'Schedule';
+  static const String instant = 'Instant';
+  static const String arriveBy = 'Arrive By ';
+  static const String checkout = 'Checkout';
+  static const String deliveryAddress = 'Delivery Address';
+  static const String addNew = 'Add new';
+  static const String paymentMethod = 'Payment Method';
+  static const String cashOnDelivery = 'Cash on Delivery';
+  static const String creditCard = 'Credit Card';
+  static const String payment = 'Payment';
+  static const String credit = 'credit';
+  static const String cash = 'cash';
+  static const String paymentUrlNotFound = 'Payment URL not found';
+  static const String name = 'Name';
+  static const String enterName = 'Enter the name';
+  static const String itIsAGift = 'It is a Gift';
+  static const String enterGiftDetails = 'Enter gift details';
+  static const String selectDeliveryAddress =
+      'Please select a delivery address';
+  static const String enterRecipientName = 'Enter recipient\'s name';
+  static const String enterRecipientphone = 'Enter recipient\'s phone number';
+
+  //------------------- CHECKOUT PRICING -------------------//
+  static const String subtotal = 'Subtotal';
+  static const String deliveryFee = 'Delivery Fee';
+  static const String total = 'Total';
+  static const String placeOrder = 'Place Order';
+  static const double deliveryFeeAmount = 10.0;
 
   //------------------- HOME PAGE -------------------//
   static const String bestSeller = 'Best seller';

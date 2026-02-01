@@ -28,7 +28,7 @@ void main() {
     test('Test success case', () async {
       final mockCategoriesResponse = GetAllCategoriesResponseModel(
         message: 'Success',
-        metadata: Metadata(
+        metadata: MetadataModel(
           currentPage: 1,
           totalPages: 1,
           limit: 2,

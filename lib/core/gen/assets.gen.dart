@@ -25,8 +25,11 @@ class $AssetsLottieGen {
   LottieGenImage get flowerLoading =>
       const LottieGenImage('assets/lottie/FlowerLoading.json');
 
+  /// File path: assets/lottie/clock.svg
+  SvgGenImage get clock => const SvgGenImage('assets/lottie/clock.svg');
+
   /// List of all assets
-  List<dynamic> get values => [flower, flowerLoading];
+  List<dynamic> get values => [flower, flowerLoading, clock];
 }
 
 class Assets {
