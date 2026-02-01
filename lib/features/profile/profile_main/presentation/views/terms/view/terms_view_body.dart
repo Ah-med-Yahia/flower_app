@@ -5,6 +5,7 @@ import '../../../../../../../core/constants/app_text_constants.dart';
 import '../../../../../../../core/widgets/custom_error_widget.dart';
 import '../../../../../../../core/widgets/loading_indicator_widget.dart';
 import '../../../view_models/terms/static_content_cubit.dart';
+import '../../../view_models/terms/static_content_events.dart';
 import '../../../view_models/terms/static_content_states.dart';
 import '../widget/terms_section_widget.dart';
 

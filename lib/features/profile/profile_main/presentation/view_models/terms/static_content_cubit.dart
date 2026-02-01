@@ -6,6 +6,7 @@ import '../../../../../../config/base_state/base_state.dart';
 import '../../../domain/entities/term_section_entity.dart';
 import '../../../domain/use_cases/get_about_app_use_case.dart';
 import '../../../domain/use_cases/get_term_use_case.dart';
+import 'static_content_events.dart';
 import 'static_content_states.dart';
 
 @injectable
