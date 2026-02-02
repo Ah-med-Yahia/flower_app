@@ -76,7 +76,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       child: Scaffold(
         appBar: AppBar(
           leading: const BackButton(),
-          title: const Text(AppTextConstants.signUp),
+          title: Text(AppTextConstants.signUp),
           centerTitle: true,
         ),
         body: Form(

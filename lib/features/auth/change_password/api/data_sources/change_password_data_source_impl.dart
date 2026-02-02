@@ -11,6 +11,7 @@ class ChangePasswordDataSourceImpl implements ChangePasswordDataSource {
   final ChangePasswordApiClient _apiClient;
 
   ChangePasswordDataSourceImpl(this._apiClient);
+
   @override
   Future<BaseResponse<ChangePasswordResponse>> changePassword(
     ChangePasswordRequest request,

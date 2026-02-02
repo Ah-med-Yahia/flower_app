@@ -6,6 +6,7 @@ import 'package:injectable/injectable.dart';
 @injectable
 class GetAllCategoriesUsecase {
   final CategoriesRepoContract _categoriesRepoContract;
+
   GetAllCategoriesUsecase(this._categoriesRepoContract);
 
   Future<BaseResponse<GetCategoryListEntity>> getAllCategories() async {

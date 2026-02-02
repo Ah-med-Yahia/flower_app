@@ -87,10 +87,7 @@ void main() {
           result.when(
             success: (data) => fail('Expected failure but got success'),
             failure: (error) {
-              expect(
-                error.message,
-                equals('Something went wrong. Please try again.'),
-              );
+              expect(error.message, equals(testError));
             },
           );
           verify(mockRepo.verifyOtpCode(resetCode: testOTPCode)).called(1);
@@ -114,10 +111,7 @@ void main() {
         result.when(
           success: (data) => fail('Expected failure but got success'),
           failure: (error) {
-            expect(
-              error.message,
-              equals('Something went wrong. Please try again.'),
-            );
+            expect(error.message, equals(errorMessage));
           },
         );
         verify(mockRepo.verifyOtpCode(resetCode: null)).called(1);

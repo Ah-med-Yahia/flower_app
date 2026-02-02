@@ -12,6 +12,7 @@ class ChangePasswordRepoImpl implements ChangePasswordRepo {
   final SecureStorageService _secureStorageService;
 
   ChangePasswordRepoImpl(this._dataSource, this._secureStorageService);
+
   @override
   Future<BaseResponse<void>> changePassword(
     ChangePasswordRequestEntity requestEntity,

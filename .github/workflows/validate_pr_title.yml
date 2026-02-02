@@ -20,7 +20,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
-      
+
       - name: Validate PR title format
         uses: amannn/action-semantic-pull-request@v5
         env:
@@ -47,7 +47,7 @@ jobs:
           wip: false
           validateSingleCommit: false
           validateSingleCommitMatchesPrTitle: false
-      
+
       - name: PR title validation success
         if: success()
         run: |

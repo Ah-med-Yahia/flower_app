@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../../config/di/di.dart';
 import '../../../../../../core/constants/app_text_constants.dart';
@@ -13,9 +14,9 @@ class BestSellerView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(AppTextConstants.bestSeller),
+        title: Text(AppTextConstants.bestSeller),
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () => context.pop(),
           icon: const Icon(Icons.arrow_back_ios_new),
         ),
       ),

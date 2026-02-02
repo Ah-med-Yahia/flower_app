@@ -115,6 +115,8 @@ class ErrorHandler implements Exception {
       return ErrorHandler._(errorModel: _handleDioError(error));
     } else if (error is LocalException) {
       return ErrorHandler._(errorModel: _handleLocalException(error));
+    } else if (error is ErrorModel) {
+      return ErrorHandler._(errorModel: error);
     } else {
       return ErrorHandler._(errorModel: DataSource.unknown.toFailure());
     }

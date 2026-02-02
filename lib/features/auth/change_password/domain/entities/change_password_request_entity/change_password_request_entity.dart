@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+
 part 'change_password_request_entity.g.dart';
 
 @JsonSerializable()

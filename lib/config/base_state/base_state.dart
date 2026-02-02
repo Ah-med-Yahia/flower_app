@@ -18,3 +18,21 @@ class BaseState<T> extends Equatable {
   @override
   List<Object?> get props => [isLoading, errorMessage, data];
 }
+
+class CartBaseState<T> extends Equatable {
+  final bool isError;
+  final bool isEmpty;
+  final T? data;
+  const CartBaseState({this.isError = false, this.isEmpty = false, this.data});
+
+  CartBaseState<T> copyWith({bool? isError, bool? isEmpty, T? data}) {
+    return CartBaseState<T>(
+      isError: isError ?? this.isError,
+      isEmpty: isEmpty ?? this.isEmpty,
+      data: data ?? this.data,
+    );
+  }
+
+  @override
+  List<Object?> get props => [isError, isEmpty, data];
+}
