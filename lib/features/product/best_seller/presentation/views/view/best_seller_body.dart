@@ -72,7 +72,7 @@ class _BestSellerBodyState extends State<BestSellerBody> {
           16.verticalSpacing,
           ElevatedButton(
             onPressed: _getData,
-            child: Text(AppTextConstants.retry),
+            child: const Text(AppTextConstants.retry),
           ),
         ],
       ),
@@ -80,7 +80,7 @@ class _BestSellerBodyState extends State<BestSellerBody> {
   }
 
   Widget _noProductsWidget() {
-    return Center(child: Text(AppTextConstants.noProductsAvailable));
+    return const Center(child: Text(AppTextConstants.noProductsAvailable));
   }
 
   Widget _loadingWidget() {

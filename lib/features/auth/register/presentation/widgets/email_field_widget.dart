@@ -20,7 +20,7 @@ class EmailFieldWidget extends StatelessWidget {
     return TextFormField(
       controller: controller,
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: AppTextConstants.email,
         hintText: AppTextConstants.enterEmail,
       ),

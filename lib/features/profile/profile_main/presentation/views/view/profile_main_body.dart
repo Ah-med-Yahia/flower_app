@@ -132,17 +132,17 @@ class _ProfileMainBodyState extends State<ProfileMainBody> {
       context: context,
       builder: (context) => AlertDialog(
         title: Text(AppTextConstants.logout.toUpperCase()),
-        content: Text(AppTextConstants.confirmLogout),
+        content: const Text(AppTextConstants.confirmLogout),
         actions: [
           TextButton(
             onPressed: () => GoRouter.of(context).pop(),
-            child: Text(AppTextConstants.cancel),
+            child: const Text(AppTextConstants.cancel),
           ),
           TextButton(
             onPressed: () {
               cubit.doIntent(LogoutIntent());
             },
-            child: Text(AppTextConstants.logout),
+            child: const Text(AppTextConstants.logout),
           ),
         ],
       ),

@@ -21,7 +21,7 @@ class PhoneFieldWidget extends StatelessWidget {
       controller: controller,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       keyboardType: TextInputType.phone,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: AppTextConstants.phoneNumber,
         hintText: AppTextConstants.enterPhoneNumber,
       ),

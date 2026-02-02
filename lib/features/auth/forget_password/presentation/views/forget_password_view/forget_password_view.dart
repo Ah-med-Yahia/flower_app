@@ -16,7 +16,7 @@ class ForgetPasswordView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppTextConstants.password),
+        title: const Text(AppTextConstants.password),
         leading: InkWell(
           onTap: () {
             context.pop();

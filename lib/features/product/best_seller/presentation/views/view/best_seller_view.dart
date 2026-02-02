@@ -14,7 +14,7 @@ class BestSellerView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppTextConstants.bestSeller),
+        title: const Text(AppTextConstants.bestSeller),
         leading: IconButton(
           onPressed: () => context.pop(),
           icon: const Icon(Icons.arrow_back_ios_new),

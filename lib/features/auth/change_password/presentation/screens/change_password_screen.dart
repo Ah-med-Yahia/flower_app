@@ -112,7 +112,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
 
                 TextFormField(
                   controller: _confirmPassword,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     label: Text(AppTextConstants.confirmPassword),
                     hintText: AppTextConstants.confirmPassword,
                     helperText: '',
@@ -134,9 +134,9 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         _passwordCubit.doIntent(UpdateIntent());
                       }
                     },
-                    child: Text(
+                    child: const Text(
                       AppTextConstants.update,
-                      style: const TextStyle(fontSize: 16),
+                      style: TextStyle(fontSize: 16),
                     ),
                   ),
                 ),

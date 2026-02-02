@@ -28,8 +28,6 @@ class ApiConstants {
   static const String getAllOccasions = 'occasions';
   static const String getOccasionProducts = 'occasions/{id}';
 
-  //-------------------------forget password--------------------//
-
   //------------------------ Home Screen ------------------------//
   static const String homeScreenEndPoint = 'home';
 
