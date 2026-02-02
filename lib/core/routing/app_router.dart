@@ -4,6 +4,8 @@ import 'package:flower_app/features/auth/change_password/presentation/screens/ch
 import 'package:flower_app/features/auth/login/presentation/cubit/login_cubit.dart';
 import 'package:flower_app/features/auth/login/presentation/pages/login_screen.dart';
 import 'package:flower_app/features/auth/register/presentation/pages/register_screen.dart';
+import 'package:flower_app/features/checkout/presentaion/cubit/checkout_cubit.dart';
+import 'package:flower_app/features/checkout/presentaion/view/screens/checkout_screen.dart';
 import 'package:flower_app/features/occasion/presentation/views/screens/occasion_screen.dart';
 import 'package:flower_app/features/product_details/presentaion/view/screens/product_details_screen.dart';
 import 'package:flower_app/home_screen.dart';

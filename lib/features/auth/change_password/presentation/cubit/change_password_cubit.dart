@@ -98,14 +98,18 @@ class ChangePasswordCubit extends Cubit<ChangePasswordStates> {
 
     if (state.newPassword.trim().isEmpty) {
       _streamController.add(
-        const ShowErrorIntent(message: AppTextConstants.pleaseEnterYourNewPassword),
+        const ShowErrorIntent(
+          message: AppTextConstants.pleaseEnterYourNewPassword,
+        ),
       );
       return;
     }
 
     if (state.confirmPassword.trim().isEmpty) {
       _streamController.add(
-        const ShowErrorIntent(message: AppTextConstants.pleaseConfirmYourNewPassword),
+        const ShowErrorIntent(
+          message: AppTextConstants.pleaseConfirmYourNewPassword,
+        ),
       );
       return;
     }

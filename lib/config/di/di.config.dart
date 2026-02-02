@@ -141,6 +141,10 @@ import '../../features/checkout/api/data_sources/checkout_data_source_impl.dart'
     as _i241;
 import '../../features/checkout/data/data_sources/checkout_data_source.dart'
     as _i282;
+import '../../features/checkout/data/repositories/checkout_repository_impl.dart'
+    as _i949;
+import '../../features/checkout/domain/repositories/checkout_repository.dart'
+    as _i498;
 import '../../features/checkout/domain/use_cases/add_cache_order_use_case.dart'
     as _i754;
 import '../../features/checkout/domain/use_cases/add_credit_card_use_case.dart'
@@ -149,6 +153,7 @@ import '../../features/checkout/domain/use_cases/get_adresses_use_case.dart'
     as _i825;
 import '../../features/checkout/domain/use_cases/get_cart_info_use_case.dart'
     as _i131;
+import '../../features/checkout/presentaion/cubit/checkout_cubit.dart' as _i885;
 import '../../features/home/api/api_clinet/home_screen_api_client.dart'
     as _i279;
 import '../../features/home/api/data_sources/remote/home_screen_data_source_impl.dart'
@@ -272,18 +277,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i1059.CacheHelper>(
       () => _i1059.CacheHelper(gh<_i460.SharedPreferences>()),
-    );
-    gh.factory<_i754.AddCacheOrderUseCase>(
-      () => _i754.AddCacheOrderUseCase(gh<InvalidType>()),
-    );
-    gh.factory<_i1068.AddCreditCardUseCase>(
-      () => _i1068.AddCreditCardUseCase(gh<InvalidType>()),
-    );
-    gh.factory<_i825.GetAdressesUseCase>(
-      () => _i825.GetAdressesUseCase(gh<InvalidType>()),
-    );
-    gh.factory<_i131.GetCartInfoUseCase>(
-      () => _i131.GetCartInfoUseCase(gh<InvalidType>()),
     );
     gh.factory<_i455.ProfileMainLocalDataSource>(
       () => _i176.ProfileMainLocalDataSourceImpl(),
@@ -445,6 +438,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i202.HomeScreenRepo>(
       () => _i209.HomeScreenRepoImpl(gh<_i525.HomeScreenDataSource>()),
     );
+    gh.factory<_i498.CheckoutRepository>(
+      () => _i949.CheckoutRepositoryImpl(gh<_i282.CheckoutDataSource>()),
+    );
     gh.factory<_i892.BestSellerRepo>(
       () => _i20.BestSellerRepoImpl(gh<_i1058.BestSellerRemoteDataSource>()),
     );
@@ -459,6 +455,18 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i658.GetUserDataUseCase>(
       () => _i658.GetUserDataUseCase(gh<_i652.ProfileMainRepo>()),
+    );
+    gh.factory<_i754.AddCacheOrderUseCase>(
+      () => _i754.AddCacheOrderUseCase(gh<_i498.CheckoutRepository>()),
+    );
+    gh.factory<_i1068.AddCreditCardUseCase>(
+      () => _i1068.AddCreditCardUseCase(gh<_i498.CheckoutRepository>()),
+    );
+    gh.factory<_i825.GetAdressesUseCase>(
+      () => _i825.GetAdressesUseCase(gh<_i498.CheckoutRepository>()),
+    );
+    gh.factory<_i131.GetCartInfoUseCase>(
+      () => _i131.GetCartInfoUseCase(gh<_i498.CheckoutRepository>()),
     );
     gh.factory<_i545.RegisterUseCase>(
       () => _i545.RegisterUseCase(gh<_i57.RegisterRepository>()),
@@ -533,6 +541,14 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i398.StaticContentCubit(
         gh<_i307.GetTermUseCase>(),
         gh<_i420.GetAboutAppUseCase>(),
+      ),
+    );
+    gh.factory<_i885.CheckoutCubit>(
+      () => _i885.CheckoutCubit(
+        gh<_i825.GetAdressesUseCase>(),
+        gh<_i131.GetCartInfoUseCase>(),
+        gh<_i754.AddCacheOrderUseCase>(),
+        gh<_i1068.AddCreditCardUseCase>(),
       ),
     );
     gh.factory<_i126.LoginCubit>(

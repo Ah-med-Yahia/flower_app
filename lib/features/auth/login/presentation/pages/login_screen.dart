@@ -172,7 +172,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: ElevatedButton.styleFrom(
                         fixedSize: Size(screenSize.width, 48),
                       ),
-                      child:const Text(AppTextConstants.login),
+                      child: const Text(AppTextConstants.login),
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           loginCubit.doIntent(

@@ -2,8 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 
 class AppTextConstants {
   AppTextConstants._();
-  static const String home = 'Home';
-  static const String categories = 'Categories';
   static const String occasion = 'Occasion';
   static const String logout = 'Logout';
   static const String confirmLogout = 'Confirm logout!!';
@@ -85,24 +83,15 @@ class AppTextConstants {
   static const double deliveryFeeAmount = 10.0;
 
   //------------------- HOME PAGE -------------------//
-  static const String bestSeller = 'Best seller';
-  static const String bestSellerSubTitle =
-      'Bloom with our exquisite best sellers';
-  static const String noProductsAvailable = 'No products available';
   static const String retry = 'Retry';
-  static const String deliverTo = 'Deliver to';
   static const String search = 'Search';
-  static const String flowery = 'Flowery';
   static const String viewAll = 'View All';
-  static const String flower = 'Flower';
   //-------------------------- Common --------------------------//
   static String get loading => 'common.loading'.tr();
-
 
   static String get currencySign => 'common.currencySign'.tr();
 
   static String get items => 'common.items'.tr();
-
 
   //-------------------------- Auth Forget Password --------------------------//
   static String get forgetPasswordHeader => 'auth.forgetPassword.header'.tr();
@@ -140,8 +129,6 @@ class AppTextConstants {
   static String get currentPassword =>
       'auth.forgetPassword.currentPassword'.tr();
 
-  
-
   static String get newPassword => 'auth.forgetPassword.newPassword'.tr();
   static String get emailFocusError => 'auth.messages.emailFocusError'.tr();
 
@@ -158,7 +145,24 @@ class AppTextConstants {
   static String get continueAsGuest => 'auth.guest.continueAsGuest'.tr();
 
   static String get guestUserProfile => 'auth.guest.guestUserProfile'.tr();
+  static const String yourCartIsEmpty = 'Your cart is empty';
 
+  //-------------------------- HOME --------------------------//
+  static String get home => 'home.title'.tr();
+
+  static String get categories => 'home.categories'.tr();
+
+  static String get bestSeller => 'home.bestSeller'.tr();
+
+  static String get bestSellerSubTitle => 'home.bestSellerSubTitle'.tr();
+
+  static String get noProductsAvailable => 'home.noProductsAvailable'.tr();
+
+  static String get deliverTo => 'home.deliverTo'.tr();
+
+  static String get flowery => 'home.flowery'.tr();
+
+  static String get flower => 'home.flower'.tr();
 
   static const String defaultImage =
       'https://flower.elevateegy.com/uploads/66c36d5d-c067-46d9-b339-d81be57e0149-image_one.pngs';
@@ -257,7 +261,7 @@ class AppTextConstants {
 
   static String get egy => 'common.egp'.tr();
 
- static String get confirm => 'common.confirm'.tr();
+  static String get confirm => 'common.confirm'.tr();
 
- static String get close => 'common.close'.tr();
+  static String get close => 'common.close'.tr();
 }

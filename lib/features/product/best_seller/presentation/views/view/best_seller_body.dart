@@ -80,7 +80,7 @@ class _BestSellerBodyState extends State<BestSellerBody> {
   }
 
   Widget _noProductsWidget() {
-    return const Center(child: Text(AppTextConstants.noProductsAvailable));
+    return Center(child: Text(AppTextConstants.noProductsAvailable));
   }
 
   Widget _loadingWidget() {

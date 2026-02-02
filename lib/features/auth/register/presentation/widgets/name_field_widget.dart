@@ -25,7 +25,7 @@ class NameFieldsWidget extends StatelessWidget {
           child: TextFormField(
             controller: firstName,
             autovalidateMode: AutovalidateMode.onUserInteraction,
-            decoration:const InputDecoration(
+            decoration: const InputDecoration(
               labelText: AppTextConstants.firstName,
               hintText: AppTextConstants.enterFirstName,
             ),

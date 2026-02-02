@@ -51,12 +51,12 @@ class _HomeScreenState extends State<HomeScreen> {
         selectedItemColor: AppColors.primary,
         unselectedItemColor: AppColors.iconGrey,
         items: [
-          const BottomNavigationBarItem(
-            icon:  Icon(Icons.home_outlined),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.home_outlined),
             label: AppTextConstants.home,
           ),
-          const BottomNavigationBarItem(
-            icon:  Icon(Icons.category_outlined),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.category_outlined),
             label: AppTextConstants.categories,
           ),
           BottomNavigationBarItem(
