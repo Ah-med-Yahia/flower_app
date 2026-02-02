@@ -57,6 +57,7 @@ class AppTextConstants {
       'Please enter your current password';
   static const String pleaseEnterYourNewPassword =
       'Please enter your new password';
+  static const String yourCartIsEmpty = 'Your cart is empty';
 
   static const String orderPlacedSuccessfully = 'Order placed successfully';
   static const String deliveryTime = 'Delivery Time';
