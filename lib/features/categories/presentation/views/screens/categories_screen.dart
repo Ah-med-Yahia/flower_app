@@ -7,7 +7,6 @@ import 'package:flower_app/features/categories/presentation/cubit/categories_eve
 import 'package:flower_app/features/categories/presentation/cubit/categories_state.dart';
 import 'package:flower_app/features/categories/presentation/views/widgets/category_tab_bar.dart';
 import 'package:flower_app/features/categories/presentation/views/widgets/custom_category_app_bar.dart';
-import 'package:flower_app/features/categories/presentation/views/widgets/products_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -118,7 +117,7 @@ class CategoriesTap extends StatelessWidget {
                             );
                           }
 
-                          return ProductsGrid(categoryProducts);
+                          return const SizedBox();
                         },
                       ),
                     ],

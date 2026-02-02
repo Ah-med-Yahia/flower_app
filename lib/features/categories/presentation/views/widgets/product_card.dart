@@ -2,11 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flower_app/core/widgets/loading_indicator_widget.dart';
-import 'package:flower_app/features/categories/domain/entities/categories_product_entity.dart';
+import 'package:flower_app/features/categories/domain/entities/category_products_response_entity/product_entity.dart';
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
-  final CategoryProductEntity _categoryProductEntity;
+  final ProductEntity _categoryProductEntity;
 
   const ProductCard(this._categoryProductEntity, {super.key});
 
@@ -34,7 +34,7 @@ class ProductCard extends StatelessWidget {
               child: AspectRatio(
                 aspectRatio: 1.2,
                 child: CachedNetworkImage(
-                  imageUrl: _categoryProductEntity.image,
+                  imageUrl: _categoryProductEntity.imageCover ?? '',
                   fit: BoxFit.cover,
                   placeholder: (context, url) =>
                       LoadingIndicator(size: screenWidth * 0.20),
@@ -54,7 +54,7 @@ class ProductCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    _categoryProductEntity.name,
+                    _categoryProductEntity.title,
                     style: Theme.of(context).textTheme.titleMedium!.copyWith(
                       color: AppColors.textPrimary,
                       fontWeight: FontWeight.w400,
@@ -89,7 +89,8 @@ class ProductCard extends StatelessWidget {
                       SizedBox(width: screenWidth * 0.018),
 
                       Visibility(
-                        visible: _categoryProductEntity.discountPercentage != 0,
+                        visible:
+                            _categoryProductEntity.discountPercentage != null,
                         child: Text(
                           '${_categoryProductEntity.discountPercentage}${AppTextConstants.percentageSign}',
                           style: Theme.of(context).textTheme.bodyMedium

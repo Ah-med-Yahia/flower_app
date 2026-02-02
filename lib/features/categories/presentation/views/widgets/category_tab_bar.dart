@@ -1,4 +1,4 @@
-import 'package:flower_app/features/categories/domain/entities/category_entity.dart';
+import 'package:flower_app/features/categories/domain/entities/get_category_list_entity/category_entity.dart';
 import 'package:flower_app/features/categories/presentation/views/widgets/category_tab.dart';
 import 'package:flutter/material.dart';
 
