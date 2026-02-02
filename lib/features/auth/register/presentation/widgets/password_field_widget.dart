@@ -26,7 +26,7 @@ class PasswordFieldsWidget extends StatelessWidget {
             controller: password,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             obscureText: true,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               labelText: AppTextConstants.password,
               hintText: AppTextConstants.enterPassword,
             ),
@@ -40,7 +40,7 @@ class PasswordFieldsWidget extends StatelessWidget {
             autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: confirmPassword,
             obscureText: true,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               labelText: AppTextConstants.confirmPassword,
             ),
             validator: (v) => v.validateMatch(password.text),

@@ -13,5 +13,9 @@ abstract class AppRoutesConstants {
 
   static const String productDetailsRoute = '/productDetails';
   static const String occasionScreen = '/occasionScreen';
+
+  //--------------- PROFILE ROUTES -----------------//
+  static const String appPolicyRoute = '/app_policy';
+  static const String appInfoRoute = '/app_info';
   static const String checkoutScreen = '/checkoutScreen';
 }

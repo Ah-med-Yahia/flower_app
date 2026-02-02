@@ -5,13 +5,13 @@
 **Example:**  
 `feat(auth): Add login with Google`
 
-**Types you can use:**  
-- `feat` → New feature  
-- `fix` → Bug fix  
-- `docs` → Documentation only changes  
-- `style` → Formatting, missing semi-colons, etc  
-- `refactor` → Code changes that neither fixes a bug nor adds a feature  
-- `test` → Adding missing tests or correcting existing tests  
+**Types you can use:**
+- `feat` → New feature
+- `fix` → Bug fix
+- `docs` → Documentation only changes
+- `style` → Formatting, missing semi-colons, etc
+- `refactor` → Code changes that neither fixes a bug nor adds a feature
+- `test` → Adding missing tests or correcting existing tests
 - `chore` → Changes to the build process or auxiliary tools
 
 **Scope:**  

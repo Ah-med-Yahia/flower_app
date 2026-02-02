@@ -4,6 +4,7 @@ import 'package:flower_app/features/categories/domain/entities/get_categories_pr
 
 abstract interface class CategoriesRepoContract {
   Future<BaseResponse<GetCategoryListEntity>> getAllCategories();
+
   Future<BaseResponse<GetCategoryProductsEntity>> getCategoryProducts(
     String id,
   );

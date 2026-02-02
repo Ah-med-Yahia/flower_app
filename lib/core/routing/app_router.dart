@@ -6,15 +6,18 @@ import 'package:flower_app/features/auth/login/presentation/pages/login_screen.d
 import 'package:flower_app/features/auth/register/presentation/pages/register_screen.dart';
 import 'package:flower_app/features/checkout/presentaion/cubit/checkout_cubit.dart';
 import 'package:flower_app/features/checkout/presentaion/view/screens/checkout_screen.dart';
+import 'package:flower_app/features/occasion/presentation/views/screens/occasion_screen.dart';
 import 'package:flower_app/features/product_details/presentaion/view/screens/product_details_screen.dart';
 import 'package:flower_app/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../features/auth/forget_password/presentation/views/forget_password_view/forget_password_view.dart';
 import '../../features/auth/forget_password/presentation/views/reset_password_view/reset_password_view.dart';
 import '../../features/auth/forget_password/presentation/views/verify_otp_view/verify_otp_code_view.dart';
 import '../../features/product/best_seller/presentation/views/view/best_seller_view.dart';
-import 'package:flower_app/features/occasion/presentation/views/screens/occasion_screen.dart';
+import '../../features/profile/profile_main/presentation/views/terms/view/about_app_view.dart';
+import '../../features/profile/profile_main/presentation/views/terms/view/terms_view.dart';
 
 abstract class AppRouter {
   static GoRouter router = GoRouter(
@@ -73,7 +76,10 @@ abstract class AppRouter {
       GoRoute(
         path: AppRoutesConstants.occasionScreen,
         name: AppRoutesConstants.occasionScreen,
-        builder: (context, state) => const OccasionScreen(),
+        builder: (context, state) {
+          final id = state.extra as String?;
+          return OccasionScreen(id: id);
+        },
       ),
       GoRoute(
         path: AppRoutesConstants.changePasswordRoute,
@@ -87,6 +93,16 @@ abstract class AppRouter {
           create: (context) => getIt<CheckoutCubit>(),
           child: const CheckoutScreen(),
         ),
+      ),
+      GoRoute(
+        path: AppRoutesConstants.appPolicyRoute,
+        name: AppRoutesConstants.appPolicyRoute,
+        builder: (context, state) => const TermsView(),
+      ),
+      GoRoute(
+        path: AppRoutesConstants.appInfoRoute,
+        name: AppRoutesConstants.appInfoRoute,
+        builder: (context, state) => const AboutAppView(),
       ),
     ],
   );

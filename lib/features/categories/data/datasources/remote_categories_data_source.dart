@@ -4,5 +4,6 @@ import 'package:flower_app/features/categories/data/models/get_products_models/c
 
 abstract interface class RemoteCategoriesDataSource {
   Future<BaseResponse<GetAllCategoriesResponseModel>> getAllCategories();
+
   Future<BaseResponse<CategoryProductResponse>> getCategoryProducts(String id);
 }

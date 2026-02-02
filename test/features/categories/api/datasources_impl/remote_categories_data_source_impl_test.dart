@@ -28,7 +28,7 @@ void main() {
       test('Test Success Case', () async {
         final mockResponse = GetAllCategoriesResponseModel(
           message: 'Success',
-          metadata: Metadata(
+          metadata: MetadataModel(
             currentPage: 1,
             totalPages: 1,
             limit: 2,
@@ -46,7 +46,7 @@ void main() {
 
         expect(result, isA<Success<GetAllCategoriesResponseModel>>());
         expect(success.data.message, 'Success');
-        expect(success.data.metadata, isA<Metadata>());
+        expect(success.data.metadata, isA<MetadataModel>());
         expect(success.data.categories, isA<List<Category>>());
 
         verify(mockApiClient.getAllCategories()).called(1);

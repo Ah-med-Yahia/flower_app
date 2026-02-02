@@ -19,7 +19,7 @@ class VerifyOtpView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(AppTextConstants.password),
+        title: Text(AppTextConstants.password),
         leading: InkWell(
           onTap: () {
             context.pop();
@@ -34,7 +34,7 @@ class VerifyOtpView extends StatelessWidget {
             40.verticalSpacing,
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.8,
-              child: const CustomHeaderTitleWidget(
+              child: CustomHeaderTitleWidget(
                 headerTitle: AppTextConstants.emailVerificationHeader,
                 subTitle: AppTextConstants.emailVerificationTitle,
               ),

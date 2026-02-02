@@ -18,6 +18,6 @@ abstract class CategoriesApiClient {
 
   @GET(ApiConstants.getCategoryProducts)
   Future<CategoryProductResponse> getCategoryProducts({
-    @Path('id') required String id,
+    @Path(ApiConstants.idPathQuery) required String id,
   });
 }

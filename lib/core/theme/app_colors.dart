@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 abstract class AppColors {
   static const Color primary = Color(0xFFD21E6A);
+  static const Color lightPrimary = Color.fromARGB(255, 255, 160, 200);
   static const Color secondary = Color(0xFFD7397C);
   static const Color lightPink = Color(0xFFF9ECF0);
   static const Color background = Color(0xFFF9F9F9);
@@ -16,5 +17,7 @@ abstract class AppColors {
   static const Color transparent = Color(0x00000000);
   static const Color black = Colors.black;
   static const Color iconGrey = Color(0xff7D7D7D);
+  static final Color shimmerBaseColor = Colors.grey[300]!;
+  static final Color shimmerHighlightColor = Colors.grey[100]!;
   static const Color whiteGray = Color(0xffEAEAEA);
 }
