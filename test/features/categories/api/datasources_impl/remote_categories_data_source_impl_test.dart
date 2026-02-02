@@ -5,10 +5,12 @@ import 'package:flower_app/features/categories/api/api_service/categories_api_cl
 import 'package:flower_app/features/categories/api/datasources_impl/remote_categories_data_source_impl.dart';
 import 'package:flower_app/features/categories/data/models/get_all_categories_models/category_model.dart';
 import 'package:flower_app/features/categories/data/models/get_all_categories_models/get_all_categories_response_model.dart';
-import 'package:flower_app/features/categories/data/models/get_all_categories_models/metadata_model.dart';
+import 'package:flower_app/features/categories/data/models/get_products_models/category_products_response_model.dart';
+import 'package:flower_app/features/categories/data/models/get_products_models/product_model.dart';
+import 'package:flower_app/features/categories/data/models/metadata/metadata_model.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test/test.dart';
 
 import 'remote_categories_data_source_impl_test.mocks.dart';
 
@@ -42,13 +44,12 @@ void main() {
         ).thenAnswer((_) async => mockResponse);
 
         final result = await dataSource.getAllCategories();
-        final success = result as Success<GetAllCategoriesResponseModel>;
 
         expect(result, isA<Success<GetAllCategoriesResponseModel>>());
+        final success = result as Success<GetAllCategoriesResponseModel>;
         expect(success.data.message, 'Success');
         expect(success.data.metadata, isA<Metadata>());
-        expect(success.data.categories, isA<List<Category>>());
-
+        expect(success.data.categories, isA<List<CategoryModel>>());
         verify(mockApiClient.getAllCategories()).called(1);
       });
 
@@ -74,4 +75,55 @@ void main() {
       });
     },
   );
+
+  group('get category products test cases', () {
+    test('Test Success Case', () async {
+      final mockResponse = CategoryProductsResponseModel(
+        message: 'Success',
+        metadata: Metadata(
+          currentPage: 1,
+          totalPages: 1,
+          limit: 2,
+          totalItems: 50,
+        ),
+        products: [],
+      );
+
+      when(
+        mockApiClient.getCategoryProducts(categoryId: anyNamed('categoryId')),
+      ).thenAnswer((_) async => mockResponse);
+
+      final result = await dataSource.getCategoryProducts(categoryId: '1');
+
+      expect(result, isA<Success<CategoryProductsResponseModel>>());
+      final success = result as Success<CategoryProductsResponseModel>;
+      expect(success.data.message, 'Success');
+      expect(success.data.metadata, isA<Metadata>());
+      expect(success.data.products, isA<List<ProductModel>>());
+      verify(mockApiClient.getCategoryProducts(categoryId: '1')).called(1);
+    });
+
+    test('Test Error Case', () async {
+      final dummyError = ErrorHandler.handle(
+        Exception('Failed to fetch products'),
+      );
+
+      when(
+        mockApiClient.getCategoryProducts(categoryId: anyNamed('categoryId')),
+      ).thenThrow(dummyError);
+
+      final result = await dataSource.getCategoryProducts(categoryId: '1');
+
+      expect(result, isA<Failure<CategoryProductsResponseModel>>());
+
+      final failure = result as Failure<CategoryProductsResponseModel>;
+
+      expect(
+        failure.errorHandler.errorModel.message,
+        ErrorsConstant.defaultError,
+      );
+
+      verify(mockApiClient.getCategoryProducts(categoryId: '1')).called(1);
+    });
+  });
 }

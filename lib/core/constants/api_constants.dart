@@ -22,7 +22,7 @@ class ApiConstants {
 
   //------------------------ CATEGORIES ------------------------//
   static const String getAllCategories = 'categories';
-  static const String getCategoryProducts = 'categories/{id}';
+  static const String getCategoryProducts = 'products';
 
   //------------------------ Occasions ------------------------//
   static const String getAllOccasions = 'occasions';
@@ -41,4 +41,8 @@ class ApiConstants {
   //------------------------ ADDRESS ------------------------//
   static const String addAddress = 'addresses';
   static const String updateAddress = 'addresses/{id}';
+}
+
+class QueryParamsKey {
+  static const String categoryId = 'category';
 }
