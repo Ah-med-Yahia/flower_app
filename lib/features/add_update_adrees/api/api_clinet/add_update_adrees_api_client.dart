@@ -17,6 +17,7 @@ abstract class AddUpdateAdreesApiClient {
   Future<AddUpdateAddressResponseModel> addAddress(
     @Body() AddUpdateAddressRequestModel body,
   );
+
   @PATCH(ApiConstants.updateAddress)
   Future<AddUpdateAddressResponseModel> updateAddress(
     @Body() AddUpdateAddressRequestModel body,

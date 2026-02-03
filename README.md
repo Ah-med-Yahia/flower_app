@@ -1,6 +1,8 @@
 # Flower App
 
-🌸 **Flower App** is a beautiful Flutter application designed for browsing and purchasing flowers. It provides a seamless shopping experience with features like authentication, product discovery, and cart management.
+🌸 **Flower App** is a beautiful Flutter application designed for browsing and purchasing flowers. It
+provides a seamless shopping experience with features like authentication, product discovery, and
+cart management.
 
 ## ✨ Features
 
@@ -16,14 +18,20 @@ This project is built using **Flutter** and follows **Clean Architecture** princ
 
 - **State Management**: [flutter_bloc](https://pub.dev/packages/flutter_bloc) (Cubit pattern)
 - **Navigation**: [go_router](https://pub.dev/packages/go_router)
-- **Networking**: [dio](https://pub.dev/packages/dio) & [retrofit](https://pub.dev/packages/retrofit)
-- **Dependency Injection**: [get_it](https://pub.dev/packages/get_it) & [injectable](https://pub.dev/packages/injectable)
-- **Local Storage**: [shared_preferences](https://pub.dev/packages/shared_preferences) & [flutter_secure_storage](https://pub.dev/packages/flutter_secure_storage)
-- **Code Generation**: [freezed](https://pub.dev/packages/freezed), [json_serializable](https://pub.dev/packages/json_serializable), [build_runner](https://pub.dev/packages/build_runner)
+- **Networking
+  **: [dio](https://pub.dev/packages/dio) & [retrofit](https://pub.dev/packages/retrofit)
+- **Dependency Injection
+  **: [get_it](https://pub.dev/packages/get_it) & [injectable](https://pub.dev/packages/injectable)
+- **Local Storage
+  **: [shared_preferences](https://pub.dev/packages/shared_preferences) & [flutter_secure_storage](https://pub.dev/packages/flutter_secure_storage)
+- **Code Generation
+  **: [freezed](https://pub.dev/packages/freezed), [json_serializable](https://pub.dev/packages/json_serializable), [build_runner](https://pub.dev/packages/build_runner)
 
 ## 🚀 Getting Started
 
-To get a local copy up and running, please follow the instructions in our [CONTRIBUTING.md](CONTRIBUTING.md) guide. It covers:
+To get a local copy up and running, please follow the instructions in
+our [CONTRIBUTING.md](CONTRIBUTING.md) guide. It covers:
+
 - Prerequisites
 - Installation steps
 - Code generation
@@ -31,7 +39,8 @@ To get a local copy up and running, please follow the instructions in our [CONTR
 
 ## 🤝 Contributing
 
-We welcome contributions! Please check the [CONTRIBUTING.md](CONTRIBUTING.md) file for details on our code of conduct, and the process for submitting pull requests.
+We welcome contributions! Please check the [CONTRIBUTING.md](CONTRIBUTING.md) file for details on
+our code of conduct, and the process for submitting pull requests.
 
 ## 📄 License
 

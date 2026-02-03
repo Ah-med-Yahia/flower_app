@@ -20,7 +20,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
-      
+
       - name: Validate branch name format
         run: |
           BRANCH_NAME="${{ github.head_ref }}"

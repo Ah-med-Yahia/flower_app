@@ -17,14 +17,14 @@ class GenderSelectorWidget extends StatelessWidget {
       builder: (_, state) {
         return Row(
           children: [
-            const Text(AppTextConstants.gender),
+            Text(AppTextConstants.gender),
             const SizedBox(width: 20),
             RadioGroup<String>(
               groupValue: state.gender,
               onChanged: (v) {
                 if (v != null) cubit.doIntent(GenderChanged(v));
               },
-              child: const Row(
+              child: Row(
                 children: [
                   Radio<String>(value: AppTextConstants.female),
                   Text(AppTextConstants.female),

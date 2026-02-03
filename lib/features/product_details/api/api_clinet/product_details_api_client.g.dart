@@ -29,7 +29,7 @@ class _ProductDetailsApiClient implements ProductDetailsApiClient {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/products/${id}',
+            'products/${id}',
             queryParameters: queryParameters,
             data: _data,
           )

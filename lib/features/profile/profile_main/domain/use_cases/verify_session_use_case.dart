@@ -26,7 +26,7 @@ class VerifySessionUseCase {
     return await isLoggedInResponse.when(
       success: (isLoggedIn) async {
         if (!isLoggedIn) {
-          // TODO(Salah): Handle Localization
+          // Todo(Salah): Handle Localization
           return BaseResponse.success(
             SessionInvalid(ErrorsConstant.userNotLoggedInError),
           );
@@ -36,7 +36,7 @@ class VerifySessionUseCase {
         return tokenValidResponse.when(
           success: (isTokenValid) {
             if (!isTokenValid) {
-              // TODO(Salah): Handle Localization
+              // Todo(Salah): Handle Localization
               return BaseResponse.success(
                 SessionInvalid(ErrorsConstant.sessionExpiredError),
               );

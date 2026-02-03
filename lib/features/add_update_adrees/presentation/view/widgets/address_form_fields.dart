@@ -19,7 +19,7 @@ class AddressFormFields extends StatelessWidget {
       children: [
         TextFormField(
           controller: addressController,
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
             labelText: AppTextConstants.address,
             hintText: AppTextConstants.enterAddress,
           ),
@@ -28,7 +28,7 @@ class AddressFormFields extends StatelessWidget {
         TextFormField(
           controller: phoneController,
           keyboardType: TextInputType.phone,
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
             labelText: AppTextConstants.phoneNumber,
             hintText: AppTextConstants.enterPhoneNumber,
           ),
@@ -36,7 +36,7 @@ class AddressFormFields extends StatelessWidget {
         const SizedBox(height: 16),
         TextFormField(
           controller: nameController,
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
             labelText: AppTextConstants.recipientName,
             hintText: AppTextConstants.enterTheRecipientName,
           ),

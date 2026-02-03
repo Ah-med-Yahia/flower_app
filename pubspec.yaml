@@ -10,6 +10,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+   # Localization
+  easy_localization: ^3.0.8
+
   # UI and Design
   cached_network_image: ^3.4.1
   cupertino_icons: ^1.0.8
@@ -55,6 +58,7 @@ dependencies:
   # Debugging
   logger: ^2.6.2
   pretty_dio_logger: ^1.4.0
+  shimmer: ^3.0.0
   latlong2: ^0.9.1
   flutter_map: ^8.2.2
   geocoding: ^4.0.0
@@ -80,12 +84,12 @@ flutter:
   uses-material-design: true
   assets:
     - assets/lottie/
+    - assets/icons/
     - assets/files/
     - assets/images/
-    - assets/country.json
     - assets/cities.json
     - assets/states.json
-
+    - assets/translations/
 
 flutter_gen:
   output: lib/core/gen/

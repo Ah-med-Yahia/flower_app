@@ -1,57 +1,76 @@
+import 'package:easy_localization/easy_localization.dart';
+
 class ErrorsConstant {
   ErrorsConstant._();
 
-  // TODO(Salah): Handle Localization
-  static const String badRequestError = 'Invalid request.';
-  static const String noContent = 'No content available.';
-  static const String forbiddenError = 'Access forbidden.';
-  static const String unauthorizedError = 'Unauthorized access.';
-  static const String notFoundError = 'Resource not found.';
-  static const String conflictError = 'Request conflict.';
-  static const String internalServerError = 'Internal server error.';
-  static const String unknownError = 'An unknown error occurred.';
-  static const String timeoutError = 'Connection timeout. Please try again.';
-  static const String defaultError = 'Something went wrong. Please try again.';
-  static const String noInternetError =
-      'No internet connection. Please check your network.';
-  static const String loadingMessage = 'Loading...';
-  static const String retryAgainMessage = 'Please try again.';
-  static const String ok = 'OK';
+  static String get badRequestError => 'errors.badRequest'.tr();
+
+  static String get noContent => 'errors.noContent'.tr();
+
+  static String get forbiddenError => 'errors.forbidden'.tr();
+
+  static String get unauthorizedError => 'errors.unauthorized'.tr();
+
+  static String get notFoundError => 'errors.notFound'.tr();
+
+  static String get conflictError => 'errors.conflict'.tr();
+
+  static String get internalServerError => 'errors.internalServer'.tr();
+
+  static String get unknownError => 'errors.unknown'.tr();
+
+  static String get timeoutError => 'errors.timeout'.tr();
+
+  static String get defaultError => 'errors.default'.tr();
+
+  static String get noInternetError => 'errors.noInternet'.tr();
+
+  static String get loadingMessage => 'common.loading'.tr();
+
+  static String get retryAgainMessage => 'common.retry'.tr();
+
+  static String get ok => 'common.ok'.tr();
 
   //-------------------------- AUTH ERROR --------------------------//
-  static const String authenticationCheckError = 'Authentication check failed:';
+  static String get authenticationCheckError =>
+      'errors.authenticationCheck'.tr();
 
   //-------------------------- CACHE ERROR --------------------------//
-  static const String cacheError = 'Cache error occurred.';
-  static const String noCacheDataAvailableError = 'No cached data available';
-  static const String failedToLoadCachedDataError =
-      'Failed to load cached data:';
+  static String get cacheError => 'errors.cache'.tr();
+
+  static String get noCacheDataAvailableError =>
+      'errors.noCacheDataAvailable'.tr();
+
+  static String get failedToLoadCachedDataError =>
+      'errors.failedToLoadCachedData'.tr();
 
   //-------------------------- SESSION ERROR --------------------------//
-  static const String userNotLoggedInError = 'User not logged in';
-  static const String sessionExpiredError = 'Session expired';
+  static String get userNotLoggedInError => 'errors.userNotLoggedIn'.tr();
+
+  static String get sessionExpiredError => 'errors.sessionExpired'.tr();
 
   //-------------------------- LOGOUT ERROR --------------------------//
-  static const String logoutFailedError = 'Logout failed:';
+  static String get logoutFailedError => 'errors.logoutFailed'.tr();
 
   //-------------------------- SIDE-EFFECT ERROR --------------------------//
-  static const String failedToEmitSideEffectError =
-      'Failed to emit side effect';
+  static String get failedToEmitSideEffectError =>
+      'errors.failedToEmitSideEffect'.tr();
 
   //-------------------------- JSON ERROR --------------------------//
-  static const String failedToLoadJsonError = 'Failed to load JSON';
-  static const String governoratesDataIsNullError = 'Governorates data is null';
-  static const String citiesDataIsNullError = 'Cities data is null';
+  static String get failedToLoadJsonError => 'errors.failedToLoadJson'.tr();
+
+  static String get governoratesDataIsNullError =>
+      'errors.governoratesDataIsNull'.tr();
+
+  static String get citiesDataIsNullError => 'errors.citiesDataIsNull'.tr();
 
   //-------------------------- LOCATION ERROR --------------------------//
-  static const String failedToGetCurrentLocation =
-      'Unable to get current location';
-  static const String cityNameOrStateNameIsRequired =
-      'City name or state name is required';
-  static const String locationNotFoundForGivenAddress =
-      'Location not found for the given address';
-  static const String pleaseSelectGovernorate = 'Please select a governorate';
-  static const String pleaseSelectCity = 'Please select a city';
-  static const String pleaseSelectLocationOnMap =
-      'Please select a location on the map';
+  static String get failedToGetCurrentLocation =>
+      'errors.failedToGetCurrentLocation'.tr();
+
+  static String get cityNameOrStateNameIsRequired =>
+      'errors.cityNameOrStateNameIsRequired'.tr();
+
+  static String get locationNotFoundForGivenAddress =>
+      'errors.locationNotFoundForGivenAddress'.tr();
 }

@@ -5,5 +5,7 @@ import '../entities/user_data_response.dart';
 abstract interface class ProfileMainRepo {
   Future<BaseResponse<UserDataResponse>> getLoggedUserData();
 
-  Future<BaseResponse<TermsAndConditionsEntity>> getTermsData();
+  Future<BaseResponse<List<TermSectionEntity>>> getTermsData();
+
+  Future<BaseResponse<List<TermSectionEntity>>> getAboutAppData();
 }

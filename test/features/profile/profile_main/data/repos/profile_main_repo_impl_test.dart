@@ -28,7 +28,8 @@ void main() {
   late MockProfileMainRemoteDataSource mockRemoteDataSource;
   late MockProfileMainLocalDataSource mockLocalDataSource;
 
-  setUp(() {
+  setUp(() async {
+    TestWidgetsFlutterBinding.ensureInitialized();
     mockRemoteDataSource = MockProfileMainRemoteDataSource();
     mockLocalDataSource = MockProfileMainLocalDataSource();
     repository = ProfileMainRepoImpl(mockRemoteDataSource, mockLocalDataSource);
@@ -119,9 +120,6 @@ void _testGetLoggedUserDataThrowsException(
       );
       when(mockRemoteDataSource.getLoggedUserData()).thenThrow(dioException);
 
-      final errorMessage = ErrorHandler.handle(dioException).message;
-      final statusCode = ErrorHandler.handle(dioException).code;
-
       // Act
       final result = await repository.getLoggedUserData();
 
@@ -131,9 +129,7 @@ void _testGetLoggedUserDataThrowsException(
         success: (_) => fail('Expected failure but got success'),
         failure: (errorHandler) {
           expect(errorHandler, isA<ErrorHandler>());
-          expect(errorHandler.message, errorMessage);
-          expect(errorHandler.code, statusCode);
-          expect(errorHandler.message, 'Connection timeout. Please try again.');
+          expect(errorHandler.message, equals('errors.timeout'));
           expect(errorHandler.code, -1);
         },
       );
@@ -168,24 +164,21 @@ void _testSuccessfulGetTermsData(
       final result = await repository.getTermsData();
 
       // Assert
-      expect(result, isA<Success<TermsAndConditionsEntity>>());
+      expect(result, isA<Success<List<TermSectionEntity>>>());
       result.when(
         success: (data) {
-          expect(data.sections, isA<List<TermSectionEntity>>());
-          expect(data.sections[0].content, isA<Map<String, List<String>>>());
-          expect(data.sections[0].style, isA<SectionStyleEntity>());
-          expect(data.sections[0].style.title, isA<TextStyleEntity?>());
-          expect(data.sections[0].style.content, isA<TextStyleEntity?>());
-          expect(data.sections[0].style.color, isA<Color?>());
-          expect(
-            data.sections[0].style.textAlign,
-            isA<Map<String, TextAlign>?>(),
-          );
-          expect(data.sections[0].section, 'section 1');
-          expect(data.sections[0].content['en'], ['en1', 'en2']);
-          expect(data.sections[0].content['ar'], ['ar1', 'ar2']);
-          expect(data.sections[0].section, 'section 1');
-          expect(data.sections[0].title, {'en': 'en', 'ar': 'ar'});
+          expect(data, isA<List<TermSectionEntity>>());
+          expect(data[0].content, isA<Map<String, List<String>>>());
+          expect(data[0].style, isA<SectionStyleEntity>());
+          expect(data[0].style.title, isA<TextStyleEntity?>());
+          expect(data[0].style.content, isA<TextStyleEntity?>());
+          expect(data[0].style.color, isA<Color?>());
+          expect(data[0].style.textAlign, isA<Map<String, TextAlign>?>());
+          expect(data[0].section, 'section 1');
+          expect(data[0].content['en'], ['en1', 'en2']);
+          expect(data[0].content['ar'], ['ar1', 'ar2']);
+          expect(data[0].section, 'section 1');
+          expect(data[0].title, {'en': 'en', 'ar': 'ar'});
         },
         failure: (_) => fail('Expected success but got failure'),
       );

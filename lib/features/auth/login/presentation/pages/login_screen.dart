@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text(AppTextConstants.login)),
+      appBar: AppBar(title: Text(AppTextConstants.login)),
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -92,10 +92,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     labelText: AppTextConstants.email,
                     hintText: AppTextConstants.enterEmail,
-                    contentPadding: EdgeInsets.symmetric(
+                    contentPadding: const EdgeInsets.symmetric(
                       horizontal: 16.0,
                       vertical: 18.0,
                     ),
@@ -113,10 +113,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     FocusManager.instance.primaryFocus?.unfocus();
                   },
                   autovalidateMode: AutovalidateMode.onUserInteraction,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     labelText: AppTextConstants.password,
                     hintText: AppTextConstants.enterPassword,
-                    contentPadding: EdgeInsets.symmetric(
+                    contentPadding: const EdgeInsets.symmetric(
                       horizontal: 16.0,
                       vertical: 18.0,
                     ),
@@ -172,7 +172,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: ElevatedButton.styleFrom(
                         fixedSize: Size(screenSize.width, 48),
                       ),
-                      child: const Text(AppTextConstants.login),
+                      child: Text(AppTextConstants.login),
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           loginCubit.doIntent(
@@ -197,7 +197,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     foregroundColor: AppColors.textSecondary,
                   ),
 
-                  child: const Text(AppTextConstants.guestUser),
+                  child: Text(AppTextConstants.guestUser),
                   onPressed: () {
                     context.go(AppRoutesConstants.homeRoute);
                   },
@@ -206,7 +206,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Text(AppTextConstants.dontHaveAccount),
+                    Text(AppTextConstants.dontHaveAccount),
                     TextButton(
                       onPressed: () {
                         // Navigate to Sign Up screen

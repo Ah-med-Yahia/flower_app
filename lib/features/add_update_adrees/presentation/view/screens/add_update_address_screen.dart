@@ -53,7 +53,7 @@ class _AddUpdateAddressScreenState extends State<AddUpdateAddressScreen> {
       create: (_) => cubit..onEvent(LoadInitialDataEvent()),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text(AppTextConstants.address),
+          title: Text(AppTextConstants.address),
           leading: const ArrowBackButton(),
         ),
         body: AddAddressListeners(
@@ -135,7 +135,7 @@ class _AddUpdateAddressScreenState extends State<AddUpdateAddressScreen> {
                                   color: AppColors.background,
                                 ),
                               )
-                            : const Text(
+                            : Text(
                                 AppTextConstants.saveAddress,
                                 style: TextStyle(color: AppColors.background),
                               ),

@@ -10,7 +10,7 @@ class LogoutUseCase {
   LogoutUseCase(this._tokenService);
 
   Future<BaseResponse<void>> call() async {
-    // TODO(Mahmoud-Younes): Add logout logic here
+    // Todo(Mahmoud-Younes): Add logout logic here
     // Future cleanup logic can be added here:
     // - Clear local database
     // - Notify backend of logout

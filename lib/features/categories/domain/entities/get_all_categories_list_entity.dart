@@ -2,5 +2,6 @@ import 'package:flower_app/features/categories/domain/entities/category_entity.d
 
 class GetCategoryListEntity {
   final List<CategoryEntity>? categories;
+
   GetCategoryListEntity({required this.categories});
 }

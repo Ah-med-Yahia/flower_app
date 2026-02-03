@@ -8,6 +8,7 @@ import '../../domain/mappers/profile_main_mapper.dart';
 import '../../domain/repos/profile_main_repo.dart';
 import '../datasource/local/profile_main_local_data_source.dart';
 import '../datasource/profile_main_remote_data_source.dart';
+import '../mappers/about_mapper.dart';
 import '../mappers/terms_mapper.dart';
 
 @Injectable(as: ProfileMainRepo)
@@ -28,10 +29,18 @@ class ProfileMainRepoImpl implements ProfileMainRepo {
   }
 
   @override
-  Future<BaseResponse<TermsAndConditionsEntity>> getTermsData() async {
+  Future<BaseResponse<List<TermSectionEntity>>> getTermsData() async {
     return safeApiCall(() async {
       final response = await _localDataSource.getTermsData();
-      return TermsMapper.toEntity(response);
+      return TermsMapper.toEntity(response).sections;
+    });
+  }
+
+  @override
+  Future<BaseResponse<List<TermSectionEntity>>> getAboutAppData() {
+    return safeApiCall(() async {
+      final response = await _localDataSource.getAboutAppData();
+      return AboutMapper.toEntity(response).aboutApp;
     });
   }
 }

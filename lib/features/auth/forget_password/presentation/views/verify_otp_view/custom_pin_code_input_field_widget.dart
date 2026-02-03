@@ -55,11 +55,11 @@ class CustomPinCodeInputFieldWidget extends StatelessWidget {
       focusedPinTheme: focusedPinTheme,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          const message = ValidationConstants.pleaseEnterOTPCode;
+          final message = ValidationConstants.pleaseEnterOTPCode;
           return message;
         }
         if (value.length < 6) {
-          const message = ValidationConstants.otpMustBe6Digits;
+          final message = ValidationConstants.otpMustBe6Digits;
           return message;
         }
         return null;

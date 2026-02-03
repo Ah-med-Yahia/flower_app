@@ -17,3 +17,7 @@ class UpdateLanguageIntent extends ProfileMainIntents {
 class EditProfileIntent extends ProfileMainIntents {}
 
 class LogoutIntent extends ProfileMainIntents {}
+
+class TapAboutUsIntent extends ProfileMainIntents {}
+
+class TapTermsAndConditionsIntent extends ProfileMainIntents {}

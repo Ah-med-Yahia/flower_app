@@ -44,9 +44,9 @@ class SignUpButtonWidget extends StatelessWidget {
                 }
               }
             : null,
-        child: const Text(
+        child: Text(
           AppTextConstants.signUp,
-          style: TextStyle(color: AppColors.background),
+          style: const TextStyle(color: AppColors.background),
         ),
       ),
     );

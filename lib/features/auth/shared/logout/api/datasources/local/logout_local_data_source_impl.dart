@@ -7,7 +7,9 @@ import 'package:injectable/injectable.dart';
 @Injectable(as: LogoutLocalDataSource)
 class LogoutLocalDataSourceImpl implements LogoutLocalDataSource {
   final SecureStorageService secureStorageService;
+
   LogoutLocalDataSourceImpl(this.secureStorageService);
+
   @override
   Future<BaseResponse<void>> clearUserTokens() async {
     final responses = await Future.wait([

@@ -6,7 +6,9 @@ import 'package:injectable/injectable.dart';
 @Injectable(as: LogoutRepo)
 class LogoutRepoImpl implements LogoutRepo {
   final LogoutLocalDataSource _logoutLocalDataSource;
+
   LogoutRepoImpl(this._logoutLocalDataSource);
+
   @override
   Future<BaseResponse<void>> clearUserTokens() async {
     final response = await _logoutLocalDataSource.clearUserTokens();
