@@ -13,7 +13,7 @@ class ProductsGridWidget extends StatelessWidget {
 
     return Expanded(
       child: GridView.builder(
-        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: 0.65,

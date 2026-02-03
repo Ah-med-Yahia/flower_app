@@ -25,7 +25,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
         ),
       );
 
-  void onEvent(CategoriesIntents event) {
+  void onIntent(CategoriesIntents event) {
     switch (event) {
       case GetAllCategories():
         _getAllCategories(event.initialCategoryId);

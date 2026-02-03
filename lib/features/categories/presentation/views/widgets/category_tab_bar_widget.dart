@@ -1,5 +1,5 @@
 import 'package:flower_app/features/categories/domain/entities/get_category_list_entity/category_entity.dart';
-import 'package:flower_app/features/categories/presentation/views/widgets/category_tab.dart';
+import 'package:flower_app/features/categories/presentation/views/widgets/category_tab_widget.dart';
 import 'package:flutter/material.dart';
 
 class CategoryTabBar extends StatelessWidget {
@@ -16,20 +16,19 @@ class CategoryTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
+    final screenSize = MediaQuery.of(context).size;
 
     return Container(
-      height: screenHeight * 0.06,
+      height: screenSize.height * 0.06,
       padding: EdgeInsets.only(
-        right: screenWidth * 0.06,
-        left: screenWidth * 0.04,
+        right: screenSize.width * 0.06,
+        left: screenSize.width * 0.04,
       ),
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: categories.length,
         separatorBuilder: (context, index) =>
-            SizedBox(width: screenWidth * 0.05),
+            SizedBox(width: screenSize.width * 0.05),
         itemBuilder: (context, index) {
           return CategoryTab(
             title: categories[index].name!,
