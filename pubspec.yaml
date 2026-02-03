@@ -41,6 +41,7 @@ dependencies:
 
   # Lottie
   lottie: ^3.3.2
+  geolocator: ^14.0.2
   google_fonts: ^6.3.3
   fluttertoast: ^9.0.0
 
@@ -55,6 +56,8 @@ dependencies:
   logger: ^2.6.2
   pretty_dio_logger: ^1.4.0
   latlong2: ^0.9.1
+  flutter_map: ^8.2.2
+  geocoding: ^4.0.0
 
 dev_dependencies:
   flutter_test:
@@ -79,6 +82,9 @@ flutter:
     - assets/lottie/
     - assets/files/
     - assets/images/
+    - assets/country.json
+    - assets/cities.json
+    - assets/states.json
 
 
 flutter_gen:

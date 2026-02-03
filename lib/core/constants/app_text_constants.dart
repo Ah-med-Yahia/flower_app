@@ -139,4 +139,18 @@ class AppTextConstants {
   static const String arLang = 'ar';
   static const String switchToArabic = 'Switch to Arabic';
   static const String switchToEnglish = 'التبديل إلى الإنجليزية';
+
+  //-------------------------- ADD-UPDATE-ADDRESS PAGE --------------------------//
+  static const String address = 'Address';
+  static const String enterAddress = 'Enter address';
+  static const String enterTheRecipientName = 'Enter the recipient name';
+  static const String recipientName = 'Recipient name';
+  static const String saveAddress = 'Save Address';
+  static const String country = 'Country';
+  static const String selectCountry = 'Select Country';
+  static const String state = 'State';
+  static const String selectState = 'Select State';
+  static const String city = 'City';
+  static const String selectCity = 'Select City';
+  static const String addressSavedSuccessfully = 'Address saved successfully';
 }

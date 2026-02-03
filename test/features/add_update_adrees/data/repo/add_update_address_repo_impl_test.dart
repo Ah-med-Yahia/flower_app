@@ -1,6 +1,8 @@
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/error_handler/error_handler.dart';
+import 'package:flower_app/config/services/location_service.dart';
 import 'package:flower_app/features/add_update_adrees/data/data_source/remote/add_update_address_remote_data_source.dart';
+import 'package:flower_app/features/add_update_adrees/data/data_source/remote/local/add_update_address_local_data_source.dart';
 import 'package:flower_app/features/add_update_adrees/data/mappers/add_update_address_mapper.dart';
 import 'package:flower_app/features/add_update_adrees/data/models/add_update_address_response_model.dart';
 import 'package:flower_app/features/add_update_adrees/data/repo/add_update_address_repo_impl.dart';
@@ -12,15 +14,24 @@ import 'package:mockito/mockito.dart';
 
 import 'add_update_address_repo_impl_test.mocks.dart';
 
-@GenerateMocks([AddUpdateAddressRemoteDataSource])
+@GenerateMocks([
+  AddUpdateAddressRemoteDataSource,
+  AddUpdateAddressLocalDataSource,
+])
 void main() {
   late AddUpdateAddressRepoImpl repo;
 
   late AddUpdateAddressRemoteDataSource mockRemoteDataSource;
+  late AddUpdateAddressLocalDataSource mockLocalDataSource;
 
   setUp(() {
     mockRemoteDataSource = MockAddUpdateAddressRemoteDataSource();
-    repo = AddUpdateAddressRepoImpl(mockRemoteDataSource);
+    mockLocalDataSource = MockAddUpdateAddressLocalDataSource();
+    repo = AddUpdateAddressRepoImpl(
+      mockRemoteDataSource,
+      mockLocalDataSource,
+      LocationService(),
+    );
   });
 
   group('addAddress', () {

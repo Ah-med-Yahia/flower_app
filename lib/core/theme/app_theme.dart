@@ -69,6 +69,7 @@ abstract class AppTheme {
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primary,
         foregroundColor: AppColors.background,
+        disabledBackgroundColor: AppColors.darkGrey,
         elevation: 0,
         shadowColor: Colors.transparent,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),

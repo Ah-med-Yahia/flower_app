@@ -37,4 +37,21 @@ class ErrorsConstant {
   //-------------------------- SIDE-EFFECT ERROR --------------------------//
   static const String failedToEmitSideEffectError =
       'Failed to emit side effect';
+
+  //-------------------------- JSON ERROR --------------------------//
+  static const String failedToLoadJsonError = 'Failed to load JSON';
+  static const String governoratesDataIsNullError = 'Governorates data is null';
+  static const String citiesDataIsNullError = 'Cities data is null';
+
+  //-------------------------- LOCATION ERROR --------------------------//
+  static const String failedToGetCurrentLocation =
+      'Unable to get current location';
+  static const String cityNameOrStateNameIsRequired =
+      'City name or state name is required';
+  static const String locationNotFoundForGivenAddress =
+      'Location not found for the given address';
+  static const String pleaseSelectGovernorate = 'Please select a governorate';
+  static const String pleaseSelectCity = 'Please select a city';
+  static const String pleaseSelectLocationOnMap =
+      'Please select a location on the map';
 }

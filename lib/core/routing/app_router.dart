@@ -1,5 +1,6 @@
 import 'package:flower_app/config/di/di.dart';
 import 'package:flower_app/core/constants/app_routes_constant.dart';
+import 'package:flower_app/features/add_update_adrees/presentation/view/screens/add_update_address_screen.dart';
 import 'package:flower_app/features/auth/change_password/presentation/screens/change_password_screen.dart';
 import 'package:flower_app/features/auth/login/presentation/cubit/login_cubit.dart';
 import 'package:flower_app/features/auth/login/presentation/pages/login_screen.dart';
@@ -17,7 +18,7 @@ import '../../features/product/best_seller/presentation/views/view/best_seller_v
 
 abstract class AppRouter {
   static GoRouter router = GoRouter(
-    initialLocation: AppRoutesConstants.loginRoute,
+    initialLocation: AppRoutesConstants.addUpdateAddressRoute,
     routes: [
       GoRoute(
         path: AppRoutesConstants.loginRoute,
@@ -78,6 +79,11 @@ abstract class AppRouter {
         path: AppRoutesConstants.changePasswordRoute,
         name: AppRoutesConstants.changePasswordRoute,
         builder: (context, state) => const ChangePasswordScreen(),
+      ),
+      GoRoute(
+        path: AppRoutesConstants.addUpdateAddressRoute,
+        name: AppRoutesConstants.addUpdateAddressRoute,
+        builder: (context, state) => const AddUpdateAddressScreen(),
       ),
     ],
   );
