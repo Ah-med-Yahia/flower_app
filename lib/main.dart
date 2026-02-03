@@ -20,8 +20,12 @@ void main() async {
         Locale(AppTextConstants.arLangKey),
       ],
       path: AppAsset.translationsPath,
-      startLocale: const Locale(AppTextConstants.enLangKey),
+      startLocale: null, // Let EasyLocalization detect device locale
       fallbackLocale: const Locale(AppTextConstants.enLangKey),
+      useOnlyLangCode:
+          true, // Use only language code (ar, en) instead of full locale (ar_EG, en_US)
+      saveLocale:
+          false, // Don't save locale to storage, always follow device locale
       child: const FlowerApp(),
     ),
   );
