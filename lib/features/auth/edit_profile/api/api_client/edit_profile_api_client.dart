@@ -4,9 +4,9 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
+import '../../../../../config/base_response/message_response.dart';
 import '../../../../../core/constants/api_constants.dart';
 import '../../data/models/request/edit_user_data_request_model.dart';
-import '../../data/models/response/upload_image_response_model.dart';
 import '../../data/models/response/user_data_response_model.dart';
 
 part 'edit_profile_api_client.g.dart';
@@ -19,7 +19,7 @@ abstract class EditProfileApiClient {
 
   @MultiPart()
   @PUT(ApiConstants.uploadUserImageEndPoint)
-  Future<UploadImageResponseModel> uploadUserImage(
+  Future<MessageResponse> uploadUserImage(
     @Part(name: ApiConstants.photoPart) File imageFile,
   );
 

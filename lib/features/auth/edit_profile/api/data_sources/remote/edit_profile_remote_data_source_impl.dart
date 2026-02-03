@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:injectable/injectable.dart';
 
-import '../../../data/datasources/remote/edit_profile_remote_data_source.dart';
+import '../../../../../../config/base_response/message_response.dart';
+import '../../../data/data_sources/remote/edit_profile_remote_data_source.dart';
 import '../../../data/models/request/edit_user_data_request_model.dart';
-import '../../../data/models/response/upload_image_response_model.dart';
 import '../../../data/models/response/user_data_response_model.dart';
 import '../../api_client/edit_profile_api_client.dart';
 
@@ -22,7 +22,7 @@ class EditProfileRemoteDataSourceImpl implements EditProfileRemoteDataSource {
   }
 
   @override
-  Future<UploadImageResponseModel> uploadUserImage(File imageFile) async {
+  Future<MessageResponse> uploadUserImage(File imageFile) async {
     return await _apiClient.uploadUserImage(imageFile);
   }
 }
