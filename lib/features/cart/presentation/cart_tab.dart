@@ -114,12 +114,12 @@ class _CartTabState extends State<CartTab> {
           if (state.cartBaseState == null) {
             return const SizedBox();
           } else if (state.cartBaseState!.isError) {
-            return CartLottieStatesWidget(
-              lottie: Assets.lottie.cartError.path,
+            return LottieStatesWidget(
+              lottie: Assets.lottie.error.path,
               text: AppTextConstants.cartError,
             );
           } else if (state.cartBaseState!.isEmpty) {
-            return CartLottieStatesWidget(
+            return LottieStatesWidget(
               lottie: Assets.lottie.emptyCart.path,
               text: AppTextConstants.emptyCart,
               textColor: AppColors.primary,

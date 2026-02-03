@@ -1,8 +1,10 @@
 import 'package:flower_app/config/di/di.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
+import 'package:flower_app/core/gen/assets.gen.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flower_app/core/widgets/loading_indicator_widget.dart';
 import 'package:flower_app/core/widgets/spacing.dart';
+import 'package:flower_app/features/cart/presentation/widgets/cart_lottie_states_widget.dart';
 import 'package:flower_app/features/categories/presentation/cubit/categories_cubit.dart';
 import 'package:flower_app/features/categories/presentation/cubit/categories_intents.dart';
 import 'package:flower_app/features/categories/presentation/cubit/categories_state.dart';
@@ -93,32 +95,24 @@ class CategoriesTap extends StatelessWidget {
 
                           if (productState.categoryProductsState.errorMessage !=
                               null) {
-                            return Center(
-                              child: Text(
-                                productState
-                                    .categoryProductsState
-                                    .errorMessage!,
-                                style: Theme.of(context).textTheme.titleMedium!
-                                    .copyWith(color: AppColors.darkRed),
-                              ),
+                            return LottieStatesWidget(
+                              lottie: Assets.lottie.error.path,
+                              text: productState
+                                  .categoryProductsState
+                                  .errorMessage!,
+                              textColor: AppColors.primary,
                             );
                           }
 
                           final categoryProducts =
                               productState.categoryProductsState.data?.products;
 
-                          if (categoryProducts == null) {
-                            return Expanded(
-                              child: Center(
-                                child: Text(
-                                  AppTextConstants.noProductsAvailable,
-                                  style: Theme.of(context).textTheme.titleLarge!
-                                      .copyWith(
-                                        color: AppColors.darkRed,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                ),
-                              ),
+                          if (categoryProducts == null ||
+                              categoryProducts.isEmpty) {
+                            return LottieStatesWidget(
+                              lottie: Assets.lottie.emptyBox.path,
+                              text: AppTextConstants.noProductsAvailable,
+                              textColor: AppColors.primary,
                             );
                           }
 
