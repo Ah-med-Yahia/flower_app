@@ -1,11 +1,11 @@
 import 'package:flower_app/features/categories/domain/entities/category_products_response_entity/product_entity.dart';
-import 'package:flower_app/features/categories/presentation/views/widgets/product_card.dart';
+import 'package:flower_app/features/categories/presentation/views/widgets/product_card_widget.dart';
 import 'package:flutter/material.dart';
 
-class ProductsGrid extends StatelessWidget {
-  final ProductEntity _categoryProductEntity;
+class ProductsGridWidget extends StatelessWidget {
+  final List<ProductEntity> products;
 
-  const ProductsGrid(this._categoryProductEntity, {super.key});
+  const ProductsGridWidget({required this.products, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +20,9 @@ class ProductsGrid extends StatelessWidget {
           crossAxisSpacing: screenWidth * 0.03,
           mainAxisSpacing: screenWidth * 0.03,
         ),
-        itemCount: 6,
+        itemCount: products.length,
         itemBuilder: (context, index) {
-          return ProductCard(_categoryProductEntity);
+          return ProductCardWidget(product: products[index]);
         },
       ),
     );

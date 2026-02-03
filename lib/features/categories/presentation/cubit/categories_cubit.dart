@@ -4,7 +4,7 @@ import 'package:flower_app/features/categories/domain/entities/category_products
 import 'package:flower_app/features/categories/domain/entities/get_category_list_entity/get_all_categories_list_entity.dart';
 import 'package:flower_app/features/categories/domain/usecases/get_all_categories_usecase.dart';
 import 'package:flower_app/features/categories/domain/usecases/get_categories_products_usecase.dart';
-import 'package:flower_app/features/categories/presentation/cubit/categories_event.dart';
+import 'package:flower_app/features/categories/presentation/cubit/categories_intents.dart';
 import 'package:flower_app/features/categories/presentation/cubit/categories_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -25,7 +25,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
         ),
       );
 
-  void onEvent(CategoriesEvent event) {
+  void onEvent(CategoriesIntents event) {
     switch (event) {
       case GetAllCategories():
         _getAllCategories(event.initialCategoryId);

@@ -5,10 +5,10 @@ import 'package:flower_app/core/widgets/loading_indicator_widget.dart';
 import 'package:flower_app/features/categories/domain/entities/category_products_response_entity/product_entity.dart';
 import 'package:flutter/material.dart';
 
-class ProductCard extends StatelessWidget {
-  final ProductEntity _categoryProductEntity;
+class ProductCardWidget extends StatelessWidget {
+  final ProductEntity product;
 
-  const ProductCard(this._categoryProductEntity, {super.key});
+  const ProductCardWidget({required this.product, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class ProductCard extends StatelessWidget {
               child: AspectRatio(
                 aspectRatio: 1.2,
                 child: CachedNetworkImage(
-                  imageUrl: _categoryProductEntity.imageCover ?? '',
+                  imageUrl: product.imageCover ?? '',
                   fit: BoxFit.cover,
                   placeholder: (context, url) =>
                       LoadingIndicator(size: screenWidth * 0.20),
@@ -54,7 +54,7 @@ class ProductCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    _categoryProductEntity.title,
+                    product.title,
                     style: Theme.of(context).textTheme.titleMedium!.copyWith(
                       color: AppColors.textPrimary,
                       fontWeight: FontWeight.w400,
@@ -68,7 +68,7 @@ class ProductCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        '${AppTextConstants.egp} ${_categoryProductEntity.priceAfterDiscount}',
+                        '${AppTextConstants.egp} ${product.priceAfterDiscount}',
                         style: Theme.of(context).textTheme.titleMedium
                             ?.copyWith(
                               fontWeight: FontWeight.w600,
@@ -78,7 +78,7 @@ class ProductCard extends StatelessWidget {
                       ),
                       SizedBox(width: screenWidth * 0.018),
                       Text(
-                        '${_categoryProductEntity.price}',
+                        '${product.price}',
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontSize: fontSize,
                           color: AppColors.textSecondary,
@@ -89,10 +89,9 @@ class ProductCard extends StatelessWidget {
                       SizedBox(width: screenWidth * 0.018),
 
                       Visibility(
-                        visible:
-                            _categoryProductEntity.discountPercentage != null,
+                        visible: product.discountPercentage != null,
                         child: Text(
-                          '${_categoryProductEntity.discountPercentage}${AppTextConstants.percentageSign}',
+                          '${product.discountPercentage}${AppTextConstants.percentageSign}',
                           style: Theme.of(context).textTheme.bodyMedium
                               ?.copyWith(
                                 fontSize: screenWidth * 0.032,

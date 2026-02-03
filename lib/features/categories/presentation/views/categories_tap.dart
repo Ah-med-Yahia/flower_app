@@ -3,10 +3,11 @@ import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flower_app/core/widgets/loading_indicator_widget.dart';
 import 'package:flower_app/features/categories/presentation/cubit/categories_cubit.dart';
-import 'package:flower_app/features/categories/presentation/cubit/categories_event.dart';
+import 'package:flower_app/features/categories/presentation/cubit/categories_intents.dart';
 import 'package:flower_app/features/categories/presentation/cubit/categories_state.dart';
 import 'package:flower_app/features/categories/presentation/views/widgets/category_tab_bar.dart';
 import 'package:flower_app/features/categories/presentation/views/widgets/custom_category_app_bar.dart';
+import 'package:flower_app/features/categories/presentation/views/widgets/products_grid_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -117,7 +118,7 @@ class CategoriesTap extends StatelessWidget {
                             );
                           }
 
-                          return const SizedBox();
+                          return ProductsGridWidget(products: categoryProducts);
                         },
                       ),
                     ],

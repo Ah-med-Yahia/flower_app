@@ -1,17 +1,17 @@
-sealed class CategoriesEvent {}
+sealed class CategoriesIntents {}
 
-class GetAllCategories extends CategoriesEvent {
+class GetAllCategories extends CategoriesIntents {
   final String? initialCategoryId;
 
   GetAllCategories({required this.initialCategoryId});
 }
 
-class SelectCategory extends CategoriesEvent {
+class SelectCategory extends CategoriesIntents {
   final int index;
   SelectCategory(this.index);
 }
 
-class GetCategoryProducts extends CategoriesEvent {
+class GetCategoryProducts extends CategoriesIntents {
   final String categoryId;
   GetCategoryProducts(this.categoryId);
 }
