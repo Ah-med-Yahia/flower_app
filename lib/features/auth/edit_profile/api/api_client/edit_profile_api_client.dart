@@ -11,7 +11,7 @@ import '../../data/models/response/user_data_response_model.dart';
 
 part 'edit_profile_api_client.g.dart';
 
-@injectable
+@lazySingleton
 @RestApi()
 abstract class EditProfileApiClient {
   @factoryMethod
