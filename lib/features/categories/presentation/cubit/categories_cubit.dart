@@ -1,11 +1,11 @@
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/base_state/base_state.dart';
-import 'package:flower_app/features/categories/domain/entities/get_all_categories_list_entity.dart';
-import 'package:flower_app/features/categories/domain/entities/get_categories_products_entity.dart';
+import 'package:flower_app/features/categories/domain/entities/category_products_response_entity/category_products_response_entity.dart';
+import 'package:flower_app/features/categories/domain/entities/get_category_list_entity/get_all_categories_list_entity.dart';
 import 'package:flower_app/features/categories/domain/usecases/get_all_categories_usecase.dart';
 import 'package:flower_app/features/categories/domain/usecases/get_categories_products_usecase.dart';
-import 'package:flower_app/features/categories/presentation/view_model/categories_event.dart';
-import 'package:flower_app/features/categories/presentation/view_model/categories_state.dart';
+import 'package:flower_app/features/categories/presentation/cubit/categories_intents.dart';
+import 'package:flower_app/features/categories/presentation/cubit/categories_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
@@ -25,7 +25,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
         ),
       );
 
-  void onEvent(CategoriesEvent event) {
+  void onIntent(CategoriesIntents event) {
     switch (event) {
       case GetAllCategories():
         _getAllCategories(event.initialCategoryId);
@@ -45,7 +45,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
       ),
     );
 
-    final categories = await _getAllCategoriesUseCase.getAllCategories();
+    final categories = await _getAllCategoriesUseCase();
 
     categories.when(
       success: (data) {
@@ -118,8 +118,9 @@ class CategoriesCubit extends Cubit<CategoriesState> {
       ),
     );
 
-    final categoryProducts = await _getCategoryProductsUseCase
-        .getCategoryProducts(categoryId);
+    final categoryProducts = await _getCategoryProductsUseCase(
+      categoryId: categoryId,
+    );
 
     categoryProducts.when(
       success: (data) => emit(

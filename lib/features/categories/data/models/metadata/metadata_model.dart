@@ -6,16 +6,14 @@ part 'metadata_model.g.dart';
 class Metadata {
   @JsonKey(name: 'currentPage')
   final int? currentPage;
-
-  final int? limit;
-
   @JsonKey(name: 'totalPages')
   final int? totalPages;
-
+  @JsonKey(name: 'limit')
+  final int? limit;
   @JsonKey(name: 'totalItems')
   final int? totalItems;
 
-  Metadata({this.currentPage, this.limit, this.totalPages, this.totalItems});
+  Metadata({this.currentPage, this.totalPages, this.limit, this.totalItems});
 
   factory Metadata.fromJson(Map<String, dynamic> json) =>
       _$MetadataFromJson(json);
