@@ -1,4 +1,5 @@
 import 'package:flower_app/core/constants/app_text_constants.dart';
+import 'package:flower_app/core/validators/app_validators.dart';
 import 'package:flutter/material.dart';
 
 class AddressFormFields extends StatelessWidget {
@@ -27,7 +28,9 @@ class AddressFormFields extends StatelessWidget {
         const SizedBox(height: 16),
         TextFormField(
           controller: phoneController,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           keyboardType: TextInputType.phone,
+          validator: AppValidators.validatePhoneNumber,
           decoration: InputDecoration(
             labelText: AppTextConstants.phoneNumber,
             hintText: AppTextConstants.enterPhoneNumber,

@@ -210,30 +210,6 @@ class AppTextConstants {
 
   static String get myOrders => 'profile.myOrders'.tr();
 
-  static String get savedAddresses => 'profile.savedAddresses'.tr();
-
-  static String get address => 'profile.address'.tr();
-
-  static String get enterAddress => 'profile.enterAddress'.tr();
-
-  static String get recipientName => 'profile.recipientName'.tr();
-
-  static String get enterTheRecipientName =>
-      'profile.enterTheRecipientName'.tr();
-
-  static String get state => 'profile.state'.tr();
-
-  static String get selectState => 'profile.selectState'.tr();
-
-  static String get city => 'profile.city'.tr();
-
-  static String get selectCity => 'profile.selectCity'.tr();
-
-  static String get saveAddress => 'profile.saveAddress'.tr();
-
-  static String get addressSavedSuccessfully =>
-      'profile.addressSavedSuccessfully'.tr();
-
   static String get termsAppBarTitleEn => 'profile.termsAppBarTitle'.tr();
 
   static String get termsAppBarTitleAr => 'profile.termsAppBarTitle'.tr();
@@ -307,4 +283,29 @@ class AppTextConstants {
   static String get confirmBtn => 'common.confirm'.tr();
 
   static String get egy => 'common.egp'.tr();
+
+  // Add Update Address
+  static String get savedAddresses => 'addUpdateAddress.savedAddresses'.tr();
+
+  static String get address => 'addUpdateAddress.address'.tr();
+
+  static String get enterAddress => 'addUpdateAddress.enterAddress'.tr();
+
+  static String get recipientName => 'addUpdateAddress.recipientName'.tr();
+
+  static String get enterTheRecipientName =>
+      'addUpdateAddress.enterTheRecipientName'.tr();
+
+  static String get state => 'addUpdateAddress.state'.tr();
+
+  static String get selectState => 'addUpdateAddress.selectState'.tr();
+
+  static String get city => 'addUpdateAddress.city'.tr();
+
+  static String get selectCity => 'addUpdateAddress.selectCity'.tr();
+
+  static String get saveAddress => 'addUpdateAddress.saveAddress'.tr();
+
+  static String get addressSavedSuccessfully =>
+      'addUpdateAddress.addressSavedSuccessfully'.tr();
 }

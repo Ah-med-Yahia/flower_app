@@ -1,6 +1,7 @@
 import 'package:flower_app/config/di/di.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
+import 'package:flower_app/core/validators/app_validators.dart';
 import 'package:flower_app/core/widgets/arrow_back_button.dart';
 import 'package:flower_app/core/widgets/loading_indicator_widget.dart';
 import 'package:flower_app/features/add_update_adrees/domain/models/add_update_address_request_entity.dart';
@@ -39,16 +40,35 @@ class _AddUpdateAddressScreenState extends State<AddUpdateAddressScreen> {
 
   bool get isFormValid =>
       _addressController.text.isNotEmpty &&
-      _phoneController.text.isNotEmpty &&
+      AppValidators.validatePhoneNumber(_phoneController.text) == null &&
       _nameController.text.isNotEmpty &&
       selectedGovernorate != null &&
       selectedCity != null &&
       selectedLocation != null;
+  @override
+  void initState() {
+    super.initState();
+    _addressController.addListener(_onFormChanged);
+    _phoneController.addListener(_onFormChanged);
+    _nameController.addListener(_onFormChanged);
+  }
+
+  void _onFormChanged() {
+    setState(() {});
+  }
+
+  @override
+  void dispose() {
+    _addressController.dispose();
+    _phoneController.dispose();
+    _nameController.dispose();
+    _mapController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final cubit = getIt<AddUpdateAddresseCubit>();
-
     return BlocProvider(
       create: (_) => cubit..onEvent(LoadInitialDataEvent()),
       child: Scaffold(
@@ -67,7 +87,7 @@ class _AddUpdateAddressScreenState extends State<AddUpdateAddressScreen> {
                 return const LoadingIndicator();
               }
               return SingleChildScrollView(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
                   children: [
                     AddressMapWidget(
@@ -83,17 +103,16 @@ class _AddUpdateAddressScreenState extends State<AddUpdateAddressScreen> {
                         });
                       },
                       onGetCurrentLocation: () {
+                        setState(() {
+                          selectedGovernorate = null;
+                          selectedCity = null;
+                        });
                         context.read<AddUpdateAddresseCubit>().onEvent(
                           GetCurrentLocationEvent(),
                         );
-
-                        selectedGovernorate = null;
-                        selectedCity = null;
                       },
                     ),
-
                     const SizedBox(height: 16),
-
                     AddressFormFields(
                       addressController: _addressController,
                       phoneController: _phoneController,
@@ -113,9 +132,19 @@ class _AddUpdateAddressScreenState extends State<AddUpdateAddressScreen> {
                         context.read<AddUpdateAddresseCubit>().onEvent(
                           GetCitiesEvent(governorateId: gov.id),
                         );
+                        context.read<AddUpdateAddresseCubit>().onCityChanged(
+                          gov.governorateNameEn,
+                          '',
+                        );
                       },
                       onCityChanged: (city) {
                         setState(() => selectedCity = city);
+                        if (selectedGovernorate != null) {
+                          context.read<AddUpdateAddresseCubit>().onCityChanged(
+                            selectedGovernorate!.governorateNameEn,
+                            city.cityNameEn,
+                          );
+                        }
                       },
                     ),
                     const SizedBox(height: 16),
@@ -127,17 +156,12 @@ class _AddUpdateAddressScreenState extends State<AddUpdateAddressScreen> {
                             ? () => _handleSave(context)
                             : null,
                         child: state.addUpdateState?.isLoading ?? false
-                            ? const SizedBox(
-                                width: 20,
-                                height: 20,
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 2,
-                                  color: AppColors.background,
-                                ),
-                              )
+                            ? const LoadingIndicator()
                             : Text(
                                 AppTextConstants.saveAddress,
-                                style: TextStyle(color: AppColors.background),
+                                style: const TextStyle(
+                                  color: AppColors.background,
+                                ),
                               ),
                       ),
                     ),
