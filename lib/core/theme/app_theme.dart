@@ -40,15 +40,45 @@ abstract class AppTheme {
     ),
     //------------ Text Theme -----------------//
     textTheme: const TextTheme(
+      // Display styles
+      displayLarge: TextStyle(
+        fontSize: 57,
+        fontWeight: FontWeight.w400,
+        color: AppColors.textPrimary,
+      ),
+      displayMedium: TextStyle(
+        fontSize: 45,
+        fontWeight: FontWeight.w400,
+        color: AppColors.textPrimary,
+      ),
+      displaySmall: TextStyle(
+        fontSize: 36,
+        fontWeight: FontWeight.w400,
+        color: AppColors.textPrimary,
+      ),
+
+      // Headline styles
+      headlineLarge: TextStyle(
+        fontSize: 32,
+        fontWeight: FontWeight.w400,
+        color: AppColors.textPrimary,
+      ),
+      headlineMedium: TextStyle(
+        fontSize: 28,
+        fontWeight: FontWeight.w400,
+        color: AppColors.textPrimary,
+      ),
       headlineSmall: TextStyle(
         fontSize: 24,
         fontWeight: FontWeight.w400,
         color: AppColors.textPrimary,
       ),
+
+      // Title styles
       titleLarge: TextStyle(
-        fontSize: 18,
-        color: AppColors.textPrimary,
+        fontSize: 22,
         fontWeight: FontWeight.w500,
+        color: AppColors.textPrimary,
       ),
       titleMedium: TextStyle(
         fontSize: 16,
@@ -61,9 +91,41 @@ abstract class AppTheme {
         color: AppColors.textPrimary,
       ),
 
-      bodyMedium: TextStyle(color: AppColors.textSecondary),
-      bodySmall: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+      // Label styles
+      labelLarge: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
+        color: AppColors.textPrimary,
+      ),
+      labelMedium: TextStyle(
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        color: AppColors.textPrimary,
+      ),
+      labelSmall: TextStyle(
+        fontSize: 11,
+        fontWeight: FontWeight.w500,
+        color: AppColors.textPrimary,
+      ),
+
+      // Body styles
+      bodyLarge: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+        color: AppColors.textSecondary,
+      ),
+      bodyMedium: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: AppColors.textSecondary,
+      ),
+      bodySmall: TextStyle(
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+        color: AppColors.textPrimary,
+      ),
     ),
+
     //------------ Button Theme -----------------//
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(

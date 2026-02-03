@@ -15,10 +15,10 @@ class TabIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 220),
-      width: isSelected ? width : 0,
+      width: width,
       height: 3,
       decoration: BoxDecoration(
-        color: AppColors.primary,
+        color: isSelected ? AppColors.primary : AppColors.grey,
         borderRadius: BorderRadius.circular(2),
       ),
     );

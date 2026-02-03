@@ -1,6 +1,6 @@
 import 'package:flower_app/config/base_state/base_state.dart';
-import 'package:flower_app/features/categories/domain/entities/get_all_categories_list_entity.dart';
-import 'package:flower_app/features/categories/domain/entities/get_categories_products_entity.dart';
+import 'package:flower_app/features/categories/domain/entities/category_products_response_entity/category_products_response_entity.dart';
+import 'package:flower_app/features/categories/domain/entities/get_category_list_entity/get_all_categories_list_entity.dart';
 
 class CategoriesState {
   final BaseState<GetCategoryListEntity> categoriesState;
