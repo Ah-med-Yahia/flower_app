@@ -33,11 +33,15 @@ class ApiConstants {
 
   //------------------------ PROFILE ------------------------//
   static const String profileDataEndPoint = 'auth/profile-data';
+  static const String uploadUserImageEndPoint = 'auth/upload-photo';
+  static const String editProfileEndPoint = 'auth/editProfile';
+  static const String photoPart = 'photo';
 
   // ------------------------- CART ------------------------ //
   static const String cartEndpoint = 'cart';
   static const String removeItemFromCartEndpoint = 'cart/{id}';
   static const String updateCartItemEndpoint = 'cart/{id}';
+
   //------------------------ ADDRESS ------------------------//
   static const String addAddress = 'addresses';
   static const String updateAddress = 'addresses/{id}';
