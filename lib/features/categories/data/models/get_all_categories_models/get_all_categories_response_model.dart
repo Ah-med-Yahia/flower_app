@@ -1,6 +1,6 @@
 import 'package:flower_app/features/categories/data/models/get_all_categories_models/category_model.dart';
-import 'package:flower_app/features/categories/data/models/get_all_categories_models/metadata_model.dart';
-import 'package:flower_app/features/categories/domain/entities/get_all_categories_list_entity.dart';
+import 'package:flower_app/features/categories/data/models/metadata/metadata_model.dart';
+import 'package:flower_app/features/categories/domain/entities/get_category_list_entity/get_all_categories_list_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'get_all_categories_response_model.g.dart';
@@ -12,7 +12,7 @@ class GetAllCategoriesResponseModel {
   @JsonKey(name: 'metadata')
   final Metadata? metadata;
   @JsonKey(name: 'categories', defaultValue: [])
-  final List<Category>? categories;
+  final List<CategoryModel>? categories;
 
   GetAllCategoriesResponseModel({this.message, this.metadata, this.categories});
 

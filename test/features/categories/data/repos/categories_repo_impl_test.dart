@@ -4,10 +4,10 @@ import 'package:flower_app/config/error_handler/error_handler.dart';
 import 'package:flower_app/core/constants/errors_constants.dart';
 import 'package:flower_app/features/categories/api/datasources_impl/remote_categories_data_source_impl.dart';
 import 'package:flower_app/features/categories/data/models/get_all_categories_models/get_all_categories_response_model.dart';
-import 'package:flower_app/features/categories/data/models/get_all_categories_models/metadata_model.dart';
+import 'package:flower_app/features/categories/data/models/metadata/metadata_model.dart';
 import 'package:flower_app/features/categories/data/repos/categories_repo_impl.dart';
-import 'package:flower_app/features/categories/domain/entities/category_entity.dart';
-import 'package:flower_app/features/categories/domain/entities/get_all_categories_list_entity.dart';
+import 'package:flower_app/features/categories/domain/entities/get_category_list_entity/category_entity.dart';
+import 'package:flower_app/features/categories/domain/entities/get_category_list_entity/get_all_categories_list_entity.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
@@ -42,9 +42,9 @@ void main() {
       ).thenAnswer((_) async => BaseResponse.success(mockCategoriesResponse));
 
       final result = await categoriesRepoImpl.getAllCategories();
-      final success = result as Success<GetCategoryListEntity>;
 
       expect(result, isA<Success<GetCategoryListEntity>>());
+      final success = result as Success<GetCategoryListEntity>;
       expect(success.data.categories, isA<List<CategoryEntity>>());
       expect(success.data.categories!.length, 0);
 

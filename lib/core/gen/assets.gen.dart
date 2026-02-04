@@ -39,8 +39,12 @@ class $AssetsIconsGen {
   /// File path: assets/icons/clear_cart.svg
   SvgGenImage get clearCart => const SvgGenImage('assets/icons/clear_cart.svg');
 
+  /// File path: assets/icons/filter_icon.svg
+  SvgGenImage get filterIcon =>
+      const SvgGenImage('assets/icons/filter_icon.svg');
+
   /// List of all assets
-  List<SvgGenImage> get values => [clearCart];
+  List<SvgGenImage> get values => [clearCart, filterIcon];
 }
 
 class $AssetsImagesGen {

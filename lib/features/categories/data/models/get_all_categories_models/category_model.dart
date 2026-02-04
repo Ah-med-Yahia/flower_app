@@ -1,14 +1,14 @@
-import 'package:flower_app/features/categories/domain/entities/category_entity.dart';
+import 'package:flower_app/features/categories/domain/entities/get_category_list_entity/category_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'category_model.g.dart';
 
 @JsonSerializable()
-class Category {
+class CategoryModel {
   @JsonKey(name: '_id')
-  final String? id;
+  final String id;
   @JsonKey(name: 'name')
-  final String? name;
+  final String name;
   @JsonKey(name: 'slug')
   final String? slug;
   @JsonKey(name: 'image')
@@ -22,9 +22,9 @@ class Category {
   @JsonKey(name: 'productsCount')
   final int? productsCount;
 
-  Category({
-    this.id,
-    this.name,
+  CategoryModel({
+    required this.id,
+    required this.name,
     this.slug,
     this.image,
     this.createdAt,
@@ -33,12 +33,12 @@ class Category {
     this.productsCount,
   });
 
-  factory Category.fromJson(Map<String, dynamic> json) =>
-      _$CategoryFromJson(json);
+  factory CategoryModel.fromJson(Map<String, dynamic> json) =>
+      _$CategoryModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$CategoryToJson(this);
+  Map<String, dynamic> toJson() => _$CategoryModelToJson(this);
 
   CategoryEntity toEntity() {
-    return CategoryEntity(id: id ?? '', name: name ?? '');
+    return CategoryEntity(id: id, name: name);
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flower_app/core/theme/app_colors.dart';
-import 'package:flower_app/features/categories/presentation/views/widgets/tab_indicator.dart';
+import 'package:flower_app/core/widgets/spacing.dart';
+import 'package:flower_app/features/categories/presentation/views/widgets/tab_indicator_widget.dart';
 import 'package:flutter/material.dart';
 
 class CategoryTab extends StatelessWidget {
@@ -16,22 +17,21 @@ class CategoryTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    final textTheme = Theme.of(context).textTheme;
+    return InkWell(
       onTap: onTap,
       child: Column(
-        mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            title,
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+            title[0].toUpperCase() + title.substring(1),
+            style: textTheme.titleMedium?.copyWith(
               fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
               color: isSelected
                   ? AppColors.primary
-                  : Theme.of(context).textTheme.titleMedium?.color,
-              fontSize: MediaQuery.of(context).size.width * 0.04,
+                  : textTheme.titleMedium?.color,
             ),
           ),
-          const SizedBox(height: 4),
+          4.verticalSpacing,
           TabIndicator(
             isSelected: isSelected,
             width: _indicatorWidth(title, context),

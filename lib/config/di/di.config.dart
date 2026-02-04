@@ -159,6 +159,8 @@ import '../../features/categories/domain/usecases/get_categories_products_usecas
     as _i290;
 import '../../features/categories/presentation/view_model/categories_cubit.dart'
     as _i960;
+import '../../features/categories/presentation/cubit/categories_cubit.dart'
+    as _i802;
 import '../../features/home/api/api_clinet/home_screen_api_client.dart'
     as _i279;
 import '../../features/home/api/data_sources/remote/home_screen_data_source_impl.dart'
@@ -552,6 +554,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i805.RegisterCubit>(
       () => _i805.RegisterCubit(gh<_i545.RegisterUseCase>()),
     );
+    gh.factory<_i513.AddUpdateAddressRepo>(
+      () => _i324.AddUpdateAddressRepoImpl(
+        gh<_i746.AddUpdateAddressRemoteDataSource>(),
+      ),
+    );
     gh.factory<_i105.ForgetPasswordCubit>(
       () => _i105.ForgetPasswordCubit(gh<_i737.ForgetPasswordUseCase>()),
     );
@@ -577,6 +584,8 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i960.CategoriesCubit>(
       () => _i960.CategoriesCubit(
+    gh.factory<_i802.CategoriesCubit>(
+      () => _i802.CategoriesCubit(
         gh<_i943.GetAllCategoriesUsecase>(),
         gh<_i290.GetCategoryProductsUsecase>(),
       ),
