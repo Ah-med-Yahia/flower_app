@@ -40,6 +40,12 @@ import '../../features/auth/change_password/domain/usecases/change_password_use_
     as _i780;
 import '../../features/auth/change_password/presentation/cubit/change_password_cubit.dart'
     as _i81;
+import '../../features/auth/edit_profile/api/api_client/edit_profile_api_client.dart'
+    as _i107;
+import '../../features/auth/edit_profile/api/data_sources/remote/edit_profile_remote_data_source_impl.dart'
+    as _i310;
+import '../../features/auth/edit_profile/data/data_sources/remote/edit_profile_remote_data_source.dart'
+    as _i34;
 import '../../features/auth/forget_password/api/api_client/forget_password_api_client.dart'
     as _i478;
 import '../../features/auth/forget_password/api/datasources/remote/forget_password_remote_data_source_impl.dart'
@@ -162,6 +168,7 @@ import '../../features/occasion/domain/usecases/get_occasion_products_usecase.da
     as _i203;
 import '../../features/occasion/presentation/view_model/occasion_cubit.dart'
     as _i141;
+import '../../features/orders/api/api_client/orders_api_client.dart' as _i107;
 import '../../features/product/best_seller/api/api_client/best_seller_api_client.dart'
     as _i113;
 import '../../features/product/best_seller/api/datasource/remote/best_seller_remote_data_source_impl.dart'
@@ -285,11 +292,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i52.LogoutLocalDataSource>(
       () => _i521.LogoutLocalDataSourceImpl(gh<_i11.SecureStorageService>()),
     );
+    gh.lazySingleton<_i107.EditProfileApiClient>(
+      () => _i107.EditProfileApiClient(gh<_i361.Dio>()),
+    );
     gh.lazySingleton<_i199.CategoriesApiClient>(
       () => _i199.CategoriesApiClient(gh<_i361.Dio>()),
     );
     gh.lazySingleton<_i425.OccasionApiClient>(
       () => _i425.OccasionApiClient(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i107.OrdersApiClient>(
+      () => _i107.OrdersApiClient(gh<_i361.Dio>()),
     );
     gh.singleton<_i632.CartApiClient>(
       () => _i632.CartApiClient(gh<_i361.Dio>()),
@@ -366,6 +379,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i31.OccasionRepoContract>(
       () => _i315.OccasionRepoImpl(gh<_i948.RemoteOccasionDataSource>()),
     );
+    gh.factory<_i34.EditProfileRemoteDataSource>(
+      () => _i310.EditProfileRemoteDataSourceImpl(
+        gh<_i107.EditProfileApiClient>(),
+      ),
+    );
+    gh.factory<_i761.CategoriesRepo>(
+      () => _i337.CategoriesRepoImpl(gh<_i81.RemoteCategoriesDataSource>()),
+    );
     gh.factory<_i746.AddUpdateAddressRemoteDataSource>(
       () => _i569.AddUpdateAddressRemoteDataSourceImpl(
         gh<_i619.AddUpdateAdreesApiClient>(),
@@ -377,6 +398,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i670.LogoutCubit>(
       () => _i670.LogoutCubit(gh<_i205.LogoutUsecase>()),
     );
+    gh.factory<_i943.GetAllCategoriesUsecase>(
+      () => _i943.GetAllCategoriesUsecase(gh<_i761.CategoriesRepo>()),
+    );
+    gh.factory<_i290.GetCategoryProductsUsecase>(
+      () => _i290.GetCategoryProductsUsecase(gh<_i761.CategoriesRepo>()),
+    );
     gh.factory<_i176.LoginRepository>(
       () => _i470.LoginRepositoryImpl(
         gh<_i842.RemoteLoginDataSource>(),
@@ -385,6 +412,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i164.CartRemoteDataSource>(
       () => _i866.CartRemoteDataSourceImpl(gh<_i632.CartApiClient>()),
+    );
+    gh.factory<_i802.CategoriesCubit>(
+      () => _i802.CategoriesCubit(
+        gh<_i943.GetAllCategoriesUsecase>(),
+        gh<_i290.GetCategoryProductsUsecase>(),
+      ),
     );
     gh.factory<_i613.RegisterDataSource>(
       () => _i325.RegisterDataSourceImpl(
@@ -416,9 +449,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i892.BestSellerRepo>(
       () => _i20.BestSellerRepoImpl(gh<_i1058.BestSellerRemoteDataSource>()),
     );
-    gh.factory<_i761.CategoriesRepoContract>(
-      () => _i337.CategoriesRepoImpl(gh<_i81.RemoteCategoriesDataSource>()),
-    );
     gh.factory<_i57.RegisterRepository>(
       () => _i200.RegisterRepositoryImpl(gh<_i613.RegisterDataSource>()),
     );
@@ -430,13 +460,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i545.RegisterUseCase>(
       () => _i545.RegisterUseCase(gh<_i57.RegisterRepository>()),
-    );
-    gh.factory<_i943.GetAllCategoriesUsecase>(
-      () => _i943.GetAllCategoriesUsecase(gh<_i761.CategoriesRepoContract>()),
-    );
-    gh.factory<_i290.GetCategoryProductsUsecase>(
-      () =>
-          _i290.GetCategoryProductsUsecase(gh<_i761.CategoriesRepoContract>()),
     );
     gh.factory<_i401.GetAllOccasionUsecase>(
       () => _i401.GetAllOccasionUsecase(gh<_i31.OccasionRepoContract>()),
@@ -505,12 +528,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i126.LoginCubit>(
       () => _i126.LoginCubit(gh<_i316.LoginUseCase>()),
-    );
-    gh.factory<_i802.CategoriesCubit>(
-      () => _i802.CategoriesCubit(
-        gh<_i943.GetAllCategoriesUsecase>(),
-        gh<_i290.GetCategoryProductsUsecase>(),
-      ),
     );
     gh.factory<_i141.OccasionCubit>(
       () => _i141.OccasionCubit(

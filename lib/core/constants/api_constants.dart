@@ -45,6 +45,8 @@ class ApiConstants {
   //------------------------ ADDRESS ------------------------//
   static const String addAddress = 'addresses';
   static const String updateAddress = 'addresses/{id}';
+  // ---------------------- ORDERS ----------------------- //
+  static const String getUserOrdersEndPoint = 'orders';
 }
 
 class QueryParamsKey {
