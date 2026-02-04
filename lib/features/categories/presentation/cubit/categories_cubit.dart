@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/base_state/base_state.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
@@ -14,6 +16,7 @@ import 'package:injectable/injectable.dart';
 class CategoriesCubit extends Cubit<CategoriesState> {
   final GetAllCategoriesUsecase _getAllCategoriesUseCase;
   final GetCategoryProductsUsecase _getCategoryProductsUseCase;
+  Timer? _debounce;
 
   Map<String, String> sortOptions = {
     AppTextConstants.lowesPrice: 'price',
@@ -131,6 +134,32 @@ class CategoriesCubit extends Cubit<CategoriesState> {
     String? sortOption,
     String? keyword,
   }) async {
+    if (keyword != null) {
+      _debounce?.cancel();
+
+      _debounce = Timer(const Duration(milliseconds: 300), () async {
+        await _fetchCategoryProducts(
+          categoryId,
+          sortOption: sortOption,
+          keyword: keyword,
+        );
+      });
+
+      return;
+    }
+
+    await _fetchCategoryProducts(
+      categoryId,
+      sortOption: sortOption,
+      keyword: keyword,
+    );
+  }
+
+  Future<void> _fetchCategoryProducts(
+    String categoryId, {
+    String? sortOption,
+    String? keyword,
+  }) async {
     emit(
       state.copyWith(
         categoryProductsState: const BaseState<GetCategoryProductsEntity>(
@@ -173,5 +202,11 @@ class CategoriesCubit extends Cubit<CategoriesState> {
 
   void _isSearching() {
     emit(state.copyWith(isSearching: !state.isSearching));
+  }
+
+  @override
+  Future<void> close() {
+    _debounce?.cancel();
+    return super.close();
   }
 }
