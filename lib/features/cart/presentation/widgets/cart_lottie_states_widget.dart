@@ -34,7 +34,7 @@ class LottieStatesWidget extends StatelessWidget {
         ),
         Text(
           text,
-          style: textStyle.headlineMedium!.copyWith(
+          style: textStyle.headlineMedium?.copyWith(
             fontWeight: FontWeight.bold,
             color: textColor ?? AppColors.red,
           ),

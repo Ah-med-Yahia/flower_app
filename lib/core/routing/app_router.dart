@@ -19,7 +19,7 @@ import '../../features/profile/profile_main/presentation/views/terms/view/terms_
 
 abstract class AppRouter {
   static GoRouter router = GoRouter(
-    initialLocation: AppRoutesConstants.homeRoute,
+    initialLocation: AppRoutesConstants.loginRoute,
     routes: [
       GoRoute(
         path: AppRoutesConstants.loginRoute,
