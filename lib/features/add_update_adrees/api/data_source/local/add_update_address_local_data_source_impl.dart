@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flower_app/config/error_handler/local_exception.dart';
 import 'package:flower_app/core/constants/app_asset.dart';
 import 'package:flower_app/core/constants/assets_keys_constants.dart';
 import 'package:flower_app/core/constants/errors_constants.dart';
@@ -23,10 +24,10 @@ class AddUpdateAddressLocalDataSourceImpl
                 AssetsKeysConstants.tableType &&
             element[AssetsKeysConstants.nameKey] ==
                 AssetsKeysConstants.governoratesTableName,
-        orElse: () => throw Exception(ErrorsConstant.failedToLoadJsonError),
+        orElse: () => throw CacheError(ErrorsConstant.failedToLoadJsonError),
       );
       if (governoratesData[AssetsKeysConstants.dataKey] == null) {
-        throw Exception(ErrorsConstant.governoratesDataIsNullError);
+        throw CacheError(ErrorsConstant.governoratesDataIsNullError);
       }
       final governorates =
           (governoratesData[AssetsKeysConstants.dataKey] as List)
@@ -35,7 +36,10 @@ class AddUpdateAddressLocalDataSourceImpl
 
       return governorates;
     } catch (e) {
-      throw Exception(ErrorsConstant.failedToLoadJsonError);
+      if (e is LocalException) {
+        rethrow;
+      }
+      throw CacheError(ErrorsConstant.failedToLoadJsonError);
     }
   }
 
@@ -50,10 +54,10 @@ class AddUpdateAddressLocalDataSourceImpl
                 AssetsKeysConstants.tableType &&
             element[AssetsKeysConstants.nameKey] ==
                 AssetsKeysConstants.citiesTableName,
-        orElse: () => throw Exception(ErrorsConstant.failedToLoadJsonError),
+        orElse: () => throw CacheError(ErrorsConstant.failedToLoadJsonError),
       );
       if (citiesData[AssetsKeysConstants.dataKey] == null) {
-        throw Exception(ErrorsConstant.citiesDataIsNullError);
+        throw CacheError(ErrorsConstant.citiesDataIsNullError);
       }
       final cities = (citiesData[AssetsKeysConstants.dataKey] as List)
           .map((e) => CityModel.fromJson(e))
@@ -61,7 +65,10 @@ class AddUpdateAddressLocalDataSourceImpl
 
       return cities;
     } catch (e) {
-      throw Exception(ErrorsConstant.failedToLoadJsonError);
+      if (e is LocalException) {
+        rethrow;
+      }
+      throw CacheError(ErrorsConstant.failedToLoadJsonError);
     }
   }
 }

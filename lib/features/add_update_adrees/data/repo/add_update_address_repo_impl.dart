@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/error_handler/error_handler.dart';
 import 'package:flower_app/config/services/location_service.dart';
@@ -44,20 +42,16 @@ class AddUpdateAddressRepoImpl implements AddUpdateAddressRepo {
       String? street;
       String? city;
       String? state;
-      try {
-        final List<Placemark> placemarks = await placemarkFromCoordinates(
-          position.latitude,
-          position.longitude,
-        );
+      final List<Placemark> placemarks = await placemarkFromCoordinates(
+        position.latitude,
+        position.longitude,
+      );
 
-        if (placemarks.isNotEmpty) {
-          final place = placemarks.first;
-          street = place.street;
-          city = place.locality ?? place.subAdministrativeArea;
-          state = place.administrativeArea;
-        }
-      } catch (geocodingError) {
-        log('Geocoding error: $geocodingError');
+      if (placemarks.isNotEmpty) {
+        final place = placemarks.first;
+        street = place.street;
+        city = place.locality ?? place.subAdministrativeArea;
+        state = place.administrativeArea;
       }
 
       final locationEntity = LocationEntity(
@@ -142,8 +136,6 @@ class AddUpdateAddressRepoImpl implements AddUpdateAddressRepo {
         );
       }
 
-      log('Forward geocoding query: $query');
-
       final List<Location> locations = await locationFromAddress(query);
 
       if (locations.isNotEmpty) {
@@ -156,8 +148,6 @@ class AddUpdateAddressRepoImpl implements AddUpdateAddressRepo {
           state: stateName,
         );
 
-        log('Found coordinates: ${location.latitude}, ${location.longitude}');
-
         return BaseResponse.success(locationEntity);
       } else {
         return BaseResponse.failure(
@@ -167,7 +157,6 @@ class AddUpdateAddressRepoImpl implements AddUpdateAddressRepo {
         );
       }
     } catch (error) {
-      log('Forward geocoding error: $error');
       return BaseResponse.failure(ErrorHandler.handle(error));
     }
   }
