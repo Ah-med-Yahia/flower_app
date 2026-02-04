@@ -49,3 +49,12 @@ class QueryParamsKey {
   static const String sort = 'sort';
   static const String search = 'keyword';
 }
+
+class QueryParamsValues {
+  QueryParamsValues._();
+  static const String lowestPrice = 'price';
+  static const String highestPrice = '-price';
+  static const String newest = 'createdAt';
+  static const String oldest = '-createdAt';
+  static const String lowestPriceAfterDiscount = 'priceAfterDiscount';
+}

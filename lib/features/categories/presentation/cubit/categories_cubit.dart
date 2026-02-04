@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/base_state/base_state.dart';
+import 'package:flower_app/core/constants/api_constants.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/features/categories/domain/entities/category_products_response_entity/category_products_response_entity.dart';
 import 'package:flower_app/features/categories/domain/entities/get_category_list_entity/get_all_categories_list_entity.dart';
@@ -19,11 +20,11 @@ class CategoriesCubit extends Cubit<CategoriesState> {
   Timer? _debounce;
 
   Map<String, String> sortOptions = {
-    AppTextConstants.lowesPrice: 'price',
-    AppTextConstants.highPrice: '-price',
-    AppTextConstants.newest: '-createdAt',
-    AppTextConstants.oldest: 'createdAt',
-    AppTextConstants.discount: 'priceAfterDiscount',
+    AppTextConstants.lowesPrice: QueryParamsValues.lowestPrice,
+    AppTextConstants.highPrice: QueryParamsValues.highestPrice,
+    AppTextConstants.newest: QueryParamsValues.newest,
+    AppTextConstants.oldest: QueryParamsValues.oldest,
+    AppTextConstants.discount: QueryParamsValues.lowestPriceAfterDiscount,
   };
 
   CategoriesCubit(

@@ -36,7 +36,6 @@ class CategoriesTap extends StatelessWidget {
                     previous.categoriesState != current.categoriesState ||
                     previous.selectedIndexCategoryBar !=
                         current.selectedIndexCategoryBar,
-
                 builder: (context, state) {
                   if (state.categoriesState.isLoading) {
                     return Align(
@@ -49,7 +48,6 @@ class CategoriesTap extends StatelessWidget {
                       ),
                     );
                   }
-
                   if (state.categoriesState.errorMessage != null) {
                     return Align(
                       alignment: Alignment.topCenter,
@@ -61,10 +59,8 @@ class CategoriesTap extends StatelessWidget {
                       ),
                     );
                   }
-
                   final categories =
                       state.categoriesState.data?.categories ?? [];
-
                   if (categories.isEmpty) {
                     return Align(
                       alignment: Alignment.topCenter,
@@ -77,7 +73,6 @@ class CategoriesTap extends StatelessWidget {
                       ),
                     );
                   }
-
                   return Column(
                     children: [
                       8.verticalSpacing,
@@ -100,7 +95,6 @@ class CategoriesTap extends StatelessWidget {
                               child: LoadingIndicator(size: 130),
                             );
                           }
-
                           if (productState.categoryProductsState.errorMessage !=
                               null) {
                             return LottieStatesWidget(
@@ -111,10 +105,8 @@ class CategoriesTap extends StatelessWidget {
                               textColor: AppColors.primary,
                             );
                           }
-
                           final categoryProducts =
                               productState.categoryProductsState.data?.products;
-
                           if (categoryProducts == null ||
                               categoryProducts.isEmpty) {
                             return LottieStatesWidget(
@@ -124,7 +116,6 @@ class CategoriesTap extends StatelessWidget {
                               height: MediaQuery.of(context).size.height * 0.26,
                             );
                           }
-
                           return ProductsGridWidget(products: categoryProducts);
                         },
                       ),
