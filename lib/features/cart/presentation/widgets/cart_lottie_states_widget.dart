@@ -2,8 +2,8 @@ import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-class CartLottieStatesWidget extends StatelessWidget {
-  const CartLottieStatesWidget({
+class LottieStatesWidget extends StatelessWidget {
+  const LottieStatesWidget({
     super.key,
     required this.lottie,
     required this.text,
