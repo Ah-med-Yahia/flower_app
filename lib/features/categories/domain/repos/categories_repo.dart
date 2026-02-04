@@ -7,5 +7,7 @@ abstract interface class CategoriesRepo {
 
   Future<BaseResponse<GetCategoryProductsEntity>> getCategoryProducts({
     required String categoryId,
+    String? sortOption,
+    String? keyword,
   });
 }

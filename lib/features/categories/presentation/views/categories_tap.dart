@@ -32,6 +32,11 @@ class CategoriesTap extends StatelessWidget {
             const SearchAndFilterProducts(),
             Expanded(
               child: BlocBuilder<CategoriesCubit, CategoriesState>(
+                buildWhen: (previous, current) =>
+                    previous.categoriesState != current.categoriesState ||
+                    previous.selectedIndexCategoryBar !=
+                        current.selectedIndexCategoryBar,
+
                 builder: (context, state) {
                   if (state.categoriesState.isLoading) {
                     return Align(
@@ -78,7 +83,7 @@ class CategoriesTap extends StatelessWidget {
                       8.verticalSpacing,
                       CategoryTabBar(
                         categories: categories,
-                        selectedIndex: state.selectedIndex,
+                        selectedIndex: state.selectedIndexCategoryBar,
                         onTabSelected: (index) {
                           context.read<CategoriesCubit>().onIntent(
                             SelectCategory(index),
@@ -86,6 +91,9 @@ class CategoriesTap extends StatelessWidget {
                         },
                       ),
                       BlocBuilder<CategoriesCubit, CategoriesState>(
+                        buildWhen: (previous, current) =>
+                            previous.categoryProductsState !=
+                            current.categoryProductsState,
                         builder: (context, productState) {
                           if (productState.categoryProductsState.isLoading) {
                             return const Expanded(
@@ -113,6 +121,7 @@ class CategoriesTap extends StatelessWidget {
                               lottie: Assets.lottie.emptyBox.path,
                               text: AppTextConstants.noProductsAvailable,
                               textColor: AppColors.primary,
+                              height: MediaQuery.of(context).size.height * 0.26,
                             );
                           }
 

@@ -46,4 +46,6 @@ class ApiConstants {
 class QueryParamsKey {
   QueryParamsKey._();
   static const String categoryId = 'category';
+  static const String sort = 'sort';
+  static const String search = 'keyword';
 }

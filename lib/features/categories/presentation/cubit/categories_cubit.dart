@@ -1,5 +1,6 @@
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/base_state/base_state.dart';
+import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/features/categories/domain/entities/category_products_response_entity/category_products_response_entity.dart';
 import 'package:flower_app/features/categories/domain/entities/get_category_list_entity/get_all_categories_list_entity.dart';
 import 'package:flower_app/features/categories/domain/usecases/get_all_categories_usecase.dart';
@@ -14,6 +15,14 @@ class CategoriesCubit extends Cubit<CategoriesState> {
   final GetAllCategoriesUsecase _getAllCategoriesUseCase;
   final GetCategoryProductsUsecase _getCategoryProductsUseCase;
 
+  Map<String, String> sortOptions = {
+    AppTextConstants.lowesPrice: 'price',
+    AppTextConstants.highPrice: '-price',
+    AppTextConstants.newest: '-createdAt',
+    AppTextConstants.oldest: 'createdAt',
+    AppTextConstants.discount: 'priceAfterDiscount',
+  };
+
   CategoriesCubit(
     this._getAllCategoriesUseCase,
     this._getCategoryProductsUseCase,
@@ -21,7 +30,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
         CategoriesState(
           categoriesState: const BaseState<GetCategoryListEntity>(),
           categoryProductsState: const BaseState<GetCategoryProductsEntity>(),
-          selectedIndex: 0,
+          selectedIndexCategoryBar: 0,
         ),
       );
 
@@ -32,7 +41,15 @@ class CategoriesCubit extends Cubit<CategoriesState> {
       case SelectCategory():
         _selectCategory(event.index);
       case GetCategoryProducts():
-        _getCategoryProducts(event.categoryId);
+        _getCategoryProducts(
+          event.categoryId,
+          sortOption: event.sortOption,
+          keyword: event.keyword,
+        );
+      case SelectSortOption():
+        _selectSortOption(event.sortOption);
+      case IsSearching():
+        _isSearching();
     }
   }
 
@@ -72,15 +89,15 @@ class CategoriesCubit extends Cubit<CategoriesState> {
               data: data,
               isLoading: false,
             ),
-            selectedIndex: selectedIndex,
+            selectedIndexCategoryBar: selectedIndex,
           ),
         );
-        final occasionsList = data.categories ?? [];
+        final categoriesList = data.categories ?? [];
 
-        if (occasionsList.isNotEmpty) {
-          final occasionId = occasionsList[selectedIndex].id;
-          if (occasionId != null) {
-            _getCategoryProducts(occasionId);
+        if (categoriesList.isNotEmpty) {
+          final categoryId = categoriesList[selectedIndex].id;
+          if (categoryId != null) {
+            _getCategoryProducts(categoryId);
           }
         }
       },
@@ -96,7 +113,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
   }
 
   void _selectCategory(int index) {
-    emit(state.copyWith(selectedIndex: index));
+    emit(state.copyWith(selectedIndexCategoryBar: index));
 
     final categories = state.categoriesState.data?.categories ?? [];
 
@@ -109,17 +126,25 @@ class CategoriesCubit extends Cubit<CategoriesState> {
     }
   }
 
-  Future<void> _getCategoryProducts(String categoryId) async {
+  Future<void> _getCategoryProducts(
+    String categoryId, {
+    String? sortOption,
+    String? keyword,
+  }) async {
     emit(
       state.copyWith(
         categoryProductsState: const BaseState<GetCategoryProductsEntity>(
           isLoading: true,
         ),
+        categoryId: categoryId,
+        selectedSortOption: sortOption,
       ),
     );
 
     final categoryProducts = await _getCategoryProductsUseCase(
       categoryId: categoryId,
+      sortOption: sortOption,
+      keyword: keyword,
     );
 
     categoryProducts.when(
@@ -140,5 +165,13 @@ class CategoriesCubit extends Cubit<CategoriesState> {
         ),
       ),
     );
+  }
+
+  void _selectSortOption(String? sortOption) {
+    emit(state.copyWith(selectedSortOption: sortOption));
+  }
+
+  void _isSearching() {
+    emit(state.copyWith(isSearching: !state.isSearching));
   }
 }

@@ -22,9 +22,15 @@ class RemoteCategoriesDataSourceImpl implements RemoteCategoriesDataSource {
   @override
   Future<BaseResponse<CategoryProductsResponseModel>> getCategoryProducts({
     required String categoryId,
+    String? sortOption,
+    String? keyword,
   }) {
     return safeApiCall<CategoryProductsResponseModel>(
-      () => _apiClient.getCategoryProducts(categoryId: categoryId),
+      () => _apiClient.getCategoryProducts(
+        categoryId: categoryId,
+        sortOption: sortOption,
+        keyword: keyword,
+      ),
     );
   }
 }
