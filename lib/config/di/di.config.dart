@@ -157,8 +157,6 @@ import '../../features/categories/domain/usecases/get_all_categories_usecase.dar
     as _i943;
 import '../../features/categories/domain/usecases/get_categories_products_usecase.dart'
     as _i290;
-import '../../features/categories/presentation/view_model/categories_cubit.dart'
-    as _i960;
 import '../../features/categories/presentation/cubit/categories_cubit.dart'
     as _i802;
 import '../../features/home/api/api_clinet/home_screen_api_client.dart'
@@ -405,6 +403,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i107.EditProfileApiClient>(),
       ),
     );
+    gh.factory<_i761.CategoriesRepo>(
+      () => _i337.CategoriesRepoImpl(gh<_i81.RemoteCategoriesDataSource>()),
+    );
     gh.factory<_i746.AddUpdateAddressRemoteDataSource>(
       () => _i569.AddUpdateAddressRemoteDataSourceImpl(
         gh<_i619.AddUpdateAdreesApiClient>(),
@@ -416,6 +417,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i670.LogoutCubit>(
       () => _i670.LogoutCubit(gh<_i205.LogoutUsecase>()),
     );
+    gh.factory<_i943.GetAllCategoriesUsecase>(
+      () => _i943.GetAllCategoriesUsecase(gh<_i761.CategoriesRepo>()),
+    );
+    gh.factory<_i290.GetCategoryProductsUsecase>(
+      () => _i290.GetCategoryProductsUsecase(gh<_i761.CategoriesRepo>()),
+    );
     gh.factory<_i176.LoginRepository>(
       () => _i470.LoginRepositoryImpl(
         gh<_i842.RemoteLoginDataSource>(),
@@ -424,6 +431,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i164.CartRemoteDataSource>(
       () => _i866.CartRemoteDataSourceImpl(gh<_i632.CartApiClient>()),
+    );
+    gh.factory<_i802.CategoriesCubit>(
+      () => _i802.CategoriesCubit(
+        gh<_i943.GetAllCategoriesUsecase>(),
+        gh<_i290.GetCategoryProductsUsecase>(),
+      ),
     );
     gh.factory<_i613.RegisterDataSource>(
       () => _i325.RegisterDataSourceImpl(
@@ -454,9 +467,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i892.BestSellerRepo>(
       () => _i20.BestSellerRepoImpl(gh<_i1058.BestSellerRemoteDataSource>()),
-    );
-    gh.factory<_i761.CategoriesRepoContract>(
-      () => _i337.CategoriesRepoImpl(gh<_i81.RemoteCategoriesDataSource>()),
     );
     gh.factory<_i57.RegisterRepository>(
       () => _i200.RegisterRepositoryImpl(gh<_i613.RegisterDataSource>()),
@@ -507,13 +517,6 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i199.GetCoordinatesFromAddressUseCase>(),
       ),
     );
-    gh.factory<_i943.GetAllCategoriesUsecase>(
-      () => _i943.GetAllCategoriesUsecase(gh<_i761.CategoriesRepoContract>()),
-    );
-    gh.factory<_i290.GetCategoryProductsUsecase>(
-      () =>
-          _i290.GetCategoryProductsUsecase(gh<_i761.CategoriesRepoContract>()),
-    );
     gh.factory<_i401.GetAllOccasionUsecase>(
       () => _i401.GetAllOccasionUsecase(gh<_i31.OccasionRepoContract>()),
     );
@@ -554,11 +557,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i805.RegisterCubit>(
       () => _i805.RegisterCubit(gh<_i545.RegisterUseCase>()),
     );
-    gh.factory<_i513.AddUpdateAddressRepo>(
-      () => _i324.AddUpdateAddressRepoImpl(
-        gh<_i746.AddUpdateAddressRemoteDataSource>(),
-      ),
-    );
     gh.factory<_i105.ForgetPasswordCubit>(
       () => _i105.ForgetPasswordCubit(gh<_i737.ForgetPasswordUseCase>()),
     );
@@ -581,14 +579,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i126.LoginCubit>(
       () => _i126.LoginCubit(gh<_i316.LoginUseCase>()),
-    );
-    gh.factory<_i960.CategoriesCubit>(
-      () => _i960.CategoriesCubit(
-    gh.factory<_i802.CategoriesCubit>(
-      () => _i802.CategoriesCubit(
-        gh<_i943.GetAllCategoriesUsecase>(),
-        gh<_i290.GetCategoryProductsUsecase>(),
-      ),
     );
     gh.factory<_i141.OccasionCubit>(
       () => _i141.OccasionCubit(

@@ -77,7 +77,9 @@ class AddressMapWidget extends StatelessWidget {
           // Loading overlay
           if (isLoading)
             Container(
-              decoration: BoxDecoration(color: Colors.black.withOpacity(0.3)),
+              decoration: BoxDecoration(
+                color: Colors.black.withValues(alpha: 0.3),
+              ),
               child: const Center(child: LoadingIndicator()),
             ),
 
