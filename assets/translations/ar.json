@@ -147,6 +147,15 @@
     "pleaseEnterOTPCode": "يرجى إدخال رمز التحقق",
     "otpMustBe6Digits": "يجب أن يتكون رمز التحقق من 6 أرقام"
   },
+  "categories": {
+    "sortBy": "ترتيب حسب",
+    "lowesPrice": "أقل سعر",
+    "highPrice": "أعلى سعر",
+    "newest": "الأحدث",
+    "oldest": "الأقدم",
+    "discount": "الخصم",
+    "filter": "فلتر"
+  },
   "errors": {
     "badRequest": "طلب غير صالح.",
     "noContent": "لا يوجد محتوى متاح.",
