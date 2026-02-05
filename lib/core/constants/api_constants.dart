@@ -43,8 +43,8 @@ class ApiConstants {
   static const String updateCartItemEndpoint = 'cart/{id}';
 
   //------------------------ ADDRESS ------------------------//
-  static const String addAddress = 'addresses';
-  static const String updateAddress = 'addresses/{id}';
+  static const String addressEndPoint = 'addresses';
+  static const String addressByIDEndPoint = 'addresses/{id}';
 }
 
 class QueryParamsKey {
