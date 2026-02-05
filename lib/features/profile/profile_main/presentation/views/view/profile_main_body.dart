@@ -162,6 +162,9 @@ class _ProfileMainBodyState extends State<ProfileMainBody> {
   }
 
   void _navigateToEditProfile(BuildContext context) {
-    // GoRouter.of(context).pushNamed(AppRoutesConstants.editProfileRoute);
+    final userData = cubit.state.userData.data;
+    GoRouter.of(
+      context,
+    ).pushNamed(AppRoutesConstants.editProfileRoute, extra: userData);
   }
 }
