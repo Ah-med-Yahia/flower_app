@@ -32,6 +32,10 @@ class CategoriesTap extends StatelessWidget {
             const SearchAndFilterProducts(),
             Expanded(
               child: BlocBuilder<CategoriesCubit, CategoriesState>(
+                buildWhen: (previous, current) =>
+                    previous.categoriesState != current.categoriesState ||
+                    previous.selectedIndexCategoryBar !=
+                        current.selectedIndexCategoryBar,
                 builder: (context, state) {
                   if (state.categoriesState.isLoading) {
                     return Align(
@@ -44,7 +48,6 @@ class CategoriesTap extends StatelessWidget {
                       ),
                     );
                   }
-
                   if (state.categoriesState.errorMessage != null) {
                     return Align(
                       alignment: Alignment.topCenter,
@@ -56,10 +59,8 @@ class CategoriesTap extends StatelessWidget {
                       ),
                     );
                   }
-
                   final categories =
                       state.categoriesState.data?.categories ?? [];
-
                   if (categories.isEmpty) {
                     return Align(
                       alignment: Alignment.topCenter,
@@ -72,13 +73,12 @@ class CategoriesTap extends StatelessWidget {
                       ),
                     );
                   }
-
                   return Column(
                     children: [
                       8.verticalSpacing,
                       CategoryTabBar(
                         categories: categories,
-                        selectedIndex: state.selectedIndex,
+                        selectedIndex: state.selectedIndexCategoryBar,
                         onTabSelected: (index) {
                           context.read<CategoriesCubit>().onIntent(
                             SelectCategory(index),
@@ -86,13 +86,15 @@ class CategoriesTap extends StatelessWidget {
                         },
                       ),
                       BlocBuilder<CategoriesCubit, CategoriesState>(
+                        buildWhen: (previous, current) =>
+                            previous.categoryProductsState !=
+                            current.categoryProductsState,
                         builder: (context, productState) {
                           if (productState.categoryProductsState.isLoading) {
                             return const Expanded(
                               child: LoadingIndicator(size: 130),
                             );
                           }
-
                           if (productState.categoryProductsState.errorMessage !=
                               null) {
                             return LottieStatesWidget(
@@ -103,19 +105,17 @@ class CategoriesTap extends StatelessWidget {
                               textColor: AppColors.primary,
                             );
                           }
-
                           final categoryProducts =
                               productState.categoryProductsState.data?.products;
-
                           if (categoryProducts == null ||
                               categoryProducts.isEmpty) {
                             return LottieStatesWidget(
                               lottie: Assets.lottie.emptyBox.path,
                               text: AppTextConstants.noProductsAvailable,
                               textColor: AppColors.primary,
+                              height: MediaQuery.of(context).size.height * 0.26,
                             );
                           }
-
                           return ProductsGridWidget(products: categoryProducts);
                         },
                       ),

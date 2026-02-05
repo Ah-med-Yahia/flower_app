@@ -147,6 +147,15 @@
     "pleaseEnterOTPCode": "Please enter OTP code",
     "otpMustBe6Digits": "OTP must be 6 digits"
   },
+  "categories": {
+    "sortBy": "Sort By",
+    "lowesPrice": "Lowest Price",
+    "highPrice": "Highest Price",
+    "newest": "Newest",
+    "oldest": "Oldest",
+    "discount": "Discount",
+    "filter": "Filter"
+  },
   "errors": {
     "badRequest": "Invalid request.",
     "noContent": "No content available.",
