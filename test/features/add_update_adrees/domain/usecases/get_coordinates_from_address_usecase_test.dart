@@ -39,7 +39,7 @@ void main() {
             cityName: cityName,
             stateName: stateName,
           ),
-        ).thenAnswer((_) async => BaseResponse.success(locationEntity));
+        ).thenAnswer((_) async => const BaseResponse.success(locationEntity));
 
         // Act
         final result = await useCase.call(
@@ -78,7 +78,7 @@ void main() {
 
       when(
         mockRepo.getCoordinatesFromAddress(cityName: '', stateName: stateName),
-      ).thenAnswer((_) async => BaseResponse.success(stateOnlyLocation));
+      ).thenAnswer((_) async => const BaseResponse.success(stateOnlyLocation));
 
       // Act
       final result = await useCase.call(cityName: '', stateName: stateName);

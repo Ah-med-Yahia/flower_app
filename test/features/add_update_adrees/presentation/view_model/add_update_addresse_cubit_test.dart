@@ -113,7 +113,7 @@ void main() {
         build: () {
           when(
             mockGetCurrentLocationUseCase.call(),
-          ).thenAnswer((_) async => BaseResponse.success(mockLocation));
+          ).thenAnswer((_) async => const BaseResponse.success(mockLocation));
           when(
             mockGetStatesUescase.call(),
           ).thenAnswer((_) async => BaseResponse.success(mockStates));
@@ -149,7 +149,7 @@ void main() {
         build: () {
           when(
             mockGetCurrentLocationUseCase.call(),
-          ).thenAnswer((_) async => BaseResponse.success(mockLocation));
+          ).thenAnswer((_) async => const BaseResponse.success(mockLocation));
           return cubit;
         },
         act: (cubit) => cubit.onEvent(GetCurrentLocationEvent()),
@@ -209,9 +209,9 @@ void main() {
       blocTest<AddUpdateAddresseCubit, AddUpdateAddresseStates>(
         'emits [loading, success] when adding address succeeds',
         build: () {
-          when(
-            mockAddAddressUsecase.call(requestEntity),
-          ).thenAnswer((_) async => BaseResponse.success(mockAddressResponse));
+          when(mockAddAddressUsecase.call(requestEntity)).thenAnswer(
+            (_) async => const BaseResponse.success(mockAddressResponse),
+          );
           return cubit;
         },
         act: (cubit) => cubit.onEvent(AddAddressEvent(address: requestEntity)),
@@ -271,7 +271,9 @@ void main() {
         build: () {
           when(
             mockUpdateAddressUsecase.call(requestEntity, addressId),
-          ).thenAnswer((_) async => BaseResponse.success(mockAddressResponse));
+          ).thenAnswer(
+            (_) async => const BaseResponse.success(mockAddressResponse),
+          );
           return cubit;
         },
         act: (cubit) => cubit.onEvent(
@@ -359,7 +361,7 @@ void main() {
               cityName: stateName,
               stateName: cityName,
             ),
-          ).thenAnswer((_) async => BaseResponse.success(mockLocation));
+          ).thenAnswer((_) async => const BaseResponse.success(mockLocation));
           return cubit;
         },
         act: (cubit) => cubit.onEvent(

@@ -21,7 +21,7 @@ void main() {
   });
 
   group('AddUpdateAddressRemoteDataSourceImpl', () {
-    final requestModel = AddUpdateAddressRequestModel(
+    const requestModel = AddUpdateAddressRequestModel(
       street: 'Test Street',
       phone: '01234567890',
       city: 'Cairo',
