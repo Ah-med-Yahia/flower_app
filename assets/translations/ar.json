@@ -188,5 +188,34 @@
     "selectCity": "اختر المدينة",
     "saveAddress": "حفظ العنوان",
     "addressSavedSuccessfully": "تم حفظ العنوان بنجاح"
+  "categories": {
+    "sortBy": "ترتيب حسب",
+    "lowesPrice": "أقل سعر",
+    "highPrice": "أعلى سعر",
+    "newest": "الأحدث",
+    "oldest": "الأقدم",
+    "discount": "الخصم",
+    "filter": "فلتر"
+  },
+  "errors": {
+    "badRequest": "طلب غير صالح.",
+    "noContent": "لا يوجد محتوى متاح.",
+    "forbidden": "الوصول ممنوع.",
+    "unauthorized": "وصول غير مصرح به.",
+    "notFound": "المورد غير موجود.",
+    "conflict": "تعارض في الطلب.",
+    "internalServer": "خطأ داخلي في الخادم.",
+    "unknown": "حدث خطأ غير معروف.",
+    "timeout": "انتهت مهلة الاتصال. يرجى المحاولة مرة أخرى.",
+    "default": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+    "noInternet": "لا يوجد اتصال بالإنترنت. يرجى التحقق من الشبكة.",
+    "authenticationCheck": "فشل التحقق من الهوية:",
+    "cache": "حدث خطأ في التخزين المؤقت.",
+    "noCacheDataAvailable": "لا توجد بيانات مخزنة مؤقتًا متاحة",
+    "failedToLoadCachedData": "فشل تحميل البيانات المخزنة مؤقتًا:",
+    "userNotLoggedIn": "المستخدم غير مسجل الدخول",
+    "sessionExpired": "انتهت الجلسة",
+    "logoutFailed": "فشل تسجيل الخروج:",
+    "failedToEmitSideEffect": "فشل تنفيذ التأثير الجانبي"
   }
 }

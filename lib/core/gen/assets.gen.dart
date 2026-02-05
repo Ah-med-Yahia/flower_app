@@ -67,6 +67,10 @@ class $AssetsImagesGen {
 class $AssetsLottieGen {
   const $AssetsLottieGen();
 
+  /// File path: assets/lottie/Empty_box.json
+  LottieGenImage get emptyBox =>
+      const LottieGenImage('assets/lottie/Empty_box.json');
+
   /// File path: assets/lottie/Flower.svg
   SvgGenImage get flower => const SvgGenImage('assets/lottie/Flower.svg');
 
@@ -74,16 +78,34 @@ class $AssetsLottieGen {
   LottieGenImage get flowerLoading =>
       const LottieGenImage('assets/lottie/FlowerLoading.json');
 
-  /// File path: assets/lottie/cart_error.json
-  LottieGenImage get cartError =>
-      const LottieGenImage('assets/lottie/cart_error.json');
-
   /// File path: assets/lottie/empty_cart.json
   LottieGenImage get emptyCart =>
       const LottieGenImage('assets/lottie/empty_cart.json');
 
+  /// File path: assets/lottie/error.json
+  LottieGenImage get error => const LottieGenImage('assets/lottie/error.json');
+
   /// List of all assets
-  List<dynamic> get values => [flower, flowerLoading, cartError, emptyCart];
+  List<dynamic> get values => [
+    emptyBox,
+    flower,
+    flowerLoading,
+    emptyCart,
+    error,
+  ];
+}
+
+class $AssetsTranslationsGen {
+  const $AssetsTranslationsGen();
+
+  /// File path: assets/translations/ar.json
+  String get ar => 'assets/translations/ar.json';
+
+  /// File path: assets/translations/en.json
+  String get en => 'assets/translations/en.json';
+
+  /// List of all assets
+  List<String> get values => [ar, en];
 }
 
 class $AssetsTranslationsGen {
@@ -112,6 +134,7 @@ class Assets {
 
   /// List of all assets
   static List<String> get values => [cities, states];
+  static const $AssetsTranslationsGen translations = $AssetsTranslationsGen();
 }
 
 class AssetGenImage {

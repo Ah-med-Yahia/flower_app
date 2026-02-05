@@ -7,5 +7,7 @@ abstract interface class RemoteCategoriesDataSource {
 
   Future<BaseResponse<CategoryProductsResponseModel>> getCategoryProducts({
     required String categoryId,
+    String? sortOption,
+    String? keyword,
   });
 }

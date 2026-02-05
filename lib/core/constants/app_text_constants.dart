@@ -269,6 +269,15 @@ class AppTextConstants {
   static String get noOccasionsAvailable =>
       'occasion.noOccasionsAvailable'.tr();
 
+  ///-------------------------- CATEGORIES --------------------------//
+  static String get sortBy => 'categories.sortBy'.tr();
+  static String get lowesPrice => 'categories.lowesPrice'.tr();
+  static String get highPrice => 'categories.highPrice'.tr();
+  static String get newest => 'categories.newest'.tr();
+  static String get oldest => 'categories.oldest'.tr();
+  static String get discount => 'categories.discount'.tr();
+  static String get filter => 'categories.filter'.tr();
+
   //-------------------------- Technical Keys --------------------------//
   static const String enLangKey = 'en';
 

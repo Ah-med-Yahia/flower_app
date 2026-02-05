@@ -17,6 +17,8 @@ class ProfileMainMapper {
     return UserEntity(
       id: userDto.id ?? '',
       firstName: userDto.firstName ?? '',
+      lastName: userDto.lastName ?? '',
+      phoneNumber: userDto.phone ?? '',
       email: userDto.email ?? '',
       imgAvatarURL: userDto.photo ?? AppTextConstants.defaultAvatarUrl,
     );
