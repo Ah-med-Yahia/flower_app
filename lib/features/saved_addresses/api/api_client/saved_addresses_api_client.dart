@@ -6,15 +6,15 @@ import 'package:retrofit/retrofit.dart';
 part 'saved_addresses_api_client.g.dart';
 
 @RestApi()
-@injectable
+@lazySingleton
 abstract class SavedAddressesApiClient {
   @factoryMethod
   factory SavedAddressesApiClient(Dio dio) => _SavedAddressesApiClient(dio);
 
-  @GET(ApiConstants.savedAddresses)
+  @GET(ApiConstants.addressEndPoint)
   Future<SavedAddressesResponseModel> getSavedAddresses();
 
-  @DELETE(ApiConstants.deleteAddress)
+  @DELETE(ApiConstants.addressByIDEndPoint)
   Future<SavedAddressesResponseModel> deleteAddress(
     @Path(ApiConstants.idPathQuery) String id,
   );
