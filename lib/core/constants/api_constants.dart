@@ -45,4 +45,6 @@ class ApiConstants {
   //------------------------ ADDRESS ------------------------//
   static const String addAddress = 'addresses';
   static const String updateAddress = 'addresses/{id}';
+  static const String savedAddresses = 'addresses';
+  static const String deleteAddress = 'addresses/{id}';
 }
