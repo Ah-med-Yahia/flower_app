@@ -1,8 +1,7 @@
-import 'package:flower_app/config/base_response/base_response.dart';
-import 'package:flower_app/features/auth/edit_profile/presentation/view_models/edit_profile_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../../config/base_response/base_response.dart';
 import '../../../../../config/base_response/message_response.dart';
 import '../../../../../config/base_state/base_state.dart';
 import '../../data/models/request/edit_user_data_request_model.dart';
@@ -10,6 +9,7 @@ import '../../domain/entities/user_data_response_entity.dart';
 import '../../domain/use_cases/update_user_profile_use_case.dart';
 import '../../domain/use_cases/upload_image_use_case.dart';
 import 'edit_profile_events.dart';
+import 'edit_profile_states.dart';
 
 @injectable
 class EditProfileCubit extends Cubit<EditProfileStates> {
@@ -21,14 +21,12 @@ class EditProfileCubit extends Cubit<EditProfileStates> {
 
   void doIntent(EditProfileEvents event) async {
     switch (event) {
-      case GetUserDataEvent():
-        await _getUserData();
       case ImagePickerEvent():
         await _uploadImage(event.imagePath);
       case UpdateUserDataEvent():
         await _updateProfile(event.requestModel, event.currentData);
       case NavigateToChangePasswordEvent():
-        navigateToChangePasswordScreen();
+        _navigateToChangePasswordScreen();
     }
   }
 
@@ -132,11 +130,7 @@ class EditProfileCubit extends Cubit<EditProfileStates> {
     );
   }
 
-  Future<void> _getUserData() async {
-    // TODO(Ahmed-Salah): Handle load user data as argument from profile Screen Or API
-  }
-
-  void navigateToChangePasswordScreen() {
+  void _navigateToChangePasswordScreen() {
     emit(state.copyWith(navigateTo: NavigationAction.changePasswordScreen));
   }
 }

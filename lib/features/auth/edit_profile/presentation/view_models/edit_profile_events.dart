@@ -3,8 +3,6 @@ import '../../domain/entities/user_data_response_entity.dart';
 
 sealed class EditProfileEvents {}
 
-class GetUserDataEvent extends EditProfileEvents {}
-
 class ImagePickerEvent extends EditProfileEvents {
   final String imagePath;
 
