@@ -294,4 +294,7 @@ class AppTextConstants {
   static String get confirmBtn => 'common.confirm'.tr();
 
   static String get egy => 'common.egp'.tr();
+
+  // Saved Addresses
+  static String get addNewAddress => 'savedAddresses.addNewAddress'.tr();
 }
