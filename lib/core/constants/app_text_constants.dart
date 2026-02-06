@@ -226,6 +226,13 @@ class AppTextConstants {
 
   static String get switchToEnglish => 'profile.switchToEnglish'.tr();
 
+  ///-------------------------- Edit Profile --------------------------//
+  static String get editProfile => 'editProfile.title'.tr();
+
+  static String get change => 'editProfile.change'.tr();
+
+  static String get uploadImage => 'editProfile.uploadImage'.tr();
+
   ///-------------------------- CART --------------------------//
   static String get cart => 'cart.title'.tr();
 
