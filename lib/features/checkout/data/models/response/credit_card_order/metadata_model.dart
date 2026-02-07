@@ -1,5 +1,6 @@
 import 'package:flower_app/features/checkout/domain/entities/credit_order_entity/metadata_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+part 'metadata_model.g.dart';
 
 @JsonSerializable()
 class MetadataModel {
