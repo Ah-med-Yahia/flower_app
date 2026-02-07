@@ -26,7 +26,7 @@ class SavedAddressCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
         boxShadow: [
           BoxShadow(
-            color: AppColors.grey.withOpacity(0.5),
+            color: AppColors.grey.withValues(alpha: 0.5),
             spreadRadius: 1,
             blurRadius: 5,
             offset: const Offset(0, 0),
