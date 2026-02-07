@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 
 class AppTextConstants {
   AppTextConstants._();
-
   //-------------------------- Common --------------------------//
   static String get loading => 'common.loading'.tr();
 
@@ -246,6 +245,8 @@ class AppTextConstants {
 
   static String get description => 'cart.description'.tr();
 
+  static String get deliveryFee => 'cart.deliveryFee'.tr();
+
   static String get cartClearedSuccessfully =>
       'cart.cartClearedSuccessfully'.tr();
 
@@ -264,8 +265,6 @@ class AppTextConstants {
   static String get checkout => 'cart.checkout'.tr();
 
   static String get subTotal => 'cart.subTotal'.tr();
-
-  static String get deliveryFee => 'cart.deliveryFee'.tr();
 
   static String get total => 'cart.total'.tr();
 
@@ -301,4 +300,32 @@ class AppTextConstants {
   static String get confirmBtn => 'common.confirm'.tr();
 
   static String get egy => 'common.egp'.tr();
+
+  //-------------------------- CHECKOUT --------------------------//
+  static String get orderPlacedSuccessfully =>
+      'checkout.orderPlacedSuccessfully'.tr();
+  static String get deliveryTime => 'checkout.deliveryTime'.tr();
+  static String get schedule => 'checkout.schedule'.tr();
+  static String get instant => 'checkout.instant'.tr();
+  static String get arriveBy => 'checkout.arriveBy'.tr();
+  static String get deliveryAddress => 'checkout.deliveryAddress'.tr();
+  static String get addNew => 'checkout.addNew'.tr();
+  static String get paymentMethod => 'checkout.paymentMethod'.tr();
+  static String get cashOnDelivery => 'checkout.cashOnDelivery'.tr();
+  static String get creditCard => 'checkout.creditCard'.tr();
+  static String get payment => 'checkout.payment'.tr();
+  static String get credit => 'checkout.credit'.tr();
+  static String get cash => 'checkout.cash'.tr();
+  static String get paymentUrlNotFound => 'checkout.paymentUrlNotFound'.tr();
+  static String get name => 'checkout.name'.tr();
+  static String get enterName => 'checkout.enterName'.tr();
+  static String get itIsAGift => 'checkout.itIsAGift'.tr();
+  static String get enterGiftDetails => 'checkout.enterGiftDetails'.tr();
+  static String get selectDeliveryAddress =>
+      'checkout.selectDeliveryAddress'.tr();
+  static String get enterRecipientName => 'checkout.enterRecipientName'.tr();
+  static String get enterRecipientphone => 'checkout.enterRecipientphone'.tr();
+  static String get paymentCancelled => 'checkout.paymentCancelled'.tr();
+  static String get subtotal => 'checkout.subtotal'.tr();
+  static String get placeOrder => 'checkout.placeOrder'.tr();
 }

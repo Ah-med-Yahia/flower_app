@@ -43,8 +43,13 @@ class ApiConstants {
   static const String updateCartItemEndpoint = 'cart/{id}';
 
   //------------------------ ADDRESS ------------------------//
-  static const String addAddress = 'addresses';
-  static const String updateAddress = 'addresses/{id}';
+  static const String addressByIDEndPoint = 'addresses/{id}';
+  static const String addressEndPoint = 'addresses';
+
+  //-----------------------checkout ----------------------------//
+  static const String cacheOrderEndPoint = 'orders';
+  static const String creditCardOrderEndPoint = 'orders/checkout';
+  static const String paymentUrl = 'http://localhost:3000/allOrders';
 }
 
 class QueryParamsKey {

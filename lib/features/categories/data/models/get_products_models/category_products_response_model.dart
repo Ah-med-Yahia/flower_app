@@ -1,5 +1,5 @@
 import 'package:flower_app/features/categories/data/models/get_products_models/product_model.dart';
-import 'package:flower_app/features/categories/data/models/metadata/metadata_model.dart';
+import 'package:flower_app/features/categories/data/models/metadata/category_metadata_model.dart';
 import 'package:flower_app/features/categories/domain/entities/category_products_response_entity/category_products_response_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'dart:convert';
@@ -19,7 +19,7 @@ class CategoryProductsResponseModel {
   @JsonKey(name: 'message')
   final String? message;
   @JsonKey(name: 'metadata')
-  final Metadata? metadata;
+  final CategoryMetadataModel? metadata;
   @JsonKey(name: 'products')
   final List<ProductModel>? products;
 
