@@ -78,9 +78,6 @@ class $AssetsLottieGen {
   LottieGenImage get flowerLoading =>
       const LottieGenImage('assets/lottie/FlowerLoading.json');
 
-  /// File path: assets/lottie/clock.svg
-  SvgGenImage get clock => const SvgGenImage('assets/lottie/clock.svg');
-
   /// File path: assets/lottie/empty_cart.json
   LottieGenImage get emptyCart =>
       const LottieGenImage('assets/lottie/empty_cart.json');
@@ -93,7 +90,6 @@ class $AssetsLottieGen {
     emptyBox,
     flower,
     flowerLoading,
-    clock,
     emptyCart,
     error,
   ];
