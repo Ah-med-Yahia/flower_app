@@ -7,7 +7,7 @@ import 'package:flower_app/features/categories/data/models/get_all_categories_mo
 import 'package:flower_app/features/categories/data/models/get_all_categories_models/get_all_categories_response_model.dart';
 import 'package:flower_app/features/categories/data/models/get_products_models/category_products_response_model.dart';
 import 'package:flower_app/features/categories/data/models/get_products_models/product_model.dart';
-import 'package:flower_app/features/categories/data/models/metadata/metadata_model.dart';
+import 'package:flower_app/features/categories/data/models/metadata/category_metadata_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -30,7 +30,7 @@ void main() {
       test('Test Success Case', () async {
         final mockResponse = GetAllCategoriesResponseModel(
           message: 'Success',
-          metadata: Metadata(
+          metadata: CategoryMetadataModel(
             currentPage: 1,
             totalPages: 1,
             limit: 2,
@@ -48,7 +48,7 @@ void main() {
         expect(result, isA<Success<GetAllCategoriesResponseModel>>());
         final success = result as Success<GetAllCategoriesResponseModel>;
         expect(success.data.message, 'Success');
-        expect(success.data.metadata, isA<Metadata>());
+        expect(success.data.metadata, isA<CategoryMetadataModel>());
         expect(success.data.categories, isA<List<CategoryModel>>());
         verify(mockApiClient.getAllCategories()).called(1);
       });
@@ -80,7 +80,7 @@ void main() {
     test('Test Success Case', () async {
       final mockResponse = CategoryProductsResponseModel(
         message: 'Success',
-        metadata: Metadata(
+        metadata: CategoryMetadataModel(
           currentPage: 1,
           totalPages: 1,
           limit: 2,
@@ -98,7 +98,7 @@ void main() {
       expect(result, isA<Success<CategoryProductsResponseModel>>());
       final success = result as Success<CategoryProductsResponseModel>;
       expect(success.data.message, 'Success');
-      expect(success.data.metadata, isA<Metadata>());
+      expect(success.data.metadata, isA<CategoryMetadataModel>());
       expect(success.data.products, isA<List<ProductModel>>());
       verify(mockApiClient.getCategoryProducts(categoryId: '1')).called(1);
     });

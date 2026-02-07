@@ -1,6 +1,6 @@
 name: flower_app
 description: "A new Flutter project."
-publish_to: 'none'
+publish_to: "none"
 version: 1.0.0+1
 
 environment:
@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-   # Localization
+    # Localization
   easy_localization: ^3.0.8
 
   # UI and Design
@@ -59,6 +59,8 @@ dependencies:
   pretty_dio_logger: ^1.4.0
   shimmer: ^3.0.0
   latlong2: ^0.9.1
+  webview_flutter: ^4.13.1
+  skeletonizer: ^2.1.2
 
 dev_dependencies:
   flutter_test:
