@@ -124,6 +124,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
                 const SizedBox(height: 40),
+                const SizedBox(height: 40),
                 SizedBox(
                   height: 48,
                   width: double.infinity,

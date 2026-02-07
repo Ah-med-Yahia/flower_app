@@ -5,16 +5,19 @@ import 'package:flower_app/features/auth/change_password/presentation/screens/ch
 import 'package:flower_app/features/auth/login/presentation/cubit/login_cubit.dart';
 import 'package:flower_app/features/auth/login/presentation/pages/login_screen.dart';
 import 'package:flower_app/features/auth/register/presentation/pages/register_screen.dart';
+import 'package:flower_app/features/checkout/presentaion/view/screens/checkout_screen.dart';
 import 'package:flower_app/features/occasion/presentation/views/screens/occasion_screen.dart';
 import 'package:flower_app/features/product_details/presentaion/view/screens/product_details_screen.dart';
 import 'package:flower_app/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../features/auth/edit_profile/presentation/views/view/edit_profile_view.dart';
 import '../../features/auth/forget_password/presentation/views/forget_password_view/forget_password_view.dart';
 import '../../features/auth/forget_password/presentation/views/reset_password_view/reset_password_view.dart';
 import '../../features/auth/forget_password/presentation/views/verify_otp_view/verify_otp_code_view.dart';
 import '../../features/product/best_seller/presentation/views/view/best_seller_view.dart';
+import '../../features/profile/profile_main/domain/entities/user_data_response.dart';
 import '../../features/profile/profile_main/presentation/views/terms/view/about_app_view.dart';
 import '../../features/profile/profile_main/presentation/views/terms/view/terms_view.dart';
 
@@ -86,6 +89,11 @@ abstract class AppRouter {
         builder: (context, state) => const ChangePasswordScreen(),
       ),
       GoRoute(
+        path: AppRoutesConstants.checkoutScreen,
+        name: AppRoutesConstants.checkoutScreen,
+        builder: (context, state) => const CheckoutScreen(),
+      ),
+      GoRoute(
         path: AppRoutesConstants.appPolicyRoute,
         name: AppRoutesConstants.appPolicyRoute,
         builder: (context, state) => const TermsView(),
@@ -99,6 +107,14 @@ abstract class AppRouter {
         path: AppRoutesConstants.addUpdateAddressRoute,
         name: AppRoutesConstants.addUpdateAddressRoute,
         builder: (context, state) => const AddUpdateAddressScreen(),
+      ),
+      GoRoute(
+        path: AppRoutesConstants.editProfileRoute,
+        name: AppRoutesConstants.editProfileRoute,
+        builder: (context, state) {
+          final userData = state.extra as UserDataResponse;
+          return EditProfileView(userData: userData);
+        },
       ),
     ],
   );

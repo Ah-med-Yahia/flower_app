@@ -106,6 +106,11 @@
     "switchToArabic": "Switch to Arabic",
     "switchToEnglish": "Switch to English"
   },
+  "editProfile": {
+    "title": "Edit Profile",
+    "change": "Change",
+    "uploadImage": "Upload Image"
+  },
   "cart": {
     "title": "Cart",
     "addToCart": "Add to Cart",
@@ -124,6 +129,35 @@
     "subTotal": "Sub Total",
     "deliveryFee": "Delivery Fee",
     "total": "Total"
+  },
+  "checkout": {
+    "orderPlacedSuccessfully": "Order placed successfully",
+    "deliveryTime": "Delivery Time",
+    "schedule": "Schedule",
+    "instant": "Instant",
+    "arriveBy": "Arrive by",
+    "checkout": "Checkout",
+    "deliveryAddress": "Delivery Address",
+    "addNew": "Add new",
+    "paymentMethod": "Payment Method",
+    "cashOnDelivery": "Cash on Delivery",
+    "creditCard": "Credit Card",
+    "payment": "Payment",
+    "credit": "Credit",
+    "cash": "Cash",
+    "paymentUrlNotFound": "Payment URL not found",
+    "name": "Name",
+    "enterName": "Enter the name",
+    "itIsAGift": "It is a gift",
+    "enterGiftDetails": "Enter gift details",
+    "selectDeliveryAddress": "Please select a delivery address",
+    "enterRecipientName": "Enter recipient's name",
+    "enterRecipientphone": "Enter recipient's phone number",
+    "subtotal": "Sub total",
+    "deliveryFee": "Delivery Fee",
+    "total": "Total",
+    "placeOrder": "Place Order",
+    "paymentCancelled": "Payment Cancelled"
   },
   "occasion": {
     "title": "Occasion",
@@ -197,5 +231,8 @@
     "selectCity": "Select City",
     "saveAddress": "Save Address",
     "addressSavedSuccessfully": "Address saved successfully"
+  },
+  "savedAddresses": {
+    "addNewAddress": "Add New Address"
   } 
 }

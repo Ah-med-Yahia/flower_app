@@ -16,8 +16,12 @@ abstract class AppRoutesConstants {
   //--------------- ADD UPDATE ADDRESS ROUTES -----------------//
   static const String addUpdateAddressRoute = '/addUpdateAddress';
 
+  static const String checkoutScreen = '/checkoutScreen';
   //--------------- PROFILE ROUTES -----------------//
   static const String appPolicyRoute = '/app_policy';
   static const String appInfoRoute = '/app_info';
   static const String editProfileRoute = '/edit_profile';
+
+  //--------------- SAVED ADDRESSES ROUTES -----------------//
+  static const String savedAddressesRoute = '/saved_addresses';
 }

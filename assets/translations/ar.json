@@ -106,6 +106,11 @@
     "switchToArabic": "التبديل الى العربية",
     "switchToEnglish": "التبديل الى الانجليزية"
   },
+  "editProfile": {
+    "title": "تعديل الملف الشخصي",
+    "change": "تغيير",
+    "uploadImage": "تحميل صورة"
+  },
   "cart": {
     "title": "عربة التسوق",
     "addToCart": "أضف إلى العربة",
@@ -124,6 +129,35 @@
     "subTotal": "المجموع الفرعي",
     "deliveryFee": "رسوم التوصيل",
     "total": "الإجمالي"
+  },
+  "checkout": {
+    "orderPlacedSuccessfully": "تم تنفيذ الطلب بنجاح",
+    "deliveryTime": "وقت التوصيل",
+    "schedule": "مجدول",
+    "instant": "فوري",
+    "arriveBy": "يصل في",
+    "checkout": "إتمام الطلب",
+    "deliveryAddress": "عنوان التوصيل",
+    "addNew": "إضافة جديد",
+    "paymentMethod": "طريقة الدفع",
+    "cashOnDelivery": "الدفع عند الاستلام",
+    "creditCard": "بطاقة ائتمان",
+    "payment": "الدفع",
+    "credit": "بطاقة",
+    "cash": "نقدي",
+    "paymentUrlNotFound": "رابط الدفع غير موجود",
+    "name": "الاسم",
+    "enterName": "أدخل الاسم",
+    "itIsAGift": "هذه هدية",
+    "enterGiftDetails": "أدخل تفاصيل الهدية",
+    "selectDeliveryAddress": "من فضلك اختر عنوان التوصيل",
+    "enterRecipientName": "أدخل اسم المستلم",
+    "enterRecipientphone": "أدخل رقم هاتف المستلم",
+    "subtotal": "المجموع الفرعي",
+    "deliveryFee": "رسوم التوصيل",
+    "total": "الإجمالي",
+    "placeOrder": "تنفيذ الطلب",
+    "paymentCancelled": "تم الغاء العملية"
   },
   "occasion": {
     "title": "مناسبة",
@@ -176,5 +210,10 @@
     "sessionExpired": "انتهت الجلسة",
     "logoutFailed": "فشل تسجيل الخروج:",
     "failedToEmitSideEffect": "فشل تنفيذ التأثير الجانبي"
+  },
+  "savedAddresses": {
+    "addNewAddress": "إضافة عنوان جديد"
   }
+
+}
 }

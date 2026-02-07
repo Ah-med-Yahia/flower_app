@@ -12,8 +12,19 @@ class SavedAddressesResponseModel {
 
   SavedAddressesResponseModel({required this.message, required this.addresses});
 
-  factory SavedAddressesResponseModel.fromJson(Map<String, dynamic> json) =>
-      _$SavedAddressesResponseModelFromJson(json);
+  factory SavedAddressesResponseModel.fromJson(Map<String, dynamic> json) {
+    // Handle both 'addresses' and 'address' keys
+    final addressList =
+        json['addresses'] as List<dynamic>? ??
+        json['address'] as List<dynamic>?;
+
+    return SavedAddressesResponseModel(
+      message: json['message'] as String?,
+      addresses: addressList
+          ?.map((e) => AddressModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
 
   Map<String, dynamic> toJson() => _$SavedAddressesResponseModelToJson(this);
 }

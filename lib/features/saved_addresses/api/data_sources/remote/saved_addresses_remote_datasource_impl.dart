@@ -18,7 +18,9 @@ class SavedAddressesRemoteDatasourceImpl
   }
 
   @override
-  Future<BaseResponse<SavedAddressesResponseModel>> deleteAddress(String id) {
+  Future<BaseResponse<SavedAddressesResponseModel>> deleteAddress(
+    String id,
+  ) async {
     return safeApiCall(() => _apiClient.deleteAddress(id));
   }
 }
