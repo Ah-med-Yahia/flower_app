@@ -301,6 +301,8 @@ class AppTextConstants {
 
   static String get egy => 'common.egp'.tr();
 
+  // Saved Addresses
+  static String get addNewAddress => 'savedAddresses.addNewAddress'.tr();
   //-------------------------- CHECKOUT --------------------------//
   static String get orderPlacedSuccessfully =>
       'checkout.orderPlacedSuccessfully'.tr();

@@ -210,5 +210,8 @@
     "sessionExpired": "Session expired",
     "logoutFailed": "Logout failed:",
     "failedToEmitSideEffect": "Failed to emit side effect"
+  },
+  "savedAddresses": {
+    "addNewAddress": "Add New Address"
   }
 }

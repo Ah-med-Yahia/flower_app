@@ -19,4 +19,7 @@ abstract class AppRoutesConstants {
   static const String appPolicyRoute = '/app_policy';
   static const String appInfoRoute = '/app_info';
   static const String editProfileRoute = '/edit_profile';
+
+  //--------------- SAVED ADDRESSES ROUTES -----------------//
+  static const String savedAddressesRoute = '/saved_addresses';
 }

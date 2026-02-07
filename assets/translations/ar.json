@@ -210,5 +210,10 @@
     "sessionExpired": "انتهت الجلسة",
     "logoutFailed": "فشل تسجيل الخروج:",
     "failedToEmitSideEffect": "فشل تنفيذ التأثير الجانبي"
+  },
+  "savedAddresses": {
+    "addNewAddress": "إضافة عنوان جديد"
   }
+
+}
 }
