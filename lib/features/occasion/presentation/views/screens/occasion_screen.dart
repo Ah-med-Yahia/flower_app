@@ -1,6 +1,7 @@
 import 'package:flower_app/config/di/di.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
+import 'package:flower_app/core/widgets/arrow_back_button.dart';
 import 'package:flower_app/core/widgets/loading_indicator_widget.dart';
 import 'package:flower_app/features/occasion/presentation/view_model/occasion_cubit.dart';
 import 'package:flower_app/features/occasion/presentation/view_model/occasion_event.dart';
@@ -25,7 +26,7 @@ class OccasionScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           toolbarHeight: MediaQuery.of(context).size.height * 0.09,
-          leading: const BackButtonWidget(),
+          leading: const ArrowBackButton(),
           title: const AppBarTitle(),
           surfaceTintColor: Colors.transparent,
         ),

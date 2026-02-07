@@ -8,10 +8,10 @@ import 'package:flower_app/features/auth/register/presentation/pages/register_sc
 import 'package:flower_app/features/checkout/presentaion/view/screens/checkout_screen.dart';
 import 'package:flower_app/features/occasion/presentation/views/screens/occasion_screen.dart';
 import 'package:flower_app/features/product_details/presentaion/view/screens/product_details_screen.dart';
+import 'package:flower_app/features/saved_addresses/presentation/view/screens/saved_addresses_screen.dart';
 import 'package:flower_app/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../features/auth/edit_profile/presentation/views/view/edit_profile_view.dart';
 import '../../features/auth/forget_password/presentation/views/forget_password_view/forget_password_view.dart';
 import '../../features/auth/forget_password/presentation/views/reset_password_view/reset_password_view.dart';
@@ -23,7 +23,7 @@ import '../../features/profile/profile_main/presentation/views/terms/view/terms_
 
 abstract class AppRouter {
   static GoRouter router = GoRouter(
-    initialLocation: AppRoutesConstants.loginRoute,
+    initialLocation: AppRoutesConstants.homeRoute,
     routes: [
       GoRoute(
         path: AppRoutesConstants.loginRoute,
@@ -107,6 +107,11 @@ abstract class AppRouter {
         path: AppRoutesConstants.addUpdateAddressRoute,
         name: AppRoutesConstants.addUpdateAddressRoute,
         builder: (context, state) => const AddUpdateAddressScreen(),
+      ),
+      GoRoute(
+        path: AppRoutesConstants.savedAddressesRoute,
+        name: AppRoutesConstants.savedAddressesRoute,
+        builder: (context, state) => const SavedAddressesScreen(),
       ),
       GoRoute(
         path: AppRoutesConstants.editProfileRoute,

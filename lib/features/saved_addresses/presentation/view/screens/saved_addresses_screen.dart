@@ -1,4 +1,5 @@
 import 'package:flower_app/config/di/di.dart';
+import 'package:flower_app/core/constants/app_routes_constant.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/constants/errors_constants.dart';
 import 'package:flower_app/core/widgets/custom_error_widget.dart';
@@ -35,7 +36,10 @@ class _SavedAddressesScreenState extends State<SavedAddressesScreen> {
         listener: (context, state) {
           final event = state.navigationEvent;
           if (event is NavigateToAddUpdateAddressUiEvent) {
-            // Navigate to add/update address screen with optional addressId
+            context.push(
+              AppRoutesConstants.addUpdateAddressRoute,
+              extra: event.addressId,
+            );
           }
         },
         child: BlocBuilder<SavedAddressesCubit, SavedAddressesStates>(
