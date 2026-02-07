@@ -148,11 +148,11 @@
     "selectDeliveryAddress": "Please select a delivery address",
     "enterRecipientName": "Enter recipient's name",
     "enterRecipientphone": "Enter recipient's phone number",
-    "subtotal": "Subtotal",
+    "subtotal": "Sub total",
     "deliveryFee": "Delivery Fee",
     "total": "Total",
     "placeOrder": "Place Order",
-    "paymentCancelled" : "Payment Cancelled"
+    "paymentCancelled": "Payment Cancelled"
   },
   "occasion": {
     "title": "Occasion",

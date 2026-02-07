@@ -238,6 +238,8 @@ class AppTextConstants {
 
   static String get description => 'cart.description'.tr();
 
+  static String get deliveryFee => 'cart.deliveryFee'.tr();
+
   static String get cartClearedSuccessfully =>
       'cart.cartClearedSuccessfully'.tr();
 
@@ -292,6 +294,7 @@ class AppTextConstants {
 
   static String get egy => 'common.egp'.tr();
 
+  //-------------------------- CHECKOUT --------------------------//
   static String get orderPlacedSuccessfully =>
       'checkout.orderPlacedSuccessfully'.tr();
   static String get deliveryTime => 'checkout.deliveryTime'.tr();
@@ -316,9 +319,6 @@ class AppTextConstants {
   static String get enterRecipientName => 'checkout.enterRecipientName'.tr();
   static String get enterRecipientphone => 'checkout.enterRecipientphone'.tr();
   static String get paymentCancelled => 'checkout.paymentCancelled'.tr();
-
-  //------------------- CHECKOUT PRICING -------------------//
-  static const String subtotal = 'Subtotal';
-  static const String deliveryFee = 'Delivery Fee';
-  static const String placeOrder = 'Place Order';
+  static String get subtotal => 'checkout.subtotal'.tr();
+  static String get placeOrder => 'checkout.placeOrder'.tr();
 }
