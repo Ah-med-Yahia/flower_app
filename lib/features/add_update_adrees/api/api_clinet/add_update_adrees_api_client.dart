@@ -13,7 +13,7 @@ abstract class AddUpdateAdreesApiClient {
   @factoryMethod
   factory AddUpdateAdreesApiClient(Dio dio) = _AddUpdateAdreesApiClient;
 
-  @PATCH(ApiConstants.adressesEndPoint)
+  @PATCH(ApiConstants.addressEndPoint)
   Future<AddUpdateAddressResponseModel> addAddress(
     @Body() AddUpdateAddressRequestModel body,
   );

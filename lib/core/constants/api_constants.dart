@@ -44,12 +44,11 @@ class ApiConstants {
 
   //------------------------ ADDRESS ------------------------//
   static const String addressByIDEndPoint = 'addresses/{id}';
+  static const String addressEndPoint = 'addresses';
 
   //-----------------------checkout ----------------------------//
-  static const String adressesEndPoint = 'addresses';
   static const String cacheOrderEndPoint = 'orders';
   static const String creditCardOrderEndPoint = 'orders/checkout';
-  static const String cartEndPoint = 'cart';
   static const String paymentUrl = 'http://localhost:3000/allOrders';
 }
 

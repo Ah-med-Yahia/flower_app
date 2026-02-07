@@ -11,7 +11,7 @@ abstract class SavedAddressesApiClient {
   @factoryMethod
   factory SavedAddressesApiClient(Dio dio) => _SavedAddressesApiClient(dio);
 
-  @GET(ApiConstants.adressesEndPoint)
+  @GET(ApiConstants.addressEndPoint)
   Future<SavedAddressesResponseModel> getSavedAddresses();
 
   @DELETE(ApiConstants.addressByIDEndPoint)

@@ -15,7 +15,7 @@ abstract class CheckoutApiClient {
   @factoryMethod
   factory CheckoutApiClient(Dio dio) = _CheckoutApiClient;
 
-  @GET(ApiConstants.adressesEndPoint)
+  @GET(ApiConstants.addressEndPoint)
   Future<AdressesResponseModel> getAdresses();
 
   @POST(ApiConstants.cacheOrderEndPoint)
@@ -28,6 +28,6 @@ abstract class CheckoutApiClient {
     @Body() OrderRequestModel orderRequestModel,
   );
 
-  @GET(ApiConstants.cartEndPoint)
+  @GET(ApiConstants.cartEndpoint)
   Future<UserCartResponseModel> getCartInfo();
 }
