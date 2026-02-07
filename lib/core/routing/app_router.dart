@@ -10,10 +10,13 @@ import 'package:flower_app/features/product_details/presentaion/view/screens/pro
 import 'package:flower_app/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../features/auth/edit_profile/presentation/views/view/edit_profile_view.dart';
 import '../../features/auth/forget_password/presentation/views/forget_password_view/forget_password_view.dart';
 import '../../features/auth/forget_password/presentation/views/reset_password_view/reset_password_view.dart';
 import '../../features/auth/forget_password/presentation/views/verify_otp_view/verify_otp_code_view.dart';
 import '../../features/product/best_seller/presentation/views/view/best_seller_view.dart';
+import '../../features/profile/profile_main/domain/entities/user_data_response.dart';
 import '../../features/profile/profile_main/presentation/views/terms/view/about_app_view.dart';
 import '../../features/profile/profile_main/presentation/views/terms/view/terms_view.dart';
 
@@ -98,6 +101,14 @@ abstract class AppRouter {
         path: AppRoutesConstants.appInfoRoute,
         name: AppRoutesConstants.appInfoRoute,
         builder: (context, state) => const AboutAppView(),
+      ),
+      GoRoute(
+        path: AppRoutesConstants.editProfileRoute,
+        name: AppRoutesConstants.editProfileRoute,
+        builder: (context, state) {
+          final userData = state.extra as UserDataResponse;
+          return EditProfileView(userData: userData);
+        },
       ),
     ],
   );
