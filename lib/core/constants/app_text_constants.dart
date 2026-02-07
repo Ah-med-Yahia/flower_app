@@ -315,29 +315,7 @@ class AppTextConstants {
       'checkout.selectDeliveryAddress'.tr();
   static String get enterRecipientName => 'checkout.enterRecipientName'.tr();
   static String get enterRecipientphone => 'checkout.enterRecipientphone'.tr();
-
-  // static const String orderPlacedSuccessfully = 'Order placed successfully';
-  // static const String deliveryTime = 'Delivery Time';
-  // static const String schedule = 'Schedule';
-  // static const String instant = 'Instant';
-  // static const String arriveBy = 'Arrive By ';
-  // static const String deliveryAddress = 'Delivery Address';
-  // static const String addNew = 'Add new';
-  // static const String paymentMethod = 'Payment Method';
-  // static const String cashOnDelivery = 'Cash on Delivery';
-  // static const String creditCard = 'Credit Card';
-  // static const String payment = 'Payment';
-  // static const String credit = 'credit';
-  // static const String cash = 'cash';
-  // static const String paymentUrlNotFound = 'Payment URL not found';
-  // static const String name = 'Name';
-  // static const String enterName = 'Enter the name';
-  // static const String itIsAGift = 'It is a Gift';
-  // static const String enterGiftDetails = 'Enter gift details';
-  // static const String selectDeliveryAddress =
-  //     'Please select a delivery address';
-  // static const String enterRecipientName = 'Enter recipient\'s name';
-  // static const String enterRecipientphone = 'Enter recipient\'s phone number';
+  static String get paymentCancelled => 'checkout.paymentCancelled'.tr();
 
   //------------------- CHECKOUT PRICING -------------------//
   static const String subtotal = 'Subtotal';

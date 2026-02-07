@@ -151,7 +151,8 @@
     "subtotal": "Subtotal",
     "deliveryFee": "Delivery Fee",
     "total": "Total",
-    "placeOrder": "Place Order"
+    "placeOrder": "Place Order",
+    "paymentCancelled" : "Payment Cancelled"
   },
   "occasion": {
     "title": "Occasion",
