@@ -19,7 +19,7 @@ class VerifyOtpView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(AppTextConstants.password),
+        title: Text(AppTextConstants.password),
         leading: InkWell(
           onTap: () {
             context.pop();

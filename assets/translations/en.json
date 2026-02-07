@@ -125,6 +125,34 @@
     "deliveryFee": "Delivery Fee",
     "total": "Total"
   },
+  "checkout": {
+    "orderPlacedSuccessfully": "Order placed successfully",
+    "deliveryTime": "Delivery Time",
+    "schedule": "Schedule",
+    "instant": "Instant",
+    "arriveBy": "Arrive by",
+    "checkout": "Checkout",
+    "deliveryAddress": "Delivery Address",
+    "addNew": "Add new",
+    "paymentMethod": "Payment Method",
+    "cashOnDelivery": "Cash on Delivery",
+    "creditCard": "Credit Card",
+    "payment": "Payment",
+    "credit": "Credit",
+    "cash": "Cash",
+    "paymentUrlNotFound": "Payment URL not found",
+    "name": "Name",
+    "enterName": "Enter the name",
+    "itIsAGift": "It is a gift",
+    "enterGiftDetails": "Enter gift details",
+    "selectDeliveryAddress": "Please select a delivery address",
+    "enterRecipientName": "Enter recipient's name",
+    "enterRecipientphone": "Enter recipient's phone number",
+    "subtotal": "Subtotal",
+    "deliveryFee": "Delivery Fee",
+    "total": "Total",
+    "placeOrder": "Place Order"
+  },
   "occasion": {
     "title": "Occasion",
     "bloomExquisiteBestSellers": "Bloom exquisite best sellers",
@@ -146,6 +174,15 @@
     "invalidPhoneNumber": "Enter a valid phone number",
     "pleaseEnterOTPCode": "Please enter OTP code",
     "otpMustBe6Digits": "OTP must be 6 digits"
+  },
+  "categories": {
+    "sortBy": "Sort By",
+    "lowesPrice": "Lowest Price",
+    "highPrice": "Highest Price",
+    "newest": "Newest",
+    "oldest": "Oldest",
+    "discount": "Discount",
+    "filter": "Filter"
   },
   "errors": {
     "badRequest": "Invalid request.",

@@ -89,7 +89,7 @@ class ChangePasswordCubit extends Cubit<ChangePasswordStates> {
   Future<void> _updatePassword() async {
     if (state.currentPassword.trim().isEmpty) {
       _streamController.add(
-        const ShowErrorIntent(
+        ShowErrorIntent(
           message: AppTextConstants.pleaseEnterYourCurrentPassword,
         ),
       );
@@ -98,18 +98,14 @@ class ChangePasswordCubit extends Cubit<ChangePasswordStates> {
 
     if (state.newPassword.trim().isEmpty) {
       _streamController.add(
-        const ShowErrorIntent(
-          message: AppTextConstants.pleaseEnterYourNewPassword,
-        ),
+        ShowErrorIntent(message: AppTextConstants.pleaseEnterYourNewPassword),
       );
       return;
     }
 
     if (state.confirmPassword.trim().isEmpty) {
       _streamController.add(
-        const ShowErrorIntent(
-          message: AppTextConstants.pleaseConfirmYourNewPassword,
-        ),
+        ShowErrorIntent(message: AppTextConstants.pleaseConfirmYourNewPassword),
       );
       return;
     }
@@ -123,7 +119,7 @@ class ChangePasswordCubit extends Cubit<ChangePasswordStates> {
 
     if (state.currentPassword.trim() == state.newPassword.trim()) {
       _streamController.add(
-        const ShowErrorIntent(message: AppTextConstants.newPasswordSameAsOld),
+        ShowErrorIntent(message: AppTextConstants.newPasswordSameAsOld),
       );
       return;
     }
@@ -140,7 +136,7 @@ class ChangePasswordCubit extends Cubit<ChangePasswordStates> {
     response.map(
       success: (response) async {
         _streamController.add(
-          const NavigateToEditProfileIntent(
+          NavigateToEditProfileIntent(
             message: AppTextConstants.passwordUpdatedSuccessfully,
           ),
         );

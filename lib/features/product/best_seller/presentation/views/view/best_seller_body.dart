@@ -72,7 +72,7 @@ class _BestSellerBodyState extends State<BestSellerBody> {
           16.verticalSpacing,
           ElevatedButton(
             onPressed: _getData,
-            child: const Text(AppTextConstants.retry),
+            child: Text(AppTextConstants.retry),
           ),
         ],
       ),

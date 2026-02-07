@@ -22,7 +22,7 @@ class ApiConstants {
 
   //------------------------ CATEGORIES ------------------------//
   static const String getAllCategories = 'categories';
-  static const String getCategoryProducts = 'categories/{id}';
+  static const String getCategoryProducts = 'products';
 
   //------------------------ Occasions ------------------------//
   static const String getAllOccasions = 'occasions';
@@ -33,14 +33,17 @@ class ApiConstants {
 
   //------------------------ PROFILE ------------------------//
   static const String profileDataEndPoint = 'auth/profile-data';
+  static const String uploadUserImageEndPoint = 'auth/upload-photo';
+  static const String editProfileEndPoint = 'auth/editProfile';
+  static const String photoPart = 'photo';
 
   // ------------------------- CART ------------------------ //
   static const String cartEndpoint = 'cart';
   static const String removeItemFromCartEndpoint = 'cart/{id}';
   static const String updateCartItemEndpoint = 'cart/{id}';
+
   //------------------------ ADDRESS ------------------------//
-  static const String addAddress = 'addresses';
-  static const String updateAddress = 'addresses/{id}';
+  static const String addressByIDEndPoint = 'addresses/{id}';
 
   //-----------------------checkout ----------------------------//
   static const String adressesEndPoint = 'addresses';
@@ -48,4 +51,20 @@ class ApiConstants {
   static const String creditCardOrderEndPoint = 'orders/checkout';
   static const String cartEndPoint = 'cart';
   static const String paymentUrl = 'http://localhost:3000/allOrders';
+}
+
+class QueryParamsKey {
+  QueryParamsKey._();
+  static const String categoryId = 'category';
+  static const String sort = 'sort';
+  static const String search = 'keyword';
+}
+
+class QueryParamsValues {
+  QueryParamsValues._();
+  static const String lowestPrice = 'price';
+  static const String highestPrice = '-price';
+  static const String newest = 'createdAt';
+  static const String oldest = '-createdAt';
+  static const String lowestPriceAfterDiscount = 'priceAfterDiscount';
 }

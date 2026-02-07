@@ -10,19 +10,10 @@ class OrderRequestModel {
 
   const OrderRequestModel({this.shippingAddress});
 
-  factory OrderRequestModel.fromJson(Map<String, dynamic> json) {
-    return OrderRequestModel(
-      shippingAddress: json['shippingAddress'] == null
-          ? null
-          : ShippingAddressModel.fromJson(
-              json['shippingAddress'] as Map<String, dynamic>,
-            ),
-    );
-  }
+  factory OrderRequestModel.fromJson(Map<String, dynamic> json) =>
+      _$OrderRequestModelFromJson(json);
 
-  Map<String, dynamic> toJson() => {
-    'shippingAddress': shippingAddress?.toJson(),
-  };
+  Map<String, dynamic> toJson() => _$OrderRequestModelToJson(this);
 
   factory OrderRequestModel.fromEntity(OrderRequestEntity entity) {
     return OrderRequestModel(
