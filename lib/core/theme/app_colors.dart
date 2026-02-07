@@ -21,4 +21,5 @@ abstract class AppColors {
   static const Color iconGrey = Color(0xff7D7D7D);
   static final Color shimmerBaseColor = Colors.grey[300]!;
   static final Color shimmerHighlightColor = Colors.grey[100]!;
+  static const Color whiteGray = Color(0xffEAEAEA);
 }
