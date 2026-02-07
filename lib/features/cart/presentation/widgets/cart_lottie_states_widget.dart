@@ -21,25 +21,28 @@ class LottieStatesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.sizeOf(context);
     final textStyle = Theme.of(context).textTheme;
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
-      children: [
-        Lottie.asset(
-          lottie,
-          width: width ?? screenSize.width * 0.4,
-          height: height ?? screenSize.height * 0.4,
-          fit: BoxFit.contain,
-          repeat: true,
-        ),
-        Text(
-          text,
-          style: textStyle.headlineMedium?.copyWith(
-            fontWeight: FontWeight.bold,
-            color: textColor ?? AppColors.red,
+        children: [
+          Lottie.asset(
+            lottie,
+            width: width ?? screenSize.width * 0.4,
+            height: height ?? screenSize.height * 0.4,
+            fit: BoxFit.contain,
+            repeat: true,
           ),
-        ),
-      ],
+          Text(
+            text,
+            style: textStyle.headlineMedium?.copyWith(
+              fontWeight: FontWeight.bold,
+              color: textColor ?? AppColors.red,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
