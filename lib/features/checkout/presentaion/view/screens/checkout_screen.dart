@@ -24,10 +24,11 @@ class CheckoutScreen extends StatefulWidget {
 }
 
 class _CheckoutScreenState extends State<CheckoutScreen> {
+  late CheckoutCubit cubit;
   @override
   void initState() {
     super.initState();
-    final cubit = context.read<CheckoutCubit>();
+    cubit = context.read<CheckoutCubit>();
     cubit.doIntent(GetAdresses());
     cubit.doIntent(GetOrderDetails());
     cubit.uiIntent.listen((intent) {
@@ -107,29 +108,32 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          AppTextConstants.checkout,
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
+    return BlocProvider.value(
+      value: cubit,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            AppTextConstants.checkout,
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
-      ),
 
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const DeliveryTimeSection(),
-            _divider(),
-            const DeliveryAddressesSection(),
-            _divider(),
-            const PaymentSection(),
-            const GiftFormSection(),
-            _divider(),
-            const TotalPriceSection(),
-          ],
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              const DeliveryTimeSection(),
+              _divider(),
+              const DeliveryAddressesSection(),
+              _divider(),
+              const PaymentSection(),
+              const GiftFormSection(),
+              _divider(),
+              const TotalPriceSection(),
+            ],
+          ),
         ),
       ),
     );
