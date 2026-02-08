@@ -89,6 +89,7 @@ class ProductModel {
       description: description,
       images: images,
       discount: discount,
+      quantity: quantity ?? 0,
     );
   }
 }

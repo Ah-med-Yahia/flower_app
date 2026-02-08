@@ -263,6 +263,8 @@ class AppTextConstants {
 
   static String get total => 'cart.total'.tr();
 
+  static String get removeFromCart => 'cart.removeFromCart'.tr();
+
   // Occasion
   static String get occasion => 'occasion.title'.tr();
 

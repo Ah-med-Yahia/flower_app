@@ -10,6 +10,8 @@ class ProductEntity {
   final String? discountPercentage;
   final String categoryId;
   final String occasionId;
+  final int quantity;
+  final bool inStock;
 
   ProductEntity({
     required this.id,
@@ -23,6 +25,8 @@ class ProductEntity {
     this.discountPercentage,
     required this.categoryId,
     required this.occasionId,
+    required this.quantity,
+    this.inStock = true,
   });
 
   ProductEntity copyWith({
@@ -37,6 +41,8 @@ class ProductEntity {
     String? discountPercentage,
     String? categoryId,
     String? occasionId,
+    bool? inStock,
+    int? quantity,
   }) {
     return ProductEntity(
       id: id ?? this.id,
@@ -50,6 +56,8 @@ class ProductEntity {
       discountPercentage: discountPercentage ?? this.discountPercentage,
       categoryId: categoryId ?? this.categoryId,
       occasionId: occasionId ?? this.occasionId,
+      inStock: inStock ?? this.inStock,
+      quantity: quantity ?? this.quantity,
     );
   }
 }
