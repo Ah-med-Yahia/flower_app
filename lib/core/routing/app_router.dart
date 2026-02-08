@@ -4,7 +4,7 @@ import 'package:flower_app/features/auth/edit_profile/presentation/views/view/ed
 import 'package:flower_app/features/auth/forget_password/presentation/views/forget_password_view/forget_password_view.dart';
 import 'package:flower_app/features/auth/forget_password/presentation/views/reset_password_view/reset_password_view.dart';
 import 'package:flower_app/features/auth/forget_password/presentation/views/verify_otp_view/verify_otp_code_view.dart';
-import 'package:flower_app/features/auth/login/presentation/pages/login_screen.dart';
+import 'package:flower_app/features/auth/login/presentation/screens/login_screen.dart';
 import 'package:flower_app/features/auth/register/presentation/pages/register_screen.dart';
 import 'package:flower_app/features/checkout/presentaion/view/screens/checkout_screen.dart';
 import 'package:flower_app/features/occasion/presentation/views/screens/occasion_screen.dart';

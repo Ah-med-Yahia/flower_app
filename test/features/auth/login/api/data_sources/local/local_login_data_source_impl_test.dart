@@ -54,6 +54,7 @@ void main() {
       final result = await dataSource.saveLoggedUserData(
         token: testToken,
         user: testUser,
+        rememberMe: true,
       );
 
       expect(result, isA<Success<void>>());
@@ -82,6 +83,7 @@ void main() {
         final result = await dataSource.saveLoggedUserData(
           token: testToken,
           user: testUser,
+          rememberMe: true,
         );
 
         expect(result, isA<Failure<void>>());
@@ -105,6 +107,7 @@ void main() {
         final result = await dataSource.saveLoggedUserData(
           token: testToken,
           user: testUser,
+          rememberMe: true,
         );
 
         expect(result, isA<Failure<void>>());
@@ -128,6 +131,7 @@ void main() {
         final result = await dataSource.saveLoggedUserData(
           token: testToken,
           user: testUser,
+          rememberMe: true,
         );
 
         expect(result, isA<Failure<void>>());
