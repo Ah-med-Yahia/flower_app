@@ -109,8 +109,8 @@
   "cart": {
     "title": "Cart",
     "addToCart": "Add to Cart",
-    "inStock": "in stock",
-    "outOfStock": "out of stock",
+    "inStock": "In stock",
+    "outOfStock": "Out of stock",
     "taxNote": "All prices include tax",
     "description": "Description:",
     "cartClearedSuccessfully": "Cart cleared successfully",
@@ -123,7 +123,9 @@
     "checkout": "Checkout",
     "subTotal": "Sub Total",
     "deliveryFee": "Delivery Fee",
-    "total": "Total"
+    "total": "Total",
+    "addToCartSuccess": "Added to cart successfully",
+    "removeFromCart": "Remove from cart"
   },
   "checkout": {
     "orderPlacedSuccessfully": "Order placed successfully",

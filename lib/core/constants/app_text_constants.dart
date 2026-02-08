@@ -245,6 +245,8 @@ class AppTextConstants {
 
   static String get cartError => 'cart.cartError'.tr();
 
+  static String get addToCartSuccess => 'cart.addToCartSuccess'.tr();
+
   static String get cartErrorMessage => 'cart.cartErrorMessage'.tr();
 
   static String get emptyCart => 'cart.emptyCart'.tr();
