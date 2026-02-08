@@ -1,4 +1,4 @@
-class ProductEntity {
+class CategoryProductEntity {
   final String id;
   final String title;
   final String? description;
@@ -13,7 +13,7 @@ class ProductEntity {
   final int quantity;
   final bool inStock;
 
-  ProductEntity({
+  CategoryProductEntity({
     required this.id,
     required this.title,
     this.description,
@@ -29,7 +29,7 @@ class ProductEntity {
     this.inStock = true,
   });
 
-  ProductEntity copyWith({
+  CategoryProductEntity copyWith({
     String? id,
     String? title,
     String? description,
@@ -44,7 +44,7 @@ class ProductEntity {
     bool? inStock,
     int? quantity,
   }) {
-    return ProductEntity(
+    return CategoryProductEntity(
       id: id ?? this.id,
       title: title ?? this.title,
       description: description ?? this.description,

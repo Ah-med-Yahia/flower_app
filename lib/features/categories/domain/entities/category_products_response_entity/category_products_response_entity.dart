@@ -1,11 +1,11 @@
-import 'package:flower_app/features/categories/domain/entities/category_products_response_entity/product_entity.dart';
+import 'package:flower_app/features/categories/domain/entities/category_products_response_entity/category_product_entity.dart';
 
 class GetCategoryProductsEntity {
-  final List<ProductEntity> products;
+  final List<CategoryProductEntity> products;
 
   GetCategoryProductsEntity({required this.products});
 
-  GetCategoryProductsEntity copyWith({List<ProductEntity>? products}) {
+  GetCategoryProductsEntity copyWith({List<CategoryProductEntity>? products}) {
     return GetCategoryProductsEntity(products: products ?? this.products);
   }
 }

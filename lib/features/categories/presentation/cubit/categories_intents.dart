@@ -30,3 +30,8 @@ class AddProductToCart extends CategoriesIntents {
   final int quantity;
   AddProductToCart(this.productId, this.quantity);
 }
+
+class RemoveProductFromCart extends CategoriesIntents {
+  final String productId;
+  RemoveProductFromCart(this.productId);
+}

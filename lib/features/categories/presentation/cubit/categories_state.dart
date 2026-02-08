@@ -5,6 +5,8 @@ import 'package:flower_app/features/categories/domain/entities/get_category_list
 class CategoriesState {
   final BaseState<GetCategoryListEntity> categoriesState;
   final BaseState<GetCategoryProductsEntity> categoryProductsState;
+  final BaseState<List<String>> productsInCart;
+  final List<String> pendingCartIds;
   final int selectedIndexCategoryBar;
   final String? selectedSortOption;
   final String? categoryId;
@@ -17,6 +19,8 @@ class CategoriesState {
     this.selectedSortOption,
     this.categoryId,
     this.isSearching = false,
+    required this.productsInCart,
+    this.pendingCartIds = const [],
   });
 
   CategoriesState copyWith({
@@ -26,6 +30,8 @@ class CategoriesState {
     BaseState<GetCategoryProductsEntity>? categoryProductsState,
     String? categoryId,
     bool? isSearching,
+    BaseState<List<String>>? productsInCart,
+    List<String>? pendingCartIds,
   }) {
     return CategoriesState(
       categoriesState: categoriesState ?? this.categoriesState,
@@ -36,6 +42,8 @@ class CategoriesState {
           categoryProductsState ?? this.categoryProductsState,
       categoryId: categoryId ?? this.categoryId,
       isSearching: isSearching ?? this.isSearching,
+      productsInCart: productsInCart ?? this.productsInCart,
+      pendingCartIds: pendingCartIds ?? this.pendingCartIds,
     );
   }
 }
