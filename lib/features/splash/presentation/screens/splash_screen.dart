@@ -87,7 +87,7 @@ class _SplashScreenState extends State<SplashScreen>
     return BlocProvider.value(
       value: splashCubit,
       child: Scaffold(
-        backgroundColor: AppColors.secondary.withValues(alpha: 0.3),
+        backgroundColor: AppColors.splashBackground,
         body: Center(
           child: FadeTransition(
             opacity: _fade,

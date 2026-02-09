@@ -4,6 +4,7 @@ abstract class AppColors {
   static const Color primary = Color(0xFFD21E6A);
   static const Color lightPrimary = Color.fromARGB(255, 255, 160, 200);
   static const Color secondary = Color(0xFFD7397C);
+  static const Color splashBackground = Color.fromARGB(255, 47, 5, 23);
   static const Color lightPink = Color(0xFFF9ECF0);
   static const Color background = Color(0xFFF9F9F9);
   static const Color white = Color(0xFFFFFFFF);
