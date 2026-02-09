@@ -13,13 +13,19 @@ import 'package:flower_app/features/product_details/presentaion/view/screens/pro
 import 'package:flower_app/features/profile/profile_main/domain/entities/user_data_response.dart';
 import 'package:flower_app/features/profile/profile_main/presentation/views/terms/view/about_app_view.dart';
 import 'package:flower_app/features/profile/profile_main/presentation/views/terms/view/terms_view.dart';
+import 'package:flower_app/features/splash/presentation/screens/splash_screen.dart';
 import 'package:flower_app/home_screen.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
   static GoRouter router = GoRouter(
-    initialLocation: AppRoutesConstants.loginRoute,
+    initialLocation: AppRoutesConstants.splashRoute,
     routes: [
+      GoRoute(
+        path: AppRoutesConstants.splashRoute,
+        name: AppRoutesConstants.splashRoute,
+        builder: (context, state) => const SplashScreen(),
+      ),
       GoRoute(
         path: AppRoutesConstants.loginRoute,
         name: AppRoutesConstants.loginRoute,

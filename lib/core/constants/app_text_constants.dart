@@ -29,6 +29,8 @@ class AppTextConstants {
 
   static String get items => 'common.items'.tr();
 
+  static String get appName => 'common.appName'.tr();
+
   //-------------------------- Auth --------------------------//
   static String get login => 'auth.login'.tr();
 
