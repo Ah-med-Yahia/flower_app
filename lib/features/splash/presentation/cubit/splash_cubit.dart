@@ -13,7 +13,7 @@ import 'splash_state.dart';
 class SplashCubit extends Cubit<SplashState> {
   final IsLoggedUseCase _isLoggedUseCase;
 
-  final _sideEffectController = StreamController<SplashSideEffect>();
+  final _sideEffectController = StreamController<SplashSideEffect>.broadcast();
   Stream<SplashSideEffect> get sideEffectStream => _sideEffectController.stream;
 
   SplashCubit(this._isLoggedUseCase) : super(SplashState());
