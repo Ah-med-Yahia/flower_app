@@ -128,7 +128,9 @@
     "checkout": "الدفع",
     "subTotal": "المجموع الفرعي",
     "deliveryFee": "رسوم التوصيل",
-    "total": "الإجمالي"
+    "total": "الإجمالي",
+    "addToCartSuccess": "تم إضافة المنتج إلى العربة بنجاح",
+    "removeFromCart": "إزالة من العربة"
   },
   "checkout": {
     "orderPlacedSuccessfully": "تم تنفيذ الطلب بنجاح",

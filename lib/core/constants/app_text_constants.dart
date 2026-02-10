@@ -252,6 +252,8 @@ class AppTextConstants {
 
   static String get cartError => 'cart.cartError'.tr();
 
+  static String get addToCartSuccess => 'cart.addToCartSuccess'.tr();
+
   static String get cartErrorMessage => 'cart.cartErrorMessage'.tr();
 
   static String get emptyCart => 'cart.emptyCart'.tr();
@@ -267,6 +269,8 @@ class AppTextConstants {
   static String get subTotal => 'cart.subTotal'.tr();
 
   static String get total => 'cart.total'.tr();
+
+  static String get removeFromCart => 'cart.removeFromCart'.tr();
 
   // Occasion
   static String get occasion => 'occasion.title'.tr();
