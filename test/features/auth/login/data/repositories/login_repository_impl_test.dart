@@ -60,6 +60,7 @@ void main() {
             mockLocal.saveLoggedUserData(
               token: anyNamed('token'),
               user: anyNamed('user'),
+              rememberMe: anyNamed('rememberMe'),
             ),
           ).thenAnswer((_) async => const BaseResponse<void>.success(null));
 
@@ -71,6 +72,7 @@ void main() {
             mockLocal.saveLoggedUserData(
               token: anyNamed('token'),
               user: anyNamed('user'),
+              rememberMe: anyNamed('rememberMe'),
             ),
           ).called(1);
           verifyNoMoreInteractions(mockLocal);
@@ -89,6 +91,7 @@ void main() {
             mockLocal.saveLoggedUserData(
               token: anyNamed('token'),
               user: anyNamed('user'),
+              rememberMe: anyNamed('rememberMe'),
             ),
           ).thenAnswer((_) async => const BaseResponse<void>.success(null));
 
@@ -101,6 +104,7 @@ void main() {
             mockLocal.saveLoggedUserData(
               token: anyNamed('token'),
               user: anyNamed('user'),
+              rememberMe: anyNamed('rememberMe'),
             ),
           ).called(1);
         },
@@ -118,6 +122,7 @@ void main() {
           mockLocal.saveLoggedUserData(
             token: anyNamed('token'),
             user: anyNamed('user'),
+            rememberMe: anyNamed('rememberMe'),
           ),
         ).thenAnswer(
           (_) async =>

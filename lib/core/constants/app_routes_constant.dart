@@ -1,4 +1,6 @@
 abstract class AppRoutesConstants {
+  //--------------- SPLASH ROUTE -----------------//
+  static const String splashRoute = '/splash';
   //--------------- AUTHENTICATION ROUTES -----------------//
   static const String loginRoute = '/login';
   static const String registerRoute = '/sign_up';
