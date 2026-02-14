@@ -1,13 +1,13 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/error_handler/error_handler.dart';
-import 'package:flower_app/features/saved_addresses/domain/models/saved_addresses_response_entity.dart';
-import 'package:flower_app/features/saved_addresses/domain/usecases/delete_saved_address_usecase.dart';
-import 'package:flower_app/features/saved_addresses/domain/usecases/get_all_saved_addresses_usecase.dart';
-import 'package:flower_app/features/saved_addresses/presentation/view_model/saved_addresses_cubit.dart';
-import 'package:flower_app/features/saved_addresses/presentation/view_model/saved_addresses_events.dart';
-import 'package:flower_app/features/saved_addresses/presentation/view_model/saved_addresses_states.dart';
-import 'package:flower_app/features/saved_addresses/presentation/view_model/saved_addresses_ui_events.dart';
+import 'package:flower_app/features/user_addresses/shared/domain/models/address_entities.dart';
+import 'package:flower_app/features/user_addresses/saved_addresses/domain/usecases/delete_saved_address_usecase.dart';
+import 'package:flower_app/features/user_addresses/saved_addresses/domain/usecases/get_all_saved_addresses_usecase.dart';
+import 'package:flower_app/features/user_addresses/saved_addresses/presentation/view_model/saved_addresses_cubit.dart';
+import 'package:flower_app/features/user_addresses/saved_addresses/presentation/view_model/saved_addresses_events.dart';
+import 'package:flower_app/features/user_addresses/saved_addresses/presentation/view_model/saved_addresses_states.dart';
+import 'package:flower_app/features/user_addresses/saved_addresses/presentation/view_model/saved_addresses_ui_events.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -166,7 +166,7 @@ Future<void> main() async {
         predicate<SavedAddressesStates>((state) {
           return state.navigationEvent is NavigateToAddUpdateAddressUiEvent &&
               (state.navigationEvent as NavigateToAddUpdateAddressUiEvent)
-                      .addressId ==
+                      .address ==
                   null;
         }),
       ],
@@ -175,13 +175,33 @@ Future<void> main() async {
     blocTest<SavedAddressesCubit, SavedAddressesStates>(
       'emits navigation event when EditSavedAddressEvent is triggered',
       build: () => cubit,
-      act: (cubit) => cubit.onEvent(EditSavedAddressEvent('123')),
+      act: (cubit) => cubit.onEvent(
+        EditSavedAddressEvent(
+          const AddressEntity(
+            id: '123',
+            street: 'Test Street',
+            phone: '01234567890',
+            city: 'Test City',
+            lat: '30.123',
+            long: '31.456',
+            username: 'testuser',
+          ),
+        ),
+      ),
       expect: () => [
         predicate<SavedAddressesStates>((state) {
           return state.navigationEvent is NavigateToAddUpdateAddressUiEvent &&
               (state.navigationEvent as NavigateToAddUpdateAddressUiEvent)
-                      .addressId ==
-                  '123';
+                      .address ==
+                  const AddressEntity(
+                    id: '123',
+                    street: 'Test Street',
+                    phone: '01234567890',
+                    city: 'Test City',
+                    lat: '30.123',
+                    long: '31.456',
+                    username: 'testuser',
+                  );
         }),
       ],
     );

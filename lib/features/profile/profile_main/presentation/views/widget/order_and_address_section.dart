@@ -1,4 +1,6 @@
+import 'package:flower_app/core/constants/app_routes_constant.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/constants/app_text_constants.dart';
 import '../../../../../../core/theme/app_colors.dart';
@@ -17,9 +19,14 @@ class OrderAndAddressSection extends StatelessWidget {
             title: AppTextConstants.myOrders,
             icon: Icons.shopping_bag_outlined,
           ),
-          ProfileCardItem(
-            title: AppTextConstants.savedAddresses,
-            icon: Icons.location_on_outlined,
+          InkWell(
+            onTap: () {
+              context.push(AppRoutesConstants.savedAddressesRoute);
+            },
+            child: ProfileCardItem(
+              title: AppTextConstants.savedAddresses,
+              icon: Icons.location_on_outlined,
+            ),
           ),
         ],
       ),

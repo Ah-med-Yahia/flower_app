@@ -15,6 +15,8 @@ abstract class AppRoutesConstants {
 
   static const String productDetailsRoute = '/productDetails';
   static const String occasionScreen = '/occasionScreen';
+  //--------------- ADD UPDATE ADDRESS ROUTES -----------------//
+  static const String addUpdateAddressRoute = '/addUpdateAddress';
 
   static const String checkoutScreen = '/checkoutScreen';
   //--------------- PROFILE ROUTES -----------------//

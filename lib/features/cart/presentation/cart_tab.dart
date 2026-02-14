@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flower_app/config/di/di.dart';
+import 'package:flower_app/core/constants/app_routes_constant.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/gen/assets.gen.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
@@ -18,6 +19,7 @@ import 'package:flower_app/features/cart/presentation/widgets/cart_summary_widge
 import 'package:flower_app/features/cart/presentation/widgets/location_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class CartTab extends StatefulWidget {
   const CartTab({super.key});
@@ -214,7 +216,9 @@ class _CartTabState extends State<CartTab> {
                                 const Spacer(),
                                 CartSummaryWidget(
                                   onCheckout: () => {
-                                    // Todo: implement checkout
+                                    context.push(
+                                      AppRoutesConstants.checkoutScreen,
+                                    ),
                                   },
                                   deliveryFee: cart.deliveryFee,
                                   subTotal: cart.totalPrice,

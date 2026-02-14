@@ -1,8 +1,8 @@
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/error_handler/error_handler.dart';
-import 'package:flower_app/features/saved_addresses/api/api_client/saved_addresses_api_client.dart';
-import 'package:flower_app/features/saved_addresses/api/data_sources/remote/saved_addresses_remote_datasource_impl.dart';
-import 'package:flower_app/features/saved_addresses/data/models/saved_addresses_response_model.dart';
+import 'package:flower_app/features/user_addresses/saved_addresses/api/api_client/saved_addresses_api_client.dart';
+import 'package:flower_app/features/user_addresses/saved_addresses/api/data_sources/remote/saved_addresses_remote_datasource_impl.dart';
+import 'package:flower_app/features/user_addresses/saved_addresses/data/models/saved_addresses_response_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
