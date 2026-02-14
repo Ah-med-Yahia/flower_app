@@ -60,16 +60,8 @@ class OrderModel {
 
   OrderEntity toEntity() {
     return OrderEntity(
-      id: id,
-      userId: user,
       orderItems: orderItems?.map((item) => item.toEntity()).toList(),
-      totalPrice: totalPrice,
-      paymentType: paymentType,
-      isPaid: isPaid,
-      isDelivered: isDelivered,
       state: state,
-      createdAt: createdAt,
-      updatedAt: updatedAt,
       orderNumber: orderNumber,
     );
   }

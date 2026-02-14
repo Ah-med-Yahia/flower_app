@@ -61,15 +61,9 @@ class OrderProductModel {
     return OrderProductEntity(
       id: id,
       title: title,
-      slug: slug,
-      description: description,
       imgCover: imgCover,
-      images: images,
       price: price,
       priceAfterDiscount: priceAfterDiscount,
-      quantity: quantity,
-      rateAvg: rateAvg,
-      rateCount: rateCount,
     );
   }
 }

@@ -26,11 +26,6 @@ class OrderItemModel {
   Map<String, dynamic> toJson() => _$OrderItemModelToJson(this);
 
   OrderItemEntity toEntity() {
-    return OrderItemEntity(
-      id: id,
-      product: product?.toEntity(),
-      price: price,
-      quantity: quantity,
-    );
+    return OrderItemEntity(product: product?.toEntity(), quantity: quantity);
   }
 }

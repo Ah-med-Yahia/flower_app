@@ -169,6 +169,13 @@ import '../../features/occasion/domain/usecases/get_occasion_products_usecase.da
 import '../../features/occasion/presentation/view_model/occasion_cubit.dart'
     as _i141;
 import '../../features/orders/api/api_client/orders_api_client.dart' as _i107;
+import '../../features/orders/api/datasources_impl/remote_orders_data_source_impl.dart'
+    as _i140;
+import '../../features/orders/data/datasources/remote_orders_data_source.dart'
+    as _i227;
+import '../../features/orders/domain/repos/orders_repo_contract.dart' as _i131;
+import '../../features/orders/domain/usecases/get_user_orders_usecase.dart'
+    as _i407;
 import '../../features/product/best_seller/api/api_client/best_seller_api_client.dart'
     as _i113;
 import '../../features/product/best_seller/api/datasource/remote/best_seller_remote_data_source_impl.dart'
@@ -266,6 +273,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i1059.CacheHelper>(
       () => _i1059.CacheHelper(gh<_i460.SharedPreferences>()),
     );
+    gh.factory<_i407.GetUserOrdersUseCase>(
+      () => _i407.GetUserOrdersUseCase(gh<_i131.OrdersRepoContract>()),
+    );
     gh.factory<_i455.ProfileMainLocalDataSource>(
       () => _i176.ProfileMainLocalDataSourceImpl(),
     );
@@ -352,6 +362,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i550.ProfileMainRemoteDataSourceImpl(
         gh<_i120.ProfileMainApiClient>(),
       ),
+    );
+    gh.factory<_i227.RemoteOrdersDataSource>(
+      () => _i140.RemoteOrdersDataSourceImpl(gh<_i107.OrdersApiClient>()),
     );
     gh.factory<_i1058.BestSellerRemoteDataSource>(
       () =>
