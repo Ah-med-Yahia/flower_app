@@ -4,7 +4,7 @@ import 'package:flower_app/features/orders/domain/entities/orders_response_entit
 import 'package:flower_app/features/orders/domain/repos/orders_repo_contract.dart';
 
 class OrdersRepoImpl implements OrdersRepoContract {
-  RemoteOrdersDataSource _remoteOrdersDataSource;
+  final RemoteOrdersDataSource _remoteOrdersDataSource;
 
   OrdersRepoImpl(this._remoteOrdersDataSource);
 
