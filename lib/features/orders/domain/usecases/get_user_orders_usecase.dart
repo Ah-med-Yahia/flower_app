@@ -52,7 +52,6 @@ class GetUserOrdersUseCase {
         }).toList();
 
       case OrderFilter.all:
-      default:
         return orders;
     }
   }
