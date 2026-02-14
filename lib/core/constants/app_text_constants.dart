@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 
 class AppTextConstants {
   AppTextConstants._();
-
   //-------------------------- Common --------------------------//
   static String get loading => 'common.loading'.tr();
 
@@ -29,6 +28,8 @@ class AppTextConstants {
   static String get currencySign => 'common.currencySign'.tr();
 
   static String get items => 'common.items'.tr();
+
+  static String get appName => 'common.appName'.tr();
 
   //-------------------------- Auth --------------------------//
   static String get login => 'auth.login'.tr();
@@ -210,8 +211,6 @@ class AppTextConstants {
 
   static String get myOrders => 'profile.myOrders'.tr();
 
-  static String get savedAddresses => 'profile.savedAddresses'.tr();
-
   static String get termsAppBarTitleEn => 'profile.termsAppBarTitle'.tr();
 
   static String get termsAppBarTitleAr => 'profile.termsAppBarTitle'.tr();
@@ -226,6 +225,13 @@ class AppTextConstants {
 
   static String get switchToEnglish => 'profile.switchToEnglish'.tr();
 
+  ///-------------------------- Edit Profile --------------------------//
+  static String get editProfile => 'editProfile.title'.tr();
+
+  static String get change => 'editProfile.change'.tr();
+
+  static String get uploadImage => 'editProfile.uploadImage'.tr();
+
   ///-------------------------- CART --------------------------//
   static String get cart => 'cart.title'.tr();
 
@@ -239,10 +245,14 @@ class AppTextConstants {
 
   static String get description => 'cart.description'.tr();
 
+  static String get deliveryFee => 'cart.deliveryFee'.tr();
+
   static String get cartClearedSuccessfully =>
       'cart.cartClearedSuccessfully'.tr();
 
   static String get cartError => 'cart.cartError'.tr();
+
+  static String get addToCartSuccess => 'cart.addToCartSuccess'.tr();
 
   static String get cartErrorMessage => 'cart.cartErrorMessage'.tr();
 
@@ -258,9 +268,9 @@ class AppTextConstants {
 
   static String get subTotal => 'cart.subTotal'.tr();
 
-  static String get deliveryFee => 'cart.deliveryFee'.tr();
-
   static String get total => 'cart.total'.tr();
+
+  static String get removeFromCart => 'cart.removeFromCart'.tr();
 
   // Occasion
   static String get occasion => 'occasion.title'.tr();
@@ -270,6 +280,15 @@ class AppTextConstants {
 
   static String get noOccasionsAvailable =>
       'occasion.noOccasionsAvailable'.tr();
+
+  ///-------------------------- CATEGORIES --------------------------//
+  static String get sortBy => 'categories.sortBy'.tr();
+  static String get lowesPrice => 'categories.lowesPrice'.tr();
+  static String get highPrice => 'categories.highPrice'.tr();
+  static String get newest => 'categories.newest'.tr();
+  static String get oldest => 'categories.oldest'.tr();
+  static String get discount => 'categories.discount'.tr();
+  static String get filter => 'categories.filter'.tr();
 
   //-------------------------- Technical Keys --------------------------//
   static const String enLangKey = 'en';
@@ -285,4 +304,61 @@ class AppTextConstants {
   static String get confirmBtn => 'common.confirm'.tr();
 
   static String get egy => 'common.egp'.tr();
+
+  // Saved Addresses
+  static String get addNewAddress => 'savedAddresses.addNewAddress'.tr();
+  //-------------------------- CHECKOUT --------------------------//
+  static String get orderPlacedSuccessfully =>
+      'checkout.orderPlacedSuccessfully'.tr();
+  static String get deliveryTime => 'checkout.deliveryTime'.tr();
+  static String get schedule => 'checkout.schedule'.tr();
+  static String get instant => 'checkout.instant'.tr();
+  static String get arriveBy => 'checkout.arriveBy'.tr();
+  static String get deliveryAddress => 'checkout.deliveryAddress'.tr();
+  static String get addNew => 'checkout.addNew'.tr();
+  static String get paymentMethod => 'checkout.paymentMethod'.tr();
+  static String get cashOnDelivery => 'checkout.cashOnDelivery'.tr();
+  static String get creditCard => 'checkout.creditCard'.tr();
+  static String get payment => 'checkout.payment'.tr();
+  static String get credit => 'checkout.credit'.tr();
+  static String get cash => 'checkout.cash'.tr();
+  static String get paymentUrlNotFound => 'checkout.paymentUrlNotFound'.tr();
+  static String get name => 'checkout.name'.tr();
+  static String get enterName => 'checkout.enterName'.tr();
+  static String get itIsAGift => 'checkout.itIsAGift'.tr();
+  static String get enterGiftDetails => 'checkout.enterGiftDetails'.tr();
+  static String get selectDeliveryAddress =>
+      'checkout.selectDeliveryAddress'.tr();
+  static String get enterRecipientName => 'checkout.enterRecipientName'.tr();
+  static String get enterRecipientphone => 'checkout.enterRecipientphone'.tr();
+  static String get paymentCancelled => 'checkout.paymentCancelled'.tr();
+  static String get subtotal => 'checkout.subtotal'.tr();
+  static String get placeOrder => 'checkout.placeOrder'.tr();
+
+  // Add Update Address
+  static String get savedAddresses => 'addUpdateAddress.savedAddresses'.tr();
+
+  static String get address => 'addUpdateAddress.address'.tr();
+
+  static String get enterAddress => 'addUpdateAddress.enterAddress'.tr();
+
+  static String get recipientName => 'addUpdateAddress.recipientName'.tr();
+
+  static String get enterTheRecipientName =>
+      'addUpdateAddress.enterTheRecipientName'.tr();
+
+  static String get state => 'addUpdateAddress.state'.tr();
+
+  static String get selectState => 'addUpdateAddress.selectState'.tr();
+
+  static String get city => 'addUpdateAddress.city'.tr();
+
+  static String get selectCity => 'addUpdateAddress.selectCity'.tr();
+
+  static String get saveAddress => 'addUpdateAddress.saveAddress'.tr();
+
+  static String get addressSavedSuccessfully =>
+      'addUpdateAddress.addressSavedSuccessfully'.tr();
+  static String get addressUpdatedSuccessfully =>
+      'addUpdateAddress.addressUpdatedSuccessfully'.tr();
 }

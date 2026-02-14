@@ -43,13 +43,27 @@ class ApiConstants {
   static const String updateCartItemEndpoint = 'cart/{id}';
 
   //------------------------ ADDRESS ------------------------//
-  static const String addAddress = 'addresses';
-  static const String updateAddress = 'addresses/{id}';
-  // ---------------------- ORDERS ----------------------- //
-  static const String getUserOrdersEndPoint = 'orders';
+  static const String addressByIDEndPoint = 'addresses/{id}';
+  static const String addressEndPoint = 'addresses';
+
+  //-----------------------checkout ----------------------------//
+  static const String cacheOrderEndPoint = 'orders';
+  static const String creditCardOrderEndPoint = 'orders/checkout';
+  static const String paymentUrl = 'http://localhost:3000/allOrders';
 }
 
 class QueryParamsKey {
   QueryParamsKey._();
   static const String categoryId = 'category';
+  static const String sort = 'sort';
+  static const String search = 'keyword';
+}
+
+class QueryParamsValues {
+  QueryParamsValues._();
+  static const String lowestPrice = 'price';
+  static const String highestPrice = '-price';
+  static const String newest = 'createdAt';
+  static const String oldest = '-createdAt';
+  static const String lowestPriceAfterDiscount = 'priceAfterDiscount';
 }

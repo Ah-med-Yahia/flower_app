@@ -1,6 +1,6 @@
 name: flower_app
 description: "A new Flutter project."
-publish_to: 'none'
+publish_to: "none"
 version: 1.0.0+1
 
 environment:
@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-   # Localization
+    # Localization
   easy_localization: ^3.0.8
 
   # UI and Design
@@ -44,6 +44,7 @@ dependencies:
 
   # Lottie
   lottie: ^3.3.2
+  geolocator: ^14.0.2
   google_fonts: ^6.3.3
   fluttertoast: ^9.0.0
 
@@ -59,6 +60,10 @@ dependencies:
   pretty_dio_logger: ^1.4.0
   shimmer: ^3.0.0
   latlong2: ^0.9.1
+  flutter_map: ^8.2.2
+  geocoding: ^4.0.0
+  webview_flutter: ^4.13.1
+  skeletonizer: ^2.1.2
 
 dev_dependencies:
   flutter_test:
@@ -71,11 +76,12 @@ dev_dependencies:
   freezed: ^3.0.0
   injectable_generator: ^2.7.0
   json_serializable: ^6.7.1
-  retrofit_generator: ^10.2.1
+  retrofit_generator: ^10.0.1 
   flutter_gen_runner: ^5.9.0
   mockito: ^5.5.1
-  test: ^1.26.2
+    
   bloc_test: ^10.0.0
+  test: ^1.26.3
 
 flutter:
   uses-material-design: true
@@ -84,6 +90,8 @@ flutter:
     - assets/icons/
     - assets/files/
     - assets/images/
+    - assets/cities.json
+    - assets/states.json
     - assets/translations/
 
 flutter_gen:

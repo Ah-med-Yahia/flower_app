@@ -1,33 +1,41 @@
 import 'package:flower_app/config/di/di.dart';
 import 'package:flower_app/core/constants/app_routes_constant.dart';
+import 'package:flower_app/features/user_addresses/add_update_adrees/presentation/view/screens/add_update_address_screen.dart';
+import 'package:flower_app/features/user_addresses/shared/domain/models/address_entities.dart';
 import 'package:flower_app/features/auth/change_password/presentation/screens/change_password_screen.dart';
-import 'package:flower_app/features/auth/login/presentation/cubit/login_cubit.dart';
-import 'package:flower_app/features/auth/login/presentation/pages/login_screen.dart';
+import 'package:flower_app/features/auth/edit_profile/presentation/views/view/edit_profile_view.dart';
+import 'package:flower_app/features/auth/forget_password/presentation/views/forget_password_view/forget_password_view.dart';
+import 'package:flower_app/features/auth/forget_password/presentation/views/reset_password_view/reset_password_view.dart';
+import 'package:flower_app/features/auth/forget_password/presentation/views/verify_otp_view/verify_otp_code_view.dart';
+import 'package:flower_app/features/auth/login/presentation/screens/login_screen.dart';
 import 'package:flower_app/features/auth/register/presentation/pages/register_screen.dart';
+import 'package:flower_app/features/checkout/presentaion/cubit/checkout_cubit.dart';
+import 'package:flower_app/features/checkout/presentaion/view/screens/checkout_screen.dart';
 import 'package:flower_app/features/occasion/presentation/views/screens/occasion_screen.dart';
+import 'package:flower_app/features/product/best_seller/presentation/views/view/best_seller_view.dart';
 import 'package:flower_app/features/product_details/presentaion/view/screens/product_details_screen.dart';
+import 'package:flower_app/features/profile/profile_main/domain/entities/user_data_response.dart';
+import 'package:flower_app/features/profile/profile_main/presentation/views/terms/view/about_app_view.dart';
+import 'package:flower_app/features/profile/profile_main/presentation/views/terms/view/terms_view.dart';
+import 'package:flower_app/features/splash/presentation/screens/splash_screen.dart';
+import 'package:flower_app/features/user_addresses/saved_addresses/presentation/view/screens/saved_addresses_screen.dart';
 import 'package:flower_app/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../features/auth/forget_password/presentation/views/forget_password_view/forget_password_view.dart';
-import '../../features/auth/forget_password/presentation/views/reset_password_view/reset_password_view.dart';
-import '../../features/auth/forget_password/presentation/views/verify_otp_view/verify_otp_code_view.dart';
-import '../../features/product/best_seller/presentation/views/view/best_seller_view.dart';
-import '../../features/profile/profile_main/presentation/views/terms/view/about_app_view.dart';
-import '../../features/profile/profile_main/presentation/views/terms/view/terms_view.dart';
-
 abstract class AppRouter {
   static GoRouter router = GoRouter(
-    initialLocation: AppRoutesConstants.loginRoute,
+    initialLocation: AppRoutesConstants.homeRoute,
     routes: [
+      GoRoute(
+        path: AppRoutesConstants.splashRoute,
+        name: AppRoutesConstants.splashRoute,
+        builder: (context, state) => const SplashScreen(),
+      ),
       GoRoute(
         path: AppRoutesConstants.loginRoute,
         name: AppRoutesConstants.loginRoute,
-        builder: (context, state) => BlocProvider(
-          create: (context) => getIt<LoginCubit>(),
-          child: const LoginScreen(),
-        ),
+        builder: (context, state) => const LoginScreen(),
       ),
       GoRoute(
         path: AppRoutesConstants.bestSellerRoute,
@@ -85,6 +93,14 @@ abstract class AppRouter {
         builder: (context, state) => const ChangePasswordScreen(),
       ),
       GoRoute(
+        path: AppRoutesConstants.checkoutScreen,
+        name: AppRoutesConstants.checkoutScreen,
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt<CheckoutCubit>(),
+          child: const CheckoutScreen(),
+        ),
+      ),
+      GoRoute(
         path: AppRoutesConstants.appPolicyRoute,
         name: AppRoutesConstants.appPolicyRoute,
         builder: (context, state) => const TermsView(),
@@ -93,6 +109,27 @@ abstract class AppRouter {
         path: AppRoutesConstants.appInfoRoute,
         name: AppRoutesConstants.appInfoRoute,
         builder: (context, state) => const AboutAppView(),
+      ),
+      GoRoute(
+        path: AppRoutesConstants.addUpdateAddressRoute,
+        name: AppRoutesConstants.addUpdateAddressRoute,
+        builder: (context, state) {
+          final address = state.extra as AddressEntity?;
+          return AddUpdateAddressScreen(address: address);
+        },
+      ),
+      GoRoute(
+        path: AppRoutesConstants.savedAddressesRoute,
+        name: AppRoutesConstants.savedAddressesRoute,
+        builder: (context, state) => const SavedAddressesScreen(),
+      ),
+      GoRoute(
+        path: AppRoutesConstants.editProfileRoute,
+        name: AppRoutesConstants.editProfileRoute,
+        builder: (context, state) {
+          final userData = state.extra as UserDataResponse;
+          return EditProfileView(userData: userData);
+        },
       ),
     ],
   );

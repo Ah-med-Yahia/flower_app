@@ -1,4 +1,6 @@
 abstract class AppRoutesConstants {
+  //--------------- SPLASH ROUTE -----------------//
+  static const String splashRoute = '/splash';
   //--------------- AUTHENTICATION ROUTES -----------------//
   static const String loginRoute = '/login';
   static const String registerRoute = '/sign_up';
@@ -13,8 +15,15 @@ abstract class AppRoutesConstants {
 
   static const String productDetailsRoute = '/productDetails';
   static const String occasionScreen = '/occasionScreen';
+  //--------------- ADD UPDATE ADDRESS ROUTES -----------------//
+  static const String addUpdateAddressRoute = '/addUpdateAddress';
 
+  static const String checkoutScreen = '/checkoutScreen';
   //--------------- PROFILE ROUTES -----------------//
   static const String appPolicyRoute = '/app_policy';
   static const String appInfoRoute = '/app_info';
+  static const String editProfileRoute = '/edit_profile';
+
+  //--------------- SAVED ADDRESSES ROUTES -----------------//
+  static const String savedAddressesRoute = '/saved_addresses';
 }

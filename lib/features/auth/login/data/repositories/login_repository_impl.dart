@@ -18,25 +18,25 @@ class LoginRepositoryImpl implements LoginRepository {
     LoginRequestEntity request,
     bool remembered,
   ) async {
-    final response = await remoteDataSource.login(request.toModel());
-    return response.map(
-      success: (response) async {
-        final loginResponse = response.data;
+    final remoteResponse = await remoteDataSource.login(request.toModel());
+    return remoteResponse.when(
+      success: (loginResponse) async {
         final localResponse = await localDataSource.saveLoggedUserData(
           token: loginResponse.token,
           user: loginResponse.user,
+          rememberMe: remembered,
         );
-        return localResponse.map(
+        return localResponse.when(
           success: (s) {
             return const BaseResponse<void>.success(null);
           },
           failure: (f) {
-            return BaseResponse<void>.failure(f.errorHandler);
+            return BaseResponse<void>.failure(f);
           },
         );
       },
       failure: (failure) {
-        return BaseResponse<void>.failure(failure.errorHandler);
+        return BaseResponse<void>.failure(failure);
       },
     );
   }

@@ -14,10 +14,11 @@ class LoginLocalDataSourceImpl implements LocalLoginDataSource {
   Future<BaseResponse<void>> saveLoggedUserData({
     required String token,
     required UserModel user,
+    required bool rememberMe,
   }) async {
     final responses = await Future.wait([
       secureStorageService.saveAuthTokens(accessToken: token),
-      secureStorageService.writeBool(StorageKeys.isLoggedIn, true),
+      secureStorageService.writeBool(StorageKeys.isLoggedIn, rememberMe),
       secureStorageService.writeJson(StorageKeys.userModel, user.toJson()),
     ]);
     for (final r in responses) {

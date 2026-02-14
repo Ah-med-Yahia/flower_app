@@ -22,7 +22,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomeTap extends StatelessWidget {
+class HomeTap extends StatefulWidget {
   final VoidCallback onNavigateToCategories;
   final void Function(String categoryId) onNavigateSelectedToCategory;
 
@@ -33,14 +33,35 @@ class HomeTap extends StatelessWidget {
   });
 
   @override
+  State<HomeTap> createState() => _HomeTapState();
+}
+
+class _HomeTapState extends State<HomeTap> {
+  late final HomeScreenCubit cubit;
+
+  @override
+  void initState() {
+    super.initState();
+    cubit = getIt<HomeScreenCubit>();
+    // Reset navigation event when widget initializes
+    // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
+    cubit.emit(
+      HomeScreenStates(
+        homeScreenStates: cubit.state.homeScreenStates,
+        navigationEvent: null, // Clear any old navigation events
+      ),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     final titleLarge = Theme.of(context).textTheme.titleLarge;
     final double height = MediaQuery.of(context).size.height;
-    final HomeScreenCubit cubit = getIt<HomeScreenCubit>();
+    // final HomeScreenCubit cubit = getIt<HomeScreenCubit>();
     return BlocProvider(
       create: (context) => cubit..onEvent(GetHomeScreenDataEvent()),
       child: BlocListener<HomeScreenCubit, HomeScreenStates>(
-        listenWhen: (previous, current) => current.navigationEvent != null,
+        // listenWhen: (previous, current) => current.navigationEvent != null,
         listener: (context, state) {
           final nav = state.navigationEvent;
           if (nav != null) {
@@ -54,7 +75,7 @@ class HomeTap extends StatelessWidget {
                 context.pushNamed(AppRoutesConstants.bestSellerRoute);
 
               case NavigateToCategoryEvent():
-                onNavigateSelectedToCategory(nav.categoryId!);
+                widget.onNavigateSelectedToCategory(nav.categoryId!);
               case NavigateToOccasionEvent():
                 context.pushNamed(AppRoutesConstants.occasionScreen);
             }
@@ -87,176 +108,180 @@ class HomeTap extends StatelessWidget {
                 backgroundColor: AppColors.background,
                 body: Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Assets.lottie.flower.svg(width: 24, height: 24),
-                          const SizedBox(width: 4),
-                          Text(
-                            AppTextConstants.flowery,
-                            style: titleLarge?.copyWith(
-                              color: AppColors.primary,
-                              fontWeight: FontWeight.bold,
-                              fontFamily:
-                                  GoogleFonts.imFellEnglish().fontFamily,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Assets.lottie.flower.svg(width: 24, height: 24),
+                            const SizedBox(width: 4),
+                            Text(
+                              AppTextConstants.flowery,
+                              style: titleLarge?.copyWith(
+                                color: AppColors.primary,
+                                fontWeight: FontWeight.bold,
+                                fontFamily:
+                                    GoogleFonts.imFellEnglish().fontFamily,
+                              ),
                             ),
-                          ),
-                          const SizedBox(width: 16),
-                          const Expanded(child: SearchWidget()),
-                        ],
-                      ),
-                      const SizedBox(height: 16),
+                            const SizedBox(width: 16),
+                            const Expanded(child: SearchWidget()),
+                          ],
+                        ),
+                        const SizedBox(height: 16),
 
-                      const AddressWidget(address: '2XVP+XC - Sheikh Zayed'),
+                        const AddressWidget(address: '2XVP+XC - Sheikh Zayed'),
 
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            AppTextConstants.categories,
-                            style: titleLarge?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              AppTextConstants.categories,
+                              style: titleLarge?.copyWith(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
                             ),
-                          ),
-                          ViewAllButton(onPressed: onNavigateToCategories),
-                        ],
-                      ),
-                      const SizedBox(height: 8),
+                            ViewAllButton(
+                              onPressed: widget.onNavigateToCategories,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 8),
 
-                      SizedBox(
-                        height: 120,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
+                        SizedBox(
+                          height: 120,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
 
-                          itemCount: data!.categories.length,
-                          itemBuilder: (context, index) {
-                            return GestureDetector(
-                              onTap: () {
-                                cubit.onEvent(
-                                  WhenCategoryIsClickedEvent(
-                                    categoryId: data.categories[index].id,
+                            itemCount: data!.categories.length,
+                            itemBuilder: (context, index) {
+                              return GestureDetector(
+                                onTap: () {
+                                  cubit.onEvent(
+                                    WhenCategoryIsClickedEvent(
+                                      categoryId: data.categories[index].id,
+                                    ),
+                                  );
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(right: 16.0),
+                                  child: CategoryCardWidget(
+                                    imageUrl: data.categories[index].image,
+                                    label: data.categories[index].name,
+                                    bgColor: AppColors.primary.withValues(
+                                      alpha: 0.1,
+                                    ),
                                   ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              AppTextConstants.bestSeller,
+                              style: titleLarge?.copyWith(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
+                            ),
+                            ViewAllButton(
+                              onPressed: () {
+                                cubit.onEvent(
+                                  WhenViewAllBestSellerIsClickedEvent(),
                                 );
                               },
-                              child: Padding(
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 8),
+
+                        SizedBox(
+                          height: 220,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: data.bestSeller.length,
+                            itemBuilder: (context, index) {
+                              return Padding(
                                 padding: const EdgeInsets.only(right: 16.0),
-                                child: CategoryCardWidget(
-                                  imageUrl: data.categories[index].image,
-                                  label: data.categories[index].name,
-                                  bgColor: AppColors.primary.withValues(
-                                    alpha: 0.1,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    log('best seller tapped');
+                                    cubit.onEvent(
+                                      WhenBestSellerIsClickedEvent(
+                                        productId: data.bestSeller[index].id,
+                                      ),
+                                    );
+                                  },
+                                  child: BestSellerOccationsCardWidget(
+                                    image: data.bestSeller[index].imgCover,
+                                    title: data.bestSeller[index].title,
+                                    price: data
+                                        .bestSeller[index]
+                                        .priceAfterDiscount
+                                        .toInt()
+                                        .toString(),
                                   ),
                                 ),
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            AppTextConstants.bestSeller,
-                            style: titleLarge?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                            ),
-                          ),
-                          ViewAllButton(
-                            onPressed: () {
-                              cubit.onEvent(
-                                WhenViewAllBestSellerIsClickedEvent(),
                               );
                             },
                           ),
-                        ],
-                      ),
-                      const SizedBox(height: 8),
-
-                      SizedBox(
-                        height: 220,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: data.bestSeller.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.only(right: 16.0),
-                              child: GestureDetector(
-                                onTap: () {
-                                  log('best seller tapped');
-                                  cubit.onEvent(
-                                    WhenBestSellerIsClickedEvent(
-                                      productId: data.bestSeller[index].id,
-                                    ),
-                                  );
-                                },
-                                child: BestSellerOccationsCardWidget(
-                                  image: data.bestSeller[index].imgCover,
-                                  title: data.bestSeller[index].title,
-                                  price: data
-                                      .bestSeller[index]
-                                      .priceAfterDiscount
-                                      .toInt()
-                                      .toString(),
-                                ),
-                              ),
-                            );
-                          },
                         ),
-                      ),
 
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            AppTextConstants.occasion,
-                            style: titleLarge?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              AppTextConstants.occasion,
+                              style: titleLarge?.copyWith(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
                             ),
-                          ),
-                          ViewAllButton(
-                            onPressed: () {
-                              cubit.onEvent(
-                                WhenOccasionViewAllIsClickedEvent(),
+                            ViewAllButton(
+                              onPressed: () {
+                                cubit.onEvent(
+                                  WhenOccasionViewAllIsClickedEvent(),
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 8),
+
+                        SizedBox(
+                          height: 195,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: data.occasions.length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: const EdgeInsets.only(right: 16.0),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    cubit.onEvent(
+                                      WhenOccasionIsClickedEvent(
+                                        occasionId: data.occasions[index].id,
+                                      ),
+                                    );
+                                  },
+                                  child: BestSellerOccationsCardWidget(
+                                    image: data.occasions[index].image,
+                                    title: data.occasions[index].name,
+                                  ),
+                                ),
                               );
                             },
                           ),
-                        ],
-                      ),
-                      const SizedBox(height: 8),
-
-                      SizedBox(
-                        height: 195,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: data.occasions.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.only(right: 16.0),
-                              child: GestureDetector(
-                                onTap: () {
-                                  cubit.onEvent(
-                                    WhenOccasionIsClickedEvent(
-                                      occasionId: data.occasions[index].id,
-                                    ),
-                                  );
-                                },
-                                child: BestSellerOccationsCardWidget(
-                                  image: data.occasions[index].image,
-                                  title: data.occasions[index].name,
-                                ),
-                              ),
-                            );
-                          },
                         ),
-                      ),
-                      const SizedBox(height: 16),
-                    ],
+                        const SizedBox(height: 16),
+                      ],
+                    ),
                   ),
                 ),
               );

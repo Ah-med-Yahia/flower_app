@@ -1,4 +1,4 @@
-import 'package:flower_app/features/categories/domain/entities/category_products_response_entity/product_entity.dart';
+import 'package:flower_app/features/categories/domain/entities/category_products_response_entity/category_product_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'product_model.g.dart';
@@ -77,8 +77,8 @@ class ProductModel {
 
   Map<String, dynamic> toJson() => _$ProductModelToJson(this);
 
-  ProductEntity toEntity() {
-    return ProductEntity(
+  CategoryProductEntity toEntity() {
+    return CategoryProductEntity(
       id: id,
       title: title,
       imageCover: imgCover,
@@ -89,6 +89,7 @@ class ProductModel {
       description: description,
       images: images,
       discount: discount,
+      quantity: quantity ?? 0,
     );
   }
 }
