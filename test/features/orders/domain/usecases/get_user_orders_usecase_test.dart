@@ -15,7 +15,7 @@ import 'get_user_orders_usecase_test.mocks.dart';
 void main() {
   late MockOrdersRepoImpl mockOrdersRepoImpl;
   late GetUserOrdersUseCase getUserOrdersUseCase;
-  setUpAll(() {
+  setUp(() {
     mockOrdersRepoImpl = MockOrdersRepoImpl();
     getUserOrdersUseCase = GetUserOrdersUseCase(mockOrdersRepoImpl);
   });

@@ -20,7 +20,7 @@ import 'orders_repo_impl_test.mocks.dart';
 void main() {
   late OrdersRepoImpl ordersRepoImpl;
   late MockRemoteOrdersDataSourceImpl mockRemoteOrdersDataSourceImpl;
-  setUpAll(() {
+  setUp(() {
     mockRemoteOrdersDataSourceImpl = MockRemoteOrdersDataSourceImpl();
     ordersRepoImpl = OrdersRepoImpl(mockRemoteOrdersDataSourceImpl);
   });

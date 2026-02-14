@@ -19,7 +19,7 @@ import 'remote_orders_data_source_impl_test.mocks.dart';
 void main() {
   late MockOrdersApiClient mockOrdersApiClient;
   late RemoteOrdersDataSourceImpl remoteOrdersDataSourceImpl;
-  setUpAll(() {
+  setUp(() {
     mockOrdersApiClient = MockOrdersApiClient();
     remoteOrdersDataSourceImpl = RemoteOrdersDataSourceImpl(
       mockOrdersApiClient,
