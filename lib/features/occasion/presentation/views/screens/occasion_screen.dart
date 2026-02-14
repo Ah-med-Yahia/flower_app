@@ -7,7 +7,6 @@ import 'package:flower_app/features/occasion/presentation/view_model/occasion_cu
 import 'package:flower_app/features/occasion/presentation/view_model/occasion_event.dart';
 import 'package:flower_app/features/occasion/presentation/view_model/occasion_state.dart';
 import 'package:flower_app/features/occasion/presentation/views/widgets/app_bar_title.dart';
-import 'package:flower_app/features/occasion/presentation/views/widgets/back_button.dart';
 import 'package:flower_app/features/occasion/presentation/views/widgets/occasion_tab_bar.dart';
 import 'package:flower_app/features/occasion/presentation/views/widgets/products_grid.dart';
 import 'package:flutter/material.dart';

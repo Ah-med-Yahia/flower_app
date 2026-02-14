@@ -44,6 +44,7 @@ class _HomeTapState extends State<HomeTap> {
     super.initState();
     cubit = getIt<HomeScreenCubit>();
     // Reset navigation event when widget initializes
+    // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
     cubit.emit(
       HomeScreenStates(
         homeScreenStates: cubit.state.homeScreenStates,

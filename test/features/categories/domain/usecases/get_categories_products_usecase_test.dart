@@ -3,7 +3,7 @@ import 'package:flower_app/config/error_handler/error_handler.dart';
 import 'package:flower_app/core/constants/errors_constants.dart';
 import 'package:flower_app/features/categories/data/repos/categories_repo_impl.dart';
 import 'package:flower_app/features/categories/domain/entities/category_products_response_entity/category_products_response_entity.dart';
-import 'package:flower_app/features/categories/domain/entities/category_products_response_entity/product_entity.dart';
+import 'package:flower_app/features/categories/domain/entities/category_products_response_entity/category_product_entity.dart';
 import 'package:flower_app/features/categories/domain/usecases/get_categories_products_usecase.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -17,11 +17,11 @@ void main() {
     late MockCategoriesRepoImpl categoriesRepoImpl;
     late GetCategoryProductsUsecase getCategoryProductsUsecase;
 
-    ProductEntity makeProductEntity({
+    CategoryProductEntity makeProductEntity({
       double? priceAfterDiscount,
       double? discount,
     }) {
-      return ProductEntity(
+      return CategoryProductEntity(
         id: '1',
         title: 'name',
         description: 'description',
@@ -30,6 +30,7 @@ void main() {
         discount: discount,
         categoryId: '1',
         occasionId: '1',
+        quantity: 1,
       );
     }
 

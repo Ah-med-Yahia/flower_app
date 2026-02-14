@@ -1,6 +1,6 @@
-import 'package:flower_app/features/saved_addresses/data/mappers/saved_addresses_mapper.dart';
-import 'package:flower_app/features/saved_addresses/data/models/saved_addresses_response_model.dart';
-import 'package:flower_app/features/saved_addresses/domain/models/saved_addresses_response_entity.dart';
+import 'package:flower_app/features/user_addresses/saved_addresses/data/mappers/saved_addresses_mapper.dart';
+import 'package:flower_app/features/user_addresses/saved_addresses/data/models/saved_addresses_response_model.dart';
+import 'package:flower_app/features/user_addresses/shared/domain/models/address_entities.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

@@ -24,3 +24,14 @@ class GetCategoryProducts extends CategoriesIntents {
 }
 
 class IsSearching extends CategoriesIntents {}
+
+class AddProductToCart extends CategoriesIntents {
+  final String productId;
+  final int quantity;
+  AddProductToCart(this.productId, this.quantity);
+}
+
+class RemoveProductFromCart extends CategoriesIntents {
+  final String productId;
+  RemoveProductFromCart(this.productId);
+}

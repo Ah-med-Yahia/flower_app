@@ -1,6 +1,6 @@
-import 'package:flower_app/features/add_update_adrees/data/mappers/location_mapper.dart';
-import 'package:flower_app/features/add_update_adrees/data/models/city_model.dart';
-import 'package:flower_app/features/add_update_adrees/data/models/state_model.dart';
+import 'package:flower_app/features/user_addresses/add_update_adrees/data/mappers/location_mapper.dart';
+import 'package:flower_app/features/user_addresses/add_update_adrees/data/models/city_model.dart';
+import 'package:flower_app/features/user_addresses/add_update_adrees/data/models/state_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

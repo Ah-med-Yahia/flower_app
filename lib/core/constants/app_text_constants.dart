@@ -29,6 +29,8 @@ class AppTextConstants {
 
   static String get items => 'common.items'.tr();
 
+  static String get appName => 'common.appName'.tr();
+
   //-------------------------- Auth --------------------------//
   static String get login => 'auth.login'.tr();
 
@@ -250,6 +252,8 @@ class AppTextConstants {
 
   static String get cartError => 'cart.cartError'.tr();
 
+  static String get addToCartSuccess => 'cart.addToCartSuccess'.tr();
+
   static String get cartErrorMessage => 'cart.cartErrorMessage'.tr();
 
   static String get emptyCart => 'cart.emptyCart'.tr();
@@ -265,6 +269,8 @@ class AppTextConstants {
   static String get subTotal => 'cart.subTotal'.tr();
 
   static String get total => 'cart.total'.tr();
+
+  static String get removeFromCart => 'cart.removeFromCart'.tr();
 
   // Occasion
   static String get occasion => 'occasion.title'.tr();
@@ -353,4 +359,6 @@ class AppTextConstants {
 
   static String get addressSavedSuccessfully =>
       'addUpdateAddress.addressSavedSuccessfully'.tr();
+  static String get addressUpdatedSuccessfully =>
+      'addUpdateAddress.addressUpdatedSuccessfully'.tr();
 }

@@ -10,7 +10,7 @@ import 'package:flower_app/features/categories/presentation/cubit/categories_int
 import 'package:flower_app/features/categories/presentation/cubit/categories_state.dart';
 import 'package:flower_app/features/categories/presentation/views/widgets/category_tab_bar_widget.dart';
 import 'package:flower_app/features/categories/presentation/views/widgets/search_and_filter_products_widget.dart';
-import 'package:flower_app/features/categories/presentation/views/widgets/products_grid_widget.dart';
+import 'package:flower_app/features/categories/presentation/views/widgets/category_products_grid_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -116,7 +116,9 @@ class CategoriesTap extends StatelessWidget {
                               height: MediaQuery.of(context).size.height * 0.26,
                             );
                           }
-                          return ProductsGridWidget(products: categoryProducts);
+                          return CategoryProductsGridWidget(
+                            products: categoryProducts,
+                          );
                         },
                       ),
                     ],

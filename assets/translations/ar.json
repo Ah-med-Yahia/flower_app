@@ -13,7 +13,8 @@
     "egp": "ج.م",
     "currencySign": "ج.م",
     "items": "عناصر",
-    "ok": "تم"
+    "ok": "تم",
+    "appName": "فلوري"
   },
   "auth": {
     "login": "تسجيل الدخول",
@@ -128,7 +129,9 @@
     "checkout": "الدفع",
     "subTotal": "المجموع الفرعي",
     "deliveryFee": "رسوم التوصيل",
-    "total": "الإجمالي"
+    "total": "الإجمالي",
+    "addToCartSuccess": "تم إضافة المنتج إلى العربة بنجاح",
+    "removeFromCart": "إزالة من العربة"
   },
   "checkout": {
     "orderPlacedSuccessfully": "تم تنفيذ الطلب بنجاح",
@@ -211,9 +214,24 @@
     "logoutFailed": "فشل تسجيل الخروج:",
     "failedToEmitSideEffect": "فشل تنفيذ التأثير الجانبي"
   },
+  "addUpdateAddress": {
+    "savedAddresses": "العناوين المحفوظة",
+    "address": "العنوان",
+    "enterAddress": "أدخل عنوانك",
+    "recipientName": "اسم المستلم",
+    "enterTheRecipientName": "أدخل اسم المستلم",
+    "phoneNumber": "رقم الهاتف",
+    "enterPhoneNumber": "أدخل رقم الهاتف",
+    "state": "الولاية",
+    "selectState": "اختر الولاية",
+    "city": "المدينة",
+    "selectCity": "اختر المدينة",
+    "saveAddress": "حفظ العنوان",
+    "addressSavedSuccessfully": "تم حفظ العنوان بنجاح",
+    "addressUpdatedSuccessfully": "تم تحديث العنوان بنجاح"
+  },
   "savedAddresses": {
     "addNewAddress": "إضافة عنوان جديد"
   }
 
-}
 }
