@@ -214,6 +214,22 @@
     "logoutFailed": "فشل تسجيل الخروج:",
     "failedToEmitSideEffect": "فشل تنفيذ التأثير الجانبي"
   },
+  "addUpdateAddress": {
+    "savedAddresses": "العناوين المحفوظة",
+    "address": "العنوان",
+    "enterAddress": "أدخل عنوانك",
+    "recipientName": "اسم المستلم",
+    "enterTheRecipientName": "أدخل اسم المستلم",
+    "phoneNumber": "رقم الهاتف",
+    "enterPhoneNumber": "أدخل رقم الهاتف",
+    "state": "الولاية",
+    "selectState": "اختر الولاية",
+    "city": "المدينة",
+    "selectCity": "اختر المدينة",
+    "saveAddress": "حفظ العنوان",
+    "addressSavedSuccessfully": "تم حفظ العنوان بنجاح",
+    "addressUpdatedSuccessfully": "تم تحديث العنوان بنجاح"
+  },
   "savedAddresses": {
     "addNewAddress": "إضافة عنوان جديد"
   }

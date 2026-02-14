@@ -55,4 +55,22 @@ class ErrorsConstant {
   //-------------------------- SIDE-EFFECT ERROR --------------------------//
   static String get failedToEmitSideEffectError =>
       'errors.failedToEmitSideEffect'.tr();
+
+  //-------------------------- JSON ERROR --------------------------//
+  static String get failedToLoadJsonError => 'errors.failedToLoadJson'.tr();
+
+  static String get governoratesDataIsNullError =>
+      'errors.governoratesDataIsNull'.tr();
+
+  static String get citiesDataIsNullError => 'errors.citiesDataIsNull'.tr();
+
+  //-------------------------- LOCATION ERROR --------------------------//
+  static String get failedToGetCurrentLocation =>
+      'errors.failedToGetCurrentLocation'.tr();
+
+  static String get cityNameOrStateNameIsRequired =>
+      'errors.cityNameOrStateNameIsRequired'.tr();
+
+  static String get locationNotFoundForGivenAddress =>
+      'errors.locationNotFoundForGivenAddress'.tr();
 }

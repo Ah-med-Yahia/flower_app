@@ -22,7 +22,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomeTap extends StatelessWidget {
+class HomeTap extends StatefulWidget {
   final VoidCallback onNavigateToCategories;
   final void Function(String categoryId) onNavigateSelectedToCategory;
 
@@ -33,14 +33,35 @@ class HomeTap extends StatelessWidget {
   });
 
   @override
+  State<HomeTap> createState() => _HomeTapState();
+}
+
+class _HomeTapState extends State<HomeTap> {
+  late final HomeScreenCubit cubit;
+
+  @override
+  void initState() {
+    super.initState();
+    cubit = getIt<HomeScreenCubit>();
+    // Reset navigation event when widget initializes
+    // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
+    cubit.emit(
+      HomeScreenStates(
+        homeScreenStates: cubit.state.homeScreenStates,
+        navigationEvent: null, // Clear any old navigation events
+      ),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     final titleLarge = Theme.of(context).textTheme.titleLarge;
     final double height = MediaQuery.of(context).size.height;
-    final HomeScreenCubit cubit = getIt<HomeScreenCubit>();
+    // final HomeScreenCubit cubit = getIt<HomeScreenCubit>();
     return BlocProvider(
       create: (context) => cubit..onEvent(GetHomeScreenDataEvent()),
       child: BlocListener<HomeScreenCubit, HomeScreenStates>(
-        listenWhen: (previous, current) => current.navigationEvent != null,
+        // listenWhen: (previous, current) => current.navigationEvent != null,
         listener: (context, state) {
           final nav = state.navigationEvent;
           if (nav != null) {
@@ -54,7 +75,7 @@ class HomeTap extends StatelessWidget {
                 context.pushNamed(AppRoutesConstants.bestSellerRoute);
 
               case NavigateToCategoryEvent():
-                onNavigateSelectedToCategory(nav.categoryId!);
+                widget.onNavigateSelectedToCategory(nav.categoryId!);
               case NavigateToOccasionEvent():
                 context.pushNamed(AppRoutesConstants.occasionScreen);
             }
@@ -122,7 +143,9 @@ class HomeTap extends StatelessWidget {
                                 fontSize: 20,
                               ),
                             ),
-                            ViewAllButton(onPressed: onNavigateToCategories),
+                            ViewAllButton(
+                              onPressed: widget.onNavigateToCategories,
+                            ),
                           ],
                         ),
                         const SizedBox(height: 8),

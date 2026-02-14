@@ -50,6 +50,10 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/FlowerLogo.png
+  AssetGenImage get flowerLogo =>
+      const AssetGenImage('assets/images/FlowerLogo.png');
+
   /// File path: assets/images/Logo.png
   AssetGenImage get logo => const AssetGenImage('assets/images/Logo.png');
 
@@ -61,7 +65,7 @@ class $AssetsImagesGen {
   AssetGenImage get pen => const AssetGenImage('assets/images/pen.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [logo, notification, pen];
+  List<AssetGenImage> get values => [flowerLogo, logo, notification, pen];
 }
 
 class $AssetsLottieGen {
@@ -78,6 +82,9 @@ class $AssetsLottieGen {
   LottieGenImage get flowerLoading =>
       const LottieGenImage('assets/lottie/FlowerLoading.json');
 
+  /// File path: assets/lottie/clock.svg
+  SvgGenImage get clock => const SvgGenImage('assets/lottie/clock.svg');
+
   /// File path: assets/lottie/empty_cart.json
   LottieGenImage get emptyCart =>
       const LottieGenImage('assets/lottie/empty_cart.json');
@@ -90,6 +97,7 @@ class $AssetsLottieGen {
     emptyBox,
     flower,
     flowerLoading,
+    clock,
     emptyCart,
     error,
   ];
@@ -111,11 +119,16 @@ class $AssetsTranslationsGen {
 class Assets {
   const Assets._();
 
+  static const String cities = 'assets/cities.json';
   static const $AssetsFilesGen files = $AssetsFilesGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsLottieGen lottie = $AssetsLottieGen();
+  static const String states = 'assets/states.json';
   static const $AssetsTranslationsGen translations = $AssetsTranslationsGen();
+
+  /// List of all assets
+  static List<String> get values => [cities, states];
 }
 
 class AssetGenImage {

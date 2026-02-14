@@ -1,10 +1,10 @@
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/error_handler/error_handler.dart';
-import 'package:flower_app/features/saved_addresses/data/data_sources/remote/saved_addresses_remote_datasource.dart';
-import 'package:flower_app/features/saved_addresses/data/mappers/saved_addresses_mapper.dart';
-import 'package:flower_app/features/saved_addresses/data/models/saved_addresses_response_model.dart';
-import 'package:flower_app/features/saved_addresses/data/repo/saved_addresses_repo_impl.dart';
-import 'package:flower_app/features/saved_addresses/domain/models/saved_addresses_response_entity.dart';
+import 'package:flower_app/features/user_addresses/saved_addresses/data/data_sources/remote/saved_addresses_remote_datasource.dart';
+import 'package:flower_app/features/user_addresses/saved_addresses/data/mappers/saved_addresses_mapper.dart';
+import 'package:flower_app/features/user_addresses/saved_addresses/data/models/saved_addresses_response_model.dart';
+import 'package:flower_app/features/user_addresses/saved_addresses/data/repo/saved_addresses_repo_impl.dart';
+import 'package:flower_app/features/user_addresses/shared/domain/models/address_entities.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
