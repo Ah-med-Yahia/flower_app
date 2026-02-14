@@ -166,7 +166,7 @@ Future<void> main() async {
         predicate<SavedAddressesStates>((state) {
           return state.navigationEvent is NavigateToAddUpdateAddressUiEvent &&
               (state.navigationEvent as NavigateToAddUpdateAddressUiEvent)
-                      .addressId ==
+                      .address ==
                   null;
         }),
       ],
@@ -175,13 +175,33 @@ Future<void> main() async {
     blocTest<SavedAddressesCubit, SavedAddressesStates>(
       'emits navigation event when EditSavedAddressEvent is triggered',
       build: () => cubit,
-      act: (cubit) => cubit.onEvent(EditSavedAddressEvent('123')),
+      act: (cubit) => cubit.onEvent(
+        EditSavedAddressEvent(
+          const AddressEntity(
+            id: '123',
+            street: 'Test Street',
+            phone: '01234567890',
+            city: 'Test City',
+            lat: '30.123',
+            long: '31.456',
+            username: 'testuser',
+          ),
+        ),
+      ),
       expect: () => [
         predicate<SavedAddressesStates>((state) {
           return state.navigationEvent is NavigateToAddUpdateAddressUiEvent &&
               (state.navigationEvent as NavigateToAddUpdateAddressUiEvent)
-                      .addressId ==
-                  '123';
+                      .address ==
+                  const AddressEntity(
+                    id: '123',
+                    street: 'Test Street',
+                    phone: '01234567890',
+                    city: 'Test City',
+                    lat: '30.123',
+                    long: '31.456',
+                    username: 'testuser',
+                  );
         }),
       ],
     );

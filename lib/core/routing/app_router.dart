@@ -121,7 +121,7 @@ abstract class AppRouter {
       GoRoute(
         path: AppRoutesConstants.savedAddressesRoute,
         name: AppRoutesConstants.savedAddressesRoute,
-        builder: (context, state) => SavedAddressesScreen(),
+        builder: (context, state) => const SavedAddressesScreen(),
       ),
       GoRoute(
         path: AppRoutesConstants.editProfileRoute,
