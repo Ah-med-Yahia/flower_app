@@ -1,4 +1,5 @@
 import 'package:flower_app/config/base_response/base_response.dart';
+import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/features/orders/domain/entities/order_entity.dart';
 import 'package:flower_app/features/orders/domain/entities/orders_response_entity.dart';
 import 'package:flower_app/features/orders/domain/repos/orders_repo_contract.dart';
@@ -40,12 +41,14 @@ class GetUserOrdersUseCase {
     switch (filter) {
       case OrderFilter.active:
         return orders.where((order) {
-          return order.state == 'pending' || order.state == 'in progress';
+          return order.state == AppTextConstants.pending ||
+              order.state == AppTextConstants.inProgress;
         }).toList();
 
       case OrderFilter.completed:
         return orders.where((order) {
-          return order.state == 'completed' || order.state == 'canceled';
+          return order.state == AppTextConstants.completed ||
+              order.state == AppTextConstants.canceled;
         }).toList();
 
       case OrderFilter.all:
