@@ -22,3 +22,13 @@ class WhenOccasionIsClickedEvent extends HomeScreenEvents {
 }
 
 class WhenOccasionViewAllIsClickedEvent extends HomeScreenEvents {}
+
+class GetSearchProductsEvent extends HomeScreenEvents {
+  final String? keyword;
+  GetSearchProductsEvent({this.keyword});
+}
+
+class IsSearching extends HomeScreenEvents {
+  final bool isSearching;
+  IsSearching({required this.isSearching});
+}

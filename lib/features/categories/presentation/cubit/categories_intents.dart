@@ -23,7 +23,10 @@ class GetCategoryProducts extends CategoriesIntents {
   GetCategoryProducts(this.categoryId, {this.sortOption, this.keyword});
 }
 
-class IsSearching extends CategoriesIntents {}
+class IsSearching extends CategoriesIntents {
+  final bool isSearching;
+  IsSearching({required this.isSearching});
+}
 
 class AddProductToCart extends CategoriesIntents {
   final String productId;

@@ -63,7 +63,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
       case SelectSortOption():
         _selectSortOption(event.sortOption);
       case IsSearching():
-        _isSearching();
+        _isSearching(event.isSearching);
       case AddProductToCart():
         _addProductToCart(event.productId, event.quantity);
       case RemoveProductFromCart():
@@ -237,8 +237,8 @@ class CategoriesCubit extends Cubit<CategoriesState> {
     emit(state.copyWith(selectedSortOption: sortOption));
   }
 
-  void _isSearching() {
-    emit(state.copyWith(isSearching: !state.isSearching));
+  void _isSearching(bool isSearching) {
+    emit(state.copyWith(isSearching: isSearching));
   }
 
   Future<void> _addProductToCart(String productId, int quantity) async {

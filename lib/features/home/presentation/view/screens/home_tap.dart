@@ -1,18 +1,14 @@
-import 'dart:developer';
-
 import 'package:flower_app/config/di/di.dart';
 import 'package:flower_app/core/constants/app_routes_constant.dart';
-import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/constants/errors_constants.dart';
-import 'package:flower_app/core/gen/assets.gen.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flower_app/core/widgets/custom_error_widget.dart';
 import 'package:flower_app/core/widgets/loading_indicator_widget.dart';
 import 'package:flower_app/features/home/presentation/view/widgets/address_widget.dart';
-import 'package:flower_app/features/home/presentation/view/widgets/best_seller_occations_card_widget.dart';
-import 'package:flower_app/features/home/presentation/view/widgets/category_card_widget.dart';
-import 'package:flower_app/features/home/presentation/view/widgets/search_widget.dart';
-import 'package:flower_app/features/home/presentation/view/widgets/view_all_button.dart';
+import 'package:flower_app/features/home/presentation/view/widgets/best_seller_section.dart';
+import 'package:flower_app/features/home/presentation/view/widgets/categories_section.dart';
+import 'package:flower_app/features/home/presentation/view/widgets/home_app_bar.dart';
+import 'package:flower_app/features/home/presentation/view/widgets/occasion_section.dart';
 import 'package:flower_app/features/home/presentation/view_model/home_screen_cubit.dart';
 import 'package:flower_app/features/home/presentation/view_model/home_screen_events.dart';
 import 'package:flower_app/features/home/presentation/view_model/home_screen_states.dart';
@@ -20,7 +16,6 @@ import 'package:flower_app/features/home/presentation/view_model/ui_events.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class HomeTap extends StatefulWidget {
   final VoidCallback onNavigateToCategories;
@@ -55,13 +50,10 @@ class _HomeTapState extends State<HomeTap> {
 
   @override
   Widget build(BuildContext context) {
-    final titleLarge = Theme.of(context).textTheme.titleLarge;
     final double height = MediaQuery.of(context).size.height;
-    // final HomeScreenCubit cubit = getIt<HomeScreenCubit>();
     return BlocProvider(
       create: (context) => cubit..onEvent(GetHomeScreenDataEvent()),
       child: BlocListener<HomeScreenCubit, HomeScreenStates>(
-        // listenWhen: (previous, current) => current.navigationEvent != null,
         listener: (context, state) {
           final nav = state.navigationEvent;
           if (nav != null) {
@@ -109,177 +101,26 @@ class _HomeTapState extends State<HomeTap> {
                 body: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          children: [
-                            Assets.lottie.flower.svg(width: 24, height: 24),
-                            const SizedBox(width: 4),
-                            Text(
-                              AppTextConstants.flowery,
-                              style: titleLarge?.copyWith(
-                                color: AppColors.primary,
-                                fontWeight: FontWeight.bold,
-                                fontFamily:
-                                    GoogleFonts.imFellEnglish().fontFamily,
-                              ),
-                            ),
-                            const SizedBox(width: 16),
-                            const Expanded(child: SearchWidget()),
-                          ],
-                        ),
+                        const HomeAppBar(),
                         const SizedBox(height: 16),
-
                         const AddressWidget(address: '2XVP+XC - Sheikh Zayed'),
-
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              AppTextConstants.categories,
-                              style: titleLarge?.copyWith(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                              ),
-                            ),
-                            ViewAllButton(
-                              onPressed: widget.onNavigateToCategories,
-                            ),
-                          ],
+                        CategoriesSection(
+                          onNavigateToCategories: widget.onNavigateToCategories,
+                          cubit: cubit,
+                          categories: data!.categories,
                         ),
-                        const SizedBox(height: 8),
-
-                        SizedBox(
-                          height: 120,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-
-                            itemCount: data!.categories.length,
-                            itemBuilder: (context, index) {
-                              return GestureDetector(
-                                onTap: () {
-                                  cubit.onEvent(
-                                    WhenCategoryIsClickedEvent(
-                                      categoryId: data.categories[index].id,
-                                    ),
-                                  );
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.only(right: 16.0),
-                                  child: CategoryCardWidget(
-                                    imageUrl: data.categories[index].image,
-                                    label: data.categories[index].name,
-                                    bgColor: AppColors.primary.withValues(
-                                      alpha: 0.1,
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
+                        BestSellerSection(
+                          cubit: cubit,
+                          bestSeller: data.bestSeller,
                         ),
-
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              AppTextConstants.bestSeller,
-                              style: titleLarge?.copyWith(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                              ),
-                            ),
-                            ViewAllButton(
-                              onPressed: () {
-                                cubit.onEvent(
-                                  WhenViewAllBestSellerIsClickedEvent(),
-                                );
-                              },
-                            ),
-                          ],
+                        OccasionSection(
+                          cubit: cubit,
+                          occasions: data.occasions,
                         ),
-                        const SizedBox(height: 8),
-
-                        SizedBox(
-                          height: 220,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: data.bestSeller.length,
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.only(right: 16.0),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    log('best seller tapped');
-                                    cubit.onEvent(
-                                      WhenBestSellerIsClickedEvent(
-                                        productId: data.bestSeller[index].id,
-                                      ),
-                                    );
-                                  },
-                                  child: BestSellerOccationsCardWidget(
-                                    image: data.bestSeller[index].imgCover,
-                                    title: data.bestSeller[index].title,
-                                    price: data
-                                        .bestSeller[index]
-                                        .priceAfterDiscount
-                                        .toInt()
-                                        .toString(),
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              AppTextConstants.occasion,
-                              style: titleLarge?.copyWith(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                              ),
-                            ),
-                            ViewAllButton(
-                              onPressed: () {
-                                cubit.onEvent(
-                                  WhenOccasionViewAllIsClickedEvent(),
-                                );
-                              },
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 8),
-
-                        SizedBox(
-                          height: 195,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: data.occasions.length,
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.only(right: 16.0),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    cubit.onEvent(
-                                      WhenOccasionIsClickedEvent(
-                                        occasionId: data.occasions[index].id,
-                                      ),
-                                    );
-                                  },
-                                  child: BestSellerOccationsCardWidget(
-                                    image: data.occasions[index].image,
-                                    title: data.occasions[index].name,
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                        const SizedBox(height: 16),
                       ],
                     ),
                   ),

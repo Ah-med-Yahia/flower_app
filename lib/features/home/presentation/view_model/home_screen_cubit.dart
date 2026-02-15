@@ -29,6 +29,10 @@ class HomeScreenCubit extends Cubit<HomeScreenStates> {
         _navigateToCategoryDetails(null);
       case WhenOccasionViewAllIsClickedEvent():
         _navigateToOccasionDetails(null);
+      case IsSearching():
+        _whenSearching(event.isSearching);
+      case GetSearchProductsEvent():
+        _getSearchProducts(event.keyword);
     }
   }
 
@@ -84,4 +88,10 @@ class HomeScreenCubit extends Cubit<HomeScreenStates> {
   void _navigateToOccasionDetails(String? occasionId) {
     emit(state.copyWith(navigationEvent: NavigateToOccasionEvent(occasionId)));
   }
+
+  void _whenSearching(bool isSearching) {
+    emit(state.copyWith(isSearching: isSearching));
+  }
+
+  void _getSearchProducts(String? keyword) async {}
 }
