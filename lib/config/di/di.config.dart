@@ -191,9 +191,12 @@ import '../../features/orders/api/datasources_impl/remote_orders_data_source_imp
     as _i140;
 import '../../features/orders/data/datasources/remote_orders_data_source.dart'
     as _i227;
+import '../../features/orders/data/repos/orders_repo_impl.dart' as _i431;
 import '../../features/orders/domain/repos/orders_repo_contract.dart' as _i131;
 import '../../features/orders/domain/usecases/get_user_orders_usecase.dart'
     as _i407;
+import '../../features/orders/presentation/view_model/orders_cubit.dart'
+    as _i942;
 import '../../features/product/best_seller/api/api_client/best_seller_api_client.dart'
     as _i113;
 import '../../features/product/best_seller/api/datasource/remote/best_seller_remote_data_source_impl.dart'
@@ -345,9 +348,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i1059.CacheHelper>(
       () => _i1059.CacheHelper(gh<_i460.SharedPreferences>()),
-    );
-    gh.factory<_i407.GetUserOrdersUseCase>(
-      () => _i407.GetUserOrdersUseCase(gh<_i131.OrdersRepoContract>()),
     );
     gh.factory<_i455.ProfileMainLocalDataSource>(
       () => _i176.ProfileMainLocalDataSourceImpl(),
@@ -582,6 +582,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i892.BestSellerRepo>(
       () => _i20.BestSellerRepoImpl(gh<_i1058.BestSellerRemoteDataSource>()),
     );
+    gh.factory<_i131.OrdersRepoContract>(
+      () => _i431.OrdersRepoImpl(gh<_i227.RemoteOrdersDataSource>()),
+    );
     gh.factory<_i57.RegisterRepository>(
       () => _i200.RegisterRepositoryImpl(gh<_i613.RegisterDataSource>()),
     );
@@ -678,6 +681,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i420.GetAboutAppUseCase>(
       () => _i420.GetAboutAppUseCase(gh<_i652.ProfileMainRepo>()),
+    );
+    gh.factory<_i407.GetUserOrdersUseCase>(
+      () => _i407.GetUserOrdersUseCase(gh<_i131.OrdersRepoContract>()),
+    );
+    gh.factory<_i942.OrdersCubit>(
+      () => _i942.OrdersCubit(gh<_i407.GetUserOrdersUseCase>()),
     );
     gh.factory<_i888.GetProductDetailsUsecase>(
       () => _i888.GetProductDetailsUsecase(

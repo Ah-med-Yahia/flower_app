@@ -21,10 +21,14 @@ class OrdersCubit extends Cubit<OrdersState> {
   }
 
   Future<void> _getUserOrders({OrderFilter? filter}) async {
-    emit(
-      state.copyWith(ordersState: state.ordersState.copyWith(isLoading: true)),
-    );
     final filterToApply = filter ?? state.currentFilter;
+
+    emit(
+      state.copyWith(
+        ordersState: state.ordersState.copyWith(isLoading: true),
+        currentFilter: filterToApply,
+      ),
+    );
 
     final response = await _getUserOrdersUseCase.getUserOrders(
       filter: filterToApply,
@@ -33,7 +37,12 @@ class OrdersCubit extends Cubit<OrdersState> {
     response.when(
       success: (data) => emit(
         state.copyWith(
-          ordersState: state.ordersState.copyWith(isLoading: false, data: data),
+          ordersState: state.ordersState.copyWith(
+            isLoading: false,
+            data: data,
+            errorMessage: null,
+          ),
+          currentFilter: filterToApply,
         ),
       ),
       failure: (errorHandler) => emit(
@@ -42,6 +51,7 @@ class OrdersCubit extends Cubit<OrdersState> {
             isLoading: false,
             errorMessage: errorHandler.message,
           ),
+          currentFilter: filterToApply,
         ),
       ),
     );
