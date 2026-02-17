@@ -361,4 +361,9 @@ class AppTextConstants {
       'addUpdateAddress.addressSavedSuccessfully'.tr();
   static String get addressUpdatedSuccessfully =>
       'addUpdateAddress.addressUpdatedSuccessfully'.tr();
+  // Orders
+  static String get pending => 'pending';
+  static String get inProgress => 'in progress';
+  static String get completed => 'completed';
+  static String get canceled => 'canceled';
 }
