@@ -15,8 +15,9 @@ class OrdersCubit extends Cubit<OrdersState> {
     : super(const OrdersState(ordersState: BaseState<OrdersResponseEntity>()));
 
   void onEvent(OrdersEvent event) {
-    if (event is GetOrdersEvent) {
-      _getUserOrders(filter: event.filter);
+    switch (event) {
+      case GetOrdersEvent():
+        _getUserOrders(filter: event.filter);
     }
   }
 

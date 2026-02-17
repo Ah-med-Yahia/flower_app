@@ -12,7 +12,6 @@ class OrdersTabBar extends StatelessWidget implements PreferredSizeWidget {
   const OrdersTabBar({super.key, required this.controller});
 
   @override
-  Size get preferredSize => const Size.fromHeight(48);
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
@@ -39,4 +38,7 @@ class OrdersTabBar extends StatelessWidget implements PreferredSizeWidget {
       ),
     );
   }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(48);
 }
