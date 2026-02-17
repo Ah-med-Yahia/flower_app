@@ -26,4 +26,6 @@ abstract class AppRoutesConstants {
 
   //--------------- SAVED ADDRESSES ROUTES -----------------//
   static const String savedAddressesRoute = '/saved_addresses';
+  //--------------- ORDERS ROUTES -----------------//
+  static const String ordersRoute = '/orders';
 }

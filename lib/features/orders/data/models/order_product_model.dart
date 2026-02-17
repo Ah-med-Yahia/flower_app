@@ -59,11 +59,11 @@ class OrderProductModel {
 
   OrderProductEntity toEntity() {
     return OrderProductEntity(
-      id: id,
-      title: title,
-      imgCover: imgCover,
-      price: price,
-      priceAfterDiscount: priceAfterDiscount,
+      id: id ?? '',
+      title: title ?? '',
+      imgCover: imgCover ?? '',
+      price: price ?? 0,
+      priceAfterDiscount: priceAfterDiscount ?? 0,
     );
   }
 }

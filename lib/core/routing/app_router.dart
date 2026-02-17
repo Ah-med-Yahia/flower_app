@@ -1,5 +1,6 @@
 import 'package:flower_app/config/di/di.dart';
 import 'package:flower_app/core/constants/app_routes_constant.dart';
+import 'package:flower_app/features/orders/presentation/views/screens/orders_screen.dart';
 import 'package:flower_app/features/user_addresses/add_update_adrees/presentation/view/screens/add_update_address_screen.dart';
 import 'package:flower_app/features/user_addresses/shared/domain/models/address_entities.dart';
 import 'package:flower_app/features/auth/change_password/presentation/screens/change_password_screen.dart';
@@ -25,7 +26,7 @@ import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
   static GoRouter router = GoRouter(
-    initialLocation: AppRoutesConstants.homeRoute,
+    initialLocation: AppRoutesConstants.splashRoute,
     routes: [
       GoRoute(
         path: AppRoutesConstants.splashRoute,
@@ -46,6 +47,11 @@ abstract class AppRouter {
         path: AppRoutesConstants.homeRoute,
         name: AppRoutesConstants.homeRoute,
         builder: (context, state) => const HomeScreen(),
+      ),
+      GoRoute(
+        path: AppRoutesConstants.ordersRoute,
+        name: AppRoutesConstants.ordersRoute,
+        builder: (context, state) => const OrdersScreen(),
       ),
       GoRoute(
         path: AppRoutesConstants.productDetailsRoute,

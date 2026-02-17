@@ -27,13 +27,13 @@ void main() {
       () async {
         final fakeOrdersResponse = OrdersResponseEntity(
           orders: [
-            OrderEntity(orderNumber: '2', state: 'in progress'),
+            OrderEntity(orderNumber: '2', state: 'inProgress'),
             OrderEntity(orderNumber: '1', state: 'pending'),
             OrderEntity(orderNumber: '3', state: 'pending'),
             OrderEntity(orderNumber: '4', state: 'completed'),
             OrderEntity(orderNumber: '5', state: 'canceled'),
             OrderEntity(orderNumber: '6', state: 'completed'),
-            OrderEntity(orderNumber: '7', state: 'in progress'),
+            OrderEntity(orderNumber: '7', state: 'inProgress'),
           ],
         );
 
@@ -50,7 +50,7 @@ void main() {
         expect(success.data.orders!.length, 4);
         expect(
           success.data.orders!.every(
-            (order) => order.state == 'pending' || order.state == 'in progress',
+            (order) => order.state == 'pending' || order.state == 'inProgress',
           ),
           isTrue,
         );
