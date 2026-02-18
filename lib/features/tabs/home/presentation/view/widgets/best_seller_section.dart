@@ -19,6 +19,7 @@ class BestSellerSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final screenSize = MediaQuery.of(context).size;
     return Column(
       children: [
         Row(
@@ -39,7 +40,7 @@ class BestSellerSection extends StatelessWidget {
           ],
         ),
         SizedBox(
-          height: 220,
+          height: screenSize.height * 0.28,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),
