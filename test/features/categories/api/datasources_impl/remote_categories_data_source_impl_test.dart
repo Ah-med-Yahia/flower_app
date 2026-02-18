@@ -5,8 +5,8 @@ import 'package:flower_app/features/categories/api/api_service/categories_api_cl
 import 'package:flower_app/features/categories/api/datasources_impl/remote_categories_data_source_impl.dart';
 import 'package:flower_app/features/categories/data/models/get_all_categories_models/category_model.dart';
 import 'package:flower_app/features/categories/data/models/get_all_categories_models/get_all_categories_response_model.dart';
-import 'package:flower_app/features/categories/data/models/get_products_models/category_products_response_model.dart';
-import 'package:flower_app/features/categories/data/models/get_products_models/product_model.dart';
+import 'package:flower_app/core/shared/data/models/get_products_models/products_response_model.dart';
+import 'package:flower_app/core/shared/data/models/get_products_models/product_model.dart';
 import 'package:flower_app/features/categories/data/models/metadata/category_metadata_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -78,7 +78,7 @@ void main() {
 
   group('get category products test cases', () {
     test('Test Success Case', () async {
-      final mockResponse = CategoryProductsResponseModel(
+      final mockResponse = ProductsResponseModel(
         message: 'Success',
         metadata: CategoryMetadataModel(
           currentPage: 1,
@@ -95,8 +95,8 @@ void main() {
 
       final result = await dataSource.getCategoryProducts(categoryId: '1');
 
-      expect(result, isA<Success<CategoryProductsResponseModel>>());
-      final success = result as Success<CategoryProductsResponseModel>;
+      expect(result, isA<Success<ProductsResponseModel>>());
+      final success = result as Success<ProductsResponseModel>;
       expect(success.data.message, 'Success');
       expect(success.data.metadata, isA<CategoryMetadataModel>());
       expect(success.data.products, isA<List<ProductModel>>());
@@ -114,9 +114,9 @@ void main() {
 
       final result = await dataSource.getCategoryProducts(categoryId: '1');
 
-      expect(result, isA<Failure<CategoryProductsResponseModel>>());
+      expect(result, isA<Failure<ProductsResponseModel>>());
 
-      final failure = result as Failure<CategoryProductsResponseModel>;
+      final failure = result as Failure<ProductsResponseModel>;
 
       expect(
         failure.errorHandler.errorModel.message,

@@ -1,4 +1,5 @@
-import 'package:flower_app/features/categories/data/models/get_products_models/product_model.dart';
+import 'package:flower_app/core/shared/data/mappers/product_mapper.dart';
+import 'package:flower_app/core/shared/data/models/get_products_models/product_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

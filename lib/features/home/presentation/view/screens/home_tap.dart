@@ -1,9 +1,18 @@
+import 'dart:developer';
+
 import 'package:flower_app/config/di/di.dart';
 import 'package:flower_app/core/constants/app_routes_constant.dart';
+import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/constants/errors_constants.dart';
+import 'package:flower_app/core/gen/assets.gen.dart';
+import 'package:flower_app/core/shared/presentation/cubits/products_cubit/products_cubit.dart';
+import 'package:flower_app/core/shared/presentation/cubits/products_cubit/products_state.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flower_app/core/widgets/custom_error_widget.dart';
 import 'package:flower_app/core/widgets/loading_indicator_widget.dart';
+import 'package:flower_app/core/widgets/products_grid_widget.dart';
+import 'package:flower_app/core/widgets/spacing.dart';
+import 'package:flower_app/features/cart/presentation/widgets/cart_lottie_states_widget.dart';
 import 'package:flower_app/features/home/presentation/view/widgets/address_widget.dart';
 import 'package:flower_app/features/home/presentation/view/widgets/best_seller_section.dart';
 import 'package:flower_app/features/home/presentation/view/widgets/categories_section.dart';
@@ -65,7 +74,6 @@ class _HomeTapState extends State<HomeTap> {
                 );
               case NavigateToBestSellerScreenEvent():
                 context.pushNamed(AppRoutesConstants.bestSellerRoute);
-
               case NavigateToCategoryEvent():
                 widget.onNavigateSelectedToCategory(nav.categoryId!);
               case NavigateToOccasionEvent():
@@ -94,7 +102,7 @@ class _HomeTapState extends State<HomeTap> {
             }
             if (state.homeScreenStates?.data != null &&
                 state.homeScreenStates?.isLoading == false) {
-              final data = state.homeScreenStates!.data;
+              final homeScreenData = state.homeScreenStates!.data;
               return Scaffold(
                 appBar: AppBar(toolbarHeight: height * 0.0),
                 backgroundColor: AppColors.background,
@@ -106,20 +114,71 @@ class _HomeTapState extends State<HomeTap> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const HomeAppBar(),
-                        const SizedBox(height: 16),
-                        const AddressWidget(address: '2XVP+XC - Sheikh Zayed'),
-                        CategoriesSection(
-                          onNavigateToCategories: widget.onNavigateToCategories,
-                          cubit: cubit,
-                          categories: data!.categories,
-                        ),
-                        BestSellerSection(
-                          cubit: cubit,
-                          bestSeller: data.bestSeller,
-                        ),
-                        OccasionSection(
-                          cubit: cubit,
-                          occasions: data.occasions,
+                        12.verticalSpacing,
+                        BlocBuilder<ProductsCubit, ProductsState>(
+                          builder: (context, state) {
+                            final ps = state.productsState;
+                            final products = ps.data?.products;
+
+                            if (ps.isLoading == true) {
+                              return const Center(child: LoadingIndicator());
+                            }
+
+                            if (ps.errorMessage != null &&
+                                ps.isLoading == false) {
+                              return CustomErrorWidget(
+                                error:
+                                    ps.errorMessage ??
+                                    ErrorsConstant.defaultError,
+                              );
+                            }
+
+                            if (products?.isNotEmpty == true &&
+                                ps.isLoading == false) {
+                              log(products!.length.toString());
+                              return ProductsGridWidget(
+                                products: ps.data!.products,
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 0,
+                                ),
+                              );
+                            }
+
+                            if (products?.isEmpty == true &&
+                                ps.isLoading == false) {
+                              return LottieStatesWidget(
+                                lottie: Assets.lottie.emptyBox.path,
+                                text: AppTextConstants.noProductsAvailable,
+                                textColor: AppColors.primary,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.26,
+                              );
+                            }
+
+                            return Column(
+                              children: [
+                                const AddressWidget(
+                                  address: '2XVP+XC - Sheikh Zayed',
+                                ),
+                                CategoriesSection(
+                                  onNavigateToCategories:
+                                      widget.onNavigateToCategories,
+                                  cubit: cubit,
+                                  categories: homeScreenData!.categories,
+                                ),
+                                BestSellerSection(
+                                  cubit: cubit,
+                                  bestSeller: homeScreenData.bestSeller,
+                                ),
+                                OccasionSection(
+                                  cubit: cubit,
+                                  occasions: homeScreenData.occasions,
+                                ),
+                              ],
+                            );
+                          },
                         ),
                       ],
                     ),

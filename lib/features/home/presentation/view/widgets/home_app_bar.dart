@@ -2,11 +2,11 @@ import 'dart:developer';
 
 import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/gen/assets.gen.dart';
+import 'package:flower_app/core/shared/presentation/cubits/products_cubit/products_cubit.dart';
+import 'package:flower_app/core/shared/presentation/cubits/products_cubit/products_intents.dart';
+import 'package:flower_app/core/shared/presentation/cubits/products_cubit/products_state.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flower_app/core/widgets/search_widget.dart';
-import 'package:flower_app/features/home/presentation/view_model/home_screen_cubit.dart';
-import 'package:flower_app/features/home/presentation/view_model/home_screen_events.dart';
-import 'package:flower_app/features/home/presentation/view_model/home_screen_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,7 +17,7 @@ class HomeAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    return BlocBuilder<HomeScreenCubit, HomeScreenStates>(
+    return BlocBuilder<ProductsCubit, ProductsState>(
       buildWhen: (previous, current) =>
           previous.isSearching != current.isSearching,
       builder: (context, state) {
@@ -60,24 +60,21 @@ class HomeAppBar extends StatelessWidget {
                   isSearching: state.isSearching,
                   height: 38,
                   onPressedClearIcon: () {
-                    context.read<HomeScreenCubit>().onEvent(
-                      IsSearching(isSearching: false),
-                    );
-                  },
-                  onTapOutside: () {
-                    context.read<HomeScreenCubit>().onEvent(
-                      IsSearching(isSearching: false),
-                    );
+                    context.read<ProductsCubit>().onIntent(IsSearching(false));
                   },
                   onTap: () {
-                    context.read<HomeScreenCubit>().onEvent(
-                      IsSearching(isSearching: true),
-                    );
+                    context.read<ProductsCubit>().onIntent(IsSearching(true));
                   },
                   onChanged: (value) {
-                    context.read<HomeScreenCubit>().onEvent(
-                      GetSearchProductsEvent(keyword: value),
-                    );
+                    if (value.isEmpty) {
+                      context.read<ProductsCubit>().onIntent(
+                        ResetProductsAfterSearch(),
+                      );
+                    } else {
+                      context.read<ProductsCubit>().onIntent(
+                        GetProducts(keyword: value),
+                      );
+                    }
                   },
                 ),
               ),

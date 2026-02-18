@@ -1,15 +1,15 @@
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/error_handler/error_handler.dart';
+import 'package:flower_app/core/shared/data/models/get_products_models/product_model.dart';
+import 'package:flower_app/core/shared/domain/entities/products_response_entity/product_entity.dart';
 import 'package:flower_app/features/home/data/data_sources/remote/home_screen_data_source.dart';
 import 'package:flower_app/features/home/data/models/category_dto.dart';
 import 'package:flower_app/features/home/data/models/home_response_dto.dart';
-import 'package:flower_app/features/home/data/models/home_screen_product_dto.dart';
 import 'package:flower_app/features/home/data/models/occasion_dto.dart';
 import 'package:flower_app/features/home/data/repo/home_screen_repo_impl.dart';
 import 'package:flower_app/features/home/domain/entities/category_entity.dart';
 import 'package:flower_app/features/home/domain/entities/home_response_entity.dart';
 import 'package:flower_app/features/home/domain/entities/occasion_entity.dart';
-import 'package:flower_app/features/home/domain/entities/product_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -59,7 +59,7 @@ void main() {
         ),
       ],
       bestSeller: [
-        HomeScreenProductDto(
+        ProductModel(
           id: '101',
           title: 'Red Rose Bouquet',
           slug: 'red-rose-bouquet',
@@ -82,7 +82,7 @@ void main() {
           rateAvg: 4.5,
           rateCount: 25,
         ),
-        HomeScreenProductDto(
+        ProductModel(
           id: '102',
           title: 'White Lily Arrangement',
           slug: 'white-lily-arrangement',
@@ -102,7 +102,7 @@ void main() {
           rateAvg: 4.8,
           rateCount: 40,
         ),
-        HomeScreenProductDto(
+        ProductModel(
           id: '103',
           title: 'Sunflower Delight',
           slug: 'sunflower-delight',
@@ -193,9 +193,8 @@ void main() {
         ProductEntity(
           id: '101',
           title: 'Red Rose Bouquet',
-          slug: 'red-rose-bouquet',
           description: 'Beautiful red roses perfect for any occasion',
-          imgCover: 'https://example.com/red-roses.jpg',
+          imageCover: 'https://example.com/red-roses.jpg',
           images: [
             'https://example.com/red-roses-1.jpg',
             'https://example.com/red-roses-2.jpg',
@@ -204,43 +203,27 @@ void main() {
           priceAfterDiscount: 39.99,
           discount: 20,
           quantity: 50,
-          category: '1',
-          occasion: '201',
-          createdAt: DateTime.parse('2024-01-05T00:00:00.000Z'),
-          updatedAt: DateTime.parse('2024-01-05T00:00:00.000Z'),
-          v: 0,
-          isSuperAdmin: false,
-          sold: 100,
-          rateAvg: 4.5,
-          rateCount: 25,
+          categoryId: '1',
+          occasionId: '201',
         ),
         ProductEntity(
           id: '102',
           title: 'White Lily Arrangement',
-          slug: 'white-lily-arrangement',
           description: 'Elegant white lilies for special moments',
-          imgCover: 'https://example.com/white-lilies.jpg',
+          imageCover: 'https://example.com/white-lilies.jpg',
           images: ['https://example.com/white-lilies-1.jpg'],
           price: 59.99,
           priceAfterDiscount: 54.99,
           discount: 10,
           quantity: 30,
-          category: '2',
-          occasion: '202',
-          createdAt: DateTime.parse('2024-01-06T00:00:00.000Z'),
-          updatedAt: DateTime.parse('2024-01-06T00:00:00.000Z'),
-          v: 0,
-          isSuperAdmin: false,
-          sold: 75,
-          rateAvg: 4.8,
-          rateCount: 40,
+          categoryId: '2',
+          occasionId: '202',
         ),
         ProductEntity(
           id: '103',
           title: 'Sunflower Delight',
-          slug: 'sunflower-delight',
           description: 'Bright and cheerful sunflowers to brighten any day',
-          imgCover: 'https://example.com/sunflowers.jpg',
+          imageCover: 'https://example.com/sunflowers.jpg',
           images: [
             'https://example.com/sunflowers-1.jpg',
             'https://example.com/sunflowers-2.jpg',
@@ -250,15 +233,8 @@ void main() {
           priceAfterDiscount: 29.99,
           discount: 15,
           quantity: 75,
-          category: '3',
-          occasion: '203',
-          createdAt: DateTime.parse('2024-01-07T00:00:00.000Z'),
-          updatedAt: DateTime.parse('2024-01-07T00:00:00.000Z'),
-          v: 0,
-          isSuperAdmin: false,
-          sold: 150,
-          rateAvg: 4.7,
-          rateCount: 60,
+          categoryId: '3',
+          occasionId: '203',
         ),
       ],
       occasions: [

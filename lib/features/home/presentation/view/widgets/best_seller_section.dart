@@ -1,9 +1,9 @@
 import 'package:flower_app/core/constants/app_text_constants.dart';
+import 'package:flower_app/core/shared/domain/entities/products_response_entity/product_entity.dart';
 import 'package:flower_app/features/home/presentation/view/widgets/best_seller_occations_card_widget.dart';
 import 'package:flower_app/features/home/presentation/view/widgets/view_all_button.dart';
 import 'package:flower_app/features/home/presentation/view_model/home_screen_cubit.dart';
 import 'package:flower_app/features/home/presentation/view_model/home_screen_events.dart';
-import 'package:flower_app/features/home/domain/entities/product_entity.dart';
 import 'package:flutter/material.dart';
 
 class BestSellerSection extends StatelessWidget {
@@ -56,11 +56,9 @@ class BestSellerSection extends StatelessWidget {
                     );
                   },
                   child: BestSellerOccationsCardWidget(
-                    image: bestSeller[index].imgCover,
+                    image: bestSeller[index].imageCover ?? '',
                     title: bestSeller[index].title,
-                    price: bestSeller[index].priceAfterDiscount
-                        .toInt()
-                        .toString(),
+                    price: bestSeller[index].priceAfterDiscount?.toString(),
                   ),
                 ),
               );

@@ -2,8 +2,8 @@ import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/error_handler/error_handler.dart';
 import 'package:flower_app/core/constants/errors_constants.dart';
 import 'package:flower_app/features/categories/data/repos/categories_repo_impl.dart';
-import 'package:flower_app/features/categories/domain/entities/category_products_response_entity/category_products_response_entity.dart';
-import 'package:flower_app/features/categories/domain/entities/category_products_response_entity/category_product_entity.dart';
+import 'package:flower_app/core/shared/domain/entities/products_response_entity/products_response_entity.dart';
+import 'package:flower_app/core/shared/domain/entities/products_response_entity/product_entity.dart';
 import 'package:flower_app/features/categories/domain/usecases/get_categories_products_usecase.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -17,11 +17,11 @@ void main() {
     late MockCategoriesRepoImpl categoriesRepoImpl;
     late GetCategoryProductsUsecase getCategoryProductsUsecase;
 
-    CategoryProductEntity makeProductEntity({
+    ProductEntity makeProductEntity({
       double? priceAfterDiscount,
       double? discount,
     }) {
-      return CategoryProductEntity(
+      return ProductEntity(
         id: '1',
         title: 'name',
         description: 'description',
@@ -43,7 +43,7 @@ void main() {
     test('get categories products usecase success case', () async {
       when(categoriesRepoImpl.getCategoryProducts(categoryId: '1')).thenAnswer(
         (_) async => BaseResponse.success(
-          GetCategoryProductsEntity(
+          ProductsResponseEntity(
             products: [
               makeProductEntity(),
               makeProductEntity(priceAfterDiscount: 5),
@@ -52,8 +52,8 @@ void main() {
         ),
       );
       final result = await getCategoryProductsUsecase(categoryId: '1');
-      expect(result, isA<Success<GetCategoryProductsEntity>>());
-      result as Success<GetCategoryProductsEntity>;
+      expect(result, isA<Success<ProductsResponseEntity>>());
+      result as Success<ProductsResponseEntity>;
       expect(result.data.products.length, 2);
       expect(result.data.products[0].priceAfterDiscount, isNull);
       expect(result.data.products[0].discountPercentage, isNull);
@@ -65,8 +65,8 @@ void main() {
             BaseResponse.failure(ErrorHandler.handle(Exception('Error'))),
       );
       final result = await getCategoryProductsUsecase(categoryId: '1');
-      expect(result, isA<Failure<GetCategoryProductsEntity>>());
-      result as Failure<GetCategoryProductsEntity>;
+      expect(result, isA<Failure<ProductsResponseEntity>>());
+      result as Failure<ProductsResponseEntity>;
       expect(result.errorHandler.message, ErrorsConstant.defaultError);
     });
   });

@@ -1,12 +1,13 @@
-import 'package:flower_app/features/categories/data/models/get_products_models/category_products_response_model.dart';
+import 'package:flower_app/core/shared/data/mappers/products_response_mapper.dart';
+import 'package:flower_app/core/shared/data/models/get_products_models/products_response_model.dart';
 import 'package:flower_app/features/categories/data/models/metadata/category_metadata_model.dart';
-import 'package:flower_app/features/categories/domain/entities/category_products_response_entity/category_products_response_entity.dart';
-import 'package:flower_app/features/categories/domain/entities/category_products_response_entity/category_product_entity.dart';
+import 'package:flower_app/core/shared/domain/entities/products_response_entity/products_response_entity.dart';
+import 'package:flower_app/core/shared/domain/entities/products_response_entity/product_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test('category products response model to entity', () {
-    final model = CategoryProductsResponseModel(
+    final model = ProductsResponseModel(
       message: 'Success',
       metadata: CategoryMetadataModel(
         currentPage: 1,
@@ -19,7 +20,7 @@ void main() {
 
     final entity = model.toEntity();
 
-    expect(entity, isA<GetCategoryProductsEntity>());
-    expect(entity.products, isA<List<CategoryProductEntity>>());
+    expect(entity, isA<ProductsResponseEntity>());
+    expect(entity.products, isA<List<ProductEntity>>());
   });
 }

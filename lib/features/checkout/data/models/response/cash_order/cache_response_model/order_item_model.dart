@@ -1,4 +1,5 @@
-import 'package:flower_app/features/checkout/data/models/response/product_model.dart';
+import 'package:flower_app/core/shared/data/mappers/product_mapper.dart';
+import 'package:flower_app/core/shared/data/models/get_products_models/product_model.dart';
 import 'package:flower_app/features/checkout/domain/entities/cash_order_entity/order_items_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'order_item_model.g.dart';
