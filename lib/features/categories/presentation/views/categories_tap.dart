@@ -2,6 +2,7 @@ import 'package:flower_app/config/di/di.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/gen/assets.gen.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
+import 'package:flower_app/core/ui_utils/ui_utils.dart';
 import 'package:flower_app/core/widgets/loading_indicator_widget.dart';
 import 'package:flower_app/core/widgets/spacing.dart';
 import 'package:flower_app/features/cart/presentation/widgets/cart_lottie_states_widget.dart';
@@ -10,7 +11,7 @@ import 'package:flower_app/features/categories/presentation/cubit/categories_int
 import 'package:flower_app/features/categories/presentation/cubit/categories_state.dart';
 import 'package:flower_app/features/categories/presentation/views/widgets/category_tab_bar_widget.dart';
 import 'package:flower_app/features/categories/presentation/views/widgets/search_and_filter_products_widget.dart';
-import 'package:flower_app/features/categories/presentation/views/widgets/category_products_grid_widget.dart';
+import 'package:flower_app/core/widgets/products_grid_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -116,8 +117,23 @@ class CategoriesTap extends StatelessWidget {
                               height: MediaQuery.of(context).size.height * 0.26,
                             );
                           }
-                          return CategoryProductsGridWidget(
-                            products: categoryProducts,
+                          return BlocListener<CategoriesCubit, CategoriesState>(
+                            listenWhen: (previous, current) =>
+                                current.productsInCart.errorMessage != null,
+                            listener: (context, state) {
+                              if (state.productsInCart.errorMessage != null) {
+                                UIUtils.showMessage(
+                                  state.productsInCart.errorMessage!,
+                                  backGroundColor: AppColors.red,
+                                  textColor: AppColors.white,
+                                );
+                              }
+                            },
+                            child: Expanded(
+                              child: ProductsGridWidget(
+                                products: categoryProducts,
+                              ),
+                            ),
                           );
                         },
                       ),

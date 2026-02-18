@@ -1,5 +1,5 @@
 import 'package:flower_app/config/base_response/base_response.dart';
-import 'package:flower_app/features/categories/domain/entities/category_products_response_entity/category_products_response_entity.dart';
+import 'package:flower_app/core/shared/domain/entities/products_response_entity/products_response_entity.dart';
 import 'package:flower_app/features/categories/domain/repos/categories_repo.dart';
 import 'package:injectable/injectable.dart';
 
@@ -9,7 +9,7 @@ class GetCategoryProductsUsecase {
 
   GetCategoryProductsUsecase(this._categoriesRepoContract);
 
-  Future<BaseResponse<GetCategoryProductsEntity>> call({
+  Future<BaseResponse<ProductsResponseEntity>> call({
     required String categoryId,
     String? sortOption,
     String? keyword,

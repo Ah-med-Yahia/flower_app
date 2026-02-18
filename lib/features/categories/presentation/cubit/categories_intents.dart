@@ -27,14 +27,3 @@ class IsSearching extends CategoriesIntents {
   final bool isSearching;
   IsSearching({required this.isSearching});
 }
-
-class AddProductToCart extends CategoriesIntents {
-  final String productId;
-  final int quantity;
-  AddProductToCart(this.productId, this.quantity);
-}
-
-class RemoveProductFromCart extends CategoriesIntents {
-  final String productId;
-  RemoveProductFromCart(this.productId);
-}
