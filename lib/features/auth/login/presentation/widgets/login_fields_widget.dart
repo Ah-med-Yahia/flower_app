@@ -1,6 +1,6 @@
 import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/validators/app_validators.dart';
-import 'package:flower_app/core/widgets/spacing.dart';
+import 'package:flower_app/core/shared/presentation/widgets/spacing.dart';
 import 'package:flower_app/features/auth/login/presentation/cubit/login_cubit.dart';
 import 'package:flower_app/features/auth/login/presentation/cubit/login_intents.dart';
 import 'package:flutter/material.dart';

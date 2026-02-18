@@ -1,10 +1,10 @@
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/error_handler/error_handler.dart';
-import 'package:flower_app/features/product/best_seller/domain/entities/best_seller.dart';
-import 'package:flower_app/features/product/best_seller/domain/entities/best_seller_response.dart';
-import 'package:flower_app/features/product/best_seller/domain/entities/pagination_meta_data.dart';
-import 'package:flower_app/features/product/best_seller/domain/repos/best_seller_repo.dart';
-import 'package:flower_app/features/product/best_seller/domain/use_cases/get_best_seller_use_case.dart';
+import 'package:flower_app/features/products/best_seller/domain/entities/best_seller.dart';
+import 'package:flower_app/features/products/best_seller/domain/entities/best_seller_response.dart';
+import 'package:flower_app/features/products/best_seller/domain/entities/pagination_meta_data.dart';
+import 'package:flower_app/features/products/best_seller/domain/repos/best_seller_repo.dart';
+import 'package:flower_app/features/products/best_seller/domain/use_cases/get_best_seller_use_case.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';

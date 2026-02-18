@@ -1,9 +1,9 @@
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/error_handler/error_handler.dart';
-import 'package:flower_app/features/profile/profile_main/domain/entities/user_data_response.dart';
-import 'package:flower_app/features/profile/profile_main/domain/entities/user_entity.dart';
-import 'package:flower_app/features/profile/profile_main/domain/repos/profile_main_repo.dart';
-import 'package:flower_app/features/profile/profile_main/domain/use_cases/get_user_data_use_case.dart';
+import 'package:flower_app/features/tabs/profile/profile_main/domain/entities/user_data_response.dart';
+import 'package:flower_app/features/tabs/profile/profile_main/domain/entities/user_entity.dart';
+import 'package:flower_app/features/tabs/profile/profile_main/domain/repos/profile_main_repo.dart';
+import 'package:flower_app/features/tabs/profile/profile_main/domain/use_cases/get_user_data_use_case.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';

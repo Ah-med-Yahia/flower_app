@@ -1,5 +1,5 @@
-import 'package:flower_app/features/home/data/mappers/category_mapper.dart';
-import 'package:flower_app/features/home/data/models/category_dto.dart';
+import 'package:flower_app/features/tabs/home/data/mappers/category_mapper.dart';
+import 'package:flower_app/features/tabs/home/data/models/category_dto.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

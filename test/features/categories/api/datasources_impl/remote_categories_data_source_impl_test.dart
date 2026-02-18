@@ -1,11 +1,11 @@
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/error_handler/error_handler.dart';
 import 'package:flower_app/core/constants/errors_constants.dart';
-import 'package:flower_app/features/categories/api/api_service/categories_api_client.dart';
-import 'package:flower_app/features/categories/api/datasources_impl/remote_categories_data_source_impl.dart';
-import 'package:flower_app/features/categories/data/models/get_all_categories_models/category_model.dart';
-import 'package:flower_app/features/categories/data/models/get_all_categories_models/get_all_categories_response_model.dart';
-import 'package:flower_app/features/categories/data/models/metadata/category_metadata_model.dart';
+import 'package:flower_app/features/tabs/categories/api/api_service/categories_api_client.dart';
+import 'package:flower_app/features/tabs/categories/api/datasources_impl/remote_categories_data_source_impl.dart';
+import 'package:flower_app/features/tabs/categories/data/models/get_all_categories_models/category_model.dart';
+import 'package:flower_app/features/tabs/categories/data/models/get_all_categories_models/get_all_categories_response_model.dart';
+import 'package:flower_app/features/tabs/categories/data/models/metadata/category_metadata_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';

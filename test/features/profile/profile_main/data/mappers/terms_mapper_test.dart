@@ -1,11 +1,11 @@
 import 'dart:ui';
 
-import 'package:flower_app/features/profile/profile_main/data/mappers/terms_mapper.dart';
-import 'package:flower_app/features/profile/profile_main/data/models/terms_and_conditions/bilingual_content.dart';
-import 'package:flower_app/features/profile/profile_main/data/models/terms_and_conditions/bilingual_list.dart';
-import 'package:flower_app/features/profile/profile_main/data/models/terms_and_conditions/section_style.dart';
-import 'package:flower_app/features/profile/profile_main/data/models/terms_and_conditions/term_section.dart';
-import 'package:flower_app/features/profile/profile_main/data/models/terms_and_conditions/terms_and_conditions.dart';
+import 'package:flower_app/features/tabs/profile/profile_main/data/mappers/terms_mapper.dart';
+import 'package:flower_app/features/tabs/profile/profile_main/data/models/terms_and_conditions/bilingual_content.dart';
+import 'package:flower_app/features/tabs/profile/profile_main/data/models/terms_and_conditions/bilingual_list.dart';
+import 'package:flower_app/features/tabs/profile/profile_main/data/models/terms_and_conditions/section_style.dart';
+import 'package:flower_app/features/tabs/profile/profile_main/data/models/terms_and_conditions/term_section.dart';
+import 'package:flower_app/features/tabs/profile/profile_main/data/models/terms_and_conditions/terms_and_conditions.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

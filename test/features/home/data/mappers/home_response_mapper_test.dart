@@ -1,8 +1,8 @@
 import 'package:flower_app/core/shared/data/models/get_products_models/product_model.dart';
-import 'package:flower_app/features/home/data/mappers/home_response_mapper.dart';
-import 'package:flower_app/features/home/data/models/category_dto.dart';
-import 'package:flower_app/features/home/data/models/home_response_dto.dart';
-import 'package:flower_app/features/home/data/models/occasion_dto.dart';
+import 'package:flower_app/features/tabs/home/data/mappers/home_response_mapper.dart';
+import 'package:flower_app/features/tabs/home/data/models/category_dto.dart';
+import 'package:flower_app/features/tabs/home/data/models/home_response_dto.dart';
+import 'package:flower_app/features/tabs/home/data/models/occasion_dto.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

@@ -3,7 +3,7 @@ import 'package:flower_app/core/constants/app_routes_constant.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flower_app/core/ui_utils/ui_utils.dart';
-import 'package:flower_app/core/widgets/spacing.dart';
+import 'package:flower_app/core/shared/presentation/widgets/spacing.dart';
 import 'package:flower_app/features/auth/login/domain/entities/login_request_entity.dart';
 import 'package:flower_app/features/auth/login/presentation/cubit/login_cubit.dart';
 import 'package:flower_app/features/auth/login/presentation/cubit/login_intents.dart';

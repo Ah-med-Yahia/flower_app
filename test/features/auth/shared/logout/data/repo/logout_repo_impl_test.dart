@@ -1,7 +1,7 @@
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/error_handler/error_handler.dart';
-import 'package:flower_app/features/auth/shared/logout/data/datasoources/local/logout_local_data_source.dart';
-import 'package:flower_app/features/auth/shared/logout/data/repo/logout_repo_impl.dart';
+import 'package:flower_app/features/auth/logout/data/datasoources/local/logout_local_data_source.dart';
+import 'package:flower_app/features/auth/logout/data/repo/logout_repo_impl.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';

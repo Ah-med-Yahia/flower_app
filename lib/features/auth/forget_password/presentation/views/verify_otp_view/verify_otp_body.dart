@@ -4,9 +4,9 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/constants/app_routes_constant.dart';
 import '../../../../../../core/constants/app_text_constants.dart';
-import '../../../../../../core/widgets/loading_indicator_widget.dart';
-import '../../../../../../core/widgets/spacing.dart';
-import '../../../../../../core/widgets/toast_utils.dart';
+import '../../../../../../core/shared/presentation/widgets/loading_indicator_widget.dart';
+import '../../../../../../core/shared/presentation/widgets/spacing.dart';
+import '../../../../../../core/shared/presentation/widgets/toast_utils.dart';
 import '../../view_models/verify_otp/verify_otp_code_cubit.dart';
 import '../../view_models/verify_otp/verify_otp_code_events.dart';
 import '../../view_models/verify_otp/verify_otp_code_state.dart';

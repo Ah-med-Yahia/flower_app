@@ -1,4 +1,4 @@
-import 'package:flower_app/features/categories/data/models/get_all_categories_models/category_model.dart';
+import 'package:flower_app/features/tabs/categories/data/models/get_all_categories_models/category_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

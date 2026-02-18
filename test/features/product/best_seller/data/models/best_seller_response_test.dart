@@ -1,6 +1,6 @@
-import 'package:flower_app/features/product/best_seller/data/models/best_seller_dto.dart';
-import 'package:flower_app/features/product/best_seller/data/models/best_seller_response_dto.dart';
-import 'package:flower_app/features/product/best_seller/domain/entities/best_seller_response.dart';
+import 'package:flower_app/features/products/best_seller/data/models/best_seller_dto.dart';
+import 'package:flower_app/features/products/best_seller/data/models/best_seller_response_dto.dart';
+import 'package:flower_app/features/products/best_seller/domain/entities/best_seller_response.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

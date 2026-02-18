@@ -1,10 +1,10 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/error_handler/error_handler.dart';
-import 'package:flower_app/features/auth/shared/logout/domain/usecases/logout_usecase.dart';
-import 'package:flower_app/features/auth/shared/logout/presentation/view_model/logout_cubit.dart';
-import 'package:flower_app/features/auth/shared/logout/presentation/view_model/logout_events.dart';
-import 'package:flower_app/features/auth/shared/logout/presentation/view_model/logout_states.dart';
+import 'package:flower_app/features/auth/logout/domain/usecases/logout_usecase.dart';
+import 'package:flower_app/features/auth/logout/presentation/view_model/logout_cubit.dart';
+import 'package:flower_app/features/auth/logout/presentation/view_model/logout_events.dart';
+import 'package:flower_app/features/auth/logout/presentation/view_model/logout_states.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';

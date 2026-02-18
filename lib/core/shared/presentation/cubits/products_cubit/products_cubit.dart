@@ -4,10 +4,10 @@ import 'package:flower_app/core/shared/domain/entities/products_response_entity/
 import 'package:flower_app/core/shared/domain/use_cases.dart/get_products_use_cases.dart';
 import 'package:flower_app/core/shared/presentation/cubits/products_cubit/products_intents.dart';
 import 'package:flower_app/core/shared/presentation/cubits/products_cubit/products_state.dart';
-import 'package:flower_app/features/cart/domain/entities/add_to_cart_request_entity.dart';
-import 'package:flower_app/features/cart/domain/usecases/add_to_cart_use_case.dart';
-import 'package:flower_app/features/cart/domain/usecases/get_cart_use_case.dart';
-import 'package:flower_app/features/cart/domain/usecases/remove_item_from_cart_use_case.dart';
+import 'package:flower_app/features/tabs/cart/domain/entities/add_to_cart_request_entity.dart';
+import 'package:flower_app/features/tabs/cart/domain/usecases/add_to_cart_use_case.dart';
+import 'package:flower_app/features/tabs/cart/domain/usecases/get_cart_use_case.dart';
+import 'package:flower_app/features/tabs/cart/domain/usecases/remove_item_from_cart_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 

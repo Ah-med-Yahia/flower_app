@@ -1,9 +1,9 @@
 import 'package:flower_app/core/constants/app_text_constants.dart';
-import 'package:flower_app/features/profile/profile_main/data/models/user_data_response_dto.dart';
-import 'package:flower_app/features/profile/profile_main/data/models/user_dto.dart';
-import 'package:flower_app/features/profile/profile_main/domain/entities/user_data_response.dart';
-import 'package:flower_app/features/profile/profile_main/domain/entities/user_entity.dart';
-import 'package:flower_app/features/profile/profile_main/domain/mappers/profile_main_mapper.dart';
+import 'package:flower_app/features/tabs/profile/profile_main/data/models/user_data_response_dto.dart';
+import 'package:flower_app/features/tabs/profile/profile_main/data/models/user_dto.dart';
+import 'package:flower_app/features/tabs/profile/profile_main/domain/entities/user_data_response.dart';
+import 'package:flower_app/features/tabs/profile/profile_main/domain/entities/user_entity.dart';
+import 'package:flower_app/features/tabs/profile/profile_main/domain/mappers/profile_main_mapper.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
