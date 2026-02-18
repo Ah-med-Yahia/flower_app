@@ -1,6 +1,5 @@
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/network/safe_api_call.dart';
-import 'package:flower_app/core/shared/data/models/get_products_models/products_response_model.dart';
 import 'package:flower_app/features/categories/api/api_service/categories_api_client.dart';
 import 'package:flower_app/features/categories/data/datasources/remote_categories_data_source.dart';
 import 'package:flower_app/features/categories/data/models/get_all_categories_models/get_all_categories_response_model.dart';
@@ -16,21 +15,6 @@ class RemoteCategoriesDataSourceImpl implements RemoteCategoriesDataSource {
   Future<BaseResponse<GetAllCategoriesResponseModel>> getAllCategories() {
     return safeApiCall<GetAllCategoriesResponseModel>(
       () => _apiClient.getAllCategories(),
-    );
-  }
-
-  @override
-  Future<BaseResponse<ProductsResponseModel>> getCategoryProducts({
-    required String categoryId,
-    String? sortOption,
-    String? keyword,
-  }) {
-    return safeApiCall<ProductsResponseModel>(
-      () => _apiClient.getCategoryProducts(
-        categoryId: categoryId,
-        sortOption: sortOption,
-        keyword: keyword,
-      ),
     );
   }
 }

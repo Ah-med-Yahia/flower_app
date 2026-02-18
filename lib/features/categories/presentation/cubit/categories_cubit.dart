@@ -3,11 +3,11 @@ import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/base_state/base_state.dart';
 import 'package:flower_app/core/constants/api_constants.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
+import 'package:flower_app/core/shared/domain/use_cases.dart/get_products_use_cases.dart';
 import 'package:flower_app/features/cart/domain/usecases/get_cart_use_case.dart';
 import 'package:flower_app/core/shared/domain/entities/products_response_entity/products_response_entity.dart';
 import 'package:flower_app/features/categories/domain/entities/get_category_list_entity/get_all_categories_list_entity.dart';
 import 'package:flower_app/features/categories/domain/usecases/get_all_categories_usecase.dart';
-import 'package:flower_app/features/categories/domain/usecases/get_categories_products_usecase.dart';
 import 'package:flower_app/features/categories/presentation/cubit/categories_intents.dart';
 import 'package:flower_app/features/categories/presentation/cubit/categories_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,7 +16,7 @@ import 'package:injectable/injectable.dart';
 @injectable
 class CategoriesCubit extends Cubit<CategoriesState> {
   final GetAllCategoriesUsecase _getAllCategoriesUseCase;
-  final GetCategoryProductsUsecase _getCategoryProductsUseCase;
+  final GetProductsUseCase _getCategoryProductsUseCase;
   final GetCartUseCase _getCartUseCase;
   Timer? _debounce;
 

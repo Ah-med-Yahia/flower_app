@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flower_app/core/constants/api_constants.dart';
 import 'package:flower_app/features/categories/data/models/get_all_categories_models/get_all_categories_response_model.dart';
-import 'package:flower_app/core/shared/data/models/get_products_models/products_response_model.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -15,11 +14,4 @@ abstract class CategoriesApiClient {
 
   @GET(ApiConstants.getAllCategories)
   Future<GetAllCategoriesResponseModel> getAllCategories();
-
-  @GET(ApiConstants.getProducts)
-  Future<ProductsResponseModel> getCategoryProducts({
-    @Query(QueryParamsKey.categoryId) required String categoryId,
-    @Query(QueryParamsKey.sort) String? sortOption,
-    @Query(QueryParamsKey.search) String? keyword,
-  });
 }

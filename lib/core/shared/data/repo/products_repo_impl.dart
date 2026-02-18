@@ -21,6 +21,8 @@ class ProductsRepoImpl implements ProductsRepo {
     return safeApiCall(() async {
       final response = await _productsRemoteDataSources.getProducts(
         keyword: keyword,
+        categoryId: categoryId,
+        sortOption: sortOption,
       );
       return response.toEntity();
     });
