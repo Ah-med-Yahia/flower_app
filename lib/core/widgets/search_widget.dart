@@ -7,7 +7,7 @@ class SearchWidget extends StatefulWidget {
     super.key,
     required this.isSearching,
     required this.onPressedClearIcon,
-    required this.onTapOutside,
+    this.onTapOutside,
     required this.onTap,
     required this.onChanged,
     this.height,
@@ -15,7 +15,7 @@ class SearchWidget extends StatefulWidget {
 
   final bool isSearching;
   final VoidCallback onPressedClearIcon;
-  final VoidCallback onTapOutside;
+  final VoidCallback? onTapOutside;
   final VoidCallback onTap;
   final ValueChanged<String> onChanged;
   final double? height;
@@ -68,7 +68,7 @@ class _SearchWidgetState extends State<SearchWidget> {
         ),
         onTapUpOutside: (event) {
           FocusManager.instance.primaryFocus?.unfocus();
-          widget.onTapOutside();
+          widget.onTapOutside?.call();
         },
         onTap: widget.onTap,
         onChanged: widget.onChanged,

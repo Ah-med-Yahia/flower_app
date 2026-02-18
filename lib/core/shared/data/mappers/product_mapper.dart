@@ -14,7 +14,7 @@ extension ProductMapper on ProductModel {
       discount: discount,
       categoryId: category,
       occasionId: occasion,
-      quantity: quantity??0,
+      quantity: quantity ?? 0,
     );
   }
 }

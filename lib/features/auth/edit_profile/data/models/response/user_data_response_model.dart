@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../../../../../core/data/models/user_model.dart';
+import '../../../../../../core/shared/data/models/user_model.dart';
 import '../../../domain/entities/user_data_response_entity.dart';
 
 part 'user_data_response_model.g.dart';

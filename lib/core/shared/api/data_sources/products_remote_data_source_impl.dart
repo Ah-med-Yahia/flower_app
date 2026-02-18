@@ -10,7 +10,15 @@ class ProductsRemoteDataSourceImpl implements ProductsRemoteDataSources {
   ProductsRemoteDataSourceImpl(this.productsApiClient);
 
   @override
-  Future<ProductsResponseModel> getProducts({String? keyword, String? categoryId, String? sortOption}) {
-    return productsApiClient.getProducts(keyword: keyword, categoryId: categoryId, sortOption: sortOption);
+  Future<ProductsResponseModel> getProducts({
+    String? keyword,
+    String? categoryId,
+    String? sortOption,
+  }) {
+    return productsApiClient.getProducts(
+      keyword: keyword,
+      categoryId: categoryId,
+      sortOption: sortOption,
+    );
   }
 }
