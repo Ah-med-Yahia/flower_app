@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../../features/auth/edit_profile/domain/entities/user_data_response_entity.dart';
+import '../../../../features/auth/edit_profile/domain/entities/user_data_response_entity.dart';
 
 part 'user_model.g.dart';
 

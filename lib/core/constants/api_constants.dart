@@ -22,7 +22,6 @@ class ApiConstants {
 
   //------------------------ CATEGORIES ------------------------//
   static const String getAllCategories = 'categories';
-  static const String getCategoryProducts = 'products';
 
   //------------------------ Occasions ------------------------//
   static const String getAllOccasions = 'occasions';
@@ -30,6 +29,9 @@ class ApiConstants {
 
   //------------------------ Home Screen ------------------------//
   static const String homeScreenEndPoint = 'home';
+
+  // ------------------------ Products ------------------------ //
+  static const String getProducts = 'products';
 
   //------------------------ PROFILE ------------------------//
   static const String profileDataEndPoint = 'auth/profile-data';
