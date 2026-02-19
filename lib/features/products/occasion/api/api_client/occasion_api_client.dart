@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flower_app/core/constants/api_constants.dart';
 import 'package:flower_app/features/products/occasion/data/models/get_all_occassion_models/get_all_occasions_response_model.dart';
-import 'package:flower_app/features/products/occasion/data/models/get_occasion_products_models/get_occasion_products_response_model.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -15,9 +14,4 @@ abstract class OccasionApiClient {
 
   @GET(ApiConstants.getAllOccasions)
   Future<GetAllOccasionsResponseModel> getallOcassions();
-
-  @GET(ApiConstants.getOccasionProducts)
-  Future<GetOccasionProductsResponseModel> getOccasionProducts({
-    @Path(ApiConstants.idPathQuery) required String id,
-  });
 }
