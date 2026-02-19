@@ -165,7 +165,7 @@ class _HomeTapState extends State<HomeTap> {
                                 const AddressWidget(
                                   address: '2XVP+XC - Sheikh Zayed',
                                 ),
-                                8.verticalSpacing,
+                                12.verticalSpacing,
                                 CategoriesSection(
                                   onNavigateToCategories:
                                       widget.onNavigateToCategories,
