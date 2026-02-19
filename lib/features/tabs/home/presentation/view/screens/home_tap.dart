@@ -108,7 +108,10 @@ class _HomeTapState extends State<HomeTap> {
                 appBar: AppBar(toolbarHeight: height * 0.0),
                 backgroundColor: AppColors.background,
                 body: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 16.0,
+                    horizontal: 12,
+                  ),
                   child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
                     child: Column(
@@ -162,6 +165,7 @@ class _HomeTapState extends State<HomeTap> {
                                 const AddressWidget(
                                   address: '2XVP+XC - Sheikh Zayed',
                                 ),
+                                8.verticalSpacing,
                                 CategoriesSection(
                                   onNavigateToCategories:
                                       widget.onNavigateToCategories,
@@ -172,6 +176,7 @@ class _HomeTapState extends State<HomeTap> {
                                   cubit: cubit,
                                   bestSeller: homeScreenData.bestSeller,
                                 ),
+                                8.verticalSpacing,
                                 OccasionSection(
                                   cubit: cubit,
                                   occasions: homeScreenData.occasions,

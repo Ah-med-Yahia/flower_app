@@ -25,7 +25,6 @@ class CategoriesSection extends StatelessWidget {
     return Column(
       children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
               AppTextConstants.categories,
@@ -34,6 +33,7 @@ class CategoriesSection extends StatelessWidget {
                 fontSize: 20,
               ),
             ),
+            const Spacer(),
             ViewAllButton(onPressed: onNavigateToCategories),
           ],
         ),
