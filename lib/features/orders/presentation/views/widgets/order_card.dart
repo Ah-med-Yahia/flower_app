@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flower_app/core/constants/app_routes_constant.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
+import 'package:flower_app/core/shared/presentation/widgets/loading_indicator_widget.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
-import 'package:flower_app/core/widgets/loading_indicator_widget.dart';
 import 'package:flower_app/features/orders/domain/entities/order_entity.dart';
 import 'package:flower_app/features/orders/domain/entities/order_item_entity.dart';
 import 'package:flower_app/features/orders/domain/entities/order_product_entity.dart';

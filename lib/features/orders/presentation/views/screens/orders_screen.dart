@@ -1,8 +1,8 @@
 import 'package:flower_app/config/di/di.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/gen/assets.gen.dart';
+import 'package:flower_app/core/shared/presentation/widgets/loading_indicator_widget.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
-import 'package:flower_app/core/widgets/loading_indicator_widget.dart';
 import 'package:flower_app/features/orders/presentation/views/widgets/orders_appbar.dart';
 import 'package:flower_app/features/orders/presentation/views/widgets/orders_list.dart';
 import 'package:flutter/material.dart';
