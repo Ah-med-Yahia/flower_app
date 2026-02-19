@@ -16,7 +16,8 @@ class OccasionTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
+      splashColor: AppColors.transparent,
       onTap: onTap,
       child: Column(
         mainAxisSize: MainAxisSize.min,
