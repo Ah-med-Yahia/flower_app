@@ -1,6 +1,6 @@
 import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flower_app/core/shared/presentation/widgets/spacing.dart';
-import 'package:flower_app/features/tabs/categories/presentation/views/widgets/tab_indicator_widget.dart';
+import 'package:flower_app/core/shared/presentation/widgets/tab_indicator_widget.dart';
 import 'package:flutter/material.dart';
 
 class CategoryTab extends StatelessWidget {

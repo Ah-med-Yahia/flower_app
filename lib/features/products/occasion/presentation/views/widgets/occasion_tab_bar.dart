@@ -16,20 +16,20 @@ class OccasionTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
+    final screenSize = MediaQuery.of(context).size;
 
     return Container(
-      height: screenHeight * 0.06,
+      height: screenSize.height * 0.06,
       padding: EdgeInsets.only(
-        right: screenWidth * 0.06,
-        left: screenWidth * 0.03,
+        right: screenSize.width * 0.06,
+        left: screenSize.width * 0.03,
       ),
       child: ListView.separated(
+        physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
         itemCount: occasions.length,
         separatorBuilder: (context, index) =>
-            SizedBox(width: screenWidth * 0.05),
+            SizedBox(width: screenSize.width * 0.05),
         itemBuilder: (context, index) {
           return OccasionTab(
             title: occasions[index].name!,

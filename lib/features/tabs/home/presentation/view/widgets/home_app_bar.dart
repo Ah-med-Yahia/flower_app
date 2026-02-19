@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/gen/assets.gen.dart';
 import 'package:flower_app/core/shared/presentation/cubits/products_cubit/products_cubit.dart';
@@ -21,7 +19,6 @@ class HomeAppBar extends StatelessWidget {
       buildWhen: (previous, current) =>
           previous.isSearching != current.isSearching,
       builder: (context, state) {
-        log(state.isSearching.toString());
         return Row(
           children: [
             AnimatedSwitcher(
