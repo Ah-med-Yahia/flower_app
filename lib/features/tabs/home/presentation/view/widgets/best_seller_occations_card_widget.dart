@@ -17,12 +17,13 @@ class BestSellerOccationsCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bodyMedium = Theme.of(context).textTheme.bodyMedium;
+    final screenSize = MediaQuery.of(context).size;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          height: 160,
-          width: 130,
+          height: screenSize.height * 0.2,
+          width: screenSize.width * 0.35,
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(6)),
           child: Image.network(
@@ -35,7 +36,7 @@ class BestSellerOccationsCardWidget extends StatelessWidget {
                 highlightColor: AppColors.shimmerHighlightColor,
                 child: Container(
                   width: double.infinity,
-                  height: 200.0,
+                  height: screenSize.height * 0.2,
                   color: AppColors.white,
                 ),
               );
@@ -50,7 +51,7 @@ class BestSellerOccationsCardWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              width: 130,
+              width: screenSize.width * 0.35,
               child: Text(
                 title,
                 overflow: TextOverflow.ellipsis,

@@ -52,6 +52,8 @@ class ApiConstants {
   static const String cacheOrderEndPoint = 'orders';
   static const String creditCardOrderEndPoint = 'orders/checkout';
   static const String paymentUrl = 'http://localhost:3000/allOrders';
+  // ----------------------- ORDERS ----------------------------//
+  static const String getUserOrdersEndPoint = 'orders';
 }
 
 class QueryParamsKey {
