@@ -5,5 +5,6 @@ abstract interface class ProductsRemoteDataSources {
     String? keyword,
     String? categoryId,
     String? sortOption,
+    String? occasionId,
   });
 }

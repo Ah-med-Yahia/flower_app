@@ -6,5 +6,6 @@ abstract interface class ProductsRepo {
     String? keyword,
     String? categoryId,
     String? sortOption,
+    String? occasionId,
   });
 }
