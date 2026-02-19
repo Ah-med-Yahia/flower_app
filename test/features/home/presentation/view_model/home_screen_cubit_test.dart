@@ -1,10 +1,10 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/error_handler/error_handler.dart';
+import 'package:flower_app/core/shared/domain/entities/products_response_entity/product_entity.dart';
 import 'package:flower_app/features/home/domain/entities/category_entity.dart';
 import 'package:flower_app/features/home/domain/entities/home_response_entity.dart';
 import 'package:flower_app/features/home/domain/entities/occasion_entity.dart';
-import 'package:flower_app/features/home/domain/entities/product_entity.dart';
 import 'package:flower_app/features/home/domain/usecases/get_home_data_usecase.dart';
 import 'package:flower_app/features/home/presentation/view_model/home_screen_cubit.dart';
 import 'package:flower_app/features/home/presentation/view_model/home_screen_events.dart';
@@ -44,23 +44,14 @@ Future<void> main() async {
         ProductEntity(
           id: '1',
           title: 'title',
-          slug: 'slug',
           description: 'description',
-          imgCover: 'imgCover',
+          imageCover: 'imgCover',
           images: [],
           price: 1,
           priceAfterDiscount: 1,
           quantity: 1,
-          category: 'category',
-          occasion: 'occasion',
-          createdAt: DateTime.now(),
-          updatedAt: DateTime.now(),
-          v: 1,
-          isSuperAdmin: false,
-          rateAvg: 1,
-          rateCount: 1,
-          discount: 1,
-          sold: 1,
+          categoryId: 'category',
+          occasionId: 'occasion',
         ),
       ],
       occasions: [

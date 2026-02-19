@@ -1,5 +1,5 @@
+import 'package:flower_app/core/shared/data/models/get_products_models/product_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import '../product_model.dart';
 part 'cart_item_model.g.dart';
 
 @JsonSerializable()

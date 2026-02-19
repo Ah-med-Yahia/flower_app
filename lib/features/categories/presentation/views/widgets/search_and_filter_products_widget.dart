@@ -1,4 +1,3 @@
-import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/gen/assets.gen.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flower_app/core/widgets/spacing.dart';
@@ -6,6 +5,7 @@ import 'package:flower_app/features/categories/presentation/cubit/categories_cub
 import 'package:flower_app/features/categories/presentation/cubit/categories_intents.dart';
 import 'package:flower_app/features/categories/presentation/cubit/categories_state.dart';
 import 'package:flower_app/features/categories/presentation/views/widgets/radio_filter_widget.dart';
+import 'package:flower_app/core/widgets/search_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -15,7 +15,6 @@ class SearchAndFilterProducts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
     final screenSize = MediaQuery.of(context).size;
     return Container(
       width: double.infinity,
@@ -33,57 +32,30 @@ class SearchAndFilterProducts extends StatelessWidget {
               children: [
                 Expanded(
                   flex: isSearching ? 1 : 5,
-                  child: TextField(
-                    cursorColor: AppColors.grey,
-                    decoration: InputDecoration(
-                      hint: Row(
-                        children: [
-                          const Icon(
-                            Icons.search,
-                            size: 24,
-                            color: AppColors.grey,
+                  child: SearchWidget(
+                    isSearching: isSearching,
+                    onPressedClearIcon: () {
+                      context.read<CategoriesCubit>().onIntent(
+                        IsSearching(isSearching: false),
+                      );
+                      if (context.read<CategoriesCubit>().state.categoryId !=
+                          null) {
+                        context.read<CategoriesCubit>().onIntent(
+                          GetCategoryProducts(
+                            context.read<CategoriesCubit>().state.categoryId!,
+                            keyword: null,
                           ),
-                          4.horizontalSpacing,
-                          Text(
-                            AppTextConstants.search,
-                            style: textTheme.titleMedium!.copyWith(
-                              color: AppColors.grey,
-                            ),
-                          ),
-                        ],
-                      ),
-                      suffixIcon: isSearching
-                          ? IconButton(
-                              icon: const Icon(
-                                Icons.clear,
-                                color: AppColors.grey,
-                              ),
-                              onPressed: () {
-                                context.read<CategoriesCubit>().onIntent(
-                                  IsSearching(),
-                                );
-                                FocusManager.instance.primaryFocus?.unfocus();
-                              },
-                            )
-                          : null,
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4),
-                        borderSide: const BorderSide(color: AppColors.grey),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4),
-                        borderSide: const BorderSide(
-                          color: AppColors.grey,
-                          width: 2,
-                        ),
-                      ),
-                    ),
-                    onTapUpOutside: (event) {
-                      FocusManager.instance.primaryFocus?.unfocus();
-                      context.read<CategoriesCubit>().onIntent(IsSearching());
+                        );
+                      }
                     },
-                    onTap: () =>
-                        context.read<CategoriesCubit>().onIntent(IsSearching()),
+                    onTapOutside: () {
+                      context.read<CategoriesCubit>().onIntent(
+                        IsSearching(isSearching: false),
+                      );
+                    },
+                    onTap: () => context.read<CategoriesCubit>().onIntent(
+                      IsSearching(isSearching: true),
+                    ),
                     onChanged: (value) {
                       if (context.read<CategoriesCubit>().state.categoryId !=
                           null) {

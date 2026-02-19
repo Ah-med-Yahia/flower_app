@@ -1,12 +1,12 @@
-import 'package:flower_app/features/home/data/mappers/product_dto_mapper.dart';
-import 'package:flower_app/features/home/data/models/home_screen_product_dto.dart';
+import 'package:flower_app/core/shared/data/mappers/product_mapper.dart';
+import 'package:flower_app/core/shared/data/models/get_products_models/product_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('ProductDtoMapper', () {
     test('should map HomeScreenProductDto to ProductEntity', () {
       // Arrange
-      final productDto = HomeScreenProductDto(
+      final productDto = ProductModel(
         id: '1',
         title: 'title',
         slug: 'slug',
@@ -32,7 +32,7 @@ void main() {
       // Assert
       expect(productEntity.id, productDto.id);
       expect(productEntity.title, productDto.title);
-      expect(productEntity.imgCover, productDto.imgCover);
+      expect(productEntity.imageCover, productDto.imgCover);
     });
   });
 }

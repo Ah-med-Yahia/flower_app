@@ -1,6 +1,6 @@
+import 'package:flower_app/core/shared/domain/entities/products_response_entity/product_entity.dart';
 import 'package:flower_app/features/home/domain/entities/category_entity.dart';
 import 'package:flower_app/features/home/domain/entities/occasion_entity.dart';
-import 'package:flower_app/features/home/domain/entities/product_entity.dart';
 
 class HomeResponseEntity {
   final String message;

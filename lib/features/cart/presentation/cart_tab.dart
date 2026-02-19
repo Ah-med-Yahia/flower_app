@@ -3,6 +3,8 @@ import 'package:flower_app/config/di/di.dart';
 import 'package:flower_app/core/constants/app_routes_constant.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/gen/assets.gen.dart';
+import 'package:flower_app/core/shared/presentation/cubits/products_cubit/products_cubit.dart';
+import 'package:flower_app/core/shared/presentation/cubits/products_cubit/products_intents.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flower_app/core/ui_utils/ui_utils.dart';
 import 'package:flower_app/core/widgets/spacing.dart';
@@ -204,6 +206,11 @@ class _CartTabState extends State<CartTab> {
                                       productId: item.product.productId,
                                     ),
                                   );
+                                  if (context.mounted) {
+                                    context.read<ProductsCubit>().onIntent(
+                                      UpdateCart(),
+                                    );
+                                  }
                                 },
                               );
                             }, childCount: items.length),

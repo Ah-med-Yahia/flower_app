@@ -113,7 +113,16 @@ class CartItemWidget extends StatelessWidget {
                       ),
                       2.horizontalSpacing,
                       GestureDetector(
-                        onTap: onDelete,
+                        onTap: () {
+                          showDialog<bool>(
+                            context: context,
+                            builder: (context) => ConfirmationDialog(
+                              title: AppTextConstants.confirm,
+                              message: AppTextConstants.deleteThisItem,
+                              onConfirm: onDelete,
+                            ),
+                          );
+                        },
                         child: const Icon(
                           Icons.delete_outline,
                           color: AppColors.red,

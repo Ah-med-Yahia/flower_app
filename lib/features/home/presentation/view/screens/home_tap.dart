@@ -5,14 +5,19 @@ import 'package:flower_app/core/constants/app_routes_constant.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/constants/errors_constants.dart';
 import 'package:flower_app/core/gen/assets.gen.dart';
+import 'package:flower_app/core/shared/presentation/cubits/products_cubit/products_cubit.dart';
+import 'package:flower_app/core/shared/presentation/cubits/products_cubit/products_state.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flower_app/core/widgets/custom_error_widget.dart';
 import 'package:flower_app/core/widgets/loading_indicator_widget.dart';
+import 'package:flower_app/core/widgets/products_grid_widget.dart';
+import 'package:flower_app/core/widgets/spacing.dart';
+import 'package:flower_app/features/cart/presentation/widgets/cart_lottie_states_widget.dart';
 import 'package:flower_app/features/home/presentation/view/widgets/address_widget.dart';
-import 'package:flower_app/features/home/presentation/view/widgets/best_seller_occations_card_widget.dart';
-import 'package:flower_app/features/home/presentation/view/widgets/category_card_widget.dart';
-import 'package:flower_app/features/home/presentation/view/widgets/search_widget.dart';
-import 'package:flower_app/features/home/presentation/view/widgets/view_all_button.dart';
+import 'package:flower_app/features/home/presentation/view/widgets/best_seller_section.dart';
+import 'package:flower_app/features/home/presentation/view/widgets/categories_section.dart';
+import 'package:flower_app/features/home/presentation/view/widgets/home_app_bar.dart';
+import 'package:flower_app/features/home/presentation/view/widgets/occasion_section.dart';
 import 'package:flower_app/features/home/presentation/view_model/home_screen_cubit.dart';
 import 'package:flower_app/features/home/presentation/view_model/home_screen_events.dart';
 import 'package:flower_app/features/home/presentation/view_model/home_screen_states.dart';
@@ -20,7 +25,6 @@ import 'package:flower_app/features/home/presentation/view_model/ui_events.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class HomeTap extends StatefulWidget {
   final VoidCallback onNavigateToCategories;
@@ -55,13 +59,10 @@ class _HomeTapState extends State<HomeTap> {
 
   @override
   Widget build(BuildContext context) {
-    final titleLarge = Theme.of(context).textTheme.titleLarge;
     final double height = MediaQuery.of(context).size.height;
-    // final HomeScreenCubit cubit = getIt<HomeScreenCubit>();
     return BlocProvider(
       create: (context) => cubit..onEvent(GetHomeScreenDataEvent()),
       child: BlocListener<HomeScreenCubit, HomeScreenStates>(
-        // listenWhen: (previous, current) => current.navigationEvent != null,
         listener: (context, state) {
           final nav = state.navigationEvent;
           if (nav != null) {
@@ -73,7 +74,6 @@ class _HomeTapState extends State<HomeTap> {
                 );
               case NavigateToBestSellerScreenEvent():
                 context.pushNamed(AppRoutesConstants.bestSellerRoute);
-
               case NavigateToCategoryEvent():
                 widget.onNavigateSelectedToCategory(nav.categoryId!);
               case NavigateToOccasionEvent():
@@ -102,184 +102,84 @@ class _HomeTapState extends State<HomeTap> {
             }
             if (state.homeScreenStates?.data != null &&
                 state.homeScreenStates?.isLoading == false) {
-              final data = state.homeScreenStates!.data;
+              final homeScreenData = state.homeScreenStates!.data;
               return Scaffold(
                 appBar: AppBar(toolbarHeight: height * 0.0),
                 backgroundColor: AppColors.background,
                 body: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          children: [
-                            Assets.lottie.flower.svg(width: 24, height: 24),
-                            const SizedBox(width: 4),
-                            Text(
-                              AppTextConstants.flowery,
-                              style: titleLarge?.copyWith(
-                                color: AppColors.primary,
-                                fontWeight: FontWeight.bold,
-                                fontFamily:
-                                    GoogleFonts.imFellEnglish().fontFamily,
-                              ),
-                            ),
-                            const SizedBox(width: 16),
-                            const Expanded(child: SearchWidget()),
-                          ],
-                        ),
-                        const SizedBox(height: 16),
+                        const HomeAppBar(),
+                        12.verticalSpacing,
+                        BlocBuilder<ProductsCubit, ProductsState>(
+                          builder: (context, state) {
+                            final ps = state.productsState;
+                            final products = ps.data?.products;
 
-                        const AddressWidget(address: '2XVP+XC - Sheikh Zayed'),
+                            if (ps.isLoading == true) {
+                              return const Center(child: LoadingIndicator());
+                            }
 
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              AppTextConstants.categories,
-                              style: titleLarge?.copyWith(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                              ),
-                            ),
-                            ViewAllButton(
-                              onPressed: widget.onNavigateToCategories,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 8),
+                            if (ps.errorMessage != null &&
+                                ps.isLoading == false) {
+                              return CustomErrorWidget(
+                                error:
+                                    ps.errorMessage ??
+                                    ErrorsConstant.defaultError,
+                              );
+                            }
 
-                        SizedBox(
-                          height: 120,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-
-                            itemCount: data!.categories.length,
-                            itemBuilder: (context, index) {
-                              return GestureDetector(
-                                onTap: () {
-                                  cubit.onEvent(
-                                    WhenCategoryIsClickedEvent(
-                                      categoryId: data.categories[index].id,
-                                    ),
-                                  );
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.only(right: 16.0),
-                                  child: CategoryCardWidget(
-                                    imageUrl: data.categories[index].image,
-                                    label: data.categories[index].name,
-                                    bgColor: AppColors.primary.withValues(
-                                      alpha: 0.1,
-                                    ),
-                                  ),
+                            if (products?.isNotEmpty == true &&
+                                ps.isLoading == false) {
+                              log(products!.length.toString());
+                              return ProductsGridWidget(
+                                products: ps.data!.products,
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 0,
                                 ),
                               );
-                            },
-                          ),
-                        ),
+                            }
 
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              AppTextConstants.bestSeller,
-                              style: titleLarge?.copyWith(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                              ),
-                            ),
-                            ViewAllButton(
-                              onPressed: () {
-                                cubit.onEvent(
-                                  WhenViewAllBestSellerIsClickedEvent(),
-                                );
-                              },
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 8),
-
-                        SizedBox(
-                          height: 220,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: data.bestSeller.length,
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.only(right: 16.0),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    log('best seller tapped');
-                                    cubit.onEvent(
-                                      WhenBestSellerIsClickedEvent(
-                                        productId: data.bestSeller[index].id,
-                                      ),
-                                    );
-                                  },
-                                  child: BestSellerOccationsCardWidget(
-                                    image: data.bestSeller[index].imgCover,
-                                    title: data.bestSeller[index].title,
-                                    price: data
-                                        .bestSeller[index]
-                                        .priceAfterDiscount
-                                        .toInt()
-                                        .toString(),
-                                  ),
-                                ),
+                            if (products?.isEmpty == true &&
+                                ps.isLoading == false) {
+                              return LottieStatesWidget(
+                                lottie: Assets.lottie.emptyBox.path,
+                                text: AppTextConstants.noProductsAvailable,
+                                textColor: AppColors.primary,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.26,
                               );
-                            },
-                          ),
-                        ),
+                            }
 
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              AppTextConstants.occasion,
-                              style: titleLarge?.copyWith(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                              ),
-                            ),
-                            ViewAllButton(
-                              onPressed: () {
-                                cubit.onEvent(
-                                  WhenOccasionViewAllIsClickedEvent(),
-                                );
-                              },
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 8),
-
-                        SizedBox(
-                          height: 195,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: data.occasions.length,
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.only(right: 16.0),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    cubit.onEvent(
-                                      WhenOccasionIsClickedEvent(
-                                        occasionId: data.occasions[index].id,
-                                      ),
-                                    );
-                                  },
-                                  child: BestSellerOccationsCardWidget(
-                                    image: data.occasions[index].image,
-                                    title: data.occasions[index].name,
-                                  ),
+                            return Column(
+                              children: [
+                                const AddressWidget(
+                                  address: '2XVP+XC - Sheikh Zayed',
                                 ),
-                              );
-                            },
-                          ),
+                                CategoriesSection(
+                                  onNavigateToCategories:
+                                      widget.onNavigateToCategories,
+                                  cubit: cubit,
+                                  categories: homeScreenData!.categories,
+                                ),
+                                BestSellerSection(
+                                  cubit: cubit,
+                                  bestSeller: homeScreenData.bestSeller,
+                                ),
+                                OccasionSection(
+                                  cubit: cubit,
+                                  occasions: homeScreenData.occasions,
+                                ),
+                              ],
+                            );
+                          },
                         ),
-                        const SizedBox(height: 16),
                       ],
                     ),
                   ),

@@ -3,14 +3,11 @@ import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/base_state/base_state.dart';
 import 'package:flower_app/core/constants/api_constants.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
-import 'package:flower_app/features/cart/domain/entities/add_to_cart_request_entity.dart';
-import 'package:flower_app/features/cart/domain/usecases/add_to_cart_use_case.dart';
+import 'package:flower_app/core/shared/domain/use_cases.dart/get_products_use_cases.dart';
 import 'package:flower_app/features/cart/domain/usecases/get_cart_use_case.dart';
-import 'package:flower_app/features/cart/domain/usecases/remove_item_from_cart_use_case.dart';
-import 'package:flower_app/features/categories/domain/entities/category_products_response_entity/category_products_response_entity.dart';
+import 'package:flower_app/core/shared/domain/entities/products_response_entity/products_response_entity.dart';
 import 'package:flower_app/features/categories/domain/entities/get_category_list_entity/get_all_categories_list_entity.dart';
 import 'package:flower_app/features/categories/domain/usecases/get_all_categories_usecase.dart';
-import 'package:flower_app/features/categories/domain/usecases/get_categories_products_usecase.dart';
 import 'package:flower_app/features/categories/presentation/cubit/categories_intents.dart';
 import 'package:flower_app/features/categories/presentation/cubit/categories_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,9 +16,7 @@ import 'package:injectable/injectable.dart';
 @injectable
 class CategoriesCubit extends Cubit<CategoriesState> {
   final GetAllCategoriesUsecase _getAllCategoriesUseCase;
-  final GetCategoryProductsUsecase _getCategoryProductsUseCase;
-  final AddToCartUseCase _addToCartUseCase;
-  final RemoveItemFromCartUseCase _removeItemFromCartUseCase;
+  final GetProductsUseCase _getCategoryProductsUseCase;
   final GetCartUseCase _getCartUseCase;
   Timer? _debounce;
 
@@ -36,13 +31,11 @@ class CategoriesCubit extends Cubit<CategoriesState> {
   CategoriesCubit(
     this._getAllCategoriesUseCase,
     this._getCategoryProductsUseCase,
-    this._addToCartUseCase,
-    this._removeItemFromCartUseCase,
     this._getCartUseCase,
   ) : super(
         CategoriesState(
           categoriesState: const BaseState<GetCategoryListEntity>(),
-          categoryProductsState: const BaseState<GetCategoryProductsEntity>(),
+          categoryProductsState: const BaseState<ProductsResponseEntity>(),
           productsInCart: const BaseState<List<String>>(),
           selectedIndexCategoryBar: 0,
         ),
@@ -63,11 +56,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
       case SelectSortOption():
         _selectSortOption(event.sortOption);
       case IsSearching():
-        _isSearching();
-      case AddProductToCart():
-        _addProductToCart(event.productId, event.quantity);
-      case RemoveProductFromCart():
-        _removeProductFromCart(event.productId);
+        _isSearching(event.isSearching);
     }
   }
 
@@ -177,7 +166,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
   }) async {
     emit(
       state.copyWith(
-        categoryProductsState: const BaseState<GetCategoryProductsEntity>(
+        categoryProductsState: const BaseState<ProductsResponseEntity>(
           isLoading: true,
         ),
         categoryId: categoryId,
@@ -198,7 +187,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
         cartProducts.when(
           success: (cartData) => emit(
             state.copyWith(
-              categoryProductsState: BaseState<GetCategoryProductsEntity>(
+              categoryProductsState: BaseState<ProductsResponseEntity>(
                 data: data,
                 isLoading: false,
               ),
@@ -211,7 +200,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
           ),
           failure: (error) => emit(
             state.copyWith(
-              categoryProductsState: BaseState<GetCategoryProductsEntity>(
+              categoryProductsState: BaseState<ProductsResponseEntity>(
                 data: data,
                 isLoading: false,
               ),
@@ -224,7 +213,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
       },
       failure: (error) => emit(
         state.copyWith(
-          categoryProductsState: BaseState<GetCategoryProductsEntity>(
+          categoryProductsState: BaseState<ProductsResponseEntity>(
             errorMessage: error.errorModel.message,
             isLoading: false,
           ),
@@ -237,81 +226,8 @@ class CategoriesCubit extends Cubit<CategoriesState> {
     emit(state.copyWith(selectedSortOption: sortOption));
   }
 
-  void _isSearching() {
-    emit(state.copyWith(isSearching: !state.isSearching));
-  }
-
-  Future<void> _addProductToCart(String productId, int quantity) async {
-    emit(state.copyWith(pendingCartIds: [...state.pendingCartIds, productId]));
-
-    final addToCart = await _addToCartUseCase(
-      requestEntity: AddToCartRequestEntity(
-        productId: productId,
-        quantity: quantity,
-      ),
-    );
-
-    addToCart.when(
-      success: (data) => emit(
-        state.copyWith(
-          productsInCart: BaseState<List<String>>(
-            data: data.cart.cartItems
-                .map((item) => item.product.productId)
-                .toList(),
-          ),
-          pendingCartIds: state.pendingCartIds
-              .where((id) => id != productId)
-              .toList(),
-        ),
-      ),
-      failure: (error) {
-        emit(
-          state.copyWith(
-            productsInCart: BaseState<List<String>>(
-              errorMessage: error.errorModel.message,
-            ),
-            pendingCartIds: state.pendingCartIds
-                .where((id) => id != productId)
-                .toList(),
-          ),
-        );
-      },
-    );
-  }
-
-  Future<void> _removeProductFromCart(String productId) async {
-    emit(state.copyWith(pendingCartIds: [...state.pendingCartIds, productId]));
-
-    final removeFromCart = await _removeItemFromCartUseCase(
-      productId: productId,
-    );
-
-    removeFromCart.when(
-      success: (data) => emit(
-        state.copyWith(
-          productsInCart: BaseState<List<String>>(
-            data: data.cart.cartItems
-                .map((item) => item.product.productId)
-                .toList(),
-          ),
-          pendingCartIds: state.pendingCartIds
-              .where((id) => id != productId)
-              .toList(),
-        ),
-      ),
-      failure: (error) {
-        emit(
-          state.copyWith(
-            productsInCart: BaseState<List<String>>(
-              errorMessage: error.errorModel.message,
-            ),
-            pendingCartIds: state.pendingCartIds
-                .where((id) => id != productId)
-                .toList(),
-          ),
-        );
-      },
-    );
+  void _isSearching(bool isSearching) {
+    emit(state.copyWith(isSearching: isSearching));
   }
 
   @override
