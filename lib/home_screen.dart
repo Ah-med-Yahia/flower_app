@@ -3,10 +3,10 @@ import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/enums/home_nav_tab.dart';
 import 'package:flower_app/core/shared/presentation/cubits/products_cubit/products_cubit.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
-import 'package:flower_app/features/cart/presentation/cart_tab.dart';
-import 'package:flower_app/features/categories/presentation/views/categories_tap.dart';
-import 'package:flower_app/features/home/presentation/view/screens/home_tap.dart';
-import 'package:flower_app/features/profile/profile_tap.dart';
+import 'package:flower_app/features/tabs/cart/presentation/cart_tab.dart';
+import 'package:flower_app/features/tabs/categories/presentation/views/categories_tap.dart';
+import 'package:flower_app/features/tabs/home/presentation/view/screens/home_tap.dart';
+import 'package:flower_app/features/tabs/profile/profile_tap.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

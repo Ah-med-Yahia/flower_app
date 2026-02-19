@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../../../config/di/di.dart';
 import '../../../../../../core/constants/app_text_constants.dart';
-import '../../../../../../core/widgets/spacing.dart';
+import '../../../../../../core/shared/presentation/widgets/spacing.dart';
 import '../../view_models/forget_password/forget_password_cubit.dart';
 import '../shared_widgets/custom_header_title_widget.dart';
 import 'forget_password_body.dart';

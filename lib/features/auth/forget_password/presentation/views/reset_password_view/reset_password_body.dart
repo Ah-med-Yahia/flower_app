@@ -8,7 +8,7 @@ import '../../../../../../../core/constants/app_text_constants.dart';
 import '../../../../../../../core/validators/app_validators.dart';
 import '../../../../../../core/constants/app_routes_constant.dart';
 import '../../../../../../core/constants/validation_constants.dart';
-import '../../../../../../core/widgets/spacing.dart';
+import '../../../../../../core/shared/presentation/widgets/spacing.dart';
 import '../../view_models/reset_password/reset_password_cubit.dart';
 import '../../view_models/reset_password/reset_password_events.dart';
 import '../../view_models/reset_password/reset_password_state.dart';

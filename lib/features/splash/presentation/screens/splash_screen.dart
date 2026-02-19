@@ -4,7 +4,7 @@ import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/gen/assets.gen.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flower_app/core/ui_utils/ui_utils.dart';
-import 'package:flower_app/core/widgets/spacing.dart';
+import 'package:flower_app/core/shared/presentation/widgets/spacing.dart';
 import 'package:flower_app/features/splash/presentation/cubit/splash_cubit.dart';
 import 'package:flower_app/features/splash/presentation/cubit/splash_intents.dart';
 import 'package:flower_app/features/splash/presentation/cubit/splash_side_effect.dart';

@@ -1,5 +1,5 @@
-import 'package:flower_app/features/profile/profile_main/domain/entities/user_data_response.dart';
-import 'package:flower_app/features/profile/profile_main/domain/entities/user_entity.dart';
+import 'package:flower_app/features/tabs/profile/profile_main/domain/entities/user_data_response.dart';
+import 'package:flower_app/features/tabs/profile/profile_main/domain/entities/user_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

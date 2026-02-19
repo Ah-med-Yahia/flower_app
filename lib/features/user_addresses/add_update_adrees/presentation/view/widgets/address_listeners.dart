@@ -1,5 +1,5 @@
 import 'package:flower_app/core/constants/app_text_constants.dart';
-import 'package:flower_app/core/widgets/toast_utils.dart';
+import 'package:flower_app/core/shared/presentation/widgets/toast_utils.dart';
 import 'package:flower_app/features/user_addresses/add_update_adrees/domain/models/location_entity.dart';
 import 'package:flower_app/features/user_addresses/add_update_adrees/presentation/view_model/add_update_addresse_cubit.dart';
 import 'package:flower_app/features/user_addresses/add_update_adrees/presentation/view_model/add_update_addresse_states.dart';

@@ -3,7 +3,7 @@ import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/cache_modules/secure_storage_module.dart';
 import 'package:flower_app/config/error_handler/error_handler.dart';
 import 'package:flower_app/core/constants/cache_constants.dart';
-import 'package:flower_app/features/auth/shared/logout/api/datasources/local/logout_local_data_source_impl.dart';
+import 'package:flower_app/features/auth/logout/api/datasources/local/logout_local_data_source_impl.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';

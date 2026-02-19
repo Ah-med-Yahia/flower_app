@@ -8,12 +8,6 @@ import 'package:injectable/injectable.dart';
 
 import '../../core/constants/cache_constants.dart';
 
-/// [SecureStorageService] Too Many Type Handlers
-/// Issues:
-///       Handles too many data types (String, JSON, List, Bool, Int, Double)
-/// Recommendation:
-/// Consider using a generic approach or creating specialized storage services for different data types.
-
 @lazySingleton
 class SecureStorageService {
   late final FlutterSecureStorage _storage;

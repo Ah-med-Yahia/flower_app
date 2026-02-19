@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/widgets/spacing.dart';
+import '../../../../../../core/shared/presentation/widgets/spacing.dart';
 
 class CustomHeaderTitleWidget extends StatelessWidget {
   const CustomHeaderTitleWidget({

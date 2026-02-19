@@ -1,5 +1,5 @@
 import 'package:flower_app/core/shared/data/models/get_products_models/product_model.dart';
-import 'package:flower_app/features/categories/data/models/metadata/category_metadata_model.dart';
+import 'package:flower_app/features/tabs/categories/data/models/metadata/category_metadata_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'dart:convert';
 

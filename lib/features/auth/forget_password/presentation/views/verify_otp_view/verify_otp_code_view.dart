@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../../../config/di/di.dart';
 import '../../../../../../core/constants/app_text_constants.dart';
-import '../../../../../../core/widgets/spacing.dart';
+import '../../../../../../core/shared/presentation/widgets/spacing.dart';
 import '../../view_models/verify_otp/verify_otp_code_cubit.dart';
 import '../shared_widgets/custom_header_title_widget.dart';
 import 'verify_otp_body.dart';
