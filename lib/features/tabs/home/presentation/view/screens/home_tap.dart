@@ -176,7 +176,7 @@ class _HomeTapState extends State<HomeTap> {
                                   cubit: cubit,
                                   bestSeller: homeScreenData.bestSeller,
                                 ),
-                                8.verticalSpacing,
+                                12.verticalSpacing,
                                 OccasionSection(
                                   cubit: cubit,
                                   occasions: homeScreenData.occasions,
