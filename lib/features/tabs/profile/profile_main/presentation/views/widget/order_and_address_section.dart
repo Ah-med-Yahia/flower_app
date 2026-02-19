@@ -15,9 +15,14 @@ class OrderAndAddressSection extends StatelessWidget {
       padding: const EdgeInsetsGeometry.symmetric(horizontal: 16),
       child: Column(
         children: [
-          ProfileCardItem(
-            title: AppTextConstants.myOrders,
-            icon: Icons.shopping_bag_outlined,
+          InkWell(
+            onTap: () {
+              context.push(AppRoutesConstants.ordersRoute);
+            },
+            child: ProfileCardItem(
+              title: AppTextConstants.myOrders,
+              icon: Icons.shopping_bag_outlined,
+            ),
           ),
           InkWell(
             onTap: () {
