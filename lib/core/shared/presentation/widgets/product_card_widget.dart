@@ -1,15 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flower_app/core/constants/app_routes_constant.dart';
-import 'package:flower_app/core/constants/app_text_constants.dart';
-import 'package:flower_app/core/shared/presentation/cubits/products_cubit/products_cubit.dart';
-import 'package:flower_app/core/shared/presentation/cubits/products_cubit/products_intents.dart';
-import 'package:flower_app/core/shared/presentation/cubits/products_cubit/products_state.dart';
+import 'package:flower_app/core/shared/presentation/widgets/add_remove_button.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flower_app/core/shared/presentation/widgets/spacing.dart';
 import 'package:flower_app/core/shared/domain/entities/products_response_entity/product_entity.dart';
 import 'package:flower_app/core/shared/presentation/widgets/product_info_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -65,71 +61,7 @@ class ProductCardWidget extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               height: screenSize.height * 0.04,
-              child: product.inStock
-                  ? BlocBuilder<ProductsCubit, ProductsState>(
-                      buildWhen: (previous, current) {
-                        return previous.pendingCartIds !=
-                                current.pendingCartIds ||
-                            previous.productsInCart.data !=
-                                current.productsInCart.data;
-                      },
-                      builder: (context, state) {
-                        final isInCart =
-                            state.productsInCart.data?.contains(product.id) ??
-                            false;
-                        final isPending = state.pendingCartIds.contains(
-                          product.id,
-                        );
-                        return ElevatedButton.icon(
-                          onPressed: isPending
-                              ? null
-                              : () {
-                                  isInCart
-                                      ? context.read<ProductsCubit>().onIntent(
-                                          RemoveProductFromCart(product.id),
-                                        )
-                                      : context.read<ProductsCubit>().onIntent(
-                                          AddProductToCart(product.id, 1),
-                                        );
-                                },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: isInCart
-                                ? AppColors.grey
-                                : AppColors.primary,
-                            disabledBackgroundColor: isInCart
-                                ? AppColors.grey.withValues(alpha: 0.5)
-                                : AppColors.primary.withValues(alpha: 0.5),
-                          ),
-                          icon: Icon(
-                            Icons.shopping_cart_outlined,
-                            size: screenSize.width * 0.055,
-                          ),
-                          label: Text(
-                            isInCart
-                                ? AppTextConstants.removeFromCart
-                                : AppTextConstants.addToCart,
-                            style: Theme.of(context).textTheme.labelLarge
-                                ?.copyWith(
-                                  fontSize: isInCart
-                                      ? screenSize.width * 0.032
-                                      : screenSize.width * 0.035,
-                                  fontWeight: FontWeight.w600,
-                                  color: AppColors.background,
-                                ),
-                          ),
-                        );
-                      },
-                    )
-                  : Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        AppTextConstants.outOfStock,
-                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.red,
-                        ),
-                      ),
-                    ),
+              child: AddRemoveButton(productId: product.id, productInStock: product.inStock)
             ),
           ],
         ),
