@@ -84,7 +84,7 @@ class ProductDetailsScreen extends StatelessWidget {
                                       size:
                                           MediaQuery.of(context).size.height *
                                           0.12,
-                                      color: Colors.grey,
+                                      color: AppColors.grey,
                                     ),
                                   ),
                                 ),
