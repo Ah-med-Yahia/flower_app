@@ -16,7 +16,7 @@ import 'package:flower_app/features/tabs/cart/presentation/cubit/cart_states.dar
 import 'package:flower_app/features/tabs/cart/presentation/widgets/button_clear_cart_widget.dart';
 import 'package:flower_app/features/tabs/cart/presentation/widgets/cart_error_modal_widget.dart';
 import 'package:flower_app/features/tabs/cart/presentation/widgets/cart_item_widget.dart';
-import 'package:flower_app/features/tabs/cart/presentation/widgets/cart_lottie_states_widget.dart';
+import 'package:flower_app/core/shared/presentation/widgets/lottie_states_widget.dart';
 import 'package:flower_app/features/tabs/cart/presentation/widgets/cart_summary_widget.dart';
 import 'package:flower_app/features/tabs/cart/presentation/widgets/location_widget.dart';
 import 'package:flutter/material.dart';

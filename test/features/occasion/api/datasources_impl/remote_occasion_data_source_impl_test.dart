@@ -6,8 +6,6 @@ import 'package:flower_app/features/products/occasion/api/datasources_impl/remot
 import 'package:flower_app/features/products/occasion/data/models/get_all_occassion_models/get_all_occasions_response_model.dart';
 import 'package:flower_app/features/products/occasion/data/models/get_all_occassion_models/metadata_model.dart';
 import 'package:flower_app/features/products/occasion/data/models/get_all_occassion_models/occasion_model.dart';
-import 'package:flower_app/features/products/occasion/data/models/get_occasion_products_models/get_occasion_products_response_model.dart';
-import 'package:flower_app/features/products/occasion/data/models/get_occasion_products_models/product_model.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
@@ -67,53 +65,6 @@ void main() {
       );
 
       verify(mockApiClient.getallOcassions()).called(1);
-    });
-
-    test('Test get occasion products Success Case', () async {
-      const mockResponse = GetOccasionProductsResponseModel(
-        message: 'Success',
-        product: ProductModel(
-          id: '1',
-          name: 'Rose Bouquet',
-          image: 'https://example.com/rose_bouquet.jpg',
-          slug: 'Rose-Bouquet',
-          createdAt: 'fake_date',
-          updatedAt: 'fake_date',
-          isSuperAdmin: false,
-        ),
-      );
-      when(
-        mockApiClient.getOccasionProducts(id: anyNamed('id')),
-      ).thenAnswer((_) async => mockResponse);
-      final result = await dataSource.getOccasionProducts('');
-      final success = result as Success<GetOccasionProductsResponseModel>;
-      expect(result, isA<Success<GetOccasionProductsResponseModel>>());
-      expect(success.data.message, 'Success');
-      expect(success.data.product, isA<ProductModel>());
-      expect(success.data.product?.id, '1');
-      expect(success.data.product?.name, 'Rose Bouquet');
-      expect(
-        success.data.product?.image,
-        'https://example.com/rose_bouquet.jpg',
-      );
-      verify(mockApiClient.getOccasionProducts(id: anyNamed('id'))).called(1);
-    });
-
-    test('Test get occasion products Error Case', () async {
-      final dummyError = ErrorHandler.handle(
-        Exception('Failed to fetch occasion products'),
-      );
-      when(
-        mockApiClient.getOccasionProducts(id: anyNamed('id')),
-      ).thenThrow(dummyError);
-      final result = await dataSource.getOccasionProducts('');
-      expect(result, isA<Failure<GetOccasionProductsResponseModel>>());
-      final failure = result as Failure<GetOccasionProductsResponseModel>;
-      expect(
-        failure.errorHandler.errorModel.message,
-        ErrorsConstant.defaultError,
-      );
-      verify(mockApiClient.getOccasionProducts(id: anyNamed('id'))).called(1);
     });
   });
 }

@@ -1,5 +1,5 @@
+import 'package:flower_app/core/shared/presentation/widgets/tab_indicator_widget.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
-import 'package:flower_app/features/products/occasion/presentation/views/widgets/tab_indicator.dart';
 import 'package:flutter/material.dart';
 
 class OccasionTab extends StatelessWidget {
@@ -16,7 +16,8 @@ class OccasionTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
+      splashColor: AppColors.transparent,
       onTap: onTap,
       child: Column(
         mainAxisSize: MainAxisSize.min,

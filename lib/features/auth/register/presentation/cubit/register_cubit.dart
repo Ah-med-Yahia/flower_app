@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -147,8 +146,6 @@ class RegisterCubit extends Cubit<RegisterStates> {
       phone: formattedPhone,
       gender: state.gender.toLowerCase(),
     );
-
-    log('REGISTER REQUEST => ${request.toJson()}');
 
     final result = await _registerUseCase(request);
 

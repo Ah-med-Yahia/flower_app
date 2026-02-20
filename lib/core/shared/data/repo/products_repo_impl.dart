@@ -17,12 +17,14 @@ class ProductsRepoImpl implements ProductsRepo {
     String? keyword,
     String? categoryId,
     String? sortOption,
+    String? occasionId,
   }) async {
     return safeApiCall(() async {
       final response = await _productsRemoteDataSources.getProducts(
         keyword: keyword,
         categoryId: categoryId,
         sortOption: sortOption,
+        occasionId: occasionId,
       );
       return response.toEntity();
     });
