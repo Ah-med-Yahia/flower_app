@@ -1,18 +1,18 @@
+import 'package:flower_app/core/shared/domain/entities/products_response_entity/product_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:flower_app/features/products/product_details/domain/models/product_model.dart';
 import 'package:flower_app/features/products/product_details/domain/models/product_response_model.dart';
 
 import 'product_response_model_test.mocks.dart';
 
-@GenerateMocks([ProductModel])
+@GenerateMocks([ProductEntity])
 void main() {
   group('ProductResponseModel', () {
-    late MockProductModel mockProduct;
+    late MockProductEntity mockProduct;
 
     setUp(() {
-      mockProduct = MockProductModel();
+      mockProduct = MockProductEntity();
     });
 
     test(
@@ -106,8 +106,6 @@ void main() {
       when(mockProduct.price).thenReturn(100.0);
       when(mockProduct.priceAfterDiscount).thenReturn(80.0);
       when(mockProduct.quantity).thenReturn(50);
-      when(mockProduct.isInWishlist).thenReturn(false);
-      when(mockProduct.favoriteId).thenReturn(null);
 
       // Act
       final result = ProductResponseModel(
@@ -121,33 +119,12 @@ void main() {
       expect(result.product.price, 100.0);
       expect(result.product.priceAfterDiscount, 80.0);
       expect(result.product.quantity, 50);
-      expect(result.product.isInWishlist, false);
-      expect(result.product.favoriteId, null);
-    });
-
-    test('should handle product with favoriteId in response', () {
-      // Arrange
-      when(mockProduct.isInWishlist).thenReturn(true);
-      when(mockProduct.favoriteId).thenReturn('fav123');
-
-      // Act
-      final result = ProductResponseModel(
-        message: 'Product with favorite retrieved',
-        product: mockProduct,
-      );
-
-      // Assert
-      expect(result.message, 'Product with favorite retrieved');
-      expect(result.product.isInWishlist, true);
-      expect(result.product.favoriteId, 'fav123');
     });
 
     test('should handle product with zero values in response', () {
       // Arrange
       when(mockProduct.price).thenReturn(0.0);
       when(mockProduct.quantity).thenReturn(0);
-      when(mockProduct.sold).thenReturn(0);
-      when(mockProduct.rateAvg).thenReturn(0.0);
 
       // Act
       final result = ProductResponseModel(
@@ -159,8 +136,6 @@ void main() {
       expect(result.message, 'Product with zero values retrieved');
       expect(result.product.price, 0.0);
       expect(result.product.quantity, 0);
-      expect(result.product.sold, 0);
-      expect(result.product.rateAvg, 0.0);
     });
 
     test('should handle product with empty images list in response', () {
@@ -176,7 +151,6 @@ void main() {
       // Assert
       expect(result.message, 'Product without images retrieved');
       expect(result.product.images, isEmpty);
-      expect(result.product.images.length, 0);
     });
 
     test('should handle multilingual messages', () {
@@ -221,7 +195,6 @@ void main() {
       );
 
       // Assert
-      expect(result.product.images.length, 3);
       expect(result.product.images, imageList);
     });
   });

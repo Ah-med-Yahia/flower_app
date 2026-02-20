@@ -1,10 +1,10 @@
+import 'package:flower_app/core/shared/data/models/get_products_models/product_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/error_handler/error_handler.dart';
 import 'package:flower_app/features/products/product_details/api/data_sources/remote/product_details_data_source_impl.dart';
-import 'package:flower_app/features/products/product_details/data/models/product_dto.dart';
 import 'package:flower_app/features/products/product_details/data/models/product_response_dto.dart';
 import 'package:flower_app/features/products/product_details/data/repo/product_details_repo_impl.dart';
 import 'package:flower_app/features/products/product_details/domain/models/product_response_model.dart';
@@ -37,7 +37,7 @@ void main() {
       //Arrange
       final productResponseDto = ProductResponseDto(
         message: 'Success',
-        product: ProductDto(
+        product: ProductModel(
           id: '1',
           title: 'Test Product',
           slug: 'test-product',
@@ -78,22 +78,14 @@ void main() {
           expect(model.message, 'Success');
           expect(model.product.id, '1');
           expect(model.product.title, 'Test Product');
-          expect(model.product.slug, 'test-product');
           expect(model.product.description, 'A test product description');
-          expect(model.product.imgCover, 'https://example.com/cover.jpg');
-          expect(model.product.images.length, 2);
+          expect(model.product.imageCover, 'https://example.com/cover.jpg');
+          expect(model.product.images?.length, 2);
           expect(model.product.price, 100.0);
           expect(model.product.priceAfterDiscount, 80.0);
           expect(model.product.quantity, 50);
-          expect(model.product.category, 'Electronics');
-          expect(model.product.occasion, 'Birthday');
-          expect(model.product.createdAt, testCreatedAt);
-          expect(model.product.updatedAt, testUpdatedAt);
-          expect(model.product.sold, 10);
-          expect(model.product.rateAvg, 4.5);
-          expect(model.product.rateCount, 100);
-          expect(model.product.isInWishlist, false);
-          expect(model.product.favoriteId, null);
+          expect(model.product.categoryId, 'Electronics');
+          expect(model.product.occasionId, 'Birthday');
         },
         failure: (_) => fail('Expected success but got failure'),
       );
@@ -136,7 +128,7 @@ void main() {
       const productId = '456';
       final productResponseDto = ProductResponseDto(
         message: 'Success',
-        product: ProductDto(
+        product: ProductModel(
           id: '456',
           title: 'Test Product',
           slug: 'test-product',
@@ -180,7 +172,7 @@ void main() {
 
       final productResponseDto1 = ProductResponseDto(
         message: 'Success',
-        product: ProductDto(
+        product: ProductModel(
           id: '001',
           title: 'Product 1',
           slug: 'product-1',
@@ -206,7 +198,7 @@ void main() {
 
       final productResponseDto2 = ProductResponseDto(
         message: 'Success',
-        product: ProductDto(
+        product: ProductModel(
           id: '002',
           title: 'Product 2',
           slug: 'product-2',
@@ -276,7 +268,7 @@ void main() {
         const productId = '789';
         final productResponseDto = ProductResponseDto(
           message: 'Product retrieved successfully',
-          product: ProductDto(
+          product: ProductModel(
             id: '789',
             title: 'Complex Product',
             slug: 'complex-product',
@@ -296,6 +288,7 @@ void main() {
             updatedAt: testUpdatedAt,
             sold: 25,
             rateAvg: 4.8,
+            discount: 20,
             rateCount: 200,
             isInWishlist: false,
             favoriteId: null,
@@ -321,13 +314,11 @@ void main() {
             expect(model.product.id, '789');
             expect(model.product.title, 'Complex Product');
             expect(model.product.description, contains('émojis'));
-            expect(model.product.images.length, 3);
+            expect(model.product.images?.length, 3);
+            expect(model.product.discount, 20);
             expect(model.product.price, 999.99);
             expect(model.product.priceAfterDiscount, 799.99);
             expect(model.product.quantity, 100);
-            expect(model.product.sold, 25);
-            expect(model.product.rateAvg, 4.8);
-            expect(model.product.rateCount, 200);
           },
           failure: (_) => fail('Expected success but got failure'),
         );

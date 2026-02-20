@@ -14,15 +14,16 @@ class GetProductDetailsUsecase {
     return response.when(
       success: (entity) {
         final product = entity.product;
-        final productsWithDiscountPercentage = product.priceAfterDiscount == null
-              ? product.copyWith(inStock: _isInStock(product.quantity))
-              : product.copyWith(
-                  discountPercentage: _calculateDiscountPercentage(
-                    product.price,
-                    product.priceAfterDiscount!,
-                  ),
-                  inStock: _isInStock(product.quantity),
-                );
+        final productsWithDiscountPercentage =
+            product.priceAfterDiscount == null
+            ? product.copyWith(inStock: _isInStock(product.quantity))
+            : product.copyWith(
+                discountPercentage: _calculateDiscountPercentage(
+                  product.price,
+                  product.priceAfterDiscount!,
+                ),
+                inStock: _isInStock(product.quantity),
+              );
         return BaseResponse.success(
           entity.copyWith(product: productsWithDiscountPercentage),
         );

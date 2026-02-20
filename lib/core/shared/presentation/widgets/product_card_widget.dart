@@ -61,7 +61,10 @@ class ProductCardWidget extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               height: screenSize.height * 0.04,
-              child: AddRemoveButton(productId: product.id, productInStock: product.inStock)
+              child: AddRemoveButton(
+                productId: product.id,
+                productInStock: product.inStock,
+              ),
             ),
           ],
         ),
