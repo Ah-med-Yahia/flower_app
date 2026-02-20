@@ -37,6 +37,7 @@ class ProductsCubit extends Cubit<ProductsState> {
           intent.categoryId,
           sortOption: intent.sortOption,
           keyword: intent.keyword,
+          occasionId: intent.occasionId,
         );
       case UpdateCart():
         _updateCart();
@@ -55,6 +56,7 @@ class ProductsCubit extends Cubit<ProductsState> {
     String? categoryId, {
     String? sortOption,
     String? keyword,
+    String? occasionId,
   }) async {
     emit(
       state.copyWith(
@@ -66,6 +68,7 @@ class ProductsCubit extends Cubit<ProductsState> {
       categoryId: categoryId,
       sortOption: sortOption,
       keyword: keyword,
+      occasionId: occasionId,
     );
 
     final cartProducts = await _getCartUseCase();

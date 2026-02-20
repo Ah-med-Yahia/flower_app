@@ -1,5 +1,6 @@
 import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/shared/domain/entities/products_response_entity/product_entity.dart';
+import 'package:flower_app/core/shared/presentation/widgets/spacing.dart';
 import 'package:flower_app/features/tabs/home/presentation/view/widgets/best_seller_occations_card_widget.dart';
 import 'package:flower_app/features/tabs/home/presentation/view/widgets/view_all_button.dart';
 import 'package:flower_app/features/tabs/home/presentation/view_model/home_screen_cubit.dart';
@@ -39,6 +40,7 @@ class BestSellerSection extends StatelessWidget {
             ),
           ],
         ),
+        6.verticalSpacing,
         SizedBox(
           height: screenSize.height * 0.28,
           child: ListView.builder(

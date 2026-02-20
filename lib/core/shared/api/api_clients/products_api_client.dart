@@ -17,5 +17,6 @@ abstract class ProductsApiClient {
     @Query(QueryParamsKey.search) String? keyword,
     @Query(QueryParamsKey.categoryId) String? categoryId,
     @Query(QueryParamsKey.sort) String? sortOption,
+    @Query(QueryParamsKey.occasionId) String? occasionId,
   });
 }

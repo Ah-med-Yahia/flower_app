@@ -5,7 +5,7 @@ import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flower_app/core/ui_utils/ui_utils.dart';
 import 'package:flower_app/core/shared/presentation/widgets/loading_indicator_widget.dart';
 import 'package:flower_app/core/shared/presentation/widgets/spacing.dart';
-import 'package:flower_app/features/tabs/cart/presentation/widgets/cart_lottie_states_widget.dart';
+import 'package:flower_app/core/shared/presentation/widgets/lottie_states_widget.dart';
 import 'package:flower_app/features/tabs/categories/presentation/cubit/categories_cubit.dart';
 import 'package:flower_app/features/tabs/categories/presentation/cubit/categories_intents.dart';
 import 'package:flower_app/features/tabs/categories/presentation/cubit/categories_state.dart';

@@ -13,11 +13,13 @@ class GetProductsUseCase {
     String? keyword,
     String? categoryId,
     String? sortOption,
+    String? occasionId,
   }) async {
     final response = await _productsRepo.getProducts(
       keyword: keyword,
       categoryId: categoryId,
       sortOption: sortOption,
+      occasionId: occasionId,
     );
     return response.when(
       success: (entity) {

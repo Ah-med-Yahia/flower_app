@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flower_app/config/di/di.dart';
 import 'package:flower_app/core/constants/app_routes_constant.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
@@ -12,7 +10,7 @@ import 'package:flower_app/core/shared/presentation/widgets/custom_error_widget.
 import 'package:flower_app/core/shared/presentation/widgets/loading_indicator_widget.dart';
 import 'package:flower_app/core/shared/presentation/widgets/products_grid_widget.dart';
 import 'package:flower_app/core/shared/presentation/widgets/spacing.dart';
-import 'package:flower_app/features/tabs/cart/presentation/widgets/cart_lottie_states_widget.dart';
+import 'package:flower_app/core/shared/presentation/widgets/lottie_states_widget.dart';
 import 'package:flower_app/features/tabs/home/presentation/view/widgets/address_widget.dart';
 import 'package:flower_app/features/tabs/home/presentation/view/widgets/best_seller_section.dart';
 import 'package:flower_app/features/tabs/home/presentation/view/widgets/categories_section.dart';
@@ -77,7 +75,10 @@ class _HomeTapState extends State<HomeTap> {
               case NavigateToCategoryEvent():
                 widget.onNavigateSelectedToCategory(nav.categoryId!);
               case NavigateToOccasionEvent():
-                context.pushNamed(AppRoutesConstants.occasionScreen);
+                context.pushNamed(
+                  AppRoutesConstants.occasionScreen,
+                  extra: nav.occasionId,
+                );
             }
           }
         },
@@ -107,7 +108,10 @@ class _HomeTapState extends State<HomeTap> {
                 appBar: AppBar(toolbarHeight: height * 0.0),
                 backgroundColor: AppColors.background,
                 body: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 16.0,
+                    horizontal: 12,
+                  ),
                   child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
                     child: Column(
@@ -135,7 +139,6 @@ class _HomeTapState extends State<HomeTap> {
 
                             if (products?.isNotEmpty == true &&
                                 ps.isLoading == false) {
-                              log(products!.length.toString());
                               return ProductsGridWidget(
                                 products: ps.data!.products,
                                 shrinkWrap: true,
@@ -162,6 +165,7 @@ class _HomeTapState extends State<HomeTap> {
                                 const AddressWidget(
                                   address: '2XVP+XC - Sheikh Zayed',
                                 ),
+                                12.verticalSpacing,
                                 CategoriesSection(
                                   onNavigateToCategories:
                                       widget.onNavigateToCategories,
@@ -172,6 +176,7 @@ class _HomeTapState extends State<HomeTap> {
                                   cubit: cubit,
                                   bestSeller: homeScreenData.bestSeller,
                                 ),
+                                12.verticalSpacing,
                                 OccasionSection(
                                   cubit: cubit,
                                   occasions: homeScreenData.occasions,

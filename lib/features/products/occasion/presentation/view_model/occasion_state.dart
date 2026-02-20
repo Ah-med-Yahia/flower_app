@@ -1,10 +1,10 @@
 import 'package:flower_app/config/base_state/base_state.dart';
+import 'package:flower_app/core/shared/domain/entities/products_response_entity/products_response_entity.dart';
 import 'package:flower_app/features/products/occasion/domain/entities/get_all_occasions_list_entity.dart';
-import 'package:flower_app/features/products/occasion/domain/entities/get_occasion_products_entity.dart';
 
 class OccasionState {
   final BaseState<GetOccasionListEntity> occasionState;
-  final BaseState<GetOccasionProductsEntity> occasionProductsState;
+  final BaseState<ProductsResponseEntity> occasionProductsState;
   final int selectedIndex;
 
   OccasionState({
@@ -15,7 +15,7 @@ class OccasionState {
   OccasionState copyWith({
     BaseState<GetOccasionListEntity>? occasionState,
     int? selectedIndex,
-    BaseState<GetOccasionProductsEntity>? occasionProductsState,
+    BaseState<ProductsResponseEntity>? occasionProductsState,
   }) {
     return OccasionState(
       occasionState: occasionState ?? this.occasionState,

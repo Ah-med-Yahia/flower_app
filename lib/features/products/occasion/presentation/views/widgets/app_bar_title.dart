@@ -11,7 +11,9 @@ class AppBarTitle extends StatelessWidget {
       children: [
         Text(
           AppTextConstants.occasion,
-          style: Theme.of(context).textTheme.titleLarge,
+          style: Theme.of(
+            context,
+          ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 2),
         Text(

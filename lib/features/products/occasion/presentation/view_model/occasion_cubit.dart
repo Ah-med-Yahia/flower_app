@@ -1,9 +1,9 @@
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/base_state/base_state.dart';
+import 'package:flower_app/core/shared/domain/entities/products_response_entity/products_response_entity.dart';
+import 'package:flower_app/core/shared/domain/use_cases.dart/get_products_use_cases.dart';
 import 'package:flower_app/features/products/occasion/domain/entities/get_all_occasions_list_entity.dart';
-import 'package:flower_app/features/products/occasion/domain/entities/get_occasion_products_entity.dart';
 import 'package:flower_app/features/products/occasion/domain/usecases/get_all_occasion_usecase.dart';
-import 'package:flower_app/features/products/occasion/domain/usecases/get_occasion_products_usecase.dart';
 import 'package:flower_app/features/products/occasion/presentation/view_model/occasion_event.dart';
 import 'package:flower_app/features/products/occasion/presentation/view_model/occasion_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,13 +12,13 @@ import 'package:injectable/injectable.dart';
 @injectable
 class OccasionCubit extends Cubit<OccasionState> {
   final GetAllOccasionUsecase _getAllOccasionUseCase;
-  final GetOccasionProductsUsecase _getOccasionProductsUseCase;
+  final GetProductsUseCase _getOccasionProductsUseCase;
 
   OccasionCubit(this._getAllOccasionUseCase, this._getOccasionProductsUseCase)
     : super(
         OccasionState(
           occasionState: const BaseState<GetOccasionListEntity>(),
-          occasionProductsState: const BaseState<GetOccasionProductsEntity>(),
+          occasionProductsState: const BaseState<ProductsResponseEntity>(),
           selectedIndex: 0,
         ),
       );
@@ -107,17 +107,18 @@ class OccasionCubit extends Cubit<OccasionState> {
   Future<void> _getOccasionProducts(String occasionId) async {
     emit(
       state.copyWith(
-        occasionProductsState: const BaseState<GetOccasionProductsEntity>(
+        occasionProductsState: const BaseState<ProductsResponseEntity>(
           isLoading: true,
         ),
       ),
     );
-    final occasionProducts = await _getOccasionProductsUseCase
-        .getOccasionProducts(occasionId);
+    final occasionProducts = await _getOccasionProductsUseCase(
+      occasionId: occasionId,
+    );
     occasionProducts.when(
       success: (data) => emit(
         state.copyWith(
-          occasionProductsState: BaseState<GetOccasionProductsEntity>(
+          occasionProductsState: BaseState<ProductsResponseEntity>(
             data: data,
             isLoading: false,
           ),
@@ -125,7 +126,7 @@ class OccasionCubit extends Cubit<OccasionState> {
       ),
       failure: (error) => emit(
         state.copyWith(
-          occasionProductsState: BaseState<GetOccasionProductsEntity>(
+          occasionProductsState: BaseState<ProductsResponseEntity>(
             errorMessage: error.errorModel.message,
             isLoading: false,
           ),

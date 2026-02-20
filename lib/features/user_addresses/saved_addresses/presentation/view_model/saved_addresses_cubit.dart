@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/base_state/base_state.dart';
 import 'package:flower_app/features/user_addresses/saved_addresses/domain/usecases/delete_saved_address_usecase.dart';
@@ -83,7 +81,6 @@ class SavedAddressesCubit extends Cubit<SavedAddressesStates> {
     _deleteSavedAddressUsecase.call(addressId).then((response) {
       response.when(
         success: (data) {
-          log(data.addresses.length.toString());
           emit(
             state.copyWith(
               savedAddressesState: BaseState(

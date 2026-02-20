@@ -3,12 +3,12 @@ import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/error_handler/error_handler.dart';
 import 'package:flower_app/config/error_handler/error_model.dart';
 import 'package:flower_app/core/constants/errors_constants.dart';
+import 'package:flower_app/core/shared/domain/entities/products_response_entity/product_entity.dart';
+import 'package:flower_app/core/shared/domain/entities/products_response_entity/products_response_entity.dart';
+import 'package:flower_app/core/shared/domain/use_cases.dart/get_products_use_cases.dart';
 import 'package:flower_app/features/products/occasion/domain/entities/get_all_occasions_list_entity.dart';
-import 'package:flower_app/features/products/occasion/domain/entities/get_occasion_products_entity.dart';
 import 'package:flower_app/features/products/occasion/domain/entities/occasion_entity.dart';
-import 'package:flower_app/features/products/occasion/domain/entities/occasion_product_entity.dart';
 import 'package:flower_app/features/products/occasion/domain/usecases/get_all_occasion_usecase.dart';
-import 'package:flower_app/features/products/occasion/domain/usecases/get_occasion_products_usecase.dart';
 import 'package:flower_app/features/products/occasion/presentation/view_model/occasion_cubit.dart';
 import 'package:flower_app/features/products/occasion/presentation/view_model/occasion_event.dart';
 import 'package:flower_app/features/products/occasion/presentation/view_model/occasion_state.dart';
@@ -18,15 +18,15 @@ import 'package:test/test.dart';
 
 import 'occasion_cubit_test.mocks.dart';
 
-@GenerateMocks([GetAllOccasionUsecase, GetOccasionProductsUsecase])
+@GenerateMocks([GetAllOccasionUsecase, GetProductsUseCase])
 void main() {
   late OccasionCubit occasionCubit;
   late MockGetAllOccasionUsecase mockGetAllUsecase;
-  late MockGetOccasionProductsUsecase mockGetProductsUsecase;
+  late MockGetProductsUseCase mockGetProductsUsecase;
 
   setUp(() {
     mockGetAllUsecase = MockGetAllOccasionUsecase();
-    mockGetProductsUsecase = MockGetOccasionProductsUsecase();
+    mockGetProductsUsecase = MockGetProductsUseCase();
     occasionCubit = OccasionCubit(mockGetAllUsecase, mockGetProductsUsecase);
   });
 
@@ -55,14 +55,17 @@ void main() {
       occasions: [OccasionEntity(id: '1', name: 'Birthday')],
     );
 
-    final tProducts = GetOccasionProductsEntity(
-      products: OccasionProductEntity(
-        id: '1',
-        name: 'Rose',
-        image: '',
-        price: 10,
-        priceAfterDiscount: 5,
-      ),
+    final tProducts = ProductsResponseEntity(
+      products: [
+        ProductEntity(
+          id: '1',
+          categoryId: '1',
+          occasionId: '1',
+          price: 2,
+          quantity: 2,
+          title: 'title',
+        ),
+      ],
     );
 
     blocTest<OccasionCubit, OccasionState>(
@@ -73,7 +76,7 @@ void main() {
         ).thenAnswer((_) async => BaseResponse.success(tOccasions));
         // Stub for the automatic call to getOccasionProducts after success
         when(
-          mockGetProductsUsecase.getOccasionProducts('1'),
+          mockGetProductsUsecase(occasionId: '1'),
         ).thenAnswer((_) async => BaseResponse.success(tProducts));
         return occasionCubit;
       },
@@ -133,21 +136,24 @@ void main() {
 
   group('OccasionCubit - GetOccasionProducts', () {
     const tId = '123';
-    final tProducts = GetOccasionProductsEntity(
-      products: OccasionProductEntity(
-        id: '1',
-        name: 'Rose',
-        image: '',
-        price: 10,
-        priceAfterDiscount: 5,
-      ),
+    final tProducts = ProductsResponseEntity(
+      products: [
+        ProductEntity(
+          id: '1',
+          categoryId: '1',
+          occasionId: '1',
+          price: 2,
+          quantity: 2,
+          title: 'title',
+        ),
+      ],
     );
 
     blocTest<OccasionCubit, OccasionState>(
       'emits [Loading, Success] when successful',
       build: () {
         when(
-          mockGetProductsUsecase.getOccasionProducts(tId),
+          mockGetProductsUsecase(occasionId: tId),
         ).thenAnswer((_) async => BaseResponse.success(tProducts));
         return occasionCubit;
       },
