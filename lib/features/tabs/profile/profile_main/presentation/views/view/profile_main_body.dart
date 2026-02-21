@@ -69,6 +69,7 @@ class _ProfileMainBodyState extends State<ProfileMainBody> {
       context: context,
       builder: (context) => ConfirmationDialog(
         title: AppTextConstants.attention,
+        icon: Icons.warning,
         message: AppTextConstants.mustLogin,
         onConfirm: () => _navigateToLogin(context),
       ),

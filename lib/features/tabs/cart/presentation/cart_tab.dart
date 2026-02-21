@@ -72,6 +72,7 @@ class _CartTabState extends State<CartTab> {
       builder: (context) {
         return ConfirmationDialog(
           message: AppTextConstants.mustLogin,
+          icon: Icons.warning,
           onConfirm: () {
             context.pushNamed(AppRoutesConstants.loginRoute);
           },

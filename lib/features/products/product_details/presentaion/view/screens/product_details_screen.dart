@@ -52,6 +52,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
       builder: (context) {
         return ConfirmationDialog(
           message: AppTextConstants.mustLogin,
+          icon: Icons.warning,
           onConfirm: () {
             context.pushNamed(AppRoutesConstants.loginRoute);
           },
