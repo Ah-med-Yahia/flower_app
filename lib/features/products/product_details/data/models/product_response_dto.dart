@@ -1,7 +1,7 @@
 // lib/features/products/data/models/product_response_dto.dart
 
+import 'package:flower_app/core/shared/data/models/get_products_models/product_model.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'product_dto.dart';
 
 part 'product_response_dto.g.dart';
 
@@ -11,7 +11,7 @@ class ProductResponseDto {
   final String message;
 
   @JsonKey(name: 'product')
-  final ProductDto product;
+  final ProductModel product;
 
   ProductResponseDto({required this.message, required this.product});
 

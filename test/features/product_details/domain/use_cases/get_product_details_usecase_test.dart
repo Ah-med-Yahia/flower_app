@@ -1,9 +1,9 @@
+import 'package:flower_app/core/shared/domain/entities/products_response_entity/product_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/error_handler/error_handler.dart';
-import 'package:flower_app/features/products/product_details/domain/models/product_model.dart';
 import 'package:flower_app/features/products/product_details/domain/models/product_response_model.dart';
 import 'package:flower_app/features/products/product_details/domain/repo/product_details_repo_contract.dart';
 import 'package:flower_app/features/products/product_details/domain/use_cases/get_product_details_usecase.dart';
@@ -22,24 +22,17 @@ void main() {
 
   group('GetProductDetailsUsecase', () {
     const productId = '123';
-    final mockProduct = ProductModel(
+    final mockProduct = ProductEntity(
       id: productId,
       title: 'Test Product',
-      slug: 'test-product',
       description: 'Test description',
-      imgCover: 'cover.jpg',
+      imageCover: 'cover.jpg',
       images: ['img1.jpg'],
       price: 100,
       priceAfterDiscount: 80,
       quantity: 10,
-      category: 'electronics',
-      occasion: 'sale',
-      createdAt: DateTime(2024, 1, 1),
-      updatedAt: DateTime(2024, 1, 1),
-      sold: 5,
-      rateAvg: 4.5,
-      rateCount: 10,
-      isInWishlist: false,
+      categoryId: 'electronics',
+      occasionId: 'sale',
     );
 
     test('should return success when repository call succeeds', () async {

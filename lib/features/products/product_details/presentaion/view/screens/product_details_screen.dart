@@ -1,10 +1,11 @@
+import 'package:flower_app/core/shared/presentation/widgets/add_remove_button.dart';
+import 'package:flower_app/core/shared/presentation/widgets/spacing.dart';
+import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../config/di/di.dart';
-import '../../../../../../core/constants/app_text_constants.dart';
 import '../../../../../../core/constants/errors_constants.dart';
-import '../../../../../../core/shared/presentation/widgets/custom_eleveted_button.dart';
 import '../../../../../../core/shared/presentation/widgets/custom_error_widget.dart';
 import '../../../../../../core/shared/presentation/widgets/loading_indicator_widget.dart';
 import '../../view_model/product_details_cubit.dart';
@@ -46,30 +47,57 @@ class ProductDetailsScreen extends StatelessWidget {
 
           if (state.productDetailsState?.data != null &&
               state.productDetailsState?.isLoading == false) {
+            final isInStock = state.productDetailsState!.data!.product.inStock;
             final priceAfterDiscount =
                 state.productDetailsState!.data!.product.priceAfterDiscount;
             final priceBeforeDiscount =
                 state.productDetailsState!.data!.product.price;
-            final quantity = state.productDetailsState!.data!.product.quantity;
             final title = state.productDetailsState!.data!.product.title;
             final description =
                 state.productDetailsState!.data!.product.description;
-            final images = state.productDetailsState!.data!.product.images;
-            images.add(state.productDetailsState!.data!.product.imgCover);
+            final original =
+                state.productDetailsState!.data!.product.images ?? [];
+            final images = List<String>.from(original);
+            final cover = state.productDetailsState!.data!.product.imageCover;
+            if (cover != null && cover.isNotEmpty) {
+              images.remove(cover);
+              images.insert(0, cover);
+            }
+
             return Scaffold(
               body: CustomScrollView(
                 slivers: [
                   SliverAppBar(
                     expandedHeight: MediaQuery.of(context).size.height * 0.5,
                     flexibleSpace: FlexibleSpaceBar(
-                      background: ProductImagesSlider(images: images),
+                      background: images.isNotEmpty == true
+                          ? ProductImagesSlider(images: images)
+                          : Column(
+                              children: [
+                                Container(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.5,
+                                  color: AppColors.lightPink,
+                                  child: Center(
+                                    child: Icon(
+                                      Icons.image_not_supported,
+                                      size:
+                                          MediaQuery.of(context).size.height *
+                                          0.12,
+                                      color: AppColors.grey,
+                                    ),
+                                  ),
+                                ),
+                                12.verticalSpacing,
+                              ],
+                            ),
                     ),
                   ),
                   SliverToBoxAdapter(
                     child: ProductDetailsInfo(
                       priceAfterDiscount: priceAfterDiscount,
                       priceBeforeDiscount: priceBeforeDiscount,
-                      quantity: quantity,
+                      isInStock: isInStock,
                       title: title,
                       description: description,
                     ),
@@ -78,9 +106,12 @@ class ProductDetailsScreen extends StatelessWidget {
               ),
               bottomNavigationBar: Padding(
                 padding: const EdgeInsets.all(16),
-                child: CustomElevatedButtonWidget(
-                  onPressed: () {},
-                  text: AppTextConstants.addToCart,
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.06,
+                  child: AddRemoveButton(
+                    productId: productId,
+                    productInStock: isInStock,
+                  ),
                 ),
               ),
             );

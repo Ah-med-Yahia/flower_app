@@ -1,100 +1,101 @@
+import 'package:flower_app/core/shared/presentation/widgets/spacing.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../core/constants/app_text_constants.dart';
 import '../../../../../../core/theme/app_colors.dart';
 
 class ProductDetailsInfo extends StatelessWidget {
-  final double priceAfterDiscount;
+  final double? priceAfterDiscount;
   final double priceBeforeDiscount;
-  final int quantity;
+  final bool isInStock;
   final String title;
-  final String description;
+  final String? description;
 
   const ProductDetailsInfo({
     super.key,
     required this.priceAfterDiscount,
     required this.priceBeforeDiscount,
-    required this.quantity,
+    required this.isInStock,
     required this.title,
     required this.description,
   });
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 children: [
                   Text(
-                    '${AppTextConstants.egp} ${priceAfterDiscount.floor().toString()}',
-                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                      fontSize: 24,
+                    '${AppTextConstants.egp} ${priceAfterDiscount?.floor().toString() ?? priceBeforeDiscount.floor().toString()}',
+                    style: textTheme.titleLarge!.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(width: 20),
-                  Text(
-                    '${AppTextConstants.egp} ${priceBeforeDiscount.floor().toString()}',
-                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.grey,
-                      decoration: TextDecoration.lineThrough,
+                  8.horizontalSpacing,
+                  Visibility(
+                    visible: priceAfterDiscount != null,
+                    child: Text(
+                      '${AppTextConstants.egp} ${priceBeforeDiscount.floor().toString()}',
+                      style: textTheme.titleMedium!.copyWith(
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.grey,
+                        decoration: TextDecoration.lineThrough,
+                      ),
                     ),
                   ),
                 ],
               ),
+              const Spacer(),
               Row(
                 children: [
                   Text(
                     AppTextConstants.status,
-                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                    style: textTheme.titleLarge!.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   Text(
-                    (quantity > 0)
+                    (isInStock)
                         ? AppTextConstants.inStock
                         : AppTextConstants.outOfStock,
-                    style: Theme.of(context).textTheme.titleLarge,
+                    style: textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w600,
+                      color: (isInStock) ? AppColors.green : AppColors.red,
+                    ),
                   ),
                 ],
               ),
             ],
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: 8),
           Text(
             AppTextConstants.taxNote,
-            style: Theme.of(
-              context,
-            ).textTheme.titleMedium!.copyWith(color: AppColors.grey),
+            style: textTheme.titleMedium!.copyWith(color: AppColors.grey),
           ),
-          const SizedBox(height: 5),
+          const SizedBox(height: 8),
           Text(
             title,
-            style: Theme.of(
-              context,
-            ).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.bold),
+            style: textTheme.titleMedium!.copyWith(
+              fontSize: 19,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 24),
           Text(
             AppTextConstants.description,
-            style: Theme.of(
-              context,
-            ).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.bold),
+            style: textTheme.titleMedium!.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 5),
-          Text(
-            description,
-            style: Theme.of(
-              context,
-            ).textTheme.titleLarge!.copyWith(fontSize: 16),
+          Visibility(
+            visible: description != null,
+            child: Text(description!, style: textTheme.titleSmall),
           ),
         ],
       ),

@@ -1,3 +1,4 @@
+import 'package:flower_app/core/shared/data/models/get_products_models/product_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -5,7 +6,6 @@ import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/error_handler/error_handler.dart';
 import 'package:flower_app/features/products/product_details/api/api_clinet/product_details_api_client.dart';
 import 'package:flower_app/features/products/product_details/api/data_sources/remote/product_details_data_source_impl.dart';
-import 'package:flower_app/features/products/product_details/data/models/product_dto.dart';
 import 'package:flower_app/features/products/product_details/data/models/product_response_dto.dart';
 
 import 'product_details_data_source_impl_test.mocks.dart';
@@ -34,7 +34,7 @@ void main() {
 
         final productResponseDto = ProductResponseDto(
           message: 'Success',
-          product: ProductDto(
+          product: ProductModel(
             id: productId,
             title: 'Test Product',
             slug: 'test-product',
@@ -117,7 +117,7 @@ void main() {
 
       final productResponseDto = ProductResponseDto(
         message: 'Success',
-        product: ProductDto(
+        product: ProductModel(
           id: productId,
           title: 'Another Product',
           slug: 'another-product',
