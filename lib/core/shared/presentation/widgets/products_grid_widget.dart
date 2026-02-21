@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:flower_app/core/constants/app_routes_constant.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
@@ -35,7 +34,6 @@ class _ProductsGridWidgetState extends State<ProductsGridWidget> {
   late StreamSubscription<ProductsSideEffect> _sideEffectSubscription;
   @override
   void initState() {
-    log('in init');
     super.initState();
     _sideEffectSubscription = context
         .read<ProductsCubit>()
