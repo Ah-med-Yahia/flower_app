@@ -1,8 +1,16 @@
+import 'dart:async';
+
+import 'package:flower_app/core/constants/app_routes_constant.dart';
+import 'package:flower_app/core/constants/app_text_constants.dart';
+import 'package:flower_app/core/shared/presentation/cubits/products_cubit/products_cubit.dart';
+import 'package:flower_app/core/shared/presentation/cubits/products_cubit/products_side_effect.dart';
 import 'package:flower_app/core/shared/presentation/widgets/add_remove_button.dart';
 import 'package:flower_app/core/shared/presentation/widgets/spacing.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
+import 'package:flower_app/features/tabs/cart/presentation/widgets/confirmation_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../../config/di/di.dart';
 import '../../../../../../core/constants/errors_constants.dart';
@@ -14,16 +22,57 @@ import '../../view_model/product_details_states.dart';
 import '../widgets/product_details_info.dart';
 import '../widgets/product_images_slider.dart';
 
-class ProductDetailsScreen extends StatelessWidget {
+class ProductDetailsScreen extends StatefulWidget {
   const ProductDetailsScreen({super.key, required this.productId});
 
   final String productId;
 
   @override
+  State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
+}
+
+class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
+  late StreamSubscription<ProductsSideEffect> _sideEffectSubscription;
+  @override
+  void initState() {
+    super.initState();
+    _sideEffectSubscription = context
+        .read<ProductsCubit>()
+        .sideEffectStream
+        .listen((event) {
+          if (event is LogoutUser) {
+            _handleLogoutUser();
+          }
+        });
+  }
+
+  void _handleLogoutUser() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return ConfirmationDialog(
+          message: AppTextConstants.mustLogin,
+          onConfirm: () {
+            context.pushNamed(AppRoutesConstants.loginRoute);
+          },
+          title: AppTextConstants.attention,
+        );
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    _sideEffectSubscription.cancel();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final ProductDetailsCubit cubit = getIt<ProductDetailsCubit>();
     return BlocProvider<ProductDetailsCubit>(
-      create: (context) => cubit..onEvent(GetProductDetailsEvent(productId)),
+      create: (context) =>
+          cubit..onEvent(GetProductDetailsEvent(widget.productId)),
       child: BlocBuilder<ProductDetailsCubit, ProductDetailsStates>(
         builder: (context, state) {
           if ((state.productDetailsState?.errorMessage?.isNotEmpty ?? false) &&
@@ -35,7 +84,7 @@ class ProductDetailsScreen extends StatelessWidget {
                     state.productDetailsState?.errorMessage ??
                     ErrorsConstant.defaultError,
                 onTryAgain: () {
-                  cubit.onEvent(GetProductDetailsEvent(productId));
+                  cubit.onEvent(GetProductDetailsEvent(widget.productId));
                 },
               ),
             );
@@ -109,7 +158,7 @@ class ProductDetailsScreen extends StatelessWidget {
                 child: SizedBox(
                   height: MediaQuery.of(context).size.height * 0.06,
                   child: AddRemoveButton(
-                    productId: productId,
+                    productId: widget.productId,
                     productInStock: isInStock,
                   ),
                 ),
@@ -120,7 +169,7 @@ class ProductDetailsScreen extends StatelessWidget {
               body: CustomErrorWidget(
                 error: ErrorsConstant.notFoundError,
                 onTryAgain: () {
-                  cubit.onEvent(GetProductDetailsEvent(productId));
+                  cubit.onEvent(GetProductDetailsEvent(widget.productId));
                 },
               ),
             );

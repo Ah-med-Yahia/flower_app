@@ -18,6 +18,7 @@ import 'package:flower_app/features/tabs/cart/presentation/widgets/cart_error_mo
 import 'package:flower_app/features/tabs/cart/presentation/widgets/cart_item_widget.dart';
 import 'package:flower_app/core/shared/presentation/widgets/lottie_states_widget.dart';
 import 'package:flower_app/features/tabs/cart/presentation/widgets/cart_summary_widget.dart';
+import 'package:flower_app/features/tabs/cart/presentation/widgets/confirmation_dialog.dart';
 import 'package:flower_app/features/tabs/cart/presentation/widgets/location_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -48,6 +49,8 @@ class _CartTabState extends State<CartTab> {
           _handleLoadingUIEvent();
         case ErrorGetCart():
           _handleErrorUIEvent(event.message);
+        case LogoutUser():
+          _handleLogoutUser();
         case SuccessAfterLoading():
           _handleSuccessAfterLoading(event.message);
         case ErrorCartItemsUpdate():
@@ -60,6 +63,22 @@ class _CartTabState extends State<CartTab> {
 
   void _handleLoadingUIEvent() {
     UIUtils.showLoading(context);
+  }
+
+  void _handleLogoutUser() {
+    UIUtils.hideLoading(context);
+    showDialog(
+      context: context,
+      builder: (context) {
+        return ConfirmationDialog(
+          message: AppTextConstants.mustLogin,
+          onConfirm: () {
+            context.pushNamed(AppRoutesConstants.loginRoute);
+          },
+          title: AppTextConstants.attention,
+        );
+      },
+    );
   }
 
   void _handleErrorRemoveItemFromCart(String message) {
