@@ -21,32 +21,45 @@ class VerifySessionUseCase {
   VerifySessionUseCase(this._tokenService);
 
   Future<BaseResponse<SessionStatus>> call() async {
-    final isLoggedInResponse = await _tokenService.isLoggedIn();
-
-    return await isLoggedInResponse.when(
-      success: (isLoggedIn) async {
-        if (!isLoggedIn) {
+    final tokenValidResponse = await _tokenService.isTokenValid();
+    return tokenValidResponse.when(
+      success: (isTokenValid) {
+        if (!isTokenValid) {
           // Todo(Salah): Handle Localization
           return BaseResponse.success(
-            SessionInvalid(ErrorsConstant.userNotLoggedInError),
+            SessionInvalid(ErrorsConstant.sessionExpiredError),
           );
         }
-
-        final tokenValidResponse = await _tokenService.isTokenValid();
-        return tokenValidResponse.when(
-          success: (isTokenValid) {
-            if (!isTokenValid) {
-              // Todo(Salah): Handle Localization
-              return BaseResponse.success(
-                SessionInvalid(ErrorsConstant.sessionExpiredError),
-              );
-            }
-            return BaseResponse.success(SessionValid());
-          },
-          failure: (error) => BaseResponse.failure(error),
-        );
+        return BaseResponse.success(SessionValid());
       },
       failure: (error) => BaseResponse.failure(error),
     );
+    //   final isLoggedInResponse = await _tokenService.isLoggedIn();
+
+    //   return await isLoggedInResponse.when(
+    //     success: (isLoggedIn) async {
+    //       if (!isLoggedIn) {
+    //         // Todo(Salah): Handle Localization
+    //         return BaseResponse.success(
+    //           SessionInvalid(ErrorsConstant.userNotLoggedInError),
+    //         );
+    //       }
+
+    //       final tokenValidResponse = await _tokenService.isTokenValid();
+    //       return tokenValidResponse.when(
+    //         success: (isTokenValid) {
+    //           if (!isTokenValid) {
+    //             // Todo(Salah): Handle Localization
+    //             return BaseResponse.success(
+    //               SessionInvalid(ErrorsConstant.sessionExpiredError),
+    //             );
+    //           }
+    //           return BaseResponse.success(SessionValid());
+    //         },
+    //         failure: (error) => BaseResponse.failure(error),
+    //       );
+    //     },
+    //     failure: (error) => BaseResponse.failure(error),
+    //   );
   }
 }
