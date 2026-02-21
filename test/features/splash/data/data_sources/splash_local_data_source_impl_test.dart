@@ -34,6 +34,9 @@ void main() {
         when(
           secureStorageService.readBool(StorageKeys.isLoggedIn),
         ).thenAnswer((_) async => const BaseResponse<bool?>.success(false));
+        when(
+          secureStorageService.delete(StorageKeys.accessToken),
+        ).thenAnswer((_) async => const BaseResponse<bool>.success(false));
         final response = await splashLocalDataSourceImpl.isLogged();
         expect(response, isA<Success<bool>>());
         final responseValue = response as Success<bool?>;
@@ -45,6 +48,9 @@ void main() {
       when(
         secureStorageService.readBool(StorageKeys.isLoggedIn),
       ).thenAnswer((_) async => const BaseResponse<bool?>.success(null));
+      when(
+        secureStorageService.delete(StorageKeys.accessToken),
+      ).thenAnswer((_) async => const BaseResponse<bool>.success(false));
       final response = await splashLocalDataSourceImpl.isLogged();
       expect(response, isA<Success<bool>>());
       final responseValue = response as Success<bool?>;

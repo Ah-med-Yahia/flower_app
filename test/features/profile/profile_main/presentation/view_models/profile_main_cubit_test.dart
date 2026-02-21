@@ -193,7 +193,7 @@ void main() {
       );
 
       // Listen to the stream before emitting
-      expectLater(cubit.sideEffects, emits(isA<NavigateToLoginSideEffect>()));
+      expectLater(cubit.sideEffects, emits(isA<LogoutUserSideEffect>()));
 
       // Act
       await cubit.doIntent(GetUserDataIntent());
@@ -218,7 +218,7 @@ void main() {
       );
 
       // Listen to the stream before emitting
-      expectLater(cubit.sideEffects, emits(isA<NavigateToLoginSideEffect>()));
+      expectLater(cubit.sideEffects, emits(isA<LogoutUserSideEffect>()));
 
       // Act
       await cubit.doIntent(GetUserDataIntent());
