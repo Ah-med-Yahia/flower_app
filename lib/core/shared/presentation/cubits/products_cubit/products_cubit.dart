@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:flower_app/config/base_response/base_response.dart';
 import 'package:flower_app/config/base_state/base_state.dart';
 import 'package:flower_app/core/shared/domain/entities/products_response_entity/products_response_entity.dart';
 import 'package:flower_app/core/shared/domain/use_cases.dart/get_products_use_cases.dart';
 import 'package:flower_app/core/shared/presentation/cubits/products_cubit/products_intents.dart';
+import 'package:flower_app/core/shared/presentation/cubits/products_cubit/products_side_effect.dart';
 import 'package:flower_app/core/shared/presentation/cubits/products_cubit/products_state.dart';
 import 'package:flower_app/features/tabs/cart/domain/entities/add_to_cart_request_entity.dart';
 import 'package:flower_app/features/tabs/cart/domain/usecases/add_to_cart_use_case.dart';
@@ -29,6 +32,10 @@ class ProductsCubit extends Cubit<ProductsState> {
   final RemoveItemFromCartUseCase _removeItemFromCartUseCase;
   final GetCartUseCase _getCartUseCase;
   final GetProductsUseCase _getProductsUseCase;
+  final StreamController<ProductsSideEffect> _sideEffectController =
+      StreamController<ProductsSideEffect>.broadcast();
+  Stream<ProductsSideEffect> get sideEffectStream =>
+      _sideEffectController.stream;
 
   void onIntent(ProductsIntents intent) {
     switch (intent) {
@@ -187,6 +194,9 @@ class ProductsCubit extends Cubit<ProductsState> {
         ),
       ),
       failure: (error) {
+        if (error.errorModel.code == 401) {
+          _sideEffectController.add(LogoutUser());
+        }
         emit(
           state.copyWith(
             productsInCart: BaseState<List<String>>(
@@ -234,5 +244,11 @@ class ProductsCubit extends Cubit<ProductsState> {
         );
       },
     );
+  }
+
+  @override
+  Future<void> close() {
+    _sideEffectController.close();
+    return super.close();
   }
 }

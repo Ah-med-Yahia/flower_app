@@ -56,7 +56,8 @@ class AuthInterceptor extends Interceptor {
         DioException(
           requestOptions: err.requestOptions,
           error: 'Session expired',
-          type: DioExceptionType.cancel,
+          response: err.response,
+          type: DioExceptionType.badResponse,
         ),
       );
     }
