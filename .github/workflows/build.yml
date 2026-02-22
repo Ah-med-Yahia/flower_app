@@ -1,0 +1,45 @@
+name: Flutter CI + SonarCloud
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+
+jobs:
+  analyze:
+    name: Build, Test & Sonar Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Checkout repository
+      - name: Checkout source code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Required for better Sonar analysis
+
+      # 2️⃣ Setup Flutter
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      # 3️⃣ Install dependencies
+      - name: Install dependencies
+        run: flutter pub get
+
+      # 4️⃣ Run analysis
+      - name: Run analyzer
+        run: flutter analyze
+
+      # 5️⃣ Run tests with coverage
+      - name: Run tests
+        run: flutter test --coverage
+
+      # 6️⃣ SonarCloud Scan
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v2
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
