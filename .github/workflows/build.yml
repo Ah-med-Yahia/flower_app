@@ -13,32 +13,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout repository
       - name: Checkout source code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Required for better Sonar analysis
+          fetch-depth: 0
 
-      # 2️⃣ Setup Flutter
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           channel: stable
           cache: true
 
-      # 3️⃣ Install dependencies
       - name: Install dependencies
         run: flutter pub get
 
-      # 4️⃣ Run analysis
+      # ✅ الحل اللي انت عايزه: توليد ملفات .g.dart / .freezed.dart قبل التحليل
+      - name: Generate code (build_runner)
+        run: dart run build_runner build --delete-conflicting-outputs
+
       - name: Run analyzer
         run: flutter analyze
 
-      # 5️⃣ Run tests with coverage
-      - name: Run tests
+      - name: Run tests with coverage
         run: flutter test --coverage
 
-      # 6️⃣ SonarCloud Scan
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v2
         env:
