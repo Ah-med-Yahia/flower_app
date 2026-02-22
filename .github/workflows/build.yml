@@ -2,18 +2,14 @@ name: Flutter CI + SonarCloud
 
 on:
   push:
-    branches:
-      - main
-      - dev
+    branches: [ main, dev ]
   pull_request:
 
 jobs:
   analyze:
-    name: Build, Test & Sonar Scan
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout source code
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -27,7 +23,6 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      # ✅ الحل اللي انت عايزه: توليد ملفات .g.dart / .freezed.dart قبل التحليل
       - name: Generate code (build_runner)
         run: dart run build_runner build --delete-conflicting-outputs
 
@@ -37,7 +32,9 @@ jobs:
       - name: Run tests with coverage
         run: flutter test --coverage
 
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@v2
+      # ✅ Sonar scan (Composite action - not Docker)
+      - name: Sonar Scan (SonarCloud)
+        uses: SonarSource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: https://sonarcloud.io
