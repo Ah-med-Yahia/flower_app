@@ -12,12 +12,12 @@ on:
       - synchronize
 
 jobs:
-  analyze:
+  sonar_qube:
     runs-on: ubuntu-latest
 
     timeout-minutes: 5
     concurrency:
-      group: branch-name-validation-${{ github.event.pull_request.number }}
+      group: sonar_qube-${{ github.event.pull_request.number }}
       cancel-in-progress: true
     
     steps:
