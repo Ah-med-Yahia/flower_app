@@ -1,16 +1,25 @@
 name: Flutter CI + SonarCloud
 
 on:
-  push:
-    branches: [ main, dev ]
   pull_request:
+    branches:
+      - develop
+    types:
+      - opened
+      - synchronize
 
 jobs:
   analyze:
     runs-on: ubuntu-latest
+
+    timeout-minutes: 5
+    concurrency:
+      group: branch-name-validation-${{ github.event.pull_request.number }}
+      cancel-in-progress: true
+    
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -32,7 +41,6 @@ jobs:
       - name: Run tests with coverage
         run: flutter test --coverage
 
-      # ✅ Sonar scan (Composite action - not Docker)
       - name: Sonar Scan (SonarCloud)
         uses: SonarSource/sonarqube-scan-action@v6
         env:
