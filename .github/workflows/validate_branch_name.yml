@@ -22,14 +22,15 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Validate branch name format
+        env:
+          BRANCH_NAME: ${{ github.head_ref }}
         run: |
-          BRANCH_NAME="${{ github.head_ref }}"
           echo "Validating branch name: $BRANCH_NAME"
           
           PATTERN="^(feature|bugfix|hotfix|fix|chore|refactor|docs|test|ci|perf|style|build|revert)\/[a-z0-9_-]+$"
           
           if [[ ! $BRANCH_NAME =~ $PATTERN ]]; then
-            echo " Branch name '$BRANCH_NAME' is invalid!"
+            echo "❌ Branch name '$BRANCH_NAME' is invalid!"
             echo ""
             echo "Branch name must follow the pattern: <type>/<description>"
             echo ""
@@ -52,4 +53,4 @@ jobs:
             exit 1
           fi
           
-          echo " Branch name is valid: $BRANCH_NAME"
+          echo "✅ Branch name is valid: $BRANCH_NAME"

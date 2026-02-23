@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Validate PR title format
-        uses: amannn/action-semantic-pull-request@v5
+        uses: amannn/action-semantic-pull-request@e32d7e603df1aa1ba07e981f2a23455dee596825
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -49,7 +49,9 @@ jobs:
           validateSingleCommitMatchesPrTitle: false
 
       - name: PR title validation success
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
         if: success()
         run: |
           echo "PR title is valid and follow conventional commit format"
-          echo "Title: ${{ github.event.pull_request.title }}"
+          echo "Title: $PR_TITLE"
