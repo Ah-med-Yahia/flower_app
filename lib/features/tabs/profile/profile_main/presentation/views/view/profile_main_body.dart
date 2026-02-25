@@ -1,3 +1,4 @@
+import 'package:flower_app/core/shared/presentation/widgets/confirmation_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -130,21 +131,12 @@ class _ProfileMainBodyState extends State<ProfileMainBody> {
   void _showAlertDialog() {
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Text(AppTextConstants.logout.toUpperCase()),
-        content: Text(AppTextConstants.confirmLogout),
-        actions: [
-          TextButton(
-            onPressed: () => GoRouter.of(context).pop(),
-            child: Text(AppTextConstants.cancel),
-          ),
-          TextButton(
-            onPressed: () {
-              cubit.doIntent(LogoutIntent());
-            },
-            child: Text(AppTextConstants.logout),
-          ),
-        ],
+      builder: (context) => ConfirmationDialog(
+        title: AppTextConstants.logout,
+        message: AppTextConstants.confirmLogout,
+        onConfirm: () {
+          cubit.doIntent(LogoutIntent());
+        },
       ),
     );
   }
