@@ -1,6 +1,9 @@
-name: Validate Unit Tests
+name: Flutter CI + SonarCloud
 
 on:
+  push:
+    branches:
+      - develop
   pull_request:
     branches:
       - develop
@@ -8,43 +11,38 @@ on:
       - opened
       - synchronize
 
-
 jobs:
-  validate_unit_test:
+  sonar_qube:
     runs-on: ubuntu-latest
 
     timeout-minutes: 5
     concurrency:
-      group: unit-test-dev-${{ github.event.pull_request.number }}
+      group: sonar_qube-${{ github.event.pull_request.number }}
       cancel-in-progress: true
     
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          fetch-depth: 0
 
       - name: Setup Flutter
         uses: subosito/flutter-action@fd55f4c5af5b953cc57a2be44cb082c8f6635e8e
         with:
-          flutter-version: 3.38.7
-          channel: 'stable'
+          channel: stable
           cache: true
-
-      - name: Verify Flutter installation
-        run: flutter --version
-
 
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Run generated files
+      - name: Generate code (build_runner)
         run: dart run build_runner build --delete-conflicting-outputs
 
-
-      - name: Run unit tests
+      - name: Run tests with coverage
         run: flutter test --coverage
 
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@671740ac38dd9b0130fbe1cec585b89eea48d3de
-        with:
-          files: ./coverage/lcov.info
-          fail_ci_if_error: false
+      - name: Sonar Scan (SonarCloud)
+        uses: SonarSource/sonarqube-scan-action@fd88b7d7ccbaefd23d8f36f73b59db7a3d246602
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: https://sonarcloud.io

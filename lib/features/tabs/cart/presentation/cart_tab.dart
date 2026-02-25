@@ -5,6 +5,7 @@ import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/gen/assets.gen.dart';
 import 'package:flower_app/core/shared/presentation/cubits/products_cubit/products_cubit.dart';
 import 'package:flower_app/core/shared/presentation/cubits/products_cubit/products_intents.dart';
+import 'package:flower_app/core/shared/presentation/widgets/confirmation_dialog.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flower_app/core/ui_utils/ui_utils.dart';
 import 'package:flower_app/core/shared/presentation/widgets/spacing.dart';
@@ -18,7 +19,6 @@ import 'package:flower_app/features/tabs/cart/presentation/widgets/cart_error_mo
 import 'package:flower_app/features/tabs/cart/presentation/widgets/cart_item_widget.dart';
 import 'package:flower_app/core/shared/presentation/widgets/lottie_states_widget.dart';
 import 'package:flower_app/features/tabs/cart/presentation/widgets/cart_summary_widget.dart';
-import 'package:flower_app/features/tabs/cart/presentation/widgets/confirmation_dialog.dart';
 import 'package:flower_app/features/tabs/cart/presentation/widgets/location_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
