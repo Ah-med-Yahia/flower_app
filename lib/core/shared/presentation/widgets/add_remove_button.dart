@@ -18,65 +18,99 @@ class AddRemoveButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (!productInStock) return const _OutOfStockText();
+
     final screenSize = MediaQuery.of(context).size;
-    return productInStock
-        ? BlocBuilder<ProductsCubit, ProductsState>(
-            buildWhen: (previous, current) {
-              return previous.pendingCartIds != current.pendingCartIds ||
-                  previous.productsInCart.data != current.productsInCart.data;
-            },
-            builder: (context, state) {
-              final isInCart =
-                  state.productsInCart.data?.contains(productId) ?? false;
-              final isPending = state.pendingCartIds.contains(productId);
-              return ElevatedButton.icon(
-                onPressed: isPending
-                    ? null
-                    : () {
-                        isInCart
-                            ? context.read<ProductsCubit>().onIntent(
-                                RemoveProductFromCart(productId),
-                              )
-                            : context.read<ProductsCubit>().onIntent(
-                                AddProductToCart(productId, 1),
-                              );
-                      },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: isInCart
-                      ? AppColors.grey
-                      : AppColors.primary,
-                  disabledBackgroundColor: isInCart
-                      ? AppColors.grey.withValues(alpha: 0.5)
-                      : AppColors.primary.withValues(alpha: 0.5),
-                ),
-                icon: Icon(
-                  Icons.shopping_cart_outlined,
-                  size: screenSize.width * 0.055,
-                ),
-                label: Text(
-                  isInCart
-                      ? AppTextConstants.removeFromCart
-                      : AppTextConstants.addToCart,
-                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                    fontSize: isInCart
-                        ? screenSize.width * 0.032
-                        : screenSize.width * 0.035,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.background,
-                  ),
-                ),
-              );
-            },
-          )
-        : Align(
-            alignment: Alignment.center,
-            child: Text(
-              AppTextConstants.outOfStock,
-              style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                fontWeight: FontWeight.w600,
-                color: AppColors.red,
-              ),
-            ),
-          );
+
+    return BlocBuilder<ProductsCubit, ProductsState>(
+      buildWhen: (previous, current) =>
+          previous.pendingCartIds != current.pendingCartIds ||
+          previous.productsInCart.data != current.productsInCart.data,
+      builder: (context, state) {
+        final isInCart =
+            state.productsInCart.data?.contains(productId) ?? false;
+        final isPending = state.pendingCartIds.contains(productId);
+
+        return _CartButton(
+          screenSize: screenSize,
+          isInCart: isInCart,
+          isPending: isPending,
+          onPressed: _onPressed(context, isPending, isInCart),
+        );
+      },
+    );
+  }
+
+  VoidCallback? _onPressed(
+    BuildContext context,
+    bool isPending,
+    bool isInCart,
+  ) {
+    if (isPending) return null;
+
+    final cubit = context.read<ProductsCubit>();
+
+    return () {
+      if (isInCart) {
+        cubit.onIntent(RemoveProductFromCart(productId));
+        return;
+      }
+      cubit.onIntent(AddProductToCart(productId, 1));
+    };
+  }
+}
+
+class _CartButton extends StatelessWidget {
+  const _CartButton({
+    required this.screenSize,
+    required this.isInCart,
+    required this.isPending,
+    required this.onPressed,
+  });
+
+  final Size screenSize;
+  final bool isInCart;
+  final bool isPending;
+  final VoidCallback? onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    final backgroundColor = isInCart ? AppColors.grey : AppColors.primary;
+    final disabledColor = backgroundColor.withValues(alpha: 0.5);
+
+    return ElevatedButton.icon(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        backgroundColor: backgroundColor,
+        disabledBackgroundColor: disabledColor,
+      ),
+      icon: Icon(Icons.shopping_cart_outlined, size: screenSize.width * 0.055),
+      label: Text(
+        isInCart ? AppTextConstants.removeFromCart : AppTextConstants.addToCart,
+        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+          fontSize: screenSize.width * (isInCart ? 0.032 : 0.035),
+          fontWeight: FontWeight.w600,
+          color: AppColors.background,
+        ),
+      ),
+    );
+  }
+}
+
+class _OutOfStockText extends StatelessWidget {
+  const _OutOfStockText();
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.center,
+      child: Text(
+        AppTextConstants.outOfStock,
+        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+          fontWeight: FontWeight.w600,
+          color: AppColors.red,
+        ),
+      ),
+    );
   }
 }
