@@ -76,8 +76,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           cubit..onEvent(GetProductDetailsEvent(widget.productId)),
       child: BlocBuilder<ProductDetailsCubit, ProductDetailsStates>(
         builder: (context, state) {
-          if ((state.productDetailsState?.errorMessage?.isNotEmpty ?? false) &&
-              state.productDetailsState?.errorMessage != null &&
+          if (state.productDetailsState?.errorMessage != null &&
               state.productDetailsState?.isLoading == false) {
             return Scaffold(
               body: CustomErrorWidget(

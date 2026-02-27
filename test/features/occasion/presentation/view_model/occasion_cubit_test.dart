@@ -57,7 +57,7 @@ void main() {
 
     final tProducts = ProductsResponseEntity(
       products: [
-        ProductEntity(
+        const ProductEntity(
           id: '1',
           categoryId: '1',
           occasionId: '1',
@@ -138,7 +138,7 @@ void main() {
     const tId = '123';
     final tProducts = ProductsResponseEntity(
       products: [
-        ProductEntity(
+        const ProductEntity(
           id: '1',
           categoryId: '1',
           occasionId: '1',
