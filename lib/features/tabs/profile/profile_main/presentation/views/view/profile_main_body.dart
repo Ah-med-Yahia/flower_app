@@ -1,4 +1,6 @@
+import 'package:flower_app/core/gen/assets.gen.dart';
 import 'package:flower_app/core/shared/presentation/widgets/confirmation_dialog.dart';
+import 'package:flower_app/core/shared/presentation/widgets/lottie_states_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -47,6 +49,8 @@ class _ProfileMainBodyState extends State<ProfileMainBody> {
         _showErrorMessage(sideEffect.message);
       case NavigateToLoginSideEffect():
         _navigateToLogin(context);
+      case LogoutUserSideEffect():
+        _logoutUser(context);
       case ShowLanguageBottomSheetSideEffect():
         _showLanguageBottomSheet(context);
       case NavigateToEditProfileSideEffect():
@@ -58,6 +62,18 @@ class _ProfileMainBodyState extends State<ProfileMainBody> {
       case NavigateToAppInformationSideEffect():
         _navigateToAboutUs(context);
     }
+  }
+
+  void _logoutUser(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => ConfirmationDialog(
+        title: AppTextConstants.attention,
+        icon: Icons.warning,
+        message: AppTextConstants.mustLogin,
+        onConfirm: () => _navigateToLogin(context),
+      ),
+    );
   }
 
   @override
@@ -72,6 +88,12 @@ class _ProfileMainBodyState extends State<ProfileMainBody> {
         }
         return BlocBuilder<ProfileMainCubit, ProfileMainStates>(
           builder: (context, state) {
+            if (state.userData.errorMessage != null) {
+              return LottieStatesWidget(
+                lottie: Assets.lottie.error.path,
+                text: AppTextConstants.mustLogin,
+              );
+            }
             return SingleChildScrollView(
               child: Column(
                 children: [

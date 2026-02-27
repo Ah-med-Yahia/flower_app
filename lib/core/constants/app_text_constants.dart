@@ -5,6 +5,8 @@ class AppTextConstants {
   //-------------------------- Common --------------------------//
   static String get loading => 'common.loading'.tr();
 
+  static String get attention => 'common.attention'.tr();
+
   static String get retry => 'common.retry'.tr();
 
   static String get cancel => 'common.cancel'.tr();
@@ -37,6 +39,8 @@ class AppTextConstants {
   static String get signUp => 'auth.signUp'.tr();
 
   static String get logout => 'auth.logout'.tr();
+
+  static String get mustLogin => 'auth.mustLogin'.tr();
 
   static String get confirmLogout => 'auth.confirmLogout'.tr();
 

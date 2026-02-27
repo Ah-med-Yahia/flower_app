@@ -25,7 +25,7 @@ Future<void> main() async {
   tearDown(() => cubit.close());
   group('ProductDetailsCubit', () {
     const productId = '123';
-    final mockProduct = ProductEntity(
+    const mockProduct = ProductEntity(
       id: productId,
       title: 'Test Product',
       description: 'Test description',

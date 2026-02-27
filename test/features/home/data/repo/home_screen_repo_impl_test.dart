@@ -190,7 +190,7 @@ void main() {
         ),
       ],
       bestSeller: [
-        ProductEntity(
+        const ProductEntity(
           id: '101',
           title: 'Red Rose Bouquet',
           description: 'Beautiful red roses perfect for any occasion',
@@ -206,7 +206,7 @@ void main() {
           categoryId: '1',
           occasionId: '201',
         ),
-        ProductEntity(
+        const ProductEntity(
           id: '102',
           title: 'White Lily Arrangement',
           description: 'Elegant white lilies for special moments',
@@ -219,7 +219,7 @@ void main() {
           categoryId: '2',
           occasionId: '202',
         ),
-        ProductEntity(
+        const ProductEntity(
           id: '103',
           title: 'Sunflower Delight',
           description: 'Bright and cheerful sunflowers to brighten any day',

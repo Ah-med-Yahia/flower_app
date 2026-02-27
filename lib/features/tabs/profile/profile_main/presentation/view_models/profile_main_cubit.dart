@@ -88,7 +88,7 @@ class ProfileMainCubit extends Cubit<ProfileMainStates> {
                 ),
               ),
             );
-            _emitSideEffect(NavigateToLoginSideEffect());
+            _emitSideEffect(LogoutUserSideEffect());
         }
       },
       failure: (error) {

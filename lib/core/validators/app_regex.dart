@@ -1,23 +1,31 @@
 abstract class AppRegex {
+  static final Pattern _emailPattern = RegExp(
+    r'^[\w\-\.]+@([\w]+\.)+[\w]{2,4}$',
+  );
+  static final Pattern _passwordPattern = RegExp(r'(?=.*[a-z])');
+  static final Pattern _upperCasePattern = RegExp(r'(?=.*[A-Z])');
+  static final Pattern _numberPattern = RegExp(r'(?=.*\d)');
+  static final Pattern _specialCharacterPattern = RegExp(r'(?=.*[@$#!%*?&])');
+
   static bool isEmailValid(String email) {
-    return RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email);
+    return _emailPattern.allMatches(email).isNotEmpty;
   }
 
   /// ================= PASSWORD =================
   static bool hasLowerCase(String password) {
-    return RegExp(r'(?=.*[a-z])').hasMatch(password);
+    return _passwordPattern.allMatches(password).isNotEmpty;
   }
 
   static bool hasUpperCase(String password) {
-    return RegExp(r'(?=.*[A-Z])').hasMatch(password);
+    return _upperCasePattern.allMatches(password).isNotEmpty;
   }
 
   static bool hasNumber(String password) {
-    return RegExp(r'(?=.*\d)').hasMatch(password);
+    return _numberPattern.allMatches(password).isNotEmpty;
   }
 
   static bool hasSpecialCharacter(String password) {
-    return RegExp(r'(?=.*[@$#!%*?&])').hasMatch(password);
+    return _specialCharacterPattern.allMatches(password).isNotEmpty;
   }
 
   static bool hasMinLength(String password) {
@@ -27,10 +35,11 @@ abstract class AppRegex {
   static bool isPhoneValid(String phone) {
     final trimmed = phone.trim();
 
-    final localRegex = RegExp(r'^01[0-9]{9}$');
+    final Pattern localRegex = RegExp(r'^01[0-9]{9}$');
 
-    final internationalRegex = RegExp(r'^\+201[0-9]{9}$');
+    final Pattern internationalRegex = RegExp(r'^\+201[0-9]{9}$');
 
-    return localRegex.hasMatch(trimmed) || internationalRegex.hasMatch(trimmed);
+    return localRegex.allMatches(trimmed).isNotEmpty ||
+        internationalRegex.allMatches(trimmed).isNotEmpty;
   }
 }

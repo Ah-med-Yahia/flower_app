@@ -41,7 +41,7 @@ Future<void> main() async {
         ),
       ],
       bestSeller: [
-        ProductEntity(
+        const ProductEntity(
           id: '1',
           title: 'title',
           description: 'description',

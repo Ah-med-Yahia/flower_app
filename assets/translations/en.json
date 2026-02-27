@@ -1,6 +1,7 @@
 {
   "common": {
     "loading": "Loading...",
+    "attention": "Attention",
     "retry": "Retry",
     "cancel": "Cancel",
     "confirm": "Confirm",
@@ -20,6 +21,7 @@
     "login": "Login",
     "signUp": "Sign Up",
     "logout": "Logout",
+    "mustLogin": "You must login to continue",
     "confirmLogout": "Confirm logout!!",
     "firstName": "First Name",
     "lastName": "Last Name",

@@ -99,9 +99,7 @@ class _ConfirmationDialogState extends State<ConfirmationDialog>
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).pop(true);
-                      if (widget.onConfirm != null) {
-                        widget.onConfirm!();
-                      }
+                      widget.onConfirm?.call();
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.transparent,
