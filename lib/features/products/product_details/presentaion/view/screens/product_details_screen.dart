@@ -1,16 +1,13 @@
 import 'dart:async';
 
-import 'package:flower_app/core/constants/app_routes_constant.dart';
-import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/shared/presentation/cubits/products_cubit/products_cubit.dart';
 import 'package:flower_app/core/shared/presentation/cubits/products_cubit/products_side_effect.dart';
 import 'package:flower_app/core/shared/presentation/widgets/add_remove_button.dart';
-import 'package:flower_app/core/shared/presentation/widgets/confirmation_dialog.dart';
 import 'package:flower_app/core/shared/presentation/widgets/spacing.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
+import 'package:flower_app/core/ui_utils/extensions_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../../../config/di/di.dart';
 import '../../../../../../core/constants/errors_constants.dart';
@@ -47,19 +44,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   }
 
   void _handleLogoutUser() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return ConfirmationDialog(
-          message: AppTextConstants.mustLogin,
-          icon: Icons.warning,
-          onConfirm: () {
-            context.pushNamed(AppRoutesConstants.loginRoute);
-          },
-          title: AppTextConstants.attention,
-        );
-      },
-    );
+    context.showMustLoginDialog();
   }
 
   @override

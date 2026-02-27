@@ -1,15 +1,12 @@
 import 'dart:async';
 
-import 'package:flower_app/core/constants/app_routes_constant.dart';
-import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/shared/domain/entities/products_response_entity/product_entity.dart';
 import 'package:flower_app/core/shared/presentation/cubits/products_cubit/products_cubit.dart';
 import 'package:flower_app/core/shared/presentation/cubits/products_cubit/products_side_effect.dart';
-import 'package:flower_app/core/shared/presentation/widgets/confirmation_dialog.dart';
 import 'package:flower_app/core/shared/presentation/widgets/product_card_widget.dart';
+import 'package:flower_app/core/ui_utils/extensions_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 class ProductsGridWidget extends StatefulWidget {
   final List<ProductEntity> products;
@@ -46,19 +43,7 @@ class _ProductsGridWidgetState extends State<ProductsGridWidget> {
   }
 
   void _handleLogoutUser() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return ConfirmationDialog(
-          message: AppTextConstants.mustLogin,
-          icon: Icons.warning,
-          onConfirm: () {
-            context.pushNamed(AppRoutesConstants.loginRoute);
-          },
-          title: AppTextConstants.attention,
-        );
-      },
-    );
+    context.showMustLoginDialog();
   }
 
   @override
