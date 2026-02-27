@@ -64,6 +64,9 @@ dependencies:
   geocoding: ^4.0.0
   webview_flutter: ^4.13.1
   skeletonizer: ^2.1.2
+  firebase_core: ^4.4.0
+  firebase_crashlytics: ^5.0.7
+  firebase_analytics: ^12.1.2
 
 dev_dependencies:
   flutter_test:

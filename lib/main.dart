@@ -1,8 +1,13 @@
+import 'dart:ui';
+
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flower_app/config/di/di.dart';
 import 'package:flower_app/config/bloc_observer/app_bloc_observer.dart';
 import 'package:flower_app/flower_app.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'core/constants/app_asset.dart';
@@ -10,6 +15,15 @@ import 'core/constants/app_text_constants.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  FlutterError.onError = (errorDetails) {
+    FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+  };
+
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    return true;
+  };
   Bloc.observer = AppBlocObserver();
   await configureDependencies();
   await EasyLocalization.ensureInitialized();
