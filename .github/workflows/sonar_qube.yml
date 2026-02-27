@@ -19,10 +19,6 @@ jobs:
     concurrency:
       group: sonar_qube-${{ github.event.pull_request.number }}
       cancel-in-progress: true
-
-    defaults:
-      run:
-        working-directory: flower_app
     
     steps:
       - name: Checkout
