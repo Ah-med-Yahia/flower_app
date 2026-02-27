@@ -41,11 +41,50 @@ jobs:
       - name: Run tests with coverage
         run: flutter test --coverage
 
-      - name: Verify coverage exists
+      - name: Convert lcov to Sonar generic coverage
+        run: |
+          python3 - << 'PY'
+          import re, os, xml.etree.ElementTree as ET
+
+          lcov_path = "coverage/lcov.info"
+          out_path = "coverage/sonar-generic-coverage.xml"
+
+          if not os.path.exists(lcov_path):
+            raise SystemExit(f"Missing {lcov_path}")
+
+          root = ET.Element("coverage", version="1")
+          current_file = None
+          file_el = None
+
+          sf_re = re.compile(r"^SF:(.+)$")
+          da_re = re.compile(r"^DA:(\d+),(\d+).*$")
+
+          with open(lcov_path, "r", encoding="utf-8", errors="ignore") as f:
+            for line in f:
+              line = line.strip()
+              m = sf_re.match(line)
+              if m:
+                current_file = m.group(1)
+                file_el = ET.SubElement(root, "file", path=current_file)
+                continue
+
+              m = da_re.match(line)
+              if m and file_el is not None:
+                ln = int(m.group(1))
+                hits = int(m.group(2))
+                ET.SubElement(file_el, "lineToCover", lineNumber=str(ln), covered="true" if hits > 0 else "false")
+
+          tree = ET.ElementTree(root)
+          ET.indent(tree, space="  ")
+          os.makedirs(os.path.dirname(out_path), exist_ok=True)
+          tree.write(out_path, encoding="utf-8", xml_declaration=True)
+          print(f"Generated {out_path}")
+          PY
+
+      - name: Verify generic coverage
         run: |
           ls -la coverage
-          wc -l coverage/lcov.info
-          head -n 5 coverage/lcov.info
+          head -n 20 coverage/sonar-generic-coverage.xml
 
       - name: Sonar Scan (SonarCloud)
         uses: SonarSource/sonarqube-scan-action@fd88b7d7ccbaefd23d8f36f73b59db7a3d246602
