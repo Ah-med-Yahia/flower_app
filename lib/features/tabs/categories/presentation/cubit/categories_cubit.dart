@@ -33,10 +33,10 @@ class CategoriesCubit extends Cubit<CategoriesState> {
     this._getCategoryProductsUseCase,
     this._getCartUseCase,
   ) : super(
-        CategoriesState(
-          categoriesState: const BaseState<GetCategoryListEntity>(),
-          categoryProductsState: const BaseState<ProductsResponseEntity>(),
-          productsInCart: const BaseState<List<String>>(),
+        const CategoriesState(
+          categoriesState: BaseState<GetCategoryListEntity>(),
+          categoryProductsState: BaseState<ProductsResponseEntity>(),
+          productsInCart: BaseState<List<String>>(),
           selectedIndexCategoryBar: 0,
         ),
       );
@@ -82,11 +82,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
 
             if (index != -1) {
               selectedIndex = index;
-            } else {
-              selectedIndex = 0;
             }
-          } else {
-            selectedIndex = 0;
           }
         }
 

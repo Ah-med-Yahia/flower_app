@@ -19,3 +19,5 @@ class SuccessAfterLoading extends CartEventUI {
 
   SuccessAfterLoading({this.message});
 }
+
+class LogoutUser extends CartEventUI {}

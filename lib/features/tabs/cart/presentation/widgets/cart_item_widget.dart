@@ -3,7 +3,7 @@ import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flower_app/core/shared/presentation/widgets/spacing.dart';
 import 'package:flower_app/features/tabs/cart/domain/entities/cart_entity/cart_item_entity.dart';
-import 'package:flower_app/features/tabs/cart/presentation/widgets/confirmation_dialog.dart';
+import 'package:flower_app/core/shared/presentation/widgets/confirmation_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 

@@ -17,15 +17,14 @@ class LoggerInterceptor extends PrettyDioLogger {
         },
       );
 
+  static final Pattern _authPattern = RegExp(
+    r'(Authorization:\s*)(Bearer\s+)?\S+',
+  );
+
   static void _logAuthHeader(Object object) {
     final log = object.toString();
     if (log.contains('Authorization')) {
-      debugPrint(
-        log.replaceAll(
-          RegExp(r'(Authorization:\s*)(Bearer\s+)?\S+'),
-          r'$1[REDACTED]',
-        ),
-      );
+      debugPrint(log.replaceAll(_authPattern, r'$1[REDACTED]'));
     } else {
       debugPrint(log);
     }

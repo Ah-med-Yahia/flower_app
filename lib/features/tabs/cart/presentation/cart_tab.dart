@@ -5,6 +5,7 @@ import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/gen/assets.gen.dart';
 import 'package:flower_app/core/shared/presentation/cubits/products_cubit/products_cubit.dart';
 import 'package:flower_app/core/shared/presentation/cubits/products_cubit/products_intents.dart';
+import 'package:flower_app/core/shared/presentation/widgets/confirmation_dialog.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flower_app/core/ui_utils/ui_utils.dart';
 import 'package:flower_app/core/shared/presentation/widgets/spacing.dart';
@@ -48,6 +49,8 @@ class _CartTabState extends State<CartTab> {
           _handleLoadingUIEvent();
         case ErrorGetCart():
           _handleErrorUIEvent(event.message);
+        case LogoutUser():
+          _handleLogoutUser();
         case SuccessAfterLoading():
           _handleSuccessAfterLoading(event.message);
         case ErrorCartItemsUpdate():
@@ -60,6 +63,23 @@ class _CartTabState extends State<CartTab> {
 
   void _handleLoadingUIEvent() {
     UIUtils.showLoading(context);
+  }
+
+  void _handleLogoutUser() {
+    UIUtils.hideLoading(context);
+    showDialog(
+      context: context,
+      builder: (context) {
+        return ConfirmationDialog(
+          message: AppTextConstants.mustLogin,
+          icon: Icons.warning,
+          onConfirm: () {
+            context.pushNamed(AppRoutesConstants.loginRoute);
+          },
+          title: AppTextConstants.attention,
+        );
+      },
+    );
   }
 
   void _handleErrorRemoveItemFromCart(String message) {

@@ -11,6 +11,8 @@ class ShowLanguageBottomSheetSideEffect extends ProfileMainSideEffects {}
 
 class ShowAlertDialogSideEffect extends ProfileMainSideEffects {}
 
+class LogoutUserSideEffect extends ProfileMainSideEffects {}
+
 //-------------------- NAVIGATION EVENTS --------------------//
 
 class NavigateToLoginSideEffect extends ProfileMainSideEffects {}

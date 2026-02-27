@@ -50,17 +50,20 @@ class _TermsViewBodyState extends State<TermsViewBody> {
 
   @override
   Widget build(BuildContext context) {
+    final String appBarTitle;
+
+    if (isAboutApp) {
+      appBarTitle = currentLanguage == AppTextConstants.enLangKey
+          ? AppTextConstants.appInfoAppBarTitleEn
+          : AppTextConstants.appInfoAppBarTitleAr;
+    } else {
+      appBarTitle = currentLanguage == AppTextConstants.enLangKey
+          ? AppTextConstants.termsAppBarTitleEn
+          : AppTextConstants.termsAppBarTitleAr;
+    }
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          isAboutApp
-              ? (currentLanguage == AppTextConstants.enLangKey
-                    ? AppTextConstants.appInfoAppBarTitleEn
-                    : AppTextConstants.appInfoAppBarTitleAr)
-              : (currentLanguage == AppTextConstants.enLangKey
-                    ? AppTextConstants.termsAppBarTitleEn
-                    : AppTextConstants.termsAppBarTitleAr),
-        ),
+        title: Text(appBarTitle),
         actions: [
           IconButton(
             icon: const Icon(Icons.language),

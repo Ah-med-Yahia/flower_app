@@ -67,7 +67,11 @@ class CartCubit extends Cubit<CartState> {
               );
       },
       failure: (failure) {
-        _uiEventController.add(ErrorGetCart(message: failure.message));
+        if (failure.errorModel.code == 401) {
+          _uiEventController.add(LogoutUser());
+        } else {
+          _uiEventController.add(ErrorGetCart(message: failure.message));
+        }
         emit(
           state.copyWith(
             cartBaseState: const CartBaseState<GetCartResponseEntity>(

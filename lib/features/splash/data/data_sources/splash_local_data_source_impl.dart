@@ -15,7 +15,16 @@ class SplashLocalDataSourceImpl implements SplashLocalDataSource {
       StorageKeys.isLoggedIn,
     );
     return response.when(
-      success: (s) => BaseResponse<bool>.success(s ?? false),
+      success: (isLogged) async {
+        if (isLogged == false || isLogged == null) {
+          final clearResponse = await _secureStorageService.clearAuthTokens();
+          return clearResponse.when(
+            success: (_) => const BaseResponse<bool>.success(false),
+            failure: (error) => BaseResponse<bool>.failure(error),
+          );
+        }
+        return const BaseResponse<bool>.success(true);
+      },
       failure: (f) => BaseResponse<bool>.failure(f),
     );
   }

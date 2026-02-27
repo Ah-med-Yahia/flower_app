@@ -53,11 +53,7 @@ class OccasionCubit extends Cubit<OccasionState> {
 
             if (index != -1) {
               selectedIndex = index;
-            } else {
-              selectedIndex = 0;
             }
-          } else {
-            selectedIndex = 0;
           }
         }
 

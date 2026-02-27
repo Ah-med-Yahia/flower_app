@@ -10,6 +10,16 @@ class SplashRepoImpl implements SplashRepo {
   SplashRepoImpl(this._splashLocalDataSource);
   @override
   Future<BaseResponse<bool>> isLogged() async {
-    return await _splashLocalDataSource.isLogged();
+    final response = await _splashLocalDataSource.isLogged();
+    return response.when(
+      success: (isLogged) {
+        if (isLogged) {
+          return const BaseResponse<bool>.success(true);
+        }
+
+        return const BaseResponse<bool>.success(false);
+      },
+      failure: (error) => BaseResponse.failure(error),
+    );
   }
 }
