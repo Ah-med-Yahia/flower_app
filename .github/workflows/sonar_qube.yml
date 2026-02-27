@@ -41,6 +41,12 @@ jobs:
       - name: Run tests with coverage
         run: flutter test --coverage
 
+      - name: Verify coverage exists
+        run: |
+          ls -la coverage
+          wc -l coverage/lcov.info
+          head -n 5 coverage/lcov.info
+
       - name: Sonar Scan (SonarCloud)
         uses: SonarSource/sonarqube-scan-action@fd88b7d7ccbaefd23d8f36f73b59db7a3d246602
         env:
