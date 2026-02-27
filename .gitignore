@@ -60,6 +60,3 @@ android/app/release/
 app.*.symbols
 app.*.map.json
 app.*.symbols.json
-
-# Firebase
-lib/firebase_options.dart
