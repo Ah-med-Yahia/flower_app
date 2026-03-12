@@ -242,10 +242,11 @@ class _CartTabState extends State<CartTab> {
                               children: [
                                 const Spacer(),
                                 CartSummaryWidget(
-                                  onCheckout: () => {
-                                    context.push(
+                                  onCheckout: () async {
+                                    await context.pushNamed(
                                       AppRoutesConstants.checkoutScreen,
-                                    ),
+                                    );
+                                    _cubit.doIntent(GetCartIntent());
                                   },
                                   deliveryFee: cart.deliveryFee,
                                   subTotal: cart.totalPrice,

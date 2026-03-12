@@ -136,7 +136,7 @@
     "removeFromCart": "إزالة من العربة"
   },
   "checkout": {
-    "orderPlacedSuccessfully": "تم تنفيذ الطلب بنجاح",
+    "yourOrderPlacedSuccessfully": "تم تنفيذ طلبك بنجاح",
     "deliveryTime": "وقت التوصيل",
     "schedule": "مجدول",
     "instant": "فوري",

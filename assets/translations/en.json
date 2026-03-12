@@ -136,7 +136,7 @@
     "removeFromCart": "Remove from cart"
   },
   "checkout": {
-    "orderPlacedSuccessfully": "Order placed successfully",
+    "yourOrderPlacedSuccessfully": "Your Order Placed Successfully",
     "deliveryTime": "Delivery Time",
     "schedule": "Schedule",
     "instant": "Instant",
