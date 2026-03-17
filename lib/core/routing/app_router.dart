@@ -1,5 +1,6 @@
 import 'package:flower_app/config/di/di.dart';
 import 'package:flower_app/core/constants/app_routes_constant.dart';
+import 'package:flower_app/features/checkout/presentaion/view/screens/success_checkout_screen.dart';
 import 'package:flower_app/features/orders/presentation/views/screens/orders_screen.dart';
 import 'package:flower_app/features/user_addresses/add_update_adrees/presentation/view/screens/add_update_address_screen.dart';
 import 'package:flower_app/features/user_addresses/shared/domain/models/address_entities.dart';
@@ -136,6 +137,11 @@ abstract class AppRouter {
           final userData = state.extra as UserDataResponse;
           return EditProfileView(userData: userData);
         },
+      ),
+      GoRoute(
+        path: AppRoutesConstants.successRoute,
+        name: AppRoutesConstants.successRoute,
+        builder: (context, state) => const SuccessCheckOutScreen(),
       ),
     ],
   );

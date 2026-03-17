@@ -9,7 +9,7 @@ import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 part 'checkout_api_client.g.dart';
 
-@injectable
+@lazySingleton
 @RestApi(baseUrl: ApiConstants.baseUrl)
 abstract class CheckoutApiClient {
   @factoryMethod

@@ -312,8 +312,8 @@ class AppTextConstants {
   // Saved Addresses
   static String get addNewAddress => 'savedAddresses.addNewAddress'.tr();
   //-------------------------- CHECKOUT --------------------------//
-  static String get orderPlacedSuccessfully =>
-      'checkout.orderPlacedSuccessfully'.tr();
+  static String get yourOrderPlacedSuccessfully =>
+      'checkout.yourOrderPlacedSuccessfully'.tr();
   static String get deliveryTime => 'checkout.deliveryTime'.tr();
   static String get schedule => 'checkout.schedule'.tr();
   static String get instant => 'checkout.instant'.tr();

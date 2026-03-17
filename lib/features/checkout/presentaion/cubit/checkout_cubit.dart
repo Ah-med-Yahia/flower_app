@@ -184,7 +184,7 @@ class CheckoutCubit extends Cubit<CheckoutStates> {
             NavigateToSuccessIntent(
               message:
                   response.data.message ??
-                  AppTextConstants.orderPlacedSuccessfully,
+                  AppTextConstants.yourOrderPlacedSuccessfully,
             ),
           );
         },

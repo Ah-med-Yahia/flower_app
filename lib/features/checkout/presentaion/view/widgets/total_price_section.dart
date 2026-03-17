@@ -33,7 +33,9 @@ class TotalPriceSection extends StatelessWidget {
               ElevatedButton(
                 onPressed: isLoading
                     ? null
-                    : () => viewModel.doIntent(PlaceOrderIntent()),
+                    : () {
+                        viewModel.doIntent(PlaceOrderIntent());
+                      },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primary,
                   foregroundColor: AppColors.background,
