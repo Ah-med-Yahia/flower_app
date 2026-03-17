@@ -1,4 +1,4 @@
-name: Flutter
+name: Firebase App Distribution
 
 on:
   pull_request:
