@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flower_app/core/constants/app_routes_constant.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flower_app/core/ui_utils/ui_utils.dart';
@@ -15,6 +16,7 @@ import 'package:flower_app/features/checkout/presentaion/view/widgets/total_pric
 import 'package:flower_app/features/checkout/presentaion/view/widgets/payment_web_view_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class CheckoutScreen extends StatefulWidget {
   const CheckoutScreen({super.key});
@@ -37,7 +39,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     });
   }
 
-  void _handleUiIntent(CheckoutUiIntents intent) {
+  Future<void> _handleUiIntent(CheckoutUiIntents intent) async {
     switch (intent) {
       case ShowErrorIntent():
         UIUtils.showMessage(
@@ -50,34 +52,20 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       case HideLoadingIntent():
         UIUtils.hideLoading(context);
       case NavigateToSuccessIntent():
-        _onOrderSuccess(AppTextConstants.orderPlacedSuccessfully);
+        _onOrderSuccess();
       case NavigateToWebviewIntent():
         _openPaymentWebview(intent.url);
       case NavigateToEditAddressIntent():
-        UIUtils.showMessage(
-          'Feature coming soon',
-          backGroundColor: AppColors.grey,
-          textColor: AppColors.background,
-        );
+        context.pushNamed(AppRoutesConstants.addUpdateAddressRoute);
       case NavigateToNewAddressIntent():
-        UIUtils.showMessage(
-          'Feature coming soon',
-          backGroundColor: AppColors.grey,
-          textColor: AppColors.background,
-        );
+        await context.pushNamed(AppRoutesConstants.addUpdateAddressRoute);
+        cubit.doIntent(GetAdresses());
     }
   }
 
-  void _onOrderSuccess(String message) {
+  void _onOrderSuccess() async {
     UIUtils.hideLoading(context);
-    UIUtils.showMessage(
-      message,
-      backGroundColor: AppColors.green,
-      textColor: AppColors.background,
-    );
-    Future.delayed(const Duration(seconds: 2), () {
-      if (mounted) Navigator.of(context).pop(true);
-    });
+    context.pushReplacementNamed(AppRoutesConstants.successRoute);
   }
 
   void _openPaymentWebview(String url) {
@@ -90,7 +78,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         )
         .then((result) {
           if (mounted && result == true) {
-            _onOrderSuccess(AppTextConstants.orderPlacedSuccessfully);
+            _onOrderSuccess();
           } else if (mounted) {
             UIUtils.showMessage(
               AppTextConstants.paymentCancelled,
