@@ -31,7 +31,7 @@ void main() {
   group('CheckoutRepositoryImpl', () {
     final tOrderRequestEntity = OrderRequestEntity();
 
-    final tAddressModel = AdressModel(id: '1', street: 'Street');
+    const tAddressModel = AdressModel(id: '1', street: 'Street');
     final tAddressesResponse = AdressesResponseModel(
       addresses: [tAddressModel],
     );

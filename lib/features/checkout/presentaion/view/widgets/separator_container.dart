@@ -7,7 +7,7 @@ class SeparatorContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 24,
+      height: 20,
       width: double.infinity,
       color: AppColors.whiteGray,
     );

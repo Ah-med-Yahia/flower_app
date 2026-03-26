@@ -20,15 +20,15 @@ class _IsGiftFormState extends State<IsGiftForm> {
   @override
   void initState() {
     super.initState();
-    final viewModel = context.read<CheckoutCubit>();
-    _nameController = TextEditingController(text: viewModel.state.giftName);
-    _phoneController = TextEditingController(text: viewModel.state.giftPhone);
+    final cubit = context.read<CheckoutCubit>();
+    _nameController = TextEditingController(text: cubit.state.giftName);
+    _phoneController = TextEditingController(text: cubit.state.giftPhone);
 
     _nameController.addListener(() {
-      viewModel.doIntent(UpdateGiftNameIntent(_nameController.text));
+      cubit.doIntent(UpdateGiftNameIntent(_nameController.text));
     });
     _phoneController.addListener(() {
-      viewModel.doIntent(UpdateGiftPhoneIntent(_phoneController.text));
+      cubit.doIntent(UpdateGiftPhoneIntent(_phoneController.text));
     });
   }
 

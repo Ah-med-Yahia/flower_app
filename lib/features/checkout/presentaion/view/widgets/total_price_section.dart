@@ -12,11 +12,10 @@ class TotalPriceSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.read<CheckoutCubit>();
+    final cubit = context.read<CheckoutCubit>();
     return BlocBuilder<CheckoutCubit, CheckoutStates>(
       builder: (context, state) {
         final isLoading = state.isLoading;
-
         return Container(
           padding: const EdgeInsets.only(
             top: 24,
@@ -34,16 +33,10 @@ class TotalPriceSection extends StatelessWidget {
                 onPressed: isLoading
                     ? null
                     : () {
-                        viewModel.doIntent(PlaceOrderIntent());
+                        cubit.doIntent(PlaceOrderIntent());
                       },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primary,
-                  foregroundColor: AppColors.background,
                   padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  elevation: 2,
                 ),
                 child: isLoading
                     ? const SizedBox(

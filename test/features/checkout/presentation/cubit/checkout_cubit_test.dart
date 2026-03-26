@@ -55,7 +55,10 @@ void main() {
 
   group('CheckoutCubit', () {
     test('initial state should be CheckoutStates', () {
-      expect(cubit.state, const CheckoutStates());
+      expect(
+        cubit.state,
+        CheckoutStates(selectedPaymentMethod: AppTextConstants.cash),
+      );
     });
 
     group('GetAdresses Intent (Initialization)', () {
@@ -72,12 +75,16 @@ void main() {
         },
         act: (cubit) => cubit.doIntent(GetAdresses()),
         expect: () => [
-          const CheckoutStates(isLoading: true),
-          const CheckoutStates(
+          CheckoutStates(
+            isLoading: true,
+            selectedPaymentMethod: AppTextConstants.cash,
+          ),
+          CheckoutStates(
             isLoading: false,
             addresses: tAddresses,
             selectedAddress: tAddress,
             cart: tCart,
+            selectedPaymentMethod: AppTextConstants.cash,
           ),
         ],
         verify: (_) {
@@ -109,7 +116,7 @@ void main() {
         () async {
           // Arrange
           when(mockAddCacheOrderUseCase(any)).thenAnswer(
-            (_) async => BaseResponse.success(
+            (_) async => const BaseResponse.success(
               CacheOrderResponseEntity(message: 'Success'),
             ),
           );

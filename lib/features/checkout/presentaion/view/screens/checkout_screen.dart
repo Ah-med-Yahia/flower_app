@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flower_app/config/di/di.dart';
 import 'package:flower_app/core/constants/app_routes_constant.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
@@ -30,8 +31,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   @override
   void initState() {
     super.initState();
-    cubit = context.read<CheckoutCubit>();
-    cubit.doIntent(GetAdresses());
+    cubit = getIt<CheckoutCubit>();
     cubit.doIntent(GetOrderDetails());
     cubit.uiIntent.listen((intent) {
       if (!mounted) return;

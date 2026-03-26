@@ -37,17 +37,19 @@ class PaymentSection extends StatelessWidget {
                     SelectPaymentMethodIntent(value!),
                   );
                 },
-                child: PaymentItem(
-                  title: AppTextConstants.cashOnDelivery,
-                  paymentMethod: AppTextConstants.cash,
+                child: Column(
+                  children: [
+                    PaymentItem(
+                      title: AppTextConstants.cashOnDelivery,
+                      paymentMethod: AppTextConstants.cash,
+                    ),
+                    const SizedBox(height: 16),
+                    PaymentItem(
+                      title: AppTextConstants.creditCard,
+                      paymentMethod: AppTextConstants.credit,
+                    ),
+                  ],
                 ),
-              ),
-
-              const SizedBox(height: 8),
-
-              PaymentItem(
-                title: AppTextConstants.creditCard,
-                paymentMethod: AppTextConstants.credit,
               ),
             ],
           ),
