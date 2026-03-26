@@ -20,7 +20,7 @@ class AdressModel {
   @JsonKey(name: '_id')
   final String? id;
 
-  AdressModel({
+  const AdressModel({
     this.street,
     this.phone,
     this.city,
@@ -36,14 +36,6 @@ class AdressModel {
   Map<String, dynamic> toJson() => _$AdressModelToJson(this);
 
   AddressEntity toEntity() {
-    return AddressEntity(
-      street: street,
-      phone: phone,
-      city: city,
-      lat: lat,
-      long: long,
-      username: username,
-      id: id,
-    );
+    return AddressEntity(street: street, city: city, id: id);
   }
 }

@@ -4,5 +4,5 @@ class CreditCardOrderResponseEntity {
   final String? message;
   final SessionEntity? session;
 
-  CreditCardOrderResponseEntity({this.message, this.session});
+  const CreditCardOrderResponseEntity({this.message, this.session});
 }

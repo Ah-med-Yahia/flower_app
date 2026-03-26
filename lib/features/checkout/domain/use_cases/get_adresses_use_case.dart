@@ -3,7 +3,7 @@ import 'package:flower_app/features/checkout/domain/entities/adresses/address_en
 import 'package:flower_app/features/checkout/domain/repositories/checkout_repository.dart';
 import 'package:injectable/injectable.dart';
 
-@injectable
+@lazySingleton
 class GetAdressesUseCase {
   final CheckoutRepository repository;
 

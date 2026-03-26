@@ -1,7 +1,5 @@
-import 'package:flower_app/features/checkout/domain/entities/adresses/address_entity.dart';
-
 class OrderRequestEntity {
-  final AddressEntity? addressEntity;
+  final String? addressId;
 
-  OrderRequestEntity({this.addressEntity});
+  OrderRequestEntity({this.addressId});
 }

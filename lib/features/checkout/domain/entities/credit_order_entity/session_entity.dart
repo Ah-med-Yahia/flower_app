@@ -69,7 +69,7 @@ class SessionEntity {
   final String? url;
   final dynamic walletOptions;
 
-  SessionEntity({
+  const SessionEntity({
     this.id,
     this.object,
     this.adaptivePricing,
