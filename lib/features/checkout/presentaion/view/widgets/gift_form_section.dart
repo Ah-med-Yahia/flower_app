@@ -13,7 +13,7 @@ class GiftFormSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.read<CheckoutCubit>();
+    final cubit = context.read<CheckoutCubit>();
     return BlocBuilder<CheckoutCubit, CheckoutStates>(
       buildWhen: (prev, curr) =>
           prev.selectedPaymentMethod != curr.selectedPaymentMethod ||
@@ -45,7 +45,7 @@ class GiftFormSection extends StatelessWidget {
                           ListTile(
                             visualDensity: const VisualDensity(vertical: -4),
                             onTap: () {
-                              viewModel.doIntent(
+                              cubit.doIntent(
                                 ToggleGiftOptionIntent(!state.isGift),
                               );
                             },
@@ -55,9 +55,8 @@ class GiftFormSection extends StatelessWidget {
                             contentPadding: EdgeInsets.zero,
                             leading: Switch(
                               value: state.isGift,
-                              onChanged: (val) => viewModel.doIntent(
-                                ToggleGiftOptionIntent(val),
-                              ),
+                              onChanged: (val) =>
+                                  cubit.doIntent(ToggleGiftOptionIntent(val)),
                               thumbColor: WidgetStateProperty.resolveWith((
                                 states,
                               ) {

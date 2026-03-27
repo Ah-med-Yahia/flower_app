@@ -4,7 +4,7 @@ import 'package:flower_app/features/checkout/domain/entities/order_request/order
 import 'package:flower_app/features/checkout/domain/repositories/checkout_repository.dart';
 import 'package:injectable/injectable.dart';
 
-@injectable
+@lazySingleton
 class AddCacheOrderUseCase {
   final CheckoutRepository repository;
   const AddCacheOrderUseCase(this.repository);

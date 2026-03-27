@@ -4,9 +4,10 @@ import 'package:flower_app/features/checkout/domain/entities/cart/cart_entity.da
 
 class CheckoutStates extends BaseState<void> {
   final CartEntity? cart;
-  final List<AddressEntity> addresses;
 
+  final List<AddressEntity> addresses;
   final AddressEntity? selectedAddress;
+
   final String selectedPaymentMethod;
 
   final bool isGift;
@@ -19,7 +20,7 @@ class CheckoutStates extends BaseState<void> {
     this.cart,
     this.addresses = const [],
     this.selectedAddress,
-    this.selectedPaymentMethod = 'cash',
+    this.selectedPaymentMethod = '',
     this.isGift = false,
     this.giftName = '',
     this.giftPhone = '',

@@ -27,12 +27,17 @@ class CheckoutCubit extends Cubit<CheckoutStates> {
 
   Stream<CheckoutUiIntents> get uiIntent => _uiIntentController.stream;
 
+  final _dateController = StreamController<String>();
+  Timer? _timer;
+
+  Stream<String> get dateStream => _dateController.stream;
+
   CheckoutCubit(
     this._getAdressesUseCase,
     this._getCartInfoUseCase,
     this._addCacheOrderUseCase,
     this._addCreditCardUseCase,
-  ) : super(const CheckoutStates());
+  ) : super(CheckoutStates(selectedPaymentMethod: AppTextConstants.cash));
 
   void doIntent(CheckoutIntents intent) {
     switch (intent) {
@@ -76,7 +81,10 @@ class CheckoutCubit extends Cubit<CheckoutStates> {
   }
 
   Future<void> _initializeCheckout() async {
-    emit(state.copyWith(isLoading: true));
+    if (state.isLoading) return;
+    if (state.addresses.isEmpty && state.cart == null) {
+      emit(state.copyWith(isLoading: true));
+    }
 
     final results = await Future.wait([
       _getAdressesUseCase(),
@@ -149,7 +157,7 @@ class CheckoutCubit extends Cubit<CheckoutStates> {
 
     _uiIntentController.add(ShowLoadingIntent());
 
-    final request = OrderRequestEntity(addressEntity: state.selectedAddress);
+    final request = OrderRequestEntity(addressId: state.selectedAddress?.id);
 
     if (state.selectedPaymentMethod == AppTextConstants.credit) {
       final result = await _addCreditCardUseCase(request);
@@ -197,20 +205,22 @@ class CheckoutCubit extends Cubit<CheckoutStates> {
     }
   }
 
-  Stream<String> currentDateStream() {
-    return Stream.periodic(const Duration(seconds: 1), (_) {
+  void startTimer() {
+    _timer = Timer.periodic(const Duration(seconds: 1), (_) {
       final now = DateTime.now().add(const Duration(hours: 1));
       final day = now.day.toString().padLeft(2, '0');
       final month = DateFormat('MMM').format(now);
       final year = now.year;
       final time = DateFormat('hh:mm a').format(now);
-      return '$day $month $year, $time';
+      _dateController.add('$day $month $year, $time');
     });
   }
 
   @override
   Future<void> close() {
     _uiIntentController.close();
+    _timer?.cancel();
+    _dateController.close();
     return super.close();
   }
 }

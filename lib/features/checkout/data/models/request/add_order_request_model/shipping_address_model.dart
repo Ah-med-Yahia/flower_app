@@ -1,5 +1,6 @@
-import 'package:flower_app/features/checkout/domain/entities/adresses/address_entity.dart';
+import 'package:flower_app/features/checkout/data/models/response/adresses/adress_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 part 'shipping_address_model.g.dart';
 
 @JsonSerializable()
@@ -41,13 +42,13 @@ class ShippingAddressModel {
     'long': long,
   };
 
-  factory ShippingAddressModel.fromEntity(AddressEntity entity) {
+  factory ShippingAddressModel.fromAdressModel(AdressModel model) {
     return ShippingAddressModel(
-      street: entity.street,
-      phone: entity.phone,
-      city: entity.city,
-      lat: entity.lat,
-      long: entity.long,
+      street: model.street,
+      city: model.city,
+      phone: model.phone,
+      lat: model.lat,
+      long: model.long,
     );
   }
 }

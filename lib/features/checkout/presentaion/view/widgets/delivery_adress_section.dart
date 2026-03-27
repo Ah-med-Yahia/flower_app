@@ -15,7 +15,7 @@ class DeliveryAddressesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.read<CheckoutCubit>();
+    final cubit = context.read<CheckoutCubit>();
 
     return BlocBuilder<CheckoutCubit, CheckoutStates>(
       buildWhen: (prev, curr) =>
@@ -24,13 +24,14 @@ class DeliveryAddressesSection extends StatelessWidget {
           prev.isLoading != curr.isLoading,
       builder: (context, state) {
         final isLoading = state.isLoading;
-        final addresses = isLoading
-            ? List.generate(3, (_) => AddressEntity.fake())
+        final addresses = isLoading && state.addresses.isEmpty
+            ? List.generate(2, (_) => AddressEntity.fake())
             : state.addresses;
 
         return Container(
           padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
           color: AppColors.background,
+
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -48,9 +49,7 @@ class DeliveryAddressesSection extends StatelessWidget {
                   groupValue: state.selectedAddress,
                   onChanged: (address) {
                     if (address!.id != null && address.id!.isNotEmpty) {
-                      viewModel.doIntent(
-                        SelectDeliveryAddressIntent(address.id!),
-                      );
+                      cubit.doIntent(SelectDeliveryAddressIntent(address.id!));
                     }
                   },
                   child: ListView.separated(
@@ -61,7 +60,7 @@ class DeliveryAddressesSection extends StatelessWidget {
                     itemBuilder: (context, index) {
                       final address = addresses[index];
                       return AddressItem(
-                        value: address,
+                        address: address,
                         title: '${address.street}',
                         subtitle: '${address.street}, ${address.city}',
                       );
@@ -69,7 +68,6 @@ class DeliveryAddressesSection extends StatelessWidget {
                   ),
                 ),
               ),
-
               const SizedBox(height: 16),
               const AddNewAddressButton(),
             ],

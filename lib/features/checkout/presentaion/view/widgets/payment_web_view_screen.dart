@@ -1,5 +1,6 @@
 import 'package:flower_app/core/constants/api_constants.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
+import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -46,6 +47,7 @@ class _PaymentWebViewScreenState extends State<PaymentWebViewScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(AppTextConstants.payment),
+          backgroundColor: AppColors.white,
           leading: BackButton(
             onPressed: () => Navigator.of(context).pop(false),
           ),

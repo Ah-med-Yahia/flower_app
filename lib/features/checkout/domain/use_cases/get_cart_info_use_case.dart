@@ -3,7 +3,7 @@ import 'package:flower_app/features/checkout/domain/entities/cart/cart_entity.da
 import 'package:flower_app/features/checkout/domain/repositories/checkout_repository.dart';
 import 'package:injectable/injectable.dart';
 
-@injectable
+@lazySingleton
 class GetCartInfoUseCase {
   final CheckoutRepository repository;
 

@@ -7,7 +7,7 @@ import 'package:flower_app/features/checkout/data/models/response/credit_card_or
 import 'package:flower_app/features/checkout/data/models/response/get_user_cart/user_cart_response_model.dart';
 import 'package:injectable/injectable.dart';
 
-@Injectable(as: CheckoutDataSource)
+@LazySingleton(as: CheckoutDataSource)
 class CheckoutDataSourceImpl implements CheckoutDataSource {
   final CheckoutApiClient _checkoutApiClient;
 

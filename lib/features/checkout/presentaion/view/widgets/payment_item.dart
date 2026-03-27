@@ -20,7 +20,8 @@ class PaymentItem extends StatelessWidget {
     final viewModel = context.read<CheckoutCubit>();
 
     return BlocBuilder<CheckoutCubit, CheckoutStates>(
-      buildWhen: (p, c) => p.selectedPaymentMethod != c.selectedPaymentMethod,
+      buildWhen: (prev, curr) =>
+          prev.selectedPaymentMethod != curr.selectedPaymentMethod,
       builder: (context, state) {
         final isSelected = state.selectedPaymentMethod == paymentMethod;
 
@@ -42,8 +43,8 @@ class PaymentItem extends StatelessWidget {
                   color: isSelected
                       ? AppColors.primary.withAlpha(100)
                       : AppColors.grey.withAlpha(75),
-                  blurRadius: isSelected ? 8 : 4,
-                  offset: const Offset(0, 2),
+                  blurRadius: 8,
+                  spreadRadius: 4,
                 ),
               ],
             ),

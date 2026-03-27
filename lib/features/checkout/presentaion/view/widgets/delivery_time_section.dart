@@ -6,12 +6,23 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../../core/theme/app_colors.dart';
 import '../../cubit/checkout_cubit.dart';
 
-class DeliveryTimeSection extends StatelessWidget {
+class DeliveryTimeSection extends StatefulWidget {
   const DeliveryTimeSection({super.key});
 
   @override
+  State<DeliveryTimeSection> createState() => _DeliveryTimeSectionState();
+}
+
+class _DeliveryTimeSectionState extends State<DeliveryTimeSection> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<CheckoutCubit>().startTimer();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final viewModel = context.read<CheckoutCubit>();
+    final cubit = context.read<CheckoutCubit>();
     return Container(
       color: AppColors.background,
       padding: const EdgeInsets.only(bottom: 24, left: 16, right: 16),
@@ -30,14 +41,12 @@ class DeliveryTimeSection extends StatelessWidget {
                   ),
                 ),
               ),
-              Flexible(
-                child: Text(
-                  AppTextConstants.schedule,
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    fontSize: 18,
-                    color: AppColors.primary,
-                    fontWeight: FontWeight.bold,
-                  ),
+              Text(
+                AppTextConstants.schedule,
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  fontSize: 18,
+                  color: AppColors.primary,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ],
@@ -49,7 +58,7 @@ class DeliveryTimeSection extends StatelessWidget {
               const SizedBox(width: 4),
               Expanded(
                 child: StreamBuilder<String>(
-                  stream: viewModel.currentDateStream(),
+                  stream: cubit.dateStream,
                   builder: (context, snapshot) {
                     final isLoading =
                         !snapshot.hasData ||

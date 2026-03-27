@@ -43,8 +43,12 @@ class $AssetsIconsGen {
   SvgGenImage get filterIcon =>
       const SvgGenImage('assets/icons/filter_icon.svg');
 
+  /// File path: assets/icons/launcher_icon.png
+  AssetGenImage get launcherIcon =>
+      const AssetGenImage('assets/icons/launcher_icon.png');
+
   /// List of all assets
-  List<SvgGenImage> get values => [clearCart, filterIcon];
+  List<dynamic> get values => [clearCart, filterIcon, launcherIcon];
 }
 
 class $AssetsImagesGen {
@@ -57,6 +61,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/Logo.png
   AssetGenImage get logo => const AssetGenImage('assets/images/Logo.png');
 
+  /// File path: assets/images/native_splash.png
+  AssetGenImage get nativeSplash =>
+      const AssetGenImage('assets/images/native_splash.png');
+
   /// File path: assets/images/notification.png
   AssetGenImage get notification =>
       const AssetGenImage('assets/images/notification.png');
@@ -64,8 +72,18 @@ class $AssetsImagesGen {
   /// File path: assets/images/pen.png
   AssetGenImage get pen => const AssetGenImage('assets/images/pen.png');
 
+  /// File path: assets/images/success.png
+  AssetGenImage get success => const AssetGenImage('assets/images/success.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [flowerLogo, logo, notification, pen];
+  List<AssetGenImage> get values => [
+    flowerLogo,
+    logo,
+    nativeSplash,
+    notification,
+    pen,
+    success,
+  ];
 }
 
 class $AssetsLottieGen {

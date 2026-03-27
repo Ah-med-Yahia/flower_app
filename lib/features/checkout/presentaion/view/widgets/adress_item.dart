@@ -7,13 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddressItem extends StatelessWidget {
-  final AddressEntity value;
+  final AddressEntity address;
   final String title;
   final String subtitle;
 
   const AddressItem({
     super.key,
-    required this.value,
+    required this.address,
     required this.title,
     required this.subtitle,
   });
@@ -23,32 +23,37 @@ class AddressItem extends StatelessWidget {
     return BlocBuilder<CheckoutCubit, CheckoutStates>(
       buildWhen: (prev, curr) => prev.selectedAddress != curr.selectedAddress,
       builder: (context, state) {
-        final isSelected = state.selectedAddress == value;
+        final isSelected = state.selectedAddress == address;
 
         return InkWell(
           onTap: () {
             context.read<CheckoutCubit>().doIntent(
-              SelectDeliveryAddressIntent(value.id!),
+              SelectDeliveryAddressIntent(address.id!),
             );
           },
           child: Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               color: AppColors.background,
+              border: Border.all(
+                color: isSelected ? AppColors.primary : AppColors.grey,
+                width: isSelected ? 2 : 1,
+              ),
               borderRadius: BorderRadius.circular(10),
               boxShadow: [
                 BoxShadow(
                   color: isSelected
                       ? AppColors.primary.withAlpha(100)
                       : AppColors.grey.withAlpha(75),
-                  blurRadius: 4,
+                  blurRadius: 8,
+                  spreadRadius: 4,
                 ),
               ],
             ),
             child: Row(
               children: [
                 Radio<AddressEntity>(
-                  value: value,
+                  value: address,
                   fillColor: WidgetStateProperty.all(
                     isSelected ? AppColors.primary : AppColors.grey,
                   ),
@@ -87,9 +92,9 @@ class AddressItem extends StatelessWidget {
                     color: AppColors.iconGrey,
                   ),
                   onPressed: () {
-                    if (value.id != null && value.id!.isNotEmpty) {
+                    if (address.id != null && address.id!.isNotEmpty) {
                       context.read<CheckoutCubit>().doIntent(
-                        EditDeliveryAddressIntent(value.id!),
+                        EditDeliveryAddressIntent(address.id!),
                       );
                     }
                   },
