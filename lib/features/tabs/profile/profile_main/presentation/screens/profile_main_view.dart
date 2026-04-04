@@ -1,3 +1,4 @@
+import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,8 +20,14 @@ class ProfileMainView extends StatelessWidget {
           key: const Key(AppUiKeyConstant.profileAppbarTxtTitleKey),
         ),
         actions: [
-          Assets.images.notification.image(
-            key: const Key(AppUiKeyConstant.profileAppbarNotifyICKey),
+          SizedBox(
+            width: 30,
+            height: 30,
+            child: IconButton(
+              padding: EdgeInsets.zero,
+              icon: const Icon(Icons.notifications_none, color: AppColors.grey),
+              onPressed: () {},
+            ),
           ),
         ],
         actionsPadding: const EdgeInsets.only(right: 8),

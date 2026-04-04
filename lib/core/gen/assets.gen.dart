@@ -47,8 +47,17 @@ class $AssetsIconsGen {
   AssetGenImage get launcherIcon =>
       const AssetGenImage('assets/icons/launcher_icon.png');
 
+  /// File path: assets/icons/notification.svg
+  SvgGenImage get notification =>
+      const SvgGenImage('assets/icons/notification.svg');
+
   /// List of all assets
-  List<dynamic> get values => [clearCart, filterIcon, launcherIcon];
+  List<dynamic> get values => [
+    clearCart,
+    filterIcon,
+    launcherIcon,
+    notification,
+  ];
 }
 
 class $AssetsImagesGen {
