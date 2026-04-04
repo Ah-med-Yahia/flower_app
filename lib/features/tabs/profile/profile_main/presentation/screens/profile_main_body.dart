@@ -5,19 +5,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../../../core/constants/app_routes_constant.dart';
-import '../../../../../../../core/constants/app_text_constants.dart';
-import '../../../../../../../core/theme/app_colors.dart';
-import '../../../../../../../core/ui_utils/ui_utils.dart';
-import '../../view_models/profile_main_cubit.dart';
-import '../../view_models/profile_main_intents.dart';
-import '../../view_models/profile_main_side_effects.dart';
-import '../../view_models/profile_main_states.dart';
-import '../widget/custom_bottom_sheet_widget.dart';
-import '../widget/language_and_policies_section.dart';
-import '../widget/logout_section.dart';
-import '../widget/order_and_address_section.dart';
-import '../widget/user_data_section.dart';
+import '../../../../../../core/constants/app_routes_constant.dart';
+import '../../../../../../core/constants/app_text_constants.dart';
+import '../../../../../../core/theme/app_colors.dart';
+import '../../../../../../core/ui_utils/ui_utils.dart';
+import '../cubit/profile_main_cubit.dart';
+import '../cubit/profile_main_intents.dart';
+import '../cubit/profile_main_side_effects.dart';
+import '../cubit/profile_main_states.dart';
+import 'widget/custom_bottom_sheet_widget.dart';
+import 'widget/language_and_policies_section.dart';
+import 'widget/logout_section.dart';
+import 'widget/order_and_address_section.dart';
+import 'widget/user_data_section.dart';
 
 class ProfileMainBody extends StatefulWidget {
   const ProfileMainBody({super.key});

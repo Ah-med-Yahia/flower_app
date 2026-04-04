@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../../core/constants/app_text_constants.dart';
 import '../../../../../../../core/theme/app_colors.dart';
-import '../../view_models/profile_main_cubit.dart';
-import '../../view_models/profile_main_intents.dart';
-import '../../view_models/profile_main_states.dart';
+import '../../cubit/profile_main_cubit.dart';
+import '../../cubit/profile_main_intents.dart';
+import '../../cubit/profile_main_states.dart';
 import 'order_and_address_section.dart';
 
 class LanguageAndPoliciesSection extends StatelessWidget {

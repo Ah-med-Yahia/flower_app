@@ -4,9 +4,9 @@ import 'package:flower_app/core/shared/presentation/widgets/custom_eleveted_butt
 import 'package:flower_app/core/shared/presentation/widgets/custom_error_widget.dart';
 import 'package:flower_app/core/shared/presentation/widgets/loading_indicator_widget.dart';
 import 'package:flower_app/features/tabs/profile/profile_main/domain/entities/term_section_entity.dart';
-import 'package:flower_app/features/tabs/profile/profile_main/presentation/view_models/terms/static_content_cubit.dart';
-import 'package:flower_app/features/tabs/profile/profile_main/presentation/view_models/terms/static_content_states.dart';
-import 'package:flower_app/features/tabs/profile/profile_main/presentation/views/terms/view/terms_view_body.dart';
+import 'package:flower_app/features/tabs/profile/profile_main/presentation/cubit/terms/static_content_cubit.dart';
+import 'package:flower_app/features/tabs/profile/profile_main/presentation/cubit/terms/static_content_states.dart';
+import 'package:flower_app/features/tabs/profile/profile_main/presentation/screens/terms/view/terms_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';

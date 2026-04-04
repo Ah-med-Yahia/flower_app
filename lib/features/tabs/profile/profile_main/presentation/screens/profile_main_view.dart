@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../../../config/di/di.dart';
-import '../../../../../../../core/constants/app_ui_key_constant.dart';
-import '../../../../../../../core/gen/assets.gen.dart';
-import '../../view_models/profile_main_cubit.dart';
+import '../../../../../../config/di/di.dart';
+import '../../../../../../core/constants/app_ui_key_constant.dart';
+import '../../../../../../core/gen/assets.gen.dart';
+import '../cubit/profile_main_cubit.dart';
 import 'profile_main_body.dart';
 
 class ProfileMainView extends StatelessWidget {

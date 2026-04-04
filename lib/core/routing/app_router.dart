@@ -17,8 +17,8 @@ import 'package:flower_app/features/products/occasion/presentation/views/screens
 import 'package:flower_app/features/products/best_seller/presentation/views/view/best_seller_view.dart';
 import 'package:flower_app/features/products/product_details/presentaion/view/screens/product_details_screen.dart';
 import 'package:flower_app/features/tabs/profile/profile_main/domain/entities/user_data_response.dart';
-import 'package:flower_app/features/tabs/profile/profile_main/presentation/views/terms/view/about_app_view.dart';
-import 'package:flower_app/features/tabs/profile/profile_main/presentation/views/terms/view/terms_view.dart';
+import 'package:flower_app/features/tabs/profile/profile_main/presentation/screens/terms/view/about_app_view.dart';
+import 'package:flower_app/features/tabs/profile/profile_main/presentation/screens/terms/view/terms_view.dart';
 import 'package:flower_app/features/splash/presentation/screens/splash_screen.dart';
 import 'package:flower_app/features/user_addresses/saved_addresses/presentation/view/screens/saved_addresses_screen.dart';
 import 'package:flower_app/home_screen.dart';
