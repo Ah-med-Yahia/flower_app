@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flower_app/config/di/di.dart';
+import 'package:flower_app/config/services/fcm_services.dart';
 import 'package:flower_app/core/routing/app_router.dart';
 import 'package:flower_app/core/shared/presentation/cubits/products_cubit/products_cubit.dart';
 import 'package:flower_app/core/theme/app_theme.dart';
@@ -8,8 +10,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'core/constants/app_text_constants.dart';
 
-class FlowerApp extends StatelessWidget {
+class FlowerApp extends StatefulWidget {
   const FlowerApp({super.key});
+
+  @override
+  State<FlowerApp> createState() => _FlowerAppState();
+}
+
+class _FlowerAppState extends State<FlowerApp> {
+  @override
+  void initState() {
+    super.initState();
+    FirebaseMessaging.onMessage.listen(showFlutterNotification);
+    FCMService().setupInteractedMessage();
+  }
 
   @override
   Widget build(BuildContext context) {
