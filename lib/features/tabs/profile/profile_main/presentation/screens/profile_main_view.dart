@@ -1,4 +1,4 @@
-import 'package:flower_app/core/theme/app_colors.dart';
+import 'package:flower_app/features/tabs/profile/profile_main/presentation/screens/widget/notification_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,17 +19,7 @@ class ProfileMainView extends StatelessWidget {
         title: Assets.images.logo.image(
           key: const Key(AppUiKeyConstant.profileAppbarTxtTitleKey),
         ),
-        actions: [
-          SizedBox(
-            width: 30,
-            height: 30,
-            child: IconButton(
-              padding: EdgeInsets.zero,
-              icon: const Icon(Icons.notifications_none, color: AppColors.grey),
-              onPressed: () {},
-            ),
-          ),
-        ],
+        actions: const [NotificationIcon()],
         actionsPadding: const EdgeInsets.only(right: 8),
       ),
       body: BlocProvider<ProfileMainCubit>(

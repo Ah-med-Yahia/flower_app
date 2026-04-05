@@ -234,6 +234,8 @@
   },
   "savedAddresses": {
     "addNewAddress": "إضافة عنوان جديد"
+  },
+  "notifications": {
+    "title": "الإشعارات"
   }
-
 }

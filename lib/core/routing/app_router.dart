@@ -2,6 +2,7 @@ import 'package:flower_app/config/di/di.dart';
 import 'package:flower_app/core/constants/app_routes_constant.dart';
 import 'package:flower_app/features/checkout/presentaion/view/screens/success_checkout_screen.dart';
 import 'package:flower_app/features/orders/presentation/views/screens/orders_screen.dart';
+import 'package:flower_app/features/tabs/profile/profile_main/presentation/screens/notifications_screen.dart';
 import 'package:flower_app/features/user_addresses/add_update_adrees/presentation/view/screens/add_update_address_screen.dart';
 import 'package:flower_app/features/user_addresses/shared/domain/models/address_entities.dart';
 import 'package:flower_app/features/tabs/profile/change_password/presentation/screens/change_password_screen.dart';
@@ -142,6 +143,11 @@ abstract class AppRouter {
         path: AppRoutesConstants.successRoute,
         name: AppRoutesConstants.successRoute,
         builder: (context, state) => const SuccessCheckOutScreen(),
+      ),
+      GoRoute(
+        path: AppRoutesConstants.notificationRoute,
+        name: AppRoutesConstants.notificationRoute,
+        builder: (context, state) => const NotificationsScreen(),
       ),
     ],
   );

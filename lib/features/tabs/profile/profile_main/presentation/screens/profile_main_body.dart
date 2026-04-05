@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flower_app/core/gen/assets.gen.dart';
 import 'package:flower_app/core/shared/presentation/widgets/confirmation_dialog.dart';
 import 'package:flower_app/core/shared/presentation/widgets/lottie_states_widget.dart';
@@ -33,8 +35,6 @@ class _ProfileMainBodyState extends State<ProfileMainBody> {
   void initState() {
     super.initState();
     cubit = context.read<ProfileMainCubit>();
-    // Send intent to load user data - proper MVI pattern
-
     WidgetsBinding.instance.addPostFrameCallback((_) {
       cubit.doIntent(GetUserDataIntent());
     });
@@ -44,6 +44,7 @@ class _ProfileMainBodyState extends State<ProfileMainBody> {
     BuildContext context,
     ProfileMainSideEffects sideEffect,
   ) {
+    log(sideEffect.toString());
     switch (sideEffect) {
       case ShowErrorSideEffect():
         _showErrorMessage(sideEffect.message);
@@ -88,12 +89,12 @@ class _ProfileMainBodyState extends State<ProfileMainBody> {
         }
         return BlocBuilder<ProfileMainCubit, ProfileMainStates>(
           builder: (context, state) {
-            if (state.userData.errorMessage != null) {
-              return LottieStatesWidget(
-                lottie: Assets.lottie.error.path,
-                text: AppTextConstants.mustLogin,
-              );
-            }
+            // if (state.userData.errorMessage != null) {
+            //   return LottieStatesWidget(
+            //     lottie: Assets.lottie.error.path,
+            //     text: AppTextConstants.mustLogin,
+            //   );
+            // }
             return SingleChildScrollView(
               child: Column(
                 children: [

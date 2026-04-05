@@ -378,4 +378,7 @@ class AppTextConstants {
   static String get reorder => 'Reorder'.tr();
   static String get completedText => 'Completed'.tr();
   static String get activeText => 'Active'.tr();
+
+  // Notifications
+  static String get notifications => 'notifications.title'.tr();
 }
