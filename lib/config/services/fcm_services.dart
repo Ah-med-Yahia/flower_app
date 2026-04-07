@@ -1,8 +1,12 @@
 import 'dart:developer';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flower_app/config/services/notifications_services.dart';
+import 'package:flower_app/core/constants/app_routes_constant.dart';
 import 'package:flower_app/core/constants/cache_constants.dart';
+import 'package:flower_app/core/routing/app_router.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 late AndroidNotificationChannel channel;
@@ -33,6 +37,16 @@ Future<void> setupFlutterNotifications() async {
   );
 
   flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
+  await flutterLocalNotificationsPlugin.initialize(
+    settings: const InitializationSettings(
+      android: AndroidInitializationSettings('launch_background'),
+    ),
+    onDidReceiveNotificationResponse: (NotificationResponse response) {
+      NotificationService().reset();
+      FCMService().handleMessage();
+    },
+  );
 
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
@@ -76,17 +90,26 @@ class FCMService {
     log('FCM Token: $token');
   }
 
+  static RemoteMessage? initialNotificationMessage;
+
   Future<void> setupInteractedMessage() async {
     final RemoteMessage? initialMessage = await FirebaseMessaging.instance
         .getInitialMessage();
+    NotificationService().reset();
     if (initialMessage != null) {
-      _handleMessage(initialMessage);
+      initialNotificationMessage = initialMessage;
     }
 
-    FirebaseMessaging.onMessageOpenedApp.listen(_handleMessage);
+    FirebaseMessaging.onMessageOpenedApp.listen((message) {
+      handleMessage();
+    });
   }
 
-  void _handleMessage(RemoteMessage message) {
-    log('User tapped notification: ${message.data}');
+  void handleMessage() {
+    final context = AppRouter.navigatorKey.currentContext;
+    if (context != null) {
+      context.pushNamed(AppRoutesConstants.notificationRoute);
+    }
+    log('User tapped notification');
   }
 }

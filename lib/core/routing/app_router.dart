@@ -23,11 +23,14 @@ import 'package:flower_app/features/tabs/profile/profile_main/presentation/scree
 import 'package:flower_app/features/splash/presentation/screens/splash_screen.dart';
 import 'package:flower_app/features/user_addresses/saved_addresses/presentation/view/screens/saved_addresses_screen.dart';
 import 'package:flower_app/home_screen.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
+  static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   static GoRouter router = GoRouter(
+    navigatorKey: navigatorKey,
     initialLocation: AppRoutesConstants.splashRoute,
     routes: [
       GoRoute(
