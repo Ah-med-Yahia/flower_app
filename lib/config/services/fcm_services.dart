@@ -1,7 +1,9 @@
 import 'dart:developer';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flower_app/core/constants/cache_constants.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 late AndroidNotificationChannel channel;
 late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
@@ -11,6 +13,9 @@ bool isFlutterLocalNotificationsInitialized = false;
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
   await setupFlutterNotifications();
+  final prefs = await SharedPreferences.getInstance();
+  final currentCount = prefs.getInt(CacheConstants.notificationCount) ?? 0;
+  await prefs.setInt(CacheConstants.notificationCount, currentCount + 1);
 
   if (message.notification == null) {
     showFlutterNotification(message);

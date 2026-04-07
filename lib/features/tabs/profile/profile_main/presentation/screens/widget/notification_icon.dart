@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:flower_app/config/services/notifications_services.dart';
 import 'package:flower_app/core/constants/app_routes_constant.dart';
 import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -11,15 +14,33 @@ class NotificationIcon extends StatefulWidget {
 }
 
 class _NotificationIconState extends State<NotificationIcon> {
-  int notificationCount = 3;
+  int notificationCount = 0;
+  late final StreamSubscription<int> _subscription;
+  @override
+  void initState() {
+    super.initState();
+    notificationCount = NotificationService().count;
+    _subscription = NotificationService().countStream.listen((count) {
+      if (mounted) {
+        setState(() {
+          notificationCount = count;
+        });
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _subscription.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return InkWell(
       onTap: () {
-        setState(() {
-          notificationCount = 0;
-        });
+        NotificationService().reset();
         context.pushNamed(AppRoutesConstants.notificationRoute);
       },
       child: Stack(
@@ -39,7 +60,7 @@ class _NotificationIconState extends State<NotificationIcon> {
                 ),
                 child: Center(
                   child: Text(
-                    '3',
+                    notificationCount > 99 ? '99+' : '$notificationCount',
                     style: textTheme.bodySmall?.copyWith(
                       color: AppColors.background,
                       fontWeight: FontWeight.bold,
