@@ -27,6 +27,7 @@ class _FlowerAppState extends State<FlowerApp> with WidgetsBindingObserver {
     FirebaseMessaging.onMessage.listen((message) {
       showFlutterNotification(message);
       NotificationService().increment();
+      NotificationService().saveNotifications(message);
     });
     FCMService().setupInteractedMessage();
   }

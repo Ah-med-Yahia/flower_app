@@ -242,6 +242,9 @@
     "addNewAddress": "Add New Address"
   },
   "notifications": {
-    "title": "Notifications"
+    "noNotifications": "No notifications",
+    "title": "Notifications",
+    "unTitle": "Untitled",
+    "unBody": "No content available"
   }
 }

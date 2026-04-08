@@ -381,4 +381,7 @@ class AppTextConstants {
 
   // Notifications
   static String get notifications => 'notifications.title'.tr();
+  static String get unTitle => 'notifications.unTitle'.tr();
+  static String get unBody => 'notifications.unBody'.tr();
+  static String get noNotifications => 'notifications.noNotifications'.tr();
 }
