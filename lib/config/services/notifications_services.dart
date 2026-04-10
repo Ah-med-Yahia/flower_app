@@ -19,6 +19,7 @@ class NotificationService {
 
   Future<void> init() async {
     final prefs = await SharedPreferences.getInstance();
+    await prefs.reload();
     _count = prefs.getInt(CacheConstants.notificationCount) ?? 0;
     _countController.add(_count);
   }
@@ -26,6 +27,7 @@ class NotificationService {
   Future<void> saveNotifications(RemoteMessage message) async {
     final prefs = await SharedPreferences.getInstance();
     final oldData = prefs.getStringList(CacheConstants.notifications) ?? [];
+    await prefs.reload();
 
     final oldNotifications = oldData
         .map((e) => AppNotification.fromJson(jsonDecode(e)))
@@ -55,6 +57,7 @@ class NotificationService {
 
   Future<void> markAllAsSeen() async {
     final prefs = await SharedPreferences.getInstance();
+    await prefs.reload();
 
     final data = prefs.getStringList(CacheConstants.notifications) ?? [];
 
@@ -69,15 +72,23 @@ class NotificationService {
 
   Future<List<AppNotification>> getNotifications() async {
     final prefs = await SharedPreferences.getInstance();
+    await prefs.reload();
     final data = prefs.getStringList(CacheConstants.notifications) ?? [];
     return data.map((e) => AppNotification.fromJson(jsonDecode(e))).toList();
   }
 
-  Future<void> increment() async {
-    _count++;
-    _countController.add(_count);
+  Future<void> clearNotifications() async {
     final prefs = await SharedPreferences.getInstance();
+    await prefs.setStringList(CacheConstants.notifications, []);
+  }
+
+  Future<void> increment() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.reload();
+    final currentCount = prefs.getInt(CacheConstants.notificationCount) ?? 0;
+    _count = currentCount + 1;
     await prefs.setInt(CacheConstants.notificationCount, _count);
+    _countController.add(_count);
   }
 
   Future<void> reset() async {

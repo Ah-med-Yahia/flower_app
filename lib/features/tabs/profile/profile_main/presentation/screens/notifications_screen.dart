@@ -38,6 +38,8 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
           UIUtils.showLoading(context);
           case HideLoading():
           UIUtils.hideLoading(context);
+          case MarkAllAsSeen():
+          notificationsCubit.doIntent(MarkAllAsSeenIntent());
         }
       }
     });
@@ -49,6 +51,12 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     super.didChangeDependencies();
     textTheme = Theme.of(context).textTheme;
     screenSize = MediaQuery.sizeOf(context);
+  }
+
+  @override
+  void dispose() {
+    notificationsCubit.close();
+    super.dispose();
   }
 
   @override

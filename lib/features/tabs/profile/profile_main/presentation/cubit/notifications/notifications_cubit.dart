@@ -28,6 +28,7 @@ class NotificationsCubit extends Cubit<NotificationsState> {
     _sideEffectController.add(LoadNotifications());
     final notifications = await NotificationService().getNotifications();
     _sideEffectController.add(HideLoading());
+    _sideEffectController.add(MarkAllAsSeen());
     if (notifications.isEmpty) {
       emit(state.copyWith(isEmpty: true));
     } else {
