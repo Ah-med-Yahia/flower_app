@@ -35,11 +35,11 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
       if (mounted) {
         switch (sideEffect) {
           case LoadNotifications():
-          UIUtils.showLoading(context);
+            UIUtils.showLoading(context);
           case HideLoading():
-          UIUtils.hideLoading(context);
+            UIUtils.hideLoading(context);
           case MarkAllAsSeen():
-          notificationsCubit.doIntent(MarkAllAsSeenIntent());
+            notificationsCubit.doIntent(MarkAllAsSeenIntent());
         }
       }
     });

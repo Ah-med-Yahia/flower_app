@@ -14,12 +14,12 @@ class AppNotification {
   });
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'title': title,
-        'body': body,
-        'isSeen': isSeen,
-        'time': time,
-      };
+    'id': id,
+    'title': title,
+    'body': body,
+    'isSeen': isSeen,
+    'time': time,
+  };
 
   factory AppNotification.fromJson(Map<String, dynamic> json) {
     return AppNotification(

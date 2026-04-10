@@ -1,8 +1,5 @@
 import 'dart:developer';
-
-import 'package:flower_app/core/gen/assets.gen.dart';
 import 'package:flower_app/core/shared/presentation/widgets/confirmation_dialog.dart';
-import 'package:flower_app/core/shared/presentation/widgets/lottie_states_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';

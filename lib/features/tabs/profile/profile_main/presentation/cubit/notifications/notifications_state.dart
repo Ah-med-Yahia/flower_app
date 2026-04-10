@@ -5,7 +5,10 @@ class NotificationsState {
   final bool isEmpty;
   NotificationsState({this.notifications, this.isEmpty = false});
 
-  NotificationsState copyWith({List<AppNotification>? notifications, bool? isEmpty}) {
+  NotificationsState copyWith({
+    List<AppNotification>? notifications,
+    bool? isEmpty,
+  }) {
     return NotificationsState(
       notifications: notifications ?? this.notifications,
       isEmpty: isEmpty ?? this.isEmpty,

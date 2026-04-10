@@ -28,7 +28,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
-  static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  static final GlobalKey<NavigatorState> navigatorKey =
+      GlobalKey<NavigatorState>();
   static GoRouter router = GoRouter(
     navigatorKey: navigatorKey,
     initialLocation: AppRoutesConstants.splashRoute,

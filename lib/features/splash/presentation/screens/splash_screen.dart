@@ -72,7 +72,6 @@ class _SplashScreenState extends State<SplashScreen>
 
   void _hadleNavigationToHome() {
     if (FCMService.initialNotificationMessage != null) {
-      
       context.pushReplacementNamed(AppRoutesConstants.homeRoute);
       context.pushNamed(AppRoutesConstants.notificationRoute);
       FCMService.initialNotificationMessage = null;

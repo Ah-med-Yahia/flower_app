@@ -47,14 +47,14 @@ class NotificationCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  notification.title??AppTextConstants.unTitle,
+                  notification.title ?? AppTextConstants.unTitle,
                   style: textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.w600,
                   ),
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  notification.body??AppTextConstants.unBody,
+                  notification.body ?? AppTextConstants.unBody,
                   style: textTheme.bodyMedium?.copyWith(
                     color: AppColors.textSecondary,
                   ),
