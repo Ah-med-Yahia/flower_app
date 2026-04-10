@@ -2,6 +2,7 @@ import 'package:flower_app/config/di/di.dart';
 import 'package:flower_app/core/constants/app_routes_constant.dart';
 import 'package:flower_app/features/checkout/presentaion/view/screens/success_checkout_screen.dart';
 import 'package:flower_app/features/orders/presentation/views/screens/orders_screen.dart';
+import 'package:flower_app/features/tabs/profile/profile_main/presentation/screens/notifications_screen.dart';
 import 'package:flower_app/features/user_addresses/add_update_adrees/presentation/view/screens/add_update_address_screen.dart';
 import 'package:flower_app/features/user_addresses/shared/domain/models/address_entities.dart';
 import 'package:flower_app/features/tabs/profile/change_password/presentation/screens/change_password_screen.dart';
@@ -17,16 +18,20 @@ import 'package:flower_app/features/products/occasion/presentation/views/screens
 import 'package:flower_app/features/products/best_seller/presentation/views/view/best_seller_view.dart';
 import 'package:flower_app/features/products/product_details/presentaion/view/screens/product_details_screen.dart';
 import 'package:flower_app/features/tabs/profile/profile_main/domain/entities/user_data_response.dart';
-import 'package:flower_app/features/tabs/profile/profile_main/presentation/views/terms/view/about_app_view.dart';
-import 'package:flower_app/features/tabs/profile/profile_main/presentation/views/terms/view/terms_view.dart';
+import 'package:flower_app/features/tabs/profile/profile_main/presentation/screens/terms/view/about_app_view.dart';
+import 'package:flower_app/features/tabs/profile/profile_main/presentation/screens/terms/view/terms_view.dart';
 import 'package:flower_app/features/splash/presentation/screens/splash_screen.dart';
 import 'package:flower_app/features/user_addresses/saved_addresses/presentation/view/screens/saved_addresses_screen.dart';
 import 'package:flower_app/home_screen.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
+  static final GlobalKey<NavigatorState> navigatorKey =
+      GlobalKey<NavigatorState>();
   static GoRouter router = GoRouter(
+    navigatorKey: navigatorKey,
     initialLocation: AppRoutesConstants.splashRoute,
     routes: [
       GoRoute(
@@ -142,6 +147,11 @@ abstract class AppRouter {
         path: AppRoutesConstants.successRoute,
         name: AppRoutesConstants.successRoute,
         builder: (context, state) => const SuccessCheckOutScreen(),
+      ),
+      GoRoute(
+        path: AppRoutesConstants.notificationRoute,
+        name: AppRoutesConstants.notificationRoute,
+        builder: (context, state) => const NotificationsScreen(),
       ),
     ],
   );

@@ -4,7 +4,7 @@ import 'package:flower_app/core/theme/app_colors.dart';
 import 'package:flower_app/features/tabs/cart/presentation/cart_tab.dart';
 import 'package:flower_app/features/tabs/categories/presentation/views/categories_tap.dart';
 import 'package:flower_app/features/tabs/home/presentation/view/screens/home_tap.dart';
-import 'package:flower_app/features/tabs/profile/profile_tap.dart';
+import 'package:flower_app/features/tabs/profile/profile_main/presentation/screens/profile_tap.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {

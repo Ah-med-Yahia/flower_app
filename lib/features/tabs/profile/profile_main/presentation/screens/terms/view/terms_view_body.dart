@@ -4,9 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../../../../core/constants/app_text_constants.dart';
 import '../../../../../../../../core/shared/presentation/widgets/custom_error_widget.dart';
 import '../../../../../../../../core/shared/presentation/widgets/loading_indicator_widget.dart';
-import '../../../view_models/terms/static_content_cubit.dart';
-import '../../../view_models/terms/static_content_events.dart';
-import '../../../view_models/terms/static_content_states.dart';
+import '../../../cubit/terms/static_content_cubit.dart';
+import '../../../cubit/terms/static_content_events.dart';
+import '../../../cubit/terms/static_content_states.dart';
 import '../widget/terms_section_widget.dart';
 
 class TermsViewBody extends StatefulWidget {

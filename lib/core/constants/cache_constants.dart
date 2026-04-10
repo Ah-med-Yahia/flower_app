@@ -3,6 +3,9 @@ class CacheConstants {
 
   static const String token = 'TOKEN';
   static const String errorMessageKey = 'message';
+  static const String notificationCount = 'notification_count';
+  static const String seenNotifications = 'seen_notifications';
+  static const String notifications = 'notifications';
 }
 
 class StorageKeys {

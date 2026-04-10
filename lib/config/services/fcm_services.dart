@@ -1,7 +1,14 @@
 import 'dart:developer';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flower_app/config/services/notifications_services.dart';
+import 'package:flower_app/core/constants/app_routes_constant.dart';
+import 'package:flower_app/core/constants/cache_constants.dart';
+import 'package:flower_app/core/routing/app_router.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 late AndroidNotificationChannel channel;
 late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
@@ -9,8 +16,14 @@ bool isFlutterLocalNotificationsInitialized = false;
 
 @pragma('vm:entry-point')
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await setupFlutterNotifications();
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.reload();
+  final currentCount = prefs.getInt(CacheConstants.notificationCount) ?? 0;
+  await prefs.setInt(CacheConstants.notificationCount, currentCount + 1);
+  await NotificationService().saveNotifications(message);
 
   if (message.notification == null) {
     showFlutterNotification(message);
@@ -28,6 +41,15 @@ Future<void> setupFlutterNotifications() async {
   );
 
   flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
+  await flutterLocalNotificationsPlugin.initialize(
+    settings: const InitializationSettings(
+      android: AndroidInitializationSettings('launch_background'),
+    ),
+    onDidReceiveNotificationResponse: (NotificationResponse response) {
+      FCMService().handleMessage();
+    },
+  );
 
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
@@ -71,17 +93,27 @@ class FCMService {
     log('FCM Token: $token');
   }
 
+  static RemoteMessage? initialNotificationMessage;
+
   Future<void> setupInteractedMessage() async {
     final RemoteMessage? initialMessage = await FirebaseMessaging.instance
         .getInitialMessage();
     if (initialMessage != null) {
-      _handleMessage(initialMessage);
+      initialNotificationMessage = initialMessage;
+      NotificationService().reset();
     }
 
-    FirebaseMessaging.onMessageOpenedApp.listen(_handleMessage);
+    FirebaseMessaging.onMessageOpenedApp.listen((message) {
+      handleMessage();
+    });
   }
 
-  void _handleMessage(RemoteMessage message) {
-    log('User tapped notification: ${message.data}');
+  void handleMessage() {
+    NotificationService().reset();
+    final context = AppRouter.navigatorKey.currentContext;
+    if (context != null) {
+      context.pushNamed(AppRoutesConstants.notificationRoute);
+    }
+    log('User tapped notification');
   }
 }

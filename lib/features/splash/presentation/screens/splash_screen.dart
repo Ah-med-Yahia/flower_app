@@ -1,4 +1,5 @@
 import 'package:flower_app/config/di/di.dart';
+import 'package:flower_app/config/services/fcm_services.dart';
 import 'package:flower_app/core/constants/app_routes_constant.dart';
 import 'package:flower_app/core/constants/app_text_constants.dart';
 import 'package:flower_app/core/gen/assets.gen.dart';
@@ -56,7 +57,7 @@ class _SplashScreenState extends State<SplashScreen>
       if (!mounted) return;
       switch (event) {
         case NavigateToHomeSideEffect():
-          context.pushReplacementNamed(AppRoutesConstants.homeRoute);
+          _hadleNavigationToHome();
         case NavigateToLoginSideEffect():
           context.pushReplacementNamed(AppRoutesConstants.loginRoute);
         case ErrorSideEffect(message: final message):
@@ -67,6 +68,16 @@ class _SplashScreenState extends State<SplashScreen>
           );
       }
     });
+  }
+
+  void _hadleNavigationToHome() {
+    if (FCMService.initialNotificationMessage != null) {
+      context.pushReplacementNamed(AppRoutesConstants.homeRoute);
+      context.pushNamed(AppRoutesConstants.notificationRoute);
+      FCMService.initialNotificationMessage = null;
+    } else {
+      context.pushReplacementNamed(AppRoutesConstants.homeRoute);
+    }
   }
 
   @override

@@ -9,9 +9,9 @@ import '../../../../../../../core/gen/assets.gen.dart';
 import '../../../../../../../core/theme/app_colors.dart';
 import '../../../../../../../core/shared/presentation/widgets/custom_error_widget.dart';
 import '../../../../../../../core/shared/presentation/widgets/spacing.dart';
-import '../../view_models/profile_main_cubit.dart';
-import '../../view_models/profile_main_intents.dart';
-import '../../view_models/profile_main_states.dart';
+import '../../cubit/profile_main_cubit.dart';
+import '../../cubit/profile_main_intents.dart';
+import '../../cubit/profile_main_states.dart';
 
 class UserDataSection extends StatelessWidget {
   const UserDataSection({super.key});

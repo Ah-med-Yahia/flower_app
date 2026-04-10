@@ -240,5 +240,11 @@
   },
   "savedAddresses": {
     "addNewAddress": "Add New Address"
-  } 
+  },
+  "notifications": {
+    "noNotifications": "No notifications",
+    "title": "Notifications",
+    "unTitle": "Untitled",
+    "unBody": "No content available"
+  }
 }

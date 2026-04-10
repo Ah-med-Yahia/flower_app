@@ -234,6 +234,11 @@
   },
   "savedAddresses": {
     "addNewAddress": "إضافة عنوان جديد"
+  },
+  "notifications": {
+    "noNotifications": "لا توجد إشعارات",
+    "title": "الإشعارات",
+    "unTitle": "بدون عنوان",
+    "unBody": "لا يوجد محتوى متاح"
   }
-
 }

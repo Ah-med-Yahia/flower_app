@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flower_app/config/di/di.dart';
 import 'package:flower_app/config/services/fcm_services.dart';
+import 'package:flower_app/config/services/notifications_services.dart';
 import 'package:flower_app/core/routing/app_router.dart';
 import 'package:flower_app/core/shared/presentation/cubits/products_cubit/products_cubit.dart';
 import 'package:flower_app/core/theme/app_theme.dart';
@@ -17,12 +18,31 @@ class FlowerApp extends StatefulWidget {
   State<FlowerApp> createState() => _FlowerAppState();
 }
 
-class _FlowerAppState extends State<FlowerApp> {
+class _FlowerAppState extends State<FlowerApp> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
-    FirebaseMessaging.onMessage.listen(showFlutterNotification);
+    WidgetsBinding.instance.addObserver(this);
+    NotificationService().init();
+    FirebaseMessaging.onMessage.listen((message) {
+      showFlutterNotification(message);
+      NotificationService().increment();
+      NotificationService().saveNotifications(message);
+    });
     FCMService().setupInteractedMessage();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      NotificationService().init();
+    }
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
   }
 
   @override

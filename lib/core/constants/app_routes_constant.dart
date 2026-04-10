@@ -30,4 +30,6 @@ abstract class AppRoutesConstants {
   static const String ordersRoute = '/orders';
   //--------------- SUCCESS ROUTES -----------------//
   static const String successRoute = '/success';
+  //--------------- NOTIFICATION ROUTES -----------------//
+  static const String notificationRoute = '/notification';
 }

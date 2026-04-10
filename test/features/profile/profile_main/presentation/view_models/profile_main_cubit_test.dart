@@ -8,10 +8,10 @@ import 'package:flower_app/features/tabs/profile/profile_main/domain/use_cases/g
 import 'package:flower_app/features/tabs/profile/profile_main/domain/use_cases/load_cached_user_data_use_case.dart';
 import 'package:flower_app/features/tabs/profile/profile_main/domain/use_cases/logout_use_case.dart';
 import 'package:flower_app/features/tabs/profile/profile_main/domain/use_cases/verify_session_use_case.dart';
-import 'package:flower_app/features/tabs/profile/profile_main/presentation/view_models/profile_main_cubit.dart';
-import 'package:flower_app/features/tabs/profile/profile_main/presentation/view_models/profile_main_intents.dart';
-import 'package:flower_app/features/tabs/profile/profile_main/presentation/view_models/profile_main_side_effects.dart';
-import 'package:flower_app/features/tabs/profile/profile_main/presentation/view_models/profile_main_states.dart';
+import 'package:flower_app/features/tabs/profile/profile_main/presentation/cubit/profile_main_cubit.dart';
+import 'package:flower_app/features/tabs/profile/profile_main/presentation/cubit/profile_main_intents.dart';
+import 'package:flower_app/features/tabs/profile/profile_main/presentation/cubit/profile_main_side_effects.dart';
+import 'package:flower_app/features/tabs/profile/profile_main/presentation/cubit/profile_main_states.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';

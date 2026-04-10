@@ -1,10 +1,11 @@
+import 'package:flower_app/features/tabs/profile/profile_main/presentation/screens/widget/notification_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../../../config/di/di.dart';
-import '../../../../../../../core/constants/app_ui_key_constant.dart';
-import '../../../../../../../core/gen/assets.gen.dart';
-import '../../view_models/profile_main_cubit.dart';
+import '../../../../../../config/di/di.dart';
+import '../../../../../../core/constants/app_ui_key_constant.dart';
+import '../../../../../../core/gen/assets.gen.dart';
+import '../cubit/profile_main_cubit.dart';
 import 'profile_main_body.dart';
 
 class ProfileMainView extends StatelessWidget {
@@ -18,11 +19,7 @@ class ProfileMainView extends StatelessWidget {
         title: Assets.images.logo.image(
           key: const Key(AppUiKeyConstant.profileAppbarTxtTitleKey),
         ),
-        actions: [
-          Assets.images.notification.image(
-            key: const Key(AppUiKeyConstant.profileAppbarNotifyICKey),
-          ),
-        ],
+        actions: const [NotificationIcon()],
         actionsPadding: const EdgeInsets.only(right: 8),
       ),
       body: BlocProvider<ProfileMainCubit>(

@@ -1,23 +1,22 @@
-import 'package:flower_app/core/gen/assets.gen.dart';
+import 'dart:developer';
 import 'package:flower_app/core/shared/presentation/widgets/confirmation_dialog.dart';
-import 'package:flower_app/core/shared/presentation/widgets/lottie_states_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../../../core/constants/app_routes_constant.dart';
-import '../../../../../../../core/constants/app_text_constants.dart';
-import '../../../../../../../core/theme/app_colors.dart';
-import '../../../../../../../core/ui_utils/ui_utils.dart';
-import '../../view_models/profile_main_cubit.dart';
-import '../../view_models/profile_main_intents.dart';
-import '../../view_models/profile_main_side_effects.dart';
-import '../../view_models/profile_main_states.dart';
-import '../widget/custom_bottom_sheet_widget.dart';
-import '../widget/language_and_policies_section.dart';
-import '../widget/logout_section.dart';
-import '../widget/order_and_address_section.dart';
-import '../widget/user_data_section.dart';
+import '../../../../../../core/constants/app_routes_constant.dart';
+import '../../../../../../core/constants/app_text_constants.dart';
+import '../../../../../../core/theme/app_colors.dart';
+import '../../../../../../core/ui_utils/ui_utils.dart';
+import '../cubit/profile_main_cubit.dart';
+import '../cubit/profile_main_intents.dart';
+import '../cubit/profile_main_side_effects.dart';
+import '../cubit/profile_main_states.dart';
+import 'widget/custom_bottom_sheet_widget.dart';
+import 'widget/language_and_policies_section.dart';
+import 'widget/logout_section.dart';
+import 'widget/order_and_address_section.dart';
+import 'widget/user_data_section.dart';
 
 class ProfileMainBody extends StatefulWidget {
   const ProfileMainBody({super.key});
@@ -33,8 +32,6 @@ class _ProfileMainBodyState extends State<ProfileMainBody> {
   void initState() {
     super.initState();
     cubit = context.read<ProfileMainCubit>();
-    // Send intent to load user data - proper MVI pattern
-
     WidgetsBinding.instance.addPostFrameCallback((_) {
       cubit.doIntent(GetUserDataIntent());
     });
@@ -44,6 +41,7 @@ class _ProfileMainBodyState extends State<ProfileMainBody> {
     BuildContext context,
     ProfileMainSideEffects sideEffect,
   ) {
+    log(sideEffect.toString());
     switch (sideEffect) {
       case ShowErrorSideEffect():
         _showErrorMessage(sideEffect.message);
@@ -88,12 +86,12 @@ class _ProfileMainBodyState extends State<ProfileMainBody> {
         }
         return BlocBuilder<ProfileMainCubit, ProfileMainStates>(
           builder: (context, state) {
-            if (state.userData.errorMessage != null) {
-              return LottieStatesWidget(
-                lottie: Assets.lottie.error.path,
-                text: AppTextConstants.mustLogin,
-              );
-            }
+            // if (state.userData.errorMessage != null) {
+            //   return LottieStatesWidget(
+            //     lottie: Assets.lottie.error.path,
+            //     text: AppTextConstants.mustLogin,
+            //   );
+            // }
             return SingleChildScrollView(
               child: Column(
                 children: [
