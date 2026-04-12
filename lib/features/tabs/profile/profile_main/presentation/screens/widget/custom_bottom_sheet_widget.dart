@@ -1,4 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flower_app/features/tabs/profile/profile_main/presentation/cubit/profile_main_cubit.dart';
+import 'package:flower_app/features/tabs/profile/profile_main/presentation/cubit/profile_main_intents.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../../../core/constants/app_text_constants.dart';
@@ -16,7 +20,15 @@ class CustomBottomSheetWidget extends StatefulWidget {
 }
 
 class _CustomBottomSheetWidgetState extends State<CustomBottomSheetWidget> {
-  Language? selectedLanguage = Language.english;
+  late Language? selectedLanguage;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    selectedLanguage = context.locale.languageCode == 'en'
+        ? Language.english
+        : Language.arabic;
+  }
 
   Widget buildLanguageItem({required Language language}) {
     return Container(
@@ -29,6 +41,12 @@ class _CustomBottomSheetWidgetState extends State<CustomBottomSheetWidget> {
         onTap: () {
           setState(() {
             selectedLanguage = language;
+            context.read<ProfileMainCubit>().doIntent(
+              UpdateLanguageIntent(language == Language.english ? 'en' : 'ar'),
+            );
+            context.setLocale(
+              Locale(language == Language.english ? 'en' : 'ar'),
+            );
           });
         },
         title: Text(
@@ -73,6 +91,14 @@ class _CustomBottomSheetWidgetState extends State<CustomBottomSheetWidget> {
               onChanged: (Language? value) {
                 setState(() {
                   selectedLanguage = value;
+                  context.read<ProfileMainCubit>().doIntent(
+                    UpdateLanguageIntent(
+                      value == Language.english ? 'en' : 'ar',
+                    ),
+                  );
+                  context.setLocale(
+                    Locale(value == Language.english ? 'en' : 'ar'),
+                  );
                 });
               },
               child: Column(

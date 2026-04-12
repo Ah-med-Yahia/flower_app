@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,9 +27,15 @@ class LanguageAndPoliciesSection extends StatelessWidget {
                 showArrow: false,
                 trailingWidget: InkWell(
                   onTap: () => cubit.doIntent(SelectLanguageIntent()),
-                  child: Text(
-                    state.selectedLanguage ?? AppTextConstants.english,
-                    style: const TextStyle(color: AppColors.primary),
+                  child: SizedBox(
+                    height: 30,
+                    width: 30,
+                    child: Center(
+                      child: Text(
+                        context.locale.languageCode,
+                        style: const TextStyle(color: AppColors.primary),
+                      ),
+                    ),
                   ),
                 ),
               );

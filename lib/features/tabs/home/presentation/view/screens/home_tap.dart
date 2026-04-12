@@ -11,7 +11,6 @@ import 'package:flower_app/core/shared/presentation/widgets/loading_indicator_wi
 import 'package:flower_app/core/shared/presentation/widgets/products_grid_widget.dart';
 import 'package:flower_app/core/shared/presentation/widgets/spacing.dart';
 import 'package:flower_app/core/shared/presentation/widgets/lottie_states_widget.dart';
-import 'package:flower_app/features/tabs/home/presentation/view/widgets/address_widget.dart';
 import 'package:flower_app/features/tabs/home/presentation/view/widgets/best_seller_section.dart';
 import 'package:flower_app/features/tabs/home/presentation/view/widgets/categories_section.dart';
 import 'package:flower_app/features/tabs/home/presentation/view/widgets/home_app_bar.dart';
@@ -162,9 +161,6 @@ class _HomeTapState extends State<HomeTap> {
 
                             return Column(
                               children: [
-                                const AddressWidget(
-                                  address: '2XVP+XC - Sheikh Zayed',
-                                ),
                                 12.verticalSpacing,
                                 CategoriesSection(
                                   onNavigateToCategories:
