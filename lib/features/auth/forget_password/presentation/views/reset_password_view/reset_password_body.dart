@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:flower_app/core/theme/app_colors.dart';
+import 'package:flower_app/core/ui_utils/ui_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -82,64 +84,76 @@ class _ResetPasswordBodyState extends State<ResetPasswordBody> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ResetPasswordCubit, ResetPasswordState>(
-      bloc: cubit,
-      builder: (context, state) {
-        return Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              32.verticalSpacing,
-              // New Password INPUT FIELD
-              CustomEditTextWidget(
-                edtTxtController: _newPasswordController,
-                keyboardType: TextInputType.text,
-                isEnabled: !state.resetPasswordState.isLoading,
-                labelText: AppTextConstants.newPasswordLabel,
-                hintText: AppTextConstants.newPasswordHint,
-                focusErrorText: '',
-                validator: _validateNewPassword,
-                isPassword: !_isNewPasswordVisible,
-                suffixIcon: IconButton(
-                  onPressed: () => setState(() {
-                    _isNewPasswordVisible = !_isNewPasswordVisible;
-                  }),
-                  icon: Icon(
-                    _isNewPasswordVisible
-                        ? Icons.visibility
-                        : Icons.visibility_off,
-                  ),
-                ),
-              ),
-              24.verticalSpacing,
-              // Confirm Password INPUT FIELD
-              CustomEditTextWidget(
-                edtTxtController: _confirmPasswordController,
-                keyboardType: TextInputType.text,
-                isEnabled: !state.resetPasswordState.isLoading,
-                labelText: AppTextConstants.confirmPasswordLabel,
-                hintText: AppTextConstants.confirmPasswordLabel,
-                focusErrorText: '',
-                validator: _validateConfirmPassword,
-                isPassword: !_isConfirmPasswordVisible,
-                suffixIcon: IconButton(
-                  onPressed: () => setState(() {
-                    _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
-                  }),
-                  icon: Icon(
-                    _isConfirmPasswordVisible
-                        ? Icons.visibility
-                        : Icons.visibility_off,
-                  ),
-                ),
-              ),
-              48.verticalSpacing,
-              CustomElevatedButtonWidget(onPressed: _handleSubmit),
-            ],
-          ),
-        );
+    return BlocListener<ResetPasswordCubit, ResetPasswordState>(
+      listener: (context, state) {
+        if (state.resetPasswordState.errorMessage == null &&
+            state.resetPasswordState.isLoading == false) {
+          UIUtils.showMessage(
+            state.resetPasswordState.data!.message,
+            backGroundColor: AppColors.darkGreen,
+            textColor: AppColors.white,
+          );
+        }
       },
+      child: BlocBuilder<ResetPasswordCubit, ResetPasswordState>(
+        bloc: cubit,
+        builder: (context, state) {
+          return Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                32.verticalSpacing,
+                // New Password INPUT FIELD
+                CustomEditTextWidget(
+                  edtTxtController: _newPasswordController,
+                  keyboardType: TextInputType.text,
+                  isEnabled: !state.resetPasswordState.isLoading,
+                  labelText: AppTextConstants.newPasswordLabel,
+                  hintText: AppTextConstants.newPasswordHint,
+                  focusErrorText: '',
+                  validator: _validateNewPassword,
+                  isPassword: !_isNewPasswordVisible,
+                  suffixIcon: IconButton(
+                    onPressed: () => setState(() {
+                      _isNewPasswordVisible = !_isNewPasswordVisible;
+                    }),
+                    icon: Icon(
+                      _isNewPasswordVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                    ),
+                  ),
+                ),
+                24.verticalSpacing,
+                // Confirm Password INPUT FIELD
+                CustomEditTextWidget(
+                  edtTxtController: _confirmPasswordController,
+                  keyboardType: TextInputType.text,
+                  isEnabled: !state.resetPasswordState.isLoading,
+                  labelText: AppTextConstants.confirmPasswordLabel,
+                  hintText: AppTextConstants.confirmPasswordLabel,
+                  focusErrorText: '',
+                  validator: _validateConfirmPassword,
+                  isPassword: !_isConfirmPasswordVisible,
+                  suffixIcon: IconButton(
+                    onPressed: () => setState(() {
+                      _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
+                    }),
+                    icon: Icon(
+                      _isConfirmPasswordVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                    ),
+                  ),
+                ),
+                48.verticalSpacing,
+                CustomElevatedButtonWidget(onPressed: _handleSubmit),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 

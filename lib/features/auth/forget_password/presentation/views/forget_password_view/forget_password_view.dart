@@ -26,22 +26,24 @@ class ForgetPasswordView extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Column(
-          children: [
-            40.verticalSpacing,
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: CustomHeaderTitleWidget(
-                headerTitle: AppTextConstants.forgetPasswordHeader,
-                subTitle: AppTextConstants.forgetPasswordTitle,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              40.verticalSpacing,
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.8,
+                child: CustomHeaderTitleWidget(
+                  headerTitle: AppTextConstants.forgetPasswordHeader,
+                  subTitle: AppTextConstants.forgetPasswordTitle,
+                ),
               ),
-            ),
-            32.verticalSpacing,
-            BlocProvider<ForgetPasswordCubit>(
-              create: (context) => getIt<ForgetPasswordCubit>(),
-              child: const ForgetPasswordBody(),
-            ),
-          ],
+              32.verticalSpacing,
+              BlocProvider<ForgetPasswordCubit>(
+                create: (context) => getIt<ForgetPasswordCubit>(),
+                child: const ForgetPasswordBody(),
+              ),
+            ],
+          ),
         ),
       ),
     );
