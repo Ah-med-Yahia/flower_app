@@ -95,6 +95,7 @@ class _ProfileMainBodyState extends State<ProfileMainBody> {
               );
             }
             return SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
               child: Column(
                 children: [
                   const UserDataSection(),
@@ -178,8 +179,6 @@ class _ProfileMainBodyState extends State<ProfileMainBody> {
 
   void _navigateToEditProfile(BuildContext context) {
     final userData = cubit.state.userData.data;
-    GoRouter.of(
-      context,
-    ).pushNamed(AppRoutesConstants.editProfileRoute, extra: userData);
+    context.pushNamed(AppRoutesConstants.editProfileRoute, extra: userData);
   }
 }

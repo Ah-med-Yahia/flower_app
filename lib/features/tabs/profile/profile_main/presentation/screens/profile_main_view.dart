@@ -19,6 +19,7 @@ class ProfileMainView extends StatelessWidget {
         title: Assets.images.logo.image(
           key: const Key(AppUiKeyConstant.profileAppbarTxtTitleKey),
         ),
+        automaticallyImplyLeading: false,
         actions: const [NotificationIcon()],
         actionsPadding: const EdgeInsets.only(right: 8),
       ),

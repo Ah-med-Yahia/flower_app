@@ -1,10 +1,7 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
+import 'package:flower_app/core/shared/data/models/message_response.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
-
-import '../../../../../../core/shared/data/models/message_response.dart';
 import '../../../../../../core/constants/api_constants.dart';
 import '../../data/models/request/edit_user_data_request_model.dart';
 import '../../data/models/response/user_data_response_model.dart';
@@ -20,7 +17,7 @@ abstract class EditProfileApiClient {
   @MultiPart()
   @PUT(ApiConstants.uploadUserImageEndPoint)
   Future<MessageResponse> uploadUserImage(
-    @Part(name: ApiConstants.photoPart) File imageFile,
+    @Part(name: ApiConstants.photoPart) MultipartFile imageFile,
   );
 
   @PUT(ApiConstants.editProfileEndPoint)

@@ -15,7 +15,13 @@
     "currencySign": "ج.م",
     "items": "عناصر",
     "ok": "تم",
-    "appName": "فلوري"
+    "appName": "فلوري",
+    "fileIsTooLarge": "الملف كبير جداً",
+    "uploadPhoto": "تحميل صورة",
+    "gallery": "المعرض",
+    "chooseFromYourPhotos": "اختر من صورك",
+    "camera": "الكاميرا",
+    "takeNewPhoto": "التقاط صورة جديدة"
   },
   "auth": {
     "login": "تسجيل الدخول",

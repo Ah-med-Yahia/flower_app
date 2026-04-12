@@ -33,6 +33,18 @@ class AppTextConstants {
 
   static String get appName => 'common.appName'.tr();
 
+  static String get fileIsTooLarge => 'common.fileIsTooLarge'.tr();
+
+  static String get uploadPhoto => 'common.uploadPhoto'.tr();
+
+  static String get gallery => 'common.gallery'.tr();
+
+  static String get chooseFromYourPhotos => 'common.chooseFromYourPhotos'.tr();
+
+  static String get camera => 'common.camera'.tr();
+
+  static String get takeNewPhoto => 'common.takeNewPhoto'.tr();
+
   //-------------------------- Auth --------------------------//
   static String get login => 'auth.login'.tr();
 

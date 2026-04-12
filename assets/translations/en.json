@@ -15,7 +15,13 @@
     "currencySign": "E£",
     "items": "items",
     "appName": "Flowery",
-    "ok": "OK"
+    "ok": "OK",
+    "fileIsTooLarge": "File is too large",
+    "uploadPhoto": "Upload Photo",
+    "gallery": "Gallery",
+    "chooseFromYourPhotos": "Choose from your photos",
+    "camera": "Camera",
+    "takeNewPhoto": "Take a new photo"
   },
   "auth": {
     "login": "Login",

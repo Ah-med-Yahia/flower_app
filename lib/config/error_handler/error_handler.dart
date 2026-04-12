@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flower_app/config/error_handler/file_exceptions.dart';
 
 import '../../core/constants/errors_constants.dart';
 import 'error_model.dart';
@@ -117,6 +118,8 @@ class ErrorHandler implements Exception {
       return ErrorHandler._(errorModel: _handleLocalException(error));
     } else if (error is ErrorModel) {
       return ErrorHandler._(errorModel: error);
+    } else if (error is FileException) {
+      return ErrorHandler._(errorModel: ErrorModel(message: error.message));
     } else {
       return ErrorHandler._(errorModel: DataSource.unknown.toFailure());
     }

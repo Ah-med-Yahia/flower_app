@@ -1,6 +1,4 @@
 import 'package:equatable/equatable.dart';
-
-import '../../../../../../core/shared/data/models/message_response.dart';
 import '../../../../../../config/base_state/base_state.dart';
 import '../../../../../../core/constants/errors_constants.dart';
 import '../../domain/entities/user_data_response_entity.dart';
@@ -8,18 +6,18 @@ import 'edit_profile_events.dart';
 
 class EditProfileStates extends Equatable {
   final BaseState<UserDataResponseEntity> userDataState;
-  final BaseState<MessageResponse> imageUploadState;
+  final BaseState<String> imageUploadState;
   final NavigationAction navigateTo;
 
   const EditProfileStates({
     this.userDataState = const BaseState<UserDataResponseEntity>(),
-    this.imageUploadState = const BaseState<MessageResponse>(),
+    this.imageUploadState = const BaseState<String>(),
     this.navigateTo = NavigationAction.none,
   });
 
   EditProfileStates copyWith({
     BaseState<UserDataResponseEntity>? userDataState,
-    BaseState<MessageResponse>? imageUploadState,
+    BaseState<String>? imageUploadState,
     NavigationAction? navigateTo,
   }) {
     return EditProfileStates(
@@ -37,7 +35,7 @@ class EditProfileStates extends Equatable {
       userDataState.data?.userEntity ?? const UserEntity();
 
   String get imageUploadMessage =>
-      imageUploadState.data?.message ?? ErrorsConstant.defaultError;
+      imageUploadState.data ?? ErrorsConstant.defaultError;
 
   String get userDataErrorMessage =>
       userDataState.errorMessage ?? ErrorsConstant.defaultError;
