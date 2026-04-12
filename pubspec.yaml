@@ -70,6 +70,12 @@ dependencies:
   flutter_launcher_icons: ^0.14.4
   firebase_messaging: ^16.1.2
   flutter_local_notifications: ^21.0.0
+  mime: ^1.0.5
+  http_parser: ^4.0.2
+  flutter_image_compress: ^2.4.0
+  path_provider: ^2.1.5
+  path: ^1.9.1
+  image_picker: ^1.2.1
 
 dev_dependencies:
   flutter_test:

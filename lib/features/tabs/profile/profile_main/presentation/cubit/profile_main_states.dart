@@ -8,23 +8,27 @@ class ProfileMainStates extends Equatable {
   final bool isNotificationsEnabled;
   final BaseState<UserDataResponse> userData;
   final String? selectedLanguage;
+  final bool isGuestMode;
 
   const ProfileMainStates({
     this.isNotificationsEnabled = true,
     this.userData = const BaseState<UserDataResponse>(),
     this.selectedLanguage = AppTextConstants.englishProfileState,
+    this.isGuestMode = false,
   });
 
   ProfileMainStates copyWith({
     bool? isNotificationsEnabled,
     BaseState<UserDataResponse>? userData,
     String? selectedLanguage,
+    bool? isGuestMode,
   }) {
     return ProfileMainStates(
       isNotificationsEnabled:
           isNotificationsEnabled ?? this.isNotificationsEnabled,
       userData: userData ?? this.userData,
       selectedLanguage: selectedLanguage ?? this.selectedLanguage,
+      isGuestMode: isGuestMode ?? this.isGuestMode,
     );
   }
 
@@ -33,5 +37,6 @@ class ProfileMainStates extends Equatable {
     isNotificationsEnabled,
     userData,
     selectedLanguage,
+    isGuestMode,
   ];
 }

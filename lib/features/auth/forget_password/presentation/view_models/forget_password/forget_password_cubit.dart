@@ -44,7 +44,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
         // Trigger navigation after successful API response
         _navigation(NavigateToVerifyOtpCode(email: email));
       },
-      failure: (error) => {
+      failure: (error) {
         emit(
           state.copyWith(
             forgetPasswordState: state.forgetPasswordState.copyWith(
@@ -52,7 +52,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
               isLoading: false,
             ),
           ),
-        ),
+        );
       },
     );
   }

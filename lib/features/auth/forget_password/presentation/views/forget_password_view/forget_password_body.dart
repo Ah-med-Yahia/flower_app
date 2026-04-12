@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:flower_app/core/theme/app_colors.dart';
+import 'package:flower_app/core/ui_utils/ui_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -47,7 +49,7 @@ class _ForgetPasswordBodyState extends State<ForgetPasswordBody> {
   }
 
   void _navigateToVerifyOtp(String email) {
-    GoRouter.of(context).go(AppRoutesConstants.verifyOtpRoute, extra: email);
+    GoRouter.of(context).push(AppRoutesConstants.verifyOtpRoute, extra: email);
     debugPrint('Navigate to verify OTP with email: $email');
   }
 
@@ -67,29 +69,40 @@ class _ForgetPasswordBodyState extends State<ForgetPasswordBody> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ForgetPasswordCubit, ForgetPasswordState>(
-      bloc: cubit,
-      builder: (context, state) {
-        return Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              CustomEditTextWidget(
-                edtTxtController: _emailController,
-                keyboardType: TextInputType.emailAddress,
-                isEnabled: !state.forgetPasswordState.isLoading,
-                labelText: AppTextConstants.emailLabel,
-                hintText: AppTextConstants.emailHint,
-                focusErrorText: ValidationConstants.invalidEmail,
-                validator: _validateEmail,
-              ),
-              48.verticalSpacing,
-              CustomElevatedButtonWidget(onPressed: _handleSubmit),
-            ],
-          ),
-        );
+    return BlocListener<ForgetPasswordCubit, ForgetPasswordState>(
+      listener: (context, state) {
+        if (state.forgetPasswordState.errorMessage != null) {
+          UIUtils.showMessage(
+            state.forgetPasswordState.errorMessage!,
+            backGroundColor: AppColors.darkRed,
+            textColor: AppColors.white,
+          );
+        }
       },
+      child: BlocBuilder<ForgetPasswordCubit, ForgetPasswordState>(
+        bloc: cubit,
+        builder: (context, state) {
+          return Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                CustomEditTextWidget(
+                  edtTxtController: _emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  isEnabled: !state.forgetPasswordState.isLoading,
+                  labelText: AppTextConstants.emailLabel,
+                  hintText: AppTextConstants.emailHint,
+                  focusErrorText: ValidationConstants.invalidEmail,
+                  validator: _validateEmail,
+                ),
+                48.verticalSpacing,
+                CustomElevatedButtonWidget(onPressed: _handleSubmit),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 

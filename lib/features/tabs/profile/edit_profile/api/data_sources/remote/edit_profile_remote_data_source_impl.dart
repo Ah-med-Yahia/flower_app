@@ -1,8 +1,8 @@
 import 'dart:io';
 
+import 'package:flower_app/core/helpers/to_multipart_file.dart';
+import 'package:flower_app/core/shared/data/models/message_response.dart';
 import 'package:injectable/injectable.dart';
-
-import '../../../../../../../core/shared/data/models/message_response.dart';
 import '../../../data/data_sources/remote/edit_profile_remote_data_source.dart';
 import '../../../data/models/request/edit_user_data_request_model.dart';
 import '../../../data/models/response/user_data_response_model.dart';
@@ -23,6 +23,6 @@ class EditProfileRemoteDataSourceImpl implements EditProfileRemoteDataSource {
 
   @override
   Future<MessageResponse> uploadUserImage(File imageFile) async {
-    return await _apiClient.uploadUserImage(imageFile);
+    return await _apiClient.uploadUserImage(await toMultipartFile(imageFile));
   }
 }

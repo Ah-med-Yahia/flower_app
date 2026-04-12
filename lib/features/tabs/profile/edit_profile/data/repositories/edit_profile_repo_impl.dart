@@ -1,9 +1,9 @@
 import 'dart:io';
 
+import 'package:flower_app/core/shared/data/models/message_response.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../../config/base_response/base_response.dart';
-import '../../../../../../core/shared/data/models/message_response.dart';
 import '../../../../../../config/network/safe_api_call.dart';
 import '../../domain/entities/user_data_response_entity.dart';
 import '../../domain/repositories/edit_profile_repo.dart';
@@ -25,9 +25,9 @@ class EditProfileRepoImpl implements EditProfileRepo {
   });
 
   @override
-  Future<BaseResponse<MessageResponse>> uploadImage(String imagePath) async =>
+  Future<BaseResponse<MessageResponse>> uploadImage(File imageFile) async =>
       safeApiCall(() async {
-        final file = File(imagePath);
-        return await _remoteDataSource.uploadUserImage(file);
+        final response = await _remoteDataSource.uploadUserImage(imageFile);
+        return response;
       });
 }

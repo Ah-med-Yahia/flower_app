@@ -1,5 +1,8 @@
 import 'dart:developer';
+
+import 'package:flower_app/core/gen/assets.gen.dart';
 import 'package:flower_app/core/shared/presentation/widgets/confirmation_dialog.dart';
+import 'package:flower_app/core/shared/presentation/widgets/lottie_states_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -41,7 +44,6 @@ class _ProfileMainBodyState extends State<ProfileMainBody> {
     BuildContext context,
     ProfileMainSideEffects sideEffect,
   ) {
-    log(sideEffect.toString());
     switch (sideEffect) {
       case ShowErrorSideEffect():
         _showErrorMessage(sideEffect.message);
@@ -86,13 +88,14 @@ class _ProfileMainBodyState extends State<ProfileMainBody> {
         }
         return BlocBuilder<ProfileMainCubit, ProfileMainStates>(
           builder: (context, state) {
-            // if (state.userData.errorMessage != null) {
-            //   return LottieStatesWidget(
-            //     lottie: Assets.lottie.error.path,
-            //     text: AppTextConstants.mustLogin,
-            //   );
-            // }
+            if (state.isGuestMode) {
+              return LottieStatesWidget(
+                lottie: Assets.lottie.error.path,
+                text: AppTextConstants.mustLogin,
+              );
+            }
             return SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
               child: Column(
                 children: [
                   const UserDataSection(),
@@ -133,6 +136,7 @@ class _ProfileMainBodyState extends State<ProfileMainBody> {
   }
 
   void _showErrorMessage(String message) {
+    log(message);
     UIUtils.showMessage(
       message,
       backGroundColor: AppColors.red,
@@ -175,8 +179,6 @@ class _ProfileMainBodyState extends State<ProfileMainBody> {
 
   void _navigateToEditProfile(BuildContext context) {
     final userData = cubit.state.userData.data;
-    GoRouter.of(
-      context,
-    ).pushNamed(AppRoutesConstants.editProfileRoute, extra: userData);
+    context.pushNamed(AppRoutesConstants.editProfileRoute, extra: userData);
   }
 }

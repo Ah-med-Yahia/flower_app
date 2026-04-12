@@ -22,10 +22,13 @@ class UserDataSection extends StatelessWidget {
     return BlocBuilder<ProfileMainCubit, ProfileMainStates>(
       builder: (context, state) {
         if (state.userData.isLoading) {
-          return const Center(
-            child: Padding(
-              padding: EdgeInsets.all(16.0),
-              child: CircularProgressIndicator(),
+          return const SizedBox(
+            height: 150,
+            child: Center(
+              child: Padding(
+                padding: EdgeInsets.all(16.0),
+                child: CircularProgressIndicator(color: AppColors.primary),
+              ),
             ),
           );
         }
@@ -76,7 +79,9 @@ class UserDataSection extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    userData?.firstName ?? AppTextConstants.guestUser,
+                    userData?.firstName == null
+                        ? AppTextConstants.guestUser
+                        : '${userData?.firstName} ${userData?.lastName}',
                     style: titleLarge?.copyWith(color: AppColors.textPrimary),
                   ),
                   8.horizontalSpacing,
