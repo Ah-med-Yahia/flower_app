@@ -82,6 +82,7 @@ class ProfileMainCubit extends Cubit<ProfileMainStates> {
           case SessionInvalid(:final reason):
             emit(
               state.copyWith(
+                isGuestMode: true,
                 userData: state.userData.copyWith(
                   isLoading: false,
                   errorMessage: reason,
