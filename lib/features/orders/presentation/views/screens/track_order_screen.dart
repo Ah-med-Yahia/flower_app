@@ -149,6 +149,8 @@ class TrackOrderScreen extends StatelessWidget {
                 isDelivered: isDelivered,
                 order: order,
                 driver: driver,
+                userId: userId,
+                orderId: orderId,
               ),
             ],
           );
