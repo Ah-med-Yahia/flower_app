@@ -87,7 +87,7 @@ class _TrackOrderMapScreenState extends State<TrackOrderMapScreen> {
           if (orderSnapshot.hasError ||
               !orderSnapshot.hasData ||
               !orderSnapshot.data!.exists) {
-            return const Center(child: Text('Order not found'));
+            return Center(child: Text(AppTextConstants.trackOrderNotFound));
           }
 
           final data = orderSnapshot.data!.data() as Map<String, dynamic>;
@@ -156,15 +156,15 @@ class _TrackOrderMapScreenState extends State<TrackOrderMapScreen> {
                         height: 40,
                         alignment: Alignment.topCenter,
                         child: _buildLocationPin(
-                          'Apartment',
+                          AppTextConstants.trackOrderApartment,
                           Icons.home,
                           AppColors.primary,
                         ),
                       ),
                       Marker(
                         point: driverLoc,
-                        width: 60,
-                        height: 60,
+                        width: 45,
+                        height: 45,
                         child: Container(
                           decoration: BoxDecoration(
                             color: Colors.white,
@@ -177,7 +177,7 @@ class _TrackOrderMapScreenState extends State<TrackOrderMapScreen> {
                           child: Padding(
                             padding: const EdgeInsets.all(4.0),
                             child: Image.asset(
-                              'assets/images/Car.png',
+                              'assets/images/Delivery Motorcycle.png',
                               fit: BoxFit.contain,
                             ),
                           ),
@@ -191,14 +191,14 @@ class _TrackOrderMapScreenState extends State<TrackOrderMapScreen> {
                 alignment: Alignment.bottomCenter,
                 child: Container(
                   decoration: const BoxDecoration(
-                    color: Colors.white,
+                    color: AppColors.white,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(30),
                       topRight: Radius.circular(30),
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black12,
+                        color: AppColors.black,
                         blurRadius: 10,
                         spreadRadius: 2,
                       ),
@@ -269,9 +269,7 @@ class _TrackOrderMapScreenState extends State<TrackOrderMapScreen> {
                                         fontSize: 15,
                                       ),
                                 ),
-                                child: const Text(
-                                  'Order details',
-                                ), // Can use AppTextConstants.cartDescription or add string
+                                child: Text(AppTextConstants.trackOrderDetails),
                               ),
                             ),
                           ],
@@ -298,13 +296,12 @@ class _TrackOrderMapScreenState extends State<TrackOrderMapScreen> {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, color: Colors.white, size: 14),
+          Icon(icon, color: AppColors.white, size: 14),
           const SizedBox(width: 4),
           Text(
             title,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 12,
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: AppColors.white,
               fontWeight: FontWeight.bold,
             ),
           ),
