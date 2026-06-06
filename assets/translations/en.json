@@ -265,6 +265,8 @@
     "receivedYourOrder": "Received your order",
     "preparingYourOrder": "Preparing your order",
     "outForDelivery": "Out for delivery",
-    "delivered": "Delivered"
+    "delivered": "Delivered",
+    "apartment": "Apartment",
+    "orderDetails": "Order details"
   }
 }

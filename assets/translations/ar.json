@@ -259,6 +259,8 @@
     "receivedYourOrder": "تم استلام طلبك",
     "preparingYourOrder": "جاري تجهيز طلبك",
     "outForDelivery": "تم التوصيل",
-    "delivered": "تم التوصيل"
+    "delivered": "تم التوصيل",
+    "apartment": "شقة",
+    "orderDetails": "تفاصيل الطلب"
   }
 }

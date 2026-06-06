@@ -415,4 +415,6 @@ class AppTextConstants {
   static String get trackOrderOutForDelivery =>
       'trackOrder.outForDelivery'.tr();
   static String get delivered => 'trackOrder.delivered'.tr();
+  static String get trackOrderApartment => 'trackOrder.apartment'.tr();
+  static String get trackOrderDetails => 'trackOrder.orderDetails'.tr();
 }
