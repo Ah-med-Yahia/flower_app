@@ -48,7 +48,13 @@ class SuccessCheckOutScreen extends StatelessWidget {
                   height: 50,
                   child: ElevatedButton(
                     onPressed: () {
-                      // context.pushNamed(AppRoutesConstants.trackOrderRoute);
+                      context.pushNamed(
+                        AppRoutesConstants.trackOrderRoute,
+                        extra: <String, String>{
+                          'userId': '69deac8e6bbaf1588bbc1984',
+                          'orderId': '69e182da6bbaf1588bbc86c9',
+                        },
+                      );
                     },
                     child: Text(AppTextConstants.trackOrder),
                   ),
