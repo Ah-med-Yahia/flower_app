@@ -246,5 +246,21 @@
     "title": "الإشعارات",
     "unTitle": "بدون عنوان",
     "unBody": "لا يوجد محتوى متاح"
+  },
+  "trackOrder": {
+    "title": "تتبع الطلب",
+    "orderNotFound": "الطلب غير موجود",
+    "estimatedArrival": "وقت الوصول المتوقع",
+    "showMap": "عرض الخريطة",
+    "orderDelivered": "تم توصيل الطلب",
+    "error": "خطأ",
+    "defaultDriverName": "أحمد عمر",
+    "deliveryHeroMessage": "!هو بطل التوصيل الخاص بك اليوم",
+    "receivedYourOrder": "تم استلام طلبك",
+    "preparingYourOrder": "جاري تجهيز طلبك",
+    "outForDelivery": "تم التوصيل",
+    "delivered": "تم التوصيل",
+    "apartment": "شقة",
+    "orderDetails": "تفاصيل الطلب"
   }
 }

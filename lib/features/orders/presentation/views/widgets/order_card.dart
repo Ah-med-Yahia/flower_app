@@ -90,7 +90,17 @@ class OrderCard extends StatelessWidget {
                     width: double.infinity,
                     height: 40,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        if (isActive) {
+                          context.pushNamed(
+                            AppRoutesConstants.trackOrderRoute,
+                            extra: <String, String>{
+                              'userId': '69deac8e6bbaf1588bbc1984',
+                              'orderId': '69e182da6bbaf1588bbc86c9',
+                            },
+                          );
+                        }
+                      },
                       child: Text(
                         isActive
                             ? AppTextConstants.trackOrder

@@ -385,7 +385,6 @@ class AppTextConstants {
   static String get noOrdersAvailable => 'No orders available'.tr();
   static String get orderDetails => 'My orders'.tr();
   static String get orderNumber => 'Order number'.tr();
-  static String get delivered => 'Delivered'.tr();
   static String get trackOrder => 'Track order'.tr();
   static String get reorder => 'Reorder'.tr();
   static String get completedText => 'Completed'.tr();
@@ -396,4 +395,26 @@ class AppTextConstants {
   static String get unTitle => 'notifications.unTitle'.tr();
   static String get unBody => 'notifications.unBody'.tr();
   static String get noNotifications => 'notifications.noNotifications'.tr();
+
+  // Track Order
+  static String get trackOrderTitle => 'trackOrder.title'.tr();
+  static String get trackOrderNotFound => 'trackOrder.orderNotFound'.tr();
+  static String get trackOrderEstimatedArrival =>
+      'trackOrder.estimatedArrival'.tr();
+  static String get trackOrderShowMap => 'trackOrder.showMap'.tr();
+  static String get trackOrderDelivered => 'trackOrder.orderDelivered'.tr();
+  static String get trackOrderError => 'trackOrder.error'.tr();
+  static String get trackOrderDefaultDriverName =>
+      'trackOrder.defaultDriverName'.tr();
+  static String get trackOrderDriverMessage =>
+      'trackOrder.deliveryHeroMessage'.tr();
+  static String get trackOrderReceivedYourOrder =>
+      'trackOrder.receivedYourOrder'.tr();
+  static String get trackOrderPreparingYourOrder =>
+      'trackOrder.preparingYourOrder'.tr();
+  static String get trackOrderOutForDelivery =>
+      'trackOrder.outForDelivery'.tr();
+  static String get delivered => 'trackOrder.delivered'.tr();
+  static String get trackOrderApartment => 'trackOrder.apartment'.tr();
+  static String get trackOrderDetails => 'trackOrder.orderDetails'.tr();
 }
