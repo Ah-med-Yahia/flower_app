@@ -63,6 +63,17 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/Car.png
+  AssetGenImage get car => const AssetGenImage('assets/images/Car.png');
+
+  /// File path: assets/images/Delivery Boy.png
+  AssetGenImage get deliveryBoy =>
+      const AssetGenImage('assets/images/Delivery Boy.png');
+
+  /// File path: assets/images/Delivery Motorcycle.png
+  AssetGenImage get deliveryMotorcycle =>
+      const AssetGenImage('assets/images/Delivery Motorcycle.png');
+
   /// File path: assets/images/FlowerLogo.png
   AssetGenImage get flowerLogo =>
       const AssetGenImage('assets/images/FlowerLogo.png');
@@ -86,6 +97,9 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+    car,
+    deliveryBoy,
+    deliveryMotorcycle,
     flowerLogo,
     logo,
     nativeSplash,
@@ -119,6 +133,10 @@ class $AssetsLottieGen {
   /// File path: assets/lottie/error.json
   LottieGenImage get error => const LottieGenImage('assets/lottie/error.json');
 
+  /// File path: assets/lottie/loading.json
+  LottieGenImage get loading =>
+      const LottieGenImage('assets/lottie/loading.json');
+
   /// List of all assets
   List<dynamic> get values => [
     emptyBox,
@@ -127,6 +145,7 @@ class $AssetsLottieGen {
     clock,
     emptyCart,
     error,
+    loading,
   ];
 }
 

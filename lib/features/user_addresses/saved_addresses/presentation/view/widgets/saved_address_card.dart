@@ -81,7 +81,7 @@ class SavedAddressCard extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            '${address.street} - ${address.phone}',
+            address.street,
             style: titleSmall!.copyWith(
               color: AppColors.textSecondary,
               fontWeight: FontWeight.w700,

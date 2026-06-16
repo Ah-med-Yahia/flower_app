@@ -76,12 +76,18 @@ class _ProfileMainBodyState extends State<ProfileMainBody> {
     );
   }
 
+  ProfileMainSideEffects? _lastHandledSideEffect;
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<ProfileMainSideEffects>(
       stream: context.read<ProfileMainCubit>().sideEffects,
       builder: (context, asyncSnapshot) {
-        if (asyncSnapshot.hasData && asyncSnapshot.data != null) {
+        if (asyncSnapshot.hasData &&
+            asyncSnapshot.data != null &&
+            asyncSnapshot.data != _lastHandledSideEffect) {
+          // ← guard
+          _lastHandledSideEffect = asyncSnapshot.data;
           WidgetsBinding.instance.addPostFrameCallback((_) {
             handleSideEffect(context, asyncSnapshot.data!);
           });
@@ -147,7 +153,10 @@ class _ProfileMainBodyState extends State<ProfileMainBody> {
   void _showLanguageBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      builder: (context) => const CustomBottomSheetWidget(),
+      builder: (context) => BlocProvider.value(
+        value: cubit,
+        child: const CustomBottomSheetWidget(),
+      ),
       backgroundColor: AppColors.background,
     );
   }

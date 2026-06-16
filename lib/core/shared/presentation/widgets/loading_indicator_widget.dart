@@ -22,7 +22,8 @@ class LoadingIndicator extends StatelessWidget {
       color: backgroundColor,
       alignment: Alignment.center,
       child: Lottie.asset(
-        Assets.lottie.flowerLoading.path,
+        // Assets.lottie.flowerLoading.path,
+        Assets.lottie.loading.path,
         width: size,
         height: size,
         fit: fit,

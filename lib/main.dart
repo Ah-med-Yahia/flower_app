@@ -30,6 +30,7 @@ void main() async {
   Bloc.observer = AppBlocObserver();
   await configureDependencies();
   await EasyLocalization.ensureInitialized();
+  FCMService().getToken();
   runApp(
     EasyLocalization(
       supportedLocales: const [
